@@ -10,34 +10,36 @@
 #include <sstream>
 #include <vector>
 #include <iostream>
+
+#include "RuleEngine.h"
 #include "sbxTypes.h"
 #include "muparserx/mpParser.h"
-#include "ruleengine.h"
 
 using namespace std;
 using namespace mup;
 
 namespace sbx {
 
-RuleConstant MakeRuleConstant(const ProductElement, const ComparisonTypes, int);
+RuleConstant MakeRuleConstant(const ProductElement, const ComparisonTypes, string);
 void PrintVariables(ParserX p);
 void PrintExpressions(ParserX p);
 
 void RuleEngine::Init() {
-//	LoadRuleConstants();
+//	container.Init();
 	LoadRuleCatalogue();
 }
 
 void RuleEngine::LoadRuleConstants(ParserX &p) {
 	// load rule constants - for now, set dummy values
-	ProductElement pe = {"taeblgrmin", kCurr};
-	rc_cont["rc_taeblgrmin_min"] = MakeRuleConstant(pe, kMin, 100000);
-	rc_cont["rc_taeblgrmin_max"] = MakeRuleConstant(pe, kMax, 800000);
-	rc_cont["rc_taebloblmax_min"] = MakeRuleConstant(pe, kMin, 100000);
-	rc_cont["rc_taebloblmax_max"] = MakeRuleConstant(pe, kMax, 800000);
+	ProductElement pe = {kTaeBlGrMin, "taeblgrmin", kCurr};
 
-	pe = {"taespaendbl", kCurr};
-	rc_cont["rc_taespaendbl_max"] = MakeRuleConstant(pe, kMax, 200000);
+//	rc_cont["rc_taeblgrmin_min"] = MakeRuleConstant(pe, kMin, 100000);
+//	rc_cont["rc_taeblgrmin_max"] = MakeRuleConstant(pe, kMax, 800000);
+//	rc_cont["rc_taebloblmax_min"] = MakeRuleConstant(pe, kMin, 100000);
+//	rc_cont["rc_taebloblmax_max"] = MakeRuleConstant(pe, kMax, 800000);
+
+	pe = {kTaeSpaendBl, "taespaendbl", kCurr};
+	rc_cont["rc_taespaendbl_max"] = MakeRuleConstant(pe, kMax, "200000");
 
 	try {
 		p.EnableAutoCreateVar(true);
@@ -112,8 +114,12 @@ int RuleEngine::Validate(sbx::ComparisonTypes) {
 	return -1;
 }
 
-RuleConstant MakeRuleConstant(ProductElement product_element, ComparisonTypes ct, int i) {
-	RuleConstant rc = {product_element, ct, i};
+vector<string> RuleEngine::GetOptionsList(sbx::ProductElementNames product_element_name) {
+	return container.GetOptions(product_element_name);
+}
+
+RuleConstant MakeRuleConstant(ProductElement product_element, ComparisonTypes ct, string s) {
+	RuleConstant rc = {1, 0, product_element, ct, s, true};
 	return rc;
 }
 
@@ -134,4 +140,4 @@ void PrintExpressions(ParserX p) {
 	cout << "------------- Expressions END ------------" << endl;
 }
 
-}
+} // sbx namespace end

@@ -5,7 +5,7 @@
  *      Author: xjes
  */
 
-#include "../ruleengine/sbxFirma.h"
+#include "KonceptInfo.h"
 
 namespace sbx {
 

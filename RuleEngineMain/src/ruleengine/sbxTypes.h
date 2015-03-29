@@ -33,21 +33,41 @@ enum ProductElementTypes : int {
 enum ProductElementNames : int {
 	kTaeBlGrMin			= 1,
 	kTaeBlOblMax		,
-	kTaeSpaendBl
+	kTaeSpaendBl		,
+	KLoenDefinition		,
+	kLoenRegulering
 };
 
 struct ProductElement {
+	sbx::ProductElementNames product_element_name;
 	std::string name;
 	ProductElementTypes product_element_type;
 };
 
-struct RuleConstant {
-	ProductElement product_element;
-	ComparisonTypes ct;
-	int value;
+struct ConstantKey {
+	sbx::ProductElementNames pe;
+	sbx::ComparisonTypes type;
+
+	bool operator<(ConstantKey const& other) const {
+		if (pe < other.pe) return true;
+		if (pe > other.pe) return false;
+		// pe is equal, so look at next part of the composite key
+		if (type < other.type) return true;
+		if (type > other.type) return false;
+
+		// both pe and type are equal...
+		return false;
+	}
 };
 
-
+struct RuleConstant {
+	int underkoncept_oid;
+	int unionagreement_oid;
+	ProductElement product_element;
+	ComparisonTypes ct;
+	std::string value;
+	bool isDefault;
+};
 
 } // namespace sbx
 

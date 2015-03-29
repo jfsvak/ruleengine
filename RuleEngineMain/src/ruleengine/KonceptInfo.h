@@ -5,8 +5,8 @@
  *      Author: xjes
  */
 
-#ifndef RULEENGINE_SBXFIRMA_H_
-#define RULEENGINE_SBXFIRMA_H_
+#ifndef RULEENGINE_KONCEPTINFO_H_
+#define RULEENGINE_KONCEPTINFO_H_
 
 namespace sbx {
 
@@ -18,4 +18,4 @@ public:
 
 } /* namespace sbx */
 
-#endif /* RULEENGINE_SBXFIRMA_H_ */
+#endif /* RULEENGINE_KONCEPTINFO_H_ */
