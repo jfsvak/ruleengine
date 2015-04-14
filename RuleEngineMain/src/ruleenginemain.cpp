@@ -28,6 +28,7 @@ const int NO_OF_DUMMY_CONSTANTS = 15;
 int main() {
 
 	try {
+		cout << "Hello world" << endl;
 		return testRuleEngineValidateAllowedOption();
 	} catch (exception &e) {
 		cout << "Exception while testing: " << e.what() << endl;
