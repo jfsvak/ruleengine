@@ -29,6 +29,7 @@ int main() {
 
 	try {
 		cout << "Hello world" << endl;
+		cout << "Another Hello world" << endl;
 		return testRuleEngineValidateAllowedOption();
 	} catch (exception &e) {
 		cout << "Exception while testing: " << e.what() << endl;
