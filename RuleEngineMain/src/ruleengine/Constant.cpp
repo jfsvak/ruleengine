@@ -22,7 +22,7 @@ namespace sbx {
    */
   Constant::Constant( const short underKonceptOid,
 		  	  	  	  const short unionAgreementOid,
-					  const ProductElementNames productElement,
+					  const ProductElementOid productElement,
 					  const ComparisonTypes comparisonType,
 					  const std::string value,
 					  const bool isDefault) :
@@ -85,7 +85,7 @@ namespace sbx {
 	  return _unionAgreementOid;
   }
 
-  ProductElementNames Constant::getProductElement() const
+  ProductElementOid Constant::getProductElement() const
   {
 	  return _productElement;
   }

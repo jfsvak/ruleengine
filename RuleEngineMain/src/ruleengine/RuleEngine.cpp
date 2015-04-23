@@ -13,6 +13,7 @@
 #include <string>
 
 #include "RuleEngine.h"
+#include "ProductElement.h"
 #include "sbxTypes.h"
 #include "muParser/mpParser.h"
 
@@ -27,10 +28,16 @@ namespace sbx {
 //	  loadRuleCatalogue();
   }
 
+  void RuleEngine::initConstants(const std::string &filename)
+  {
+	  _container.initGlobalConstants(filename);
+//	  loadRuleCatalogue();
+  }
+
   /**
    * Initialises local context that is used for following operations on RuleEngine
    */
-  void RuleEngine::initContext(const short underkoncept_oid, const short unionagreement_oid)
+  void RuleEngine::initContext(short underkoncept_oid, short unionagreement_oid)
   {
 	  _container.initContext(underkoncept_oid, unionagreement_oid);
   }
@@ -38,7 +45,7 @@ namespace sbx {
   /**
    * Delegate call to RuleConstantContainer::getOptionsList(...)
    */
-  vector<string> RuleEngine::getOptions(const ProductElementNames productElement)
+  vector<string> RuleEngine::getOptions(ProductElementOid productElement)
   {
 	  return _container.getOptions(productElement);
   }
@@ -46,7 +53,7 @@ namespace sbx {
   /**
    * Delegate call to RuleConstantContainer::getOptionsList(...)
    */
-  std::vector<std::shared_ptr<Constant>> RuleEngine::getOptionsList(const sbx::ProductElementNames productElement)
+  std::vector<std::shared_ptr<Constant>> RuleEngine::getOptionsList(sbx::ProductElementOid productElement)
   {
 	  return _container.getOptionsList(productElement);
   }
@@ -54,7 +61,7 @@ namespace sbx {
   /**
    * Delegate call to RuleConstantContainer::getConstant(...)
    */
-  std::shared_ptr<sbx::Constant> RuleEngine::getConstant(const sbx::ProductElementNames productElement, const sbx::ComparisonTypes comparisonType)
+  std::shared_ptr<sbx::Constant> RuleEngine::getConstant(sbx::ProductElementOid productElement, sbx::ComparisonTypes comparisonType)
   {
 	  return _container.getConstant(productElement, comparisonType);
   }
@@ -74,7 +81,7 @@ namespace sbx {
   void RuleEngine::loadRuleConstants(ParserX &p)
   {
 	  // load rule constants - for now, set dummy values
-	  ProductElement pe = {kTaeBlGrMin, "taeblgrmin", kCurr};
+	  ProductElement pe {kTaeBlGrMin, "taeblgrmin", kCurr};
 
 //	rc_cont["rc_taeblgrmin_min"] = MakeRuleConstant(pe, kMin, 100000);
 //	rc_cont["rc_taeblgrmin_max"] = MakeRuleConstant(pe, kMax, 800000);
@@ -170,7 +177,7 @@ namespace sbx {
   /*
    * Validates a single product element using the specific rules for that product element
    */
-  int RuleEngine::validate(sbx::ProductElementNames p_element, std::vector<std::pair<std::string,long>> p_operands) {
+  int RuleEngine::validate(sbx::ProductElementOid p_element, const std::vector<std::pair<std::string,long>> &p_operands) {
 	  cout << "The Start of Validate" << endl;
 
 	  try {
@@ -214,9 +221,13 @@ namespace sbx {
   /*
    * Validates the generic rules for the ComparisonType
    */
-  const int RuleEngine::validate(sbx::ComparisonTypes comparisonType) const {
+  int RuleEngine::validate(sbx::ComparisonTypes comparisonType) const {
 	  return -1;
   }
+
+//  const std::shared_ptr<sbx::Constant> RuleEngine::getDefaultValue(sbx::ProductElementNames productElement) const {
+//	  return -1;
+//  }
 
   void RuleEngine::printVariables(ParserX p) {
 	  cout << "------------- Variables initialised BEGIN ------------" << endl;

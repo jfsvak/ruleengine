@@ -26,17 +26,20 @@ class RuleEngine {
   public:
 	static const int VALID = 1;
 	static const int INVALID = -1;
+
 	void initConstants(const std::vector<Constant> &globalConstants);
-	void initContext(const short underkoncept_oid, const short unionagreement_oid);
-	std::vector<std::string> getOptions(const sbx::ProductElementNames productElement);
-	std::vector<std::shared_ptr<Constant>> getOptionsList(const sbx::ProductElementNames productElement);
-	std::shared_ptr<sbx::Constant> getConstant(const sbx::ProductElementNames productElement, const sbx::ComparisonTypes comparisonType);
-	int validate(const sbx::ProductElementNames productElement, const std::vector<std::pair<std::string,long>>);
+	void initConstants(const std::string &filename);
+	void initContext(short underkoncept_oid, short unionagreement_oid);
+	std::vector<std::string> getOptions(sbx::ProductElementOid productElement);
+	std::vector<std::shared_ptr<Constant>> getOptionsList(sbx::ProductElementOid productElement);
+	std::shared_ptr<sbx::Constant> getConstant(sbx::ProductElementOid productElement, sbx::ComparisonTypes comparisonType);
+	int validate(sbx::ProductElementOid productElement, const std::vector<std::pair<std::string,long>> &p_operands);
 	int validate(const sbx::ProductElementValue &peValue);
-	const int validate(const sbx::ComparisonTypes comparisonType) const;
+	int validate(sbx::ComparisonTypes comparisonType) const;
+//	const std::shared_ptr<sbx::Constant> getDefaultValue(sbx::ProductElementNames productElement) const;
   private:
 	sbx::RuleConstantContainer _container;
-	std::map<sbx::ProductElementNames, std::vector<std::string>> _ruleCatalogue;
+	std::map<sbx::ProductElementOid, std::vector<std::string>> _ruleCatalogue;
     // mup::ParserX p;
 
 	// private util methods

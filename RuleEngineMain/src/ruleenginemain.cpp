@@ -60,7 +60,7 @@ int testRuleEngineValidateAllowedOption(void) {
 	cout << "ValidationResult [" << validationResult << "]" << endl;
 
 	cout << "\nValidate double value" << endl;
-	ProductElementValue pevDouble {sbx::ProductElementNames::kTaeBlGrMin, sbx::ProductElementTypes::kCurr, "100000"};
+	ProductElementValue pevDouble {sbx::ProductElementOid::kTaeBlGrMin, sbx::ProductElementTypes::kCurr, "100000"};
 	validationResult = re.validate(pevDouble);
 	cout << "ValidationResult [" << validationResult << "]" << endl;
 

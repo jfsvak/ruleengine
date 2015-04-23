@@ -30,22 +30,16 @@ enum ProductElementTypes : int {
 	kPercent	= 8
 };
 
-enum ProductElementNames : int {
-	kTaeBlGrMin			= 1,
-	kTaeBlOblMax		,
-	kTaeSpaendBl		,
-	kLoenDefinition		,
-	kLoenRegulering
-};
-
-struct ProductElement {
-	sbx::ProductElementNames product_element_name;
-	std::string name;
-	ProductElementTypes product_element_type;
+enum ProductElementOid : int {
+	kTaeBlGrMin			= 14,
+	kTaeBlOblMax		= 15,
+	kTaeSpaendBl		= 16,
+	kLoenDefinition		= 146,
+	kLoenRegulering		= 147
 };
 
 struct ConstantKey {
-	sbx::ProductElementNames pe;
+	sbx::ProductElementOid pe;
 	sbx::ComparisonTypes type;
 
 	bool operator<(ConstantKey const& other) const {

@@ -22,9 +22,9 @@ class RuleConstantContainer {
 public:
 	void initGlobalConstants(const std::vector<sbx::Constant> &globalConstants);
 	void initContext(const short underkoncept_oid, const short unionAgreementOid);
-	std::vector<std::string> getOptions(const sbx::ProductElementNames productElement);
-	std::vector<std::shared_ptr<sbx::Constant>> getOptionsList(const sbx::ProductElementNames productElement);
-	std::shared_ptr<sbx::Constant> getConstant(const sbx::ProductElementNames productElement, const sbx::ComparisonTypes comparisonType);
+	std::vector<std::string> getOptions(const sbx::ProductElementOid productElement);
+	std::vector<std::shared_ptr<sbx::Constant>> getOptionsList(const sbx::ProductElementOid productElement);
+	std::shared_ptr<sbx::Constant> getConstant(const sbx::ProductElementOid productElement, const sbx::ComparisonTypes comparisonType);
 	void printConstantHeader() const;
 	void printConstants() const;
 private:
@@ -41,7 +41,7 @@ private:
 	 *  Subscript format is: _ukOptionsMap[underkonceptOid][productElementOid]
 	 *  Value is a vector of shared_ptr->Constant
 	 **/
-	std::map<short, std::map<sbx::ProductElementNames, std::vector<std::shared_ptr<sbx::Constant>>>> _ukOptionsMap;
+	std::map<short, std::map<sbx::ProductElementOid, std::vector<std::shared_ptr<sbx::Constant>>>> _ukOptionsMap;
 
 	/**
 	 * _ukMinValuesMap:
@@ -50,7 +50,7 @@ private:
 	 * Subscript format is: _ukMinValuesMap[underkonceptOid][productElementOid]
 	 * Value: shared_ptr to Constant
 	 */
-	std::map<short, std::map<sbx::ProductElementNames, std::shared_ptr<sbx::Constant>>> _ukMinValuesMap;
+	std::map<short, std::map<sbx::ProductElementOid, std::shared_ptr<sbx::Constant>>> _ukMinValuesMap;
 
 	/**
 	 * _ukMaxValuesMap:
@@ -59,7 +59,7 @@ private:
 	 * Subscript format is: _ukMinValuesMap[underkonceptOid][productElementOid]
 	 * Value: shared_ptr to Constant
 	 */
-	std::map<short, std::map<sbx::ProductElementNames, std::shared_ptr<sbx::Constant>>> _ukMaxValuesMap;
+	std::map<short, std::map<sbx::ProductElementOid, std::shared_ptr<sbx::Constant>>> _ukMaxValuesMap;
 	void printConstant(const std::shared_ptr<sbx::Constant> c) const;
 	short _underKonceptOid;
 	short _unionAgreementOid;

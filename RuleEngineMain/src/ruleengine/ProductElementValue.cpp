@@ -14,7 +14,7 @@ namespace sbx {
 	  // empty constructor needed for vector initialisation.
   }
 
-  ProductElementValue::ProductElementValue(const ProductElementNames productElement, const ProductElementTypes productElementType, const std::string& stringValue) :
+  ProductElementValue::ProductElementValue(const ProductElementOid productElement, const ProductElementTypes productElementType, const std::string& stringValue) :
 		  _productElement { productElement},
 		  _productElementType { productElementType },
 		  _stringValue { stringValue }
@@ -53,7 +53,7 @@ namespace sbx {
 	  return doubleValue;
   }
 
-  ProductElementNames ProductElementValue::getProductElement() const
+  ProductElementOid ProductElementValue::getProductElement() const
   {
 	  return _productElement;
   }
