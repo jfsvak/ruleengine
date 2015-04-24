@@ -11,11 +11,13 @@
 #include <vector>
 #include <iostream>
 #include <string>
+#include <memory>
 
 #include "RuleEngine.h"
 #include "ProductElement.h"
 #include "sbxTypes.h"
 #include "muParser/mpParser.h"
+#include "../json/json.h"
 
 using namespace std;
 using namespace mup;
@@ -28,9 +30,42 @@ namespace sbx {
 //	  loadRuleCatalogue();
   }
 
-  void RuleEngine::initConstants(const std::string &filename)
+  void RuleEngine::initConstants(const std::string &jsonContents)
   {
-	  _container.initGlobalConstants(filename);
+	  // Load/parse the json string to get all the rule constants and create the vector of Constant objects for the container
+	  Json::Reader reader;
+	  Json::Value root;
+
+	  bool parsingSuccessful = reader.parse(jsonContents, root);
+
+	  if(parsingSuccessful) {
+		  // if we can parse the json string, then get the list of rule constants
+		  Json::Value ruleConstantList = root["data"].get("ruleConstant", 0);
+
+		  if (ruleConstantList.size() > 0) {
+			  size_t index = 0;
+			  // new vector of constants to passed to RuleConstantContainer. Set size to the number of incoming json elements
+			  vector<sbx::Constant> constants(ruleConstantList.size());
+
+			  // iterate over the list of rule constants and create Constant objects to put into the RuleConstantContainer
+			  for ( Json::ValueIterator ruleConstantElement = ruleConstantList.begin(); ruleConstantElement != ruleConstantList.end(); ++ruleConstantElement) {
+				  int productElementOid = ruleConstantElement->get("productElementOid", 0).asInt();
+				  int underKonceptOid = ruleConstantElement->get("underKonceptOid", 0).asInt();
+				  int unionAgreementOid = ruleConstantElement->get("unionAgreementOid", 0).asInt();
+//				  int generalAgreementOid = ruleConstantElement->get("generalAgreementOid", 0).asInt();
+				  int comparisonTypeOid = ruleConstantElement->get("comparisonTypeOid", 0).asInt();
+				  string value = ruleConstantElement->get("value", "").asString();
+				  bool isDefault = ruleConstantElement->get("isDefault", false).asBool();
+				  Constant constant {static_cast<short int>(underKonceptOid), static_cast<short int>(unionAgreementOid), static_cast<ProductElementOid>(productElementOid), static_cast<ComparisonTypes>(comparisonTypeOid), value, isDefault};
+
+				  constants[index++] = constant;
+			  }
+
+			  // initialise the container with the created vector
+			  _container.initGlobalConstants(constants);
+		  }
+	  }
+
 //	  loadRuleCatalogue();
   }
 
@@ -64,6 +99,13 @@ namespace sbx {
   std::shared_ptr<sbx::Constant> RuleEngine::getConstant(sbx::ProductElementOid productElement, sbx::ComparisonTypes comparisonType)
   {
 	  return _container.getConstant(productElement, comparisonType);
+  }
+
+  /**
+   * Gets the RuleConstantContainer
+   */
+  const sbx::RuleConstantContainer& RuleEngine::getContainer() {
+	  return _container;
   }
 
   /**

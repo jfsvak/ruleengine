@@ -1,0 +1,26 @@
+{
+   "values" : ["value1", "value2"],
+   "data":    {
+      "ruleConstant":       [
+                  {
+            "oid": 0,
+            "underKonceptOid": 2,
+            "unionAgreementOid": 0,
+            "generalAgreementOid": 1,
+            "productElementOid": 244,
+            "comparisonTypeOid": 4,
+            "value": "0",
+            "isDefault": false
+         },
+                  {
+            "oid": 0,
+            "underKonceptOid": 3,
+            "unionAgreementOid": 0,
+            "generalAgreementOid": 1,
+            "productElementOid": 244,
+            "comparisonTypeOid": 4,
+            "value": "0",
+            "isDefault": false
+         }
+	]}
+}

@@ -20,6 +20,8 @@ namespace sbx {
 class RuleConstantContainer {
 
 public:
+	static bool _printDebug;
+
 	void initGlobalConstants(const std::vector<sbx::Constant> &globalConstants);
 	void initContext(const short underkoncept_oid, const short unionAgreementOid);
 	std::vector<std::string> getOptions(const sbx::ProductElementOid productElement);
@@ -27,6 +29,8 @@ public:
 	std::shared_ptr<sbx::Constant> getConstant(const sbx::ProductElementOid productElement, const sbx::ComparisonTypes comparisonType);
 	void printConstantHeader() const;
 	void printConstants() const;
+	void printContainerOverview(short int underKonceptOid = 0) const;
+	std::size_t size() const;
 private:
 	/**
 	 * vector of all global constants for all contexts

@@ -8,6 +8,20 @@ namespace sbx {
 
   bool Constant::_printDebug = false;
 
+  Constant::Constant( const Constant& origin ) :
+									  _underKonceptOid { origin._underKonceptOid },
+									  _unionAgreementOid { origin._unionAgreementOid },
+									  _productElement { origin._productElement },
+									  _comparisonType { origin._comparisonType },
+									  _stringValue { origin._stringValue },
+									  _default { origin._default }
+  {
+	  if (Constant::_printDebug) {
+		  cout << "= Ori.Constant{"<< addressof(origin) << "}=>";
+		  printValues();//Constant{" << this << ", " << _underKonceptOid << ", " << _unionAgreementOid << ", " << _productElement << ", " << _comparisonType << ", " << _stringValue << ", " << _default << "}" << endl;
+	  }
+  }
+
   Constant::Constant(void) :
 		  _underKonceptOid { 0 },
 		  _unionAgreementOid { 0 },
@@ -34,7 +48,8 @@ namespace sbx {
 							  _default { isDefault }
   {
 	  if (Constant::_printDebug) {
-		  cout << "Constant{" << this << ", " << underKonceptOid << ", " << unionAgreementOid << ", " << productElement << ", " << comparisonType << ", " << value << ", " << isDefault << "}" << endl;
+		  cout << "+ ";
+		  printValues(); //Constant{" << this << ", " << underKonceptOid << ", " << unionAgreementOid << ", " << productElement << ", " << comparisonType << ", " << value << ", " << isDefault << "}" << endl;
 	  }
   }
 
@@ -101,7 +116,7 @@ namespace sbx {
   Constant::~Constant(void)
   {
 	  if (Constant::_printDebug) {
-		  cout << "Destructing ";
+		  cout << "- ";
 		  printValues();
 	  }
 	  _stringValue = "";

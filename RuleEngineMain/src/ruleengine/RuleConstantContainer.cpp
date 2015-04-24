@@ -17,6 +17,7 @@
 using namespace std;
 
 namespace sbx {
+	bool RuleConstantContainer::_printDebug = false;
 
   /**
    * Copies the vector of Constants into the _globalConstants vector
@@ -24,23 +25,37 @@ namespace sbx {
   void RuleConstantContainer::initGlobalConstants(const vector<Constant> &global_constants)
   {
 	  // load the global constants into the container using copy-constructor
+	  if (RuleConstantContainer::_printDebug)
+		  cout << "  _globalConstants = global_constants" << endl;
+
 	  _globalConstants = global_constants;
 
+	  if (RuleConstantContainer::_printDebug)
+		  cout << "  _globalConstants = global_constants done!" << endl;
+
 	  // initialise the 3 maps of constant types
-	  for ( auto constant : _globalConstants) {
+	  for ( auto& constant : _globalConstants) {
 
   		  // equals goes into _ukOptionsMap as shared_ptr to the Constant in a vector
 		  // min/max values goes into min/max-map as a shared_ptr to the Constant
+		  if (RuleConstantContainer::_printDebug)
+			  cout << "  make_shared<Constant>(constant)!" << endl;
+
+		  shared_ptr<Constant> ptr = make_shared<Constant>(constant);
+
+		  if (RuleConstantContainer::_printDebug)
+			  cout << "  make_shared<Constant>(constant) done!" << endl;
+
 		  switch(constant.getComparisonType()) {
 		  	  case kEquals:
 //		  		  _optionsMap[constant.getProductElement()].push_back(constant.stringValue());
-		  		  _ukOptionsMap[constant.getUnderKonceptOid()][constant.getProductElement()].push_back(make_shared<Constant>(constant));
+		  		  _ukOptionsMap[constant.getUnderKonceptOid()][constant.getProductElement()].push_back(ptr);
 		  		  break;
 		  	  case kMin:
-			  	  _ukMinValuesMap[constant.getUnderKonceptOid()][constant.getProductElement()] = make_shared<Constant>(constant);
+			  	  _ukMinValuesMap[constant.getUnderKonceptOid()][constant.getProductElement()] = ptr;
 		  		  break;
 			  case kMax:
-				  _ukMaxValuesMap[constant.getUnderKonceptOid()][constant.getProductElement()] = make_shared<Constant>(constant);;
+				  _ukMaxValuesMap[constant.getUnderKonceptOid()][constant.getProductElement()] = ptr;
 				  break;
 		  	  default:
 		  		  break;
@@ -114,6 +129,14 @@ namespace sbx {
   }
 
   /**
+   * Gets the number of global constants in this container
+   */
+  std::size_t RuleConstantContainer::size() const
+  {
+	  return _globalConstants.size();
+  }
+
+  /**
    * Outputs to cout the entire content of Constant Container
    */
   void RuleConstantContainer::printConstants() const
@@ -170,9 +193,38 @@ namespace sbx {
 	  cout << "Address   UK  UA  PE  CT    strValue     double       long  isDefault" << endl;
 	  cout << "--------  --  --  --  --  ----------  ---------  ---------  ---------" << endl;
   }
+
   void RuleConstantContainer::printConstant(const std::shared_ptr<sbx::Constant> c) const
   {
 	  cout << c << setw(4) << c->getUnderKonceptOid() << setw(4) << c->getUnionAgreementOid() << setw(4) << c->getProductElement() << setw(4) << c->getComparisonType();
 	  cout << right << setw(12) << c->stringValue() << right << setw(11) << c->doubleValue() << right << setw(11) << c->longValue() << setw(9) << (c->isDefault() ? "*" : "") << endl;
   }
+
+  void RuleConstantContainer::printContainerOverview(short int underKonceptOid) const {
+	  cout << "Current context : UK["<< _underKonceptOid << "], UA["<< _unionAgreementOid << "]" << endl;
+	  cout << "Global constants: [" << size() << "]" << endl;
+
+	  // print stats for all underkoncepts
+	  cout << "UK\tEquals\tMin\tMax\n";
+	  if (underKonceptOid == 0)
+	  {
+		  for ( const auto& optionsMapItem : _ukOptionsMap) {
+			  cout << right << setw(2) << optionsMapItem.first;
+			  cout << "\t" << right << setw(6) << optionsMapItem.second.size();
+			  cout << "\t" << right << setw(3) << _ukMinValuesMap.at(optionsMapItem.first).size();
+			  cout << "\t" << right << setw(3) << _ukMaxValuesMap.at(optionsMapItem.first).size();
+			  cout << endl;
+		  }
+	  }
+	  else
+	  {
+		  // print stats for this underkoncept
+		  cout << right << setw(2) << underKonceptOid;
+		  cout << "\t" << right << setw(6) << _ukOptionsMap.at(underKonceptOid).size();
+		  cout << "\t" << right << setw(3) << _ukMinValuesMap.at(underKonceptOid).size();
+		  cout << "\t" << right << setw(3) << _ukMaxValuesMap.at(underKonceptOid).size();
+		  cout << endl;
+	  }
+  }
+
 } // sbx namespace end
