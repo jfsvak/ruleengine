@@ -18,11 +18,14 @@
 #include "sbxTypes.h"
 #include "muParser/mpParser.h"
 #include "../json/json.h"
+#include "PrintUtils.h"
 
 using namespace std;
 using namespace mup;
 
 namespace sbx {
+
+  bool RuleEngine::_printDebug = false;
 
   void RuleEngine::initConstants(const std::vector<sbx::Constant> &allConstants)
   {
@@ -45,7 +48,7 @@ namespace sbx {
 		  if (ruleConstantList.size() > 0) {
 			  size_t index = 0;
 			  // new vector of constants to passed to RuleConstantContainer. Set size to the number of incoming json elements
-			  vector<sbx::Constant> constants(ruleConstantList.size());
+			  vector<sbx::Constant> constants (ruleConstantList.size());
 
 			  // iterate over the list of rule constants and create Constant objects to put into the RuleConstantContainer
 			  for ( Json::ValueIterator ruleConstantElement = ruleConstantList.begin(); ruleConstantElement != ruleConstantList.end(); ++ruleConstantElement) {
@@ -159,12 +162,34 @@ namespace sbx {
 	  {
 		  case kText:
 		  {
-			  // check in optionsList is this value is allowed
-			  const vector<string> v = _container.getOptions(peValue.getProductElement());
-			  const auto result = find(std::begin(v), std::end(v), peValue.stringValue());
+			  // check in optionsList if this value is allowed
+			  const vector<string>& v = _container.getOptions(peValue.getProductElementOid());
+			  cout << "Options for [" << peValue.getProductElementOid() << "]";
+			  printVector(v);
+			  cout << endl;
+			  const auto& result = find(v.cbegin(), v.cend(), peValue.stringValue());
+
+			  if (result != v.cend())
+				  cout << "Found at " << (result - v.cbegin()) << endl;
+			  else
+				  cout << "Not Found" << endl;
 
 			  // if we are not at the end, we found it, so we return 1
-			  return (result != std::end(v) ? RuleEngine::VALID : RuleEngine::INVALID);
+			  short int found = (result != v.cend()) ? RuleEngine::VALID : RuleEngine::INVALID;
+
+			  if ( RuleEngine::_printDebug ) {
+				  // print if its not valid, and print valid options for this context
+				  if (found == RuleEngine::VALID) {
+					  cout << "Value[" << peValue.stringValue() << "] is allowed! " << endl;
+				  }
+				  else {
+					  string allowedValues = accumulate(v.begin(), v.end(), string(""));
+
+					  cout << "Value[" << peValue.stringValue() << "] is not allowed! Allowed values are: [" << allowedValues << "]" << endl;
+				  }
+			  }
+
+			  return found;
 		  }
 	  	  case kLong:
 	  	  case kCurr:
@@ -176,13 +201,13 @@ namespace sbx {
 			  p.EnableAutoCreateVar(true);
 			  // setup constants
 			  std::ostringstream sstream;
-			  sstream << _container.getConstant(peValue.getProductElement(), kMin)->doubleValue();
+			  sstream << _container.getConstant(peValue.getProductElementOid(), kMin)->doubleValue();
 			  std::string varAsString = sstream.str();
 			  p.SetExpr("min_constant=" + varAsString);
 			  p.Eval();
 			  sstream.str("");
 
-			  sstream << _container.getConstant(peValue.getProductElement(), kMax)->doubleValue();
+			  sstream << _container.getConstant(peValue.getProductElementOid(), kMax)->doubleValue();
 			  varAsString = sstream.str();
 			  p.SetExpr("max_constant=" + varAsString);
 			  p.Eval();

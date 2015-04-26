@@ -17,7 +17,7 @@
 using namespace std;
 
 namespace sbx {
-	bool RuleConstantContainer::_printDebug = false;
+  bool RuleConstantContainer::_printDebug = false;
 
   /**
    * Copies the vector of Constants into the _globalConstants vector
@@ -47,6 +47,7 @@ namespace sbx {
 			  cout << "  make_shared<Constant>(constant) done!" << endl;
 
 		  switch(constant.getComparisonType()) {
+		  	  case kEnum:
 		  	  case kEquals:
 //		  		  _optionsMap[constant.getProductElement()].push_back(constant.stringValue());
 		  		  _ukOptionsMap[constant.getUnderKonceptOid()][constant.getProductElement()].push_back(ptr);
@@ -77,14 +78,14 @@ namespace sbx {
   /**
    * Gets a vector of strings with option values for productElement
    */
-  vector<string> RuleConstantContainer::getOptions(const sbx::ProductElementOid productElement)
+  vector<string> RuleConstantContainer::getOptions(const sbx::ProductElementOid productElementOid)
   {
 	  if (_contextInitialised) {
-		  std::vector<std::shared_ptr<Constant>> constantList = _ukOptionsMap[_underKonceptOid][productElement];
+		  std::vector<std::shared_ptr<Constant>> constantList = _ukOptionsMap[_underKonceptOid][productElementOid];
 		  // create new vector of strings only
-		  std::vector<string> stringOptions { };
+		  std::vector<string> stringOptions (constantList.size());
 
-		  for (auto constant : constantList) {
+		  for (auto& constant : constantList) {
 			  stringOptions.push_back(constant->stringValue());
 		  }
 
@@ -224,6 +225,39 @@ namespace sbx {
 		  cout << "\t" << right << setw(3) << _ukMinValuesMap.at(underKonceptOid).size();
 		  cout << "\t" << right << setw(3) << _ukMaxValuesMap.at(underKonceptOid).size();
 		  cout << endl;
+	  }
+  }
+
+  void RuleConstantContainer::printContainerOverview(short int underKonceptOid, sbx::ComparisonTypes type) const {
+	  cout << "Current context : Underkoncept["<< _underKonceptOid << "], UnionAgreement["<< _unionAgreementOid << "]" << endl;
+	  size_t count;
+	  switch(type) {
+	  	  case kEquals:
+	  		  count = _ukOptionsMap.at(underKonceptOid).size();
+			  cout << "Constants for type: [" << static_cast<short int>(type) << "], [" << count << "]" << endl;
+			  cout << " PE\tValues" << endl;
+
+			  for ( auto& iterator : _ukOptionsMap.at(underKonceptOid)) {
+				  cout << right << setw(3) << iterator.first << "\t";
+
+				  for ( auto& value : iterator.second ) {
+					  cout << value->stringValue() << ", ";
+				  }
+				  cout << endl;
+			  }
+
+	  		  break;
+		  case kMin:
+			  count = _ukMinValuesMap.at(underKonceptOid).size();
+			  cout << "nothing yet" << endl;
+			  break;
+		  case kMax:
+			  count = _ukMaxValuesMap.at(underKonceptOid).size();
+			  cout << "nothing yet" << endl;
+			  break;
+		  default:
+			  cout << "nothing yet" << endl;
+			  break;
 	  }
   }
 

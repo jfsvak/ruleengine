@@ -1,7 +1,7 @@
-#include "Constant.h"
-
 #include <iostream>
 #include <stdlib.h>
+
+#include "Constant.h"
 using namespace std;
 
 namespace sbx {

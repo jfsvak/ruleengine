@@ -24,8 +24,9 @@ namespace sbx {
 
 class RuleEngine {
   public:
-	static const int VALID = 1;
-	static const int INVALID = -1;
+	static bool _printDebug;
+	static const short int VALID = 1;
+	static const short int INVALID = -1;
 
 	void initConstants(const std::vector<Constant> &globalConstants);
 	void initConstants(const std::string &jsonContents);

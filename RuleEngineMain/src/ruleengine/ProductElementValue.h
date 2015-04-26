@@ -9,17 +9,17 @@ namespace sbx {
 
 class ProductElementValue {
   private:
-	sbx::ProductElementOid _productElement;
+	sbx::ProductElementOid _productElementOid;
 	sbx::ProductElementTypes _productElementType;
 	std::string _stringValue;
   public:
 	ProductElementValue(void);
-	ProductElementValue(const sbx::ProductElementOid productElementNames, const sbx::ProductElementTypes productElementType, const std::string& stringValue);
+	ProductElementValue(const sbx::ProductElementOid productElementOid, const sbx::ProductElementTypes productElementType, const std::string& stringValue);
 	virtual ~ProductElementValue(void);
 	std::string stringValue() const;
 	long longValue() const;
 	double doubleValue() const;
-	sbx::ProductElementOid getProductElement() const;
+	sbx::ProductElementOid getProductElementOid() const;
 	sbx::ProductElementTypes getProductElementType() const;
 };
 

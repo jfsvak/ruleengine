@@ -16,6 +16,7 @@ namespace sbx {
 enum ComparisonTypes : int {
 	kMin	= 1,
 	kMax	= 2,
+	kEnum	= 3,
 	kEquals	= 4 // equals == 4 to match SBX value
 };
 
@@ -35,7 +36,8 @@ enum ProductElementOid : int {
 	kTaeBlOblMax		= 15,
 	kTaeSpaendBl		= 16,
 	kLoenDefinition		= 146,
-	kLoenRegulering		= 147
+	kLoenRegulering		= 147,
+	k194				= 194
 };
 
 struct ConstantKey {

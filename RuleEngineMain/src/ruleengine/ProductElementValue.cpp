@@ -7,7 +7,7 @@ using namespace std;
 namespace sbx {
 
   ProductElementValue::ProductElementValue(void) :
-		  _productElement {},
+		  _productElementOid {},
 		  _productElementType {},
 		  _stringValue { "" }
   {
@@ -15,7 +15,7 @@ namespace sbx {
   }
 
   ProductElementValue::ProductElementValue(const ProductElementOid productElement, const ProductElementTypes productElementType, const std::string& stringValue) :
-		  _productElement { productElement},
+		  _productElementOid { productElement},
 		  _productElementType { productElementType },
 		  _stringValue { stringValue }
   {
@@ -53,9 +53,9 @@ namespace sbx {
 	  return doubleValue;
   }
 
-  ProductElementOid ProductElementValue::getProductElement() const
+  ProductElementOid ProductElementValue::getProductElementOid() const
   {
-	  return _productElement;
+	  return _productElementOid;
   }
 
   ProductElementTypes ProductElementValue::getProductElementType() const

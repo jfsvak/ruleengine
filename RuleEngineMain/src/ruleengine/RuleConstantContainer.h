@@ -11,6 +11,7 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <memory>
 
 #include "sbxTypes.h"
 #include "Constant.h"
@@ -29,7 +30,8 @@ public:
 	std::shared_ptr<sbx::Constant> getConstant(const sbx::ProductElementOid productElement, const sbx::ComparisonTypes comparisonType);
 	void printConstantHeader() const;
 	void printConstants() const;
-	void printContainerOverview(short int underKonceptOid = 0) const;
+	void printContainerOverview(short int underKonceptOid) const;
+	void printContainerOverview(short int underKonceptOid = 0, sbx::ComparisonTypes type = sbx::ComparisonTypes::kEquals) const;
 	std::size_t size() const;
 private:
 	/**
