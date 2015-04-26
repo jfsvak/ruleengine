@@ -17,6 +17,8 @@
 #include "ruleengine/Constant.h"
 #include "ruleengine/RuleEngine.h"
 #include "json/json.h"
+#include "Foo.h"
+#include "FooHolder.h"
 
 using namespace std;
 using namespace sbx;
@@ -31,6 +33,8 @@ int testJsonLoad();
 std::string get_file_contents(const char *filename);
 void PrintJSONValue( const Json::Value &val );
 bool PrintJSONTree(Json::Value &root, unsigned short depth);
+void testFoo();
+void testFoo2(FooHolder& fh);
 
 const int NO_OF_DUMMY_CONSTANTS = 15;
 
@@ -39,7 +43,8 @@ int main() {
 	try {
 //		cout << "Hello world" << endl;
 //		cout << "Another Hello world" << endl;
-		return testRCJsonLoad();
+		testFoo();
+//		return testRCJsonLoad();
 	} catch (exception &e) {
 		cout << "Exception while testing: " << e.what() << endl;
 	}
@@ -47,17 +52,65 @@ int main() {
 	return -1;
 }
 
+void testFoo() {
+	cout << "  create vector  " << endl;
+	FooHolder fh;
+	fh.createVector();
+	cout << "  getFoo  " << endl;
+	const Foo& f = fh.getFoo(1);
+	cout << "  call getFoo  " << endl;
+	testFoo2(fh);
+
+	cout << "  call getFoosByRef  " << endl;
+	const vector<Foo>& foos = fh.getFoosByRef();
+	cout << "  list content of getFoosRef  " << endl;
+	for (auto& foo : foos) {
+		cout << "  Foo value:" << foo.getValInspect() << endl;
+	}
+
+	cout << "  call getFoosByVal  " << endl;
+	vector<Foo> foosVal = fh.getFoosByValue();
+	cout << "  list content of getFoosVal  " << endl;
+	for (auto& foo : foosVal) {
+		cout << "  Foo value:" << foo.getVal() << endl;
+	}
+
+	cout << "  the end" << endl;
+}
+
+void  testFoo2(FooHolder& fh) {
+	cout << "  getFoo in testFoo2 " << endl;
+	const Foo& f = fh.getFoo(1);
+	cout << "  end of testFoo2 " << endl;
+}
+
 int testRCJsonLoad() {
 //	Constant::_printDebug = true;
 //	RuleConstantContainer::_printDebug = true;
+	RuleEngine::_printDebug = true;
 	RuleEngine re {  };
 	string json = get_file_contents("basedata-ruleconstants.json");// rc-small.json");
 	re.initConstants(json);
 //	cout << "Number of constants loaded [" << re.getContainer().size() << "]" << endl;
-	re.initContext(8, 0);
-	re.getContainer().printContainerOverview();
-	re.getContainer().printContainerOverview(5);
-//	re.getOptions();
+//	re.getContainer().printContainerOverview();
+//	re.getContainer().printContainerOverview(5);
+
+	re.initContext(9, 0);
+//	re.getContainer().printContainerOverview(9, sbx::kEquals);
+
+	ProductElementValue pev {ProductElementOid::kLoenDefinition, ProductElementTypes::kText, "Min forkerte løn"};
+	try {
+		re.validate(pev);
+	} catch (exception &e) {
+		cout << "Expecting domain error: " << e.what() << endl;
+	}
+
+	try {
+		re.validate(pev);
+	} catch (exception &e) {
+		cout << "Not Expecting domain error: " << e.what() << endl;
+	}
+
 	return 0;
 }
 
@@ -130,7 +183,7 @@ int testJsonLoad() {
 
 	}
 	else {
-		cout<<"Failed to parse JSON"<< endl <<reader.getFormatedErrorMessages() << endl;
+		cout<<"Failed to parse JSON"<< endl <<reader.getFormattedErrorMessages() << endl;
 	}
 	return 0;
 }
