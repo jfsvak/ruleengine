@@ -14,7 +14,7 @@ public:
 	explicit Foo(int val, int val2);
 	Foo(const Foo& origin); // copy constructor
 	int getValInspect() const;
-	int getVal();
+	int getVal() const;
 	virtual ~Foo();
 private:
 	int _val;

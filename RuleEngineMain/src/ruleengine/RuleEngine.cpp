@@ -33,7 +33,12 @@ namespace sbx {
 //	  loadRuleCatalogue();
   }
 
-  void RuleEngine::initConstants(const std::string &jsonContents)
+  void RuleEngine::initConstantsDirect( const std::string& jsonContents )
+  {
+	  _container.initConstants(jsonContents);
+  }
+
+  void RuleEngine::initConstants( const std::string& jsonContents )
   {
 	  // Load/parse the json string to get all the rule constants and create the vector of Constant objects for the container
 	  Json::Reader reader;
@@ -50,6 +55,10 @@ namespace sbx {
 			  // new vector of constants to passed to RuleConstantContainer. Set size to the number of incoming json elements
 			  vector<sbx::Constant> constants (ruleConstantList.size());
 
+			  if (RuleEngine::_printDebug) {
+				  cout << "  Looping over [" << ruleConstantList.size() << "] json rule constants to create" << endl;
+			  }
+
 			  // iterate over the list of rule constants and create Constant objects to put into the RuleConstantContainer
 			  for ( Json::ValueIterator ruleConstantElement = ruleConstantList.begin(); ruleConstantElement != ruleConstantList.end(); ++ruleConstantElement) {
 				  int productElementOid = ruleConstantElement->get("productElementOid", 0).asInt();
@@ -65,6 +74,11 @@ namespace sbx {
 			  }
 
 			  // initialise the container with the created vector
+
+			  if (RuleEngine::_printDebug) {
+				  cout << "  Initialising _container" << endl;
+			  }
+
 			  _container.initGlobalConstants(constants);
 		  }
 	  }

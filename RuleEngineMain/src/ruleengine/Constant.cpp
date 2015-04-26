@@ -1,4 +1,5 @@
 #include <iostream>
+#include <memory>
 #include <stdlib.h>
 
 #include "Constant.h"
@@ -7,6 +8,15 @@ using namespace std;
 namespace sbx {
 
   bool Constant::_printDebug = false;
+
+  Constant::Constant(void) :
+		  _underKonceptOid { 0 },
+		  _unionAgreementOid { 0 },
+		  _stringValue { "" },
+		  _default { false }
+  {
+	  // empty constructor needed for vector initialisation.
+  }
 
   Constant::Constant( const Constant& origin ) :
 									  _underKonceptOid { origin._underKonceptOid },
@@ -22,14 +32,20 @@ namespace sbx {
 	  }
   }
 
-  Constant::Constant(void) :
-		  _underKonceptOid { 0 },
-		  _unionAgreementOid { 0 },
-		  _stringValue { "" },
-		  _default { false }
+  Constant::Constant(const std::shared_ptr<Constant>& origin) :
+										_underKonceptOid { origin->_underKonceptOid },
+										_unionAgreementOid { origin->_unionAgreementOid },
+										_productElement { origin->_productElement },
+										_comparisonType { origin->_comparisonType },
+										_stringValue { origin->_stringValue },
+										_default { origin->_default }
   {
-	  // empty constructor needed for vector initialisation.
+	  if (Constant::_printDebug) {
+		  cout << "= Ori.Shared_ptrConstant{"<< addressof(*origin) << "}=>";
+		  printValues();//Constant{" << this << ", " << _underKonceptOid << ", " << _unionAgreementOid << ", " << _productElement << ", " << _comparisonType << ", " << _stringValue << ", " << _default << "}" << endl;
+	  }
   }
+
 
   /**
    * Only constructor, needs all values

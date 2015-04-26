@@ -33,7 +33,7 @@ int Foo::getValInspect() const {
 	return _val;
 }
 
-int Foo::getVal() {
+int Foo::getVal() const {
 	return _val;
 }
 

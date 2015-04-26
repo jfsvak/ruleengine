@@ -19,6 +19,7 @@ class Constant {
 	static bool _printDebug;
 	Constant(void);
 	Constant(const Constant&); // copy constructor, overloaded to provide cout printing for debug
+	Constant(const std::shared_ptr<Constant>&); // copy constructor for shared_ptr, overloaded to provide cout printing for debug
 	Constant(const short underkonceptOid, const short unionAgreementOid, const ProductElementOid productElement, const ComparisonTypes comparisonType, const std::string value, const bool isDefault = false);
 	virtual ~Constant(void);
 	std::string stringValue() const;

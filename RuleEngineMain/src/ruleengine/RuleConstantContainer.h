@@ -23,7 +23,8 @@ class RuleConstantContainer {
 public:
 	static bool _printDebug;
 
-	void initGlobalConstants(const std::vector<sbx::Constant> &globalConstants);
+	void initGlobalConstants(const std::vector<sbx::Constant>& globalConstants);
+	void initConstants(const std::string &jsonContents);
 	void initContext(const short underkoncept_oid, const short unionAgreementOid);
 	std::vector<std::string> getOptions(const sbx::ProductElementOid productElement);
 	std::vector<std::shared_ptr<sbx::Constant>> getOptionsList(const sbx::ProductElementOid productElement);
@@ -35,9 +36,9 @@ public:
 	std::size_t size() const;
 private:
 	/**
-	 * vector of all global constants for all contexts
+	 * vector of shared pointers holding all global constants for all contexts
 	 */
-	std::vector<Constant> _globalConstants;
+	std::vector<std::shared_ptr<Constant>> _globalConstants;
 
 	/**
 	 *  _ukOptionsMap

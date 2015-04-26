@@ -13,6 +13,7 @@
 #include "RuleConstantContainer.h"
 #include "sbxTypes.h"
 #include "Constant.h"
+#include "../json/json.h"
 
 using namespace std;
 
@@ -22,46 +23,100 @@ namespace sbx {
   /**
    * Copies the vector of Constants into the _globalConstants vector
    */
-  void RuleConstantContainer::initGlobalConstants(const vector<Constant> &global_constants)
+  void RuleConstantContainer::initGlobalConstants(const vector<Constant>& global_constants)
   {
 	  // load the global constants into the container using copy-constructor
 	  if (RuleConstantContainer::_printDebug)
 		  cout << "  _globalConstants = global_constants" << endl;
 
-	  _globalConstants = global_constants;
+	  // set size in internal vector of global constants the the same size of the incoming constants
+	  _globalConstants.resize(global_constants.size());
+
+	  // run through the incoming list of constants and wrap each in a shared_ptr
+	  for ( size_t gcIndex = 0; gcIndex < global_constants.size(); gcIndex++ ) {
+		  _globalConstants[gcIndex] = make_shared<Constant>(global_constants[gcIndex]);
+	  }
 
 	  if (RuleConstantContainer::_printDebug)
 		  cout << "  _globalConstants = global_constants done!" << endl;
 
 	  // initialise the 3 maps of constant types
-	  for ( auto& constant : _globalConstants) {
+	  for ( const auto& constant : _globalConstants) {
 
   		  // equals goes into _ukOptionsMap as shared_ptr to the Constant in a vector
 		  // min/max values goes into min/max-map as a shared_ptr to the Constant
-		  if (RuleConstantContainer::_printDebug)
-			  cout << "  make_shared<Constant>(constant)!" << endl;
+//		  if (RuleConstantContainer::_printDebug)
+//			  cout << "  make_shared<Constant>(constant)!" << endl;
 
-		  shared_ptr<Constant> ptr = make_shared<Constant>(constant);
+//		  shared_ptr<Constant> ptr = constant;
 
-		  if (RuleConstantContainer::_printDebug)
-			  cout << "  make_shared<Constant>(constant) done!" << endl;
+//		  if (RuleConstantContainer::_printDebug)
+//			  cout << "  make_shared<Constant>(constant) done!" << endl;
 
-		  switch(constant.getComparisonType()) {
+		  switch(constant->getComparisonType()) {
 		  	  case kEnum:
 		  	  case kEquals:
 //		  		  _optionsMap[constant.getProductElement()].push_back(constant.stringValue());
-		  		  _ukOptionsMap[constant.getUnderKonceptOid()][constant.getProductElement()].push_back(ptr);
+		  		  _ukOptionsMap[constant->getUnderKonceptOid()][constant->getProductElement()].push_back(constant);
 		  		  break;
 		  	  case kMin:
-			  	  _ukMinValuesMap[constant.getUnderKonceptOid()][constant.getProductElement()] = ptr;
+			  	  _ukMinValuesMap[constant->getUnderKonceptOid()][constant->getProductElement()] = constant;
 		  		  break;
 			  case kMax:
-				  _ukMaxValuesMap[constant.getUnderKonceptOid()][constant.getProductElement()] = ptr;
+				  _ukMaxValuesMap[constant->getUnderKonceptOid()][constant->getProductElement()] = constant;
 				  break;
 		  	  default:
 		  		  break;
 		  }
 	  }
+  }
+
+  void RuleConstantContainer::initConstants(const std::string &jsonContents)
+  {
+	  // Load/parse the json string to get all the rule constants and create the vector of Constant objects for the container
+	  Json::Reader reader;
+	  Json::Value root;
+
+	  bool parsingSuccessful = reader.parse(jsonContents, root);
+
+	  if(parsingSuccessful) {
+		  // if we can parse the json string, then get the list of rule constants
+		  Json::Value ruleConstantList = root["data"].get("ruleConstant", 0);
+
+		  if (ruleConstantList.size() > 0) {
+			  size_t index = 0;
+			  // new vector of constants to passed to RuleConstantContainer. Set size to the number of incoming json elements
+			  _globalConstants.resize(ruleConstantList.size());
+
+			  if (RuleConstantContainer::_printDebug) {
+				  cout << "  Looping over [" << ruleConstantList.size() << "] json rule constants to create" << endl;
+			  }
+
+			  // iterate over the list of rule constants and create Constant objects to put into the RuleConstantContainer
+			  for ( Json::ValueIterator ruleConstantElement = ruleConstantList.begin(); ruleConstantElement != ruleConstantList.end(); ++ruleConstantElement ) {
+				  int productElementOid = ruleConstantElement->get("productElementOid", 0).asInt();
+				  int underKonceptOid = ruleConstantElement->get("underKonceptOid", 0).asInt();
+				  int unionAgreementOid = ruleConstantElement->get("unionAgreementOid", 0).asInt();
+//				  int generalAgreementOid = ruleConstantElement->get("generalAgreementOid", 0).asInt();
+				  int comparisonTypeOid = ruleConstantElement->get("comparisonTypeOid", 0).asInt();
+				  string value = ruleConstantElement->get("value", "").asString();
+				  bool isDefault = ruleConstantElement->get("isDefault", false).asBool();
+
+				  shared_ptr<Constant> constantPtr = make_shared<Constant> (static_cast<short int>(underKonceptOid), static_cast<short int>(unionAgreementOid), static_cast<ProductElementOid>(productElementOid), static_cast<ComparisonTypes>(comparisonTypeOid), value, isDefault);
+
+				  _globalConstants[index++] = constantPtr;
+			  }
+
+			  // initialise the container with the created vector
+
+			  if (RuleConstantContainer::_printDebug) {
+				  cout << "  Initialising _container" << endl;
+			  }
+
+		  }
+	  }
+
+//	  loadRuleCatalogue();
   }
 
   /**

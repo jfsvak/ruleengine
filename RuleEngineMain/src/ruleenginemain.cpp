@@ -43,8 +43,8 @@ int main() {
 	try {
 //		cout << "Hello world" << endl;
 //		cout << "Another Hello world" << endl;
-		testFoo();
-//		return testRCJsonLoad();
+//		testFoo();
+		return testRCJsonLoad();
 	} catch (exception &e) {
 		cout << "Exception while testing: " << e.what() << endl;
 	}
@@ -58,7 +58,7 @@ void testFoo() {
 	fh.createVector();
 	cout << "  getFoo  " << endl;
 	const Foo& f = fh.getFoo(1);
-	cout << "  call getFoo  " << endl;
+	cout << "  " << f.getVal() << " call getFoo  " << endl;
 	testFoo2(fh);
 
 	cout << "  call getFoosByRef  " << endl;
@@ -81,16 +81,17 @@ void testFoo() {
 void  testFoo2(FooHolder& fh) {
 	cout << "  getFoo in testFoo2 " << endl;
 	const Foo& f = fh.getFoo(1);
-	cout << "  end of testFoo2 " << endl;
+	cout << "  " << f.getVal() << " end of testFoo2 " << endl;
 }
 
 int testRCJsonLoad() {
-//	Constant::_printDebug = true;
-//	RuleConstantContainer::_printDebug = true;
+	Constant::_printDebug = true;
+	RuleConstantContainer::_printDebug = true;
 	RuleEngine::_printDebug = true;
 	RuleEngine re {  };
-	string json = get_file_contents("basedata-ruleconstants.json");// rc-small.json");
-	re.initConstants(json);
+//	string json = get_file_contents("rc-small.json");
+	string json = get_file_contents("basedata-ruleconstants.json");
+	re.initConstantsDirect(json);
 //	cout << "Number of constants loaded [" << re.getContainer().size() << "]" << endl;
 //	re.getContainer().printContainerOverview();
 //	re.getContainer().printContainerOverview(5);
