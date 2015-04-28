@@ -27,8 +27,8 @@ public:
 	void initConstants(const std::string& jsonContents);
 	void initContext(const short underkoncept_oid, const short unionAgreementOid);
 	std::vector<std::string> getOptions(const sbx::ProductElementOid productElement);
-	std::vector<std::shared_ptr<sbx::Constant>> getOptionsList(const sbx::ProductElementOid productElement);
-	std::shared_ptr<sbx::Constant> getConstant(const sbx::ProductElementOid productElement, const sbx::ComparisonTypes comparisonType);
+	const std::vector<std::shared_ptr<sbx::Constant>>& getOptionsList(const sbx::ProductElementOid productElement);
+	const std::shared_ptr<sbx::Constant>& getConstant(const sbx::ProductElementOid productElement, const sbx::ComparisonTypes comparisonType);
 	void printConstantHeader() const;
 	void printConstants() const;
 	void printContainerOverview(short int underKonceptOid) const;

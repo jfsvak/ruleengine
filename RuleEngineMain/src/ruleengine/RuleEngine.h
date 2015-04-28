@@ -32,13 +32,13 @@ class RuleEngine {
 	void initConstants(const std::string& jsonContents);
 	void initContext(short underkoncept_oid, short unionagreement_oid);
 	std::vector<std::string> getOptions(sbx::ProductElementOid productElement);
-	std::vector<std::shared_ptr<Constant>> getOptionsList(sbx::ProductElementOid productElement);
-	std::shared_ptr<sbx::Constant> getConstant(sbx::ProductElementOid productElement, sbx::ComparisonTypes comparisonType);
-	int validate(sbx::ProductElementOid productElement, const std::vector<std::pair<std::string,long>> &p_operands);
-	int validate(const sbx::ProductElementValue &peValue);
+	const std::vector<std::shared_ptr<Constant>>& getOptionsList(sbx::ProductElementOid productElement);
+	const std::shared_ptr<sbx::Constant>& getConstant(sbx::ProductElementOid productElement, sbx::ComparisonTypes comparisonType);
+	int validate(sbx::ProductElementOid productElement, const std::vector<std::pair<std::string,long>>& p_operands);
+	int validate(const sbx::ProductElementValue& peValue);
 	int validate(sbx::ComparisonTypes comparisonType) const;
-	const sbx::RuleConstantContainer& getContainer();
-//	const std::shared_ptr<sbx::Constant> getDefaultValue(sbx::ProductElementNames productElement) const;
+	const sbx::RuleConstantContainer& getContainer() const;
+	const std::shared_ptr<sbx::Constant>& getDefaultValue(sbx::ProductElementOid productElementOid);
   private:
 	sbx::RuleConstantContainer _container;
 	std::map<sbx::ProductElementOid, std::vector<std::string>> _ruleCatalogue;

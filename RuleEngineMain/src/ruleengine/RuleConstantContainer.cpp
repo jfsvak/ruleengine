@@ -159,7 +159,7 @@ namespace sbx {
     /**
      * Gets a vector of shared_ptr->Constant
      */
-    std::vector<std::shared_ptr<Constant>> RuleConstantContainer::getOptionsList(const sbx::ProductElementOid productElement)
+    const std::vector<std::shared_ptr<Constant>>& RuleConstantContainer::getOptionsList(const sbx::ProductElementOid productElement)
     {
         if (_contextInitialised) {
             return _ukOptionsMap[_underKonceptOid][productElement];
@@ -171,7 +171,7 @@ namespace sbx {
     /**
      * Gets a shared_ptr to a single Constant for the productElement and comparisonType
      */
-    std::shared_ptr<sbx::Constant> RuleConstantContainer::getConstant(const sbx::ProductElementOid productElement, const sbx::ComparisonTypes comparisonType)
+    const std::shared_ptr<sbx::Constant>& RuleConstantContainer::getConstant(const sbx::ProductElementOid productElement, const sbx::ComparisonTypes comparisonType)
     {
         if (_contextInitialised) {
             

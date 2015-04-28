@@ -58,7 +58,7 @@ namespace sbx {
   /**
    * Delegate call to RuleConstantContainer::getOptionsList(...)
    */
-  std::vector<std::shared_ptr<Constant>> RuleEngine::getOptionsList(sbx::ProductElementOid productElement)
+  const std::vector<std::shared_ptr<Constant>>& RuleEngine::getOptionsList(sbx::ProductElementOid productElement)
   {
 	  return _container.getOptionsList(productElement);
   }
@@ -66,7 +66,7 @@ namespace sbx {
   /**
    * Delegate call to RuleConstantContainer::getConstant(...)
    */
-  std::shared_ptr<sbx::Constant> RuleEngine::getConstant(sbx::ProductElementOid productElement, sbx::ComparisonTypes comparisonType)
+  const std::shared_ptr<sbx::Constant>& RuleEngine::getConstant(sbx::ProductElementOid productElement, sbx::ComparisonTypes comparisonType)
   {
 	  return _container.getConstant(productElement, comparisonType);
   }
@@ -74,7 +74,7 @@ namespace sbx {
   /**
    * Gets the RuleConstantContainer
    */
-  const sbx::RuleConstantContainer& RuleEngine::getContainer() {
+  const sbx::RuleConstantContainer& RuleEngine::getContainer() const {
 	  return _container;
   }
 
@@ -123,7 +123,7 @@ namespace sbx {
   /*
    * Validates a single productElementValue using rules specific for the productElementType
    */
-  int RuleEngine::validate(const sbx::ProductElementValue &peValue)
+  int RuleEngine::validate(const sbx::ProductElementValue& peValue)
   {
 	  switch (peValue.getProductElementType())
 	  {
@@ -259,9 +259,21 @@ namespace sbx {
 	  return -1;
   }
 
-//  const std::shared_ptr<sbx::Constant> RuleEngine::getDefaultValue(sbx::ProductElementNames productElement) const {
-//	  return -1;
-//  }
+  const std::shared_ptr<sbx::Constant>& RuleEngine::getDefaultValue(sbx::ProductElementOid productElement)
+  {
+      // look up the productElement oid and see in which internal map to find the constant
+      // for now just assume that the product element is found in equals/enum map
+      const vector<shared_ptr<Constant>> options = _container.getOptionsList(productElement);
+      
+      for (const shared_ptr<Constant>& option : options)
+      {
+          if (option->isDefault()) {
+              return option;
+          }
+      }
+      
+      return options.end()->get();
+  }
 
   void RuleEngine::printVariables(ParserX p) {
 	  cout << "------------- Variables initialised BEGIN ------------" << endl;
