@@ -35,10 +35,7 @@ namespace sbx {
   long ProductElementValue::longValue() const
   {
 	  // convert string into a long value
-	  const char *carr = &_stringValue[0];
-	  long longValue = atol(carr);
-	  delete carr;
-	  return longValue;
+	  return atol(_stringValue.c_str());
   }
 
   /**
@@ -47,10 +44,7 @@ namespace sbx {
   double ProductElementValue::doubleValue() const
   {
 	  // convert string into a double value
-	  const char *carr = &_stringValue[0];
-	  double doubleValue = atof(carr);
-	  delete carr;
-	  return doubleValue;
+	  return atof(_stringValue.c_str());
   }
 
   ProductElementOid ProductElementValue::getProductElementOid() const

@@ -29,10 +29,6 @@ int testRuleConstantContainer(void);
 int testRuleConstantContainerPrint(void);
 int testRuleConstantContainerWithException(void);
 int testRCJsonLoad();
-int testJsonLoad();
-std::string get_file_contents(const char *filename);
-void PrintJSONValue( const Json::Value &val );
-bool PrintJSONTree(Json::Value &root, unsigned short depth);
 void testFoo();
 void testFoo2(FooHolder& fh);
 
@@ -41,9 +37,7 @@ const int NO_OF_DUMMY_CONSTANTS = 15;
 int main() {
 
 	try {
-//		cout << "Hello world" << endl;
-//		cout << "Another Hello world" << endl;
-//		testFoo();
+        testRuleEngineValidateAllowedOption();
 		return testRCJsonLoad();
 	} catch (exception &e) {
 		cout << "Exception while testing: " << e.what() << endl;
@@ -52,201 +46,35 @@ int main() {
 	return -1;
 }
 
-void testFoo() {
-	cout << "  create vector  " << endl;
-	FooHolder fh;
-	fh.createVector();
-	cout << "  getFoo  " << endl;
-	const Foo& f = fh.getFoo(1);
-	cout << "  " << f.getVal() << " call getFoo  " << endl;
-	testFoo2(fh);
-
-	cout << "  call getFoosByRef  " << endl;
-	const vector<Foo>& foos = fh.getFoosByRef();
-	cout << "  list content of getFoosRef  " << endl;
-	for (auto& foo : foos) {
-		cout << "  Foo value:" << foo.getValInspect() << endl;
-	}
-
-	cout << "  call getFoosByVal  " << endl;
-	vector<Foo> foosVal = fh.getFoosByValue();
-	cout << "  list content of getFoosVal  " << endl;
-	for (auto& foo : foosVal) {
-		cout << "  Foo value:" << foo.getVal() << endl;
-	}
-
-	cout << "  the end" << endl;
-}
-
-void  testFoo2(FooHolder& fh) {
-	cout << "  getFoo in testFoo2 " << endl;
-	const Foo& f = fh.getFoo(1);
-	cout << "  " << f.getVal() << " end of testFoo2 " << endl;
-}
-
 int testRCJsonLoad() {
-	Constant::_printDebug = true;
+//	Constant::_printDebug = true;
 	RuleConstantContainer::_printDebug = true;
 	RuleEngine::_printDebug = true;
 	RuleEngine re {  };
-//	string json = get_file_contents("rc-small.json");
-	string json = get_file_contents("basedata-ruleconstants.json");
-	re.initConstantsDirect(json);
-//	cout << "Number of constants loaded [" << re.getContainer().size() << "]" << endl;
-//	re.getContainer().printContainerOverview();
-//	re.getContainer().printContainerOverview(5);
-
+    string json = get_file_contents("basedata-ruleconstants.json");
+    
+	re.initConstants(json);
+	cout << "Number of constants loaded [" << re.getContainer().size() << "]" << endl;
 	re.initContext(9, 0);
-//	re.getContainer().printContainerOverview(9, sbx::kEquals);
-
-	ProductElementValue pev {ProductElementOid::kLoenDefinition, ProductElementTypes::kText, "Min forkerte løn"};
+	re.getContainer().printContainerOverview(0);
+	
 	try {
-		re.validate(pev);
+        // Wring lon type
+        ProductElementValue pev {ProductElementOid::kLoenDefinition, ProductElementTypes::kText, "Min forkerte lon"};
+    	re.validate(pev);
 	} catch (exception &e) {
 		cout << "Expecting domain error: " << e.what() << endl;
 	}
-
-	try {
+    
+    try {
+        // allowed lon type
+        ProductElementValue pev {ProductElementOid::kLoenDefinition, ProductElementTypes::kText, "I henhold til kontrakt"};
 		re.validate(pev);
 	} catch (exception &e) {
 		cout << "Not Expecting domain error: " << e.what() << endl;
 	}
 
 	return 0;
-}
-
-int testJsonLoad() {
-	cout << "Load file: " << "rc-small.json" << endl;
-	string json = get_file_contents("rc-small.json");
-
-//	cout << "Loading Json from string:" << endl << json << endl;
-
-	Json::Value root;
-	Json::Reader reader;
-	bool parsingSuccessful = reader.parse(json, root);
-
-	if (parsingSuccessful)
-	{
-//		PrintJSONTree(root["data"], 0);
-
-//		Json::Value data = root["data"];
-
-		Json::Value ruleConstants = root["data"].get("ruleConstant", 0);
-
-		cout << "Printing RC " << endl;
-		PrintJSONValue(ruleConstants);
-		cout << "\nRC size: " << ruleConstants.size() << endl;
-
-		Json::Value rc0 = ruleConstants.get(0u, 0);
-		cout << "RC0 type: " << rc0.type() << " size: " << rc0.size() << endl;
-
-		Json::Value::Members rcMembers = rc0.getMemberNames();
-
-		for ( unsigned int i=0; i<rcMembers.size();++i) {
-			string member = rcMembers[i];
-			Json::Value value = rc0[member];
-			cout << "  " << member << "=" << value.asString() << endl;
-		}
-
-		for (Json::ValueIterator ruleConstantElement = ruleConstants.begin(); ruleConstantElement != ruleConstants.end(); ruleConstantElement++) {
-			cout << "Key:" << ruleConstantElement.key().asInt() << "Type:" << ruleConstantElement->type() << "Size:" << ruleConstantElement->size() << endl;
-
-			int peOid = ruleConstantElement->get("productElementOid", 0).asInt();
-			cout << "ProductElement:" << peOid << endl;
-
-//			for (Json::ValueIterator elementItr = rcItr->begin(); elementItr != rcItr->end(); elementItr++) {
-//				cout << "  Key[" << elementItr.key().asString() << "] Value:";
-//				PrintJSONValue(*elementItr);
-//				cout << endl;
-//
-//			}
-
-		}
-//		for ( Json::ValueIterator itr = data.begin(); itr != data.end(); itr++) {
-//			PrintJSONValue(itr.key());
-//
-//			for (Json::ValueIterator itr2 = itr->begin(); itr2 != itr->end(); itr2++) {
-//				cout << "Key:" << itr2.key().asInt() << "Size:" << itr2->size() << endl;
-////				PrintJSONValue();
-//			}
-//		}
-
-//		Json::Value::Members members = root["data"].getMemberNames();
-//		cout << "Members found in data: " << members.size() << endl;
-//
-//		for (unsigned int i = 0; i<members.size();++i) {
-//			string name = members[i];
-//			Json::Value value = root[name];
-//			cout<<"Key: " << name <<endl;
-//			cout<<"Value: " << value.toStyledString() <<endl;
-//			cout<<"type: " << value.type() <<endl;
-//		}
-
-	}
-	else {
-		cout<<"Failed to parse JSON"<< endl <<reader.getFormattedErrorMessages() << endl;
-	}
-	return 0;
-}
-
-bool PrintJSONTree(Json::Value &root, unsigned short depth) {
-	depth += 1;
-	cout << " {type=["<< root.type()<< "], size="<< root.size() << "}";
-	if( root.size() > 0 ) {
-		cout << "\n";
-
-		for(Json::ValueIterator itr = root.begin(); itr != root.end(); itr++) {
-
-			for( int tab = 0 ; tab < depth; tab++) {
-				cout << "-";
-			}
-			cout << " ";
-			PrintJSONValue(itr.key());
-			cout << " -";
-			PrintJSONTree( *itr, depth);
-		}
-		return true;
-	} else {
-		cout << " ";
-		PrintJSONValue(root);
-		cout << "\n" ;
-	}
-	return true;
-}
-
-void PrintJSONValue( const Json::Value &val )
-{
-    if( val.isString() ) {
-        cout << "string("<< val.asString().c_str() << ")";
-    } else if( val.isBool() ) {
-    	cout << "bool(" << val.asBool() << ")";
-    } else if( val.isInt() ) {
-        cout << "int(" << val.asInt() << ")";
-    } else if( val.isUInt() ) {
-        cout << "uint(" << val.asUInt() << ")";
-    } else if( val.isDouble() ) {
-        cout << "double(" << val.asDouble() << ")";
-    }
-    else
-    {
-        cout << "unknown type=[" << val.type() << "]";
-    }
-}
-
-std::string get_file_contents(const char *filename)
-{
-  std::ifstream in(filename, std::ios::in | std::ios::binary);
-  if (in)
-  {
-    std::string contents;
-    in.seekg(0, std::ios::end);
-    contents.resize(in.tellg());
-    in.seekg(0, std::ios::beg);
-    in.read(&contents[0], contents.size());
-    in.close();
-    return(contents);
-  }
-  throw(1);
 }
 
 int testRuleEngineValidateAllowedOption(void) {
@@ -361,3 +189,36 @@ int testRuleConstantContainerWithException(void) {
 	cout << "testRuleConstantContainerWithException End!" << endl;
 	return 0;
 }
+
+void testFoo() {
+	cout << "  create vector  " << endl;
+	FooHolder fh;
+	fh.createVector();
+	cout << "  getFoo  " << endl;
+	const Foo& f = fh.getFoo(1);
+	cout << "  " << f.getVal() << " call getFoo  " << endl;
+	testFoo2(fh);
+    
+	cout << "  call getFoosByRef  " << endl;
+	const vector<Foo>& foos = fh.getFoosByRef();
+	cout << "  list content of getFoosRef  " << endl;
+	for (auto& foo : foos) {
+		cout << "  Foo value:" << foo.getValInspect() << endl;
+	}
+    
+	cout << "  call getFoosByVal  " << endl;
+	vector<Foo> foosVal = fh.getFoosByValue();
+	cout << "  list content of getFoosVal  " << endl;
+	for (auto& foo : foosVal) {
+		cout << "  Foo value:" << foo.getVal() << endl;
+	}
+    
+	cout << "  the end" << endl;
+}
+
+void  testFoo2(FooHolder& fh) {
+	cout << "  getFoo in testFoo2 " << endl;
+	const Foo& f = fh.getFoo(1);
+	cout << "  " << f.getVal() << " end of testFoo2 " << endl;
+}
+

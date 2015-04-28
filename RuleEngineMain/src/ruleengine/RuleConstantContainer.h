@@ -24,7 +24,7 @@ public:
 	static bool _printDebug;
 
 	void initGlobalConstants(const std::vector<sbx::Constant>& globalConstants);
-	void initConstants(const std::string &jsonContents);
+	void initConstants(const std::string& jsonContents);
 	void initContext(const short underkoncept_oid, const short unionAgreementOid);
 	std::vector<std::string> getOptions(const sbx::ProductElementOid productElement);
 	std::vector<std::shared_ptr<sbx::Constant>> getOptionsList(const sbx::ProductElementOid productElement);
@@ -32,9 +32,13 @@ public:
 	void printConstantHeader() const;
 	void printConstants() const;
 	void printContainerOverview(short int underKonceptOid) const;
-	void printContainerOverview(short int underKonceptOid = 0, sbx::ComparisonTypes type = sbx::ComparisonTypes::kEquals) const;
+	void printContainerOverview(short int underKonceptOid, sbx::ComparisonTypes type) const;
 	std::size_t size() const;
 private:
+    
+	void printConstant(const std::shared_ptr<sbx::Constant> c) const;
+    void _initInternalMaps();
+
 	/**
 	 * vector of shared pointers holding all global constants for all contexts
 	 */
@@ -67,7 +71,6 @@ private:
 	 * Value: shared_ptr to Constant
 	 */
 	std::map<short, std::map<sbx::ProductElementOid, std::shared_ptr<sbx::Constant>>> _ukMaxValuesMap;
-	void printConstant(const std::shared_ptr<sbx::Constant> c) const;
 	short _underKonceptOid;
 	short _unionAgreementOid;
 	bool _contextInitialised;

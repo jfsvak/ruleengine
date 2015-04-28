@@ -30,7 +30,6 @@ class RuleEngine {
 
 	void initConstants(const std::vector<Constant>& globalConstants);
 	void initConstants(const std::string& jsonContents);
-	void initConstantsDirect(const std::string& jsonContents);
 	void initContext(short underkoncept_oid, short unionagreement_oid);
 	std::vector<std::string> getOptions(sbx::ProductElementOid productElement);
 	std::vector<std::shared_ptr<Constant>> getOptionsList(sbx::ProductElementOid productElement);
