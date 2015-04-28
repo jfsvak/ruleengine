@@ -12,6 +12,7 @@
 #include <iostream>
 #include <string>
 #include <memory>
+#include <numeric>
 
 #include "RuleEngine.h"
 #include "ProductElement.h"
