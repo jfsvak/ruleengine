@@ -15,6 +15,8 @@
 
 #include "sbxTypes.h"
 #include "Constant.h"
+#include "Product.h"
+#include "../json/json.h"
 
 namespace sbx {
 
@@ -28,16 +30,21 @@ public:
 	void initContext(const short underkoncept_oid, const short unionAgreementOid);
 	std::vector<std::string> getOptions(const sbx::ProductElementOid productElement);
 	const std::vector<std::shared_ptr<sbx::Constant>>& getOptionsList(const sbx::ProductElementOid productElement);
+//	const std::shared_ptr<sbx::Constant>& getDefaultValue(sbx::ProductElementOid productElement);
 	const std::shared_ptr<sbx::Constant>& getConstant(const sbx::ProductElementOid productElement, const sbx::ComparisonTypes comparisonType);
 	void printConstantHeader() const;
 	void printConstants() const;
+	void printConstants(short int underKonceptOid, sbx::ProductElementOid productElement) const;
 	void printContainerOverview(short int underKonceptOid) const;
 	void printContainerOverview(short int underKonceptOid, sbx::ComparisonTypes type) const;
+	void printProducts() const;
 	std::size_t size() const;
 private:
     
-	void printConstant(const std::shared_ptr<sbx::Constant> c) const;
+	void printConstant(const std::shared_ptr<sbx::Constant>& c) const;
     void _initInternalMaps();
+	void _initRuleConstants(const Json::Value& ruleConstantsList);
+	void _initProducts(const Json::Value& root);
 
 	/**
 	 * vector of shared pointers holding all global constants for all contexts
@@ -71,6 +78,15 @@ private:
 	 * Value: shared_ptr to Constant
 	 */
 	std::map<short, std::map<sbx::ProductElementOid, std::shared_ptr<sbx::Constant>>> _ukMaxValuesMap;
+
+	/**
+	 * _productsMap:
+	 * Index is productOid (short)
+	 * Values is product
+	 */
+	std::map<short, std::shared_ptr<sbx::Product>> _productsMap;
+//	std::map<short, sbx::ProductElement> _productElementMap;
+
 	short _underKonceptOid;
 	short _unionAgreementOid;
 	bool _contextInitialised;

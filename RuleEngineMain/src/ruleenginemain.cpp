@@ -28,25 +28,45 @@ int testRuleEngineValidateAllowedOption(void);
 int testRuleConstantContainer(void);
 int testRuleConstantContainerPrint(void);
 int testRuleConstantContainerWithException(void);
-int testRCJsonLoad();
+RuleEngine testRCJsonLoad();
 void testFoo();
 void testFoo2(FooHolder& fh);
+int testDefaultValue(RuleEngine&);
 
 const int NO_OF_DUMMY_CONSTANTS = 15;
 
 int main() {
 
 	try {
-        testRuleEngineValidateAllowedOption();
-		return testRCJsonLoad();
+//        testRuleEngineValidateAllowedOption();
+		RuleEngine re = testRCJsonLoad();
+		testDefaultValue(re);
 	} catch (exception &e) {
 		cout << "Exception while testing: " << e.what() << endl;
+		return -1;
 	}
 
-	return -1;
+	return 0;
 }
 
-int testRCJsonLoad() {
+int testDefaultValue(RuleEngine& re) {
+	re.initContext(13,0);
+//	re.getContainer().printConstants();
+	re.getContainer().printConstants(13, sbx::ProductElementOid::kLoenDefinition);
+	re.getContainer().printConstants(13, sbx::ProductElementOid::k217);
+	re.getContainer().printConstants(13, sbx::ProductElementOid::k218);
+	re.getContainer().printProducts();
+
+	const Constant& c1 = re.getDefaultValue(sbx::ProductElementOid::kLoenDefinition);
+	cout << "Default value for " << ProductElementOid::kLoenDefinition << " is [" << c1.stringValue() << "]" << endl;
+
+	const Constant& c2 = re.getDefaultValue(sbx::ProductElementOid::kTaeBlGrMin);
+	cout << "Default value for " << ProductElementOid::kTaeBlGrMin << " is [" << c2.doubleValue() << "]" << endl;
+	return 0;
+}
+
+
+RuleEngine testRCJsonLoad() {
 //	Constant::_printDebug = true;
 	RuleConstantContainer::_printDebug = true;
 	RuleEngine::_printDebug = true;
@@ -74,7 +94,7 @@ int testRCJsonLoad() {
 		cout << "Not Expecting domain error: " << e.what() << endl;
 	}
 
-	return 0;
+	return re;
 }
 
 int testRuleEngineValidateAllowedOption(void) {

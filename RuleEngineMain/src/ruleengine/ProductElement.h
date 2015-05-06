@@ -12,12 +12,13 @@ class ProductElement
 public:
 	ProductElement(void);
 	ProductElement(sbx::ProductElementOid productElementName, std::string variableName, sbx::ProductElementTypes productElementType);
-
+	short getProductOid();
 	virtual ~ProductElement(void);
 private:
 	sbx::ProductElementOid _productElement;
 	std::string _variableName;
 	sbx::ProductElementTypes _elementType;
+	short _productOid;
 };
 
 } // sbx namespace

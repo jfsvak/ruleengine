@@ -37,7 +37,9 @@ enum ProductElementOid : int {
 	kTaeSpaendBl		= 16,
 	kLoenDefinition		= 146,
 	kLoenRegulering		= 147,
-	k194				= 194
+	k194				= 194,
+	k217				= 217,
+	k218				= 218
 };
 
 struct ConstantKey {

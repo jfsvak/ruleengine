@@ -23,4 +23,8 @@ ProductElement::~ProductElement(void)
 
 }
 
+short ProductElement::getProductOid() {
+	return _productOid;
+}
+
 } // sbx namespace

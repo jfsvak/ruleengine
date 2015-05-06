@@ -10,6 +10,7 @@
 #include <sstream>
 #include <vector>
 #include <iostream>
+#include <iterator>
 #include <string>
 #include <memory>
 #include <numeric>
@@ -131,7 +132,7 @@ namespace sbx {
 		  {
 			  // check in optionsList if this value is allowed
 			  const vector<string>& v = _container.getOptions(peValue.getProductElementOid());
-			  cout << "Options for [" << peValue.getProductElementOid() << "]";
+			  cout << "Options for [" << peValue.getProductElementOid() << "] - ";
 			  printVector(v);
 			  cout << endl;
 			  const auto& result = find(v.cbegin(), v.cend(), peValue.stringValue());
@@ -150,9 +151,12 @@ namespace sbx {
 					  cout << "Value[" << peValue.stringValue() << "] is allowed! " << endl;
 				  }
 				  else {
-					  string allowedValues = accumulate(v.begin(), v.end(), string(""));
+					  ostringstream s;
+					  ostream_iterator<string> strOutput(s, ", ");
+					  copy(v.cbegin(), v.cend(), strOutput);
+//					  string allowedValues = accumulate(v.begin(), v.end(), string(""));
 
-					  cout << "Value[" << peValue.stringValue() << "] is not allowed! Allowed values are: [" << allowedValues << "]" << endl;
+					  cout << "Value[" << peValue.stringValue() << "] is not allowed! Allowed values are: [" << s.str() << "]" << endl;
 				  }
 			  }
 
@@ -263,16 +267,22 @@ namespace sbx {
   {
       // look up the productElement oid and see in which internal map to find the constant
       // for now just assume that the product element is found in equals/enum map
-      const vector<shared_ptr<Constant>> options = _container.getOptionsList(productElement);
+      const vector<shared_ptr<Constant>>& options = _container.getOptionsList(productElement);
       
-      for (const shared_ptr<Constant>& option : options)
+      if (options.size() <= 0) {
+    	  ostringstream s;
+    	  s << "No default value for product element oid [" << productElement << "]!";
+    	  throw domain_error(s.str());
+      }
+
+      for (const auto& option : options)
       {
           if (option->isDefault()) {
               return option;
           }
       }
       
-      return options.end()->get();
+      return options.back();
   }
 
   void RuleEngine::printVariables(ParserX p) {

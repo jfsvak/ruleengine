@@ -19,6 +19,7 @@
 #include "RuleConstantContainer.h"
 #include "Constant.h"
 #include "ProductElementValue.h"
+#include "Product.h"
 
 namespace sbx {
 
