@@ -28,7 +28,7 @@ namespace sbx {
   {
 	  if (Constant::_printDebug) {
 		  cout << "= Ori.Constant{"<< addressof(origin) << "}=>";
-		  printValues();//Constant{" << this << ", " << _underKonceptOid << ", " << _unionAgreementOid << ", " << _productElement << ", " << _comparisonType << ", " << _stringValue << ", " << _default << "}" << endl;
+		  printValues();
 	  }
   }
 
@@ -42,7 +42,7 @@ namespace sbx {
   {
 	  if (Constant::_printDebug) {
 		  cout << "= Ori.Shared_ptrConstant{"<< addressof(*origin) << "}=>";
-		  printValues();//Constant{" << this << ", " << _underKonceptOid << ", " << _unionAgreementOid << ", " << _productElement << ", " << _comparisonType << ", " << _stringValue << ", " << _default << "}" << endl;
+		  printValues();
 	  }
   }
 
@@ -134,7 +134,7 @@ namespace sbx {
 
   void Constant::printValues() const
   {
-	  cout << "Constant{" << this << ", uk[" << _underKonceptOid << "], ua[" << _unionAgreementOid << "], pe[" << _productElement << "], ct[" << _comparisonType << "], ";
+	  cout << "Constant{" << this << ", uk[" << _underKonceptOid << "], ua[" << _unionAgreementOid << "], pe[" << (int)_productElement << "], ct[" << (int)_comparisonType << "], ";
 	  cout << "\"" << stringValue() << "\", double[" << doubleValue() << "], long[" << longValue() << "], " << boolalpha << _default << "} " << endl;
   }
 } // namespace sbx

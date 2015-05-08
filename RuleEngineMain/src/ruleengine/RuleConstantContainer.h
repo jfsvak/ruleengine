@@ -10,12 +10,15 @@
 
 #include <string>
 #include <vector>
+#include <set>
 #include <map>
 #include <memory>
 
 #include "sbxTypes.h"
 #include "Constant.h"
 #include "Product.h"
+#include "Parameter.h"
+#include "ProductElement.h"
 #include "../json/json.h"
 
 namespace sbx {
@@ -27,24 +30,37 @@ public:
 
 	void initGlobalConstants(const std::vector<sbx::Constant>& globalConstants);
 	void initConstants(const std::string& jsonContents);
-	void initContext(const short underkoncept_oid, const short unionAgreementOid);
-	std::vector<std::string> getOptions(const sbx::ProductElementOid productElement);
-	const std::vector<std::shared_ptr<sbx::Constant>>& getOptionsList(const sbx::ProductElementOid productElement);
-//	const std::shared_ptr<sbx::Constant>& getDefaultValue(sbx::ProductElementOid productElement);
-	const std::shared_ptr<sbx::Constant>& getConstant(const sbx::ProductElementOid productElement, const sbx::ComparisonTypes comparisonType);
+	void initContext(const unsigned short underkoncept_oid, const short unionAgreementOid);
+	std::vector<std::string> getOptions(const sbx::ProductElementOid& productElementOid);
+	std::vector<std::string> getOptions(unsigned short productElementOid);
+	const std::vector<std::shared_ptr<sbx::Constant>>& getOptionsList(const sbx::ProductElementOid& productElement);
+	std::shared_ptr<sbx::Constant> getConstant(const sbx::ProductElementOid& productElement, const sbx::ComparisonTypes& comparisonType);
+	std::shared_ptr<sbx::Constant> getConstant(const unsigned short& productElementOid, const sbx::ComparisonTypes& comparisonType);
+
+	const std::set<unsigned short>& getProductOids(unsigned short parameterOid) const;
+	std::set<unsigned short> getProductElementOids(unsigned short parameterOid) const;
+	sbx::ProductElement getProductElement(const unsigned short& productElementOid);
+	sbx::ProductElement getProductElement(const sbx::ProductElementOid& productElementOid);
+
+	std::shared_ptr<sbx::Constant> createConstant(unsigned short underkonceptOid, unsigned short unionAgreementOid, sbx::ProductElementOid peOid, sbx::ComparisonTypes comparisonType);
+	// ----- util functions------
 	void printConstantHeader() const;
 	void printConstants() const;
-	void printConstants(short int underKonceptOid, sbx::ProductElementOid productElement) const;
-	void printContainerOverview(short int underKonceptOid) const;
-	void printContainerOverview(short int underKonceptOid, sbx::ComparisonTypes type) const;
+	void printConstants(unsigned short int underKonceptOid, sbx::ProductElementOid productElement) const;
+	void printContainerOverview(unsigned short int underKonceptOid) const;
+	void printContainerOverview(unsigned short int underKonceptOid, sbx::ComparisonTypes type) const;
 	void printProducts() const;
+	void printParameters() const;
+	void printParametersToProducts(unsigned short underkonceptOid) const;
 	std::size_t size() const;
 private:
     
 	void printConstant(const std::shared_ptr<sbx::Constant>& c) const;
     void _initInternalMaps();
 	void _initRuleConstants(const Json::Value& ruleConstantsList);
-	void _initProducts(const Json::Value& root);
+	void _initProducts(const Json::Value& products);
+	void _initParameters(const Json::Value& parameters);
+	void _initParametersToProducts(const Json::Value& parameters);
 
 	/**
 	 * vector of shared pointers holding all global constants for all contexts
@@ -59,7 +75,7 @@ private:
 	 *  Subscript format is: _ukOptionsMap[underkonceptOid][productElementOid]
 	 *  Value is a vector of shared_ptr->Constant
 	 **/
-	std::map<short, std::map<sbx::ProductElementOid, std::vector<std::shared_ptr<sbx::Constant>>>> _ukOptionsMap;
+	std::map<unsigned short, std::map<sbx::ProductElementOid, std::vector<std::shared_ptr<sbx::Constant>>>> _ukOptionsMap;
 
 	/**
 	 * _ukMinValuesMap:
@@ -68,7 +84,7 @@ private:
 	 * Subscript format is: _ukMinValuesMap[underkonceptOid][productElementOid]
 	 * Value: shared_ptr to Constant
 	 */
-	std::map<short, std::map<sbx::ProductElementOid, std::shared_ptr<sbx::Constant>>> _ukMinValuesMap;
+	std::map<unsigned short, std::map<sbx::ProductElementOid, std::shared_ptr<sbx::Constant>>> _ukMinValuesMap;
 
 	/**
 	 * _ukMaxValuesMap:
@@ -77,15 +93,36 @@ private:
 	 * Subscript format is: _ukMinValuesMap[underkonceptOid][productElementOid]
 	 * Value: shared_ptr to Constant
 	 */
-	std::map<short, std::map<sbx::ProductElementOid, std::shared_ptr<sbx::Constant>>> _ukMaxValuesMap;
+	std::map<unsigned short, std::map<sbx::ProductElementOid, std::shared_ptr<sbx::Constant>>> _ukMaxValuesMap;
 
 	/**
 	 * _productsMap:
-	 * Index is productOid (short)
-	 * Values is product
+	 * Index is productOid (unsigned short)
+	 * Values is a shared_ptr to a Product
 	 */
-	std::map<short, std::shared_ptr<sbx::Product>> _productsMap;
-//	std::map<short, sbx::ProductElement> _productElementMap;
+	std::map<unsigned short, std::shared_ptr<sbx::Product>> _productsMap;
+
+	/**
+	 * _productElementsMap:
+	 * Index is productOid (unsigned short)
+	 * Values is a shared_ptr to a ProductElement
+	 */
+	std::map<unsigned short, std::shared_ptr<sbx::ProductElement>> _productElementMap;
+	std::map<unsigned short, sbx::Parameter> _parameterMap;
+
+	/**
+	 * First index is underKonceptOid
+	 * Second index is parameter
+	 * Value is a set of allowed products
+	 */
+	std::map<unsigned short, std::map<unsigned short, std::set<unsigned short>>> _parameterOidToProductOids;
+
+	/**
+	 * First index is underKonceptOid
+	 * Second index is parameter
+	 * Value is a set of allowed product element oids
+	 */
+	std::map<unsigned short, std::map<unsigned short, std::set<unsigned short>>> _parameterOidToProductElementOids;
 
 	short _underKonceptOid;
 	short _unionAgreementOid;

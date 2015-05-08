@@ -3,24 +3,25 @@
 
 #include <string>
 
+#include "ProductElement.h"
 #include "sbxTypes.h"
 
 namespace sbx {
 
 class ProductElementValue {
-  private:
-	sbx::ProductElementOid _productElementOid;
-	sbx::ProductElementTypes _productElementType;
-	std::string _stringValue;
   public:
 	ProductElementValue(void);
-	ProductElementValue(const sbx::ProductElementOid productElementOid, const sbx::ProductElementTypes productElementType, const std::string& stringValue);
-	virtual ~ProductElementValue(void);
+	ProductElementValue(const sbx::ProductElementValue& otherProductElementValue); // copy constructor
+	ProductElementValue(unsigned short peOid, const std::string& stringValue);
+	ProductElementValue(const sbx::ProductElementOid& peOid, const std::string& stringValue);
 	std::string stringValue() const;
 	long longValue() const;
 	double doubleValue() const;
-	sbx::ProductElementOid getProductElementOid() const;
-	sbx::ProductElementTypes getProductElementType() const;
+	unsigned short getProductElementOid() const;
+	virtual ~ProductElementValue(void);
+  private:
+	unsigned short _productElementOid;
+	std::string _stringValue;
 };
 
 } // namespace sbx

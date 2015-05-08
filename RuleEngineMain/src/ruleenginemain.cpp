@@ -16,6 +16,7 @@
 #include "ruleenginetestutils.h"
 #include "ruleengine/Constant.h"
 #include "ruleengine/RuleEngine.h"
+#include "ruleengine/TA.h"
 #include "json/json.h"
 #include "Foo.h"
 #include "FooHolder.h"
@@ -32,15 +33,19 @@ RuleEngine testRCJsonLoad();
 void testFoo();
 void testFoo2(FooHolder& fh);
 int testDefaultValue(RuleEngine&);
+int testValidatePEV(RuleEngine&);
+int testGetProducts(RuleEngine&);
+int testValidateTA(RuleEngine&);
 
 const int NO_OF_DUMMY_CONSTANTS = 15;
 
 int main() {
 
 	try {
-//        testRuleEngineValidateAllowedOption();
 		RuleEngine re = testRCJsonLoad();
-		testDefaultValue(re);
+//		testDefaultValue(re);
+//		testGetProducts(re);
+		testValidateTA(re);
 	} catch (exception &e) {
 		cout << "Exception while testing: " << e.what() << endl;
 		return -1;
@@ -49,51 +54,80 @@ int main() {
 	return 0;
 }
 
+int testValidateTA(RuleEngine& re)
+{
+	re.getContainer().printContainerOverview(0);
+	re.getContainer().printProducts();
+	using sbx::ProductElementOid;
+
+	KonceptInfo ki {27, { {11, "true"}, {6, "true"} }};
+	TA ta { {{static_cast<unsigned short>(kTaeBlGrMin), {kTaeBlGrMin, "100000"}}, {static_cast<unsigned short>(kLoenDefinition), {kLoenDefinition, "Gage"}}} };
+	re.initContext(ki.getUnderkonceptOid(), 0);
+	re.validate(ki, ta);
+
+	return 0;
+}
+
+int testGetProducts(RuleEngine& re) {
+	re.initContext(6,0);
+	//	re.getContainer().printConstants();
+	//	re.getContainer().printConstants(13, sbx::ProductElementOid::kLoenDefinition);
+	//	re.getContainer().printConstants(13, sbx::ProductElementOid::k217);
+	//	re.getContainer().printConstants(13, sbx::ProductElementOid::k218);
+	re.getContainer().printParametersToProducts(6);
+	re.getContainer().printProducts();
+	re.getContainer().printParameters();
+	re.getContainer().printParametersToProducts(6);
+
+	auto& productOids = re.getContainer().getProductOids(15);
+	cout << "Size of products for underkoncept 6, parameter 15[" << productOids.size() << "]\n";
+	return 0;
+}
+
+int testValidatePEV(RuleEngine& re) {
+	try {
+		// Wrong lon type
+		ProductElementValue pev {ProductElementOid::kLoenDefinition, "Min forkerte lon"};
+		re.validate(pev);
+	} catch (exception &e) {
+		cout << "Expecting domain error: " << e.what() << endl;
+	}
+
+	try {
+		// allowed lon type
+		ProductElementValue pev {ProductElementOid::kLoenDefinition, "I henhold til kontrakt"};
+		re.validate(pev);
+	} catch (exception &e) {
+		cout << "Not Expecting domain error: " << e.what() << endl;
+	}
+	return 0;
+}
+
 int testDefaultValue(RuleEngine& re) {
 	re.initContext(13,0);
-//	re.getContainer().printConstants();
-	re.getContainer().printConstants(13, sbx::ProductElementOid::kLoenDefinition);
-	re.getContainer().printConstants(13, sbx::ProductElementOid::k217);
-	re.getContainer().printConstants(13, sbx::ProductElementOid::k218);
-	re.getContainer().printProducts();
 
-	const Constant& c1 = re.getDefaultValue(sbx::ProductElementOid::kLoenDefinition);
-	cout << "Default value for " << ProductElementOid::kLoenDefinition << " is [" << c1.stringValue() << "]" << endl;
+	const Constant& c1 = re.getDefaultValue(sbx::ProductElementOid::kLoenRegulering);
+	cout << "Default value for " << (unsigned short int)ProductElementOid::kLoenRegulering << " is [" << c1.stringValue() << "]" << endl;
 
 	const Constant& c2 = re.getDefaultValue(sbx::ProductElementOid::kTaeBlGrMin);
-	cout << "Default value for " << ProductElementOid::kTaeBlGrMin << " is [" << c2.doubleValue() << "]" << endl;
+	cout << "Default value for " << (unsigned short int)ProductElementOid::kTaeBlGrMin << " is [" << c2.doubleValue() << "]" << endl;
 	return 0;
 }
 
 
 RuleEngine testRCJsonLoad() {
 //	Constant::_printDebug = true;
-	RuleConstantContainer::_printDebug = true;
-	RuleEngine::_printDebug = true;
+//	Product::_printDebug = true;
+//	RuleConstantContainer::_printDebug = true;
+//	RuleEngine::_printDebug = true;
 	RuleEngine re {  };
     string json = get_file_contents("basedata-ruleconstants.json");
     
 	re.initConstants(json);
 	cout << "Number of constants loaded [" << re.getContainer().size() << "]" << endl;
 	re.initContext(9, 0);
-	re.getContainer().printContainerOverview(0);
+//	re.getContainer().printContainerOverview(0);
 	
-	try {
-        // Wring lon type
-        ProductElementValue pev {ProductElementOid::kLoenDefinition, ProductElementTypes::kText, "Min forkerte lon"};
-    	re.validate(pev);
-	} catch (exception &e) {
-		cout << "Expecting domain error: " << e.what() << endl;
-	}
-    
-    try {
-        // allowed lon type
-        ProductElementValue pev {ProductElementOid::kLoenDefinition, ProductElementTypes::kText, "I henhold til kontrakt"};
-		re.validate(pev);
-	} catch (exception &e) {
-		cout << "Not Expecting domain error: " << e.what() << endl;
-	}
-
 	return re;
 }
 
@@ -110,7 +144,7 @@ int testRuleEngineValidateAllowedOption(void) {
 	re.initContext(1, 0);
 
 	cout << "Validate allowed string" << endl;
-	ProductElementValue pevString {sbx::kLoenDefinition, sbx::kText, "Løn 1"};
+	ProductElementValue pevString {sbx::kLoenDefinition, "Løn 1"};
 	int validationResult = re.validate(pevString);
 	cout << "ValidationResult [" << validationResult << "]" << endl;
 
@@ -119,7 +153,7 @@ int testRuleEngineValidateAllowedOption(void) {
 	cout << "ValidationResult [" << validationResult << "]" << endl;
 
 	cout << "\nValidate double value" << endl;
-	ProductElementValue pevDouble {sbx::ProductElementOid::kTaeBlGrMin, sbx::ProductElementTypes::kCurr, "100000"};
+	ProductElementValue pevDouble {sbx::ProductElementOid::kTaeBlGrMin, "100000"};
 	validationResult = re.validate(pevDouble);
 	cout << "ValidationResult [" << validationResult << "]" << endl;
 

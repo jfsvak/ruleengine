@@ -14,18 +14,20 @@ namespace sbx {
 
 class Product {
 public:
+	static bool _printDebug;
 	Product();
 	Product(const sbx::Product&); // copy constructor
-	Product(short oid, std::string& name);
+	Product(unsigned short oid, std::string& name);
 	virtual ~Product();
 	const std::string& getName() const;
-	short getOid();
-	const std::vector<short>& getProductElementOids() const;
-	void addProductElementOid(short oid);
+	unsigned short getOid();
+	const std::vector<unsigned short>& getProductElementOids() const;
+	void addProductElementOid(unsigned short oid);
 private:
-	short _oid;
+	void printValues() const;
+	int _oid;
 	std::string _name;
-	std::vector<short> _productElementOids;
+	std::vector<unsigned short> _productElementOids;
 };
 
 }

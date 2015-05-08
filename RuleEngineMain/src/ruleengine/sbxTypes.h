@@ -13,14 +13,16 @@
 
 namespace sbx {
 
-enum ComparisonTypes : int {
-	kMin	= 1,
-	kMax	= 2,
-	kEnum	= 3,
-	kEquals	= 4 // equals == 4 to match SBX value
+enum ComparisonTypes : unsigned short {
+	kUnknown	= 0,
+	kMin		= 1,
+	kMax		= 2,
+	kEnum		= 3,
+	kEquals		= 4 // equals == 4 to match SBX value
 };
 
-enum ProductElementTypes : int {
+enum ProductElementTypes : unsigned short {
+	kPEUnknown	= 0,
 	kLong		= 1,
 	kText 		= 2,
 	kMonth 		= 3,
@@ -31,15 +33,23 @@ enum ProductElementTypes : int {
 	kPercent	= 8
 };
 
-enum ProductElementOid : int {
-	kTaeBlGrMin			= 14,
-	kTaeBlOblMax		= 15,
-	kTaeSpaendBl		= 16,
-	kLoenDefinition		= 146,
-	kLoenRegulering		= 147,
-	k194				= 194,
-	k217				= 217,
-	k218				= 218
+enum ProductOid : unsigned short {
+	kUnknownProduct		 	= 0,
+	kP_194					= 194,
+	kP_217					= 217,
+	kP_218					= 218
+};
+
+enum ProductElementOid : unsigned short {
+	kUnknownProductElement 	= 0,
+	kTaeBlGrMin				= 14,
+	kTaeBlOblMax			= 15,
+	kTaeSpaendBl			= 16,
+	kLoenDefinition			= 146,
+	kLoenRegulering			= 147,
+	k194					= 194,
+	k217					= 217,
+	k218					= 218
 };
 
 struct ConstantKey {
