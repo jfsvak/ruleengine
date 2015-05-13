@@ -137,4 +137,13 @@ namespace sbx {
 	  cout << "Constant{" << this << ", uk[" << _underKonceptOid << "], ua[" << _unionAgreementOid << "], pe[" << (int)_productElement << "], ct[" << (int)_comparisonType << "], ";
 	  cout << "\"" << stringValue() << "\", double[" << doubleValue() << "], long[" << longValue() << "], " << boolalpha << _default << "} " << endl;
   }
+
+//  std::ostream &operator<<( std::ostream &output, const sbx::Constant &c)
+//  {
+//	  output << "Constant{" << addressof(c) << ", uk[" << c._underKonceptOid << "], ua[" << c._unionAgreementOid << "], pe[" << (int)c._productElement << "], ct[" << (int)c._comparisonType << "], ";
+//	  output << "\"" << c.stringValue() << "\", double[" << c.doubleValue() << "], long[" << c.longValue() << "], " << boolalpha << c._default << "} " << endl;
+//      return output;
+//  }
+
 } // namespace sbx
+

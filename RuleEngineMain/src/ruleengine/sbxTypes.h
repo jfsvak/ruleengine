@@ -10,8 +10,10 @@
 #define RULEENGINE_SBXTYPES_H_
 
 #include <string>
+#include <iostream>
 
 namespace sbx {
+
 
 enum ComparisonTypes : unsigned short {
 	kUnknown	= 0,

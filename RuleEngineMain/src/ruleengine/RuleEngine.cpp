@@ -87,10 +87,8 @@ const sbx::RuleConstantContainer& RuleEngine::getContainer() const
  */
 void RuleEngine::loadRuleCatalogue()
 {
-	_ruleCatalogue[kTaeSpaendBl] =
-	{	"rc_taespaendbl_max >= (a-b)"};
-	_ruleCatalogue[kTaeBlGrMin] =
-	{	"taeblgrmin <= taebloblmax"};
+	_ruleCatalogue[kTaeSpaendBl] = {	"rc_taespaendbl_max >= (a-b)"};
+	_ruleCatalogue[kTaeBlGrMin] = {	"taeblgrmin <= taebloblmax"};
 }
 
 /**
@@ -161,7 +159,7 @@ int RuleEngine::validate(const sbx::ProductElementValue& peValue)
 				cout << "Value[" << peValue.stringValue() << "] is allowed! " << endl;
 			} else
 			{
-				ostringstream s {};
+				ostringstream s { };
 				ostream_iterator<string> strOutput(s, ", ");
 				copy(v.cbegin(), v.cend(), strOutput);
 				cout << "Value[" << peValue.stringValue() << "] is not allowed! Allowed values are: [" << s.str() << "]" << endl;
@@ -284,10 +282,10 @@ int RuleEngine::validate(sbx::ComparisonTypes comparisonType) const
 int RuleEngine::validate(const sbx::KonceptInfo& konceptInfo, const sbx::TA& ta)
 {
 	// 1. check allowed products elements for the konceptinfo
-	std::set<unsigned short, less<unsigned short>> allowedProductElementOids {};
+	std::set<unsigned short, less<unsigned short>> allowedProductElementOids { };
 
 	// insert all allowed product oids into one vector
-	for ( auto& parameterIt : konceptInfo.getParameterValues() )
+	for (auto& parameterIt : konceptInfo.getParameterValues())
 	{
 		const std::set<unsigned short>& productElementOids = _container.getProductElementOids(parameterIt.first);
 		allowedProductElementOids.insert(productElementOids.cbegin(), productElementOids.cend());
@@ -306,7 +304,8 @@ int RuleEngine::validate(const sbx::KonceptInfo& konceptInfo, const sbx::TA& ta)
 		{
 			int result = this->validate(pev);
 			cout << "Result of validation of pev[" << result << "]" << endl;
-		} catch (exception& e) {
+		} catch (exception& e)
+		{
 			cout << "Validation of pev failed with exception: [" << e.what() << "]" << endl;
 		}
 	}

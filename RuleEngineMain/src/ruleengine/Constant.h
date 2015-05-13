@@ -2,19 +2,15 @@
 #define RULEENGINE_CONSTANT_H_
 
 #include <string>
+#include <iostream>
 
 #include "sbxTypes.h"
 
 namespace sbx {
 
 class Constant {
-  private:
-	short _underKonceptOid;
-	short _unionAgreementOid;
-	ProductElementOid _productElement;
-	ComparisonTypes _comparisonType; //comparison type
-	std::string _stringValue;
-	bool _default;
+//	friend std::ostream &operator<<( std::ostream &, const sbx::Constant &);
+
   public:
 	static bool _printDebug;
 	Constant(void);
@@ -31,6 +27,13 @@ class Constant {
 	ComparisonTypes getComparisonType() const;
 	bool isDefault() const;
 	void printValues() const;
+  private:
+	short _underKonceptOid;
+	short _unionAgreementOid;
+	ProductElementOid _productElement;
+	ComparisonTypes _comparisonType; //comparison type
+	std::string _stringValue;
+	bool _default;
 };
 
 } // namespace sbx
