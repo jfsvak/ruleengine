@@ -51,6 +51,15 @@ void RuleEngine::initContext(short underkoncept_oid, short unionagreement_oid)
 }
 
 /**
+ * Initialises local context that is used for following operations on RuleEngine
+ */
+void sbx::RuleEngine::initContext(const sbx::KonceptInfo& ki)
+{
+	_ki = ki;
+	_container.initContext(ki.getUnderkonceptOid(), 0);
+}
+
+/**
  * Delegate call to RuleConstantContainer::getOptionsList(...)
  */
 vector<string> RuleEngine::getOptions(ProductElementOid productElement)
@@ -365,3 +374,4 @@ void RuleEngine::printExpressions(ParserX p)
 }
 
 } // sbx namespace end
+

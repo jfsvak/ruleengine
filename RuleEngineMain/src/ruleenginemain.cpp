@@ -7,11 +7,11 @@
 //============================================================================
 
 #include <iostream>
+#include <iterator>
+#include <fstream>
 #include <sstream>
 #include <vector>
 #include <memory>
-#include <fstream>
-#include <sstream>
 
 #include "ruleenginetestutils.h"
 #include "ruleengine/Constant.h"
@@ -43,9 +43,9 @@ int main() {
 
 	try {
 		RuleEngine re = testRCJsonLoad();
-//		testDefaultValue(re);
+		testDefaultValue(re);
 //		testGetProducts(re);
-		testValidateTA(re);
+//		testValidateTA(re);
 	} catch (exception &e) {
 		cout << "Exception while testing: " << e.what() << endl;
 		return -1;
@@ -104,10 +104,16 @@ int testValidatePEV(RuleEngine& re) {
 }
 
 int testDefaultValue(RuleEngine& re) {
-	re.initContext(13,0);
+	re.initContext( {17, { {11, "true"}, {16, "true"} }} );
 
-	const Constant& c1 = re.getDefaultValue(sbx::ProductElementOid::kLoenRegulering);
-	cout << "Default value for " << (unsigned short int)ProductElementOid::kLoenRegulering << " is [" << c1.stringValue() << "]" << endl;
+	ostringstream s { };
+	for (auto& c : re.getOptionsList(sbx::ProductElementOid::kLoenDefinition)) {
+		s << "\"" << c->stringValue() << "\", ";
+	}
+	cout << "Allowed options for are LoenDefinition: [" << s.str() << "]" << endl;
+
+	const Constant& c1 = re.getDefaultValue(sbx::ProductElementOid::kLoenDefinition);
+	cout << "Default value for " << (unsigned short int)ProductElementOid::kLoenDefinition << " is [" << c1.stringValue() << "]" << endl;
 
 	const Constant& c2 = re.getDefaultValue(sbx::ProductElementOid::kTaeBlGrMin);
 	cout << "Default value for " << (unsigned short int)ProductElementOid::kTaeBlGrMin << " is [" << c2.doubleValue() << "]" << endl;
