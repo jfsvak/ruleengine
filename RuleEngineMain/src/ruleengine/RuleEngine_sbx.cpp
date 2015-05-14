@@ -15,14 +15,14 @@
 #include <numeric>
 #include <set>
 
-#include "RuleEngine.h"
-#include "ProductElement.h"
+#include "RuleEngine_sbx.h"
+#include "ProductElement_sbx.h"
 #include "sbxTypes.h"
 #include "muParser/mpParser.h"
 #include "../json/json.h"
-#include "KonceptInfo.h"
-#include "PrintUtils.h"
-#include "TA.h"
+#include "KonceptInfo_sbx.h"
+#include "PrintUtils_sbx.h"
+#include "TA_sbx.h"
 
 using namespace std;
 using namespace mup;

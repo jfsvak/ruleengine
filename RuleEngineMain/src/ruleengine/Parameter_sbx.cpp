@@ -6,7 +6,7 @@
  */
 #include <string>
 
-#include "Parameter.h"
+#include "Parameter_sbx.h"
 
 namespace sbx {
 

@@ -5,7 +5,7 @@
  *      Author: xjes
  */
 
-#include "KonceptInfo.h"
+#include "KonceptInfo_sbx.h"
 
 namespace sbx {
 

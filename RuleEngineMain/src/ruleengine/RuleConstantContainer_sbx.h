@@ -15,10 +15,10 @@
 #include <memory>
 
 #include "sbxTypes.h"
-#include "Constant.h"
-#include "Product.h"
-#include "Parameter.h"
-#include "ProductElement.h"
+#include "Constant_sbx.h"
+#include "Product_sbx.h"
+#include "Parameter_sbx.h"
+#include "ProductElement_sbx.h"
 #include "../json/json.h"
 
 namespace sbx {

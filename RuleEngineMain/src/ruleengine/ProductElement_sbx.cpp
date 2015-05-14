@@ -3,7 +3,7 @@
 #include <memory>
 
 #include "sbxTypes.h"
-#include "ProductElement.h"
+#include "ProductElement_sbx.h"
 
 using namespace std;
 

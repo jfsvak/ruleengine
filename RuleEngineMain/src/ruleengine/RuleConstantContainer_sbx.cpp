@@ -12,10 +12,10 @@
 #include <memory>
 #include <vector>
 
-#include "RuleConstantContainer.h"
+#include "RuleConstantContainer_sbx.h"
 #include "sbxTypes.h"
-#include "Constant.h"
-#include "Product.h"
+#include "Constant_sbx.h"
+#include "Product_sbx.h"
 #include "../json/json.h"
 
 using namespace std;

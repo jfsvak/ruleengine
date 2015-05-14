@@ -1,7 +1,7 @@
 //#ifndef RULEENGINE_STRINGCONSTANT_H_
 //#define RULEENGINE_STRINGCONSTANT_H_
 //
-//#include "ConstantTemplate.cpp"
+//#include "ConstantTemplate_sbx.cpp"
 //
 //namespace sbx {
 //

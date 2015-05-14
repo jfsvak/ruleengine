@@ -10,7 +10,7 @@
 #include <sstream>
 #include <iterator>
 
-#include "Product.h"
+#include "Product_sbx.h"
 using namespace std;
 
 namespace sbx {
