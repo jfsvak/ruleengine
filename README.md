@@ -1,4 +1,4 @@
 ruleengine
 ==========
 
-Rule engine using muParserX
+Rule engine using muParserX.
