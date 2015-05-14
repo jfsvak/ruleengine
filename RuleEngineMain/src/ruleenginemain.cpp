@@ -39,7 +39,7 @@ int testValidateTA(RuleEngine&);
 
 const int NO_OF_DUMMY_CONSTANTS = 15;
 
-int main() {
+int ruleengine_main() {
 
 	try {
 		RuleEngine re = testRCJsonLoad();
