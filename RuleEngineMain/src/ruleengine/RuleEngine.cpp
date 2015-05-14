@@ -329,7 +329,7 @@ const std::shared_ptr<sbx::Constant>& RuleEngine::getDefaultValue(sbx::ProductEl
 	if (options.size() <= 0)
 	{
 		ostringstream s;
-		s << "No default value for product element oid [" << productElement << "]!";
+		s << "No default value for product element oid [" << static_cast<unsigned short>(productElement) << "]!";
 		throw domain_error(s.str());
 	}
 

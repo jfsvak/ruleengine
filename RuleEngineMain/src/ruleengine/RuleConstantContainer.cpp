@@ -400,7 +400,10 @@ std::set<unsigned short> RuleConstantContainer::getProductElementOids(unsigned s
 	}
 
 	cout << "Could not find ProductElementOids for parameterOid[" << parameterOid << "], returning empty set!";
-	return {};
+    
+    // TODO: FIX THIS
+    std::set<unsigned short> empty;
+	return empty;
 }
 
 /**
