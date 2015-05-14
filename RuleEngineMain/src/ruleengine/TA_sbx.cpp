@@ -5,7 +5,7 @@
  *      Author: jfsvak
  */
 
-#include "TA.h"
+#include "TA_sbx.h"
 
 namespace sbx {
 

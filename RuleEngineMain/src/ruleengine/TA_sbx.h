@@ -10,7 +10,7 @@
 
 #include <map>
 
-#include "ProductElementValue.h"
+#include "ProductElementValue_sbx.h"
 
 namespace sbx {
 

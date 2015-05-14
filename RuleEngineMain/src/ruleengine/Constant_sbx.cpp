@@ -2,7 +2,7 @@
 #include <memory>
 #include <stdlib.h>
 
-#include "Constant.h"
+#include "Constant_sbx.h"
 using namespace std;
 
 namespace sbx {

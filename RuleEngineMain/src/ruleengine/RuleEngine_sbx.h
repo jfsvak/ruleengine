@@ -16,12 +16,12 @@
 
 #include "muParser/mpParser.h"
 #include "sbxTypes.h"
-#include "RuleConstantContainer.h"
-#include "Constant.h"
-#include "ProductElementValue.h"
-#include "Product.h"
-#include "KonceptInfo.h"
-#include "TA.h"
+#include "RuleConstantContainer_sbx.h"
+#include "Constant_sbx.h"
+#include "ProductElementValue_sbx.h"
+#include "Product_sbx.h"
+#include "KonceptInfo_sbx.h"
+#include "TA_sbx.h"
 
 namespace sbx {
 
