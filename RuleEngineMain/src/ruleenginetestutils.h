@@ -14,7 +14,7 @@
 #include <iostream>
 
 #include "json/json.h"
-#include "ruleengine/Constant.h"
+#include "ruleengine/Constant_sbx.h"
 
 void printVector(const std::vector<std::string>&);
 void printVector(const std::vector<std::shared_ptr<sbx::Constant>>&);

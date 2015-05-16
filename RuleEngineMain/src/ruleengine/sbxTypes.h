@@ -43,15 +43,29 @@ enum ProductOid : unsigned short {
 };
 
 enum ProductElementOid : unsigned short {
-	kUnknownProductElement 	= 0,
-	kTaeBlGrMin				= 14,
-	kTaeBlOblMax			= 15,
-	kTaeSpaendBl			= 16,
-	kLoenDefinition			= 146,
-	kLoenRegulering			= 147,
-	k194					= 194,
-	k217					= 217,
-	k218					= 218
+			kUnknownProductElement 	= 0,
+			kDoedBlGrMin			= 1,
+			kDoedBlOblMax			= 2,
+			kDoedSpaendBl			= 3,
+			kDoedSoliMax			= 4,
+			kDoedPctGrMin			= 6,
+			kDoedPctOblMax			= 7,
+			kTaeBlGrMin				= 14,
+			kTaeBlOblMax			= 15,
+			kTaeSpaendBl			= 16,
+			kBoerneUdloebsalder		= 67,
+			kDoedReguleringskode	= 82,
+			kBoerneRentePctMin		= 85,
+			kBoerneRenteBlMin		= 89,
+			kBoerneSumBlMin			= 91,
+			kBoernerenteReguleringstype	= 128,
+			kDoedDaekningstype		= 139,
+			kLoenDefinition			= 146,
+			kLoenRegulering			= 147,
+			kBoerneRenteSoliMax		= 183,
+			k194					= 194,
+			k217					= 217,
+			k218					= 218
 };
 
 struct ConstantKey {

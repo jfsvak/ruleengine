@@ -11,7 +11,7 @@
 #include <vector>
 #include <fstream>
 #include "ruleenginetestutils.h"
-#include "ruleengine/Constant.h"
+#include "ruleengine/Constant_sbx.h"
 #include "json/json.h"
 
 using namespace std;

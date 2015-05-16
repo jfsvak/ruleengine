@@ -22,6 +22,7 @@
 #include "Product_sbx.h"
 #include "KonceptInfo_sbx.h"
 #include "TA_sbx.h"
+#include "ValidationResult.h"
 
 namespace sbx {
 
@@ -42,7 +43,7 @@ class RuleEngine {
 	std::shared_ptr<sbx::Constant> getConstant(sbx::ProductElementOid productElement, sbx::ComparisonTypes comparisonType);
 
 	int validate(sbx::ProductElementOid productElement, const std::vector<std::pair<std::string,long>>& p_operands);
-	int validate(const sbx::ProductElementValue& peValue);
+	sbx::ValidationResult validate(const sbx::ProductElementValue& peValue);
 	int validate(sbx::ComparisonTypes comparisonType) const;
 	int validate(const sbx::KonceptInfo&, const sbx::TA& ta);
 

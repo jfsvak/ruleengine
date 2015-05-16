@@ -14,9 +14,10 @@
 #include <memory>
 
 #include "ruleenginetestutils.h"
-#include "ruleengine/Constant.h"
-#include "ruleengine/RuleEngine.h"
-#include "ruleengine/TA.h"
+#include "ruleengine/Constant_sbx.h"
+#include "ruleengine/ValidationResult.h"
+#include "ruleengine/RuleEngine_sbx.h"
+#include "ruleengine/TA_sbx.h"
 #include "json/json.h"
 #include "Foo.h"
 #include "FooHolder.h"
@@ -35,17 +36,17 @@ void testFoo2(FooHolder& fh);
 int testDefaultValue(RuleEngine&);
 int testValidatePEV(RuleEngine&);
 int testGetProducts(RuleEngine&);
-int testValidateTA(RuleEngine&);
+int testValidateDeathCoverageTA(RuleEngine&);
 
 const int NO_OF_DUMMY_CONSTANTS = 15;
 
-int ruleengine_main() {
+int main() {
 
 	try {
 		RuleEngine re = testRCJsonLoad();
-		testDefaultValue(re);
+//		testDefaultValue(re);
 //		testGetProducts(re);
-//		testValidateTA(re);
+		testValidateDeathCoverageTA(re);
 	} catch (exception &e) {
 		cout << "Exception while testing: " << e.what() << endl;
 		return -1;
@@ -54,7 +55,7 @@ int ruleengine_main() {
 	return 0;
 }
 
-int testValidateTA(RuleEngine& re)
+int testValidateDeathCoverageTA(RuleEngine& re)
 {
 	re.getContainer().printContainerOverview(0);
 	re.getContainer().printProducts();
@@ -62,6 +63,12 @@ int testValidateTA(RuleEngine& re)
 
 	KonceptInfo ki {27, { {11, "true"}, {6, "true"} }};
 	TA ta { {{static_cast<unsigned short>(kTaeBlGrMin), {kTaeBlGrMin, "100000"}}, {static_cast<unsigned short>(kLoenDefinition), {kLoenDefinition, "Gage"}}} };
+	ta.setCVR("15124040")
+			.setKonceptOid(4)
+			.addValue(kDoedReguleringskode, "Gage")
+			.addValue(kDoedPctGrMin, "200")
+			.addValue(kDoedPctOblMax, "200")
+			.addValue(kDoedBlGrMin, "100000");
 	re.initContext(ki.getUnderkonceptOid(), 0);
 	re.validate(ki, ta);
 
@@ -151,17 +158,17 @@ int testRuleEngineValidateAllowedOption(void) {
 
 	cout << "Validate allowed string" << endl;
 	ProductElementValue pevString {sbx::kLoenDefinition, "Løn 1"};
-	int validationResult = re.validate(pevString);
-	cout << "ValidationResult [" << validationResult << "]" << endl;
+	sbx::ValidationResult r =  re.validate(pevString);
+	cout << "ValidationResult [" << r << "]" << endl;
 
 	re.initContext(2, 0);
-	validationResult = re.validate(pevString);
-	cout << "ValidationResult [" << validationResult << "]" << endl;
+	r = re.validate(pevString);
+	cout << "ValidationResult [" << r << "]" << endl;
 
 	cout << "\nValidate double value" << endl;
 	ProductElementValue pevDouble {sbx::ProductElementOid::kTaeBlGrMin, "100000"};
-	validationResult = re.validate(pevDouble);
-	cout << "ValidationResult [" << validationResult << "]" << endl;
+	r = re.validate(pevDouble);
+	cout << "ValidationResult [" << r << "]" << endl;
 
 	return 0;
 }

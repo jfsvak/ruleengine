@@ -19,11 +19,23 @@ public:
 	TA();
 	TA(const std::map<unsigned short, sbx::ProductElementValue>& peValues);
 	TA(const sbx::TA& otherTA);
-	void addValue(unsigned short productElementOid, const std::string& value);
-	const sbx::ProductElementValue& getValue(unsigned short productElementOid) const;
+
+	TA& setCVR(const std::string& cvr);
+	const std::string& getCVR() const;
+	TA& setKonceptOid(unsigned short konceptOid);
+	unsigned short getKonceptOid() const;
+
+	TA& addValue(unsigned short productElementOid, const std::string& value);
+	TA& addValue(unsigned short productElementOid, double value);
+	TA& addValue(unsigned short productElementOid, long value);
+
+	sbx::ProductElementValue getValue(unsigned short productElementOid) const;
 	const std::map<unsigned short, sbx::ProductElementValue>& getValues() const;
+
 	virtual ~TA();
 private:
+	std::string _cvr;
+	unsigned short _konceptOid;
 	// map of productElement oid to productElementValues
 	std::map<unsigned short, sbx::ProductElementValue> _peValuesMap;
 };

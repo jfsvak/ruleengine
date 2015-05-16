@@ -23,6 +23,7 @@
 #include "KonceptInfo_sbx.h"
 #include "PrintUtils_sbx.h"
 #include "TA_sbx.h"
+#include "ValidationResult.h"
 
 using namespace std;
 using namespace mup;
@@ -139,8 +140,11 @@ void RuleEngine::loadRuleConstants(ParserX &p)
 /*
  * Validates a single productElementValue using rules specific for the productElementType
  */
-int RuleEngine::validate(const sbx::ProductElementValue& peValue)
+sbx::ValidationResult RuleEngine::validate(const sbx::ProductElementValue& peValue)
 {
+	sbx::ValidationResult validationResult;
+	ostringstream rs { };
+
 	switch (_container.getProductElement(peValue.getProductElementOid()).getElementType())
 	{
 	case kText:
@@ -153,9 +157,16 @@ int RuleEngine::validate(const sbx::ProductElementValue& peValue)
 		const auto& result = find(v.cbegin(), v.cend(), peValue.stringValue());
 
 		if (result != v.cend())
-			cout << "Found at " << (result - v.cbegin()) << endl;
+		{
+			rs << "Found at " << (result - v.cbegin()) << endl;
+			validationResult.addValidationResult(peValue.getProductElementOid(), rs.str());
+			rs.str(std::string());
+		}
 		else
+		{
 			cout << "Not Found" << endl;
+			validationResult.addValidationResult(peValue.getProductElementOid(), "Not found");
+		}
 
 		// if we are not at the end, we found it, so we return 1
 		short int found = (result != v.cend()) ? RuleEngine::VALID : RuleEngine::INVALID;
@@ -165,17 +176,22 @@ int RuleEngine::validate(const sbx::ProductElementValue& peValue)
 			// print if its not valid, and print valid options for this context
 			if (found == RuleEngine::VALID)
 			{
-				cout << "Value[" << peValue.stringValue() << "] is allowed! " << endl;
+				rs << "Value[" << peValue.stringValue() << "] is allowed! " << endl;
+				cout << rs.str();
+				validationResult.addValidationResult(peValue.getProductElementOid(), rs.str());
+				rs.str(std::string());
 			} else
 			{
 				ostringstream s { };
 				ostream_iterator<string> strOutput(s, ", ");
 				copy(v.cbegin(), v.cend(), strOutput);
-				cout << "Value[" << peValue.stringValue() << "] is not allowed! Allowed values are: [" << s.str() << "]" << endl;
+				rs << "Value[" << peValue.stringValue() << "] is not allowed! Allowed values are: [" << s.str() << "]" << endl;
+				cout << rs.str();
+				validationResult.addValidationResult(peValue.getProductElementOid(), rs.str());
+				rs.str(std::string());
 			}
 		}
-
-		return found;
+		break;
 	}
 	case kLong:
 	case kCurr:
@@ -211,20 +227,25 @@ int RuleEngine::validate(const sbx::ProductElementValue& peValue)
 		string minExpr = "variable >= min_constant";
 		p.SetExpr(minExpr);
 		Value result = p.Eval();
-		cout << "Result of min-value validation : [" << result << "]" << endl;
+		rs << "Result of min-value validation : [" << result << "]" << endl;
+		cout << rs.str();
+		validationResult.addValidationResult(peValue.getProductElementOid(), rs.str());
+		rs.str(std::string());
 
 		string maxExpr = "variable <= max_constant";
 		p.SetExpr(maxExpr);
 		result = p.Eval();
-		cout << "Result of max-value validation : [" << result << "]" << endl;
-
+		rs << "Result of max-value validation : [" << result << "]" << endl;
+		cout << rs.str();
+		validationResult.addValidationResult(peValue.getProductElementOid(), rs.str());
+		rs.str(std::string());
 		break;
 	}
 	default:
 		break;
 	}
 
-	return 0;
+	return validationResult;
 }
 
 /*
@@ -311,8 +332,12 @@ int RuleEngine::validate(const sbx::KonceptInfo& konceptInfo, const sbx::TA& ta)
 		}
 		try
 		{
-			int result = this->validate(pev);
-			cout << "Result of validation of pev[" << result << "]" << endl;
+			sbx::ValidationResult r = this->validate(pev);
+			std::vector<std::string> v = r.getValidationResults(pev.getProductElementOid());
+			ostringstream s { };
+			ostream_iterator<string> strOutput(s, ", ");
+			copy(v.cbegin(), v.cend(), strOutput);
+			cout << "Result of validation of pev[" << s.str() << "]" << endl;
 		} catch (exception& e)
 		{
 			cout << "Validation of pev failed with exception: [" << e.what() << "]" << endl;
