@@ -19,13 +19,19 @@ namespace sbx {
 class ValidationResult {
 public:
 	friend std::ostream &operator<<(std::ostream & output, const ValidationResult& res);
+
 	ValidationResult();
-	ValidationResult &addValidationResult(sbx::ProductElementOid peOid, const std::string& result);
-	ValidationResult &addValidationResult(unsigned short peOid, const std::string& result);
+
+	ValidationResult& addValidationResult(sbx::ProductElementOid peOid, const std::string& result);
+	ValidationResult& addValidationResult(unsigned short peOid, const std::string& result);
+
+	const std::multimap<unsigned short, std::string>& getValidationResults() const;
 	std::vector<std::string> getValidationResults(sbx::ProductElementOid peOid);
 	std::vector<std::string> getValidationResults(unsigned short peOid);
+
 	virtual ~ValidationResult();
 private:
+	// map of product element oid to message
 	std::multimap<unsigned short, std::string> _validationResults;
 };
 

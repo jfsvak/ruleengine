@@ -12,8 +12,11 @@ namespace sbx {
   Constant::Constant(void) :
 		  _underKonceptOid { 0 },
 		  _unionAgreementOid { 0 },
+		  _productElement { sbx::ProductElementOid::kUnknownProductElement},
+		  _comparisonType { sbx::ComparisonTypes::kUnknown },
 		  _stringValue { "" },
-		  _default { false }
+		  _default { false },
+		  _autoCreated { false }
   {
 	  // empty constructor needed for vector initialisation.
   }
@@ -24,7 +27,8 @@ namespace sbx {
 									  _productElement { origin._productElement },
 									  _comparisonType { origin._comparisonType },
 									  _stringValue { origin._stringValue },
-									  _default { origin._default }
+									  _default { origin._default },
+									  _autoCreated { origin._autoCreated }
   {
 	  if (Constant::_printDebug) {
 		  cout << "= Ori.Constant{"<< addressof(origin) << "}=>";
@@ -38,7 +42,8 @@ namespace sbx {
 										_productElement { origin->_productElement },
 										_comparisonType { origin->_comparisonType },
 										_stringValue { origin->_stringValue },
-										_default { origin->_default }
+										_default { origin->_default },
+										_autoCreated { origin->_autoCreated }
   {
 	  if (Constant::_printDebug) {
 		  cout << "= Ori.Shared_ptrConstant{"<< addressof(*origin) << "}=>";
@@ -50,18 +55,20 @@ namespace sbx {
   /**
    * Only constructor, needs all values
    */
-  Constant::Constant( const short underKonceptOid,
-		  	  	  	  const short unionAgreementOid,
-					  const ProductElementOid productElement,
-					  const ComparisonTypes comparisonType,
-					  const std::string value,
-					  const bool isDefault) :
+  Constant::Constant( short underKonceptOid,
+		  	  	  	  short unionAgreementOid,
+					  ProductElementOid productElement,
+					  ComparisonTypes comparisonType,
+					  const std::string& value,
+					  bool isDefault,
+					  bool isAutoCreated) :
 							  _underKonceptOid { underKonceptOid },
 							  _unionAgreementOid { unionAgreementOid },
 							  _productElement { productElement },
 							  _comparisonType { comparisonType },
 							  _stringValue { value },
-							  _default { isDefault }
+							  _default { isDefault },
+							  _autoCreated { isAutoCreated }
   {
 	  if (Constant::_printDebug) {
 		  cout << "+ ";
@@ -120,6 +127,22 @@ namespace sbx {
 	  return _comparisonType;
   }
 
+  bool sbx::Constant::isAutoCreated() const
+  {
+  	return _autoCreated;
+  }
+
+  void sbx::Constant::setAutoCreated(bool autoCreated)
+  {
+  	_autoCreated = autoCreated;
+  }
+
+  void Constant::printValues() const
+  {
+	  cout << "Constant{" << this << ", uk[" << _underKonceptOid << "], ua[" << _unionAgreementOid << "], pe[" << (int)_productElement << "], ct[" << (int)_comparisonType << "], ";
+	  cout << "\"" << stringValue() << "\", double[" << doubleValue() << "], long[" << longValue() << "], default[" << boolalpha << _default << "], autoCreated[" << boolalpha << _autoCreated << "] }" << endl;
+  }
+
   /**
    *
    */
@@ -132,12 +155,6 @@ namespace sbx {
 	  _stringValue = "";
   }
 
-  void Constant::printValues() const
-  {
-	  cout << "Constant{" << this << ", uk[" << _underKonceptOid << "], ua[" << _unionAgreementOid << "], pe[" << (int)_productElement << "], ct[" << (int)_comparisonType << "], ";
-	  cout << "\"" << stringValue() << "\", double[" << doubleValue() << "], long[" << longValue() << "], " << boolalpha << _default << "} " << endl;
-  }
-
 //  std::ostream &operator<<( std::ostream &output, const sbx::Constant &c)
 //  {
 //	  output << "Constant{" << addressof(c) << ", uk[" << c._underKonceptOid << "], ua[" << c._unionAgreementOid << "], pe[" << (int)c._productElement << "], ct[" << (int)c._comparisonType << "], ";
@@ -145,5 +162,4 @@ namespace sbx {
 //      return output;
 //  }
 
-} // namespace sbx
-
+}// namespace sbx

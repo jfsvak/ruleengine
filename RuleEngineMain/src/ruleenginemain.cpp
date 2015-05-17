@@ -6,21 +6,27 @@
 // Description : Hello World in C++, Ansi-style
 //============================================================================
 
+#include <exception>
 #include <iostream>
-#include <iterator>
-#include <fstream>
-#include <sstream>
-#include <vector>
 #include <memory>
+#include <set>
+#include <sstream>
+#include <string>
+#include <vector>
 
-#include "ruleenginetestutils.h"
-#include "ruleengine/Constant_sbx.h"
-#include "ruleengine/ValidationResult.h"
-#include "ruleengine/RuleEngine_sbx.h"
-#include "ruleengine/TA_sbx.h"
-#include "json/json.h"
 #include "Foo.h"
 #include "FooHolder.h"
+#include "ruleengine/Constant_sbx.h"
+#include "ruleengine/KonceptInfo_sbx.h"
+#include "ruleengine/ProductElementValue_sbx.h"
+#include "ruleengine/RuleConstantContainer_sbx.h"
+#include "ruleengine/RuleEngine_sbx.h"
+#include "ruleengine/RuleCatalogue.h"
+#include "ruleengine/Rule.h"
+#include "ruleengine/sbxTypes.h"
+#include "ruleengine/TA_sbx.h"
+#include "ruleengine/ValidationResult.h"
+#include "ruleenginetestutils.h"
 
 using namespace std;
 using namespace sbx;
@@ -37,22 +43,57 @@ int testDefaultValue(RuleEngine&);
 int testValidatePEV(RuleEngine&);
 int testGetProducts(RuleEngine&);
 int testValidateDeathCoverageTA(RuleEngine&);
+int testRuleCatalogueLoad();
 
 const int NO_OF_DUMMY_CONSTANTS = 15;
 
 int main() {
 
 	try {
-		RuleEngine re = testRCJsonLoad();
+//		RuleEngine re = testRCJsonLoad();
 //		testDefaultValue(re);
 //		testGetProducts(re);
-		testValidateDeathCoverageTA(re);
+//		testValidateDeathCoverageTA(re);
+		testRuleCatalogueLoad();
 	} catch (exception &e) {
 		cout << "Exception while testing: " << e.what() << endl;
 		return -1;
 	}
 
 	return 0;
+}
+
+int testRuleCatalogueLoad()
+{
+	RuleEngine::_printDebug = true;
+	RuleEngine re {  };
+	// initialise rule constants
+	re.initConstants(get_file_contents("basedata-ruleconstants.json"));
+	// initialise rule catalogue
+    re.parseRuleCatalogueJSON(get_file_contents("rule-catalogue.json"));
+//    cout << "=========== Rule Catalogue=============\n\n";
+//    re.printRuleCatalogue(re.getRuleCatalogue(), 0);
+    KonceptInfo ki {27, { {11, "true"} }};
+    re.initContext(ki);
+    re.printVariables();
+    re.printConstants();
+//    re.printExpressionVariables();
+	TA ta { {{static_cast<unsigned short>(kTaeBlGrMin), {kTaeBlGrMin, "100000"}}, {static_cast<unsigned short>(kLoenDefinition), {kLoenDefinition, "Gage"}}} };
+	ta.setCVR("15124040")
+			.setKonceptOid(4)
+			.addValue(kDoedReguleringskode, "Gage")
+			.addValue(kDoedPctGrMin, "200")
+			.addValue(kDoedPctOblMax, "200")
+			.addValue(kDoedBlOblMax, "700001")
+			.addValue(kDoedBlGrMin, "100000");
+    sbx::ValidationResult result = re.validate(ta, 1);
+
+    for (const auto& pair : result.getValidationResults())
+    {
+		cout << "PE[" << pair.first << "], msg[" << pair.second<< "]" << endl;
+    }
+
+    return 0;
 }
 
 int testValidateDeathCoverageTA(RuleEngine& re)
@@ -69,14 +110,14 @@ int testValidateDeathCoverageTA(RuleEngine& re)
 			.addValue(kDoedPctGrMin, "200")
 			.addValue(kDoedPctOblMax, "200")
 			.addValue(kDoedBlGrMin, "100000");
-	re.initContext(ki.getUnderkonceptOid(), 0);
+	re.initContext(ki);
 	re.validate(ki, ta);
 
 	return 0;
 }
 
 int testGetProducts(RuleEngine& re) {
-	re.initContext(6,0);
+	re.initContext( {6, {} } );
 	//	re.getContainer().printConstants();
 	//	re.getContainer().printConstants(13, sbx::ProductElementOid::kLoenDefinition);
 	//	re.getContainer().printConstants(13, sbx::ProductElementOid::k217);
@@ -138,7 +179,7 @@ RuleEngine testRCJsonLoad() {
     
 	re.initConstants(json);
 	cout << "Number of constants loaded [" << re.getContainer().size() << "]" << endl;
-	re.initContext(9, 0);
+	re.initContext( {9, {} } );
 //	re.getContainer().printContainerOverview(0);
 	
 	return re;
@@ -154,14 +195,14 @@ int testRuleEngineValidateAllowedOption(void) {
 	vector<Constant> cVec(NO_OF_DUMMY_CONSTANTS);
 	makeDummyConstants(cVec);
 	re.initConstants(cVec);
-	re.initContext(1, 0);
+	re.initContext( {1, {} } );
 
 	cout << "Validate allowed string" << endl;
 	ProductElementValue pevString {sbx::kLoenDefinition, "Løn 1"};
 	sbx::ValidationResult r =  re.validate(pevString);
 	cout << "ValidationResult [" << r << "]" << endl;
 
-	re.initContext(2, 0);
+	re.initContext( {2, {} } );
 	r = re.validate(pevString);
 	cout << "ValidationResult [" << r << "]" << endl;
 
@@ -230,7 +271,7 @@ int testRuleEngine(void) {
 	makeDummyConstants(cVec);
 	re.initConstants(cVec);
 	cout << "Initialising context" << endl;
-	re.initContext(1, 0);
+	re.initContext( {1, {} } );
 	cout << "Getting options" << endl;
 	vector<string> options = re.getOptions(sbx::kLoenRegulering);
 	printVector(options);

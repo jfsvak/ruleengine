@@ -58,8 +58,15 @@ std::vector<std::string> ValidationResult::getValidationResults(sbx::ProductElem
 	return this->getValidationResults(static_cast<unsigned short>(peOid));
 }
 
+const std::multimap<unsigned short, std::string>& ValidationResult::getValidationResults() const
+{
+	return _validationResults;
+}
+
 ValidationResult::~ValidationResult()
 {
 	// TODO Auto-generated destructor stub
 }
+
 } /* namespace sbx */
+

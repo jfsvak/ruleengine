@@ -1,0 +1,122 @@
+{
+   "data":    {
+      "ruleCatalogue":       
+      [
+         {
+            "id": "1",
+            "expr": "DoedReguleringskode == 'Ingen'",
+            "productElementOids": [ 82 ],
+            "positiveMessage": "DoedReguleringskode er ikke reguleret ('Ingen')",
+            "negativeMessage": "",
+            "positiveRuleCatalogue":
+	        [
+		        {
+		            "id": "1.1",
+	    	        "expr": "DoedBlGrMin >= rc_DoedBlGrMin_min",
+	    	        "productElementOids": [ 1 ],
+	    	        "requiredRule": "parent",
+	        	    "positiveMessage": "OK",
+	            	"negativeMessage": "Minimums dødsfaldsdækning i kr skal være større end %1"
+        	    },
+            	{
+		            "id": "1.2",
+	    	        "expr": "DoedBlGrMin <= rc_DoedBlGrMin_max",
+	    	        "productElementOids": [ 1 ],
+	    	        "requiredRule": "parent",
+	        	    "positiveMessage": "OK",
+	            	"negativeMessage": "Minimums dødsfaldsdækning i kr skal være mindre end %1"
+            	},
+            	{
+		            "id": "1.3",
+	    	        "expr": "DoedBlOblMax <= rc_DoedBlOblMax_max",
+	    	        "productElementOids": [ 2 ],
+	    	        "requiredRule": "parent",
+	        	    "positiveMessage": "OK",
+	            	"negativeMessage": "Maximums dødsfaldsdækning i kr må ikke overstige %1"
+            	},
+            	{
+		            "id": "1.4",
+	    	        "expr": "DoedBlOblMax >= rc_DoedBlOblMax_min",
+	    	        "productElementOids": [ 2 ],
+	    	        "requiredRule": "parent",
+	        	    "positiveMessage": "OK",
+	            	"negativeMessage": "Maximums dødsfaldsdækning i kr skal være mindre end %1"
+            	},
+            	{
+		            "id": "1.5",
+	    	        "expr": "(DoedBlOblMax-DoedBlGrMin) < rc_DoedSpaendBl_max",
+	    	        "productElementOids": [ 1, 2, 3 ],
+	    	        "requiredRule": "parent",
+	        	    "positiveMessage": "OK",
+	            	"negativeMessage": "Spænd i dødsfaldsdækning i kr må ikke overstige %1"
+            	},
+            	{
+		            "id": "1.6",
+	    	        "expr": "(DoedBlOblMax-DoedBlGrMin) > rc_DoedSpaendBl_min",
+	    	        "productElementOids": [ 1, 2, 3 ],
+	    	        "requiredRule": "parent",
+	        	    "positiveMessage": "OK",
+	            	"negativeMessage": "Spænd i dødsfaldsdækning i kr skal mindst være [rc_DoedSpandBl_min] kr.",
+	            	"negativeRuleCatalogue": 
+        			[ 
+        				{
+			    	        "id": "1.5.1",
+		    		        "expr": "(dummy expr for 3rd level) >= rc_DoedSpaendBl_min",
+				   	        "productElementOids": [ 99 ],
+   	        				"requiredRule": "",
+			        	    "positiveMessage": "OK",
+			            	"negativeMessage": "Spænd i dødsfaldsdækning skal mindst være [rc_DoedSpandBl_min] kr."
+		            	}
+        			]
+            	}
+            ],
+	        "negativeRuleCatalogue": 
+	        [
+	        ]
+         },
+         {
+            "id": "2",
+            "expr": "DoedReguleringskode = 'Gage' or DoedReguleringskode = 'Pristal'",
+   	        "productElementOids": [ 82 ],
+   	        "requiredRule": "",
+            "positiveMessage": "DoedReguleringskode er %1",
+            "negativeMessage": "",
+            "positiveRuleCatalogue":
+	        [
+		        {
+		            "id": "2.1",
+	    	        "expr": "DoedPctGrMin >= rc_DoedPctGrMin_min",
+		   	        "productElementOids": [ 6 ],
+   	    		    "requiredRule": "parent",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Minimums dødsfaldsdækning i pct skal være større end %1"
+        	    },
+		        {
+		            "id": "2.2",
+	    	        "expr": "DoedPctGrMin <= rc_DoedPctGrMin_max",
+		   	        "productElementOids": [ 6 ],
+   	    		    "requiredRule": "parent",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Minimums dødsfaldsdækning i pct må ikke overstige %1"
+        	    },
+		        {
+		            "id": "2.3",
+	    	        "expr": "DoedPctOblMax >= rc_DoedPctOblMax_min",
+		   	        "productElementOids": [ 7 ],
+   	    		    "requiredRule": "parent",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Maximums dødsfaldsdækning i pct skal være større end %1"
+        	    },
+		        {
+		            "id": "2.4",
+	    	        "expr": "DoedPctOblMax <= rc_DoedPctOblMax_max",
+		   	        "productElementOids": [ 7 ],
+   	    		    "requiredRule": "parent",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Maximums dødsfaldsdækning i pct må ikke overstige %1"
+        	    }
+            ],
+	        "negativeRuleCatalogue": []
+         }
+	]}
+}

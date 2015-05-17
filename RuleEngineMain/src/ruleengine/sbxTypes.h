@@ -14,7 +14,6 @@
 
 namespace sbx {
 
-
 enum ComparisonTypes : unsigned short {
 	kUnknown	= 0,
 	kMin		= 1,

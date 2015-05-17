@@ -13,6 +13,7 @@
 #include <vector>
 
 #include "RuleConstantContainer_sbx.h"
+#include "RuleEngine_sbx.h"
 #include "sbxTypes.h"
 #include "Constant_sbx.h"
 #include "Product_sbx.h"
@@ -65,7 +66,8 @@ void RuleConstantContainer::initConstants(const std::string& jsonContents)
 		_initProducts(root["data"].get("product", 0));
 		_initParameters(root["data"].get("parameter", 0));
 		_initParametersToProducts(root["data"].get("parameterProduct", 0));
-	} else
+	}
+	else
 	{
 		cout << "Could not parse json string" << endl;
 		throw invalid_argument(reader.getFormattedErrorMessages());
@@ -83,10 +85,10 @@ void RuleConstantContainer::_initRuleConstants(const Json::Value& ruleConstantLi
 		// new vector of constants to passed to RuleConstantContainer. Set size to the number of incoming json elements
 		_globalConstants.resize(ruleConstantList.size());
 
-		if (RuleConstantContainer::_printDebug)
-		{
+		if (RuleConstantContainer::_printDebug) {
 			cout << "  Looping over [" << ruleConstantList.size() << "] json rule constants to create" << endl;
 		}
+
 		// iterate over the list of rule constants and create Constant objects to put into the RuleConstantContainer
 		for (Json::ValueIterator ruleConstantElement = ruleConstantList.begin(); ruleConstantElement != ruleConstantList.end(); ++ruleConstantElement)
 		{
@@ -97,18 +99,25 @@ void RuleConstantContainer::_initRuleConstants(const Json::Value& ruleConstantLi
 			int comparisonTypeOid = ruleConstantElement->get("comparisonTypeOid", 0).asInt();
 			string value = ruleConstantElement->get("value", "").asString();
 			bool isDefault = ruleConstantElement->get("isDefault", false).asBool();
-			shared_ptr<Constant> constantPtr = make_shared<Constant>(static_cast<short int>(underKonceptOid), static_cast<short int>(unionAgreementOid),
-					static_cast<ProductElementOid>(productElementOid), static_cast<ComparisonTypes>(comparisonTypeOid), value, isDefault);
+
+			shared_ptr<Constant> constantPtr = make_shared<Constant>(static_cast<short int>(underKonceptOid),
+					static_cast<short int>(unionAgreementOid),
+					static_cast<ProductElementOid>(productElementOid),
+					static_cast<ComparisonTypes>(comparisonTypeOid),
+					value,
+					isDefault);
+
 			_globalConstants[index++] = constantPtr;
 		}
+
 		// initialise the container with the created vector
-		if (RuleConstantContainer::_printDebug)
-		{
+		if (RuleConstantContainer::_printDebug) {
 			cout << "  Initialising _container" << endl;
 		}
 
 		_initInternalMaps();
-	} else
+	}
+	else
 	{
 		cout << "No rule constants found to load" << endl;
 	}
@@ -122,8 +131,7 @@ void RuleConstantContainer::_initProducts(const Json::Value& products)
 
 	if (products.size() > 0)
 	{
-		if (RuleConstantContainer::_printDebug)
-		{
+		if (RuleConstantContainer::_printDebug) {
 			cout << "  Looping over [" << products.size() << "] json products to create" << endl;
 		}
 
@@ -147,8 +155,7 @@ void RuleConstantContainer::_initProducts(const Json::Value& products)
 					int elementType = jsonPEIterator->get("elementTypeOid", 0).asInt();
 
 					productPtr->addProductElementOid(peOid);
-					shared_ptr<ProductElement> pePtr = make_shared<sbx::ProductElement>(static_cast<unsigned short>(peOid), name, guiName,
-							static_cast<sbx::ProductElementTypes>(elementType), static_cast<unsigned short>(productOid));
+					shared_ptr<ProductElement> pePtr = make_shared<sbx::ProductElement>(static_cast<unsigned short>(peOid), name, guiName, static_cast<sbx::ProductElementTypes>(elementType), static_cast<unsigned short>(productOid));
 
 					_productElementMap[peOid] = pePtr;
 				}
@@ -156,7 +163,8 @@ void RuleConstantContainer::_initProducts(const Json::Value& products)
 
 			_productsMap[productOid] = productPtr;
 		}
-	} else
+	}
+	else
 	{
 		cout << "No Products found to load" << endl;
 	}
@@ -183,7 +191,8 @@ void RuleConstantContainer::_initParameters(const Json::Value& parameters)
 			Parameter parameter { static_cast<unsigned short>(oid), name, type, static_cast<sbx::ProductElementTypes>(elementTypeOid) };
 			_parameterMap[oid] = parameter;
 		}
-	} else
+	}
+	else
 	{
 		cout << "No Parameters found to load" << endl;
 	}
@@ -218,7 +227,8 @@ void RuleConstantContainer::_initParametersToProducts(const Json::Value& paramet
 				_parameterOidToProductElementOids[underkonceptOid][parameterOid].insert(product->getProductElementOids().cbegin(), product->getProductElementOids().cend());
 			}
 		}
-	} else
+	}
+	else
 	{
 		cout << "No Parameters found to load" << endl;
 	}
@@ -238,7 +248,7 @@ void RuleConstantContainer::_initInternalMaps()
 		switch (constant->getComparisonType())
 		{
 		case kEnum:
-		case kEquals:
+			case kEquals:
 			_ukOptionsMap[constant->getUnderKonceptOid()][constant->getProductElement()].push_back(constant);
 			break;
 		case kMin:
@@ -343,7 +353,7 @@ std::shared_ptr<sbx::Constant> RuleConstantContainer::getConstant(const unsigned
 		// max constant not found, return new constant with max double value
 		break;
 	case kUnknown:
-	default:
+		default:
 		throw domain_error("Only ComparisonType (Min, Max) supported");
 	}
 
@@ -353,7 +363,7 @@ std::shared_ptr<sbx::Constant> RuleConstantContainer::getConstant(const unsigned
 std::shared_ptr<sbx::Constant> RuleConstantContainer::createConstant(unsigned short underkonceptOid, unsigned short unionAgreementOid, sbx::ProductElementOid peOid, sbx::ComparisonTypes comparisonType)
 {
 	ostringstream s {};
-	switch(comparisonType)
+	switch (comparisonType)
 	{
 	case kMin:
 		s << fixed << std::numeric_limits<long>::min();
@@ -366,13 +376,16 @@ std::shared_ptr<sbx::Constant> RuleConstantContainer::createConstant(unsigned sh
 		break;
 	}
 
-	std::string value {s.str()};
-	cout << "value [" << value << "]" << endl;
-	return make_shared<sbx::Constant>(underkonceptOid, unionAgreementOid, static_cast<sbx::ProductElementOid>(peOid), comparisonType, value, false);
+	if (RuleConstantContainer::_printDebug)
+	{
+		cout << "Creating default comparison type [" << sbx::RuleEngine::comparisonTypeName(comparisonType) << "] value [" << s.str() << "]" << endl;
+	}
+
+	return make_shared<sbx::Constant>(underkonceptOid, unionAgreementOid, static_cast<sbx::ProductElementOid>(peOid), comparisonType, s.str(), false, false);
 }
 
 const std::set<unsigned short>& RuleConstantContainer::getProductOids(unsigned short parameterOid) const
-{
+		{
 	if (_contextInitialised)
 	{
 		if (_parameterOidToProductOids.find(_underKonceptOid) != _parameterOidToProductOids.cend()
@@ -386,7 +399,7 @@ const std::set<unsigned short>& RuleConstantContainer::getProductOids(unsigned s
 }
 
 std::set<unsigned short> RuleConstantContainer::getProductElementOids(unsigned short parameterOid) const
-{
+		{
 
 	if (!_contextInitialised)
 	{
@@ -400,9 +413,9 @@ std::set<unsigned short> RuleConstantContainer::getProductElementOids(unsigned s
 	}
 
 	cout << "Could not find ProductElementOids for parameterOid[" << parameterOid << "], returning empty set!";
-    
-    // TODO: FIX THIS
-    std::set<unsigned short> empty;
+
+	// TODO: FIX THIS
+	std::set<unsigned short> empty;
 	return empty;
 }
 
@@ -488,7 +501,7 @@ void RuleConstantContainer::printConstantHeader() const
 }
 
 void RuleConstantContainer::printConstant(const std::shared_ptr<sbx::Constant>& c) const
-{
+		{
 	cout << left << setw(9) << c;
 	cout << "  " << right << setw(2) << c->getUnderKonceptOid();
 	cout << "  " << right << setw(2) << c->getUnionAgreementOid();
@@ -501,7 +514,7 @@ void RuleConstantContainer::printConstant(const std::shared_ptr<sbx::Constant>& 
 }
 
 void RuleConstantContainer::printContainerOverview(unsigned short int underKonceptOid) const
-{
+		{
 	cout << "Current context : UK[" << _underKonceptOid << "], UA[" << _unionAgreementOid << "]" << endl;
 	cout << "Global constants: [" << size() << "]" << endl;
 	cout << "Products: [" << _productsMap.size() << "]" << endl;
@@ -522,7 +535,8 @@ void RuleConstantContainer::printContainerOverview(unsigned short int underKonce
 					<< (_parameterOidToProductOids.find(optionsMapItem.first) != _parameterOidToProductOids.end() ? _parameterOidToProductOids.at(optionsMapItem.first).size() : 0);
 			cout << endl;
 		}
-	} else
+	}
+	else
 	{
 		// print stats for this underkoncept
 		cout << right << setw(2) << underKonceptOid;
@@ -536,7 +550,7 @@ void RuleConstantContainer::printContainerOverview(unsigned short int underKonce
 }
 
 void RuleConstantContainer::printContainerOverview(unsigned short int underKonceptOid, sbx::ComparisonTypes type) const
-{
+		{
 	cout << "Current context : Underkoncept[" << _underKonceptOid << "], UnionAgreement[" << _unionAgreementOid << "]" << endl;
 	cout << "Showing context : Underkoncept[" << underKonceptOid << "], type[" << (int) type << "]" << endl;
 
@@ -559,11 +573,11 @@ void RuleConstantContainer::printContainerOverview(unsigned short int underKonce
 
 		break;
 	case kMin:
-//                count = _ukMinValuesMap.at(underKonceptOid).size();
+		//                count = _ukMinValuesMap.at(underKonceptOid).size();
 		cout << "nothing yet" << endl;
 		break;
 	case kMax:
-//                count = _ukMaxValuesMap.at(underKonceptOid).size();
+		//                count = _ukMaxValuesMap.at(underKonceptOid).size();
 		cout << "nothing yet" << endl;
 		break;
 	default:
@@ -573,7 +587,7 @@ void RuleConstantContainer::printContainerOverview(unsigned short int underKonce
 }
 
 void RuleConstantContainer::printConstants(unsigned short int underKonceptOid, sbx::ProductElementOid productElement) const
-{
+		{
 	cout << "\n\n       ---======== String Options =======--- \n";
 
 	if (_ukOptionsMap.find(underKonceptOid) != _ukOptionsMap.cend() && _ukOptionsMap.at(underKonceptOid).find(productElement) != _ukOptionsMap.at(underKonceptOid).end())
@@ -583,7 +597,8 @@ void RuleConstantContainer::printConstants(unsigned short int underKonceptOid, s
 		{
 			printConstant(c);
 		}
-	} else
+	}
+	else
 	{
 		cout << "No Options values for UK[" << underKonceptOid << "], PE[" << (int) productElement << "]" << endl;
 	}
@@ -595,7 +610,8 @@ void RuleConstantContainer::printConstants(unsigned short int underKonceptOid, s
 		printConstantHeader();
 		auto& minC = _ukMinValuesMap.at(underKonceptOid).at(productElement);
 		printConstant(minC);
-	} else
+	}
+	else
 	{
 		cout << "No Min constant for UK[" << underKonceptOid << "], PE[" << (int) productElement << "]" << endl;
 	}
@@ -607,7 +623,8 @@ void RuleConstantContainer::printConstants(unsigned short int underKonceptOid, s
 		printConstantHeader();
 		auto& maxC = _ukMaxValuesMap.at(underKonceptOid).at(productElement);
 		printConstant(maxC);
-	} else
+	}
+	else
 	{
 		cout << "No Max constant for UK[" << underKonceptOid << "], PE[" << (int) productElement << "]" << endl;
 	}
@@ -654,14 +671,15 @@ void RuleConstantContainer::printParameters() const
 			cout << "  " << setw(10) << (int) parameter.second.getElementType();
 			cout << endl;
 		}
-	} else
+	}
+	else
 	{
 		cout << "No Parameters loaded" << endl;
 	}
 }
 
 void RuleConstantContainer::printParametersToProducts(unsigned short underkonceptOid) const
-{
+		{
 	cout << "\n\n       ---======== Parameter To Products loaded =======--- \n";
 	cout << "Underkoncept oid: " << underkonceptOid << endl;
 	cout << "Parameter Oid  Product oids" << endl;
@@ -682,7 +700,8 @@ void RuleConstantContainer::printParametersToProducts(unsigned short underkoncep
 			}
 			cout << endl;
 		}
-	} else
+	}
+	else
 	{
 		cout << "No Parameters To Products loaded" << endl;
 	}
