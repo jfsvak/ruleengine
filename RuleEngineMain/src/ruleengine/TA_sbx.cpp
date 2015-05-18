@@ -6,49 +6,66 @@
  */
 
 #include "TA_sbx.h"
+
+#include <iomanip>
+#include <map>
+#include <string>
 #include <sstream>
+
+#include "ProductElementValue_sbx.h"
 
 namespace sbx {
 
 TA::TA()
-{
-	// TODO Auto-generated constructor stub
-
-}
-
-TA::TA(const std::map<unsigned short, sbx::ProductElementValue>& peValues)
-		: _peValuesMap {peValues},
-		  _cvr {""},
+		: _cvr {""},
 		  _konceptOid {0}
-{
-}
+{}
+
+TA::TA(const std::string& cvr, unsigned short konceptOid)
+		:  _cvr {cvr},
+		   _konceptOid {konceptOid}
+{}
+
+TA::TA(const std::string& cvr, unsigned short konceptOid, const std::map<unsigned short, sbx::ProductElementValue>& peValues)
+		: _cvr {cvr},
+		  _konceptOid {konceptOid},
+		  _peValuesMap {peValues}
+{}
 
 TA::TA(const sbx::TA& otherTA)
-		: _peValuesMap {otherTA._peValuesMap},
-		  _cvr {otherTA._cvr},
-		  _konceptOid {otherTA._konceptOid}
-{
-}
+		: _cvr {otherTA._cvr},
+		  _konceptOid {otherTA._konceptOid},
+		  _peValuesMap {otherTA._peValuesMap}
 
-sbx::TA& TA::addValue(unsigned short productElementOid, const std::string& value)
+{}
+
+TA& TA::setValue(unsigned short productElementOid, const std::string& value)
 {
-	ProductElementValue pev {productElementOid, value};
-	_peValuesMap.insert( {productElementOid, pev } );
+	_peValuesMap[productElementOid] = sbx::ProductElementValue {productElementOid, value};
 	return *this;
 }
 
-sbx::TA& TA::addValue(unsigned short productElementOid, const double value)
+TA& TA::setValue(unsigned short productElementOid, const double value)
 {
+	// TODO fix precision conversion of double - or find better way to convert long to string
 	std::stringstream s {};
 	s << value;
-	return this->addValue(productElementOid, s.str());
+	return this->setValue(productElementOid, s.str());
 }
 
-sbx::TA& TA::addValue(unsigned short productElementOid, const long value)
+TA& TA::setValue(unsigned short productElementOid, const long value)
 {
+	// TODO xjes find better way to convert long to string
 	std::stringstream s {};
 	s << value;
-	return this->addValue(productElementOid, s.str());
+	return this->setValue(productElementOid, s.str());
+}
+
+TA& TA::setValue(unsigned short productElementOid, bool value)
+{
+	std::stringstream s {};
+	s << std::boolalpha << value;
+	return this->setValue(productElementOid, s.str());
 }
 
 const std::map<unsigned short, sbx::ProductElementValue>& TA::getValues() const
@@ -56,18 +73,23 @@ const std::map<unsigned short, sbx::ProductElementValue>& TA::getValues() const
 	return _peValuesMap;
 }
 
-sbx::ProductElementValue TA::getValue(unsigned short productElementOid) const
+/**
+ * Gets a reference to the product element in this ta.
+ * Can be used to update value inside the product element
+ */
+sbx::ProductElementValue& TA::getValue(unsigned short productElementOid)
 {
-	if (_peValuesMap.find(productElementOid) != _peValuesMap.cend())
-	{
-		return _peValuesMap.at(productElementOid);
-	}
-
-	// return empty value if not found for this ta.
-	return {productElementOid, ""};
+	return _peValuesMap[productElementOid];
+//	if (_peValuesMap.find(productElementOid) != _peValuesMap.cend())
+//	{
+//		return _peValuesMap.at(productElementOid);
+//	}
+//
+//	// return empty value if not found for this ta.
+//	return {productElementOid, ""};
 }
 
-sbx::TA& TA::setCVR(const std::string& cvr)
+TA& TA::setCVR(const std::string& cvr)
 {
 	_cvr = cvr;
 	return *this;
@@ -78,7 +100,7 @@ const std::string& TA::getCVR() const
 	return _cvr;
 }
 
-sbx::TA& TA::setKonceptOid(unsigned short konceptOid)
+TA& TA::setKonceptOid(unsigned short konceptOid)
 {
 	_konceptOid = konceptOid;
 	return *this;
@@ -91,7 +113,5 @@ unsigned short TA::getKonceptOid() const
 
 TA::~TA()
 {
-	// TODO Auto-generated destructor stub
 }
-
 } /* namespace sbx */

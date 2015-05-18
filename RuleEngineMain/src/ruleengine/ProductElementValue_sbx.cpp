@@ -8,25 +8,25 @@ using namespace std;
 namespace sbx {
 
 ProductElementValue::ProductElementValue(void)
-		: _productElementOid { 0 }, _stringValue { "" }
+		: _productElementOid { 0 },
+		  _stringValue { "" }
 {
 	// empty constructor needed for vector initialisation.
 }
 ProductElementValue::ProductElementValue(const sbx::ProductElementValue& otherProductElementValue)
-		: _productElementOid { static_cast<unsigned short>(otherProductElementValue._productElementOid) }, _stringValue { otherProductElementValue._stringValue }
-{
-
-}
+		: _productElementOid { static_cast<unsigned short>(otherProductElementValue._productElementOid) },
+		  _stringValue { otherProductElementValue._stringValue }
+{}
 
 ProductElementValue::ProductElementValue(unsigned short peOid, const std::string& stringValue)
-		: _productElementOid { peOid }, _stringValue { stringValue }
-{
-}
+		: _productElementOid { peOid },
+		  _stringValue { stringValue }
+{}
 
 ProductElementValue::ProductElementValue(const sbx::ProductElementOid& peOid, const std::string& stringValue)
-		: _productElementOid { static_cast<unsigned short>(peOid) }, _stringValue { stringValue }
-{
-}
+		: _productElementOid { static_cast<unsigned short>(peOid) },
+		  _stringValue { stringValue }
+{}
 
 /**
  * Get the constant value as a string
@@ -59,6 +59,11 @@ unsigned short ProductElementValue::getProductElementOid() const
 	return _productElementOid;
 }
 
+void sbx::ProductElementValue::setValue(const std::string& value)
+{
+	_stringValue = value;
+}
+
 /**
  *
  */
@@ -66,4 +71,5 @@ ProductElementValue::~ProductElementValue(void)
 {
 	_stringValue = "";
 }
+
 } // namespace sbx

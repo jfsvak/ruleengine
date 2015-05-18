@@ -28,7 +28,6 @@ mup::IToken* GetTAValue::Clone() const
 
 GetTAValue::~GetTAValue()
 {
-	// TODO Auto-generated destructor stub
 }
 
 } /* namespace sbx */

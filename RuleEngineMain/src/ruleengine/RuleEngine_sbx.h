@@ -12,22 +12,20 @@
 #include <map>
 #include <memory>
 #include <string>
-#include <utility>
 #include <vector>
 
 #include "../json/json.h"
 #include "Constant_sbx.h"
 #include "KonceptInfo_sbx.h"
 #include "muParser/mpParser.h"
+#include "muParser/mpTypes.h"
+#include "ProductElement_sbx.h"
 #include "Rule.h"
 #include "RuleCatalogue.h"
 #include "RuleConstantContainer_sbx.h"
 #include "sbxTypes.h"
 #include "TA_sbx.h"
-
-namespace sbx {
-class ValidationResult;
-} /* namespace sbx */
+#include "ValidationResult.h"
 
 namespace sbx {
 
@@ -49,11 +47,8 @@ public:
 	const std::shared_ptr<sbx::Constant>& getDefaultValue(sbx::ProductElementOid productElementOid);
 	std::shared_ptr<sbx::Constant> getConstant(sbx::ProductElementOid productElement, sbx::ComparisonTypes comparisonType);
 
-	int validate(sbx::ProductElementOid productElement, const std::vector<std::pair<std::string, long>>& p_operands);
-	sbx::ValidationResult validate(const sbx::ProductElementValue& peValue);
-	sbx::ValidationResult validate(const TA&, unsigned short peOidToValidate);
-	int validate(sbx::ComparisonTypes comparisonType) const;
-	int validate(const sbx::KonceptInfo&, const sbx::TA& ta);
+	sbx::ValidationResult validate(const TA&, unsigned short peOidToValidate); // single product element validation
+	int validate(const sbx::KonceptInfo&, const sbx::TA& ta); // Full TA validation
 
 	sbx::RuleCatalogue& getRuleCatalogue();
 	const sbx::RuleConstantContainer& getContainer() const;
@@ -68,12 +63,14 @@ public:
 private:
 
 	// -- initialisation methods
-	void loadRuleConstants(mup::ParserX&);
 	void initRuleCatalogue(sbx::RuleCatalogue*, const Json::Value& ruleCatalogues);
 	void initParserWithProductElementConstants(unsigned short peOid);
 	void defineVariable(const std::string& name, double value);
 	void defineVariable(const std::string& name, const std::string& value);
 	void defineConstant(const std::string& name, double constant);
+	void executeRule(const std::vector<unsigned short>& peOidToValidate, sbx::Rule* rule, sbx::ValidationResult& valResult);
+
+	const sbx::ProductElement& _pe(unsigned short peOid);
 
 	sbx::KonceptInfo _ki;
 	sbx::RuleConstantContainer _container;
@@ -99,7 +96,7 @@ private:
 	void _printExpressionVariables(mup::ParserX& p);
 	void _printConstants(mup::ParserX& p);
 	std::string _indent(unsigned short depth);
-
+	void loadTAValues(const TA& ta);
 };
 
 } // sbx namespace end

@@ -14,7 +14,7 @@ Parameter::Parameter()
 		:  _oid {0},
 		   _name {""},
 		   _type {""},
-		   _elementType {sbx::ProductElementTypes::kPEUnknown}
+		   _elementType {sbx::ProductElementTypes::kUnknownPEType}
 {
 
 }
@@ -57,6 +57,5 @@ sbx::ProductElementTypes Parameter::getElementType() const
 }
 
 Parameter::~Parameter() {
-	// TODO Auto-generated destructor stub
 }
 }

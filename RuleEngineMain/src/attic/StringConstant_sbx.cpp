@@ -14,7 +14,7 @@ namespace sbx {
 //StringConstant::StringConstant(std::string p_value) : Constant<std::string>(p_value) {}
 //
 //StringConstant::~StringConstant() {
-//	// TODO Auto-generated destructor stub
+//
 //}
 
 //std::string StringConstant::value() {

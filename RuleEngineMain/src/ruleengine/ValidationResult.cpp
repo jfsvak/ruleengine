@@ -21,14 +21,23 @@ std::ostream& operator<<(std::ostream& output, const sbx::ValidationResult& res)
 }
 
 ValidationResult::ValidationResult()
+		: _validationResults {}
 {
-	// TODO Auto-generated constructor stub
 
 }
 
 ValidationResult& ValidationResult::addValidationResult(sbx::ProductElementOid peOid, const std::string& result)
 {
 	_validationResults.insert({peOid, result});
+	return *this;
+}
+
+ValidationResult& ValidationResult::addValidationResult(const std::vector<unsigned short>& peOids, const std::string& result)
+{
+	for (auto& oid : peOids) {
+		_validationResults.insert({oid, result});
+	}
+
 	return *this;
 }
 
@@ -42,8 +51,7 @@ std::vector<std::string> ValidationResult::getValidationResults(unsigned short p
 {
 	std::vector<std::string> v;
 
-	std::pair <std::multimap<unsigned short,std::string>::iterator, std::multimap<unsigned short,std::string>::iterator> pairs = _validationResults.equal_range(peOid);
-//	const auto& pairs = _validationResults.equal_range(peOid);
+	const auto& pairs = _validationResults.equal_range(peOid); //	std::pair <std::multimap<unsigned short,std::string>::iterator, std::multimap<unsigned short,std::string>::iterator> pairs = _validationResults.equal_range(peOid);
 
 	for ( std::multimap<unsigned short, std::string>::iterator it = pairs.first; it != pairs.second; it++ )
 	{
@@ -65,7 +73,6 @@ const std::multimap<unsigned short, std::string>& ValidationResult::getValidatio
 
 ValidationResult::~ValidationResult()
 {
-	// TODO Auto-generated destructor stub
 }
 
 } /* namespace sbx */

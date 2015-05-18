@@ -23,15 +23,15 @@ enum ComparisonTypes : unsigned short {
 };
 
 enum ProductElementTypes : unsigned short {
-	kPEUnknown	= 0,
-	kLong		= 1,
-	kText 		= 2,
-	kMonth 		= 3,
-	kBool 		= 4,
-	kCurr		= 5,
-	kDate 		= 6,
-	kYear		= 7,
-	kPercent	= 8
+	kUnknownPEType	= 0,
+	kLong			= 1,
+	kText 			= 2,
+	kMonth 			= 3,
+	kBool 			= 4,
+	kCurr			= 5,
+	kDate 			= 6,
+	kYear			= 7,
+	kPercent		= 8
 };
 
 enum ProductOid : unsigned short {

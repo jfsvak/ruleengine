@@ -24,6 +24,7 @@ public:
 
 	ValidationResult& addValidationResult(sbx::ProductElementOid peOid, const std::string& result);
 	ValidationResult& addValidationResult(unsigned short peOid, const std::string& result);
+	ValidationResult& addValidationResult(const std::vector<unsigned short>& peOids, const std::string& result);
 
 	const std::multimap<unsigned short, std::string>& getValidationResults() const;
 	std::vector<std::string> getValidationResults(sbx::ProductElementOid peOid);

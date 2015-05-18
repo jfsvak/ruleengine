@@ -10,7 +10,6 @@
 #include <iostream>
 
 FooHolder::FooHolder() {
-	// TODO Auto-generated constructor stub
 }
 
 void FooHolder::fillVectorOfFoo(std::vector<Foo>& vFoo) {
@@ -43,7 +42,6 @@ std::vector<Foo> FooHolder::getFoosByValue() {
 }
 
 FooHolder::~FooHolder() {
-	// TODO Auto-generated destructor stub
 }
 
 

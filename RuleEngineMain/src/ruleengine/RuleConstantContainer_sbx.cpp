@@ -213,8 +213,8 @@ void RuleConstantContainer::_initParametersToProducts(const Json::Value& paramet
 			int parameterOid = jsonParameterToProduct->get("parameterOid", 0).asInt();
 			int productOid = jsonParameterToProduct->get("productOid", 0).asInt();
 			int underkonceptOid = jsonParameterToProduct->get("underKonceptOid", 0).asInt();
-			bool displayOnKIDisp = jsonParameterToProduct->get("displayOnKonceptInfoDisp", false).asBool();
-			bool displayOnTA = jsonParameterToProduct->get("displayOnTA", false).asBool();
+//			bool displayOnKIDisp = jsonParameterToProduct->get("displayOnKonceptInfoDisp", false).asBool();
+//			bool displayOnTA = jsonParameterToProduct->get("displayOnTA", false).asBool();
 
 			// add the parameterOid -> productOid relation for that underkoncept to the vector of productOids
 			// that contains many productOids to one parameterOid for one underkonceptOid

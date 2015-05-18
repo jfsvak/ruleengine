@@ -30,18 +30,15 @@ using namespace std;
 using namespace sbx;
 
 int testRuleEngine(void);
-int testRuleEngineValidateAllowedOption(void);
 int testRuleConstantContainer(void);
 int testRuleConstantContainerPrint(void);
 int testRuleConstantContainerWithException(void);
-RuleEngine testRCJsonLoad();
 int testDefaultValue(RuleEngine&);
-int testValidatePEV(RuleEngine&);
 int testGetProducts(RuleEngine&);
 int testValidateDeathCoverageTA(RuleEngine&);
-int testRuleCatalogueLoad();
+int testSinglePEValidation();
 
-const int NO_OF_DUMMY_CONSTANTS = 15;
+const int NO_OF_DUMMY_CONSTANTS {15};
 
 int main() {
 
@@ -50,8 +47,8 @@ int main() {
 //		testDefaultValue(re);
 //		testGetProducts(re);
 //		testValidateDeathCoverageTA(re);
-		testRuleCatalogueLoad();
-	} catch (exception &e) {
+		testSinglePEValidation();
+	} catch (runtime_error &e) {
 		cout << "Exception while testing: " << e.what() << endl;
 		return -1;
 	}
@@ -59,35 +56,84 @@ int main() {
 	return 0;
 }
 
-int testRuleCatalogueLoad()
+int testSinglePEValidation()
 {
-	RuleEngine::_printDebug = true;
+//	RuleEngine::_printDebug = true;
 	RuleEngine re {  };
-	// initialise rule constants
 	re.initConstants(get_file_contents("basedata-ruleconstants.json"));
-	// initialise rule catalogue
     re.parseRuleCatalogueJSON(get_file_contents("rule-catalogue.json"));
-//    cout << "=========== Rule Catalogue=============\n\n";
-//    re.printRuleCatalogue(re.getRuleCatalogue(), 0);
+
     KonceptInfo ki {27, { {11, "true"} }};
     re.initContext(ki);
     re.printVariables();
     re.printConstants();
-//    re.printExpressionVariables();
-	TA ta { {{static_cast<unsigned short>(kTaeBlGrMin), {kTaeBlGrMin, "100000"}}, {static_cast<unsigned short>(kLoenDefinition), {kLoenDefinition, "Gage"}}} };
-	ta.setCVR("15124040")
-			.setKonceptOid(4)
-			.addValue(kDoedReguleringskode, "Gage")
-			.addValue(kDoedPctGrMin, "200")
-			.addValue(kDoedPctOblMax, "200")
-			.addValue(kDoedBlOblMax, "700001")
-			.addValue(kDoedBlGrMin, "100000");
-    sbx::ValidationResult result = re.validate(ta, 1);
 
-    for (const auto& pair : result.getValidationResults())
-    {
-		cout << "PE[" << pair.first << "], msg[" << pair.second<< "]" << endl;
+    // OK scenario
+    TA ta { "15124040", 4};
+	ta.setValue(kDoedReguleringskode, std::string {"Gage"})
+			.setValue(kDoedPctGrMin, (long) 200)
+			.setValue(kDoedPctOblMax, (long) 300);
+
+
+    sbx::ValidationResult result = re.validate(ta, kDoedPctGrMin);
+
+	re.printVariables();
+
+    if (result.getValidationResults().size() > 0) {
+    	cerr << "Got [" << result.getValidationResults().size() << " validation results, expected [0] - Messages:" << endl;
+
+		for (auto& pair : result.getValidationResults()) {
+			cout << "  PE[" << pair.first << "], msg[" << pair.second<< "]" << endl;
+		}
     }
+
+    //
+    // NOT OK scenario - pe value is over the limit
+    //
+    //
+    ta.getValue(kDoedPctGrMin).setValue("700");
+	ta.getValue(kDoedPctOblMax).setValue("801");
+
+	result = re.validate(ta, kDoedPctGrMin);
+
+	if (result.getValidationResults().size() == 0) {
+		cerr << "Expected validation messages. Got 0" << endl;
+	}
+	else
+	{
+		cout << "Messages (expected):" << endl;
+
+		for (auto& pair : result.getValidationResults()) {
+			cout << "  PE[" << pair.first << "], msg[" << pair.second<< "]" << endl;
+		}
+	}
+
+	//
+    // NOT OK Scenario - related pe value (spaend is over the limit)
+	//
+	//
+	ta.getValue(kDoedPctGrMin).setValue("100");
+	ta.getValue(kDoedPctOblMax).setValue("700");
+	result = re.validate(ta, 1);
+
+	if (result.getValidationResults().size() == 0) {
+		cerr << "Expected validation messages. Got 0" << endl;
+	}
+	else
+	{
+		cout << "Messages (expected):" << endl;
+
+		for (auto& pair : result.getValidationResults()) {
+			cout << "  PE[" << pair.first << "], msg[" << pair.second<< "]" << endl;
+		}
+	}
+
+	//
+    // NOT OK scenario - pe value should not be there - DoedBlGrMin (amount) when DoedReguleringskode == 'Gage' (expects DoedPctGrMin)
+	//
+	//
+
+
 
     return 0;
 }
@@ -99,13 +145,11 @@ int testValidateDeathCoverageTA(RuleEngine& re)
 	using sbx::ProductElementOid;
 
 	KonceptInfo ki {27, { {11, "true"}, {6, "true"} }};
-	TA ta { {{static_cast<unsigned short>(kTaeBlGrMin), {kTaeBlGrMin, "100000"}}, {static_cast<unsigned short>(kLoenDefinition), {kLoenDefinition, "Gage"}}} };
-	ta.setCVR("15124040")
-			.setKonceptOid(4)
-			.addValue(kDoedReguleringskode, "Gage")
-			.addValue(kDoedPctGrMin, "200")
-			.addValue(kDoedPctOblMax, "200")
-			.addValue(kDoedBlGrMin, "100000");
+	TA ta { "15124040", 4 };
+	ta.setValue(kDoedReguleringskode, "Gage")
+			.setValue(kDoedPctGrMin, "200")
+			.setValue(kDoedPctOblMax, "200")
+			.setValue(kDoedBlGrMin, "100000");
 	re.initContext(ki);
 	re.validate(ki, ta);
 
@@ -128,25 +172,6 @@ int testGetProducts(RuleEngine& re) {
 	return 0;
 }
 
-int testValidatePEV(RuleEngine& re) {
-	try {
-		// Wrong lon type
-		ProductElementValue pev {ProductElementOid::kLoenDefinition, "Min forkerte lon"};
-		re.validate(pev);
-	} catch (exception &e) {
-		cout << "Expecting domain error: " << e.what() << endl;
-	}
-
-	try {
-		// allowed lon type
-		ProductElementValue pev {ProductElementOid::kLoenDefinition, "I henhold til kontrakt"};
-		re.validate(pev);
-	} catch (exception &e) {
-		cout << "Not Expecting domain error: " << e.what() << endl;
-	}
-	return 0;
-}
-
 int testDefaultValue(RuleEngine& re) {
 	re.initContext( {17, { {11, "true"}, {16, "true"} }} );
 
@@ -161,52 +186,6 @@ int testDefaultValue(RuleEngine& re) {
 
 	const Constant& c2 = re.getDefaultValue(sbx::ProductElementOid::kTaeBlGrMin);
 	cout << "Default value for " << (unsigned short int)ProductElementOid::kTaeBlGrMin << " is [" << c2.doubleValue() << "]" << endl;
-	return 0;
-}
-
-
-RuleEngine testRCJsonLoad() {
-//	Constant::_printDebug = true;
-//	Product::_printDebug = true;
-//	RuleConstantContainer::_printDebug = true;
-//	RuleEngine::_printDebug = true;
-	RuleEngine re {  };
-    string json = get_file_contents("basedata-ruleconstants.json");
-    
-	re.initConstants(json);
-	cout << "Number of constants loaded [" << re.getContainer().size() << "]" << endl;
-	re.initContext( {9, {} } );
-//	re.getContainer().printContainerOverview(0);
-	
-	return re;
-}
-
-int testRuleEngineValidateAllowedOption(void) {
-	cout << "testRuleEngine start..." << endl;
-	// get array of dummy constants
-	// initialise RuleEngine with constants
-	// set context for rule engine
-	// get values in the context and check that they are the correct ones
-	RuleEngine re {  };
-	vector<Constant> cVec(NO_OF_DUMMY_CONSTANTS);
-	makeDummyConstants(cVec);
-	re.initConstants(cVec);
-	re.initContext( {1, {} } );
-
-	cout << "Validate allowed string" << endl;
-	ProductElementValue pevString {sbx::kLoenDefinition, "Løn 1"};
-	sbx::ValidationResult r =  re.validate(pevString);
-	cout << "ValidationResult [" << r << "]" << endl;
-
-	re.initContext( {2, {} } );
-	r = re.validate(pevString);
-	cout << "ValidationResult [" << r << "]" << endl;
-
-	cout << "\nValidate double value" << endl;
-	ProductElementValue pevDouble {sbx::ProductElementOid::kTaeBlGrMin, "100000"};
-	r = re.validate(pevDouble);
-	cout << "ValidationResult [" << r << "]" << endl;
-
 	return 0;
 }
 
