@@ -35,6 +35,8 @@ int testRuleConstantContainer(void);
 int testRuleConstantContainerPrint(void);
 int testRuleConstantContainerWithException(void);
 RuleEngine testRCJsonLoad();
+void testFoo();
+void testFoo2(FooHolder& fh);
 int testDefaultValue(RuleEngine&);
 int testValidatePEV(RuleEngine&);
 int testGetProducts(RuleEngine&);
@@ -293,3 +295,36 @@ int testRuleConstantContainerWithException(void) {
 	cout << "testRuleConstantContainerWithException End!" << endl;
 	return 0;
 }
+
+void testFoo() {
+	cout << "  create vector  " << endl;
+	FooHolder fh;
+	fh.createVector();
+	cout << "  getFoo  " << endl;
+	const Foo& f = fh.getFoo(1);
+	cout << "  " << f.getVal() << " call getFoo  " << endl;
+	testFoo2(fh);
+    
+	cout << "  call getFoosByRef  " << endl;
+	const vector<Foo>& foos = fh.getFoosByRef();
+	cout << "  list content of getFoosRef  " << endl;
+	for (auto& foo : foos) {
+		cout << "  Foo value:" << foo.getValInspect() << endl;
+	}
+    
+	cout << "  call getFoosByVal  " << endl;
+	vector<Foo> foosVal = fh.getFoosByValue();
+	cout << "  list content of getFoosVal  " << endl;
+	for (auto& foo : foosVal) {
+		cout << "  Foo value:" << foo.getVal() << endl;
+	}
+    
+	cout << "  the end" << endl;
+}
+
+void  testFoo2(FooHolder& fh) {
+	cout << "  getFoo in testFoo2 " << endl;
+	const Foo& f = fh.getFoo(1);
+	cout << "  " << f.getVal() << " end of testFoo2 " << endl;
+}
+

@@ -5,11 +5,12 @@
  *      Author: jespe_000
  */
 
-#ifndef FOOHOLDER_H_
-#define FOOHOLDER_H_
+#ifndef ATTIC_FOOHOLDER_H_
+#define ATTIC_FOOHOLDER_H_
 
 #include <vector>
-#include "Foo.h"
+
+#include "attic/Foo.h"
 
 class FooHolder {
 public:
@@ -25,4 +26,4 @@ private:
 	std::vector<Foo> vectorOfFoo;
 };
 
-#endif /* FOOHOLDER_H_ */
+#eATTIC_FOOHOLDER_H_OLDER_H_ */

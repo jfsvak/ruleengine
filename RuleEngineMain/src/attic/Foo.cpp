@@ -4,10 +4,11 @@
  *  Created on: 25/04/2015
  *      Author: jespe_000
  */
+#include "attic/Foo.h"
+
 #include <iostream>
 #include <memory>
 
-#include "Foo.h"
 
 using namespace std;
 

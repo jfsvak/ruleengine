@@ -5,8 +5,9 @@
  *      Author: jespe_000
  */
 
+#include "attic/FooHolder.h"
+
 #include <iostream>
-#include "FooHolder.h"
 
 FooHolder::FooHolder() {
 	// TODO Auto-generated constructor stub

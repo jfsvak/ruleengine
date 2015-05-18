@@ -5,8 +5,8 @@
  *      Author: jespe_000
  */
 
-#ifndef FOO_H_
-#define FOO_H_
+#ifndef ATTIC_FOO_H_
+#define ATTIC_FOO_H_
 
 class Foo {
 public:
@@ -22,4 +22,4 @@ private:
 	void print() const;
 };
 
-#endif /* FOO_H_ */
+#endif /* ATTIC_FOO_H_ */
