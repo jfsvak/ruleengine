@@ -15,17 +15,17 @@ RuleCatalogue::RuleCatalogue()
 		: _parent { nullptr }
 {}
 
-RuleCatalogue::RuleCatalogue(sbx::Rule* parent)
-		: _parent { parent }
+RuleCatalogue::RuleCatalogue(std::shared_ptr<sbx::Rule> parent)
+		: _parent { parent.get() }
 {
 }
 
-std::vector<sbx::Rule*> RuleCatalogue::getRules()
+std::vector<std::shared_ptr<sbx::Rule>> RuleCatalogue::getRules()
 {
 	return _rules;
 }
 
-void RuleCatalogue::addRule(sbx::Rule* rule)
+void RuleCatalogue::addRule(std::shared_ptr<sbx::Rule> rule)
 {
 	_rules.push_back(rule);
 }
@@ -42,14 +42,6 @@ void RuleCatalogue::setParent(sbx::Rule* parent)
 
 RuleCatalogue::~RuleCatalogue()
 {
-	// clearing the rule instances
-	for (std::vector<sbx::Rule*>::iterator it = _rules.begin(); it < _rules.end(); it++)
-	{
-		delete *it;
-		_rules.erase(it);
-	}
-
-	delete _parent;
 }
 
 } /* namespace sbx */

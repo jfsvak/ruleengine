@@ -25,8 +25,8 @@ public:
 	const std::string& getPositiveMessage() const;
 	const std::string& getNegativeMessage() const;
 
-	sbx::Rule* getRequiredIfRule();
-	void setIsRequiredIfTrue(sbx::Rule*);
+	std::shared_ptr<sbx::Rule> getRequiredIfRule();
+	void setIsRequiredIfTrue(std::shared_ptr<sbx::Rule>);
 	void addProductElementOid(unsigned short productElementOid);
 	const std::vector<unsigned short>& getProductElementOids() const;
 
@@ -46,7 +46,7 @@ private:
 	std::string _positiveMessage;
 	std::string _negativeMessage;
 
-	sbx::Rule* _requiredIfRule;
+	std::shared_ptr<sbx::Rule> _requiredIfRule;
 
 	sbx::RuleCatalogue* _positiveRuleCatalogue;
 	sbx::RuleCatalogue* _negativeRuleCatalogue;

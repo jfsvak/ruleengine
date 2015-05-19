@@ -16,10 +16,10 @@ class Rule;
 class RuleCatalogue {
 public:
 	RuleCatalogue();
-	RuleCatalogue(sbx::Rule* parent);
+    RuleCatalogue(std::shared_ptr<sbx::Rule> parent);
 
-	std::vector<sbx::Rule*> getRules();
-	void addRule(sbx::Rule*);
+	std::vector<std::shared_ptr<sbx::Rule>> getRules();
+	void addRule(std::shared_ptr<sbx::Rule>);
 
 	sbx::Rule* getParent();
 	void setParent(sbx::Rule* parent);
@@ -27,7 +27,7 @@ public:
 	virtual ~RuleCatalogue();
 
 private:
-	std::vector<sbx::Rule*> _rules;
+    std::vector<std::shared_ptr<sbx::Rule>> _rules;
 	sbx::Rule* _parent;
 };
 
