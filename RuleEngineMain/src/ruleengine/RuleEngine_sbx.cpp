@@ -100,7 +100,7 @@ void RuleEngine::initRuleCatalogue(sbx::RuleCatalogue* ruleCatalogue, const Json
 
 			if (RuleEngine::_printDebug) { cout << "  Creating Rule [" << id << "], expr [" << expr << "]" << endl; }
 
-			Rule* rule = new Rule{id, expr, (requiredRule == "parent") ? ruleCatalogue->getParent() : nullptr, positiveMessage, negativeMessage};
+			std::shared_ptr<sbx::Rule> rule = make_shared<sbx::Rule>(id, expr, (requiredRule == "parent") ? ruleCatalogue->getParent() : nullptr, positiveMessage, negativeMessage);
 
 			Json::Value peOids = valueIterator->get("productElementOids", "");
 
@@ -337,7 +337,7 @@ sbx::ValidationResults RuleEngine::validate(const TA& ta, const std::vector<unsi
 		// for each rule, validate and add messages to valResult
 		for (auto it = range.first; it != range.second; it++) //	for (std::multimap<unsigned short, sbx::Rule*>::iterator it = range.first; it != range.second; it++)
 		{
-			sbx::Rule* rule = it->second;
+			std::shared_ptr<sbx::Rule> rule = it->second;
 
 			executeRule( peOid, rule, valResult );
 
@@ -399,7 +399,7 @@ int RuleEngine::validate(const sbx::KonceptInfo& konceptInfo, const sbx::TA& ta)
 	return 0;
 }
 
-void RuleEngine::executeRule(unsigned short peOidBeingValidated, sbx::Rule* rule, sbx::ValidationResults& valResult) {
+void RuleEngine::executeRule(unsigned short peOidBeingValidated, std::shared_ptr<sbx::Rule> rule, sbx::ValidationResults& valResult) {
 	try {
 		_parser.SetExpr(rule->getExpr());
 
@@ -510,7 +510,7 @@ void RuleEngine::printRuleCatalogue(sbx::RuleCatalogue& ruleCatalogue, int depth
 {
 	depth += 2;
 
-	for (sbx::Rule* rulePtr : ruleCatalogue.getRules())
+	for (std::shared_ptr<sbx::Rule> rulePtr : ruleCatalogue.getRules())
 	{
 		printRule(rulePtr, depth);
 		cout << _indent(depth) << "Positive case for rule id[" << rulePtr->getRuleId() << "]:" << endl;
@@ -523,7 +523,7 @@ void RuleEngine::printRuleCatalogue(sbx::RuleCatalogue& ruleCatalogue, int depth
 	}
 }
 
-void RuleEngine::printRule(sbx::Rule* rule, int depth)
+void RuleEngine::printRule(std::shared_ptr<sbx::Rule> rule, int depth)
 {
 	cout << _indent(depth) << "ID=[" << rule->getRuleId() << "], expr=[" << rule->getExpr() << "], ";
 
@@ -580,10 +580,10 @@ std::string RuleEngine::_indent(unsigned short depth)
 
 sbx::RuleEngine::~RuleEngine()
 {
-	for (auto it = _peOidToRules.begin(); it != _peOidToRules.end(); it++) {
-		delete it->second;
-		_peOidToRules.erase(it->first);
-	}
+//	for (auto it = _peOidToRules.end(); it != _peOidToRules.begin(); it--) {
+//		delete it->second;
+//		_peOidToRules.erase(it->first);
+//	}
 
 	for (auto it = _mupValueMap.begin();it != _mupValueMap.end(); it++) {
 		delete it->second;

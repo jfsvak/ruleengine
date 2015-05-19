@@ -75,12 +75,12 @@ const std::vector<unsigned short>& Rule::getProductElementOids() const
 	return _productElementOids;
 }
 
-sbx::Rule* Rule::getRequiredIfRule()
+std::shared_ptr<sbx::Rule> Rule::getRequiredIfRule()
 {
 	return _requiredIfRule;
 }
 
-void Rule::setIsRequiredIfTrue(sbx::Rule* rule)
+void Rule::setIsRequiredIfTrue(std::shared_ptr<sbx::Rule> rule)
 {
 	_requiredIfRule = rule;
 }

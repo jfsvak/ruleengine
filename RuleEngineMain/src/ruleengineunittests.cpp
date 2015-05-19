@@ -20,10 +20,10 @@ using namespace sbx;
 // Common data set for all test cases in this file
 class ProductElementValidationTest : public ::testing::Test  {
 protected:
-    virtual void SetUp() {
+    virtual void SetUp() {        
         re = RuleEngine();
-        re.initConstants(get_file_contents("RuleEngineMain/basedata-ruleconstants.json"));
-        re.parseRuleCatalogueJSON(get_file_contents("RuleEngineMain/rule-catalogue.json"));
+        re.initConstants(get_file_contents("/Users/anton/Documents/dev/ruleengine/RuleEngineMain/basedata-ruleconstants.json"));
+        re.parseRuleCatalogueJSON(get_file_contents("/Users/anton/Documents/dev/ruleengine/RuleEngineMain/rule-catalogue.json"));
 
         KonceptInfo ki {27, { {11, "true"} }};
         re.initContext(ki);
@@ -35,11 +35,10 @@ protected:
 // Test cases
 TEST_F(ProductElementValidationTest, aPositiveScenario) {
     TA ta { "15124040", 4};
-    ta.setValue(kDoedReguleringskode, std::string {"Gage"})
-        .setValue(kDoedPctGrMin, (long) 200)
-        .setValue(kDoedPctOblMax, (long) 300);
-
-    sbx::ValidationResult result = re.validate(ta, kDoedPctGrMin);
+    
+    ta.setValue(kDoedReguleringskode, std::string {"Gage"}).setValue(kDoedPctGrMin, (long) 200).setValue(kDoedPctOblMax, (long) 300);
+    
+    auto result = re.validate(ta, kDoedPctGrMin);
 
     EXPECT_EQ(0, result.getValidationResults().size());
     
@@ -51,16 +50,30 @@ TEST_F(ProductElementValidationTest, aPositiveScenario) {
     }
 }
 
-TEST_F(ProductElementValidationTest, aNegativeScenario) {
+TEST_F(ProductElementValidationTest, peValueIsOverTheLimit) {
     TA ta { "15124040", 4};
     ta.setValue(kDoedReguleringskode, std::string {"Gage"})
-        .setValue(kDoedPctGrMin, (long) 200)
-        .setValue(kDoedPctOblMax, (long) 300);
+    .setValue(kDoedPctGrMin, (long) 200)
+    .setValue(kDoedPctOblMax, (long) 300);
 
     ta.getValue(kDoedPctGrMin).setValue("700");
     ta.getValue(kDoedPctOblMax).setValue("801");
+    
+    auto result = re.validate(ta, kDoedPctGrMin);
+    
+    EXPECT_NE(0, result.getValidationResults().size());
+}
 
-    sbx::ValidationResult result = re.validate(ta, kDoedPctGrMin);
+TEST_F(ProductElementValidationTest, relatedPEValueSpaendIsOverTheLimit) {
+    TA ta { "15124040", 4};
+    ta.setValue(kDoedReguleringskode, std::string {"Gage"})
+    .setValue(kDoedPctGrMin, (long) 200)
+    .setValue(kDoedPctOblMax, (long) 300);
 
+    ta.getValue(kDoedPctGrMin).setValue("100");
+    ta.getValue(kDoedPctOblMax).setValue("700");
+    
+    auto result = re.validate(ta, 1);
+    
     EXPECT_NE(0, result.getValidationResults().size());
 }

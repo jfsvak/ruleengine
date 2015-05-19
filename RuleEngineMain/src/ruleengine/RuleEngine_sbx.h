@@ -64,7 +64,7 @@ public:
 
 	// -- util methods for printing
 	void printRuleCatalogue(sbx::RuleCatalogue&, int depth);
-	void printRule(sbx::Rule*, int depth);
+	void printRule(std::shared_ptr<sbx::Rule>, int depth);
 	void printVariables();
 	void printConstants();
 	void printExpressionVariables();
@@ -77,7 +77,7 @@ private:
 	template <typename T> void defineVariable(const std::string& name, const T& value);
 
 	void defineConstant(const std::string& name, double constant);
-	void executeRule(unsigned short peOidToValidate, sbx::Rule* rule, sbx::ValidationResults& valResult);
+	void executeRule(unsigned short peOidToValidate, std::shared_ptr<sbx::Rule> rule, sbx::ValidationResults& valResult);
 	void loadTAValues(const TA& ta);
 
 	sbx::ProductElement _pe(unsigned short peOid);
@@ -92,7 +92,7 @@ private:
 	 * index: peOid
 	 * value(s): sbx::Rule*
 	 */
-	std::multimap<unsigned short, sbx::Rule*> _peOidToRules;
+    std::multimap<unsigned short, std::shared_ptr<sbx::Rule>> _peOidToRules;
 
 
 	// ParserX is initialised when the KonceptInfo has been parsed in for initialisation
