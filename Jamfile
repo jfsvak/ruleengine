@@ -5,9 +5,9 @@ C++FLAGS = -std=c++11 ;
 LINKFLAGS = -lc++ ;
 HDRS = libs/gtest/include libs/muparserx/parser RuleEngineMain/src/json RuleEngineMain/src ;
 
-Main re_tests : RuleEngineMain/src/ruleengineunittests.cpp RuleEngineMain/src/ruleenginetestutils.cpp ;
+Main retests : RuleEngineMain/src/ruleengineunittests.cpp RuleEngineMain/src/ruleenginetestutils.cpp ;
 
-LinkLibraries re_tests : libmuparserx libgtest libjson libre ;
+LinkLibraries retests : libmuparserx libgtest libjson libre ;
 
 SubInclude TOP libs ;
 SubInclude TOP RuleEngineMain src json ;

@@ -21,7 +21,7 @@ using namespace sbx;
 class ProductElementValidationTest : public ::testing::Test  {
 protected:
     virtual void SetUp() {
-        re = {  };
+        re = RuleEngine();
         re.initConstants(get_file_contents("RuleEngineMain/basedata-ruleconstants.json"));
         re.parseRuleCatalogueJSON(get_file_contents("RuleEngineMain/rule-catalogue.json"));
 
@@ -41,7 +41,14 @@ TEST_F(ProductElementValidationTest, aPositiveScenario) {
 
     sbx::ValidationResult result = re.validate(ta, kDoedPctGrMin);
 
-    EXPECT_EQ(result.getValidationResults().size(), 0);
+    EXPECT_EQ(0, result.getValidationResults().size());
+    
+    if (result.getValidationResults().size() > 0) {
+        cout << "" << endl;
+        for (auto item : result.getValidationResults()) {
+            cout << item.first << " : " << item.second << endl;
+        }
+    }
 }
 
 TEST_F(ProductElementValidationTest, aNegativeScenario) {
@@ -55,5 +62,5 @@ TEST_F(ProductElementValidationTest, aNegativeScenario) {
 
     sbx::ValidationResult result = re.validate(ta, kDoedPctGrMin);
 
-    EXPECT_NE(result.getValidationResults().size(), 0);
+    EXPECT_NE(0, result.getValidationResults().size());
 }
