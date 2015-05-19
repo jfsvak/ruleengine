@@ -1,0 +1,9 @@
+SubDir TOP libs ;
+
+MUPARSERX_SOURCES = mpError.cpp mpFuncCmplx.cpp mpFuncCommon.cpp mpFuncMatrix.cpp mpFuncNonCmplx.cpp mpFuncStr.cpp mpICallback.cpp mpIOprt.cpp mpIPackage.cpp mpIToken.cpp mpIValReader.cpp mpIValue.cpp mpIfThenElse.cpp mpOprtBinAssign.cpp mpOprtBinCommon.cpp mpOprtCmplx.cpp mpOprtIndex.cpp mpOprtMatrix.cpp mpOprtNonCmplx.cpp mpOprtPostfixCommon.cpp mpPackageCmplx.cpp mpPackageCommon.cpp mpPackageMatrix.cpp mpPackageNonCmplx.cpp mpPackageStr.cpp mpPackageUnit.cpp mpParser.cpp mpParserBase.cpp mpParserMessageProvider.cpp mpRPN.cpp mpScriptTokens.cpp mpTest.cpp mpTokenReader.cpp mpValReader.cpp mpValue.cpp mpValueCache.cpp mpVariable.cpp ;
+
+Library libmuparserx : muparserx/parser/$(MUPARSERX_SOURCES) ;
+
+GTEST_SOURCES = gtest_main.cc gtest-death-test.cc gtest-filepath.cc gtest-port.cc gtest-printers.cc gtest-test-part.cc gtest-typed-test.cc gtest.cc ;
+
+Library libgtest : gtest/$(GTEST_SOURCES) ;

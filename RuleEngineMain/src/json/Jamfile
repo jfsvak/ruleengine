@@ -1,0 +1,4 @@
+
+SubDir TOP RuleEngineMain src json ;
+
+Library libjson : jsoncpp.cpp ;

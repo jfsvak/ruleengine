@@ -1,0 +1,14 @@
+SubDir TOP ;
+
+C++ = llvm-g++ ;
+C++FLAGS = -std=c++11 ;
+LINKFLAGS = -lc++ ;
+HDRS = libs/gtest/include libs/muparserx/parser RuleEngineMain/src/json RuleEngineMain/src ;
+
+Main retests : RuleEngineMain/src/ruleengineunittests.cpp RuleEngineMain/src/ruleenginetestutils.cpp ;
+
+LinkLibraries retests : libmuparserx libgtest libjson libre ;
+
+SubInclude TOP libs ;
+SubInclude TOP RuleEngineMain src json ;
+SubInclude TOP RuleEngineMain src ruleengine ;
