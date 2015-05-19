@@ -18,6 +18,8 @@
 #include <sstream>
 #include <stdexcept>
 
+#include "mubridge/utils.h"
+
 #include "muParser/mpError.h"
 #include "muParser/mpIToken.h"
 #include "muParser/mpIValue.h"
@@ -25,20 +27,27 @@
 #include "muParser/mpValue.h"
 #include "muParser/mpVariable.h"
 
-#include "mubridge/utils.h"
-
 #include "PrintUtils_sbx.h"
 #include "ProductElement_sbx.h"
 #include "ProductElementValue_sbx.h"
-#include "ValidationResult.h"
 #include "Rule.h"
 #include "RuleCatalogue.h"
+#include "ValidationResults.h"
 
 using namespace std;
 
 namespace sbx {
 
 bool RuleEngine::_printDebug {false};
+
+sbx::RuleEngine::RuleEngine()
+{}
+
+sbx::RuleEngine::RuleEngine(const sbx::RuleEngine& other)
+		: _container {other._container}
+{
+	// TODO proper copy/cloning of pointers in map
+}
 
 void RuleEngine::initConstants(const std::vector<sbx::Constant> &allConstants)
 {
@@ -150,7 +159,7 @@ void RuleEngine::initContext(const sbx::KonceptInfo& ki)
 
 void RuleEngine::initParserWithProductElementConstants(unsigned short peOid)
 {
-	ProductElement pe = _container.getProductElement(peOid);
+	const sbx::ProductElement pe = _container.getProductElement(peOid);
 	std::shared_ptr<Constant> cMin = _container.getConstant(peOid, sbx::ComparisonTypes::kMin);
 	std::shared_ptr<Constant> cMax = _container.getConstant(peOid, sbx::ComparisonTypes::kMax);
 	string minName = constructRCName(pe, sbx::ComparisonTypes::kMin);
@@ -194,31 +203,36 @@ void RuleEngine::initParserWithProductElementConstants(unsigned short peOid)
 	}
 }
 
-void RuleEngine::defineVariable(const std::string& name, double value)
+template <typename T>
+void RuleEngine::defineVariable(const std::string& name, const T& value)
 {
-	// TODO if we redefine a variable, we should not create a new one, but get the mup::Value& and set the value inside it
 	try {
-		mup::Value* val = new mup::Value(value);
-		_parser.DefineVar(name, mup::Variable(val));
-	} catch (mup::ParserError& e) {
-		cerr << "Exception defining variable : [" << e.GetCode() << "]-[" << e.GetMsg() << "]-[" << e.GetToken() << "]" << endl;
-	}
-}
+		// if the value is already in the map, then just update the value
+		if (_mupValueMap.find(name) != _mupValueMap.cend()) {
+			*_mupValueMap.at(name) = value;
+		}
+		else {
+			// if not already there, create and insert a new value
+			_mupValueMap.insert( std::pair<std::string, mup::Value*> (name, new mup::Value{value}));
+		}
 
-void sbx::RuleEngine::defineVariable(const std::string& name, const std::string& value)
-{
-	// TODO Check c++11 validation on desktop is working
-	try {
-		mup::Value* val = new mup::Value(value);
-		_parser.DefineVar(name, mup::Variable(val));
+		// if the variable has not been defined in the parser, define it, otherwise just leave it
+		if (!_parser.IsVarDefined(name)) {
+			_parser.DefineVar(name, mup::Variable(_mupValueMap[name]));
+		}
 	} catch (mup::ParserError& e) {
-		cerr << "Exception defining variable : [" << e.GetCode() << "]-[" << e.GetMsg() << "]-[" << e.GetToken() << "]" << endl;
+		sbx::mubridge::handle(e);
 	}
 }
 
 void RuleEngine::defineConstant(const std::string& name, double constant)
 {
 	try {
+		// if const was already define, remove first to set new value
+		if (_parser.IsConstDefined(name)) {
+			_parser.RemoveConst(name);
+		}
+
 		_parser.DefineConst(name, constant);
 	} catch (mup::ParserError& e) {
 		cerr << "Exception setting constant: [" << e.GetCode() << "]-[" << e.GetMsg() << "]-[" << e.GetToken() << "]" << endl;
@@ -259,16 +273,15 @@ const sbx::RuleConstantContainer& RuleEngine::getContainer() const
 
 /**
  * Loads all ta values into the parser as variables.
- * When setting values, it checks to see if the value/variable is already there. If it is, the
+ * When setting values, it checks to see if the value/variable is already there. If it is, then the value is just updated
  */
 void RuleEngine::loadTAValues(const TA& ta)
 {
 	// initialise all values for TA into parser
 	for (auto& item : ta.getValues())
 	{
-		const unsigned short peOid = item.first;
 		const sbx::ProductElementValue& pev = item.second;
-		ProductElement pe = _container.getProductElement(peOid);
+		const sbx::ProductElement pe = _container.getProductElement(item.first);
 
 		switch (pe.getElementType())
 		{
@@ -276,23 +289,29 @@ void RuleEngine::loadTAValues(const TA& ta)
 			// TODO: how to validate date??
 			break;
 		case kBool:
-			// TODO: check in the constant container that the value is allowed
+			// TODO how to handle too?
+			// defineVariable<bool>(pe.getVariableName(), pev.stringValue());
 			break;
 		case kText:
-			defineVariable(pe.getVariableName(), pev.stringValue());
+			defineVariable<std::string>(pe.getVariableName(), pev.stringValue());
 			break;
-		case kLong:
+		case kLong: // fall throughs down to double
 		case kMonth:
 		case kYear:
 		case kCurr:
 		case kPercent:
-			defineVariable(pe.getVariableName(), pev.doubleValue());
+			defineVariable<double>(pe.getVariableName(), pev.doubleValue());
 			break;
 		case kUnknownPEType:
 			// TODO: return or throw exception? agree with iOS
 			break;
 		}
 	}
+}
+
+sbx::ValidationResults sbx::RuleEngine::validate(const TA& ta, unsigned short peOidToValidate)
+{
+	return this->validate(ta, std::vector<unsigned short> {peOidToValidate});
 }
 
 /**
@@ -302,26 +321,30 @@ void RuleEngine::loadTAValues(const TA& ta)
  *    3.1 validate parent (if its there) to see if the product element is required or not (false on parent rule eval makes it not required, and shouldn't be there
  * 4. return the validation result with messages
  */
-sbx::ValidationResult RuleEngine::validate(const TA& ta, unsigned short peOidToValidate)
+sbx::ValidationResults RuleEngine::validate(const TA& ta, const std::vector<unsigned short>& peOidsToValidate)
 {
-	sbx::ValidationResult valResult{};
+	sbx::ValidationResults valResult{};
 
 	// initialise all values for TA into parser
 	loadTAValues(ta);
 
-	// get rules for the product element
-	const auto& range = _peOidToRules.equal_range(peOidToValidate); // std::pair <std::multimap<unsigned short, sbx::Rule*>::iterator, std::multimap<unsigned short, sbx::Rule*>::iterator> range = _peOidToRules.equal_range(peOidToValidate);
+	if (RuleEngine::_printDebug) { printVariables(); }
 
-	// for each rule, validate and add messages to valResult
-	for (auto it = range.first; it != range.second; it++) //	for (std::multimap<unsigned short, sbx::Rule*>::iterator it = range.first; it != range.second; it++)
-	{
-		sbx::Rule* rule = it->second;
+	for (auto& peOid : peOidsToValidate) {
+		// get rules for the product element
+		const auto& range = _peOidToRules.equal_range(peOid); // std::pair <std::multimap<unsigned short, sbx::Rule*>::iterator, std::multimap<unsigned short, sbx::Rule*>::iterator> range = _peOidToRules.equal_range(peOidToValidate);
 
-		executeRule( {peOidToValidate}, rule, valResult );
+		// for each rule, validate and add messages to valResult
+		for (auto it = range.first; it != range.second; it++) //	for (std::multimap<unsigned short, sbx::Rule*>::iterator it = range.first; it != range.second; it++)
+		{
+			sbx::Rule* rule = it->second;
 
-		// if there is a parent rule, then validate it to check if this productelement is supposed to be here or not
-		if (rule->getRequiredIfRule()) {
-			executeRule(rule->getRequiredIfRule()->getProductElementOids(), rule->getRequiredIfRule(), valResult);
+			executeRule( peOid, rule, valResult );
+
+			// if there is a parent rule, then validate it to check if this productelement is supposed to be here or not
+			if (rule->getRequiredIfRule()) {
+				executeRule(peOid, rule->getRequiredIfRule(), valResult);
+			}
 		}
 	}
 
@@ -353,10 +376,10 @@ int RuleEngine::validate(const sbx::KonceptInfo& konceptInfo, const sbx::TA& ta)
 		}
 
 		try {
-			sbx::ValidationResult r = this->validate(ta, peOid);
-			std::vector<std::string> v = r.getValidationResults(peOid);
+			sbx::ValidationResults r = this->validate(ta, {peOid});
+			std::vector<sbx::ValidationResult> v = r.getValidationResults(peOid);
 			ostringstream s {};
-			ostream_iterator<string> strOutput(s, ", ");
+			ostream_iterator<sbx::ValidationResult> strOutput(s, ", ");
 			copy(v.cbegin(), v.cend(), strOutput);
 			cerr << "Result of validation of pev[" << s.str() << "]" << endl;
 		}
@@ -376,22 +399,29 @@ int RuleEngine::validate(const sbx::KonceptInfo& konceptInfo, const sbx::TA& ta)
 	return 0;
 }
 
-void RuleEngine::executeRule(const std::vector<unsigned short>& peOidsBeingValidated, sbx::Rule* rule, sbx::ValidationResult& valResult) {
+void RuleEngine::executeRule(unsigned short peOidBeingValidated, sbx::Rule* rule, sbx::ValidationResults& valResult) {
 	try {
 		_parser.SetExpr(rule->getExpr());
+
 		if (RuleEngine::_printDebug) { cout << "Executing rule [" << rule->getRuleId() << "]...";}
+
 		mup::Value singleRuleResult = _parser.Eval();
+
 		if (RuleEngine::_printDebug) { cout << "\tresult for expr[" << rule->getExpr() << "]=[" << boolalpha << singleRuleResult.GetBool() << "]" << endl;}
 
 		if (singleRuleResult.GetBool()) {
-			valResult.addValidationResult(peOidsBeingValidated, std::string {rule->getRuleId() + "-" + rule->getPositiveMessage()});
+			// only add message, if it's not empty
+			if (rule->getPositiveMessage() != "") {
+				valResult.addValidationResult( {sbx::ValidationCode::kOK, peOidBeingValidated, _container.getProductElement(peOidBeingValidated).getVariableName(), rule->getRuleId(), rule->getPositiveMessage()} );
+			}
 		}
 		else {
-			valResult.addValidationResult(peOidsBeingValidated, std::string {rule->getRuleId() + "-" + rule->getNegativeMessage()});
+			valResult.addValidationResult( {sbx::ValidationCode::kFail, peOidBeingValidated, _container.getProductElement(peOidBeingValidated).getVariableName(), rule->getRuleId(), rule->getNegativeMessage()} );
 		}
 	}
 	catch (mup::ParserError& e)	{
-		sbx::mubridge::handle(e, rule, peOidsBeingValidated, valResult);
+		sbx::mubridge::handle(e);
+//		sbx::mubridge::handle(e, rule, peOidBeingValidated, valResult);
 	}
 }
 
@@ -537,15 +567,29 @@ std::string RuleEngine::constructRCName(const sbx::ProductElement& pe, const sbx
 	return s.str();
 }
 
-const sbx::ProductElement& RuleEngine::_pe(unsigned short peOid)
+sbx::ProductElement RuleEngine::_pe(unsigned short peOid)
 {
-	// TODO fix this temp stuff
+	// TODO fix this temp stuff - maybe return
 	return _container.getProductElement(peOid);
 }
 
 std::string RuleEngine::_indent(unsigned short depth)
 {
 	return std::string(depth, ' ');
+}
+
+sbx::RuleEngine::~RuleEngine()
+{
+	for (auto it = _peOidToRules.begin(); it != _peOidToRules.end(); it++) {
+		delete it->second;
+		_peOidToRules.erase(it->first);
+	}
+
+	for (auto it = _mupValueMap.begin();it != _mupValueMap.end(); it++) {
+		delete it->second;
+		_mupValueMap.erase(it->first);
+	}
+
 }
 
 } // sbx namespace end

@@ -18,7 +18,7 @@ public:
 	KonceptInfo();
 	explicit KonceptInfo(unsigned short underkonceptOid);
 	KonceptInfo(unsigned short underkonceptOid, const std::map<unsigned short, std::string>& parameterValues);
-	KonceptInfo(const sbx::KonceptInfo& otherKonceptInfo); // copy constructor
+
 	void addParameterValue(unsigned short parameterOid, std::string value);
 	void addParameterValue(unsigned short parameterOid, bool selected);
 	unsigned short getUnderkonceptOid() const;
@@ -26,6 +26,7 @@ public:
 	unsigned short getNumberOfEmployees() const;
 	unsigned short getNumberOfRiskGroupC() const;
 	bool isParameterSelected(unsigned short parameterOid) const;
+
 	virtual ~KonceptInfo();
 private:
 	// Number of employees in this koncept

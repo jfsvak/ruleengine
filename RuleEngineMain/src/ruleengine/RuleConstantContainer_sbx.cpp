@@ -427,7 +427,7 @@ std::size_t RuleConstantContainer::size() const
 	return _globalConstants.size();
 }
 
-sbx::ProductElement sbx::RuleConstantContainer::getProductElement(const unsigned short& productElementOid)
+sbx::ProductElement RuleConstantContainer::getProductElement(const unsigned short& productElementOid)
 {
 	if (_productElementMap.find(productElementOid) != _productElementMap.cend())
 	{
@@ -437,7 +437,7 @@ sbx::ProductElement sbx::RuleConstantContainer::getProductElement(const unsigned
 	throw domain_error("ProductElements not initialised!");
 }
 
-sbx::ProductElement sbx::RuleConstantContainer::getProductElement(const sbx::ProductElementOid& productElementOid)
+sbx::ProductElement RuleConstantContainer::getProductElement(const sbx::ProductElementOid& productElementOid)
 {
 	return this->getProductElement(static_cast<unsigned short>(productElementOid));
 }

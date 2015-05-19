@@ -46,6 +46,7 @@ RuleCatalogue::~RuleCatalogue()
 	for (std::vector<sbx::Rule*>::iterator it = _rules.begin(); it < _rules.end(); it++)
 	{
 		delete *it;
+		_rules.erase(it);
 	}
 
 	delete _parent;

@@ -23,7 +23,7 @@
 #include "ruleengine/Rule.h"
 #include "ruleengine/sbxTypes.h"
 #include "ruleengine/TA_sbx.h"
-#include "ruleengine/ValidationResult.h"
+#include "ruleengine/ValidationResults.h"
 #include "ruleenginetestutils.h"
 
 using namespace std;
@@ -67,73 +67,88 @@ int testSinglePEValidation()
     re.initContext(ki);
     re.printVariables();
     re.printConstants();
+	RuleEngine::_printDebug = true;
 
-    // OK scenario
+    //
+    // 1. OK scenario
+    //
+    //
     TA ta { "15124040", 4};
 	ta.setValue(kDoedReguleringskode, std::string {"Gage"})
 			.setValue(kDoedPctGrMin, (long) 200)
 			.setValue(kDoedPctOblMax, (long) 300);
 
-
-    sbx::ValidationResult result = re.validate(ta, kDoedPctGrMin);
-
-	re.printVariables();
+    sbx::ValidationResults result = re.validate(ta, kDoedPctGrMin);
 
     if (result.getValidationResults().size() > 0) {
-    	cerr << "Got [" << result.getValidationResults().size() << " validation results, expected [0] - Messages:" << endl;
+    	cout << "1. FAIL - Got [" << result.getValidationResults().size() << " validation results, expected [0] - Messages:" << endl;
 
 		for (auto& pair : result.getValidationResults()) {
-			cout << "  PE[" << pair.first << "], msg[" << pair.second<< "]" << endl;
+			cout << "  " << pair.second << endl;
 		}
+    } else {
+    	cout << "1. ALL OK !!!" << endl;
     }
 
     //
-    // NOT OK scenario - pe value is over the limit
+    // 2. NOT OK scenario - pe value is over the limit
     //
     //
     ta.getValue(kDoedPctGrMin).setValue("700");
 	ta.getValue(kDoedPctOblMax).setValue("801");
 
-	result = re.validate(ta, kDoedPctGrMin);
+	result = re.validate(ta, {kDoedPctGrMin, kDoedPctOblMax} );
 
 	if (result.getValidationResults().size() == 0) {
-		cerr << "Expected validation messages. Got 0" << endl;
+		cerr << "2. FAIL - Expected validation messages. Got 0" << endl;
 	}
 	else
 	{
-		cout << "Messages (expected):" << endl;
+		cout << "2. OK Messages (expected):" << endl;
 
 		for (auto& pair : result.getValidationResults()) {
-			cout << "  PE[" << pair.first << "], msg[" << pair.second<< "]" << endl;
+			cout << "  " << pair.second << endl;
 		}
 	}
 
 	//
-    // NOT OK Scenario - related pe value (spaend is over the limit)
+    // 3. NOT OK Scenario - related pe value (spaend is over the limit)
 	//
 	//
 	ta.getValue(kDoedPctGrMin).setValue("100");
 	ta.getValue(kDoedPctOblMax).setValue("700");
-	result = re.validate(ta, 1);
+	result = re.validate(ta, kDoedPctGrMin);
 
 	if (result.getValidationResults().size() == 0) {
-		cerr << "Expected validation messages. Got 0" << endl;
+		cerr << "3. FAIL - Expected validation messages. Got 0" << endl;
 	}
 	else
 	{
-		cout << "Messages (expected):" << endl;
+		cout << "3. Messages (expected):" << endl;
 
 		for (auto& pair : result.getValidationResults()) {
-			cout << "  PE[" << pair.first << "], msg[" << pair.second<< "]" << endl;
+			cout << "  " << pair.second << endl;
 		}
 	}
 
 	//
-    // NOT OK scenario - pe value should not be there - DoedBlGrMin (amount) when DoedReguleringskode == 'Gage' (expects DoedPctGrMin)
+    // 4. NOT OK scenario - pe value should not be there - DoedBlGrMin (amount) when DoedReguleringskode == 'Gage' (expects DoedPctGrMin)
 	//
 	//
+	ta.getValue(kDoedBlGrMin).setValue("100000");
+	ta.getValue(kDoedBlOblMax).setValue("2000000");
+	result = re.validate(ta, kDoedBlGrMin);
 
-
+	if (result.getValidationResults().size() == 0) {
+		cerr << "4. FAIL - Expected validation messages. Got 0" << endl;
+	}
+	else {
+		cout << "4. Messages (expected):" << endl;
+//		copy(result.getValidationResults().begin(), result.getValidationResults().end(), cout);
+		for (auto& pair : result.getValidationResults()) {
+			cout << "  " << pair.second << endl;
+		}
+	}
 
     return 0;
 }

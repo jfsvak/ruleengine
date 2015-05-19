@@ -16,14 +16,22 @@ using namespace std;
 namespace sbx {
 bool Product::_printDebug = false;
 
-Product::Product(unsigned short oid, std::string& name) : _oid {oid}, _name {name} {
+Product::Product(unsigned short oid, std::string& name)
+		: _oid {oid},
+		  _name {name},
+		  _productElementOids {}
+{
 	if (Product::_printDebug) {
 		cout << "+ ";
 		printValues();
 	}
 }
 
-Product::Product(const sbx::Product& otherProduct) : _oid {otherProduct._oid}, _name {otherProduct._name} {
+Product::Product(const sbx::Product& otherProduct)
+		: _oid {otherProduct._oid},
+		  _name {otherProduct._name},
+		  _productElementOids {otherProduct._productElementOids}
+{
 	if (Product::_printDebug) {
 		cout << "= Ori.Product{"<< addressof(otherProduct) << "}=>";
 		printValues();

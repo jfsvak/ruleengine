@@ -49,6 +49,7 @@ enum ProductElementOid : unsigned short {
 			kDoedSoliMax			= 4,
 			kDoedPctGrMin			= 6,
 			kDoedPctOblMax			= 7,
+			kDoedSpaendPct			= 9,
 			kTaeBlGrMin				= 14,
 			kTaeBlOblMax			= 15,
 			kTaeSpaendBl			= 16,

@@ -15,17 +15,20 @@
 #include <vector>
 
 #include "../json/json.h"
-#include "Constant_sbx.h"
-#include "KonceptInfo_sbx.h"
+
 #include "muParser/mpParser.h"
 #include "muParser/mpTypes.h"
+#include "muParser/mpValue.h"
+
+#include "Constant_sbx.h"
+#include "KonceptInfo_sbx.h"
 #include "ProductElement_sbx.h"
 #include "Rule.h"
 #include "RuleCatalogue.h"
 #include "RuleConstantContainer_sbx.h"
 #include "sbxTypes.h"
 #include "TA_sbx.h"
-#include "ValidationResult.h"
+#include "ValidationResults.h"
 
 namespace sbx {
 
@@ -37,6 +40,11 @@ public:
 	static const short int INVALID = -1;
 	static std::string comparisonTypeName(const sbx::ComparisonTypes& comparisonType);
 
+
+	RuleEngine();
+	RuleEngine(const sbx::RuleEngine&); // copy constructor. Handle proper copy of pointers in map
+	virtual ~RuleEngine(); // Handler proper delete of pointers
+
 	void initConstants(const std::vector<Constant>& globalConstants);
 	void initConstants(const std::string& jsonContents);
 	void initContext(const sbx::KonceptInfo& ki);
@@ -47,7 +55,8 @@ public:
 	const std::shared_ptr<sbx::Constant>& getDefaultValue(sbx::ProductElementOid productElementOid);
 	std::shared_ptr<sbx::Constant> getConstant(sbx::ProductElementOid productElement, sbx::ComparisonTypes comparisonType);
 
-	sbx::ValidationResult validate(const TA&, unsigned short peOidToValidate); // single product element validation
+	sbx::ValidationResults validate(const TA&, unsigned short peOidToValidate); // single product element validation
+	sbx::ValidationResults validate(const TA&, const std::vector<unsigned short>& peOidToValidate); // multiple product element validation, using single pe validation
 	int validate(const sbx::KonceptInfo&, const sbx::TA& ta); // Full TA validation
 
 	sbx::RuleCatalogue& getRuleCatalogue();
@@ -65,17 +74,16 @@ private:
 	// -- initialisation methods
 	void initRuleCatalogue(sbx::RuleCatalogue*, const Json::Value& ruleCatalogues);
 	void initParserWithProductElementConstants(unsigned short peOid);
-	void defineVariable(const std::string& name, double value);
-	void defineVariable(const std::string& name, const std::string& value);
-	void defineConstant(const std::string& name, double constant);
-	void executeRule(const std::vector<unsigned short>& peOidToValidate, sbx::Rule* rule, sbx::ValidationResult& valResult);
+	template <typename T> void defineVariable(const std::string& name, const T& value);
 
-	const sbx::ProductElement& _pe(unsigned short peOid);
+	void defineConstant(const std::string& name, double constant);
+	void executeRule(unsigned short peOidToValidate, sbx::Rule* rule, sbx::ValidationResults& valResult);
+	void loadTAValues(const TA& ta);
+
+	sbx::ProductElement _pe(unsigned short peOid);
 
 	sbx::KonceptInfo _ki;
 	sbx::RuleConstantContainer _container;
-
-	std::map<sbx::ProductElementOid, std::vector<std::string>> _ruleMap;
 	sbx::RuleCatalogue _ruleCatalogue;
 
 	/**
@@ -86,17 +94,23 @@ private:
 	 */
 	std::multimap<unsigned short, sbx::Rule*> _peOidToRules;
 
-	std::string constructRCName(const sbx::ProductElement&, const sbx::ComparisonTypes&);
 
 	// ParserX is initialised when the KonceptInfo has been parsed in for initialisation
 	mup::ParserX _parser { mup::pckALL_NON_COMPLEX };
+
+	/**
+	 * Map of product element oids to mup::Values pointers
+	 * Index: peOid
+	 * Value: mup::Value*
+	 */
+	std::map<std::string, mup::Value*> _mupValueMap;
 
 	// -- util methods for printing etc.
 	void _printVariables(mup::ParserX& p);
 	void _printExpressionVariables(mup::ParserX& p);
 	void _printConstants(mup::ParserX& p);
 	std::string _indent(unsigned short depth);
-	void loadTAValues(const TA& ta);
+	std::string constructRCName(const sbx::ProductElement&, const sbx::ComparisonTypes&);
 };
 
 } // sbx namespace end

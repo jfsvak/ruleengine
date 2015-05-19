@@ -15,13 +15,14 @@
 
 #include "../Rule.h"
 #include "../ValidationResult.h"
+#include "../ValidationResults.h"
 
 namespace sbx {
 
 namespace mubridge {
 
 void handle(const mup::ParserError& e);
-void handle(const mup::ParserError& e, sbx::Rule* rule, std::vector<unsigned short> peOidsBeingValidated, sbx::ValidationResult& valResult);
+void handle(const mup::ParserError& e, sbx::Rule* rule, std::vector<unsigned short> peOidsBeingValidated, sbx::ValidationResults& valResult);
 
 } // namespace mubridge
 

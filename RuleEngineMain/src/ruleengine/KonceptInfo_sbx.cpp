@@ -13,32 +13,20 @@ KonceptInfo::KonceptInfo()
 		: _underkonceptOid {0},
 		  _numberOfEmployees {0},
 		  _numberOfRiskGroupC {0}
-{
-
-}
+{}
 
 KonceptInfo::KonceptInfo(unsigned short underkonceptOid)
 		: _underkonceptOid {underkonceptOid},
 		  _numberOfEmployees {0},
 		  _numberOfRiskGroupC {0}
-{
-}
+{}
 
 KonceptInfo::KonceptInfo(unsigned short underkonceptOid, const std::map<unsigned short, std::string>& parameterValues)
 		: _underkonceptOid {underkonceptOid},
 		  _numberOfEmployees {0},
 		  _numberOfRiskGroupC {0},
 		  _parameterValues {parameterValues}
-{
-}
-
-KonceptInfo::KonceptInfo(const sbx::KonceptInfo& otherKonceptInfo)
-		: _underkonceptOid {otherKonceptInfo._underkonceptOid},
-		  _numberOfEmployees {otherKonceptInfo._numberOfEmployees},
-		  _numberOfRiskGroupC {otherKonceptInfo._numberOfRiskGroupC},
-		  _parameterValues {otherKonceptInfo._parameterValues}
-{
-}
+{}
 
 void KonceptInfo::addParameterValue(unsigned short parameterOid, std::string value)
 {

@@ -15,7 +15,7 @@ namespace sbx {
 class Parameter {
 public:
 	Parameter();
-	Parameter(const sbx::Parameter&); // copy constructor
+//	Parameter(const sbx::Parameter&);
 	Parameter(unsigned short oid, const std::string& name, const std::string& type, sbx::ProductElementTypes);
 	virtual ~Parameter();
 	unsigned short getOid() const;

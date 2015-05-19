@@ -15,27 +15,21 @@ Parameter::Parameter()
 		   _name {""},
 		   _type {""},
 		   _elementType {sbx::ProductElementTypes::kUnknownPEType}
-{
-
-}
+{}
 
 Parameter::Parameter(unsigned short oid, const std::string& name, const std::string& type, sbx::ProductElementTypes elementType)
 		:  _oid {oid},
 		   _name {name},
 		   _type {type},
 		   _elementType {elementType}
-{
+{}
 
-}
-
-Parameter::Parameter(const sbx::Parameter& otherParameter)
-		:  _oid {otherParameter._oid},
-		   _name {otherParameter._name},
-		   _type {otherParameter._type},
-		   _elementType {otherParameter._elementType}
-{
-
-}
+//Parameter::Parameter(const sbx::Parameter& otherParameter)
+//		:  _oid {otherParameter._oid},
+//		   _name {otherParameter._name},
+//		   _type {otherParameter._type},
+//		   _elementType {otherParameter._elementType}
+//{}
 
 unsigned short Parameter::getOid() const {
 	return _oid;

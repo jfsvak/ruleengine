@@ -24,14 +24,18 @@ void handle(const mup::ParserError& e) {
 	}
 }
 
-void handle(const mup::ParserError& e, sbx::Rule* rule, std::vector<unsigned short> peOidsBeingValidated, sbx::ValidationResult& valResult) {
-	stringstream s {};
+void handle(const mup::ParserError& e, sbx::Rule* rule, unsigned short peOidBeingValidated, const std::string& variableName, sbx::ValidationResults& valResult) {
+	sbx::ValidationResult r {peOidBeingValidated};
+	r.setRuleId(rule->getRuleId());
+	r.setVariableName(variableName);
 
+	stringstream s {};
 	bool handled {true};
 
 	switch(e.GetCode())
 	{
 	case mup::ecUNASSIGNABLE_TOKEN:
+		r.setValidationCode(sbx::ValidationCode::kValueMissing);
 		s << "Value for [" << e.GetToken() << "] not found on ta";
 		break;
 	default:
@@ -40,11 +44,13 @@ void handle(const mup::ParserError& e, sbx::Rule* rule, std::vector<unsigned sho
 		break;
 	}
 
+	r.setMessage(s.str());
+
 	if (!handled) {
 		cerr << s.str() << endl;
 	}
 
-	valResult.addValidationResult(peOidsBeingValidated, s.str());
+	valResult.addValidationResult(r);
 }
 
 } // namespace mubridge

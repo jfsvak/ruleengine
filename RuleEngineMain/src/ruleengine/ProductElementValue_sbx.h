@@ -20,6 +20,7 @@ class ProductElementValue {
 	double doubleValue() const;
 	unsigned short getProductElementOid() const;
 	void setValue(const std::string& value);
+
 	virtual ~ProductElementValue(void);
   private:
 	unsigned short _productElementOid;
