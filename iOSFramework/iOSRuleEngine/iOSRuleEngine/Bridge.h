@@ -10,7 +10,6 @@
 
 @interface Bridge : NSObject
 
--(instancetype)initWithRulesFilePath:(NSString*) rulesFilePath;
 -(void)setSubKonceptOid:(NSInteger)subKonceptOid parameters:(NSDictionary*)parametersDictionary;
 -(NSArray*)getAllowedValuesFor:(NSInteger)oid;
 -(id)getDefaultValueFor:(NSInteger)oid;

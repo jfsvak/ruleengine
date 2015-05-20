@@ -19,12 +19,12 @@
     sbx::RuleEngine *re;
 }
 
--(instancetype)initWithRulesFilePath:(NSString*) rulesFilePath {
+-(instancetype)init {
     self = [super init];
     if (self) {
         re = new sbx::RuleEngine();
-//        NSString *rulesFilePath = [NSString stringWithFormat:@"%@", [[NSBundle mainBundle] pathForResource:@"basedata-ruleconstants" ofType:@"json"]];
-        std::string json = get_file_contents(rulesFilePath.UTF8String);
+        NSString *s = [NSString stringWithFormat:@"%@", [[NSBundle mainBundle] pathForResource:@"basedata-ruleconstants" ofType:@"json"]];
+        std::string json = get_file_contents(s.UTF8String);
         re->initConstants(json);
     }
     return self;
@@ -71,36 +71,23 @@ std::string get_file_contents(const char *filename)
 }
 
 -(NSArray*)getAllowedValuesFor:(NSInteger)oid {
-    NSMutableArray *result;
+    sbx::ProductElementOid peOid = (sbx::ProductElementOid)oid;
+    std::vector<std::shared_ptr<sbx::Constant>> list = re->getOptionsList(peOid);
     
-    try {
-        sbx::ProductElementOid peOid = (sbx::ProductElementOid)oid;
-        std::vector<std::shared_ptr<sbx::Constant>> list = re->getOptionsList(peOid);
-        
-        result = [NSMutableArray arrayWithCapacity:list.size()];
-        
-        for (std::shared_ptr<sbx::Constant> constant : list) {
-            [result addObject:[NSString stringWithCString:constant->stringValue().c_str() encoding:NSUTF8StringEncoding]];
-        }
-    } catch (std::domain_error error) {
-        NSLog(@"No options list for oid %zd", oid);
+    NSMutableArray *result = [NSMutableArray arrayWithCapacity:list.size()];
+    
+    for (std::shared_ptr<sbx::Constant> constant : list) {
+        [result addObject:[NSString stringWithCString:constant->stringValue().c_str() encoding:NSUTF8StringEncoding]];
     }
     
 	return result;
 }
 
 -(id)getDefaultValueFor:(NSInteger)oid {
-    NSString *result = @"";
+    sbx::ProductElementOid peOid = (sbx::ProductElementOid)oid;
+    std::shared_ptr<sbx::Constant> constant = re->getDefaultValue(peOid);
     
-    try {
-        sbx::ProductElementOid peOid = (sbx::ProductElementOid)oid;
-        std::shared_ptr<sbx::Constant> constant = re->getDefaultValue(peOid);
-        
-        result = [NSString stringWithCString:constant->stringValue().c_str() encoding:NSUTF8StringEncoding];
-
-    } catch (std::domain_error error) {
-        NSLog(@"No default value for oid %zd", oid);
-    }
+    NSString *result = [NSString stringWithCString:constant->stringValue().c_str() encoding:NSUTF8StringEncoding];
     
     return result;
 }

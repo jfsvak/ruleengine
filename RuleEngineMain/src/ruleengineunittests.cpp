@@ -22,8 +22,8 @@ class ProductElementValidationTest : public ::testing::Test  {
 protected:
     virtual void SetUp() {        
         re = RuleEngine();
-        re.initConstants(get_file_contents("/Users/anton/Documents/dev/ruleengine/RuleEngineMain/basedata-ruleconstants.json"));
-        re.parseRuleCatalogueJSON(get_file_contents("/Users/anton/Documents/dev/ruleengine/RuleEngineMain/rule-catalogue.json"));
+        re.initConstants(get_file_contents("RuleEngineMain/basedata-ruleconstants.json"));
+        re.parseRuleCatalogueJSON(get_file_contents("RuleEngineMain/rule-catalogue.json"));
 
         KonceptInfo ki {27, { {11, "true"} }};
         re.initContext(ki);
