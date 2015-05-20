@@ -71,12 +71,17 @@ std::string get_file_contents(const char *filename)
 
 -(NSArray*)getAllowedValuesFor:(NSInteger)oid {
     sbx::ProductElementOid peOid = (sbx::ProductElementOid)oid;
-    std::vector<std::shared_ptr<sbx::Constant>> list = re->getOptionsList(peOid);
-    
-    NSMutableArray *result = [NSMutableArray arrayWithCapacity:list.size()];
-    
-    for (std::shared_ptr<sbx::Constant> constant : list) {
-        [result addObject:[NSString stringWithCString:constant->stringValue().c_str() encoding:NSUTF8StringEncoding]];
+    NSMutableArray *result;
+    try {
+        std::vector<std::shared_ptr<sbx::Constant>> list = re->getOptionsList(peOid);
+        
+        result = [NSMutableArray arrayWithCapacity:list.size()];
+        
+        for (std::shared_ptr<sbx::Constant> constant : list) {
+            [result addObject:[NSString stringWithCString:constant->stringValue().c_str() encoding:NSUTF8StringEncoding]];
+        }
+    } catch (std::domain_error error) {
+        NSLog(@"%s", error.std::exception::what());
     }
     
 	return result;
@@ -84,9 +89,14 @@ std::string get_file_contents(const char *filename)
 
 -(id)getDefaultValueFor:(NSInteger)oid {
     sbx::ProductElementOid peOid = (sbx::ProductElementOid)oid;
-    std::shared_ptr<sbx::Constant> constant = re->getDefaultValue(peOid);
     
-    NSString *result = [NSString stringWithCString:constant->stringValue().c_str() encoding:NSUTF8StringEncoding];
+    NSString *result;
+    try {
+        std::shared_ptr<sbx::Constant> constant = re->getDefaultValue(peOid);
+        result = [NSString stringWithCString:constant->stringValue().c_str() encoding:NSUTF8StringEncoding];
+    } catch (std::domain_error error) {
+        NSLog(@"%s", error.std::exception::what());
+    }
     
     return result;
 }
