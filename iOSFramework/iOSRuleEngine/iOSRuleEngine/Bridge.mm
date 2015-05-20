@@ -19,13 +19,12 @@
     sbx::RuleEngine *re;
 }
 
--(instancetype)initWithRulesFilePath:(NSString*) rulesFilePath {
+-(instancetype)initWithConstants:(NSString*)constantsFilePath ruleCatalog:(NSString*)ruleCatalogFilePath  {
     self = [super init];
     if (self) {
         re = new sbx::RuleEngine();
-//        NSString *rulesFilePath = [NSString stringWithFormat:@"%@", [[NSBundle mainBundle] pathForResource:@"basedata-ruleconstants" ofType:@"json"]];
-        std::string json = get_file_contents(rulesFilePath.UTF8String);
-        re->initConstants(json);
+        re->initConstants(get_file_contents(constantsFilePath.UTF8String));
+        re->parseRuleCatalogueJSON(get_file_contents(ruleCatalogFilePath.UTF8String));
     }
     return self;
 }
@@ -71,10 +70,9 @@ std::string get_file_contents(const char *filename)
 }
 
 -(NSArray*)getAllowedValuesFor:(NSInteger)oid {
+    sbx::ProductElementOid peOid = (sbx::ProductElementOid)oid;
     NSMutableArray *result;
-    
     try {
-        sbx::ProductElementOid peOid = (sbx::ProductElementOid)oid;
         std::vector<std::shared_ptr<sbx::Constant>> list = re->getOptionsList(peOid);
         
         result = [NSMutableArray arrayWithCapacity:list.size()];
@@ -83,23 +81,21 @@ std::string get_file_contents(const char *filename)
             [result addObject:[NSString stringWithCString:constant->stringValue().c_str() encoding:NSUTF8StringEncoding]];
         }
     } catch (std::domain_error error) {
-        NSLog(@"No options list for oid %zd", oid);
+        NSLog(@"%s", error.std::exception::what());
     }
     
 	return result;
 }
 
 -(id)getDefaultValueFor:(NSInteger)oid {
-    NSString *result = @"";
+    sbx::ProductElementOid peOid = (sbx::ProductElementOid)oid;
     
+    NSString *result;
     try {
-        sbx::ProductElementOid peOid = (sbx::ProductElementOid)oid;
         std::shared_ptr<sbx::Constant> constant = re->getDefaultValue(peOid);
-        
         result = [NSString stringWithCString:constant->stringValue().c_str() encoding:NSUTF8StringEncoding];
-
     } catch (std::domain_error error) {
-        NSLog(@"No default value for oid %zd", oid);
+        NSLog(@"%s", error.std::exception::what());
     }
     
     return result;

@@ -1,0 +1,1032 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		3A5689621B0C3A5E009E5AB1 /* Framework */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 3A5689631B0C3A5E009E5AB1 /* Build configuration list for PBXAggregateTarget "Framework" */;
+			buildPhases = (
+				3A5689681B0C3A87009E5AB1 /* Run Script */,
+			);
+			dependencies = (
+				3A5689671B0C3A78009E5AB1 /* PBXTargetDependency */,
+			);
+			name = Framework;
+			productName = Framework;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		3A5688421B0C360C009E5AB1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5688411B0C360C009E5AB1 /* Foundation.framework */; };
+		3A5688471B0C360C009E5AB1 /* iOSRuleEngine.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3A5688461B0C360C009E5AB1 /* iOSRuleEngine.h */; };
+		3A5688501B0C360C009E5AB1 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A56884F1B0C360C009E5AB1 /* XCTest.framework */; };
+		3A5688511B0C360C009E5AB1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5688411B0C360C009E5AB1 /* Foundation.framework */; };
+		3A5688531B0C360C009E5AB1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5688521B0C360C009E5AB1 /* UIKit.framework */; };
+		3A5688561B0C360C009E5AB1 /* libiOSRuleEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A56883E1B0C360C009E5AB1 /* libiOSRuleEngine.a */; };
+		3A56885C1B0C360C009E5AB1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3A56885A1B0C360C009E5AB1 /* InfoPlist.strings */; };
+		3A56885E1B0C360C009E5AB1 /* iOSRuleEngineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A56885D1B0C360C009E5AB1 /* iOSRuleEngineTests.m */; };
+		3A56886A1B0C370B009E5AB1 /* Bridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5688681B0C370B009E5AB1 /* Bridge.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3A56886B1B0C370B009E5AB1 /* Bridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3A5688691B0C370B009E5AB1 /* Bridge.mm */; };
+		3A5688C31B0C37E3009E5AB1 /* mpCompat.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A56886E1B0C37E3009E5AB1 /* mpCompat.h */; };
+		3A5688C41B0C37E3009E5AB1 /* mpDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A56886F1B0C37E3009E5AB1 /* mpDefines.h */; };
+		3A5688C51B0C37E3009E5AB1 /* mpError.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A5688701B0C37E3009E5AB1 /* mpError.cpp */; };
+		3A5688C61B0C37E3009E5AB1 /* mpError.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5688711B0C37E3009E5AB1 /* mpError.h */; };
+		3A5688C71B0C37E3009E5AB1 /* mpFuncCmplx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A5688721B0C37E3009E5AB1 /* mpFuncCmplx.cpp */; };
+		3A5688C81B0C37E3009E5AB1 /* mpFuncCmplx.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5688731B0C37E3009E5AB1 /* mpFuncCmplx.h */; };
+		3A5688C91B0C37E3009E5AB1 /* mpFuncCommon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A5688741B0C37E3009E5AB1 /* mpFuncCommon.cpp */; };
+		3A5688CA1B0C37E3009E5AB1 /* mpFuncCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5688751B0C37E3009E5AB1 /* mpFuncCommon.h */; };
+		3A5688CB1B0C37E3009E5AB1 /* mpFuncMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A5688761B0C37E3009E5AB1 /* mpFuncMatrix.cpp */; };
+		3A5688CC1B0C37E3009E5AB1 /* mpFuncMatrix.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5688771B0C37E3009E5AB1 /* mpFuncMatrix.h */; };
+		3A5688CD1B0C37E3009E5AB1 /* mpFuncNonCmplx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A5688781B0C37E3009E5AB1 /* mpFuncNonCmplx.cpp */; };
+		3A5688CE1B0C37E3009E5AB1 /* mpFuncNonCmplx.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5688791B0C37E3009E5AB1 /* mpFuncNonCmplx.h */; };
+		3A5688CF1B0C37E3009E5AB1 /* mpFuncStr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A56887A1B0C37E3009E5AB1 /* mpFuncStr.cpp */; };
+		3A5688D01B0C37E3009E5AB1 /* mpFuncStr.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A56887B1B0C37E3009E5AB1 /* mpFuncStr.h */; };
+		3A5688D11B0C37E3009E5AB1 /* mpFwdDecl.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A56887C1B0C37E3009E5AB1 /* mpFwdDecl.h */; };
+		3A5688D21B0C37E3009E5AB1 /* mpICallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A56887D1B0C37E3009E5AB1 /* mpICallback.cpp */; };
+		3A5688D31B0C37E3009E5AB1 /* mpICallback.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A56887E1B0C37E3009E5AB1 /* mpICallback.h */; };
+		3A5688D41B0C37E3009E5AB1 /* mpIfThenElse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A56887F1B0C37E3009E5AB1 /* mpIfThenElse.cpp */; };
+		3A5688D51B0C37E3009E5AB1 /* mpIfThenElse.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5688801B0C37E3009E5AB1 /* mpIfThenElse.h */; };
+		3A5688D61B0C37E3009E5AB1 /* mpIOprt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A5688811B0C37E3009E5AB1 /* mpIOprt.cpp */; };
+		3A5688D71B0C37E3009E5AB1 /* mpIOprt.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5688821B0C37E3009E5AB1 /* mpIOprt.h */; };
+		3A5688D81B0C37E3009E5AB1 /* mpIPackage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A5688831B0C37E3009E5AB1 /* mpIPackage.cpp */; };
+		3A5688D91B0C37E3009E5AB1 /* mpIPackage.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5688841B0C37E3009E5AB1 /* mpIPackage.h */; };
+		3A5688DA1B0C37E3009E5AB1 /* mpIPrecedence.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5688851B0C37E3009E5AB1 /* mpIPrecedence.h */; };
+		3A5688DB1B0C37E3009E5AB1 /* mpIToken.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A5688861B0C37E3009E5AB1 /* mpIToken.cpp */; };
+		3A5688DC1B0C37E3009E5AB1 /* mpIToken.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5688871B0C37E3009E5AB1 /* mpIToken.h */; };
+		3A5688DD1B0C37E3009E5AB1 /* mpIValReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A5688881B0C37E3009E5AB1 /* mpIValReader.cpp */; };
+		3A5688DE1B0C37E3009E5AB1 /* mpIValReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5688891B0C37E3009E5AB1 /* mpIValReader.h */; };
+		3A5688DF1B0C37E3009E5AB1 /* mpIValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A56888A1B0C37E3009E5AB1 /* mpIValue.cpp */; };
+		3A5688E01B0C37E3009E5AB1 /* mpIValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A56888B1B0C37E3009E5AB1 /* mpIValue.h */; };
+		3A5688E11B0C37E3009E5AB1 /* mpMatrix.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A56888C1B0C37E3009E5AB1 /* mpMatrix.h */; };
+		3A5688E21B0C37E3009E5AB1 /* mpMatrixError.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A56888D1B0C37E3009E5AB1 /* mpMatrixError.h */; };
+		3A5688E31B0C37E3009E5AB1 /* mpOprtBinAssign.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A56888E1B0C37E3009E5AB1 /* mpOprtBinAssign.cpp */; };
+		3A5688E41B0C37E3009E5AB1 /* mpOprtBinAssign.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A56888F1B0C37E3009E5AB1 /* mpOprtBinAssign.h */; };
+		3A5688E51B0C37E3009E5AB1 /* mpOprtBinCommon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A5688901B0C37E3009E5AB1 /* mpOprtBinCommon.cpp */; };
+		3A5688E61B0C37E3009E5AB1 /* mpOprtBinCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5688911B0C37E3009E5AB1 /* mpOprtBinCommon.h */; };
+		3A5688E71B0C37E3009E5AB1 /* mpOprtCmplx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A5688921B0C37E3009E5AB1 /* mpOprtCmplx.cpp */; };
+		3A5688E81B0C37E3009E5AB1 /* mpOprtCmplx.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5688931B0C37E3009E5AB1 /* mpOprtCmplx.h */; };
+		3A5688E91B0C37E3009E5AB1 /* mpOprtIndex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A5688941B0C37E3009E5AB1 /* mpOprtIndex.cpp */; };
+		3A5688EA1B0C37E3009E5AB1 /* mpOprtIndex.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5688951B0C37E3009E5AB1 /* mpOprtIndex.h */; };
+		3A5688EB1B0C37E3009E5AB1 /* mpOprtMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A5688961B0C37E3009E5AB1 /* mpOprtMatrix.cpp */; };
+		3A5688EC1B0C37E3009E5AB1 /* mpOprtMatrix.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5688971B0C37E3009E5AB1 /* mpOprtMatrix.h */; };
+		3A5688ED1B0C37E3009E5AB1 /* mpOprtNonCmplx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A5688981B0C37E3009E5AB1 /* mpOprtNonCmplx.cpp */; };
+		3A5688EE1B0C37E3009E5AB1 /* mpOprtNonCmplx.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5688991B0C37E3009E5AB1 /* mpOprtNonCmplx.h */; };
+		3A5688EF1B0C37E3009E5AB1 /* mpOprtPostfixCommon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A56889A1B0C37E3009E5AB1 /* mpOprtPostfixCommon.cpp */; };
+		3A5688F01B0C37E3009E5AB1 /* mpOprtPostfixCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A56889B1B0C37E3009E5AB1 /* mpOprtPostfixCommon.h */; };
+		3A5688F11B0C37E3009E5AB1 /* mpPackageCmplx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A56889C1B0C37E3009E5AB1 /* mpPackageCmplx.cpp */; };
+		3A5688F21B0C37E3009E5AB1 /* mpPackageCmplx.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A56889D1B0C37E3009E5AB1 /* mpPackageCmplx.h */; };
+		3A5688F31B0C37E3009E5AB1 /* mpPackageCommon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A56889E1B0C37E3009E5AB1 /* mpPackageCommon.cpp */; };
+		3A5688F41B0C37E3009E5AB1 /* mpPackageCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A56889F1B0C37E3009E5AB1 /* mpPackageCommon.h */; };
+		3A5688F51B0C37E3009E5AB1 /* mpPackageMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A5688A01B0C37E3009E5AB1 /* mpPackageMatrix.cpp */; };
+		3A5688F61B0C37E3009E5AB1 /* mpPackageMatrix.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5688A11B0C37E3009E5AB1 /* mpPackageMatrix.h */; };
+		3A5688F71B0C37E3009E5AB1 /* mpPackageNonCmplx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A5688A21B0C37E3009E5AB1 /* mpPackageNonCmplx.cpp */; };
+		3A5688F81B0C37E3009E5AB1 /* mpPackageNonCmplx.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5688A31B0C37E3009E5AB1 /* mpPackageNonCmplx.h */; };
+		3A5688F91B0C37E3009E5AB1 /* mpPackageStr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A5688A41B0C37E3009E5AB1 /* mpPackageStr.cpp */; };
+		3A5688FA1B0C37E3009E5AB1 /* mpPackageStr.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5688A51B0C37E3009E5AB1 /* mpPackageStr.h */; };
+		3A5688FB1B0C37E3009E5AB1 /* mpPackageUnit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A5688A61B0C37E3009E5AB1 /* mpPackageUnit.cpp */; };
+		3A5688FC1B0C37E3009E5AB1 /* mpPackageUnit.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5688A71B0C37E3009E5AB1 /* mpPackageUnit.h */; };
+		3A5688FD1B0C37E3009E5AB1 /* mpParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A5688A81B0C37E3009E5AB1 /* mpParser.cpp */; };
+		3A5688FE1B0C37E3009E5AB1 /* mpParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5688A91B0C37E3009E5AB1 /* mpParser.h */; };
+		3A5688FF1B0C37E3009E5AB1 /* mpParserBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A5688AA1B0C37E3009E5AB1 /* mpParserBase.cpp */; };
+		3A5689001B0C37E3009E5AB1 /* mpParserBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5688AB1B0C37E3009E5AB1 /* mpParserBase.h */; };
+		3A5689011B0C37E3009E5AB1 /* mpParserMessageProvider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A5688AC1B0C37E3009E5AB1 /* mpParserMessageProvider.cpp */; };
+		3A5689021B0C37E3009E5AB1 /* mpParserMessageProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5688AD1B0C37E3009E5AB1 /* mpParserMessageProvider.h */; };
+		3A5689031B0C37E3009E5AB1 /* mpRPN.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A5688AE1B0C37E3009E5AB1 /* mpRPN.cpp */; };
+		3A5689041B0C37E3009E5AB1 /* mpRPN.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5688AF1B0C37E3009E5AB1 /* mpRPN.h */; };
+		3A5689051B0C37E3009E5AB1 /* mpScriptTokens.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A5688B01B0C37E3009E5AB1 /* mpScriptTokens.cpp */; };
+		3A5689061B0C37E3009E5AB1 /* mpScriptTokens.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5688B11B0C37E3009E5AB1 /* mpScriptTokens.h */; };
+		3A5689071B0C37E3009E5AB1 /* mpStack.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5688B21B0C37E3009E5AB1 /* mpStack.h */; };
+		3A5689081B0C37E3009E5AB1 /* mpTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A5688B31B0C37E3009E5AB1 /* mpTest.cpp */; };
+		3A5689091B0C37E3009E5AB1 /* mpTest.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5688B41B0C37E3009E5AB1 /* mpTest.h */; };
+		3A56890A1B0C37E3009E5AB1 /* mpTokenReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A5688B51B0C37E3009E5AB1 /* mpTokenReader.cpp */; };
+		3A56890B1B0C37E3009E5AB1 /* mpTokenReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5688B61B0C37E3009E5AB1 /* mpTokenReader.h */; };
+		3A56890C1B0C37E3009E5AB1 /* mpTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5688B71B0C37E3009E5AB1 /* mpTypes.h */; };
+		3A56890D1B0C37E3009E5AB1 /* mpValReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A5688B81B0C37E3009E5AB1 /* mpValReader.cpp */; };
+		3A56890E1B0C37E3009E5AB1 /* mpValReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5688B91B0C37E3009E5AB1 /* mpValReader.h */; };
+		3A56890F1B0C37E3009E5AB1 /* mpValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A5688BA1B0C37E3009E5AB1 /* mpValue.cpp */; };
+		3A5689101B0C37E3009E5AB1 /* mpValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5688BB1B0C37E3009E5AB1 /* mpValue.h */; };
+		3A5689111B0C37E3009E5AB1 /* mpValueCache.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A5688BC1B0C37E3009E5AB1 /* mpValueCache.cpp */; };
+		3A5689121B0C37E3009E5AB1 /* mpValueCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5688BD1B0C37E3009E5AB1 /* mpValueCache.h */; };
+		3A5689131B0C37E3009E5AB1 /* mpVariable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A5688BE1B0C37E3009E5AB1 /* mpVariable.cpp */; };
+		3A5689141B0C37E3009E5AB1 /* mpVariable.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5688BF1B0C37E3009E5AB1 /* mpVariable.h */; };
+		3A5689151B0C37E3009E5AB1 /* suSortPred.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5688C01B0C37E3009E5AB1 /* suSortPred.h */; };
+		3A5689161B0C37E3009E5AB1 /* suStringTokens.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5688C11B0C37E3009E5AB1 /* suStringTokens.h */; };
+		3A5689171B0C37E3009E5AB1 /* utGeneric.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5688C21B0C37E3009E5AB1 /* utGeneric.h */; };
+		3A56891C1B0C3801009E5AB1 /* json-forwards.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5689191B0C3801009E5AB1 /* json-forwards.h */; };
+		3A56891D1B0C3801009E5AB1 /* json.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A56891A1B0C3801009E5AB1 /* json.h */; };
+		3A56891E1B0C3801009E5AB1 /* jsoncpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A56891B1B0C3801009E5AB1 /* jsoncpp.cpp */; };
+		3A56893C1B0C3816009E5AB1 /* Constant_sbx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A56891F1B0C3816009E5AB1 /* Constant_sbx.cpp */; };
+		3A56893D1B0C3816009E5AB1 /* Constant_sbx.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5689201B0C3816009E5AB1 /* Constant_sbx.h */; };
+		3A56893E1B0C3816009E5AB1 /* KonceptInfo_sbx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A5689211B0C3816009E5AB1 /* KonceptInfo_sbx.cpp */; };
+		3A56893F1B0C3816009E5AB1 /* KonceptInfo_sbx.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5689221B0C3816009E5AB1 /* KonceptInfo_sbx.h */; };
+		3A5689401B0C3816009E5AB1 /* Parameter_sbx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A5689231B0C3816009E5AB1 /* Parameter_sbx.cpp */; };
+		3A5689411B0C3816009E5AB1 /* Parameter_sbx.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5689241B0C3816009E5AB1 /* Parameter_sbx.h */; };
+		3A5689421B0C3816009E5AB1 /* PrintUtils_sbx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A5689251B0C3816009E5AB1 /* PrintUtils_sbx.cpp */; };
+		3A5689431B0C3816009E5AB1 /* PrintUtils_sbx.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5689261B0C3816009E5AB1 /* PrintUtils_sbx.h */; };
+		3A5689441B0C3816009E5AB1 /* Product_sbx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A5689271B0C3816009E5AB1 /* Product_sbx.cpp */; };
+		3A5689451B0C3816009E5AB1 /* Product_sbx.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5689281B0C3816009E5AB1 /* Product_sbx.h */; };
+		3A5689461B0C3816009E5AB1 /* ProductElement_sbx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A5689291B0C3816009E5AB1 /* ProductElement_sbx.cpp */; };
+		3A5689471B0C3816009E5AB1 /* ProductElement_sbx.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A56892A1B0C3816009E5AB1 /* ProductElement_sbx.h */; };
+		3A5689481B0C3816009E5AB1 /* ProductElementValue_sbx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A56892B1B0C3816009E5AB1 /* ProductElementValue_sbx.cpp */; };
+		3A5689491B0C3816009E5AB1 /* ProductElementValue_sbx.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A56892C1B0C3816009E5AB1 /* ProductElementValue_sbx.h */; };
+		3A56894A1B0C3816009E5AB1 /* Rule.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A56892D1B0C3816009E5AB1 /* Rule.cpp */; };
+		3A56894B1B0C3816009E5AB1 /* Rule.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A56892E1B0C3816009E5AB1 /* Rule.h */; };
+		3A56894C1B0C3816009E5AB1 /* RuleCatalogue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A56892F1B0C3816009E5AB1 /* RuleCatalogue.cpp */; };
+		3A56894D1B0C3816009E5AB1 /* RuleCatalogue.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5689301B0C3816009E5AB1 /* RuleCatalogue.h */; };
+		3A56894E1B0C3816009E5AB1 /* RuleConstantContainer_sbx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A5689311B0C3816009E5AB1 /* RuleConstantContainer_sbx.cpp */; };
+		3A56894F1B0C3816009E5AB1 /* RuleConstantContainer_sbx.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5689321B0C3816009E5AB1 /* RuleConstantContainer_sbx.h */; };
+		3A5689501B0C3816009E5AB1 /* RuleEngine_sbx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A5689331B0C3816009E5AB1 /* RuleEngine_sbx.cpp */; };
+		3A5689511B0C3816009E5AB1 /* RuleEngine_sbx.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5689341B0C3816009E5AB1 /* RuleEngine_sbx.h */; };
+		3A5689521B0C3816009E5AB1 /* sbxTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5689351B0C3816009E5AB1 /* sbxTypes.h */; };
+		3A5689531B0C3816009E5AB1 /* TA_sbx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A5689361B0C3816009E5AB1 /* TA_sbx.cpp */; };
+		3A5689541B0C3816009E5AB1 /* TA_sbx.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5689371B0C3816009E5AB1 /* TA_sbx.h */; };
+		3A5689551B0C3816009E5AB1 /* ValidationResult.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A5689381B0C3816009E5AB1 /* ValidationResult.cpp */; };
+		3A5689561B0C3816009E5AB1 /* ValidationResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5689391B0C3816009E5AB1 /* ValidationResult.h */; };
+		3A5689571B0C3816009E5AB1 /* ValidationResults.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A56893A1B0C3816009E5AB1 /* ValidationResults.cpp */; };
+		3A5689581B0C3816009E5AB1 /* ValidationResults.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A56893B1B0C3816009E5AB1 /* ValidationResults.h */; };
+		3A56895D1B0C3825009E5AB1 /* GetTAValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A5689591B0C3825009E5AB1 /* GetTAValue.cpp */; };
+		3A56895E1B0C3825009E5AB1 /* GetTAValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A56895A1B0C3825009E5AB1 /* GetTAValue.h */; };
+		3A56895F1B0C3825009E5AB1 /* utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A56895B1B0C3825009E5AB1 /* utils.cpp */; };
+		3A5689601B0C3825009E5AB1 /* utils.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A56895C1B0C3825009E5AB1 /* utils.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3A5688541B0C360C009E5AB1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3A5688361B0C360C009E5AB1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3A56883D1B0C360C009E5AB1;
+			remoteInfo = iOSRuleEngine;
+		};
+		3A5689661B0C3A78009E5AB1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3A5688361B0C360C009E5AB1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3A56883D1B0C360C009E5AB1;
+			remoteInfo = iOSRuleEngine;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3A56883C1B0C360C009E5AB1 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				3A5688471B0C360C009E5AB1 /* iOSRuleEngine.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		3A56883E1B0C360C009E5AB1 /* libiOSRuleEngine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libiOSRuleEngine.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A5688411B0C360C009E5AB1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		3A5688451B0C360C009E5AB1 /* iOSRuleEngine-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOSRuleEngine-Prefix.pch"; sourceTree = "<group>"; };
+		3A5688461B0C360C009E5AB1 /* iOSRuleEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iOSRuleEngine.h; sourceTree = "<group>"; };
+		3A56884E1B0C360C009E5AB1 /* iOSRuleEngineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSRuleEngineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A56884F1B0C360C009E5AB1 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		3A5688521B0C360C009E5AB1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		3A5688591B0C360C009E5AB1 /* iOSRuleEngineTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iOSRuleEngineTests-Info.plist"; sourceTree = "<group>"; };
+		3A56885B1B0C360C009E5AB1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3A56885D1B0C360C009E5AB1 /* iOSRuleEngineTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOSRuleEngineTests.m; sourceTree = "<group>"; };
+		3A5688681B0C370B009E5AB1 /* Bridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bridge.h; sourceTree = "<group>"; };
+		3A5688691B0C370B009E5AB1 /* Bridge.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Bridge.mm; sourceTree = "<group>"; };
+		3A56886E1B0C37E3009E5AB1 /* mpCompat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mpCompat.h; path = ../../../libs/muparserx/parser/mpCompat.h; sourceTree = "<group>"; };
+		3A56886F1B0C37E3009E5AB1 /* mpDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mpDefines.h; path = ../../../libs/muparserx/parser/mpDefines.h; sourceTree = "<group>"; };
+		3A5688701B0C37E3009E5AB1 /* mpError.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mpError.cpp; path = ../../../libs/muparserx/parser/mpError.cpp; sourceTree = "<group>"; };
+		3A5688711B0C37E3009E5AB1 /* mpError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mpError.h; path = ../../../libs/muparserx/parser/mpError.h; sourceTree = "<group>"; };
+		3A5688721B0C37E3009E5AB1 /* mpFuncCmplx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mpFuncCmplx.cpp; path = ../../../libs/muparserx/parser/mpFuncCmplx.cpp; sourceTree = "<group>"; };
+		3A5688731B0C37E3009E5AB1 /* mpFuncCmplx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mpFuncCmplx.h; path = ../../../libs/muparserx/parser/mpFuncCmplx.h; sourceTree = "<group>"; };
+		3A5688741B0C37E3009E5AB1 /* mpFuncCommon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mpFuncCommon.cpp; path = ../../../libs/muparserx/parser/mpFuncCommon.cpp; sourceTree = "<group>"; };
+		3A5688751B0C37E3009E5AB1 /* mpFuncCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mpFuncCommon.h; path = ../../../libs/muparserx/parser/mpFuncCommon.h; sourceTree = "<group>"; };
+		3A5688761B0C37E3009E5AB1 /* mpFuncMatrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mpFuncMatrix.cpp; path = ../../../libs/muparserx/parser/mpFuncMatrix.cpp; sourceTree = "<group>"; };
+		3A5688771B0C37E3009E5AB1 /* mpFuncMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mpFuncMatrix.h; path = ../../../libs/muparserx/parser/mpFuncMatrix.h; sourceTree = "<group>"; };
+		3A5688781B0C37E3009E5AB1 /* mpFuncNonCmplx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mpFuncNonCmplx.cpp; path = ../../../libs/muparserx/parser/mpFuncNonCmplx.cpp; sourceTree = "<group>"; };
+		3A5688791B0C37E3009E5AB1 /* mpFuncNonCmplx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mpFuncNonCmplx.h; path = ../../../libs/muparserx/parser/mpFuncNonCmplx.h; sourceTree = "<group>"; };
+		3A56887A1B0C37E3009E5AB1 /* mpFuncStr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mpFuncStr.cpp; path = ../../../libs/muparserx/parser/mpFuncStr.cpp; sourceTree = "<group>"; };
+		3A56887B1B0C37E3009E5AB1 /* mpFuncStr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mpFuncStr.h; path = ../../../libs/muparserx/parser/mpFuncStr.h; sourceTree = "<group>"; };
+		3A56887C1B0C37E3009E5AB1 /* mpFwdDecl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mpFwdDecl.h; path = ../../../libs/muparserx/parser/mpFwdDecl.h; sourceTree = "<group>"; };
+		3A56887D1B0C37E3009E5AB1 /* mpICallback.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mpICallback.cpp; path = ../../../libs/muparserx/parser/mpICallback.cpp; sourceTree = "<group>"; };
+		3A56887E1B0C37E3009E5AB1 /* mpICallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mpICallback.h; path = ../../../libs/muparserx/parser/mpICallback.h; sourceTree = "<group>"; };
+		3A56887F1B0C37E3009E5AB1 /* mpIfThenElse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mpIfThenElse.cpp; path = ../../../libs/muparserx/parser/mpIfThenElse.cpp; sourceTree = "<group>"; };
+		3A5688801B0C37E3009E5AB1 /* mpIfThenElse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mpIfThenElse.h; path = ../../../libs/muparserx/parser/mpIfThenElse.h; sourceTree = "<group>"; };
+		3A5688811B0C37E3009E5AB1 /* mpIOprt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mpIOprt.cpp; path = ../../../libs/muparserx/parser/mpIOprt.cpp; sourceTree = "<group>"; };
+		3A5688821B0C37E3009E5AB1 /* mpIOprt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mpIOprt.h; path = ../../../libs/muparserx/parser/mpIOprt.h; sourceTree = "<group>"; };
+		3A5688831B0C37E3009E5AB1 /* mpIPackage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mpIPackage.cpp; path = ../../../libs/muparserx/parser/mpIPackage.cpp; sourceTree = "<group>"; };
+		3A5688841B0C37E3009E5AB1 /* mpIPackage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mpIPackage.h; path = ../../../libs/muparserx/parser/mpIPackage.h; sourceTree = "<group>"; };
+		3A5688851B0C37E3009E5AB1 /* mpIPrecedence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mpIPrecedence.h; path = ../../../libs/muparserx/parser/mpIPrecedence.h; sourceTree = "<group>"; };
+		3A5688861B0C37E3009E5AB1 /* mpIToken.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mpIToken.cpp; path = ../../../libs/muparserx/parser/mpIToken.cpp; sourceTree = "<group>"; };
+		3A5688871B0C37E3009E5AB1 /* mpIToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mpIToken.h; path = ../../../libs/muparserx/parser/mpIToken.h; sourceTree = "<group>"; };
+		3A5688881B0C37E3009E5AB1 /* mpIValReader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mpIValReader.cpp; path = ../../../libs/muparserx/parser/mpIValReader.cpp; sourceTree = "<group>"; };
+		3A5688891B0C37E3009E5AB1 /* mpIValReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mpIValReader.h; path = ../../../libs/muparserx/parser/mpIValReader.h; sourceTree = "<group>"; };
+		3A56888A1B0C37E3009E5AB1 /* mpIValue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mpIValue.cpp; path = ../../../libs/muparserx/parser/mpIValue.cpp; sourceTree = "<group>"; };
+		3A56888B1B0C37E3009E5AB1 /* mpIValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mpIValue.h; path = ../../../libs/muparserx/parser/mpIValue.h; sourceTree = "<group>"; };
+		3A56888C1B0C37E3009E5AB1 /* mpMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mpMatrix.h; path = ../../../libs/muparserx/parser/mpMatrix.h; sourceTree = "<group>"; };
+		3A56888D1B0C37E3009E5AB1 /* mpMatrixError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mpMatrixError.h; path = ../../../libs/muparserx/parser/mpMatrixError.h; sourceTree = "<group>"; };
+		3A56888E1B0C37E3009E5AB1 /* mpOprtBinAssign.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mpOprtBinAssign.cpp; path = ../../../libs/muparserx/parser/mpOprtBinAssign.cpp; sourceTree = "<group>"; };
+		3A56888F1B0C37E3009E5AB1 /* mpOprtBinAssign.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mpOprtBinAssign.h; path = ../../../libs/muparserx/parser/mpOprtBinAssign.h; sourceTree = "<group>"; };
+		3A5688901B0C37E3009E5AB1 /* mpOprtBinCommon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mpOprtBinCommon.cpp; path = ../../../libs/muparserx/parser/mpOprtBinCommon.cpp; sourceTree = "<group>"; };
+		3A5688911B0C37E3009E5AB1 /* mpOprtBinCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mpOprtBinCommon.h; path = ../../../libs/muparserx/parser/mpOprtBinCommon.h; sourceTree = "<group>"; };
+		3A5688921B0C37E3009E5AB1 /* mpOprtCmplx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mpOprtCmplx.cpp; path = ../../../libs/muparserx/parser/mpOprtCmplx.cpp; sourceTree = "<group>"; };
+		3A5688931B0C37E3009E5AB1 /* mpOprtCmplx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mpOprtCmplx.h; path = ../../../libs/muparserx/parser/mpOprtCmplx.h; sourceTree = "<group>"; };
+		3A5688941B0C37E3009E5AB1 /* mpOprtIndex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mpOprtIndex.cpp; path = ../../../libs/muparserx/parser/mpOprtIndex.cpp; sourceTree = "<group>"; };
+		3A5688951B0C37E3009E5AB1 /* mpOprtIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mpOprtIndex.h; path = ../../../libs/muparserx/parser/mpOprtIndex.h; sourceTree = "<group>"; };
+		3A5688961B0C37E3009E5AB1 /* mpOprtMatrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mpOprtMatrix.cpp; path = ../../../libs/muparserx/parser/mpOprtMatrix.cpp; sourceTree = "<group>"; };
+		3A5688971B0C37E3009E5AB1 /* mpOprtMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mpOprtMatrix.h; path = ../../../libs/muparserx/parser/mpOprtMatrix.h; sourceTree = "<group>"; };
+		3A5688981B0C37E3009E5AB1 /* mpOprtNonCmplx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mpOprtNonCmplx.cpp; path = ../../../libs/muparserx/parser/mpOprtNonCmplx.cpp; sourceTree = "<group>"; };
+		3A5688991B0C37E3009E5AB1 /* mpOprtNonCmplx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mpOprtNonCmplx.h; path = ../../../libs/muparserx/parser/mpOprtNonCmplx.h; sourceTree = "<group>"; };
+		3A56889A1B0C37E3009E5AB1 /* mpOprtPostfixCommon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mpOprtPostfixCommon.cpp; path = ../../../libs/muparserx/parser/mpOprtPostfixCommon.cpp; sourceTree = "<group>"; };
+		3A56889B1B0C37E3009E5AB1 /* mpOprtPostfixCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mpOprtPostfixCommon.h; path = ../../../libs/muparserx/parser/mpOprtPostfixCommon.h; sourceTree = "<group>"; };
+		3A56889C1B0C37E3009E5AB1 /* mpPackageCmplx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mpPackageCmplx.cpp; path = ../../../libs/muparserx/parser/mpPackageCmplx.cpp; sourceTree = "<group>"; };
+		3A56889D1B0C37E3009E5AB1 /* mpPackageCmplx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mpPackageCmplx.h; path = ../../../libs/muparserx/parser/mpPackageCmplx.h; sourceTree = "<group>"; };
+		3A56889E1B0C37E3009E5AB1 /* mpPackageCommon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mpPackageCommon.cpp; path = ../../../libs/muparserx/parser/mpPackageCommon.cpp; sourceTree = "<group>"; };
+		3A56889F1B0C37E3009E5AB1 /* mpPackageCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mpPackageCommon.h; path = ../../../libs/muparserx/parser/mpPackageCommon.h; sourceTree = "<group>"; };
+		3A5688A01B0C37E3009E5AB1 /* mpPackageMatrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mpPackageMatrix.cpp; path = ../../../libs/muparserx/parser/mpPackageMatrix.cpp; sourceTree = "<group>"; };
+		3A5688A11B0C37E3009E5AB1 /* mpPackageMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mpPackageMatrix.h; path = ../../../libs/muparserx/parser/mpPackageMatrix.h; sourceTree = "<group>"; };
+		3A5688A21B0C37E3009E5AB1 /* mpPackageNonCmplx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mpPackageNonCmplx.cpp; path = ../../../libs/muparserx/parser/mpPackageNonCmplx.cpp; sourceTree = "<group>"; };
+		3A5688A31B0C37E3009E5AB1 /* mpPackageNonCmplx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mpPackageNonCmplx.h; path = ../../../libs/muparserx/parser/mpPackageNonCmplx.h; sourceTree = "<group>"; };
+		3A5688A41B0C37E3009E5AB1 /* mpPackageStr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mpPackageStr.cpp; path = ../../../libs/muparserx/parser/mpPackageStr.cpp; sourceTree = "<group>"; };
+		3A5688A51B0C37E3009E5AB1 /* mpPackageStr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mpPackageStr.h; path = ../../../libs/muparserx/parser/mpPackageStr.h; sourceTree = "<group>"; };
+		3A5688A61B0C37E3009E5AB1 /* mpPackageUnit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mpPackageUnit.cpp; path = ../../../libs/muparserx/parser/mpPackageUnit.cpp; sourceTree = "<group>"; };
+		3A5688A71B0C37E3009E5AB1 /* mpPackageUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mpPackageUnit.h; path = ../../../libs/muparserx/parser/mpPackageUnit.h; sourceTree = "<group>"; };
+		3A5688A81B0C37E3009E5AB1 /* mpParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mpParser.cpp; path = ../../../libs/muparserx/parser/mpParser.cpp; sourceTree = "<group>"; };
+		3A5688A91B0C37E3009E5AB1 /* mpParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mpParser.h; path = ../../../libs/muparserx/parser/mpParser.h; sourceTree = "<group>"; };
+		3A5688AA1B0C37E3009E5AB1 /* mpParserBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mpParserBase.cpp; path = ../../../libs/muparserx/parser/mpParserBase.cpp; sourceTree = "<group>"; };
+		3A5688AB1B0C37E3009E5AB1 /* mpParserBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mpParserBase.h; path = ../../../libs/muparserx/parser/mpParserBase.h; sourceTree = "<group>"; };
+		3A5688AC1B0C37E3009E5AB1 /* mpParserMessageProvider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mpParserMessageProvider.cpp; path = ../../../libs/muparserx/parser/mpParserMessageProvider.cpp; sourceTree = "<group>"; };
+		3A5688AD1B0C37E3009E5AB1 /* mpParserMessageProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mpParserMessageProvider.h; path = ../../../libs/muparserx/parser/mpParserMessageProvider.h; sourceTree = "<group>"; };
+		3A5688AE1B0C37E3009E5AB1 /* mpRPN.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mpRPN.cpp; path = ../../../libs/muparserx/parser/mpRPN.cpp; sourceTree = "<group>"; };
+		3A5688AF1B0C37E3009E5AB1 /* mpRPN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mpRPN.h; path = ../../../libs/muparserx/parser/mpRPN.h; sourceTree = "<group>"; };
+		3A5688B01B0C37E3009E5AB1 /* mpScriptTokens.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mpScriptTokens.cpp; path = ../../../libs/muparserx/parser/mpScriptTokens.cpp; sourceTree = "<group>"; };
+		3A5688B11B0C37E3009E5AB1 /* mpScriptTokens.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mpScriptTokens.h; path = ../../../libs/muparserx/parser/mpScriptTokens.h; sourceTree = "<group>"; };
+		3A5688B21B0C37E3009E5AB1 /* mpStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mpStack.h; path = ../../../libs/muparserx/parser/mpStack.h; sourceTree = "<group>"; };
+		3A5688B31B0C37E3009E5AB1 /* mpTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mpTest.cpp; path = ../../../libs/muparserx/parser/mpTest.cpp; sourceTree = "<group>"; };
+		3A5688B41B0C37E3009E5AB1 /* mpTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mpTest.h; path = ../../../libs/muparserx/parser/mpTest.h; sourceTree = "<group>"; };
+		3A5688B51B0C37E3009E5AB1 /* mpTokenReader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mpTokenReader.cpp; path = ../../../libs/muparserx/parser/mpTokenReader.cpp; sourceTree = "<group>"; };
+		3A5688B61B0C37E3009E5AB1 /* mpTokenReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mpTokenReader.h; path = ../../../libs/muparserx/parser/mpTokenReader.h; sourceTree = "<group>"; };
+		3A5688B71B0C37E3009E5AB1 /* mpTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mpTypes.h; path = ../../../libs/muparserx/parser/mpTypes.h; sourceTree = "<group>"; };
+		3A5688B81B0C37E3009E5AB1 /* mpValReader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mpValReader.cpp; path = ../../../libs/muparserx/parser/mpValReader.cpp; sourceTree = "<group>"; };
+		3A5688B91B0C37E3009E5AB1 /* mpValReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mpValReader.h; path = ../../../libs/muparserx/parser/mpValReader.h; sourceTree = "<group>"; };
+		3A5688BA1B0C37E3009E5AB1 /* mpValue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mpValue.cpp; path = ../../../libs/muparserx/parser/mpValue.cpp; sourceTree = "<group>"; };
+		3A5688BB1B0C37E3009E5AB1 /* mpValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mpValue.h; path = ../../../libs/muparserx/parser/mpValue.h; sourceTree = "<group>"; };
+		3A5688BC1B0C37E3009E5AB1 /* mpValueCache.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mpValueCache.cpp; path = ../../../libs/muparserx/parser/mpValueCache.cpp; sourceTree = "<group>"; };
+		3A5688BD1B0C37E3009E5AB1 /* mpValueCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mpValueCache.h; path = ../../../libs/muparserx/parser/mpValueCache.h; sourceTree = "<group>"; };
+		3A5688BE1B0C37E3009E5AB1 /* mpVariable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mpVariable.cpp; path = ../../../libs/muparserx/parser/mpVariable.cpp; sourceTree = "<group>"; };
+		3A5688BF1B0C37E3009E5AB1 /* mpVariable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mpVariable.h; path = ../../../libs/muparserx/parser/mpVariable.h; sourceTree = "<group>"; };
+		3A5688C01B0C37E3009E5AB1 /* suSortPred.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = suSortPred.h; path = ../../../libs/muparserx/parser/suSortPred.h; sourceTree = "<group>"; };
+		3A5688C11B0C37E3009E5AB1 /* suStringTokens.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = suStringTokens.h; path = ../../../libs/muparserx/parser/suStringTokens.h; sourceTree = "<group>"; };
+		3A5688C21B0C37E3009E5AB1 /* utGeneric.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = utGeneric.h; path = ../../../libs/muparserx/parser/utGeneric.h; sourceTree = "<group>"; };
+		3A5689191B0C3801009E5AB1 /* json-forwards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "json-forwards.h"; path = "../../../RuleEngineMain/src/json/json-forwards.h"; sourceTree = "<group>"; };
+		3A56891A1B0C3801009E5AB1 /* json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = json.h; path = ../../../RuleEngineMain/src/json/json.h; sourceTree = "<group>"; };
+		3A56891B1B0C3801009E5AB1 /* jsoncpp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = jsoncpp.cpp; path = ../../../RuleEngineMain/src/json/jsoncpp.cpp; sourceTree = "<group>"; };
+		3A56891F1B0C3816009E5AB1 /* Constant_sbx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Constant_sbx.cpp; path = ../../../RuleEngineMain/src/ruleengine/Constant_sbx.cpp; sourceTree = "<group>"; };
+		3A5689201B0C3816009E5AB1 /* Constant_sbx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constant_sbx.h; path = ../../../RuleEngineMain/src/ruleengine/Constant_sbx.h; sourceTree = "<group>"; };
+		3A5689211B0C3816009E5AB1 /* KonceptInfo_sbx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = KonceptInfo_sbx.cpp; path = ../../../RuleEngineMain/src/ruleengine/KonceptInfo_sbx.cpp; sourceTree = "<group>"; };
+		3A5689221B0C3816009E5AB1 /* KonceptInfo_sbx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KonceptInfo_sbx.h; path = ../../../RuleEngineMain/src/ruleengine/KonceptInfo_sbx.h; sourceTree = "<group>"; };
+		3A5689231B0C3816009E5AB1 /* Parameter_sbx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Parameter_sbx.cpp; path = ../../../RuleEngineMain/src/ruleengine/Parameter_sbx.cpp; sourceTree = "<group>"; };
+		3A5689241B0C3816009E5AB1 /* Parameter_sbx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Parameter_sbx.h; path = ../../../RuleEngineMain/src/ruleengine/Parameter_sbx.h; sourceTree = "<group>"; };
+		3A5689251B0C3816009E5AB1 /* PrintUtils_sbx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PrintUtils_sbx.cpp; path = ../../../RuleEngineMain/src/ruleengine/PrintUtils_sbx.cpp; sourceTree = "<group>"; };
+		3A5689261B0C3816009E5AB1 /* PrintUtils_sbx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrintUtils_sbx.h; path = ../../../RuleEngineMain/src/ruleengine/PrintUtils_sbx.h; sourceTree = "<group>"; };
+		3A5689271B0C3816009E5AB1 /* Product_sbx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Product_sbx.cpp; path = ../../../RuleEngineMain/src/ruleengine/Product_sbx.cpp; sourceTree = "<group>"; };
+		3A5689281B0C3816009E5AB1 /* Product_sbx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Product_sbx.h; path = ../../../RuleEngineMain/src/ruleengine/Product_sbx.h; sourceTree = "<group>"; };
+		3A5689291B0C3816009E5AB1 /* ProductElement_sbx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ProductElement_sbx.cpp; path = ../../../RuleEngineMain/src/ruleengine/ProductElement_sbx.cpp; sourceTree = "<group>"; };
+		3A56892A1B0C3816009E5AB1 /* ProductElement_sbx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductElement_sbx.h; path = ../../../RuleEngineMain/src/ruleengine/ProductElement_sbx.h; sourceTree = "<group>"; };
+		3A56892B1B0C3816009E5AB1 /* ProductElementValue_sbx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ProductElementValue_sbx.cpp; path = ../../../RuleEngineMain/src/ruleengine/ProductElementValue_sbx.cpp; sourceTree = "<group>"; };
+		3A56892C1B0C3816009E5AB1 /* ProductElementValue_sbx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductElementValue_sbx.h; path = ../../../RuleEngineMain/src/ruleengine/ProductElementValue_sbx.h; sourceTree = "<group>"; };
+		3A56892D1B0C3816009E5AB1 /* Rule.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Rule.cpp; path = ../../../RuleEngineMain/src/ruleengine/Rule.cpp; sourceTree = "<group>"; };
+		3A56892E1B0C3816009E5AB1 /* Rule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Rule.h; path = ../../../RuleEngineMain/src/ruleengine/Rule.h; sourceTree = "<group>"; };
+		3A56892F1B0C3816009E5AB1 /* RuleCatalogue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RuleCatalogue.cpp; path = ../../../RuleEngineMain/src/ruleengine/RuleCatalogue.cpp; sourceTree = "<group>"; };
+		3A5689301B0C3816009E5AB1 /* RuleCatalogue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RuleCatalogue.h; path = ../../../RuleEngineMain/src/ruleengine/RuleCatalogue.h; sourceTree = "<group>"; };
+		3A5689311B0C3816009E5AB1 /* RuleConstantContainer_sbx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RuleConstantContainer_sbx.cpp; path = ../../../RuleEngineMain/src/ruleengine/RuleConstantContainer_sbx.cpp; sourceTree = "<group>"; };
+		3A5689321B0C3816009E5AB1 /* RuleConstantContainer_sbx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RuleConstantContainer_sbx.h; path = ../../../RuleEngineMain/src/ruleengine/RuleConstantContainer_sbx.h; sourceTree = "<group>"; };
+		3A5689331B0C3816009E5AB1 /* RuleEngine_sbx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RuleEngine_sbx.cpp; path = ../../../RuleEngineMain/src/ruleengine/RuleEngine_sbx.cpp; sourceTree = "<group>"; };
+		3A5689341B0C3816009E5AB1 /* RuleEngine_sbx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RuleEngine_sbx.h; path = ../../../RuleEngineMain/src/ruleengine/RuleEngine_sbx.h; sourceTree = "<group>"; };
+		3A5689351B0C3816009E5AB1 /* sbxTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sbxTypes.h; path = ../../../RuleEngineMain/src/ruleengine/sbxTypes.h; sourceTree = "<group>"; };
+		3A5689361B0C3816009E5AB1 /* TA_sbx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TA_sbx.cpp; path = ../../../RuleEngineMain/src/ruleengine/TA_sbx.cpp; sourceTree = "<group>"; };
+		3A5689371B0C3816009E5AB1 /* TA_sbx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TA_sbx.h; path = ../../../RuleEngineMain/src/ruleengine/TA_sbx.h; sourceTree = "<group>"; };
+		3A5689381B0C3816009E5AB1 /* ValidationResult.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ValidationResult.cpp; path = ../../../RuleEngineMain/src/ruleengine/ValidationResult.cpp; sourceTree = "<group>"; };
+		3A5689391B0C3816009E5AB1 /* ValidationResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ValidationResult.h; path = ../../../RuleEngineMain/src/ruleengine/ValidationResult.h; sourceTree = "<group>"; };
+		3A56893A1B0C3816009E5AB1 /* ValidationResults.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ValidationResults.cpp; path = ../../../RuleEngineMain/src/ruleengine/ValidationResults.cpp; sourceTree = "<group>"; };
+		3A56893B1B0C3816009E5AB1 /* ValidationResults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ValidationResults.h; path = ../../../RuleEngineMain/src/ruleengine/ValidationResults.h; sourceTree = "<group>"; };
+		3A5689591B0C3825009E5AB1 /* GetTAValue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GetTAValue.cpp; path = ../../../RuleEngineMain/src/ruleengine/mubridge/GetTAValue.cpp; sourceTree = "<group>"; };
+		3A56895A1B0C3825009E5AB1 /* GetTAValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetTAValue.h; path = ../../../RuleEngineMain/src/ruleengine/mubridge/GetTAValue.h; sourceTree = "<group>"; };
+		3A56895B1B0C3825009E5AB1 /* utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = utils.cpp; path = ../../../RuleEngineMain/src/ruleengine/mubridge/utils.cpp; sourceTree = "<group>"; };
+		3A56895C1B0C3825009E5AB1 /* utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = utils.h; path = ../../../RuleEngineMain/src/ruleengine/mubridge/utils.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3A56883B1B0C360C009E5AB1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A5688421B0C360C009E5AB1 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3A56884B1B0C360C009E5AB1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A5688501B0C360C009E5AB1 /* XCTest.framework in Frameworks */,
+				3A5688561B0C360C009E5AB1 /* libiOSRuleEngine.a in Frameworks */,
+				3A5688531B0C360C009E5AB1 /* UIKit.framework in Frameworks */,
+				3A5688511B0C360C009E5AB1 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3A5688351B0C360C009E5AB1 = {
+			isa = PBXGroup;
+			children = (
+				3A5688431B0C360C009E5AB1 /* iOSRuleEngine */,
+				3A5688571B0C360C009E5AB1 /* iOSRuleEngineTests */,
+				3A5688401B0C360C009E5AB1 /* Frameworks */,
+				3A56883F1B0C360C009E5AB1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3A56883F1B0C360C009E5AB1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3A56883E1B0C360C009E5AB1 /* libiOSRuleEngine.a */,
+				3A56884E1B0C360C009E5AB1 /* iOSRuleEngineTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3A5688401B0C360C009E5AB1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3A5688411B0C360C009E5AB1 /* Foundation.framework */,
+				3A56884F1B0C360C009E5AB1 /* XCTest.framework */,
+				3A5688521B0C360C009E5AB1 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3A5688431B0C360C009E5AB1 /* iOSRuleEngine */ = {
+			isa = PBXGroup;
+			children = (
+				3A56886C1B0C37A2009E5AB1 /* CPP */,
+				3A5688461B0C360C009E5AB1 /* iOSRuleEngine.h */,
+				3A5688681B0C370B009E5AB1 /* Bridge.h */,
+				3A5688691B0C370B009E5AB1 /* Bridge.mm */,
+				3A5688441B0C360C009E5AB1 /* Supporting Files */,
+			);
+			path = iOSRuleEngine;
+			sourceTree = "<group>";
+		};
+		3A5688441B0C360C009E5AB1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3A5688451B0C360C009E5AB1 /* iOSRuleEngine-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3A5688571B0C360C009E5AB1 /* iOSRuleEngineTests */ = {
+			isa = PBXGroup;
+			children = (
+				3A56885D1B0C360C009E5AB1 /* iOSRuleEngineTests.m */,
+				3A5688581B0C360C009E5AB1 /* Supporting Files */,
+			);
+			path = iOSRuleEngineTests;
+			sourceTree = "<group>";
+		};
+		3A5688581B0C360C009E5AB1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3A5688591B0C360C009E5AB1 /* iOSRuleEngineTests-Info.plist */,
+				3A56885A1B0C360C009E5AB1 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3A56886C1B0C37A2009E5AB1 /* CPP */ = {
+			isa = PBXGroup;
+			children = (
+				3A56891F1B0C3816009E5AB1 /* Constant_sbx.cpp */,
+				3A5689201B0C3816009E5AB1 /* Constant_sbx.h */,
+				3A5689211B0C3816009E5AB1 /* KonceptInfo_sbx.cpp */,
+				3A5689221B0C3816009E5AB1 /* KonceptInfo_sbx.h */,
+				3A5689231B0C3816009E5AB1 /* Parameter_sbx.cpp */,
+				3A5689241B0C3816009E5AB1 /* Parameter_sbx.h */,
+				3A5689251B0C3816009E5AB1 /* PrintUtils_sbx.cpp */,
+				3A5689261B0C3816009E5AB1 /* PrintUtils_sbx.h */,
+				3A5689271B0C3816009E5AB1 /* Product_sbx.cpp */,
+				3A5689281B0C3816009E5AB1 /* Product_sbx.h */,
+				3A5689291B0C3816009E5AB1 /* ProductElement_sbx.cpp */,
+				3A56892A1B0C3816009E5AB1 /* ProductElement_sbx.h */,
+				3A56892B1B0C3816009E5AB1 /* ProductElementValue_sbx.cpp */,
+				3A56892C1B0C3816009E5AB1 /* ProductElementValue_sbx.h */,
+				3A56892D1B0C3816009E5AB1 /* Rule.cpp */,
+				3A56892E1B0C3816009E5AB1 /* Rule.h */,
+				3A56892F1B0C3816009E5AB1 /* RuleCatalogue.cpp */,
+				3A5689301B0C3816009E5AB1 /* RuleCatalogue.h */,
+				3A5689311B0C3816009E5AB1 /* RuleConstantContainer_sbx.cpp */,
+				3A5689321B0C3816009E5AB1 /* RuleConstantContainer_sbx.h */,
+				3A5689331B0C3816009E5AB1 /* RuleEngine_sbx.cpp */,
+				3A5689341B0C3816009E5AB1 /* RuleEngine_sbx.h */,
+				3A5689351B0C3816009E5AB1 /* sbxTypes.h */,
+				3A5689361B0C3816009E5AB1 /* TA_sbx.cpp */,
+				3A5689371B0C3816009E5AB1 /* TA_sbx.h */,
+				3A5689381B0C3816009E5AB1 /* ValidationResult.cpp */,
+				3A5689391B0C3816009E5AB1 /* ValidationResult.h */,
+				3A56893A1B0C3816009E5AB1 /* ValidationResults.cpp */,
+				3A56893B1B0C3816009E5AB1 /* ValidationResults.h */,
+				3A5689591B0C3825009E5AB1 /* GetTAValue.cpp */,
+				3A56895A1B0C3825009E5AB1 /* GetTAValue.h */,
+				3A56895B1B0C3825009E5AB1 /* utils.cpp */,
+				3A56895C1B0C3825009E5AB1 /* utils.h */,
+				3A5689181B0C37F9009E5AB1 /* JSON */,
+				3A56886D1B0C37D0009E5AB1 /* muparser */,
+			);
+			name = CPP;
+			sourceTree = "<group>";
+		};
+		3A56886D1B0C37D0009E5AB1 /* muparser */ = {
+			isa = PBXGroup;
+			children = (
+				3A56886E1B0C37E3009E5AB1 /* mpCompat.h */,
+				3A56886F1B0C37E3009E5AB1 /* mpDefines.h */,
+				3A5688701B0C37E3009E5AB1 /* mpError.cpp */,
+				3A5688711B0C37E3009E5AB1 /* mpError.h */,
+				3A5688721B0C37E3009E5AB1 /* mpFuncCmplx.cpp */,
+				3A5688731B0C37E3009E5AB1 /* mpFuncCmplx.h */,
+				3A5688741B0C37E3009E5AB1 /* mpFuncCommon.cpp */,
+				3A5688751B0C37E3009E5AB1 /* mpFuncCommon.h */,
+				3A5688761B0C37E3009E5AB1 /* mpFuncMatrix.cpp */,
+				3A5688771B0C37E3009E5AB1 /* mpFuncMatrix.h */,
+				3A5688781B0C37E3009E5AB1 /* mpFuncNonCmplx.cpp */,
+				3A5688791B0C37E3009E5AB1 /* mpFuncNonCmplx.h */,
+				3A56887A1B0C37E3009E5AB1 /* mpFuncStr.cpp */,
+				3A56887B1B0C37E3009E5AB1 /* mpFuncStr.h */,
+				3A56887C1B0C37E3009E5AB1 /* mpFwdDecl.h */,
+				3A56887D1B0C37E3009E5AB1 /* mpICallback.cpp */,
+				3A56887E1B0C37E3009E5AB1 /* mpICallback.h */,
+				3A56887F1B0C37E3009E5AB1 /* mpIfThenElse.cpp */,
+				3A5688801B0C37E3009E5AB1 /* mpIfThenElse.h */,
+				3A5688811B0C37E3009E5AB1 /* mpIOprt.cpp */,
+				3A5688821B0C37E3009E5AB1 /* mpIOprt.h */,
+				3A5688831B0C37E3009E5AB1 /* mpIPackage.cpp */,
+				3A5688841B0C37E3009E5AB1 /* mpIPackage.h */,
+				3A5688851B0C37E3009E5AB1 /* mpIPrecedence.h */,
+				3A5688861B0C37E3009E5AB1 /* mpIToken.cpp */,
+				3A5688871B0C37E3009E5AB1 /* mpIToken.h */,
+				3A5688881B0C37E3009E5AB1 /* mpIValReader.cpp */,
+				3A5688891B0C37E3009E5AB1 /* mpIValReader.h */,
+				3A56888A1B0C37E3009E5AB1 /* mpIValue.cpp */,
+				3A56888B1B0C37E3009E5AB1 /* mpIValue.h */,
+				3A56888C1B0C37E3009E5AB1 /* mpMatrix.h */,
+				3A56888D1B0C37E3009E5AB1 /* mpMatrixError.h */,
+				3A56888E1B0C37E3009E5AB1 /* mpOprtBinAssign.cpp */,
+				3A56888F1B0C37E3009E5AB1 /* mpOprtBinAssign.h */,
+				3A5688901B0C37E3009E5AB1 /* mpOprtBinCommon.cpp */,
+				3A5688911B0C37E3009E5AB1 /* mpOprtBinCommon.h */,
+				3A5688921B0C37E3009E5AB1 /* mpOprtCmplx.cpp */,
+				3A5688931B0C37E3009E5AB1 /* mpOprtCmplx.h */,
+				3A5688941B0C37E3009E5AB1 /* mpOprtIndex.cpp */,
+				3A5688951B0C37E3009E5AB1 /* mpOprtIndex.h */,
+				3A5688961B0C37E3009E5AB1 /* mpOprtMatrix.cpp */,
+				3A5688971B0C37E3009E5AB1 /* mpOprtMatrix.h */,
+				3A5688981B0C37E3009E5AB1 /* mpOprtNonCmplx.cpp */,
+				3A5688991B0C37E3009E5AB1 /* mpOprtNonCmplx.h */,
+				3A56889A1B0C37E3009E5AB1 /* mpOprtPostfixCommon.cpp */,
+				3A56889B1B0C37E3009E5AB1 /* mpOprtPostfixCommon.h */,
+				3A56889C1B0C37E3009E5AB1 /* mpPackageCmplx.cpp */,
+				3A56889D1B0C37E3009E5AB1 /* mpPackageCmplx.h */,
+				3A56889E1B0C37E3009E5AB1 /* mpPackageCommon.cpp */,
+				3A56889F1B0C37E3009E5AB1 /* mpPackageCommon.h */,
+				3A5688A01B0C37E3009E5AB1 /* mpPackageMatrix.cpp */,
+				3A5688A11B0C37E3009E5AB1 /* mpPackageMatrix.h */,
+				3A5688A21B0C37E3009E5AB1 /* mpPackageNonCmplx.cpp */,
+				3A5688A31B0C37E3009E5AB1 /* mpPackageNonCmplx.h */,
+				3A5688A41B0C37E3009E5AB1 /* mpPackageStr.cpp */,
+				3A5688A51B0C37E3009E5AB1 /* mpPackageStr.h */,
+				3A5688A61B0C37E3009E5AB1 /* mpPackageUnit.cpp */,
+				3A5688A71B0C37E3009E5AB1 /* mpPackageUnit.h */,
+				3A5688A81B0C37E3009E5AB1 /* mpParser.cpp */,
+				3A5688A91B0C37E3009E5AB1 /* mpParser.h */,
+				3A5688AA1B0C37E3009E5AB1 /* mpParserBase.cpp */,
+				3A5688AB1B0C37E3009E5AB1 /* mpParserBase.h */,
+				3A5688AC1B0C37E3009E5AB1 /* mpParserMessageProvider.cpp */,
+				3A5688AD1B0C37E3009E5AB1 /* mpParserMessageProvider.h */,
+				3A5688AE1B0C37E3009E5AB1 /* mpRPN.cpp */,
+				3A5688AF1B0C37E3009E5AB1 /* mpRPN.h */,
+				3A5688B01B0C37E3009E5AB1 /* mpScriptTokens.cpp */,
+				3A5688B11B0C37E3009E5AB1 /* mpScriptTokens.h */,
+				3A5688B21B0C37E3009E5AB1 /* mpStack.h */,
+				3A5688B31B0C37E3009E5AB1 /* mpTest.cpp */,
+				3A5688B41B0C37E3009E5AB1 /* mpTest.h */,
+				3A5688B51B0C37E3009E5AB1 /* mpTokenReader.cpp */,
+				3A5688B61B0C37E3009E5AB1 /* mpTokenReader.h */,
+				3A5688B71B0C37E3009E5AB1 /* mpTypes.h */,
+				3A5688B81B0C37E3009E5AB1 /* mpValReader.cpp */,
+				3A5688B91B0C37E3009E5AB1 /* mpValReader.h */,
+				3A5688BA1B0C37E3009E5AB1 /* mpValue.cpp */,
+				3A5688BB1B0C37E3009E5AB1 /* mpValue.h */,
+				3A5688BC1B0C37E3009E5AB1 /* mpValueCache.cpp */,
+				3A5688BD1B0C37E3009E5AB1 /* mpValueCache.h */,
+				3A5688BE1B0C37E3009E5AB1 /* mpVariable.cpp */,
+				3A5688BF1B0C37E3009E5AB1 /* mpVariable.h */,
+				3A5688C01B0C37E3009E5AB1 /* suSortPred.h */,
+				3A5688C11B0C37E3009E5AB1 /* suStringTokens.h */,
+				3A5688C21B0C37E3009E5AB1 /* utGeneric.h */,
+			);
+			name = muparser;
+			sourceTree = "<group>";
+		};
+		3A5689181B0C37F9009E5AB1 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				3A5689191B0C3801009E5AB1 /* json-forwards.h */,
+				3A56891A1B0C3801009E5AB1 /* json.h */,
+				3A56891B1B0C3801009E5AB1 /* jsoncpp.cpp */,
+			);
+			name = JSON;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		3A5688671B0C36D9009E5AB1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A5688F81B0C37E3009E5AB1 /* mpPackageNonCmplx.h in Headers */,
+				3A5689141B0C37E3009E5AB1 /* mpVariable.h in Headers */,
+				3A5689021B0C37E3009E5AB1 /* mpParserMessageProvider.h in Headers */,
+				3A5688D51B0C37E3009E5AB1 /* mpIfThenElse.h in Headers */,
+				3A5689521B0C3816009E5AB1 /* sbxTypes.h in Headers */,
+				3A5689091B0C37E3009E5AB1 /* mpTest.h in Headers */,
+				3A5688E41B0C37E3009E5AB1 /* mpOprtBinAssign.h in Headers */,
+				3A5688CA1B0C37E3009E5AB1 /* mpFuncCommon.h in Headers */,
+				3A5689471B0C3816009E5AB1 /* ProductElement_sbx.h in Headers */,
+				3A5688E81B0C37E3009E5AB1 /* mpOprtCmplx.h in Headers */,
+				3A5689431B0C3816009E5AB1 /* PrintUtils_sbx.h in Headers */,
+				3A5689061B0C37E3009E5AB1 /* mpScriptTokens.h in Headers */,
+				3A5688F01B0C37E3009E5AB1 /* mpOprtPostfixCommon.h in Headers */,
+				3A5688FA1B0C37E3009E5AB1 /* mpPackageStr.h in Headers */,
+				3A5688D91B0C37E3009E5AB1 /* mpIPackage.h in Headers */,
+				3A5688FC1B0C37E3009E5AB1 /* mpPackageUnit.h in Headers */,
+				3A5688EE1B0C37E3009E5AB1 /* mpOprtNonCmplx.h in Headers */,
+				3A56893D1B0C3816009E5AB1 /* Constant_sbx.h in Headers */,
+				3A56894F1B0C3816009E5AB1 /* RuleConstantContainer_sbx.h in Headers */,
+				3A5688FE1B0C37E3009E5AB1 /* mpParser.h in Headers */,
+				3A5688EC1B0C37E3009E5AB1 /* mpOprtMatrix.h in Headers */,
+				3A5689491B0C3816009E5AB1 /* ProductElementValue_sbx.h in Headers */,
+				3A5689071B0C37E3009E5AB1 /* mpStack.h in Headers */,
+				3A5688EA1B0C37E3009E5AB1 /* mpOprtIndex.h in Headers */,
+				3A56890C1B0C37E3009E5AB1 /* mpTypes.h in Headers */,
+				3A5688E01B0C37E3009E5AB1 /* mpIValue.h in Headers */,
+				3A5689001B0C37E3009E5AB1 /* mpParserBase.h in Headers */,
+				3A56891D1B0C3801009E5AB1 /* json.h in Headers */,
+				3A5689451B0C3816009E5AB1 /* Product_sbx.h in Headers */,
+				3A5689151B0C37E3009E5AB1 /* suSortPred.h in Headers */,
+				3A5688D71B0C37E3009E5AB1 /* mpIOprt.h in Headers */,
+				3A5689541B0C3816009E5AB1 /* TA_sbx.h in Headers */,
+				3A5688C81B0C37E3009E5AB1 /* mpFuncCmplx.h in Headers */,
+				3A56895E1B0C3825009E5AB1 /* GetTAValue.h in Headers */,
+				3A5688D01B0C37E3009E5AB1 /* mpFuncStr.h in Headers */,
+				3A5689161B0C37E3009E5AB1 /* suStringTokens.h in Headers */,
+				3A5689041B0C37E3009E5AB1 /* mpRPN.h in Headers */,
+				3A5688C41B0C37E3009E5AB1 /* mpDefines.h in Headers */,
+				3A5689411B0C3816009E5AB1 /* Parameter_sbx.h in Headers */,
+				3A5689101B0C37E3009E5AB1 /* mpValue.h in Headers */,
+				3A5688E61B0C37E3009E5AB1 /* mpOprtBinCommon.h in Headers */,
+				3A56891C1B0C3801009E5AB1 /* json-forwards.h in Headers */,
+				3A56894D1B0C3816009E5AB1 /* RuleCatalogue.h in Headers */,
+				3A5688DE1B0C37E3009E5AB1 /* mpIValReader.h in Headers */,
+				3A5689171B0C37E3009E5AB1 /* utGeneric.h in Headers */,
+				3A5688DC1B0C37E3009E5AB1 /* mpIToken.h in Headers */,
+				3A5689601B0C3825009E5AB1 /* utils.h in Headers */,
+				3A56886A1B0C370B009E5AB1 /* Bridge.h in Headers */,
+				3A56890E1B0C37E3009E5AB1 /* mpValReader.h in Headers */,
+				3A5688CC1B0C37E3009E5AB1 /* mpFuncMatrix.h in Headers */,
+				3A5689511B0C3816009E5AB1 /* RuleEngine_sbx.h in Headers */,
+				3A5689561B0C3816009E5AB1 /* ValidationResult.h in Headers */,
+				3A5688D31B0C37E3009E5AB1 /* mpICallback.h in Headers */,
+				3A5688E21B0C37E3009E5AB1 /* mpMatrixError.h in Headers */,
+				3A5688DA1B0C37E3009E5AB1 /* mpIPrecedence.h in Headers */,
+				3A56890B1B0C37E3009E5AB1 /* mpTokenReader.h in Headers */,
+				3A5688E11B0C37E3009E5AB1 /* mpMatrix.h in Headers */,
+				3A5688F21B0C37E3009E5AB1 /* mpPackageCmplx.h in Headers */,
+				3A56894B1B0C3816009E5AB1 /* Rule.h in Headers */,
+				3A5688F41B0C37E3009E5AB1 /* mpPackageCommon.h in Headers */,
+				3A5688C61B0C37E3009E5AB1 /* mpError.h in Headers */,
+				3A5688D11B0C37E3009E5AB1 /* mpFwdDecl.h in Headers */,
+				3A5689581B0C3816009E5AB1 /* ValidationResults.h in Headers */,
+				3A5688F61B0C37E3009E5AB1 /* mpPackageMatrix.h in Headers */,
+				3A5688CE1B0C37E3009E5AB1 /* mpFuncNonCmplx.h in Headers */,
+				3A56893F1B0C3816009E5AB1 /* KonceptInfo_sbx.h in Headers */,
+				3A5689121B0C37E3009E5AB1 /* mpValueCache.h in Headers */,
+				3A5688C31B0C37E3009E5AB1 /* mpCompat.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		3A56883D1B0C360C009E5AB1 /* iOSRuleEngine */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3A5688611B0C360C009E5AB1 /* Build configuration list for PBXNativeTarget "iOSRuleEngine" */;
+			buildPhases = (
+				3A56883A1B0C360C009E5AB1 /* Sources */,
+				3A56883B1B0C360C009E5AB1 /* Frameworks */,
+				3A56883C1B0C360C009E5AB1 /* CopyFiles */,
+				3A5688671B0C36D9009E5AB1 /* Headers */,
+				3A5689611B0C391B009E5AB1 /* Run Script */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iOSRuleEngine;
+			productName = iOSRuleEngine;
+			productReference = 3A56883E1B0C360C009E5AB1 /* libiOSRuleEngine.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		3A56884D1B0C360C009E5AB1 /* iOSRuleEngineTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3A5688641B0C360C009E5AB1 /* Build configuration list for PBXNativeTarget "iOSRuleEngineTests" */;
+			buildPhases = (
+				3A56884A1B0C360C009E5AB1 /* Sources */,
+				3A56884B1B0C360C009E5AB1 /* Frameworks */,
+				3A56884C1B0C360C009E5AB1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3A5688551B0C360C009E5AB1 /* PBXTargetDependency */,
+			);
+			name = iOSRuleEngineTests;
+			productName = iOSRuleEngineTests;
+			productReference = 3A56884E1B0C360C009E5AB1 /* iOSRuleEngineTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3A5688361B0C360C009E5AB1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = SEB;
+			};
+			buildConfigurationList = 3A5688391B0C360C009E5AB1 /* Build configuration list for PBXProject "iOSRuleEngine" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3A5688351B0C360C009E5AB1;
+			productRefGroup = 3A56883F1B0C360C009E5AB1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3A56883D1B0C360C009E5AB1 /* iOSRuleEngine */,
+				3A56884D1B0C360C009E5AB1 /* iOSRuleEngineTests */,
+				3A5689621B0C3A5E009E5AB1 /* Framework */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3A56884C1B0C360C009E5AB1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A56885C1B0C360C009E5AB1 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3A5689611B0C391B009E5AB1 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\n\nmkdir -p \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/A/Headers\"\n\n# Link the \"Current\" version to \"A\"\n/bin/ln -sfh A \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/Current\"\n/bin/ln -sfh Versions/Current/Headers \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Headers\"\n/bin/ln -sfh \"Versions/Current/${PRODUCT_NAME}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/${PRODUCT_NAME}\"\n\n# The -a ensures that the headers maintain the source modification date so that we don't constantly\n# cause propagating rebuilds of files that import these headers.\n/bin/cp -a \"${TARGET_BUILD_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/A/Headers\"";
+		};
+		3A5689681B0C3A87009E5AB1 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\nset +u\n# Avoid recursively calling this script.\nif [[ $SF_MASTER_SCRIPT_RUNNING ]]\nthen\nexit 0\nfi\nset -u\nexport SF_MASTER_SCRIPT_RUNNING=1\n\nSF_TARGET_NAME=${PROJECT_NAME}\nSF_EXECUTABLE_PATH=\"lib${SF_TARGET_NAME}.a\"\nSF_WRAPPER_NAME=\"${SF_TARGET_NAME}.framework\"\n\n# The following conditionals come from\n# https://github.com/kstenerud/iOS-Universal-Framework\n\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]\nthen\nSF_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\necho \"Could not find platform name from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]\nthen\nSF_SDK_VERSION=${BASH_REMATCH[1]}\nelse\necho \"Could not find sdk version from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\nif [[ \"$SF_SDK_PLATFORM\" = \"iphoneos\" ]]\nthen\nSF_OTHER_PLATFORM=iphonesimulator\nelse\nSF_OTHER_PLATFORM=iphoneos\nfi\n\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$SF_SDK_PLATFORM$ ]]\nthen\nSF_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${SF_OTHER_PLATFORM}\"\nelse\necho \"Could not find platform name from build products directory: $BUILT_PRODUCTS_DIR\"\nexit 1\nfi\n\n# Build the other platform.\nxcrun xcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${SF_OTHER_PLATFORM}${SF_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" OBJROOT=\"${OBJROOT}\" BUILD_ROOT=\"${BUILD_ROOT}\" SYMROOT=\"${SYMROOT}\" $ACTION\n\n# Smash the two static libraries into one fat binary and store it in the .framework\nxcrun lipo -create \"${BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}\" \"${SF_OTHER_BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}\" -output \"${BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_TARGET_NAME}\"\n\n# Copy the binary to the other architecture folder to have a complete framework in both.\ncp -a \"${BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_TARGET_NAME}\" \"${SF_OTHER_BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_TARGET_NAME}\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3A56883A1B0C360C009E5AB1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A5689131B0C37E3009E5AB1 /* mpVariable.cpp in Sources */,
+				3A5689531B0C3816009E5AB1 /* TA_sbx.cpp in Sources */,
+				3A5688F11B0C37E3009E5AB1 /* mpPackageCmplx.cpp in Sources */,
+				3A5688F91B0C37E3009E5AB1 /* mpPackageStr.cpp in Sources */,
+				3A5688E91B0C37E3009E5AB1 /* mpOprtIndex.cpp in Sources */,
+				3A5688D41B0C37E3009E5AB1 /* mpIfThenElse.cpp in Sources */,
+				3A56895F1B0C3825009E5AB1 /* utils.cpp in Sources */,
+				3A5689441B0C3816009E5AB1 /* Product_sbx.cpp in Sources */,
+				3A5688EB1B0C37E3009E5AB1 /* mpOprtMatrix.cpp in Sources */,
+				3A56886B1B0C370B009E5AB1 /* Bridge.mm in Sources */,
+				3A5689401B0C3816009E5AB1 /* Parameter_sbx.cpp in Sources */,
+				3A56890F1B0C37E3009E5AB1 /* mpValue.cpp in Sources */,
+				3A5689551B0C3816009E5AB1 /* ValidationResult.cpp in Sources */,
+				3A5689031B0C37E3009E5AB1 /* mpRPN.cpp in Sources */,
+				3A5689011B0C37E3009E5AB1 /* mpParserMessageProvider.cpp in Sources */,
+				3A5688D81B0C37E3009E5AB1 /* mpIPackage.cpp in Sources */,
+				3A56890D1B0C37E3009E5AB1 /* mpValReader.cpp in Sources */,
+				3A56891E1B0C3801009E5AB1 /* jsoncpp.cpp in Sources */,
+				3A5689051B0C37E3009E5AB1 /* mpScriptTokens.cpp in Sources */,
+				3A5689461B0C3816009E5AB1 /* ProductElement_sbx.cpp in Sources */,
+				3A56894A1B0C3816009E5AB1 /* Rule.cpp in Sources */,
+				3A5689571B0C3816009E5AB1 /* ValidationResults.cpp in Sources */,
+				3A5688F71B0C37E3009E5AB1 /* mpPackageNonCmplx.cpp in Sources */,
+				3A56890A1B0C37E3009E5AB1 /* mpTokenReader.cpp in Sources */,
+				3A5688E31B0C37E3009E5AB1 /* mpOprtBinAssign.cpp in Sources */,
+				3A5688FB1B0C37E3009E5AB1 /* mpPackageUnit.cpp in Sources */,
+				3A5688CD1B0C37E3009E5AB1 /* mpFuncNonCmplx.cpp in Sources */,
+				3A56893E1B0C3816009E5AB1 /* KonceptInfo_sbx.cpp in Sources */,
+				3A56894E1B0C3816009E5AB1 /* RuleConstantContainer_sbx.cpp in Sources */,
+				3A5689501B0C3816009E5AB1 /* RuleEngine_sbx.cpp in Sources */,
+				3A5688FD1B0C37E3009E5AB1 /* mpParser.cpp in Sources */,
+				3A5689111B0C37E3009E5AB1 /* mpValueCache.cpp in Sources */,
+				3A5688EF1B0C37E3009E5AB1 /* mpOprtPostfixCommon.cpp in Sources */,
+				3A5688DF1B0C37E3009E5AB1 /* mpIValue.cpp in Sources */,
+				3A5688F51B0C37E3009E5AB1 /* mpPackageMatrix.cpp in Sources */,
+				3A5689421B0C3816009E5AB1 /* PrintUtils_sbx.cpp in Sources */,
+				3A5688D61B0C37E3009E5AB1 /* mpIOprt.cpp in Sources */,
+				3A5688CF1B0C37E3009E5AB1 /* mpFuncStr.cpp in Sources */,
+				3A5688E71B0C37E3009E5AB1 /* mpOprtCmplx.cpp in Sources */,
+				3A5688E51B0C37E3009E5AB1 /* mpOprtBinCommon.cpp in Sources */,
+				3A5688D21B0C37E3009E5AB1 /* mpICallback.cpp in Sources */,
+				3A5688CB1B0C37E3009E5AB1 /* mpFuncMatrix.cpp in Sources */,
+				3A5688DB1B0C37E3009E5AB1 /* mpIToken.cpp in Sources */,
+				3A56893C1B0C3816009E5AB1 /* Constant_sbx.cpp in Sources */,
+				3A5688C51B0C37E3009E5AB1 /* mpError.cpp in Sources */,
+				3A5689481B0C3816009E5AB1 /* ProductElementValue_sbx.cpp in Sources */,
+				3A56895D1B0C3825009E5AB1 /* GetTAValue.cpp in Sources */,
+				3A5688ED1B0C37E3009E5AB1 /* mpOprtNonCmplx.cpp in Sources */,
+				3A5688C71B0C37E3009E5AB1 /* mpFuncCmplx.cpp in Sources */,
+				3A5688F31B0C37E3009E5AB1 /* mpPackageCommon.cpp in Sources */,
+				3A5688FF1B0C37E3009E5AB1 /* mpParserBase.cpp in Sources */,
+				3A5688C91B0C37E3009E5AB1 /* mpFuncCommon.cpp in Sources */,
+				3A5689081B0C37E3009E5AB1 /* mpTest.cpp in Sources */,
+				3A5688DD1B0C37E3009E5AB1 /* mpIValReader.cpp in Sources */,
+				3A56894C1B0C3816009E5AB1 /* RuleCatalogue.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3A56884A1B0C360C009E5AB1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A56885E1B0C360C009E5AB1 /* iOSRuleEngineTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3A5688551B0C360C009E5AB1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3A56883D1B0C360C009E5AB1 /* iOSRuleEngine */;
+			targetProxy = 3A5688541B0C360C009E5AB1 /* PBXContainerItemProxy */;
+		};
+		3A5689671B0C3A78009E5AB1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3A56883D1B0C360C009E5AB1 /* iOSRuleEngine */;
+			targetProxy = 3A5689661B0C3A78009E5AB1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3A56885A1B0C360C009E5AB1 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3A56885B1B0C360C009E5AB1 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3A56885F1B0C360C009E5AB1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = NO;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		3A5688601B0C360C009E5AB1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3A5688621B0C360C009E5AB1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
+				DSTROOT = /tmp/iOSRuleEngine.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iOSRuleEngine/iOSRuleEngine-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRIP_STYLE = "non-global";
+			};
+			name = Debug;
+		};
+		3A5688631B0C360C009E5AB1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
+				DSTROOT = /tmp/iOSRuleEngine.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iOSRuleEngine/iOSRuleEngine-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRIP_STYLE = "non-global";
+			};
+			name = Release;
+		};
+		3A5688651B0C360C009E5AB1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iOSRuleEngine/iOSRuleEngine-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "iOSRuleEngineTests/iOSRuleEngineTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		3A5688661B0C360C009E5AB1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iOSRuleEngine/iOSRuleEngine-Prefix.pch";
+				INFOPLIST_FILE = "iOSRuleEngineTests/iOSRuleEngineTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+		3A5689641B0C3A5E009E5AB1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		3A5689651B0C3A5E009E5AB1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3A5688391B0C360C009E5AB1 /* Build configuration list for PBXProject "iOSRuleEngine" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3A56885F1B0C360C009E5AB1 /* Debug */,
+				3A5688601B0C360C009E5AB1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3A5688611B0C360C009E5AB1 /* Build configuration list for PBXNativeTarget "iOSRuleEngine" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3A5688621B0C360C009E5AB1 /* Debug */,
+				3A5688631B0C360C009E5AB1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		3A5688641B0C360C009E5AB1 /* Build configuration list for PBXNativeTarget "iOSRuleEngineTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3A5688651B0C360C009E5AB1 /* Debug */,
+				3A5688661B0C360C009E5AB1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		3A5689631B0C3A5E009E5AB1 /* Build configuration list for PBXAggregateTarget "Framework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3A5689641B0C3A5E009E5AB1 /* Debug */,
+				3A5689651B0C3A5E009E5AB1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3A5688361B0C360C009E5AB1 /* Project object */;
+}
