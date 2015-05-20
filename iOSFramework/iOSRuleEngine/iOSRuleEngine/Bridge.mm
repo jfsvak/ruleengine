@@ -19,13 +19,12 @@
     sbx::RuleEngine *re;
 }
 
--(instancetype)init {
+-(instancetype)initWithConstants:(NSString*)constantsFilePath ruleCatalog:(NSString*)ruleCatalogFilePath  {
     self = [super init];
     if (self) {
         re = new sbx::RuleEngine();
-        NSString *s = [NSString stringWithFormat:@"%@", [[NSBundle mainBundle] pathForResource:@"basedata-ruleconstants" ofType:@"json"]];
-        std::string json = get_file_contents(s.UTF8String);
-        re->initConstants(json);
+        re->initConstants(get_file_contents(constantsFilePath.UTF8String));
+        re->parseRuleCatalogueJSON(get_file_contents(ruleCatalogFilePath.UTF8String));
     }
     return self;
 }
