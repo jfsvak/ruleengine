@@ -17,11 +17,12 @@ class Constant {
 	Constant(void);
 	Constant(const Constant&); // copy constructor, overloaded to provide cout printing for debug
 	Constant(const std::shared_ptr<Constant>&); // copy constructor for shared_ptr, overloaded to provide cout printing for debug
-	Constant(short underkonceptOid, short unionAgreementOid, ProductElementOid productElement, ComparisonTypes comparisonType, const std::string& value, bool isDefault = false, bool isAutoCreated = false);
+	Constant(short underkonceptOid, short unionAgreementOid, sbx::ProductElementOid productElement, ComparisonTypes comparisonType, const std::string& value, bool isDefault = false, bool isAutoCreated = false);
 	virtual ~Constant(void);
 	std::string stringValue() const;
 	long longValue() const;
 	double doubleValue() const;
+	bool boolValue() const;
 	short getUnderKonceptOid() const;
 	short getUnionAgreementOid() const;
 	ProductElementOid getProductElement() const;

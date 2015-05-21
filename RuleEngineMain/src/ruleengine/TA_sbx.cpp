@@ -36,7 +36,6 @@ TA::TA(const sbx::TA& otherTA)
 		: _cvr {otherTA._cvr},
 		  _konceptOid {otherTA._konceptOid},
 		  _peValuesMap {otherTA._peValuesMap}
-
 {}
 
 TA& TA::setValue(unsigned short productElementOid, const std::string& value)
@@ -45,7 +44,7 @@ TA& TA::setValue(unsigned short productElementOid, const std::string& value)
 	return *this;
 }
 
-TA& TA::setValue(unsigned short productElementOid, const double value)
+TA& TA::setValue(unsigned short productElementOid, double value)
 {
 	// TODO fix precision conversion of double - or find better way to convert long to string
 	std::stringstream s {};
@@ -53,7 +52,7 @@ TA& TA::setValue(unsigned short productElementOid, const double value)
 	return this->setValue(productElementOid, s.str());
 }
 
-TA& TA::setValue(unsigned short productElementOid, const long value)
+TA& TA::setValue(unsigned short productElementOid, long value)
 {
 	// TODO xjes find better way to convert long to string
 	std::stringstream s {};
@@ -68,25 +67,32 @@ TA& TA::setValue(unsigned short productElementOid, bool value)
 	return this->setValue(productElementOid, s.str());
 }
 
-const std::map<unsigned short, sbx::ProductElementValue>& TA::getValues() const
-{
-	return _peValuesMap;
-}
-
 /**
- * Gets a reference to the product element in this ta.
- * Can be used to update value inside the product element
+ * Gets a reference to the product element in this ta (not-copy).
+ * Can be used to update value inside the product element.
+ * If no value was found for the peOid, a new value is created and returned.
  */
 sbx::ProductElementValue& TA::getValue(unsigned short productElementOid)
 {
+	// if not found in the map, insert a new element into the map
+	if (_peValuesMap.find(productElementOid) == _peValuesMap.cend()) {
+		_peValuesMap.insert( std::pair<unsigned short, sbx::ProductElementValue>(productElementOid, {productElementOid, ""} ));
+	}
+
 	return _peValuesMap[productElementOid];
-//	if (_peValuesMap.find(productElementOid) != _peValuesMap.cend())
-//	{
-//		return _peValuesMap.at(productElementOid);
-//	}
-//
-//	// return empty value if not found for this ta.
-//	return {productElementOid, ""};
+}
+
+/**
+ * Gets the productElementValue for the oid from this ta (copy).
+ * If no value was found for the peOid, a new dummy value is created.
+ */
+sbx::ProductElementValue TA::getValue(unsigned short productElementOid) const
+{
+	if (_peValuesMap.find(productElementOid) != _peValuesMap.cend()) {
+		return _peValuesMap.at(productElementOid);
+	}
+
+	return sbx::ProductElementValue(productElementOid, "");
 }
 
 TA& TA::setCVR(const std::string& cvr)
@@ -95,23 +101,17 @@ TA& TA::setCVR(const std::string& cvr)
 	return *this;
 }
 
-const std::string& TA::getCVR() const
-{
-	return _cvr;
-}
-
 TA& TA::setKonceptOid(unsigned short konceptOid)
 {
 	_konceptOid = konceptOid;
 	return *this;
 }
 
-unsigned short TA::getKonceptOid() const
-{
-	return _konceptOid;
-}
+const std::map<unsigned short, sbx::ProductElementValue>& TA::getValues() const { return _peValuesMap; }
+const std::string& TA::getCVR() const { return _cvr; }
+unsigned short TA::getKonceptOid() const { return _konceptOid; }
+bool sbx::TA::hasValue(unsigned short productElementOid) const { return (_peValuesMap.find(productElementOid) != _peValuesMap.cend()); }
 
-TA::~TA()
-{
-}
+TA::~TA() {}
+
 } /* namespace sbx */

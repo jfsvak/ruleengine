@@ -13,11 +13,11 @@ class ProductElementValue {
 	ProductElementValue(void);
 	ProductElementValue(const sbx::ProductElementValue& otherProductElementValue); // copy constructor
 	ProductElementValue(unsigned short peOid, const std::string& stringValue);
-	ProductElementValue(const sbx::ProductElementOid& peOid, const std::string& stringValue);
 
 	std::string stringValue() const;
 	long longValue() const;
 	double doubleValue() const;
+	bool boolValue() const;
 	unsigned short getProductElementOid() const;
 	void setValue(const std::string& value);
 

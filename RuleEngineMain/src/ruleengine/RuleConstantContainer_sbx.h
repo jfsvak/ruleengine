@@ -27,26 +27,28 @@ class RuleConstantContainer {
 
 public:
 	static bool _printDebug;
+	static bool _printErr;
 
 	void initGlobalConstants(const std::vector<sbx::Constant>& globalConstants);
 	void initConstants(const std::string& jsonContents);
 	void initContext(const unsigned short underkoncept_oid, const short unionAgreementOid);
-	std::vector<std::string> getOptions(const sbx::ProductElementOid& productElementOid);
+
+	bool existsAs(unsigned short peOid, const sbx::ComparisonTypes&) const;
+
 	std::vector<std::string> getOptions(unsigned short productElementOid);
-	const std::vector<std::shared_ptr<sbx::Constant>>& getOptionsList(const sbx::ProductElementOid& productElement);
-	std::shared_ptr<sbx::Constant> getConstant(const sbx::ProductElementOid& productElement, const sbx::ComparisonTypes& comparisonType);
-	std::shared_ptr<sbx::Constant> getConstant(const unsigned short& productElementOid, const sbx::ComparisonTypes& comparisonType);
+	const std::vector<std::shared_ptr<sbx::Constant>>& getOptionsList(unsigned short productElementOid);
+	std::shared_ptr<sbx::Constant> getConstant(unsigned short productElement, const sbx::ComparisonTypes& comparisonType);
 
 	const std::set<unsigned short>& getProductOids(unsigned short parameterOid) const;
 	std::set<unsigned short> getProductElementOids(unsigned short parameterOid) const;
-	sbx::ProductElement getProductElement(const unsigned short& productElementOid);
-	sbx::ProductElement getProductElement(const sbx::ProductElementOid& productElementOid);
+	sbx::ProductElement getProductElement(unsigned short productElementOid);
 
-	std::shared_ptr<sbx::Constant> createConstant(unsigned short underkonceptOid, unsigned short unionAgreementOid, sbx::ProductElementOid peOid, sbx::ComparisonTypes comparisonType);
+	std::shared_ptr<sbx::Constant> createConstant(unsigned short underkonceptOid, unsigned short unionAgreementOid, unsigned short peOid, sbx::ComparisonTypes comparisonType);
+
 	// ----- util functions------
 	void printConstantHeader() const;
 	void printConstants() const;
-	void printConstants(unsigned short int underKonceptOid, sbx::ProductElementOid productElement) const;
+	void printConstants(unsigned short int underKonceptOid, unsigned short productElement) const;
 	void printContainerOverview(unsigned short int underKonceptOid) const;
 	void printContainerOverview(unsigned short int underKonceptOid, sbx::ComparisonTypes type) const;
 	void printProducts() const;
@@ -75,7 +77,7 @@ private:
 	 *  Subscript format is: _ukOptionsMap[underkonceptOid][productElementOid]
 	 *  Value is a vector of shared_ptr->Constant
 	 **/
-	std::map<unsigned short, std::map<sbx::ProductElementOid, std::vector<std::shared_ptr<sbx::Constant>>>> _ukOptionsMap;
+	std::map<unsigned short, std::map<unsigned short, std::vector<std::shared_ptr<sbx::Constant>>>> _ukOptionsMap;
 
 	/**
 	 * _ukMinValuesMap:
@@ -84,16 +86,17 @@ private:
 	 * Subscript format is: _ukMinValuesMap[underkonceptOid][productElementOid]
 	 * Value: shared_ptr to Constant
 	 */
-	std::map<unsigned short, std::map<sbx::ProductElementOid, std::shared_ptr<sbx::Constant>>> _ukMinValuesMap;
+	std::map<unsigned short, std::map<unsigned short, std::shared_ptr<sbx::Constant>>> _ukMinValuesMap;
 
 	/**
 	 * _ukMaxValuesMap:
 	 * First index is underKonceptOid
-	 * Second index is productElementName, value is a pointer to the constant-instance in _globalConstants
+	 * Second index is product element oid,
+	 * value is a pointer to the constant-instance in _globalConstants
 	 * Subscript format is: _ukMinValuesMap[underkonceptOid][productElementOid]
 	 * Value: shared_ptr to Constant
 	 */
-	std::map<unsigned short, std::map<sbx::ProductElementOid, std::shared_ptr<sbx::Constant>>> _ukMaxValuesMap;
+	std::map<unsigned short, std::map<unsigned short, std::shared_ptr<sbx::Constant>>> _ukMaxValuesMap;
 
 	/**
 	 * _productsMap:

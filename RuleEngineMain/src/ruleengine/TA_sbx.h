@@ -33,7 +33,9 @@ public:
 	const std::string& getCVR() const;
 	unsigned short getKonceptOid() const;
 	sbx::ProductElementValue& getValue(unsigned short productElementOid);
+	sbx::ProductElementValue getValue(unsigned short productElementOid) const;
 	const std::map<unsigned short, sbx::ProductElementValue>& getValues() const;
+	bool hasValue(unsigned short productElementOid) const;
 
 	virtual ~TA();
 private:

@@ -8,6 +8,8 @@
 #include "RuleCatalogue.h"
 
 #include <vector>
+#include <memory>
+
 
 namespace sbx {
 

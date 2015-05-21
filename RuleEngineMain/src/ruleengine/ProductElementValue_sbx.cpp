@@ -14,17 +14,12 @@ ProductElementValue::ProductElementValue(void)
 	// empty constructor needed for vector initialisation.
 }
 ProductElementValue::ProductElementValue(const sbx::ProductElementValue& otherProductElementValue)
-		: _productElementOid { static_cast<unsigned short>(otherProductElementValue._productElementOid) },
+		: _productElementOid { otherProductElementValue._productElementOid },
 		  _stringValue { otherProductElementValue._stringValue }
 {}
 
 ProductElementValue::ProductElementValue(unsigned short peOid, const std::string& stringValue)
 		: _productElementOid { peOid },
-		  _stringValue { stringValue }
-{}
-
-ProductElementValue::ProductElementValue(const sbx::ProductElementOid& peOid, const std::string& stringValue)
-		: _productElementOid { static_cast<unsigned short>(peOid) },
 		  _stringValue { stringValue }
 {}
 
@@ -54,6 +49,8 @@ double ProductElementValue::doubleValue() const
 	return atof(_stringValue.c_str());
 }
 
+bool ProductElementValue::boolValue() const{ return toBool(_stringValue); }
+
 unsigned short ProductElementValue::getProductElementOid() const
 {
 	return _productElementOid;
@@ -68,8 +65,7 @@ void sbx::ProductElementValue::setValue(const std::string& value)
  *
  */
 ProductElementValue::~ProductElementValue(void)
-{
-	_stringValue = "";
-}
+{}
 
 } // namespace sbx
+

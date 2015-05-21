@@ -24,14 +24,32 @@ public:
 	ValidationResults();
 
 	sbx::ValidationResults& addValidationResult(const sbx::ValidationResult& validationResult);
+	sbx::ValidationResults& addValidationResults(const std::vector<sbx::ValidationResult>& validationResults);
+	sbx::ValidationResults& addWarning(const sbx::ValidationResult& validationResult);
 
+	void merge(const sbx::ValidationResults&);
 	const std::multimap<unsigned short, sbx::ValidationResult>& getValidationResults() const;
+	const std::multimap<unsigned short, sbx::ValidationResult>& getWarnings() const;
+
 	std::vector<sbx::ValidationResult> getValidationResults(unsigned short peOid);
+	std::vector<sbx::ValidationResult> getWarnings(unsigned short peOid);
+
+	bool isAllOk() const;
+	bool hasWarnings() const;
 
 	virtual ~ValidationResults();
 private:
+	void updateState(const sbx::ValidationResult& result);
+	bool _hasWarnings;
+	bool _allOk;
+
 	// map of product element oid to ValidationResult
 	std::multimap<unsigned short, sbx::ValidationResult> _validationResultMap;
+
+	// map of warnings indexed by peOid
+	std::multimap<unsigned short, sbx::ValidationResult> _warningsMap;
+
+	std::vector<sbx::ValidationResult> _getSubSet(const std::multimap<unsigned short, sbx::ValidationResult>& map, unsigned short peOid);
 };
 
 } /* namespace sbx */

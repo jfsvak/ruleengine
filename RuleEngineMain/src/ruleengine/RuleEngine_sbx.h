@@ -36,10 +36,7 @@ class RuleEngine
 {
 public:
 	static bool _printDebug;
-	static const short int VALID = 1;
-	static const short int INVALID = -1;
-	static std::string comparisonTypeName(const sbx::ComparisonTypes& comparisonType);
-
+	static bool _printDebugAtValidation;
 
 	RuleEngine();
 	RuleEngine(const sbx::RuleEngine&); // copy constructor. Handle proper copy of pointers in map
@@ -48,6 +45,7 @@ public:
 	void initConstants(const std::vector<Constant>& globalConstants);
 	void initConstants(const std::string& jsonContents);
 	void initContext(const sbx::KonceptInfo& ki);
+
 	void parseRuleCatalogueJSON(const std::string& jsonContents);
 
 	std::vector<std::string> getOptions(sbx::ProductElementOid productElement);
@@ -57,7 +55,12 @@ public:
 
 	sbx::ValidationResults validate(const TA&, unsigned short peOidToValidate); // single product element validation
 	sbx::ValidationResults validate(const TA&, const std::vector<unsigned short>& peOidToValidate); // multiple product element validation, using single pe validation
-	int validate(const sbx::KonceptInfo&, const sbx::TA& ta); // Full TA validation
+	sbx::ValidationResults validate(const sbx::TA& ta, bool partial = false); // Full TA validation
+	sbx::ValidationResults validateMinMax(const sbx::ProductElementValue&);
+
+	// checks if the product element is required for context and the ta
+	bool isValueRequired(const sbx::TA&, unsigned short peOid);
+	bool isValueAllowed(const sbx::ProductElementValue&);
 
 	sbx::RuleCatalogue& getRuleCatalogue();
 	const sbx::RuleConstantContainer& getContainer() const;
@@ -65,8 +68,8 @@ public:
 	// -- util methods for printing
 	void printRuleCatalogue(sbx::RuleCatalogue&, int depth);
 	void printRule(std::shared_ptr<sbx::Rule>, int depth);
-	void printVariables();
-	void printConstants();
+	void printVariablesInParser();
+	void printConstantsInParser();
 	void printExpressionVariables();
 
 private:
@@ -75,12 +78,14 @@ private:
 	void initRuleCatalogue(sbx::RuleCatalogue*, const Json::Value& ruleCatalogues);
 	void initParserWithProductElementConstants(unsigned short peOid);
 	template <typename T> void defineVariable(const std::string& name, const T& value);
+	void clearContext();
 
 	void defineConstant(const std::string& name, double constant);
 	void executeRule(unsigned short peOidToValidate, std::shared_ptr<sbx::Rule> rule, sbx::ValidationResults& valResult);
 	void loadTAValues(const TA& ta);
 
-	sbx::ProductElement _pe(unsigned short peOid);
+	sbx::ProductElement _PE(unsigned short peOid);
+	std::string _VAR_NAME(unsigned short peOid);
 
 	sbx::KonceptInfo _ki;
 	sbx::RuleConstantContainer _container;
@@ -103,14 +108,13 @@ private:
 	 * Index: peOid
 	 * Value: mup::Value*
 	 */
-	std::map<std::string, mup::Value*> _mupValueMap;
+	std::map<std::string, std::shared_ptr<mup::Value>> _mupValueMap;
 
 	// -- util methods for printing etc.
-	void _printVariables(mup::ParserX& p);
+	void _printVariablesInParser(mup::ParserX& p);
 	void _printExpressionVariables(mup::ParserX& p);
-	void _printConstants(mup::ParserX& p);
+	void _printConstantsInParser(mup::ParserX& p);
 	std::string _indent(unsigned short depth);
-	std::string constructRCName(const sbx::ProductElement&, const sbx::ComparisonTypes&);
 };
 
 } // sbx namespace end

@@ -32,6 +32,7 @@
 #include "ProductElementValue_sbx.h"
 #include "Rule.h"
 #include "RuleCatalogue.h"
+#include "Utils.h"
 #include "ValidationResults.h"
 
 using namespace std;
@@ -39,6 +40,7 @@ using namespace std;
 namespace sbx {
 
 bool RuleEngine::_printDebug {false};
+bool RuleEngine::_printDebugAtValidation {false};
 
 sbx::RuleEngine::RuleEngine()
 {}
@@ -100,7 +102,7 @@ void RuleEngine::initRuleCatalogue(sbx::RuleCatalogue* ruleCatalogue, const Json
 
 			if (RuleEngine::_printDebug) { cout << "  Creating Rule [" << id << "], expr [" << expr << "]" << endl; }
 
-			std::shared_ptr<sbx::Rule> rule = make_shared<sbx::Rule>(id, expr, (requiredRule == "parent") ? ruleCatalogue->getParent() : nullptr, positiveMessage, negativeMessage);
+			std::shared_ptr<sbx::Rule> rule = make_shared<sbx::Rule>(id, expr, (requiredRule == "#parent#") ? ruleCatalogue->getParent() : nullptr, positiveMessage, negativeMessage);
 
 			Json::Value peOids = valueIterator->get("productElementOids", "");
 
@@ -139,14 +141,13 @@ void RuleEngine::initRuleCatalogue(sbx::RuleCatalogue* ruleCatalogue, const Json
  */
 void RuleEngine::initContext(const sbx::KonceptInfo& ki)
 {
+	// first clear any previous context
+	this->clearContext();
+
 	_ki = ki;
 	_container.initContext(ki.getUnderkonceptOid(), 0);
 
-	// clear parser for variables and consts
-	_parser.ClearVar();
-	_parser.ClearConst();
-
-	// init ParserX with constants for context
+	// init ParserX with constants for context by going through each parameter and get the product elements for that parameter
 	for (auto& parameterIt : ki.getParameterValues()) {
 		const std::set<unsigned short>& peOids = _container.getProductElementOids(parameterIt.first);
 
@@ -157,13 +158,21 @@ void RuleEngine::initContext(const sbx::KonceptInfo& ki)
 	}
 }
 
+void RuleEngine::clearContext()
+{
+	// clear parser for variables and consts
+	_parser.ClearVar();
+	_parser.ClearConst();
+	_mupValueMap.clear();
+}
+
 void RuleEngine::initParserWithProductElementConstants(unsigned short peOid)
 {
 	const sbx::ProductElement pe = _container.getProductElement(peOid);
 	std::shared_ptr<Constant> cMin = _container.getConstant(peOid, sbx::ComparisonTypes::kMin);
 	std::shared_ptr<Constant> cMax = _container.getConstant(peOid, sbx::ComparisonTypes::kMax);
-	string minName = constructRCName(pe, sbx::ComparisonTypes::kMin);
-	string maxName = constructRCName(pe, sbx::ComparisonTypes::kMax);
+	string minName = sbx::utils::constructRCName(pe, sbx::ComparisonTypes::kMin);
+	string maxName = sbx::utils::constructRCName(pe, sbx::ComparisonTypes::kMax);
 //	cout << "adding constant [" << minName << "], value [" << cMin->stringValue() << "] as [" << cMin->longValue() << "]" << endl;
 //	cout << "adding constant [" << maxName << "], value [" << cMax->stringValue() << "] as [" << cMax->longValue() << "]" << endl;
 
@@ -213,12 +222,12 @@ void RuleEngine::defineVariable(const std::string& name, const T& value)
 		}
 		else {
 			// if not already there, create and insert a new value
-			_mupValueMap.insert( std::pair<std::string, mup::Value*> (name, new mup::Value{value}));
+			_mupValueMap.insert( std::pair<std::string, std::shared_ptr<mup::Value>> (name, make_shared<mup::Value>(value)));
 		}
 
 		// if the variable has not been defined in the parser, define it, otherwise just leave it
 		if (!_parser.IsVarDefined(name)) {
-			_parser.DefineVar(name, mup::Variable(_mupValueMap[name]));
+			_parser.DefineVar(name, mup::Variable(_mupValueMap[name].get()));
 		}
 	} catch (mup::ParserError& e) {
 		sbx::mubridge::handle(e);
@@ -290,7 +299,7 @@ void RuleEngine::loadTAValues(const TA& ta)
 			break;
 		case kBool:
 			// TODO how to handle too?
-			// defineVariable<bool>(pe.getVariableName(), pev.stringValue());
+			defineVariable<bool>(pe.getVariableName(), pev.boolValue());
 			break;
 		case kText:
 			defineVariable<std::string>(pe.getVariableName(), pev.stringValue());
@@ -309,7 +318,7 @@ void RuleEngine::loadTAValues(const TA& ta)
 	}
 }
 
-sbx::ValidationResults sbx::RuleEngine::validate(const TA& ta, unsigned short peOidToValidate)
+sbx::ValidationResults RuleEngine::validate(const TA& ta, unsigned short peOidToValidate)
 {
 	return this->validate(ta, std::vector<unsigned short> {peOidToValidate});
 }
@@ -328,23 +337,73 @@ sbx::ValidationResults RuleEngine::validate(const TA& ta, const std::vector<unsi
 	// initialise all values for TA into parser
 	loadTAValues(ta);
 
-	if (RuleEngine::_printDebug) { printVariables(); }
+	if (RuleEngine::_printDebugAtValidation) printVariablesInParser();
 
 	for (auto& peOid : peOidsToValidate) {
-		// get rules for the product element
-		const auto& range = _peOidToRules.equal_range(peOid); // std::pair <std::multimap<unsigned short, sbx::Rule*>::iterator, std::multimap<unsigned short, sbx::Rule*>::iterator> range = _peOidToRules.equal_range(peOidToValidate);
 
-		// for each rule, validate and add messages to valResult
-		for (auto it = range.first; it != range.second; it++) //	for (std::multimap<unsigned short, sbx::Rule*>::iterator it = range.first; it != range.second; it++)
+		switch(_PE(peOid).getElementType()) {
+		case kDate:
+			// TODO how to validate?
+			valResult.addWarning( {sbx::ValidationCode::kWarning, peOid, _VAR_NAME(peOid), "", "Validation of DATE's not implemented"} );
+			break;
+		case kBool:  		// fall through
+		case kText:
 		{
-			std::shared_ptr<sbx::Rule> rule = it->second;
-
-			executeRule( peOid, rule, valResult );
-
-			// if there is a parent rule, then validate it to check if this productelement is supposed to be here or not
-			if (rule->getRequiredIfRule()) {
-				executeRule(peOid, rule->getRequiredIfRule(), valResult);
+			if ( !this->isValueAllowed(ta.getValue(peOid)) )
+			{
+				valResult.addValidationResult( {sbx::ValidationCode::kValueNotAllowed, peOid, _VAR_NAME(peOid), "", "Value [" + ta.getValue(peOid).stringValue() + "] not allowed"} );
 			}
+			break;
+		}
+		case kMonth: 		// fall through
+		case kYear: 		// fall through
+		case kPercent:		// fall through
+		case kCurr:			// fall through
+		case kLong:
+		{
+			// check to see if we have this rule constant as enum/equals
+			if (_container.existsAs(peOid, sbx::ComparisonTypes::kEnum))
+			{
+				// if it exists as an enum/equals constant, then check if the value is allowed
+				if ( !this->isValueAllowed(ta.getValue(peOid)) )
+				{
+					valResult.addValidationResult( {sbx::ValidationCode::kValueNotAllowed, peOid, _VAR_NAME(peOid), "", "Value not allowed"} );
+				}
+			}
+
+			// Generic validation of min/max values
+			valResult.merge(validateMinMax(ta.getValue(peOid)));
+
+			// if there are specific rules to run, then run them
+			if (_peOidToRules.find(peOid) != _peOidToRules.end())
+			{
+				const auto& rangeOfRules = _peOidToRules.equal_range(peOid); // std::pair <std::multimap<unsigned short, sbx::Rule*>::iterator, std::multimap<unsigned short, sbx::Rule*>::iterator> range = _peOidToRules.equal_range(peOidToValidate);
+
+				// for each rule, validate and add messages to valResult
+				for (auto it = rangeOfRules.first; it != rangeOfRules.second; it++) //	for (std::multimap<unsigned short, sbx::Rule*>::iterator it = range.first; it != range.second; it++)
+				{
+					std::shared_ptr<sbx::Rule> rule = it->second;
+
+					if (rule->getExpr() != "")
+						executeRule( peOid, rule, valResult );
+
+					// if there is a parent rule, then validate it to check if this productelement is supposed to be here or not
+					if ((rule->getRequiredIfRule() != nullptr) && rule->getRequiredIfRule()->getExpr() != "")
+						executeRule(peOid, rule->getRequiredIfRule(), valResult);
+				}
+			}
+			else
+			{
+				// if no rules to run, then add a warning
+				valResult.addWarning( {sbx::ValidationCode::kWarning, peOid, _container.getProductElement(peOid).getVariableName(), "", "No rules to run for this ProductElement"} );
+			}
+
+			break;
+		}
+		case kUnknownPEType:	// fall through
+		default:
+			valResult.addWarning( {sbx::ValidationCode::kWarning, peOid, _VAR_NAME(peOid), "", "Unknown PE Type"} );
+			break;
 		}
 	}
 
@@ -352,40 +411,46 @@ sbx::ValidationResults RuleEngine::validate(const TA& ta, const std::vector<unsi
 }
 
 /*
- * TODO: Implement this correct, go throuh the logic for validating an entire TA
- * Validates the generic rules for the ComparisonType
+ * Validates the entire TA
  */
-int RuleEngine::validate(const sbx::KonceptInfo& konceptInfo, const sbx::TA& ta)
+sbx::ValidationResults RuleEngine::validate(const sbx::TA& ta, bool partial)
 {
+	sbx::ValidationResults valResults {};
+
 	// 1. check allowed products elements for the konceptinfo
 	std::set<unsigned short, less<unsigned short>> allowedProductElementOids {};
 
 	// insert all allowed product oids into one vector
-	for (auto& parameterIt : konceptInfo.getParameterValues()) {
+	for (auto& parameterIt : _ki.getParameterValues()) {
 		const std::set<unsigned short>& productElementOids = _container.getProductElementOids(parameterIt.first);
 		allowedProductElementOids.insert(productElementOids.cbegin(), productElementOids.cend());
 	}
 
+	// validate the available values for the TA using the rules from rules catalogue
 	for (auto& item : ta.getValues()) {
 		// check if this product element is allowed
 		const sbx::ProductElementValue& pev = item.second;
 		unsigned short peOid = pev.getProductElementOid();
 
+		// if product element was not found in the allowed list
 		if (allowedProductElementOids.find(peOid) == allowedProductElementOids.cend()) {
-			cout << "Product element oid [" << peOid << "] not allowed for this konceptInfo" << endl;
+			stringstream msg {};
+			msg << "Product element oid [" << peOid << "] not allowed for this konceptInfo";
+			valResults.addValidationResult( sbx::ValidationResult {sbx::ValidationCode::kValueNotAllowed, peOid, _VAR_NAME(peOid), "", msg.str()} );
 		}
+		else {
+			// if element is allowed, then validate it and merge the results into valResults
+			valResults.merge(this->validate(ta, {peOid}));
+		}
+	}
 
-		try {
-			sbx::ValidationResults r = this->validate(ta, {peOid});
-			std::vector<sbx::ValidationResult> v = r.getValidationResults(peOid);
-			ostringstream s {};
-			ostream_iterator<sbx::ValidationResult> strOutput(s, ", ");
-			copy(v.cbegin(), v.cend(), strOutput);
-			cerr << "Result of validation of pev[" << s.str() << "]" << endl;
-		}
-		catch (exception& e) {
-			cerr << "Validation of pev failed with exception: [" << e.what() << "]" << endl;
-			throw;
+	if (!partial) {
+		// run through all the required product elements and add a ValidationResult to valResult
+		for (auto& peOid : allowedProductElementOids)
+		{
+			if (!ta.hasValue(peOid)) {
+				valResults.addValidationResult( sbx::ValidationResult {sbx::ValidationCode::kValueMissing, peOid, _VAR_NAME(peOid), "", "Value is missing"} );
+			}
 		}
 	}
 
@@ -396,32 +461,88 @@ int RuleEngine::validate(const sbx::KonceptInfo& konceptInfo, const sbx::TA& ta)
 	// 4. check max values
 	// 5. check custom rules
 
-	return 0;
+	return valResults;
+}
+
+sbx::ValidationResults RuleEngine::validateMinMax(const sbx::ProductElementValue& pev)
+{
+	sbx::ValidationResults r {};
+	unsigned short peOid = pev.getProductElementOid();
+	std::string expr = sbx::utils::constructMinMaxExpr(_PE(peOid), sbx::ComparisonTypes::kMin);
+
+	if (RuleEngine::_printDebugAtValidation) cout << "Min expr: " << expr << endl;
+
+	_parser.SetExpr(expr);
+	mup::Value result = _parser.Eval();
+
+	if (!result.GetBool()) {
+		// value was not greater or equal to min
+		r.addValidationResult( {sbx::ValidationCode::kValueTooSmall, peOid, _VAR_NAME(peOid), "", "Value too small", expr} );
+	}
+
+	expr = sbx::utils::constructMinMaxExpr(_PE(peOid), sbx::ComparisonTypes::kMax);
+
+	if (RuleEngine::_printDebugAtValidation) cout << "Max expr: " << expr << endl;
+
+	_parser.SetExpr(expr);
+	result = _parser.Eval();
+
+	if (!result.GetBool()) {
+		// value was not lesser or equal to max
+		r.addValidationResult( {sbx::ValidationCode::kValueTooBig, peOid, _VAR_NAME(peOid), "", "Value too big", expr} );
+	}
+
+	return r;
+}
+
+bool RuleEngine::isValueRequired(const sbx::TA&, unsigned short peOid)
+{
+	// TODO implement this
+	return false;
+}
+
+bool RuleEngine::isValueAllowed(const sbx::ProductElementValue& pev)
+{
+	for (auto& constant : _container.getOptionsList(pev.getProductElementOid()))
+	{
+		switch(_PE(pev.getProductElementOid()).getElementType())
+		{
+		case kBool:
+			if (constant->boolValue() == pev.boolValue())
+				return true;
+			break;
+
+		default:
+			if (constant->stringValue() == pev.stringValue())
+				return true;
+		}
+	}
+
+	return false;
 }
 
 void RuleEngine::executeRule(unsigned short peOidBeingValidated, std::shared_ptr<sbx::Rule> rule, sbx::ValidationResults& valResult) {
 	try {
 		_parser.SetExpr(rule->getExpr());
 
-		if (RuleEngine::_printDebug) { cout << "Executing rule [" << rule->getRuleId() << "]...";}
+		if (RuleEngine::_printDebugAtValidation) { cout << "Executing rule [" << rule->getRuleId() << "]...";}
 
 		mup::Value singleRuleResult = _parser.Eval();
 
-		if (RuleEngine::_printDebug) { cout << "\tresult for expr[" << rule->getExpr() << "]=[" << boolalpha << singleRuleResult.GetBool() << "]" << endl;}
+		if (RuleEngine::_printDebugAtValidation) { cout << "\tresult for expr[" << rule->getExpr() << "]=[" << boolalpha << singleRuleResult.GetBool() << "]" << endl;}
 
 		if (singleRuleResult.GetBool()) {
 			// only add message, if it's not empty
 			if (rule->getPositiveMessage() != "") {
-				valResult.addValidationResult( {sbx::ValidationCode::kOK, peOidBeingValidated, _container.getProductElement(peOidBeingValidated).getVariableName(), rule->getRuleId(), rule->getPositiveMessage()} );
+				valResult.addValidationResult( {sbx::ValidationCode::kOK, peOidBeingValidated, _VAR_NAME(peOidBeingValidated), rule->getRuleId(), rule->getPositiveMessage(), rule->getExpr()} );
 			}
 		}
 		else {
-			valResult.addValidationResult( {sbx::ValidationCode::kFail, peOidBeingValidated, _container.getProductElement(peOidBeingValidated).getVariableName(), rule->getRuleId(), rule->getNegativeMessage()} );
+			valResult.addValidationResult( {sbx::ValidationCode::kFail, peOidBeingValidated, _VAR_NAME(peOidBeingValidated), rule->getRuleId(), rule->getNegativeMessage(), rule->getExpr()} );
 		}
 	}
 	catch (mup::ParserError& e)	{
 		sbx::mubridge::handle(e);
-//		sbx::mubridge::handle(e, rule, peOidBeingValidated, valResult);
 	}
 }
 
@@ -446,11 +567,11 @@ const std::shared_ptr<sbx::Constant>& RuleEngine::getDefaultValue(sbx::ProductEl
 	return options.back();
 }
 
-void RuleEngine::printVariables() { _printVariables(_parser); }
-void RuleEngine::printConstants() { _printConstants(_parser); }
+void RuleEngine::printVariablesInParser() { _printVariablesInParser(_parser); }
+void RuleEngine::printConstantsInParser() { _printConstantsInParser(_parser); }
 void RuleEngine::printExpressionVariables() { _printExpressionVariables(_parser); }
 
-void RuleEngine::_printVariables(mup::ParserX& p)
+void RuleEngine::_printVariablesInParser(mup::ParserX& p)
 {
 	cout << "------------- VARIABLES initialised BEGIN ------------" << endl;
 	try {
@@ -468,7 +589,7 @@ void RuleEngine::_printVariables(mup::ParserX& p)
 	cout.flush();
 }
 
-void RuleEngine::_printConstants(mup::ParserX& p)
+void RuleEngine::_printConstantsInParser(mup::ParserX& p)
 {
 	cout << "------------- CONSTANTS initialised BEGIN ------------" << endl;
 	try {
@@ -543,34 +664,23 @@ void RuleEngine::printRule(std::shared_ptr<sbx::Rule> rule, int depth)
 	cout << "posMsg=[" << rule->getPositiveMessage() << "], negMsg=[" << rule->getNegativeMessage() << "]" << endl;
 }
 
-std::string RuleEngine::comparisonTypeName(const sbx::ComparisonTypes& comparisonType)
+sbx::ProductElement RuleEngine::_PE(unsigned short peOid)
 {
-	switch (comparisonType)
-	{
-	case kMin:
-		return "min";
-	case kMax:
-		return "max";
-	case kEquals:
-		return "equal";
-	case kEnum:
-		return "enum";
-	default:
-		return "unknown";
+	try {
+		return _container.getProductElement(peOid);
+	} catch (domain_error& e) {
+		// unsigned short oid, const std::string& variableName, const std::string& guiName, sbx::ProductElementTypes productElementType, unsigned short productOid
+		return sbx::ProductElement(peOid, "<unknown>", "<unknown>", sbx::ProductElementTypes::kUnknownPEType, 0);
 	}
 }
 
-std::string RuleEngine::constructRCName(const sbx::ProductElement& pe, const sbx::ComparisonTypes& ct)
+std::string RuleEngine::_VAR_NAME(unsigned short peOid)
 {
-	stringstream s {};
-	s << "rc_" << pe.getVariableName() << "_" << RuleEngine::comparisonTypeName(ct);
-	return s.str();
-}
-
-sbx::ProductElement RuleEngine::_pe(unsigned short peOid)
-{
-	// TODO fix this temp stuff - maybe return
-	return _container.getProductElement(peOid);
+	try {
+		return _container.getProductElement(peOid).getVariableName();
+	} catch (domain_error& e) {
+		return std::string ("");
+	}
 }
 
 std::string RuleEngine::_indent(unsigned short depth)
@@ -585,10 +695,10 @@ sbx::RuleEngine::~RuleEngine()
 //		_peOidToRules.erase(it->first);
 //	}
 
-	for (auto it = _mupValueMap.begin();it != _mupValueMap.end(); it++) {
-		delete it->second;
-		_mupValueMap.erase(it->first);
-	}
+//	for (auto it = _mupValueMap.begin();it != _mupValueMap.end(); it++) {
+//		delete it->second;
+//		_mupValueMap.erase(it->first);
+//	}
 
 }
 

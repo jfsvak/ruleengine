@@ -3,6 +3,8 @@
 #include <stdlib.h>
 
 #include "Constant_sbx.h"
+#include "sbxTypes.h"
+
 using namespace std;
 
 namespace sbx {
@@ -100,6 +102,15 @@ namespace sbx {
   {
 	  // convert string into a double value
       return atof(_stringValue.c_str());
+  }
+
+  /**
+   * Gets the Constant value as a bool
+   * "true" and "1" are considered true, everything else is false
+   */
+  bool Constant::boolValue() const
+  {
+	  return toBool(_stringValue);
   }
 
   short Constant::getUnderKonceptOid() const

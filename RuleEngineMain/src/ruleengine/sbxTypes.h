@@ -9,17 +9,21 @@
 #ifndef RULEENGINE_SBXTYPES_H_
 #define RULEENGINE_SBXTYPES_H_
 
+#include <algorithm>
 #include <string>
 #include <iostream>
 
 namespace sbx {
+
+std::string toUpper(const std::string& s);
+bool toBool(const std::string& s);
 
 enum ComparisonTypes : unsigned short {
 	kUnknown	= 0,
 	kMin		= 1,
 	kMax		= 2,
 	kEnum		= 3,
-	kEquals		= 4 // equals == 4 to match SBX value
+	kEquals		= 4
 };
 
 enum ProductElementTypes : unsigned short {
@@ -54,6 +58,7 @@ enum ProductElementOid : unsigned short {
 			kTaeBlOblMax			= 15,
 			kTaeSpaendBl			= 16,
 			kBoerneUdloebsalder		= 67,
+			kUdloebsalder_Pension	= 71,
 			kDoedReguleringskode	= 82,
 			kBoerneRentePctMin		= 85,
 			kBoerneRenteBlMin		= 89,
@@ -65,7 +70,9 @@ enum ProductElementOid : unsigned short {
 			kBoerneRenteSoliMax		= 183,
 			k194					= 194,
 			k217					= 217,
-			k218					= 218
+			k218					= 218,
+			kFravalgRisiko_MK		= 230,
+			kFravalgRisikoAlder		= 231
 };
 
 struct ConstantKey {

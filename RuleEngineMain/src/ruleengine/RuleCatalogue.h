@@ -9,6 +9,7 @@
 #define RULEENGINE_RULECATALOGUE_H_
 
 #include <vector>
+#include <memory>
 
 namespace sbx {
 class Rule;
