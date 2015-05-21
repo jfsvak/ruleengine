@@ -9,22 +9,25 @@
 #import "Bridge.h"
 
 #include "RuleEngine_sbx.h"
-#include "Constant_sbx.h"
 #include <iostream>
 #include <fstream>
 #include "KonceptInfo_sbx.h"
 #include "Constant_sbx.h"
+#include "TA_sbx.h"
+#include "ValidationResults.h"
+#include "ValidationResult.h"
 
 @implementation Bridge {
-    sbx::RuleEngine *re;
+    sbx::RuleEngine re;
+    sbx::TA ta;
 }
 
 -(instancetype)initWithConstants:(NSString*)constantsFilePath ruleCatalog:(NSString*)ruleCatalogFilePath  {
     self = [super init];
     if (self) {
-        re = new sbx::RuleEngine();
-        re->initConstants(get_file_contents(constantsFilePath.UTF8String));
-        re->parseRuleCatalogueJSON(get_file_contents(ruleCatalogFilePath.UTF8String));
+        re = sbx::RuleEngine();
+        re.initConstants(get_file_contents(constantsFilePath.UTF8String));
+        re.parseRuleCatalogueJSON(get_file_contents(ruleCatalogFilePath.UTF8String));
     }
     return self;
 }
@@ -46,11 +49,20 @@
         }
     }
     
-    re->initContext(ki);
+    re.initContext(ki);
 }
 
--(void)dealloc {
-    delete re;
+-(void)createTA:(NSString*)CVR konceptOid:(unsigned short)konceptOid {
+    ta = sbx::TA([CVR UTF8String], konceptOid);
+}
+
+-(void)setValue:(id)value forPE:(unsigned short) peOid {
+    ta.setValue(peOid, std::string([[value description] UTF8String]));
+}
+
+-(void)unsetPEOid:(unsigned short) peOid {
+    auto values = ta.getValues();
+    values.erase(peOid);
 }
 
 std::string get_file_contents(const char *filename)
@@ -73,7 +85,7 @@ std::string get_file_contents(const char *filename)
     sbx::ProductElementOid peOid = (sbx::ProductElementOid)oid;
     NSMutableArray *result;
     try {
-        std::vector<std::shared_ptr<sbx::Constant>> list = re->getOptionsList(peOid);
+        std::vector<std::shared_ptr<sbx::Constant>> list = re.getOptionsList(peOid);
         
         result = [NSMutableArray arrayWithCapacity:list.size()];
         
@@ -92,13 +104,29 @@ std::string get_file_contents(const char *filename)
     
     NSString *result;
     try {
-        std::shared_ptr<sbx::Constant> constant = re->getDefaultValue(peOid);
+        std::shared_ptr<sbx::Constant> constant = re.getDefaultValue(peOid);
         result = [NSString stringWithCString:constant->stringValue().c_str() encoding:NSUTF8StringEncoding];
     } catch (std::domain_error error) {
         NSLog(@"getDefaultValueFor:%zd -> %s", oid, error.std::exception::what());
     }
     
     return result;
+}
+
+-(NSArray*)validatePE:(unsigned short) peOid {
+    sbx::ValidationResults results = re.validate(ta, peOid);
+    NSMutableArray *allResults = [NSMutableArray array];
+    bool ok = results.isAllOk();
+    
+    if (!ok) {
+        for (auto result : results.getValidationResults()) {
+            ValidationResult *r = [ValidationResult new];
+            r.message = [NSString stringWithCString:result.second.getMessage().c_str() encoding:NSUTF8StringEncoding];
+            r.validationCode = static_cast<uint16_t>(result.second.getValidationCode());
+            [allResults addObject:r];
+        }
+    }
+    return allResults;
 }
 
 @end
