@@ -81,7 +81,7 @@ std::string get_file_contents(const char *filename)
             [result addObject:[NSString stringWithCString:constant->stringValue().c_str() encoding:NSUTF8StringEncoding]];
         }
     } catch (std::domain_error error) {
-        NSLog(@"%s", error.std::exception::what());
+        NSLog(@"getAllowedValuesFor:%zd -> %s", oid, error.std::exception::what());
     }
     
 	return result;
@@ -95,7 +95,7 @@ std::string get_file_contents(const char *filename)
         std::shared_ptr<sbx::Constant> constant = re->getDefaultValue(peOid);
         result = [NSString stringWithCString:constant->stringValue().c_str() encoding:NSUTF8StringEncoding];
     } catch (std::domain_error error) {
-        NSLog(@"%s", error.std::exception::what());
+        NSLog(@"getDefaultValueFor:%zd -> %s", oid, error.std::exception::what());
     }
     
     return result;

@@ -376,10 +376,10 @@
 		3A5688431B0C360C009E5AB1 /* iOSRuleEngine */ = {
 			isa = PBXGroup;
 			children = (
-				3A56886C1B0C37A2009E5AB1 /* CPP */,
 				3A5688461B0C360C009E5AB1 /* iOSRuleEngine.h */,
 				3A5688681B0C370B009E5AB1 /* Bridge.h */,
 				3A5688691B0C370B009E5AB1 /* Bridge.mm */,
+				3A56886C1B0C37A2009E5AB1 /* CPP */,
 				3A5688441B0C360C009E5AB1 /* Supporting Files */,
 			);
 			path = iOSRuleEngine;
@@ -1009,6 +1009,7 @@
 				3A5688631B0C360C009E5AB1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3A5688641B0C360C009E5AB1 /* Build configuration list for PBXNativeTarget "iOSRuleEngineTests" */ = {
 			isa = XCConfigurationList;
@@ -1017,6 +1018,7 @@
 				3A5688661B0C360C009E5AB1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3A5689631B0C3A5E009E5AB1 /* Build configuration list for PBXAggregateTarget "Framework" */ = {
 			isa = XCConfigurationList;
@@ -1025,6 +1027,7 @@
 				3A5689651B0C3A5E009E5AB1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
