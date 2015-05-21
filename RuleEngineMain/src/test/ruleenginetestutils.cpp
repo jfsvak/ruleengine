@@ -10,38 +10,14 @@
 #include <sstream>
 #include <vector>
 #include <fstream>
+
+#include "../ruleengine/Constant_sbx.h"
+#include "../json/json.h"
+
 #include "ruleenginetestutils.h"
-#include "ruleengine/Constant_sbx.h"
-#include "json/json.h"
 
 using namespace std;
 using namespace sbx;
-
-void makeDummyConstants(vector<Constant> &constants) {
-	//	  sbx::Constant *c1 = nullptr, *c2 = nullptr, *c3 = nullptr, *c4 = nullptr, *c5 = nullptr;
-	//	  c1 = new Constant { 1, 0, sbx::kLoenRegulering, sbx::kEquals, "Løn 1" };
-	//	  c2 = new Constant { 1, 0, sbx::kLoenRegulering, sbx::kEquals, "Løn 2" };
-	//	  c3 = new Constant { 1, 0, sbx::kLoenRegulering, sbx::kEquals, "Løn 3" };
-	//	  c4 = new Constant { 2, 0, sbx::kLoenRegulering, sbx::kEquals, "Løn 4" };
-	//	  c5 = new Constant { 2, 0, sbx::kLoenRegulering, sbx::kEquals, "Løn 5" };
-	//	  Constant *c1 = new  Constant { 1, 0, sbx::kLoenRegulering, sbx::kEquals, "Løn 1" };
-	constants[0] = *new  Constant { 1, 0, sbx::kLoenDefinition, sbx::kEquals, "Løn 1" };
-	constants[1] = *new  Constant { 1, 0, sbx::kLoenDefinition, sbx::kEquals, "Løn 2", true };
-	constants[2] = *new  Constant { 1, 0, sbx::kLoenDefinition, sbx::kEquals, "Løn 3" };
-	constants[5] = *new  Constant { 1, 0, sbx::kTaeBlGrMin, sbx::kMin, "100000" };
-	constants[13] = *new  Constant { 1, 0, sbx::kTaeBlGrMin, sbx::kMax, "800000" };
-	constants[7] = *new  Constant { 1, 0, sbx::kTaeBlOblMax, sbx::kMax, "750000" };
-	constants[9] = *new  Constant { 1, 0, sbx::kTaeSpaendBl, sbx::kMin, "0" };
-	constants[11] = *new  Constant { 1, 0, sbx::kTaeSpaendBl, sbx::kMax, "100000" };
-	constants[6] = *new  Constant { 2, 0, sbx::kTaeBlGrMin, sbx::kMin, "150000" };
-	constants[14] = *new  Constant { 2, 0, sbx::kTaeBlGrMin, sbx::kMax, "750000" };
-	constants[8] = *new  Constant { 2, 0, sbx::kTaeBlOblMax, sbx::kMax, "800000" };
-	constants[10] = *new  Constant { 2, 0, sbx::kTaeSpaendBl, sbx::kMin, "0" };
-	constants[12] = *new  Constant { 2, 0, sbx::kTaeSpaendBl, sbx::kMax, "200000" };
-	constants[3] = *new  Constant { 2, 0, sbx::kLoenDefinition, sbx::kEquals, "Løn 4", true };
-	constants[4] = *new  Constant { 2, 0, sbx::kLoenDefinition, sbx::kEquals, "Løn 5" };
-	cout << "Dummy constants created and placed in vector" << endl;
-}
 
 int testConstant(void) {
 	//	sbx::Constant* c_ptr;
