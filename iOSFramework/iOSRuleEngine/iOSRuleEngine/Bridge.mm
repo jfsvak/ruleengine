@@ -100,12 +100,12 @@ std::string get_file_contents(const char *filename)
     } catch (std::exception error) {
         NSLog(@"getAllowedValuesFor:%zd -> %s", oid, error.std::exception::what());
     } catch (mup::ParserError error) {
-        NSLog(@"getAllowedValuesFor:%zd -> %s", oid, error.GetMsg().c_str());
+        NSLog(@"getAllowedValuesFor:%zd -> mup::ParserError %s", oid, error.GetMsg().c_str());
     } catch (...) {
         NSLog(@"getAllowedValuesFor:%zd unknown exception", oid);
     }
     
-	return result;
+    return [result sortedArrayUsingComparator:^(NSString* a, NSString* b) { return [a compare:b options:NSNumericSearch]; }];
 }
 
 -(id)getDefaultValueFor:(NSInteger)oid {
@@ -117,10 +117,13 @@ std::string get_file_contents(const char *filename)
         result = [NSString stringWithCString:constant->stringValue().c_str() encoding:NSUTF8StringEncoding];
     } catch (std::exception error) {
         NSLog(@"getDefaultValueFor:%zd -> %s", oid, error.std::exception::what());
+        re.printVariablesInParser();
     } catch (mup::ParserError error) {
-        NSLog(@"getDefaultValueFor:%zd -> %s", oid, error.GetMsg().c_str());
+        NSLog(@"getDefaultValueFor:%zd -> mup::ParserError %s", oid, error.GetMsg().c_str());
+        re.printVariablesInParser();
     } catch (...) {
         NSLog(@"getDefaultValueFor:%zd unknown exception", oid);
+        re.printVariablesInParser();
     }
     
     return result;
@@ -142,11 +145,14 @@ std::string get_file_contents(const char *filename)
             }
         }
     } catch (std::exception error) {
-        NSLog(@"getDefaultValueFor:%zd -> %s", peOid, error.std::exception::what());
+        NSLog(@"validatePE:%zd -> %s", peOid, error.std::exception::what());
+        re.printVariablesInParser();
     } catch (mup::ParserError error) {
-        NSLog(@"getDefaultValueFor:%zd -> %s", peOid, error.GetMsg().c_str());
+        NSLog(@"validatePE:%zd -> mup::ParserError %s", peOid, error.GetMsg().c_str());
+        re.printVariablesInParser();
     } catch (...) {
-        NSLog(@"getDefaultValueFor:%zd unknown exception", peOid);
+        NSLog(@"validatePE:%zd unknown exception", peOid);
+        re.printVariablesInParser();
     }
     
     return allResults;
