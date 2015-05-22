@@ -10,6 +10,7 @@
 
 
 @interface ValidationResult : NSObject
+@property (nonatomic) NSInteger oid;
 @property (nonatomic) NSInteger validationCode;
 @property (nonatomic, strong) NSString *message;
 @end
@@ -17,7 +18,6 @@
 
 
 @interface Bridge : NSObject
-
 -(instancetype)initWithConstants:(NSString*)constantsFilePath ruleCatalog:(NSString*)ruleCatalogFilePath;
 -(void)setSubKonceptOid:(NSInteger)subKonceptOid parameters:(NSDictionary*)parametersDictionary;
 

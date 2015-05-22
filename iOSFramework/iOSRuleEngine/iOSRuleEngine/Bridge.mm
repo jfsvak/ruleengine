@@ -97,8 +97,12 @@ std::string get_file_contents(const char *filename)
         for (std::shared_ptr<sbx::Constant> constant : list) {
             [result addObject:[NSString stringWithCString:constant->stringValue().c_str() encoding:NSUTF8StringEncoding]];
         }
-    } catch (std::domain_error error) {
+    } catch (std::exception error) {
         NSLog(@"getAllowedValuesFor:%zd -> %s", oid, error.std::exception::what());
+    } catch (mup::ParserError error) {
+        NSLog(@"getAllowedValuesFor:%zd -> %s", oid, error.GetMsg().c_str());
+    } catch (...) {
+        NSLog(@"getAllowedValuesFor:%zd unknown exception", oid);
     }
     
 	return result;
@@ -111,26 +115,40 @@ std::string get_file_contents(const char *filename)
     try {
         std::shared_ptr<sbx::Constant> constant = re.getDefaultValue(peOid);
         result = [NSString stringWithCString:constant->stringValue().c_str() encoding:NSUTF8StringEncoding];
-    } catch (std::domain_error error) {
+    } catch (std::exception error) {
         NSLog(@"getDefaultValueFor:%zd -> %s", oid, error.std::exception::what());
+    } catch (mup::ParserError error) {
+        NSLog(@"getDefaultValueFor:%zd -> %s", oid, error.GetMsg().c_str());
+    } catch (...) {
+        NSLog(@"getDefaultValueFor:%zd unknown exception", oid);
     }
     
     return result;
 }
 
 -(NSArray*)validatePE:(unsigned short) peOid {
-    sbx::ValidationResults results = re.validate(ta, peOid);
     NSMutableArray *allResults = [NSMutableArray array];
-    bool ok = results.isAllOk();
-    
-    if (!ok) {
-        for (auto result : results.getValidationResults()) {
-            ValidationResult *r = [ValidationResult new];
-            r.message = [NSString stringWithCString:result.second.getMessage().c_str() encoding:NSUTF8StringEncoding];
-            r.validationCode = static_cast<uint16_t>(result.second.getValidationCode());
-            [allResults addObject:r];
+
+    try {
+        sbx::ValidationResults results = re.validate(ta, peOid);
+        bool ok = results.isAllOk();
+        if (!ok) {
+            for (auto result : results.getValidationResults()) {
+                ValidationResult *r = [ValidationResult new];
+                r.message = [NSString stringWithCString:result.second.getMessage().c_str() encoding:NSUTF8StringEncoding];
+                r.validationCode = static_cast<uint16_t>(result.second.getValidationCode());
+                r.oid = result.first;
+                [allResults addObject:r];
+            }
         }
+    } catch (std::exception error) {
+        NSLog(@"getDefaultValueFor:%zd -> %s", peOid, error.std::exception::what());
+    } catch (mup::ParserError error) {
+        NSLog(@"getDefaultValueFor:%zd -> %s", peOid, error.GetMsg().c_str());
+    } catch (...) {
+        NSLog(@"getDefaultValueFor:%zd unknown exception", peOid);
     }
+    
     return allResults;
 }
 
