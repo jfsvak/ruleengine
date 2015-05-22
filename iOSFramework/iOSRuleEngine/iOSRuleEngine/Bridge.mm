@@ -17,6 +17,11 @@
 #include "ValidationResults.h"
 #include "ValidationResult.h"
 
+
+@implementation ValidationResult
+@end
+
+
 @implementation Bridge {
     sbx::RuleEngine re;
     sbx::TA ta;
