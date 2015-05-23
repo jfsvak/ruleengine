@@ -40,17 +40,15 @@ TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, FravalgRisiko_MK_POSITIVE) {
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
 	ta.setValue(kFravalgRisiko_MK, true);
 
-	ValidationResults r {};
 	RuleEngine::_printDebugAtValidation = true;
 
-	r = re.validate(ta, (unsigned short) kFravalgRisiko_MK);
+	auto r = re.validate(ta, (unsigned short) kFravalgRisiko_MK);
 	EXPECT_TRUE(r.isAllOk());
 	cout << r;
 
 	ta.setValue(kFravalgRisiko_MK, false);
 	r = re.validate(ta, (unsigned short) kFravalgRisiko_MK);
 	EXPECT_TRUE(r.isAllOk());
-	RuleEngine::_printDebugAtValidation = false;
 }
 
 // Test
@@ -64,9 +62,7 @@ TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, FravalgRisikoAlder_POSITIVE) {
 	ta.setValue(kFravalgRisiko_MK, true);
 	ta.setValue(kFravalgRisikoAlder, (long) 40); // allowed
 
-	ValidationResults r {};
-
-	r = re.validate(ta, (unsigned short) kFravalgRisikoAlder);
+	auto r = re.validate(ta, (unsigned short) kFravalgRisikoAlder);
 	EXPECT_TRUE(r.isAllOk());
 
 	ta.setValue(kFravalgRisikoAlder, (long) 50); // not allowed
@@ -88,10 +84,9 @@ TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, FravalgRisikoAlder_NEGATIVE) {
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
 	ta.setValue(kFravalgRisiko_MK, true);
 
-	ValidationResults r {};
-
 	ta.setValue(kFravalgRisikoAlder, (long) 1);
-	r = re.validate(ta, (unsigned short) kFravalgRisikoAlder);
+
+	auto r = re.validate(ta, (unsigned short) kFravalgRisikoAlder);
 	EXPECT_FALSE(r.isAllOk());
 
 	ta.setValue(kFravalgRisikoAlder, (long) 39);
@@ -113,21 +108,22 @@ TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, FravalgRisikoAlder_NEGATIVE) {
 //   FravalgRisikoAlder - PE(231)-P(129)
 // Allowed values:
 //   FravalgRisikoAlder not allowed as FravalgRisiko_MK is false
-TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, FravalgRisiko_MK_NEGATIVE) {
+TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, FravalgRisikoAlder_FravalgRisiko_MK_NEGATIVE) {
+	RuleEngine::_printDebugAtValidation = true;
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
 	ta.setValue(kFravalgRisiko_MK, false);
 	ta.setValue(kFravalgRisikoAlder, (long) 60);
 
-	RuleEngine::_printDebugAtValidation = true;
-
-	ValidationResults r {};
-
-	r = re.validate(ta, (unsigned short) kFravalgRisikoAlder);
+	auto r = re.validate(ta, (unsigned short) kFravalgRisikoAlder);
 	EXPECT_FALSE(r.isAllOk());
+	if (r.isAllOk())
+		cout << r;
 
+	// Set FravalgRisiko_MK to true and now the FravalgRisikoAlder is allowed and the value is OK
 	ta.setValue(kFravalgRisiko_MK, true);
 	r = re.validate(ta, (unsigned short) kFravalgRisikoAlder);
 	EXPECT_TRUE(r.isAllOk());
 
-	RuleEngine::_printDebugAtValidation = false;
+	if (!r.isAllOk())
+		cout << r;
 }

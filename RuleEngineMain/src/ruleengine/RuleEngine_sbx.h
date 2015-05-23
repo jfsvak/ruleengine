@@ -56,7 +56,6 @@ public:
 	sbx::ValidationResults validate(const TA&, unsigned short peOidToValidate); // simple delegate method to vector-method
 	sbx::ValidationResults validate(const TA&, const std::vector<unsigned short>& peOidToValidate); // multiple product element validation, using single pe validation
 
-
 	// Full ta validation
 	sbx::ValidationResults validate(const sbx::TA& ta, bool partial = false); // Full TA validation
 
@@ -73,31 +72,31 @@ public:
 private:
 
 	// Method to validate the value of a product element
-	void validateValue(const sbx::ProductElementValue&, sbx::ValidationResults&);
+	void _validateValue(const sbx::ProductElementValue&, sbx::ValidationResults&);
 
 	// Methods for pure value validations
-	sbx::ValidationResults validateMinMax(const sbx::ProductElementValue&);
-	sbx::ValidationResults validateOptionAllowed(const sbx::ProductElementValue&);
-	void validateCustomRules(unsigned short peOid, sbx::ValidationResults&);
+	sbx::ValidationResults _validateMinMax(const sbx::ProductElementValue&);
+	sbx::ValidationResults _validateOptionAllowed(const sbx::ProductElementValue&);
+	void _validateCustomRules(unsigned short peOid, sbx::ValidationResults&);
 	// checks if the product element is allowed on the TA for context and other values on ta's. Uses custom rules to validate this allowedness
 //	void validateRequiredIf(unsigned short peOid, sbx::ValidationResults&);
 
 	// checks if the supplied value is an allowed option (found in the allowed list in the rule constant container
-	bool isOptionAllowed(const sbx::ProductElementValue&);
+	bool _isOptionAllowed(const sbx::ProductElementValue&);
 
-	void executeRule(unsigned short peOidToValidate, std::shared_ptr<sbx::Rule>, sbx::ValidationResults&, sbx::ValidationCode negativeValCode = sbx::ValidationCode::kFail);
-//	void executeRequiredIfRule(unsigned short peOidToValidate, std::shared_ptr<sbx::Rule>, sbx::ValidationResults&);
+	void _executeRule(unsigned short peOidToValidate, std::shared_ptr<sbx::Rule>, sbx::ValidationResults&, sbx::ValidationCode negativeValCode = sbx::ValidationCode::kFail);
+	void _executeRequiredIfRule(unsigned short peOidToValidate, std::shared_ptr<sbx::Rule>, sbx::ValidationResults&);
+	mup::Value _execute(const std::string& expr, const std::string& ruleId);
 
 	// -- initialisation methods
-	void initRuleCatalogue(sbx::RuleCatalogue*, const Json::Value& ruleCatalogues);
-	void initParserWithProductElementConstants(unsigned short peOid);
-	template <typename T> void defineVariable(const std::string& name, const T& value);
-	void clearContext();
+	void _initRuleCatalogue(sbx::RuleCatalogue*, const Json::Value& ruleCatalogues);
+	void _initParserWithProductElementConstants(unsigned short peOid);
+	template <typename T> void _defineVariable(const std::string& name, const T& value);
+	void _clearContext();
 
-	void defineConstant(const std::string& name, double constant);
+	void _defineConstant(const std::string& name, double constant);
 
-
-	void loadParser(const TA& ta);
+	void _loadParser(const TA& ta);
 
 	sbx::ProductElement _PE(unsigned short peOid);
 	std::string _VAR_NAME(unsigned short peOid);

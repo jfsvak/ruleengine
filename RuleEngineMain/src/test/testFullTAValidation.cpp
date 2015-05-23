@@ -42,7 +42,7 @@ TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, Full_TA_POSITIVE) {
 			.setValue(kLink_MK, true);
 
 	ValidationResults r {};
-	RuleEngine::_printDebugAtValidation = true;
+//	RuleEngine::_printDebugAtValidation = true;
 
 	r = re.validate(ta);
 	EXPECT_FALSE(r.isAllOk());

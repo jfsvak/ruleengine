@@ -48,19 +48,21 @@ TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, DoedBlGrMin_Single_Value_OK) {
 
 	auto r = re.validate(ta, (unsigned short) kDoedBlGrMin);
 	EXPECT_TRUE(r.isAllOk());
-	cout << r;
+	if (!r.isAllOk())
+		cout << r;
 }
 
 // Test DoedBlGrMin
 // Allowed values: [0 - 5,000,000]
 // Expected:
-//    No value allowed for
+//    No value allowed for DoedBlGrMin as DoedReguleringskode == Gage
 TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, DoedBlGrMin_Single_Value_NOT_OK) {
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
 	ta.setValue(kDoedReguleringskode, "Gage");
 	ta.setValue(kDoedBlGrMin, (long) 100000);
 
 	auto r = re.validate(ta, (unsigned short) kDoedBlGrMin);
+
 	EXPECT_FALSE(r.isAllOk());
 
 	std::vector<sbx::ValidationResult> v = r.getValidationResults(kDoedBlGrMin);
@@ -71,26 +73,27 @@ TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, DoedBlGrMin_Single_Value_NOT_OK) {
 		cout << r;
 }
 
-// Test DoedBlGrMin
-// Allowed values: [0 - 5,000,000]
+// Test missing value on TA, DoedBlOblMax
+// Allowed values:
 // Expected:
 //    Warnings should contain a warning say that the product element being validated is missing on the TA
 TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, DoedBlGrMin_ValidateNonExistingToken_NOT_OK) {
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
-	ta.setValue(kDoedReguleringskode, "Gage");
+	ta.setValue(kDoedReguleringskode, "Pristal");
 
-	// set DoedBlGrMin
+	// set MIN value, DoedBlGrMin
 	ta.setValue(kDoedBlGrMin, (long) 100000);
+	RuleEngine::_printDebugAtValidation = true;
 
-	// ... but validate DoedBlOblMax
+	// ... but validate MAX, DoedBlOblMax
 	auto r = re.validate(ta, (unsigned short) kDoedBlOblMax);
 
-	EXPECT_FALSE(r.isAllOk());
+	EXPECT_TRUE(r.isAllOk());
+	if (!r.isAllOk())
+		cout << r;
+
 	ASSERT_EQ(1, r.sizeWarnings());
 	std::vector<sbx::ValidationResult> v = r.getWarnings(kDoedBlOblMax);
 
 	EXPECT_EQ(sbx::ValidationCode::kProductElementNotDefined, v.at(0).getValidationCode());
-
-	if (sbx::ValidationCode::kProductElementNotDefined != v.at(0).getValidationCode())
-		cout << r;
 }

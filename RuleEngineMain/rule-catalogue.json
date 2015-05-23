@@ -87,31 +87,11 @@
          },
          {
             "id": "4",
-            "expr": "StandardProduct == \"Traditionel_MK\"",
-   	        "productElementOids": [ 60 ],
+            "expr": "StandardProdukt == \"Traditionel_MK\" && Traditionel_MK == true",
+   	        "productElementOids": [ 95 ],
    	        "requiredif": "",
             "positiveMessage": "",
-            "negativeMessage": "",
-            "positiveRuleCatalogue": 
-            [
-            	{
-		            "id": "4.1",
-	    	        "expr": "Traditionel_MK == true",
-		   	        "productElementOids": [ 71 ],
-   	    		    "requiredif": "#parent#",
-	        	    "positiveMessage": "",
-	            	"negativeMessage": ""
-        	    }
-            ],
-	        "negativeRuleCatalogue": []
-         },
-         {
-            "id": "5",
-            "expr": "StandardProduct == \"Link_MK\" and Link_MK == true",
-   	        "productElementOids": [ 60 ],
-   	        "requiredif": "",
-            "positiveMessage": "",
-            "negativeMessage": "",
+            "negativeMessage": "Traditionel kan kun vaelges som Standardprodukt hvis det ogsaa er tilvalgt paa aftalen",
             "positiveRuleCatalogue": [],
 	        "negativeRuleCatalogue": []
          }

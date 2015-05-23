@@ -25,10 +25,11 @@ public:
 	TA& setCVR(const std::string& cvr);
 	TA& setKonceptOid(unsigned short konceptOid);
 
+	TA& setValue(unsigned short productElementOid, const char* value);
+	TA& setValue(unsigned short productElementOid, bool value);
 	TA& setValue(unsigned short productElementOid, const std::string& value);
 	TA& setValue(unsigned short productElementOid, double value);
 	TA& setValue(unsigned short productElementOid, long value);
-	TA& setValue(unsigned short productElementOid, bool value);
 
 	const std::string& getCVR() const;
 	unsigned short getKonceptOid() const;

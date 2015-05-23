@@ -67,6 +67,11 @@ TA& TA::setValue(unsigned short productElementOid, bool value)
 	return this->setValue(productElementOid, s.str());
 }
 
+TA& TA::setValue(unsigned short productElementOid, const char* value)
+{
+	return this->setValue(productElementOid, std::string(value));
+}
+
 /**
  * Gets a reference to the product element in this ta (not-copy).
  * Can be used to update value inside the product element.
@@ -107,6 +112,9 @@ TA& TA::setKonceptOid(unsigned short konceptOid)
 	return *this;
 }
 
+/**
+ * Removes the productElementValue for the peOid from this TA, so there is no entry in the map of values.
+ */
 void TA::remove(unsigned short peOid)
 {
 	_peValuesMap.erase(peOid);
