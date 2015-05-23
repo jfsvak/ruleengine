@@ -53,14 +53,12 @@ public:
 	const std::shared_ptr<sbx::Constant>& getDefaultValue(sbx::ProductElementOid productElementOid);
 	std::shared_ptr<sbx::Constant> getConstant(sbx::ProductElementOid productElement, sbx::ComparisonTypes comparisonType);
 
-	sbx::ValidationResults validate(const TA&, unsigned short peOidToValidate); // single product element validation
+	sbx::ValidationResults validate(const TA&, unsigned short peOidToValidate); // simple delegate method to vector-method
 	sbx::ValidationResults validate(const TA&, const std::vector<unsigned short>& peOidToValidate); // multiple product element validation, using single pe validation
-	sbx::ValidationResults validate(const sbx::TA& ta, bool partial = false); // Full TA validation
-	sbx::ValidationResults validateMinMax(const sbx::ProductElementValue&);
 
-	// checks if the product element is required for context and the ta
-	bool isValueRequired(const sbx::TA&, unsigned short peOid);
-	bool isValueAllowed(const sbx::ProductElementValue&);
+
+	// Full ta validation
+	sbx::ValidationResults validate(const sbx::TA& ta, bool partial = false); // Full TA validation
 
 	sbx::RuleCatalogue& getRuleCatalogue();
 	const sbx::RuleConstantContainer& getContainer() const;
@@ -74,6 +72,22 @@ public:
 
 private:
 
+	// Method to validate the value of a product element
+	void validateValue(const sbx::ProductElementValue&, sbx::ValidationResults&);
+
+	// Methods for pure value validations
+	sbx::ValidationResults validateMinMax(const sbx::ProductElementValue&);
+	sbx::ValidationResults validateOptionAllowed(const sbx::ProductElementValue&);
+	void validateCustomRules(unsigned short peOid, sbx::ValidationResults&);
+	// checks if the product element is allowed on the TA for context and other values on ta's. Uses custom rules to validate this allowedness
+//	void validateRequiredIf(unsigned short peOid, sbx::ValidationResults&);
+
+	// checks if the supplied value is an allowed option (found in the allowed list in the rule constant container
+	bool isOptionAllowed(const sbx::ProductElementValue&);
+
+	void executeRule(unsigned short peOidToValidate, std::shared_ptr<sbx::Rule>, sbx::ValidationResults&, sbx::ValidationCode negativeValCode = sbx::ValidationCode::kFail);
+//	void executeRequiredIfRule(unsigned short peOidToValidate, std::shared_ptr<sbx::Rule>, sbx::ValidationResults&);
+
 	// -- initialisation methods
 	void initRuleCatalogue(sbx::RuleCatalogue*, const Json::Value& ruleCatalogues);
 	void initParserWithProductElementConstants(unsigned short peOid);
@@ -81,8 +95,9 @@ private:
 	void clearContext();
 
 	void defineConstant(const std::string& name, double constant);
-	void executeRule(unsigned short peOidToValidate, std::shared_ptr<sbx::Rule> rule, sbx::ValidationResults& valResult);
-	void loadTAValues(const TA& ta);
+
+
+	void loadParser(const TA& ta);
 
 	sbx::ProductElement _PE(unsigned short peOid);
 	std::string _VAR_NAME(unsigned short peOid);

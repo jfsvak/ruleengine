@@ -7,30 +7,22 @@
             "expr": "DoedReguleringskode == \"Ingen\" or DoedReguleringskode == \"Pristal\"",
             "productElementOids": [ 82 ],
             "positiveMessage": "",
-            "negativeMessage": "",
+            "negativeMessage": "Should not have these related product elements",
             "positiveRuleCatalogue":
 	        [
             	{
-		            "id": "1.1",
-	    	        "expr": "",
-	    	        "productElementOids": [ 1, 2 ],
-	    	        "requiredif": "#parent#",
-	        	    "positiveMessage": "",
-	            	"negativeMessage": ""
-            	},
-            	{
-		            "id": "1.2",
-	    	        "expr": "(DoedBlOblMax-DoedBlGrMin) <= rc_DoedSpaendBl_max",
-	    	        "productElementOids": [ 3 ],
-	    	        "requiredif": "#parent#",
+		            "id": "1.5",
+	    	        "expr": "(DoedBlOblMax-DoedBlGrMin) < rc_DoedSpaendBl_max",
+	    	        "productElementOids": [ 1, 2, 3 ],
+	    	        "requiredRule": "#parent#",
 	        	    "positiveMessage": "",
 	            	"negativeMessage": "Spænd i d�dsfaldsd�kning i kr m� ikke overstige %1"
             	},
             	{
-		            "id": "1.3",
-	    	        "expr": "(DoedBlOblMax-DoedBlGrMin) >= rc_DoedSpaendBl_min",
-	    	        "productElementOids": [ 3 ],
-	    	        "requiredif": "#parent#",
+		            "id": "1.6",
+	    	        "expr": "(DoedBlOblMax-DoedBlGrMin) > rc_DoedSpaendBl_min",
+	    	        "productElementOids": [ 1, 2, 3 ],
+	    	        "requiredRule": "#parent#",
 	        	    "positiveMessage": "",
 	            	"negativeMessage": "Spænd i d�dsfaldsd�kning i kr skal mindst v�re [rc_DoedSpandBl_min] kr."
             	}
@@ -41,24 +33,24 @@
             "id": "2",
             "expr": "DoedReguleringskode == \"Gage\"",
    	        "productElementOids": [ 82 ],
-   	        "requiredif": "",
+   	        "requiredRule": "",
             "positiveMessage": "",
-            "negativeMessage": "",
+            "negativeMessage": "Should not have these related product elements",
             "positiveRuleCatalogue":
 	        [
 		        {
-		            "id": "2.1",
+		            "id": "2.5",
 	    	        "expr": "(DoedPctOblMax-DoedPctGrMin) <= rc_DoedSpaendPct_max",
-		   	        "productElementOids": [ 9 ],
-   	    		    "requiredif": "#parent#",
+		   	        "productElementOids": [ 6, 7, 9 ],
+   	    		    "requiredRule": "#parent#",
 	        	    "positiveMessage": "",
 	            	"negativeMessage": "Spænd for dødsfaldsdækning i pct må ikke overstige %1"
         	    },
 		        {
-		            "id": "2.2",
+		            "id": "2.6",
 	    	        "expr": "(DoedPctOblMax-DoedPctGrMin) >= rc_DoedSpaendPct_min",
-		   	        "productElementOids": [ 9 ],
-   	    		    "requiredif": "#parent#",
+		   	        "productElementOids": [ 6, 7, 9 ],
+   	    		    "requiredRule": "#parent#",
 	        	    "positiveMessage": "",
 	            	"negativeMessage": "Spænd for dødsfaldsdækning i pct skal være større end %1"
         	    }
@@ -69,16 +61,16 @@
             "id": "3",
             "expr": "FravalgRisiko_mk == true",
    	        "productElementOids": [ 230 ],
-   	        "requiredif": "",
+   	        "requiredRule": "",
             "positiveMessage": "",
-            "negativeMessage": "",
+            "negativeMessage": "Should not have these related product elements",
             "positiveRuleCatalogue":
 	        [
 		        {
 		            "id": "3.1",
 	    	        "expr": "",
 		   	        "productElementOids": [ 231 ],
-   	    		    "requiredif": "#parent#",
+   	    		    "requiredRule": "#parent#",
 	        	    "positiveMessage": "",
 	            	"negativeMessage": "FravalgRisikoAlder is enum"
         	    }
@@ -89,7 +81,7 @@
             "id": "4",
             "expr": "StandardProduct == \"Traditionel_MK\"",
    	        "productElementOids": [ 60 ],
-   	        "requiredif": "",
+   	        "requiredRule": "",
             "positiveMessage": "",
             "negativeMessage": "",
             "positiveRuleCatalogue": 
@@ -98,7 +90,7 @@
 		            "id": "4.1",
 	    	        "expr": "Traditionel_MK == true",
 		   	        "productElementOids": [ 71 ],
-   	    		    "requiredif": "#parent#",
+   	    		    "requiredRule": "#parent#",
 	        	    "positiveMessage": "",
 	            	"negativeMessage": ""
         	    }
@@ -109,7 +101,7 @@
             "id": "5",
             "expr": "StandardProduct == \"Link_MK\" and Link_MK == true",
    	        "productElementOids": [ 60 ],
-   	        "requiredif": "",
+   	        "requiredRule": "",
             "positiveMessage": "",
             "negativeMessage": "",
             "positiveRuleCatalogue": [],

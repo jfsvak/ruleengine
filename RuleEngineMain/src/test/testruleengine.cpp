@@ -36,7 +36,7 @@ protected:
 // Test cases
 TEST_F(ProductElementValidationTest, aPositiveScenario) {
     TA ta { "15124040", 4};
-    
+    RuleEngine::_printDebugAtValidation = true;
     ta.setValue(kDoedReguleringskode, std::string {"Gage"})
     			.setValue(kDoedPctGrMin, (long) 200)
 				.setValue(kDoedPctOblMax, (long) 300);
@@ -45,7 +45,7 @@ TEST_F(ProductElementValidationTest, aPositiveScenario) {
     auto result = re.validate(ta, (unsigned short) kDoedPctGrMin);
 
     EXPECT_EQ(0, result.getValidationResults().size());
-    
+    cout << result;
 }
 
 TEST_F(ProductElementValidationTest, peValueIsOverTheLimit) {
@@ -55,8 +55,14 @@ TEST_F(ProductElementValidationTest, peValueIsOverTheLimit) {
     ta.getValue(kDoedPctOblMax).setValue("801");
 
     auto result = re.validate(ta, {kDoedPctGrMin, kDoedPctOblMax} );
+    auto v = result.getValidationResults(kDoedPctOblMax);
+
+    EXPECT_EQ(1, v.size());
+    using sbx::ValidationCode;
+
+    EXPECT_EQ(sbx::ValidationCode::kValueOverLimit, v.at(0).getValidationCode());
     
-    EXPECT_NE(0, result.getValidationResults().size());
+    cout << result;
 }
 
 TEST_F(ProductElementValidationTest, relatedPEValueSpaendIsOverTheLimit) {
@@ -65,7 +71,12 @@ TEST_F(ProductElementValidationTest, relatedPEValueSpaendIsOverTheLimit) {
     ta.getValue(kDoedPctGrMin).setValue("100");
     ta.getValue(kDoedPctOblMax).setValue("700");
     
-    auto result = re.validate(ta,  (unsigned short) kDoedPctGrMin);
+    auto result = re.validate(ta,  (unsigned short) kDoedSpaendPct);
     
-    EXPECT_NE(0, result.getValidationResults().size());
+    auto v = result.getValidationResults(kDoedSpaendPct);
+    EXPECT_EQ(1, v.size());
+
+    // TODO make related spaend validation return kValueOverLimit instead of kFail
+    EXPECT_EQ(sbx::ValidationCode::kFail, (unsigned short) v.at(0).getValidationCode());
+    cout << result;
 }

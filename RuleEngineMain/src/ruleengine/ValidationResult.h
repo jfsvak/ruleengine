@@ -11,19 +11,9 @@
 #include <iostream>
 #include <string>
 
-namespace sbx {
+#include "sbxTypes.h"
 
-enum class ValidationCode : unsigned short {
-	kUnknown,
-	kOK,
-	kWarning,
-	kFail,
-	kValueMissing,
-	kValueNotRequired, 		// value shouldn't be set
-	kValueNotAllowed, 		// value is not allowed according to rule constants
-	kValueTooSmall,			// min value validation
-	kValueTooBig			// max value validation
-};
+namespace sbx {
 
 class ValidationResult {
 public:

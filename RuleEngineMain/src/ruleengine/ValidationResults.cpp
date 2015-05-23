@@ -24,7 +24,7 @@ std::ostream& operator<<(std::ostream& output, const sbx::ValidationResults& res
 		output << "  " << item.second << std::endl;
 	}
 
-	output << "Warning [" << res._warningsMap.size() << "]:" << std::endl;
+	output << "Warnings [" << res._warningsMap.size() << "]:" << std::endl;
 	for (auto& item : res._warningsMap)
 	{
 		output << "  " << item.second << std::endl;
@@ -109,6 +109,9 @@ void ValidationResults::updateState(const sbx::ValidationResult& result)
 		_allOk = false;
 	}
 }
+
+int ValidationResults::sizeValidationResults() const { _validationResultMap.size(); }
+int ValidationResults::sizeWarnings() const { return _warningsMap.size(); }
 
 // private method for getting a subset of ValidationResult's in a vector
 std::vector<sbx::ValidationResult> ValidationResults::_getSubSet(const std::multimap<unsigned short, sbx::ValidationResult>& map, unsigned short peOid)

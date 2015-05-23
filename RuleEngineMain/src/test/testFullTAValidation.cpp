@@ -2,18 +2,14 @@
 #include <vector>
 #include "gtest/gtest.h"
 
-#include "../ruleengine/Constant_sbx.h"
+#include "ruleenginetestutils.h"
+
 #include "../ruleengine/KonceptInfo_sbx.h"
-#include "../ruleengine/ProductElementValue_sbx.h"
-#include "../ruleengine/RuleConstantContainer_sbx.h"
 #include "../ruleengine/RuleEngine_sbx.h"
-#include "../ruleengine/RuleCatalogue.h"
-#include "../ruleengine/Rule.h"
-#include "../ruleengine/sbxTypes.h"
 #include "../ruleengine/TA_sbx.h"
 #include "../ruleengine/ValidationResult.h"
+#include "../ruleengine/ValidationResults.h"
 
-#include "ruleenginetestutils.h"
 
 using namespace std;
 using namespace sbx;
@@ -37,25 +33,34 @@ protected:
 };
 
 
-// Test Udlobsalder_Pension - PE(71)-P(13)
-// Allowed values, 60, 62, 65, 67
-TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, UdloebsalderPension_POSITIVE) {
+TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, Full_TA_POSITIVE) {
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
-	ta.setValue(kUdlobsalder_Pension, (long) 60 );
+	ta.setValue(kUdlobsalder_Pension, (long) 67)
+			.setValue(kFravalgRisiko_MK, false)
+			.setValue(kTraditionel_MK, true)
+			.setValue(kTidspensionMedGaranti_MK, true)
+			.setValue(kLink_MK, true);
 
-	auto r = re.validate(ta, (unsigned short) kUdlobsalder_Pension);
-	EXPECT_EQ(true, r.isAllOk());
-}
-
-
-// Test Udlobsalder_Pension - PE(71)-P(13)
-// Allowed values, 60, 62, 65, 67
-TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, UdloebsalderPension_NEGATIVE) {
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
-	ta.setValue(kUdlobsalder_Pension, (long) 61); // value not allowed
-
+	ValidationResults r {};
 	RuleEngine::_printDebugAtValidation = true;
 
-	auto r = re.validate(ta, (unsigned short) kUdlobsalder_Pension);
+	r = re.validate(ta);
 	EXPECT_FALSE(r.isAllOk());
+	// total is 186, so should be 186 minus the number of pe's set above
+	EXPECT_EQ(181, r.sizeValidationResults());
+
+	cout << r;
+}
+
+TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, Full_TA_NUMBER_OF_VALIDATIONRESULTS) {
+	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+
+	ValidationResults r {};
+	RuleEngine::_printDebugAtValidation = true;
+
+	r = re.validate(ta);
+	EXPECT_FALSE(r.isAllOk());
+	EXPECT_EQ(186, r.sizeValidationResults());
+
+//	cout << r;
 }

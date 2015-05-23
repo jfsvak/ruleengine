@@ -46,49 +46,59 @@ enum ProductOid : unsigned short {
 };
 
 enum ProductElementOid : unsigned short {
-			kUnknownProductElement 	= 0,
-			kDoedBlGrMin			= 1,
-			kDoedBlOblMax			= 2,
-			kDoedSpaendBl			= 3,
-			kDoedSoliMax			= 4,
-			kDoedPctGrMin			= 6,
-			kDoedPctOblMax			= 7,
-			kDoedSpaendPct			= 9,
-			kTaeBlGrMin				= 14,
-			kTaeBlOblMax			= 15,
-			kTaeSpaendBl			= 16,
-			kBoerneUdloebsalder		= 67,
-			kUdloebsalder_Pension	= 71,
-			kDoedReguleringskode	= 82,
-			kBoerneRentePctMin		= 85,
-			kBoerneRenteBlMin		= 89,
-			kBoerneSumBlMin			= 91,
-			kBoernerenteReguleringstype	= 128,
-			kDoedDaekningstype		= 139,
-			kLoenDefinition			= 146,
-			kLoenRegulering			= 147,
-			kBoerneRenteSoliMax		= 183,
-			k194					= 194,
-			k217					= 217,
-			k218					= 218,
-			kFravalgRisiko_MK		= 230,
-			kFravalgRisikoAlder		= 231
+			kUnknownProductElement 			= 0,
+			kDoedBlGrMin					= 1,
+			kDoedBlOblMax					= 2,
+			kDoedSpaendBl					= 3,
+			kDoedSoliMax					= 4,
+			kDoedPctGrMin					= 6,
+			kDoedPctOblMax					= 7,
+			kDoedSpaendPct					= 9,
+			kTaeBlGrMin						= 14,
+			kTaeBlOblMax					= 15,
+			kTaeSpaendBl					= 16,
+			kBoerneUdloebsalder				= 67,
+			kUdlobsalder_Pension			= 71,
+			kTraditionel_MK					= 72,
+			kLink_MK						= 73,
+			kMarkedspension_MK				= 74,
+			kTidspensionMedGaranti_MK		= 75,
+			kDoedReguleringskode			= 82,
+			kBoerneRentePctMin				= 85,
+			kBoerneRenteBlMin				= 89,
+			kBoerneSumBlMin					= 91,
+			kStandardProduct				= 95,
+			kBoernerenteReguleringstype		= 128,
+			kDoedDaekningstype				= 139,
+			kLoenDefinition					= 146,
+			kLoenRegulering					= 147,
+			kBoerneRenteSoliMax				= 183,
+			k194							= 194,
+			kTidspensionUdenGaranti_MK 		= 210,
+			k217							= 217,
+			k218							= 218,
+			kFravalgRisiko_MK				= 230,
+			kFravalgRisikoAlder				= 231
 };
 
-struct ConstantKey {
-	sbx::ProductElementOid pe;
-	sbx::ComparisonTypes type;
 
-	bool operator<(ConstantKey const& other) const {
-		if (pe < other.pe) return true;
-		if (pe > other.pe) return false;
-		// pe is equal, so look at next part of the composite key
-		if (type < other.type) return true;
-		if (type > other.type) return false;
+enum ValidationCode : unsigned short {
+	kUnknownValidationCode			= 0,		//
+	// General validation codes
+	kOK 							= 1,		//
+	kWarning 						= 2,		//
+	kFail 							= 3,		//
+	kProductElementNotDefined		= 4,		// If trying to validate a pe that hasn't been defined/set on the TA
 
-		// both pe and type are equal...
-		return false;
-	}
+	// Validation Codes for values (for pe's)
+	kValueNotAllowed 				= 100,		// value is not allowed i.e. not found in options list
+	kValueMissing 					= 101,		// value is missing
+	kValueUnderLimit 				= 102,		// min value validation
+	kValueOverLimit 				= 103,		// max value validation
+
+	// Validation Codes for product elements
+	kProductElementNotAllowed		= 200,		// Product element shouldn't be on the TA (and therefore not have a value either)
+	kProductElementRequired			= 201 		// Product element is required to be on the TA (and have a value)
 };
 
 } // namespace sbx

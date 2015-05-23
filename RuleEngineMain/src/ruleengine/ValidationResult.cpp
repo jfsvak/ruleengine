@@ -16,7 +16,7 @@ std::ostream& operator << (std::ostream& output, const ValidationResult& valResu
 }
 
 ValidationResult::ValidationResult()
-		: _code { sbx::ValidationCode::kUnknown },
+		: _code { sbx::ValidationCode::kUnknownValidationCode },
 		  _productElementOid {0},
 		  _ruleId {""},
 		  _message {""},
@@ -24,7 +24,7 @@ ValidationResult::ValidationResult()
 {}
 
 ValidationResult::ValidationResult(unsigned short peOid)
-		: _code { sbx::ValidationCode::kUnknown },
+		: _code { sbx::ValidationCode::kUnknownValidationCode },
 		  _productElementOid {peOid},
 		  _ruleId {""},
 		  _message {""},

@@ -107,10 +107,15 @@ TA& TA::setKonceptOid(unsigned short konceptOid)
 	return *this;
 }
 
+void TA::remove(unsigned short peOid)
+{
+	_peValuesMap.erase(peOid);
+}
+
 const std::map<unsigned short, sbx::ProductElementValue>& TA::getValues() const { return _peValuesMap; }
 const std::string& TA::getCVR() const { return _cvr; }
 unsigned short TA::getKonceptOid() const { return _konceptOid; }
-bool sbx::TA::hasValue(unsigned short productElementOid) const { return (_peValuesMap.find(productElementOid) != _peValuesMap.cend()); }
+bool TA::hasValue(unsigned short productElementOid) const { return (_peValuesMap.find(productElementOid) != _peValuesMap.cend()); }
 
 TA::~TA() {}
 

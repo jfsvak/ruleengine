@@ -2,18 +2,14 @@
 #include <vector>
 #include "gtest/gtest.h"
 
-#include "../ruleengine/Constant_sbx.h"
+#include "ruleenginetestutils.h"
+
 #include "../ruleengine/KonceptInfo_sbx.h"
-#include "../ruleengine/ProductElementValue_sbx.h"
-#include "../ruleengine/RuleConstantContainer_sbx.h"
 #include "../ruleengine/RuleEngine_sbx.h"
-#include "../ruleengine/RuleCatalogue.h"
-#include "../ruleengine/Rule.h"
-#include "../ruleengine/sbxTypes.h"
 #include "../ruleengine/TA_sbx.h"
 #include "../ruleengine/ValidationResult.h"
+#include "../ruleengine/ValidationResults.h"
 
-#include "ruleenginetestutils.h"
 
 using namespace std;
 using namespace sbx;

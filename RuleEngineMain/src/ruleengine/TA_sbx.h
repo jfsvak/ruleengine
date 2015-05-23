@@ -35,6 +35,8 @@ public:
 	sbx::ProductElementValue& getValue(unsigned short productElementOid);
 	sbx::ProductElementValue getValue(unsigned short productElementOid) const;
 	const std::map<unsigned short, sbx::ProductElementValue>& getValues() const;
+
+	void remove(unsigned short peOid);
 	bool hasValue(unsigned short productElementOid) const;
 
 	virtual ~TA();
