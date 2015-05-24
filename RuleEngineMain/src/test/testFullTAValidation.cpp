@@ -49,7 +49,8 @@ TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, Full_TA_POSITIVE) {
 	// total is 186, so should be 186 minus the number of pe's set above
 	EXPECT_EQ(181, r.sizeValidationResults());
 
-	cout << r;
+	if (r.sizeValidationResults() != 181)
+		cout << r;
 }
 
 TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, Full_TA_NUMBER_OF_VALIDATIONRESULTS) {

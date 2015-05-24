@@ -109,3 +109,36 @@ TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, Opsparingsprodukt_OK) {
 	if (!r.isAllOk())
 		cout << r;
 }
+
+// Test Opsparingsprodukter - PE(72, 73, 74, 75, 201)-P(60)
+// Allowed values:
+// Expected result:
+//   Should be OK as the selected StandardProdukt is also selected on the TA
+//
+TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, Opsparingsprodukt_RemoveFromTA_POSITIVE) {
+	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	ta.setValue(kMarkedspension_MK, true);
+	ta.setValue(kTraditionel_MK, true);
+
+	ta.setValue(kStandardProduct, "Traditionel_MK");
+
+	auto r = re.validate(ta, (unsigned short) kStandardProduct );
+	EXPECT_TRUE(r.isAllOk());
+
+	if (!r.isAllOk())
+		cout << r;
+
+	// now remove the traditional allowed and validate again, now it should give a warning saying that the traditional token is not found
+	// but still validate to ok, as the value (option) is allowed according to rule constants
+	ta.remove(kTraditionel_MK);
+	r = re.validate(ta, (unsigned short) kStandardProduct );
+	EXPECT_TRUE(r.isAllOk());
+	if (!r.isAllOk())
+		cout << r;
+
+	auto w = r.getWarnings(kTraditionel_MK);
+	cout << r;
+	ASSERT_EQ(1, w.size());
+	EXPECT_EQ(kTokenNotDefined, w.at(0).getValidationCode());
+}
+

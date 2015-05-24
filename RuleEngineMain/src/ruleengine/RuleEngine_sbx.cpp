@@ -286,6 +286,9 @@ const sbx::RuleConstantContainer& RuleEngine::getContainer() const
  */
 void RuleEngine::_loadParser(const TA& ta)
 {
+	// clear all vars in parser, and
+	_parser.ClearVar();
+
 	// initialise all values for TA into parser
 	for (auto& item : ta.getValues())
 	{

@@ -11,7 +11,11 @@
 namespace sbx {
 
 std::ostream& operator << (std::ostream& output, const ValidationResult& valResult) {
-	output << "Code[" << (int) valResult.getValidationCode() << "], PE[" << valResult.getVariableName() << " (" << valResult.getProductElementOid() << ")], RuleId[" << valResult.getRuleId() << "], Msg[" << valResult.getMessage() << "]";
+	output << "ValCode[" << (int) valResult.getValidationCode() << "], "
+			"Variable[" << valResult.getVariableName() << " (" << valResult.getProductElementOid() << ")], " <<
+			"expr[" << valResult.getExpr() << "], " <<
+			"RuleId[" << valResult.getRuleId() << "], " <<
+			"Msg[" << valResult.getMessage() << "]"	;
 	return output;
 }
 

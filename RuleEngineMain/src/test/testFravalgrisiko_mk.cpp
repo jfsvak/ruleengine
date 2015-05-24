@@ -119,6 +119,11 @@ TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, FravalgRisikoAlder_FravalgRisiko_MK_NEGA
 	if (r.isAllOk())
 		cout << r;
 
+	auto v = r.getValidationResults(kFravalgRisikoAlder);
+	ASSERT_EQ(1, v.size());
+
+	EXPECT_EQ(kProductElementNotAllowed, v.at(0).getValidationCode());
+
 	// Set FravalgRisiko_MK to true and now the FravalgRisikoAlder is allowed and the value is OK
 	ta.setValue(kFravalgRisiko_MK, true);
 	r = re.validate(ta, (unsigned short) kFravalgRisikoAlder);

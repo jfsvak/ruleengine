@@ -58,4 +58,7 @@ TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, UdloebsalderPension_NEGATIVE) {
 
 	auto r = re.validate(ta, (unsigned short) kUdlobsalder_Pension);
 	EXPECT_FALSE(r.isAllOk());
+
+	auto v = r.getValidationResults(kUdlobsalder_Pension);
+	EXPECT_EQ(kValueNotAllowed, v.at(0).getValidationCode());
 }
