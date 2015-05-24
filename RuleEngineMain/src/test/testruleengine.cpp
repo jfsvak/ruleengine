@@ -12,6 +12,8 @@
 #include "../ruleengine/sbxTypes.h"
 #include "../ruleengine/TA_sbx.h"
 #include "../ruleengine/ValidationResult.h"
+#include "../ruleengine/muParser/mpError.h"
+#include "../ruleengine/mubridge/utils.h"
 
 #include "ruleenginetestutils.h"
 
@@ -71,15 +73,10 @@ TEST_F(ProductElementValidationTest, relatedPEValueSpaendIsOverTheLimit) {
     ta.setValue(kDoedReguleringskode, std::string {"Gage"});
     ta.getValue(kDoedPctGrMin).setValue("100");
     ta.getValue(kDoedPctOblMax).setValue("700");
+	auto result = re.validate(ta, (unsigned short) kDoedSpaendPct);
 
-    auto result = re.validate(ta, (unsigned short) kDoedSpaendPct);
-    
-    auto v = result.getValidationResults(kDoedSpaendPct);
-    cout << result;
-    ASSERT_GE(1, v.size());
-
-    EXPECT_EQ(sbx::ValidationCode::kFail, (unsigned short) result.getValidationResults(kDoedSpaendPct).at(0).getValidationCode());
-
-    if (v.at(0).getValidationCode() != sbx::ValidationCode::kFail)
-    	cout << result;
+	auto v = result.getValidationResults(kDoedSpaendPct);
+	cout << result;
+	ASSERT_EQ(1, v.size());
+	EXPECT_EQ(kFail, v.at(0).getValidationCode());
 }

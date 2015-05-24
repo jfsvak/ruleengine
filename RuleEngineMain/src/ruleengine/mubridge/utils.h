@@ -13,17 +13,17 @@
 
 #include "../muParser/mpError.h"
 
-#include "../Rule.h"
-#include "../ValidationResult.h"
 #include "../ValidationResults.h"
+#include "../RuleConstantContainer_sbx.h"
 
 namespace sbx {
 
 namespace mubridge {
+//typedef unsigned short (sbx::RuleConstantContainer::*FuncPtr)(const std::string& varName);
 
 void handle(const mup::ParserError& e);
-void handle(const mup::ParserError& e, sbx::Rule* rule, std::vector<unsigned short> peOidsBeingValidated, sbx::ValidationResults& valResult);
-
+void handleAsWarning(const mup::ParserError& e, sbx::ValidationResults& valResult, const sbx::RuleConstantContainer&);
+//void handleAsWarning(const mup::ParserError& e, sbx::ValidationResults& valResult, FuncPtr myFunc);
 } // namespace mubridge
 
 } // namespace sbx

@@ -11,6 +11,7 @@
 
 #include <map>
 #include <memory>
+#include <set>
 #include <string>
 #include <vector>
 
@@ -57,7 +58,7 @@ public:
 	sbx::ValidationResults validate(const TA&, const std::vector<unsigned short>& peOidToValidate); // multiple product element validation, using single pe validation
 
 	// Full ta validation
-	sbx::ValidationResults validate(const sbx::TA& ta, bool partial = false); // Full TA validation
+	sbx::ValidationResults validate(const sbx::TA& ta, bool full = true); // Full TA validation
 
 	sbx::RuleCatalogue& getRuleCatalogue();
 	const sbx::RuleConstantContainer& getContainer() const;
@@ -74,15 +75,24 @@ private:
 	// Method to validate the value of a product element
 	void _validateValue(const sbx::ProductElementValue&, sbx::ValidationResults&);
 
-	// Methods for pure value validations
-	sbx::ValidationResults _validateMinMax(const sbx::ProductElementValue&);
-	sbx::ValidationResults _validateOptionAllowed(const sbx::ProductElementValue&);
-	void _validateCustomRules(unsigned short peOid, sbx::ValidationResults&);
-	// checks if the product element is allowed on the TA for context and other values on ta's. Uses custom rules to validate this allowedness
-//	void validateRequiredIf(unsigned short peOid, sbx::ValidationResults&);
 
-	// checks if the supplied value is an allowed option (found in the allowed list in the rule constant container
+	//
+	// Methods for pure value validations
+	//
+	void _validateMinMax(const sbx::ProductElementValue&, sbx::ValidationResults&);
+	void _validateOptionAllowed(const sbx::ProductElementValue&, sbx::ValidationResults&);
+	//   checks if the supplied value is an allowed option (found in the allowed list in the rule constant container
 	bool _isOptionAllowed(const sbx::ProductElementValue&);
+
+
+	//
+	// Methods for related pe validations/checks
+	//
+	void _validateCustomRules(unsigned short peOid, sbx::ValidationResults&);
+	// checks if the product element is required to be the TA for the context and other values on ta's. Uses custom rules to validate this requiredness
+	bool _isNotRequired(unsigned short peOid, sbx::ValidationResults&);
+
+
 
 	void _executeRule(unsigned short peOidToValidate, std::shared_ptr<sbx::Rule>, sbx::ValidationResults&, sbx::ValidationCode negativeValCode = sbx::ValidationCode::kFail);
 	void _executeRequiredIfRule(unsigned short peOidToValidate, std::shared_ptr<sbx::Rule>, sbx::ValidationResults&);
@@ -93,6 +103,8 @@ private:
 	void _initParserWithProductElementConstants(unsigned short peOid);
 	template <typename T> void _defineVariable(const std::string& name, const T& value);
 	void _clearContext();
+
+	std::set<unsigned short, std::less<unsigned short>> _getAllowedPEOids();
 
 	void _defineConstant(const std::string& name, double constant);
 
@@ -116,6 +128,7 @@ private:
 
 	// ParserX is initialised when the KonceptInfo has been parsed in for initialisation
 	mup::ParserX _parser { mup::pckALL_NON_COMPLEX };
+	bool _refreshParserValues = true;
 
 	/**
 	 * Map of product element oids to mup::Values pointers

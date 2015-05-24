@@ -27,4 +27,4 @@ bool toBool(const std::string& s)
 	return (sbx::toUpper(s) == "TRUE" || s == "1");
 }
 
-} // namespace sbx
+} //namespace sbx

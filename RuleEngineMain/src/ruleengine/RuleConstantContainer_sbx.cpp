@@ -152,14 +152,15 @@ void RuleConstantContainer::_initProducts(const Json::Value& products)
 				for (Json::ValueIterator jsonPEIterator = productElements.begin(); jsonPEIterator != productElements.end(); ++jsonPEIterator)
 				{
 					int peOid = jsonPEIterator->get("oid", 0).asInt();
-					string name = jsonPEIterator->get("variableName", "").asString();
+					string variableName = jsonPEIterator->get("variableName", "").asString();
 					string guiName = jsonPEIterator->get("guiName", "").asString();
 					int elementType = jsonPEIterator->get("elementTypeOid", 0).asInt();
 
 					productPtr->addProductElementOid(peOid);
-					shared_ptr<ProductElement> pePtr = make_shared<sbx::ProductElement>(static_cast<unsigned short>(peOid), name, guiName, static_cast<sbx::ProductElementTypes>(elementType), static_cast<unsigned short>(productOid));
+					shared_ptr<ProductElement> pePtr = make_shared<sbx::ProductElement>(static_cast<unsigned short>(peOid), variableName, guiName, static_cast<sbx::ProductElementTypes>(elementType), static_cast<unsigned short>(productOid));
 
 					_productElementMap[peOid] = pePtr;
+					_varNameToPEOidMap[variableName] = peOid;
 				}
 			}
 
@@ -436,6 +437,20 @@ sbx::ProductElement RuleConstantContainer::getProductElement(unsigned short prod
 	std::stringstream s {};
 	s << productElementOid;
 	throw domain_error("ProductElement [" + s.str() + "] not found!");
+}
+
+/**
+ * Returns the peOid corrosponding to the varName
+ * If no peOid is found for the varName kUnknownProductElement == 0 is returned
+ */
+unsigned short RuleConstantContainer::getProductElementOid(const std::string& varName) const
+{
+	if (_varNameToPEOidMap.find(varName) != _varNameToPEOidMap.cend())
+	{
+		return _varNameToPEOidMap.at(varName);
+	}
+
+	return (unsigned short) kUnknownProductElement;
 }
 
 /**

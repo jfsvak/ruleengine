@@ -83,22 +83,24 @@ enum ProductElementOid : unsigned short {
 
 
 enum ValidationCode : unsigned short {
-	kUnknownValidationCode			= 0,		//
+	kUnknownValidationCode			= 0,		// If everything goes wrong, this code is used
 	// General validation codes
-	kOK 							= 1,		//
-	kWarning 						= 2,		//
-	kFail 							= 3,		//
+	kOK 							= 1,		// General OK code
+	kWarning 						= 2,		// General warning code
+	kFail 							= 3,		// General fail code
 	kProductElementNotDefined		= 4,		// If trying to validate a pe that hasn't been defined/set on the TA
 
-	// Validation Codes for values (for pe's)
-	kValueNotAllowed 				= 100,		// value is not allowed i.e. not found in options list
-	kValueMissing 					= 101,		// value is missing
-	kValueUnderLimit 				= 102,		// min value validation
-	kValueOverLimit 				= 103,		// max value validation
+	// Validation Codes for values (inside pe's)
+	kValueNotAllowed 				= 101,		// value is not allowed i.e. not found in options list
+	kValueUnderLimit 				= 103,		// Value is under the allowed limit
+	kValueOverLimit 				= 104,		// Value is over the allowed limit
 
-	// Validation Codes for product elements
-	kProductElementNotAllowed		= 200,		// Product element shouldn't be on the TA (and therefore not have a value either)
-	kProductElementRequired			= 201 		// Product element is required to be on the TA (and have a value)
+	// Validation Codes for product elements, not the actual value is being validated
+	kProductElementNotAllowed		= 201,		// Product element shouldn't be on the TA (and therefore not have a value either)
+	kProductElementRequired			= 202, 		// Product element is required to be on the TA (and have a value)
+
+	// muParser Validation Codes
+	kTokenNotDefined				= 301		// If an expression (maybe custom) contains a token that hasn't been loaded into the parser
 };
 
 } // namespace sbx

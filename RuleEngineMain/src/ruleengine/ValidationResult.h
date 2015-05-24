@@ -21,7 +21,7 @@ public:
 
 	ValidationResult();
 	explicit ValidationResult(unsigned short peOid);
-	ValidationResult(sbx::ValidationCode code, unsigned short peOid, const std::string& variableName = "", const std::string& ruleId = "", const std::string& message = "", const std::string& expr = "");
+	ValidationResult(sbx::ValidationCode code, unsigned short peOid, const std::string& variableName = "", const std::string& message = "", const std::string& ruleId = "", const std::string& expr = "");
 
 	sbx::ValidationCode getValidationCode() const;
 	unsigned short getProductElementOid() const;

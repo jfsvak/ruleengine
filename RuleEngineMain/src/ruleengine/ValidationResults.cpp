@@ -110,7 +110,7 @@ void ValidationResults::updateState(const sbx::ValidationResult& result)
 	}
 }
 
-int ValidationResults::sizeValidationResults() const { _validationResultMap.size(); }
+int ValidationResults::sizeValidationResults() const { return _validationResultMap.size(); }
 int ValidationResults::sizeWarnings() const { return _warningsMap.size(); }
 
 // private method for getting a subset of ValidationResult's in a vector

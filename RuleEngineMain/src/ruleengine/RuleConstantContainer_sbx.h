@@ -42,6 +42,7 @@ public:
 	const std::set<unsigned short>& getProductOids(unsigned short parameterOid) const;
 	std::set<unsigned short> getProductElementOids(unsigned short parameterOid) const;
 	sbx::ProductElement getProductElement(unsigned short productElementOid);
+	unsigned short getProductElementOid(const std::string& varName) const;
 
 	std::shared_ptr<sbx::Constant> createConstant(unsigned short underkonceptOid, unsigned short unionAgreementOid, unsigned short peOid, sbx::ComparisonTypes comparisonType);
 
@@ -106,12 +107,23 @@ private:
 	std::map<unsigned short, std::shared_ptr<sbx::Product>> _productsMap;
 
 	/**
-	 * _productElementsMap:
+	 * _productElementMap:
 	 * Index is productOid (unsigned short)
 	 * Values is a shared_ptr to a ProductElement
 	 */
 	std::map<unsigned short, std::shared_ptr<sbx::ProductElement>> _productElementMap;
+	/**
+	 * _parameterMap:
+	 * Index is parameterOid (unsigned short)
+	 * Values is a Parameter
+	 */
 	std::map<unsigned short, sbx::Parameter> _parameterMap;
+	/**
+	 * _varNameToPEOidMap:
+	 * Index is parameterOid (unsigned short)
+	 * Values is a Parameter
+	 */
+	std::map<std::string, unsigned short> _varNameToPEOidMap;
 
 	/**
 	 * First index is underKonceptOid

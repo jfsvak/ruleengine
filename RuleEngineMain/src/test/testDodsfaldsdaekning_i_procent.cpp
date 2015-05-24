@@ -40,8 +40,10 @@ protected:
 
 // Test DoedBlGrMin
 // Allowed values: [0 - 5,000,000]
-//
-TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, DoedBlGrMin_Single_Value_OK) {
+// Expected result:
+//   Validation of value should be ok
+//   But a warning should be set that says the DoedReguleringskode is not set in the parser
+TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, DoedBlGrMin_Single_Value_OK_With_Warning) {
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
 	ta.setValue(kDoedBlGrMin, (long) 100000);
 	RuleEngine::_printDebugAtValidation = true;
@@ -50,7 +52,32 @@ TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, DoedBlGrMin_Single_Value_OK) {
 	EXPECT_TRUE(r.isAllOk());
 	if (!r.isAllOk())
 		cout << r;
+
+	auto v = r.getWarnings(kDoedReguleringskode);
+	ASSERT_EQ(1, v.size());
+	EXPECT_EQ(kTokenNotDefined, v.at(0).getValidationCode());
 }
+
+// Test DoedBlGrMin
+// Allowed values: [0 - 5,000,000]
+// Expected result:
+//   Validation of value for DoedBlGrMin should be ok
+//   But a warning should be set that says the DoedReguleringskode is not set in the parser
+TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, DoedBlGrMin_Single_Value_OK_With_Warning2) {
+	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	ta.setValue(kDoedBlGrMin, (long) 100000);
+	RuleEngine::_printDebugAtValidation = true;
+
+	auto r = re.validate(ta, {kDoedBlGrMin, kDoedReguleringskode});
+	EXPECT_TRUE(r.isAllOk());
+	if (!r.isAllOk())
+		cout << r;
+
+	auto v = r.getWarnings(kDoedReguleringskode);
+
+	EXPECT_EQ(kTokenNotDefined, v.at(0).getValidationCode());
+}
+
 
 // Test DoedBlGrMin
 // Allowed values: [0 - 5,000,000]
@@ -60,6 +87,7 @@ TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, DoedBlGrMin_Single_Value_NOT_OK) {
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
 	ta.setValue(kDoedReguleringskode, "Gage");
 	ta.setValue(kDoedBlGrMin, (long) 100000);
+	RuleEngine::_printDebugAtValidation = true;
 
 	auto r = re.validate(ta, (unsigned short) kDoedBlGrMin);
 

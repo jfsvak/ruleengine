@@ -39,7 +39,7 @@ ValidationResult::ValidationResult(unsigned short peOid)
 		  _message { other._message }
 {}
 */
-ValidationResult::ValidationResult(sbx::ValidationCode code, unsigned short peOid, const std::string& variableName, const std::string& ruleId, const std::string& message, const std::string& expr)
+ValidationResult::ValidationResult(sbx::ValidationCode code, unsigned short peOid, const std::string& variableName, const std::string& message, const std::string& ruleId, const std::string& expr)
 		: _code { code },
 		  _productElementOid {peOid},
 		  _variableName {variableName},
