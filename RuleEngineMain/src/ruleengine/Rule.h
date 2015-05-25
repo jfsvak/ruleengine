@@ -19,17 +19,20 @@ class Rule
 {
 public:
 	Rule();
-	Rule(const std::string& ruleId, const std::string& expr, std::shared_ptr<sbx::Rule>, const std::string& _positiveMessage, const std::string& _negativeMessage);
+	Rule(const std::string& ruleId, const std::string& expr, std::shared_ptr<sbx::Rule>, const std::string& _positiveMessage, const std::string& _negativeMessage, const std::string& preCalcExpr = "");
 
 	const std::string& getRuleId() const;
 	const std::string& getExpr() const;
+	const std::string& getPreCalcExpr() const;
 	const std::string& getPositiveMessage() const;
 	const std::string& getNegativeMessage() const;
 
 	std::shared_ptr<sbx::Rule> getRequiredIfRule();
 	void setIsRequiredIfTrue(std::shared_ptr<sbx::Rule>);
 	void addProductElementOid(unsigned short productElementOid);
+	void addPreCalcRequiredPEOid(unsigned short requiredPEOid);
 	const std::vector<unsigned short>& getProductElementOids() const;
+	const std::vector<unsigned short>& getPreCalcRequiredPEOids() const;
 
 	void setRequiredExpr(const std::string& requiredExpr);
 	void setPositiveRuleCatalogue(sbx::RuleCatalogue*);
@@ -42,8 +45,10 @@ public:
 
 private:
 	std::string _ruleId;
+	std::string _preCalcExpr;
 	std::string _expr;
 	std::vector<unsigned short> _productElementOids;
+	std::vector<unsigned short> _preCalcRequiredPEOids;
 	std::string _positiveMessage;
 	std::string _negativeMessage;
 

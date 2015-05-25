@@ -96,6 +96,7 @@ private:
 	void _executeRule(unsigned short peOidToValidate, std::shared_ptr<sbx::Rule>, sbx::ValidationResults&, sbx::ValidationCode negativeValCode = sbx::ValidationCode::kFail);
 	void _executeRequiredIfRule(unsigned short peOidToValidate, std::shared_ptr<sbx::Rule>, sbx::ValidationResults&);
 	mup::Value _execute(const std::string& expr, const std::string& ruleId);
+	void _executePreCalcRules();
 
 	// -- initialisation methods
 	void _initRuleCatalogue(sbx::RuleCatalogue*, const Json::Value& ruleCatalogues);
@@ -115,6 +116,7 @@ private:
 	sbx::KonceptInfo _ki;
 	sbx::RuleConstantContainer _container;
 	sbx::RuleCatalogue _ruleCatalogue;
+	std::multimap<unsigned short, std::shared_ptr<sbx::Rule>> _preCalcExprMap;
 
 	/**
 	 * multimap of product element oids to list of rules that relates to the oid.

@@ -128,17 +128,12 @@ TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, Opsparingsprodukt_RemoveFromTA_POSITIVE)
 //	if (!r.isAllOk())
 		cout << r;
 
-	// now remove the traditional allowed and validate again, now it should give a warning saying that the traditional token is not found
-	// but still validate to ok, as the value (option) is allowed according to rule constants
-	ta.remove(kTraditionel_MK);
+	// now set the traditional to false and validate again, now it should give a an error saying that the traditional cannot be selected as standard produkt
+	//  as it hasn't been selected on the ta
+	ta.setValue(kTraditionel_MK, false);
 	r = re.validate(ta, (unsigned short) kStandardProduct );
-	EXPECT_TRUE(r.isAllOk());
-	if (!r.isAllOk())
+	EXPECT_FALSE(r.isAllOk());
+//	if (r.isAllOk())
 		cout << r;
-
-	auto w = r.getWarnings(kTraditionel_MK);
-	cout << r;
-	ASSERT_EQ(1, w.size());
-	EXPECT_EQ(kTokenNotDefined, w.at(0).getValidationCode());
 }
 

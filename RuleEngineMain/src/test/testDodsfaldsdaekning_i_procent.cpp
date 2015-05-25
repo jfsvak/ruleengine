@@ -126,7 +126,7 @@ TEST_F(Doedsfaldsdaekning_KI_OSV_25_49, Doedfaldsdaekning_Whole_Section_GAGE_POS
 	re.getContainer().printConstants(17, 5);
 	re.getContainer().printConstants(17, 139);
 
-	auto r = re.validate(ta,
+	const auto& r = re.validate(ta,
 			{
 			kDoedReguleringskode,
 			kDoedPctGrMin,

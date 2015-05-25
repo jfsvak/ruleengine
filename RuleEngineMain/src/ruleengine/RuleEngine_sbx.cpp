@@ -99,6 +99,7 @@ void RuleEngine::_initRuleCatalogue(sbx::RuleCatalogue* ruleCatalogue, const Jso
 		{
 			string id = valueIterator->get("id", "").asString();
 			string expr = valueIterator->get("expr", "").asString();
+			string preCalcExpr = valueIterator->get("preCalcExpr", "").asString();
 			string requiredif = valueIterator->get("requiredif", "").asString();
 			string positiveMessage = valueIterator->get("positiveMessage", "").asString();
 			string negativeMessage = valueIterator->get("negativeMessage", "").asString();
@@ -109,23 +110,33 @@ void RuleEngine::_initRuleCatalogue(sbx::RuleCatalogue* ruleCatalogue, const Jso
 
 			std::shared_ptr<sbx::Rule> parent;
 
+
 			if (requiredif == "#parent#")
 				parent = ruleCatalogue->getParent();
 			else
 				parent = make_shared<sbx::Rule>(id + "p", requiredif, nullptr, "", "");
 
-			std::shared_ptr<sbx::Rule> rule = make_shared<sbx::Rule>(id, expr, parent, positiveMessage, negativeMessage);
+			std::shared_ptr<sbx::Rule> rule = make_shared<sbx::Rule>(id, expr, parent, positiveMessage, negativeMessage, preCalcExpr);
+
+			Json::Value requiredPEOids = valueIterator->get("preCalcRequiredPEOids", "");
+
+			if (requiredPEOids.size() > 0)
+				for (Json::ValueIterator requiredPEOidIterator = requiredPEOids.begin(); requiredPEOidIterator != requiredPEOids.end(); ++requiredPEOidIterator)
+					rule->addPreCalcRequiredPEOid(requiredPEOidIterator->asInt());
 
 			Json::Value peOids = valueIterator->get("productElementOids", "");
 
 			if (peOids.size() > 0)
 			{
-				// run through and set peOids on rule and add rule to peOid multimap
+				// run through and set peOids on rule and add rule to peOid multimap or preCalcExprMap
 				for (Json::ValueIterator peOidIterator = peOids.begin(); peOidIterator != peOids.end(); ++peOidIterator)
 				{
 					int peOid = peOidIterator->asInt();
 					rule->addProductElementOid(peOid);
 					_peOidToRules.insert(make_pair(peOid, rule));
+
+					if (preCalcExpr != "")
+						_preCalcExprMap.insert( make_pair(peOid, rule) );
 				}
 			}
 
@@ -221,6 +232,31 @@ void RuleEngine::_initParserWithProductElementConstants(unsigned short peOid)
 	}
 	default:
 		break;
+	}
+}
+
+void RuleEngine::_executePreCalcRules()
+{
+	// for each precalc rule execute it
+	for (auto ruleIt = _preCalcExprMap.cbegin(); ruleIt != _preCalcExprMap.cend(); ruleIt++)
+	{
+		bool missingPE {false};
+
+		for (auto& requiredPEOid : ruleIt->second->getPreCalcRequiredPEOids()) {
+			if (!_parser.IsVarDefined(_VAR_NAME(requiredPEOid)) )
+				missingPE = true;
+		}
+
+		// if no pe oids were missing, we continue to do precalc
+		if (!missingPE) {
+			try {
+				_parser.EnableAutoCreateVar(true);
+				_execute(ruleIt->second->getPreCalcExpr(), ruleIt->second->getRuleId());
+				_parser.EnableAutoCreateVar(false);
+			} catch (const mup::ParserError& e) {
+				// already handled inside execute
+			}
+		}
 	}
 }
 
@@ -330,6 +366,9 @@ void RuleEngine::_loadParser(const TA& ta)
 			break;
 		}
 	}
+
+	// execute all precalc rules to update the parser
+	_executePreCalcRules();
 }
 
 /**
@@ -362,16 +401,16 @@ sbx::ValidationResults RuleEngine::validate(const TA& ta, const std::vector<unsi
 
 	for (auto& peOid : peOidsToValidate) {
 
-		// If the value about to be validated exists on the TA, then do value validation
-		if (ta.hasValue(peOid))
+		// If the value about to be validated is on the TA, then do value validation
+		if ( ta.hasValue(peOid) )
 		{
 			// Validate value of the pe using constant container for option-allowed checking and dynamic rule expr's in muParser for min/max validation
 			_validateValue(ta.getValue(peOid), valResults);
 		}
-		// if no value for the peOid, then check to see if the peOid is required by running required if rules.
-		else if ( _isRequired(peOid, valResults) )
-		{
-			valResults.addWarning( sbx::ValidationResult(sbx::ValidationCode::kProductElementNotDefined, peOid, _VAR_NAME(peOid), "Value not found on TA") );
+		else if ( !_parser.IsVarDefined(_VAR_NAME(peOid)) ) {
+			// If the variable is not defined in the parser, then check if it's required by running required rules. If it's required and missing, then add msg
+			if ( _isRequired(peOid, valResults) )
+				valResults.addWarning( sbx::ValidationResult(sbx::ValidationCode::kProductElementNotDefined, peOid, _VAR_NAME(peOid), "Value not found on TA") );
 		}
 
 		// Even if the value doesn't exists on the TA, we still run custom rules, as there might be
@@ -712,9 +751,13 @@ sbx::ValidationResults RuleEngine::validate(const sbx::TA& ta, bool full)
 		// if also full validation, run through all the expected/allowed pe's and see if they have a value and if they are required if they are missing
 		if (full)
 		{
-			// run through all the allowed product elements and check if it's on the TA. If its not, then check if its optional. If its not optional, add a message stating its required
+			// run through all the allowed product elements and check if its on the TA. If its not, then check if its optional. If its not optional, add a message stating its required
 			for (auto& peOid : allowedProductElementOids)
 			{
+//				if ( _isRequired(peOid, valResults, full) ) {
+//					valResults.merge(this->validate(ta, peOid));
+//				}
+
 				// If it's not on the TA and it is not optional, tell that the pe is required
 				if ( !ta.hasValue(peOid) && !_isOptional(peOid, valResults) )
 					valResults.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kProductElementRequired, peOid, _VAR_NAME(peOid), "Value is missing") );

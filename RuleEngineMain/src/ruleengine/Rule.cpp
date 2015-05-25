@@ -17,16 +17,18 @@ Rule::Rule()
 			_expr { "" },
 			_requiredIfRule { nullptr },
 			_positiveMessage { "" },
-			_negativeMessage { "" }
+			_negativeMessage { "" },
+			_preCalcExpr { "" }
 {
 }
 
-Rule::Rule(const std::string& ruleId, const std::string& expr, std::shared_ptr<sbx::Rule> requiredifRule, const std::string& positiveMessage, const std::string& negativeMessage)
+Rule::Rule(const std::string& ruleId, const std::string& expr, std::shared_ptr<sbx::Rule> requiredifRule, const std::string& positiveMessage, const std::string& negativeMessage, const std::string& preCalcExpr)
 		: 	_ruleId { ruleId },
 			_expr { expr },
 			_requiredIfRule { requiredifRule },
 			_positiveMessage { positiveMessage },
-			_negativeMessage { negativeMessage }
+			_negativeMessage { negativeMessage },
+			_preCalcExpr { preCalcExpr }
 {
 }
 
@@ -38,6 +40,11 @@ const std::string& Rule::getRuleId() const
 const std::string& Rule::getExpr() const
 {
 	return _expr;
+}
+
+const std::string& Rule::getPreCalcExpr() const
+{
+	return _preCalcExpr;
 }
 
 const std::string& Rule::getNegativeMessage() const
@@ -88,6 +95,16 @@ void Rule::setIsRequiredIfTrue(std::shared_ptr<sbx::Rule> rule)
 void Rule::addProductElementOid(unsigned short productElementOid)
 {
 	_productElementOids.push_back(productElementOid);
+}
+
+void Rule::addPreCalcRequiredPEOid(unsigned short requiredPEOid)
+{
+	_preCalcRequiredPEOids.push_back(requiredPEOid);
+}
+
+const std::vector<unsigned short>& Rule::getPreCalcRequiredPEOids() const
+{
+	return _preCalcRequiredPEOids;
 }
 
 Rule::~Rule()
