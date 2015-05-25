@@ -3,70 +3,10 @@
       "ruleCatalogue":       
       [
          {
-            "id": "1",
-            "expr": "DoedReguleringskode == \"Ingen\" or DoedReguleringskode == \"Pristal\"",
-            "productElementOids": [ 82 ],
-            "positiveMessage": "",
-            "negativeMessage": "",
-            "positiveRuleCatalogue":
-	        [
-            	{
-		            "id": "1.1",
-	    	        "expr": "",
-	    	        "productElementOids": [ 1, 2 ],
-	    	        "requiredif": "#parent#",
-	        	    "positiveMessage": "",
-	            	"negativeMessage": ""
-            	},
-            	{
-		            "id": "1.2",
-	    	        "expr": "(DoedBlOblMax-DoedBlGrMin) <= rc_DoedSpaendBl_max",
-	    	        "productElementOids": [ 3 ],
-	    	        "requiredif": "#parent#",
-	        	    "positiveMessage": "",
-	            	"negativeMessage": "Spænd i d�dsfaldsd�kning i kr m� ikke overstige %1"
-            	},
-            	{
-		            "id": "1.3",
-	    	        "expr": "(DoedBlOblMax-DoedBlGrMin) >= rc_DoedSpaendBl_min",
-	    	        "productElementOids": [ 3 ],
-	    	        "requiredif": "#parent#",
-	        	    "positiveMessage": "",
-	            	"negativeMessage": "Spænd i d�dsfaldsd�kning i kr skal mindst v�re [rc_DoedSpandBl_min] kr."
-            	}
-            ],
-	        "negativeRuleCatalogue": []
-         },
-         {
-            "id": "2",
-            "expr": "DoedReguleringskode == \"Gage\"",
-   	        "productElementOids": [ 82 ],
-   	        "requiredif": "",
-            "positiveMessage": "",
-            "negativeMessage": "",
-            "positiveRuleCatalogue":
-	        [
-		        {
-		            "id": "2.1",
-	    	        "expr": "(DoedPctOblMax-DoedPctGrMin) <= rc_DoedSpaendPct_max",
-		   	        "productElementOids": [ 9 ],
-   	    		    "requiredif": "#parent#",
-	        	    "positiveMessage": "",
-	            	"negativeMessage": "Spænd for dødsfaldsdækning i pct må ikke overstige %1"
-        	    },
-		        {
-		            "id": "2.2",
-	    	        "expr": "(DoedPctOblMax-DoedPctGrMin) >= rc_DoedSpaendPct_min",
-		   	        "productElementOids": [ 9 ],
-   	    		    "requiredif": "#parent#",
-	        	    "positiveMessage": "",
-	            	"negativeMessage": "Spænd for dødsfaldsdækning i pct skal være større end %1"
-        	    }
-            ],
-	        "negativeRuleCatalogue": []
-         },
-         {
-            "id": "3",
+            "id": "21.1",
+
+         	"comments" : "Product Page: Retirement age etc",
+
             "expr": "FravalgRisiko_mk == true",
    	        "productElementOids": [ 230 ],
    	        "requiredif": "",
@@ -80,20 +20,282 @@
 		   	        "productElementOids": [ 231 ],
    	    		    "requiredif": "#parent#",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "FravalgRisikoAlder is enum"
+	            	"negativeMessage": "FravalgRisikoAlder skal sangives, hvis risiko er fravalgt"
         	    }
             ],
 	        "negativeRuleCatalogue": []
          },
          {
-            "id": "4",
-            "expr": "StandardProdukt == \"Traditionel_MK\" && Traditionel_MK == true",
+            "id": "22.1",
+
+         	"comments" : "Product Page: Opsparingsprodukter",
+
+            "expr": "StandardProdukt == \"Traditionel_MK\" && Traditionel_MK == false",
    	        "productElementOids": [ 95 ],
    	        "requiredif": "",
-            "positiveMessage": "",
-            "negativeMessage": "Traditionel kan kun vaelges som Standardprodukt hvis det ogsaa er tilvalgt paa aftalen",
+            "positiveMessage": "Traditionel kan kun vaelges som Standardprodukt hvis det ogsaa er tilvalgt paa aftalen",
+            "negativeMessage": "",
             "positiveRuleCatalogue": [],
 	        "negativeRuleCatalogue": []
+         },
+         {
+            "id": "22.2",
+            "expr": "StandardProdukt == \"Markedspension_MK\" && Markedspension_MK == false",
+   	        "productElementOids": [ 95 ],
+   	        "requiredif": "",
+            "positiveMessage": "Markedspension kan kun vaelges som Standardprodukt hvis det ogsaa er tilvalgt paa aftalen",
+            "negativeMessage": "",
+            "positiveRuleCatalogue": [],
+	        "negativeRuleCatalogue": []
+         },
+         {
+            "id": "22.3",
+            "expr": "StandardProdukt == \"TidspensionMedGaranti_MK\" && TidspensionMedGaranti_MK == false",
+   	        "productElementOids": [ 95 ],
+   	        "requiredif": "",
+            "positiveMessage": "Tidspension Med Garanti kan kun vaelges som Standardprodukt hvis det ogsaa er tilvalgt paa aftalen",
+            "negativeMessage": "",
+            "positiveRuleCatalogue": [],
+	        "negativeRuleCatalogue": []
+         },
+         {
+            "id": "22.4",
+            "expr": "StandardProdukt == \"TidspensionUdenGaranti_MK\" && TidspensionUdenGaranti_MK == false",
+   	        "productElementOids": [ 95 ],
+   	        "requiredif": "",
+            "positiveMessage": "Tidspension Uden Garanti kan kun vaelges som Standardprodukt hvis det ogsaa er tilvalgt paa aftalen",
+            "negativeMessage": "",
+            "positiveRuleCatalogue": [],
+	        "negativeRuleCatalogue": []
+         },
+         {
+            "id": "22.5",
+            "expr": "StandardProdukt == \"Link_MK\" && Link_MK == false",
+   	        "productElementOids": [ 95 ],
+   	        "requiredif": "",
+            "positiveMessage": "Link kan kun vaelges som Standardprodukt hvis det ogsaa er tilvalgt paa aftalen",
+            "negativeMessage": "",
+            "positiveRuleCatalogue": [],
+	        "negativeRuleCatalogue": []
+         },
+         {
+            "id": "23.1",
+
+         	"comments" : "Product Page: Invaliditetsdaekning (TAE) Procent",
+
+            "expr": "",
+            "productElementOids": [  ],
+            "positiveMessage": "",
+            "negativeMessage": "",
+            "positiveRuleCatalogue":
+	        [
+            	{
+		            "id": "1.1",
+		            "comments" : "requiredif placeholder",
+	    	        "expr": "",
+	    	        "productElementOids": [  ],
+	    	        "requiredif": "#parent#",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": ""
+            	}
+            ],
+	        "negativeRuleCatalogue": []
+         },
+         {
+            "id": "24.1",
+
+         	"comments" : "Product Page: Invalidesum - Kr",
+
+            "expr": "InvalidesumReguleringskode == \"Ingen\" or InvalidesumReguleringskode == \"Pristal\"",
+            "productElementOids": [ 226 ],
+            "positiveMessage": "",
+            "negativeMessage": "",
+            "positiveRuleCatalogue":
+	        [
+            	{
+		            "id": "24.1.1",
+		            "comments" : "requiredif placeholder",
+	    	        "expr": "",
+	    	        "productElementOids": [ 76 ],
+	    	        "requiredif": "#parent#",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Minimum Invalidesum i kr skal angives naar reguleringstype er Ingen eller Pristal"
+            	},
+				{
+		            "id": "24.1.2",
+		            "comments" : "requiredif placeholder",
+	    	        "expr": "",
+	    	        "productElementOids": [ 77 ],
+	    	        "requiredif": "#parent#",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Maksimum Invalidesum i kr skal angives naar reguleringstype er Ingen eller Pristal"
+            	},
+            	{
+		            "id": "24.1.3",
+	    	        "expr": "(InvalidesumBlMax-InvalidesumBlMin) >= rc_InvalidesumSpaendBl_min",
+	    	        "productElementOids": [ 78 ],
+	    	        "requiredif": "",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Spaend i invalidesum i kr skal mindst vaere %1"
+            	},
+            	{
+		            "id": "24.1.4",
+	    	        "expr": "(InvalidesumBlMax-InvalidesumBlMin) <= rc_InvalidesumSpaendBl_max",
+	    	        "productElementOids": [ 78 ],
+	    	        "requiredif": "",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Spaend i invalidesum i kr maa ikke overstige %1"
+            	}
+            ],
+	        "negativeRuleCatalogue": []
+         },
+         {
+            "id": "24.2",
+
+         	"comments" : "Product Page: Invalidesum - Gage",
+
+            "expr": "InvalidesumReguleringskode == \"Gage\"",
+            "productElementOids": [ 226 ],
+            "positiveMessage": "",
+            "negativeMessage": "",
+            "positiveRuleCatalogue":
+	        [
+            	{
+		            "id": "24.2.1",
+		            "comments" : "requiredif placeholder",
+	    	        "expr": "",
+	    	        "productElementOids": [ 79 ],
+	    	        "requiredif": "#parent#",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Minimum Invalidesum i procent skal angives naar reguleringstype er Gage"
+            	},
+				{
+		            "id": "24.2.2",
+		            "comments" : "requiredif placeholder",
+	    	        "expr": "",
+	    	        "productElementOids": [ 80 ],
+	    	        "requiredif": "#parent#",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Maksimum Invalidesum i procent skal angives naar reguleringstype er Gage"
+            	},
+            	{
+		            "id": "24.2.3",
+	    	        "expr": "(InvalidesumPctMax-InvalidesumPctMin) >= rc_InvalidesumSpaendPct_min",
+	    	        "productElementOids": [ 81 ],
+	    	        "requiredif": "",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Spaend i invalidesum i procent skal mindst vaere %1"
+            	},
+            	{
+		            "id": "24.2.4",
+	    	        "expr": "(InvalidesumPctMax-InvalidesumPctMin) <= rc_InvalidesumSpaendPct_max",
+	    	        "productElementOids": [ 81 ],
+	    	        "requiredif": "",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Spaend i invalidesum i procent maa ikke overstige %1"
+            	}
+            ],
+	        "negativeRuleCatalogue": []
+         },
+         {
+            "id": "25.1",
+
+         	"comments" : "Product Page: Dodsfaldsdaekning - Ingen/Pristal",
+
+            "expr": "DoedReguleringskode == \"Ingen\" or DoedReguleringskode == \"Pristal\"",
+            "productElementOids": [ 82 ],
+            "positiveMessage": "",
+            "negativeMessage": "",
+            "positiveRuleCatalogue":
+	        [
+            	{
+		            "id": "25.1.2",
+		            "comments" : "requiredif placeholder for KR",
+	    	        "expr": "",
+	    	        "productElementOids": [ 2 ],
+	    	        "requiredif": "#parent#",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Maksimum doedsfaldsdaekning i kr skal angives naar reguleringstype er Pristal eller Ingen"
+            	},
+            	{
+		            "id": "25.1.3",
+	    	        "expr": "(DoedBlOblMax-DoedBlGrMin) >= rc_DoedSpaendBl_min",
+	    	        "productElementOids": [ 3 ],
+	    	        "requiredif": "",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Spænd i d�dsfaldsd�kning i kr skal mindst v�re [rc_DoedSpandBl_min] kr."
+            	},
+            	{
+		            "id": "25.1.4",
+	    	        "expr": "(DoedBlOblMax-DoedBlGrMin) <= rc_DoedSpaendBl_max",
+	    	        "productElementOids": [ 3 ],
+	    	        "requiredif": "",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Spænd i d�dsfaldsd�kning i kr m� ikke overstige %1"
+            	}
+            ],
+	        "negativeRuleCatalogue": []
+         },
+         {
+            "id": "25.2",
+
+         	"comments" : "Product Page: Dodsfaldsdaekning - Gage",
+
+            "expr": "DoedReguleringskode == \"Gage\"",
+   	        "productElementOids": [ 82 ],
+   	        "requiredif": "",
+            "positiveMessage": "",
+            "negativeMessage": "",
+            "positiveRuleCatalogue":
+	        [
+		        {
+		            "id": "25.2.1",
+		            "comments" : "requiredif placeholder for min pct",
+	    	        "expr": "",
+		   	        "productElementOids": [ 6 ],
+   	    		    "requiredif": "#parent#",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Minimum doedsfaldsdaekning i procent skal angives naar reguleringstype er Gage"
+        	    },
+		        {
+		            "id": "25.2.2",
+		            "comments" : "requiredif placeholder for max pct",
+	    	        "expr": "",
+		   	        "productElementOids": [ 7 ],
+   	    		    "requiredif": "#parent#",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Maksimum doedsfaldsdaekning i procent skal angives naar reguleringstype er Gage"
+        	    },
+		        {
+		            "id": "25.2.4",
+
+					"pre_expr": "DoedSpaendPct = (DoedPctOblMax-DoedPctGrMin)",
+
+	    	        "expr": "(DoedPctOblMax-DoedPctGrMin) >= rc_DoedSpaendPct_min",
+		   	        "productElementOids": [ 9 ],
+   	    		    "requiredif": "#parent#",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Spænd for dødsfaldsdækning i pct skal være større end %1"
+        	    },
+		        {
+		            "id": "25.2.5",
+	    	        "expr": "(DoedPctOblMax-DoedPctGrMin) <= rc_DoedSpaendPct_max",
+		   	        "productElementOids": [ 9 ],
+   	    		    "requiredif": "",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Spænd for dødsfaldsdækning i pct må ikke overstige %1"
+        	    }
+            ],
+	        "negativeRuleCatalogue": []
+         },
+		 {
+		    "id": "25.3",
+		    "comments" : "requiredif placeholder for min KR",
+	        "expr": "",
+	        "productElementOids": [ 1 ],
+	        "requiredif": "DoedReguleringskode == \"Ingen\" or DoedReguleringskode == \"Pristal\" or DoedReguleringskode == \"Gage\"",
+	        "positiveMessage": "",
+	        "negativeMessage": "Minimum doedsfaldsdaekning i kr skal angives naar reguleringstype er Pristal eller Ingen"
          }
 	]}
 }

@@ -18,7 +18,7 @@ RuleCatalogue::RuleCatalogue()
 {}
 
 RuleCatalogue::RuleCatalogue(std::shared_ptr<sbx::Rule> parent)
-		: _parent { parent.get() }
+		: _parent { parent }
 {
 }
 
@@ -32,12 +32,12 @@ void RuleCatalogue::addRule(std::shared_ptr<sbx::Rule> rule)
 	_rules.push_back(rule);
 }
 
-sbx::Rule* RuleCatalogue::getParent()
+std::shared_ptr<sbx::Rule> RuleCatalogue::getParent()
 {
 	return _parent;
 }
 
-void RuleCatalogue::setParent(sbx::Rule* parent)
+void RuleCatalogue::setParent(std::shared_ptr<sbx::Rule> parent)
 {
 	_parent = parent;
 }

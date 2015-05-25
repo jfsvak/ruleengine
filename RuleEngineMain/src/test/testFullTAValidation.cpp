@@ -14,7 +14,7 @@
 using namespace std;
 using namespace sbx;
 
-class RuleEngine_CONTEXT_KI_OSV_25_50 : public ::testing::Test  {
+class Full_TA_CONTEXT_KI_OSV_25_50 : public ::testing::Test  {
 protected:
     virtual void SetUp() {
         re = RuleEngine();
@@ -33,27 +33,30 @@ protected:
 };
 
 
-TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, Full_TA_POSITIVE) {
+TEST_F(Full_TA_CONTEXT_KI_OSV_25_50, Full_TA_POSITIVE) {
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
 	ta.setValue(kUdlobsalder_Pension, (long) 67)
-			.setValue(kFravalgRisiko_MK, false)
+			.setValue(kFravalgRisiko_MK, true)
 			.setValue(kTraditionel_MK, true)
 			.setValue(kTidspensionMedGaranti_MK, true)
 			.setValue(kLink_MK, true);
 
-	ValidationResults r {};
 	RuleEngine::_printDebugAtValidation = true;
 
-	r = re.validate(ta);
+	auto r = re.validate(ta);
 	EXPECT_FALSE(r.isAllOk());
 	// total is 186, so should be 186 minus the number of pe's set above
 	EXPECT_EQ(181, r.sizeValidationResults());
+	cout << r;
 
-	if (r.sizeValidationResults() != 181)
+	ta.setValue(kDoedReguleringskode, "Ingen"); // should make DoedPctGrMin, DoedPctOblMax, DoedSpaendPct notRequired and therefore lower the amount of missing pe's to 181-4=177
+	r = re.validate(ta);
+	EXPECT_EQ(177, r.sizeValidationResults());
+//	if (r.sizeValidationResults() != 181)
 		cout << r;
 }
 
-TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, Full_TA_NUMBER_OF_VALIDATIONRESULTS) {
+TEST_F(Full_TA_CONTEXT_KI_OSV_25_50, Full_TA_NUMBER_OF_VALIDATIONRESULTS) {
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
 
 	ValidationResults r {};

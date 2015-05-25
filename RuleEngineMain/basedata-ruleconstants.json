@@ -1548,7 +1548,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1415 TAE Gennemsnitsprømie",
+            "value": "1415 TAE Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -1658,7 +1658,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1417 TAE Naturlig prømie",
+            "value": "1417 TAE Naturlig præmie",
             "isDefault": false
          },
                   {
@@ -2628,7 +2628,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "115 DøD Gennemsnitsprømie",
+            "value": "115 DøD Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -2678,7 +2678,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "0415 IR Gennemsnitsprømie",
+            "value": "0415 IR Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -2688,7 +2688,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1415 TAE Gennemsnitsprømie",
+            "value": "1415 TAE Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -2698,7 +2698,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1417 TAE Naturlig prømie",
+            "value": "1417 TAE Naturlig præmie",
             "isDefault": false
          },
                   {
@@ -2708,7 +2708,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "117 DøD Naturlig prømie",
+            "value": "117 DøD Naturlig præmie",
             "isDefault": false
          },
                   {
@@ -2718,7 +2718,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "115 DøD Gennemsnitsprømie",
+            "value": "115 DøD Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -2738,7 +2738,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "117 DøD Naturlig prømie",
+            "value": "117 DøD Naturlig præmie",
             "isDefault": false
          },
                   {
@@ -4158,7 +4158,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattepligtig døkning",
+            "value": "Skattepligtig dækning",
             "isDefault": false
          },
                   {
@@ -4168,7 +4168,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -11158,7 +11158,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -11228,7 +11228,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattepligtig døkning",
+            "value": "Skattepligtig dækning",
             "isDefault": false
          },
                   {
@@ -16038,7 +16038,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "0415 IR Gennemsnitsprømie",
+            "value": "0415 IR Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -16048,7 +16048,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "0415 IR Gennemsnitsprømie",
+            "value": "0415 IR Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -16058,7 +16058,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "0415 IR Gennemsnitsprømie",
+            "value": "0415 IR Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -16068,7 +16068,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "0415 IR Gennemsnitsprømie",
+            "value": "0415 IR Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -16078,7 +16078,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "0415 IR Gennemsnitsprømie",
+            "value": "0415 IR Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -16088,7 +16088,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "0415 IR Gennemsnitsprømie",
+            "value": "0415 IR Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -16098,7 +16098,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "0415 IR Gennemsnitsprømie",
+            "value": "0415 IR Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -16108,7 +16108,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "0415 IR Gennemsnitsprømie",
+            "value": "0415 IR Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -16118,7 +16118,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "0415 IR Gennemsnitsprømie",
+            "value": "0415 IR Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -16128,7 +16128,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "0415 IR Gennemsnitsprømie",
+            "value": "0415 IR Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -16138,7 +16138,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "0415 IR Gennemsnitsprømie",
+            "value": "0415 IR Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -16148,7 +16148,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "0415 IR Gennemsnitsprømie",
+            "value": "0415 IR Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -20678,7 +20678,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1415 TAE Gennemsnitsprømie",
+            "value": "1415 TAE Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -20688,7 +20688,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1417 TAE Naturlig prømie",
+            "value": "1417 TAE Naturlig præmie",
             "isDefault": false
          },
                   {
@@ -20698,7 +20698,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1415 TAE Gennemsnitsprømie",
+            "value": "1415 TAE Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -20708,7 +20708,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1417 TAE Naturlig prømie",
+            "value": "1417 TAE Naturlig præmie",
             "isDefault": false
          },
                   {
@@ -20718,7 +20718,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1415 TAE Gennemsnitsprømie",
+            "value": "1415 TAE Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -20728,7 +20728,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1417 TAE Naturlig prømie",
+            "value": "1417 TAE Naturlig præmie",
             "isDefault": false
          },
                   {
@@ -20758,7 +20758,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1415 TAE Gennemsnitsprømie",
+            "value": "1415 TAE Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -20768,7 +20768,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1417 TAE Naturlig prømie",
+            "value": "1417 TAE Naturlig præmie",
             "isDefault": false
          },
                   {
@@ -20778,7 +20778,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "115 DøD Gennemsnitsprømie",
+            "value": "115 DøD Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -20788,7 +20788,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "117 DøD Naturlig prømie",
+            "value": "117 DøD Naturlig præmie",
             "isDefault": false
          },
                   {
@@ -20798,7 +20798,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "115 DøD Gennemsnitsprømie",
+            "value": "115 DøD Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -20808,7 +20808,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "117 DøD Naturlig prømie",
+            "value": "117 DøD Naturlig præmie",
             "isDefault": false
          },
                   {
@@ -22088,7 +22088,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "115 DøD Gennemsnitsprømie",
+            "value": "115 DøD Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -22098,7 +22098,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "117 DøD Naturlig prømie",
+            "value": "117 DøD Naturlig præmie",
             "isDefault": false
          },
                   {
@@ -29028,7 +29028,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "115 DøD Gennemsnitsprømie",
+            "value": "115 DøD Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -29038,7 +29038,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "117 DøD Naturlig prømie",
+            "value": "117 DøD Naturlig præmie",
             "isDefault": false
          },
                   {
@@ -29048,7 +29048,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "115 DøD Gennemsnitsprømie",
+            "value": "115 DøD Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -29058,7 +29058,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "117 DøD Naturlig prømie",
+            "value": "117 DøD Naturlig præmie",
             "isDefault": false
          },
                   {
@@ -29198,7 +29198,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "0415 IR Gennemsnitsprømie",
+            "value": "0415 IR Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -29208,7 +29208,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1415 TAE Gennemsnitsprømie",
+            "value": "1415 TAE Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -29218,7 +29218,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1417 TAE Naturlig prømie",
+            "value": "1417 TAE Naturlig præmie",
             "isDefault": false
          },
                   {
@@ -30178,7 +30178,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "0415 IR Gennemsnitsprømie",
+            "value": "0415 IR Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -30188,7 +30188,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1415 TAE Gennemsnitsprømie",
+            "value": "1415 TAE Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -30198,7 +30198,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1417 TAE Naturlig prømie",
+            "value": "1417 TAE Naturlig præmie",
             "isDefault": false
          },
                   {
@@ -31198,7 +31198,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "0415 IR Gennemsnitsprømie",
+            "value": "0415 IR Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -31208,7 +31208,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1415 TAE Gennemsnitsprømie",
+            "value": "1415 TAE Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -31218,7 +31218,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1417 TAE Naturlig prømie",
+            "value": "1417 TAE Naturlig præmie",
             "isDefault": false
          },
                   {
@@ -32148,7 +32148,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "115 DøD Gennemsnitsprømie",
+            "value": "115 DoeD Gennemsnitspraemie",
             "isDefault": false
          },
                   {
@@ -32158,7 +32158,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "117 DøD Naturlig prømie",
+            "value": "117 DøD Naturlig præmie",
             "isDefault": false
          },
                   {
@@ -32188,7 +32188,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattefri døkning",
+            "value": "Skattefri daekning",
             "isDefault": false
          },
                   {
@@ -32198,7 +32198,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattepligtig døkning",
+            "value": "Skattepligtig dækning",
             "isDefault": false
          },
                   {
@@ -32408,7 +32408,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "115 DøD Gennemsnitsprømie",
+            "value": "115 DøD Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -32418,7 +32418,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "117 DøD Naturlig prømie",
+            "value": "117 DøD Naturlig præmie",
             "isDefault": false
          },
                   {
@@ -34208,7 +34208,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1415 TAE Gennemsnitsprømie",
+            "value": "1415 TAE Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -34318,7 +34318,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1417 TAE Naturlig prømie",
+            "value": "1417 TAE Naturlig præmie",
             "isDefault": false
          },
                   {
@@ -34428,7 +34428,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "115 DøD Gennemsnitsprømie",
+            "value": "115 DøD Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -35978,7 +35978,7 @@
             "generalAgreementOid": 5,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1415 TAE Gennemsnitsprømie",
+            "value": "1415 TAE Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -35988,7 +35988,7 @@
             "generalAgreementOid": 5,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1417 TAE Naturlig prømie",
+            "value": "1417 TAE Naturlig præmie",
             "isDefault": false
          },
                   {
@@ -35998,7 +35998,7 @@
             "generalAgreementOid": 5,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "115 DøD Gennemsnitsprømie",
+            "value": "115 DøD Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -36008,7 +36008,7 @@
             "generalAgreementOid": 5,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "117 DøD Naturlig prømie",
+            "value": "117 DøD Naturlig præmie",
             "isDefault": false
          },
                   {
@@ -42838,7 +42838,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1415 TAE Gennemsnitsprømie",
+            "value": "1415 TAE Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -42848,7 +42848,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1417 TAE Naturlig prømie",
+            "value": "1417 TAE Naturlig præmie",
             "isDefault": false
          },
                   {
@@ -43248,7 +43248,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "0415 IR Gennemsnitsprømie",
+            "value": "0415 IR Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -43348,7 +43348,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "115 DøD Gennemsnitsprømie",
+            "value": "115 DøD Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -43358,7 +43358,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "117 DøD Naturlig prømie",
+            "value": "117 DøD Naturlig præmie",
             "isDefault": false
          },
                   {
@@ -44628,7 +44628,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "0415 IR Gennemsnitsprømie",
+            "value": "0415 IR Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -44648,7 +44648,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1415 TAE Gennemsnitsprømie",
+            "value": "1415 TAE Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -44658,7 +44658,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1417 TAE Naturlig prømie",
+            "value": "1417 TAE Naturlig præmie",
             "isDefault": false
          },
                   {
@@ -44668,7 +44668,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "117 DøD Naturlig prømie",
+            "value": "117 DøD Naturlig præmie",
             "isDefault": false
          },
                   {
@@ -44678,7 +44678,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "115 DøD Gennemsnitsprømie",
+            "value": "115 DøD Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -45358,7 +45358,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1415 TAE Gennemsnitsprømie",
+            "value": "1415 TAE Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -45458,7 +45458,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1417 TAE Naturlig prømie",
+            "value": "1417 TAE Naturlig præmie",
             "isDefault": false
          },
                   {
@@ -45568,7 +45568,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "115 DøD Gennemsnitsprømie",
+            "value": "115 DøD Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -45678,7 +45678,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "117 DøD Naturlig prømie",
+            "value": "117 DøD Naturlig præmie",
             "isDefault": false
          },
                   {
@@ -46268,7 +46268,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1415 TAE Gennemsnitsprømie",
+            "value": "1415 TAE Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -46278,7 +46278,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1417 TAE Naturlig prømie",
+            "value": "1417 TAE Naturlig præmie",
             "isDefault": false
          },
                   {
@@ -46288,7 +46288,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "115 DøD Gennemsnitsprømie",
+            "value": "115 DøD Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -46298,7 +46298,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "117 DøD Naturlig prømie",
+            "value": "117 DøD Naturlig præmie",
             "isDefault": false
          },
                   {
@@ -46678,7 +46678,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "0415 IR Gennemsnitsprømie",
+            "value": "0415 IR Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -47868,7 +47868,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "117 DøD Naturlig prømie",
+            "value": "117 DøD Naturlig præmie",
             "isDefault": false
          },
                   {
@@ -49038,7 +49038,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1415 TAE Gennemsnitsprømie",
+            "value": "1415 TAE Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -49058,7 +49058,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1417 TAE Naturlig prømie",
+            "value": "1417 TAE Naturlig præmie",
             "isDefault": false
          },
                   {
@@ -49068,7 +49068,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "115 DøD Gennemsnitsprømie",
+            "value": "115 DøD Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -49078,7 +49078,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "117 DøD Naturlig prømie",
+            "value": "117 DøD Naturlig præmie",
             "isDefault": false
          },
                   {
@@ -49438,7 +49438,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "0415 IR Gennemsnitsprømie",
+            "value": "0415 IR Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -50998,7 +50998,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1415 TAE Gennemsnitsprømie",
+            "value": "1415 TAE Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -51008,7 +51008,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1417 TAE Naturlig prømie",
+            "value": "1417 TAE Naturlig præmie",
             "isDefault": false
          },
                   {
@@ -51378,7 +51378,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "0415 IR Gennemsnitsprømie",
+            "value": "0415 IR Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -51478,7 +51478,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "115 DøD Gennemsnitsprømie",
+            "value": "115 DøD Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -51488,7 +51488,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "117 DøD Naturlig prømie",
+            "value": "117 DøD Naturlig præmie",
             "isDefault": false
          },
                   {
@@ -53228,7 +53228,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1415 TAE Gennemsnitsprømie",
+            "value": "1415 TAE Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -53328,7 +53328,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1417 TAE Naturlig prømie",
+            "value": "1417 TAE Naturlig præmie",
             "isDefault": false
          },
                   {
@@ -53338,7 +53338,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "115 DøD Gennemsnitsprømie",
+            "value": "115 DøD Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -53348,7 +53348,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "117 DøD Naturlig prømie",
+            "value": "117 DøD Naturlig præmie",
             "isDefault": false
          },
                   {
@@ -54048,7 +54048,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1415 TAE Gennemsnitsprømie",
+            "value": "1415 TAE Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -54058,7 +54058,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1417 TAE Naturlig prømie",
+            "value": "1417 TAE Naturlig præmie",
             "isDefault": false
          },
                   {
@@ -54068,7 +54068,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "115 DøD Gennemsnitsprømie",
+            "value": "115 DøD Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -54078,7 +54078,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "117 DøD Naturlig prømie",
+            "value": "117 DøD Naturlig præmie",
             "isDefault": false
          },
                   {
@@ -54728,7 +54728,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1415 TAE Gennemsnitsprømie",
+            "value": "1415 TAE Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -54738,7 +54738,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1417 TAE Naturlig prømie",
+            "value": "1417 TAE Naturlig præmie",
             "isDefault": false
          },
                   {
@@ -54748,7 +54748,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "115 DøD Gennemsnitsprømie",
+            "value": "115 DøD Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -54758,7 +54758,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "117 DøD Naturlig prømie",
+            "value": "117 DøD Naturlig præmie",
             "isDefault": false
          },
                   {
@@ -55428,7 +55428,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1415 TAE Gennemsnitsprømie",
+            "value": "1415 TAE Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -55438,7 +55438,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1417 TAE Naturlig prømie",
+            "value": "1417 TAE Naturlig præmie",
             "isDefault": false
          },
                   {
@@ -55448,7 +55448,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "115 DøD Gennemsnitsprømie",
+            "value": "115 DøD Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -55458,7 +55458,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "117 DøD Naturlig prømie",
+            "value": "117 DøD Naturlig præmie",
             "isDefault": false
          },
                   {
@@ -56168,7 +56168,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1415 TAE Gennemsnitsprømie",
+            "value": "1415 TAE Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -56178,7 +56178,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1417 TAE Naturlig prømie",
+            "value": "1417 TAE Naturlig præmie",
             "isDefault": false
          },
                   {
@@ -56188,7 +56188,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "115 DøD Gennemsnitsprømie",
+            "value": "115 DøD Gennemsnitspræmie",
             "isDefault": false
          },
                   {
@@ -56198,7 +56198,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "117 DøD Naturlig prømie",
+            "value": "117 DøD Naturlig præmie",
             "isDefault": false
          },
                   {
@@ -58879,7 +58879,7 @@
          },
                   {
             "oid": 26,
-            "name": "Overskud fra gruppedøkningerne bruges til nedsøttelse af nøste ørs prømie",
+            "name": "Overskud fra gruppedøkningerne bruges til nedsøttelse af nøste ørs præmie",
             "type": "Overskud",
             "elementTypeOid": 4
          },
@@ -58891,13 +58891,13 @@
          },
                   {
             "oid": 24,
-            "name": "Solidarisk prømiefritagelse",
+            "name": "Solidarisk præmiefritagelse",
             "type": "risiko",
             "elementTypeOid": 4
          },
                   {
             "oid": 20,
-            "name": "Prømien er garanteret",
+            "name": "præmien er garanteret",
             "type": "Rabat",
             "elementTypeOid": 4
          },

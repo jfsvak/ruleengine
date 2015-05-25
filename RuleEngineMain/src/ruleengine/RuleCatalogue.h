@@ -22,14 +22,14 @@ public:
 	std::vector<std::shared_ptr<sbx::Rule>> getRules();
 	void addRule(std::shared_ptr<sbx::Rule>);
 
-	sbx::Rule* getParent();
-	void setParent(sbx::Rule* parent);
+	std::shared_ptr<sbx::Rule> getParent();
+	void setParent(std::shared_ptr<sbx::Rule> parent);
 
 	virtual ~RuleCatalogue();
 
 private:
     std::vector<std::shared_ptr<sbx::Rule>> _rules;
-	sbx::Rule* _parent;
+    std::shared_ptr<sbx::Rule> _parent;
 };
 
 } /* namespace sbx */

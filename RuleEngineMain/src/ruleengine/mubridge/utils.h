@@ -22,7 +22,7 @@ namespace mubridge {
 //typedef unsigned short (sbx::RuleConstantContainer::*FuncPtr)(const std::string& varName);
 
 void handle(const mup::ParserError& e);
-void handleAsWarning(const mup::ParserError& e, sbx::ValidationResults& valResult, const sbx::RuleConstantContainer&);
+void handle(const mup::ParserError& e, sbx::ValidationResults& valResult, const sbx::RuleConstantContainer&, bool handleAsError = false);
 //void handleAsWarning(const mup::ParserError& e, sbx::ValidationResults& valResult, FuncPtr myFunc);
 } // namespace mubridge
 

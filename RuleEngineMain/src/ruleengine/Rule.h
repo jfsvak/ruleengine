@@ -19,7 +19,7 @@ class Rule
 {
 public:
 	Rule();
-	Rule(const std::string& ruleId, const std::string& expr, sbx::Rule*, const std::string& _positiveMessage, const std::string& _negativeMessage);
+	Rule(const std::string& ruleId, const std::string& expr, std::shared_ptr<sbx::Rule>, const std::string& _positiveMessage, const std::string& _negativeMessage);
 
 	const std::string& getRuleId() const;
 	const std::string& getExpr() const;

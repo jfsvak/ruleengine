@@ -21,10 +21,10 @@ Rule::Rule()
 {
 }
 
-Rule::Rule(const std::string& ruleId, const std::string& expr, sbx::Rule* rule, const std::string& positiveMessage, const std::string& negativeMessage)
+Rule::Rule(const std::string& ruleId, const std::string& expr, std::shared_ptr<sbx::Rule> requiredifRule, const std::string& positiveMessage, const std::string& negativeMessage)
 		: 	_ruleId { ruleId },
 			_expr { expr },
-			_requiredIfRule { rule },
+			_requiredIfRule { requiredifRule },
 			_positiveMessage { positiveMessage },
 			_negativeMessage { negativeMessage }
 {

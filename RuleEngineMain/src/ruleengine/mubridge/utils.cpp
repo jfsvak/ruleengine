@@ -24,32 +24,34 @@ void handle(const mup::ParserError& e) {
 	}
 }
 
-void handleAsWarning(const mup::ParserError& e, sbx::ValidationResults& valResult, const sbx::RuleConstantContainer& rcc) {
-	//sbx::ValidationCode code, unsigned short peOid, const std::string& variableName = "", const std::string& message = "", const std::string& ruleId = "", const std::string& expr = ""
+void handle(const mup::ParserError& e, sbx::ValidationResults& valResult, const sbx::RuleConstantContainer& rcc, bool handleAsError) {
 	sbx::ValidationResult r {sbx::ValidationCode::kUnknownValidationCode, rcc.getProductElementOid(e.GetToken()), e.GetToken(), "", "", e.GetExpr()};
 
 	stringstream s {};
-	bool handled = true;
+	bool handled {false};
 
 	switch(e.GetCode())
 	{
 	case mup::ecUNASSIGNABLE_TOKEN:
-		r.setValidationCode(sbx::ValidationCode::kTokenNotDefined);
+		handled = true;
+		r.setValidationCode( (handleAsError) ? sbx::ValidationCode::kProductElementRequired : sbx::ValidationCode::kTokenNotDefined );
 		s << "Token '" << e.GetToken() << "' not found on in parser: Msg[" << e.GetMsg() << "]";
 		break;
 	default:
-		s << "Unhandled ParserError caught:" << " Token[" << e.GetToken() << "], code[" << e.GetCode() << "], msg[" << e.GetMsg() << "], expr[" << e.GetExpr() << "]" << endl;
-		handled = false;
+		s << "Unhandled ParserError caught:" << " Token[" << e.GetToken() << "], code[" << e.GetCode() << "], msg[" << e.GetMsg() << "], expr[" << e.GetExpr() << "]";
 		break;
 	}
 
 	r.setMessage(s.str());
 
 	if (!handled) {
-		cout << "\n**** " << s.str() << endl;
+		cout << "**** " << s.str() << endl << endl;
 	}
 
-	valResult.addWarning(r);
+	if (handleAsError)
+		valResult.addValidationResult(r);
+	else
+		valResult.addWarning(r);
 }
 
 } // namespace mubridge
