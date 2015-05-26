@@ -94,6 +94,21 @@ TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50, KritiskSygdom_I_FG_True_Pristal_
 	EXPECT_TRUE(r.isAllOk());
 }
 
+TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50, KritiskSygdom_I_FG_True_Pristal_POSITIVE_FullTA) {
+	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	ta.setValue(kKritiskSygdom_i_FG_mk, true);
+	ta.setValue(kKritiskSygReguleringskode, "Pristal");
+	ta.setValue(kKritiskSygBlMin, (long) 400000);
+	ta.setValue(kKritiskSygBlMax, (long) 604935);
+
+	RuleEngine::_printDebugAtValidation = true;
+
+	auto r = re.validate(ta, false);
+	cout << r;
+
+	EXPECT_TRUE(r.isAllOk());
+}
+
 TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50, KritiskSygdom_I_FG_True_SupplDaekning_POSITIVE) {
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
 	ta.setValue(kKritiskSygdom_i_FG_mk, true);

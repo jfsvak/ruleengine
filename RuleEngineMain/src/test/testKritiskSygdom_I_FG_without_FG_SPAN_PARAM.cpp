@@ -28,6 +28,7 @@ protected:
         KonceptInfo ki {17, // UnderkonceptOid:OSV 25-49
         	{ {11, "true"}, // Parameter-Basis
         	  {1, "true"}, // Solidarisk faellestarif
+		//    {15, "true"}, // No FG_SPAN parameter set
 			  {6, "true"} // SEB Firmapensionspulje
         	} };
         re.initContext(ki);
@@ -37,28 +38,41 @@ protected:
 };
 
 
-// Test Udlobsalder_Pension - PE(71)-P(13)
-// Allowed values, 60, 62, 65, 67
-TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50_NO_FG_SPAN, UdloebsalderPension_POSITIVE) {
+TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50_NO_FG_SPAN, KritiskSygdom_I_FG_Missing_POSITIVE) {
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
-	ta.setValue(kUdlobsalder_Pension, (long) 60 );
 
-	auto r = re.validate(ta, (unsigned short) kUdlobsalder_Pension);
-	EXPECT_EQ(true, r.isAllOk());
+	auto r = re.validate(ta, false);
+	cout << r;
+	EXPECT_TRUE(r.isAllOk());
+
+	ASSERT_EQ(0, r.getValidationResults(kKritiskSygdom_i_FG_mk).size());
+}
+
+TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50_NO_FG_SPAN, KritiskSygdom_I_FG_True_NEGATIVE) {
+	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	ta.setValue(kKritiskSygdom_i_FG_mk, true);
+
+	auto r = re.validate(ta, false);
+	cout << r;
+	EXPECT_FALSE(r.isAllOk());
+
+	ASSERT_EQ(1, r.getValidationResults(kKritiskSygdom_i_FG_mk).size());
+	auto v = r.getValidationResults(kKritiskSygdom_i_FG_mk);
+	EXPECT_EQ(sbx::ValidationCode::kProductElementNotAllowed, v.at(0).getValidationCode());
 }
 
 
-// Test Udlobsalder_Pension - PE(71)-P(13)
-// Allowed values, 60, 62, 65, 67
-TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50_NO_FG_SPAN, UdloebsalderPension_NEGATIVE) {
+TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50_NO_FG_SPAN, KritiskSygdom_I_FG_False_NEGATIVE) {
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
-	ta.setValue(kUdlobsalder_Pension, (long) 61); // value not allowed
+	ta.setValue(kKritiskSygdom_i_FG_mk, false); // value not allowed
 
 	RuleEngine::_printDebugAtValidation = true;
 
-	auto r = re.validate(ta, (unsigned short) kUdlobsalder_Pension);
+	auto r = re.validate(ta, false);
+	cout << r;
 	EXPECT_FALSE(r.isAllOk());
 
-	auto v = r.getValidationResults(kUdlobsalder_Pension);
-	EXPECT_EQ(kValueNotAllowed, v.at(0).getValidationCode());
+	ASSERT_EQ(1, r.getValidationResults(kKritiskSygdom_i_FG_mk).size());
+	auto v = r.getValidationResults(kKritiskSygdom_i_FG_mk);
+	EXPECT_EQ(sbx::ValidationCode::kProductElementNotAllowed, v.at(0).getValidationCode());
 }
