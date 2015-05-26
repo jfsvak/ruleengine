@@ -6,7 +6,7 @@ LINKFLAGS = -lc++ ;
 HDRS = libs/gtest/include libs/muparserx/parser RuleEngineMain/src/json RuleEngineMain/src ;
 
 TEST_DIR = RuleEngineMain/src/test/ ;
-TEST_FILES = ruleenginetestutils.cpp testDodsfaldsdaekning_i_kr.cpp testDodsfaldsdaekning_i_procent.cpp testFravalgrisiko_mk.cpp testFullTAValidation.cpp testOpsparingsprodukt.cpp testruleengine.cpp testUdlobsalder_Pension.cpp ;
+TEST_FILES = ruleenginetestutils.cpp testDodsfaldsdaekning_i_kr.cpp testDodsfaldsdaekning_i_procent.cpp testFravalgrisiko_mk.cpp testFullTAValidation.cpp testKritiskSygdom_I_FG_Born.cpp testKritiskSygdom_I_FG_without_FG_SPAN_PARAM.cpp testKritiskSygdom_I_FG.cpp testOpsparingsprodukt.cpp testruleengine.cpp testUdlobsalder_Pension.cpp ;
 
 Main retests : $(TEST_DIR)$(TEST_FILES) ;
 

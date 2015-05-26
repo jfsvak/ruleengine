@@ -212,6 +212,17 @@
             "negativeMessage": "",
             "positiveRuleCatalogue":
 	        [
+				{
+					"id": "25.1.99",
+					"comments" : "DoedSpaendBl - pre calculation",
+					"preCalcExpr": "DoedSpaendBl = (int)(DoedBlOblMax-DoedBlGrMin)",
+					"preCalcRequiredPEOids": [ 1, 2 ],
+					"expr": "",
+					"productElementOids": [ 3 ],
+					"requiredif": "",
+					"positiveMessage": "",
+					"negativeMessage": ""
+				},
             	{
 		            "id": "25.1.2",
 		            "comments" : "requiredif placeholder for KR",
@@ -255,6 +266,17 @@
             "positiveRuleCatalogue":
 	        [
 		        {
+					"id": "25.2.99",
+					"comments" : "DoedSpaendPct - pre calculation",
+					"preCalcExpr": "DoedSpaendPct = (DoedPctOblMax-DoedPctGrMin)",
+					"preCalcRequiredPEOids": [ 6, 7 ],
+					"expr": "",
+					"productElementOids": [ 9 ],
+					"requiredif": "",
+					"positiveMessage": "",
+					"negativeMessage": ""
+				},
+				{
 		            "id": "25.2.1",
 		            "comments" : "requiredif placeholder for min pct",
 	    	        "expr": "",
@@ -293,6 +315,7 @@
             ],
 	        "negativeRuleCatalogue": []
          },
+		 
 		 {
 		    "id": "25.3",
 		    "comments" : "requiredif placeholder for min KR",
@@ -302,27 +325,264 @@
 	        "positiveMessage": "",
 	        "negativeMessage": "Minimum doedsfaldsdaekning i kr skal angives naar reguleringstype er Pristal eller Ingen"
          },
+
 		 {
-		    "id": "99.1",
-		    "comments" : "pre calculation for DoedSpaendPct",
-			"preCalcExpr": "DoedSpaendPct = (DoedPctOblMax-DoedPctGrMin)",
-			"preCalcRequiredPEOids": [ 6, 7 ],
-	        "expr": "",
-	        "productElementOids": [ 9 ],
+		    "id": "26.1",
+		    "comments" : "KritiskSygdom_I_FG",
+	        "expr": "KritiskSygdom_i_FG_mk == true",
+	        "productElementOids": [ 225 ],
 	        "requiredif": "",
 	        "positiveMessage": "",
-	        "negativeMessage": ""
+	        "negativeMessage": "",
+			"positiveRuleCatalogue":
+	        [
+		        {
+		            "id": "26.1.1",
+		            "comments" : "KritiskSygReguleringskode - requiredif placeholder",
+	    	        "expr": "",
+		   	        "productElementOids": [ 221 ],
+   	    		    "requiredif": "#parent#",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Reguleringstype for Kritisk sygdom i fg skal angives",
+					"positiveRuleCatalogue": []
+        	    },
+		        {
+		            "id": "26.1.2",
+		            "comments" : "",
+	    	        "expr": "KritiskSygReguleringskode == \"Gage\"",
+		   	        "productElementOids": [ 221 ],
+   	    		    "requiredif": "",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "",
+					"positiveRuleCatalogue":
+					[
+						{
+							"id": "26.1.2.99",
+							"comments" : "KritiskSygspaendpc - pre calc",
+							"preCalcExpr": "KritiskSygspaendpc = (float)(KritiskSygPctMax-KritiskSygPctMin)",
+							"preCalcRequiredPEOids": [ 218, 219 ],
+							"expr": "",
+							"productElementOids": [ 220 ],
+							"requiredif": "",
+							"positiveMessage": "",
+							"negativeMessage": ""
+						},
+						{
+							"id": "26.1.2.1",
+							"comments" : "KritiskSygPctMin - requiredif placeholder",
+							"expr": "",
+							"productElementOids": [ 218 ],
+							"requiredif": "#parent#",
+							"positiveMessage": "",
+							"negativeMessage": "Minimum Kritisk Sygdom i Pct skal angives naar reguleringstype er Gage"
+						},
+						{
+							"id": "26.1.2.2",
+							"comments" : "KritiskSygPctMax - requiredif placeholder",
+							"expr": "",
+							"productElementOids": [ 219 ],
+							"requiredif": "#parent#",
+							"positiveMessage": "",
+							"negativeMessage": "Maksimum Kritisk Sygdom i Pct skal angives naar reguleringstype er Gage"
+						},
+						{
+							"id": "26.1.2.3",
+							"comments" : "",
+							"expr": "KritiskSygspaendpc >= rc_KritiskSygspaendpc_min",
+							"productElementOids": [ 220 ],
+							"requiredif": "",
+							"positiveMessage": "",
+							"negativeMessage": "Spaend for Kritisk sygdom i procent skal vaerre stoerre end %1",
+							"negativeValCode": 102
+						},
+						{
+							"id": "26.1.2.4",
+							"comments" : "",
+							"expr": "KritiskSygspaendpc <= rc_KritiskSygspaendpc_max",
+							"productElementOids": [ 220 ],
+							"requiredif": "",
+							"positiveMessage": "",
+							"negativeMessage": "Spaend for Kritisk sygdom i procent maa ikke overstige %1",
+							"negativeValCode": 103
+						}
+					]
+        	    },
+		        {
+		            "id": "26.1.3",
+		            "comments" : "",
+	    	        "expr": "KritiskSygReguleringskode == \"Ingen\" or KritiskSygReguleringskode == \"Pristal\"",
+		   	        "productElementOids": [ 221 ],
+   	    		    "requiredif": "",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "",
+					"positiveRuleCatalogue":
+					[
+						{
+							"id": "26.1.3.99",
+							"comments" : "KritiskSygSpaendBl - pre calc",
+							"preCalcExpr": "KritiskSygSpaendBl = (float)(KritiskSygBlMax-KritiskSygBlMin)",
+							"preCalcRequiredPEOids": [ 215, 216 ],
+							"expr": "",
+							"productElementOids": [ 217 ],
+							"requiredif": "",
+							"positiveMessage": "",
+							"negativeMessage": ""
+						},
+						{
+							"id": "26.1.3.1",
+							"comments" : "KritiskSygBlMin - requiredif placeholder",
+							"expr": "",
+							"productElementOids": [ 215 ],
+							"requiredif": "#parent#",
+							"positiveMessage": "",
+							"negativeMessage": "Minimum Kritisk Sygdom i kr skal angives naar reguleringstype er Ingen/Pristal"
+						},
+						{
+							"id": "26.1.3.2",
+							"comments" : "KritiskSygBlMax - requiredif placeholder",
+							"expr": "",
+							"productElementOids": [ 216 ],
+							"requiredif": "#parent#",
+							"positiveMessage": "",
+							"negativeMessage": "Maksimum Kritisk Sygdom i kr skal angives naar reguleringstype er Ingen/Pristal"
+						},
+						{
+							"id": "26.1.3.3",
+							"comments" : "",
+							"expr": "KritiskSygSpaendBl >= rc_KritiskSygSpaendBl_min",
+							"productElementOids": [ 217 ],
+							"requiredif": "",
+							"positiveMessage": "",
+							"negativeMessage": "Spaend for Kritisk sygdom i kr skal vaerre stoerre end %1",
+							"negativeValCode": 102
+						},
+						{
+							"id": "26.1.3.4",
+							"comments" : "",
+							"expr": "KritiskSygSpaendBl <= rc_KritiskSygSpaendBl_max",
+							"productElementOids": [ 217 ],
+							"requiredif": "",
+							"positiveMessage": "",
+							"negativeMessage": "Spaend for Kritisk sygdom i kr maa ikke overstige %1",
+							"negativeValCode": 103
+						}
+					]
+        	    },
+				{
+					"id": "26.1.4",
+		            "comments" : "KritiskSygSuppldaekn_mk",
+	    	        "expr": "",
+		   	        "productElementOids": [ 224 ],
+   	    		    "requiredif": "#parent#",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Mulighed for supplerende daekning skal angives naar Kritisk sygdom i FG er valgt",
+					"positiveRuleCatalogue": []
+				}
+			],
+			"negativeRuleCatalogue": []
          },
 		 {
-		    "id": "99.2",
-		    "comments" : "pre calculation for DoedSpaendBl",
-			"preCalcExpr": "DoedSpaendBl = (int)(DoedBlOblMax-DoedBlGrMin)",
-			"preCalcRequiredPEOids": [ 1, 2 ],
-	        "expr": "",
-	        "productElementOids": [ 3 ],
-	        "requiredif": "",
+			"id": "26.2",
+		    "comments" : "KritiskSygBornesum_i_FG_mk - ",
+	        "expr": "KritiskSygBornesum_i_FG_mk == true",
+		    "productElementOids": [ 264 ],
+   	        "requiredif": "#parent#",
 	        "positiveMessage": "",
-	        "negativeMessage": ""
-         }
+	      	"negativeMessage": "",
+		    "positiveRuleCatalogue": 
+			[
+		        {
+		            "id": "26.2.1",
+		            "comments" : "KritiskSygBornesumReguleringskode - requiredif placeholder",
+	    	        "expr": "",
+		   	        "productElementOids": [ 267 ],
+   	    		    "requiredif": "#parent#",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Reguleringstype for Kritisk sygdom i fg Boern skal angives",
+					"positiveRuleCatalogue": []
+        	    },
+		        {
+		            "id": "26.2.2",
+		            "comments" : "KritiskSygBornesumReguleringskode - Belob",
+	    	        "expr": "KritiskSygBornesumReguleringskode == \"Ingen\" or KritiskSygBornesumReguleringskode == \"Pristal\"",
+		   	        "productElementOids": [ 267 ],
+   	    		    "requiredif": "",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "",
+					"positiveRuleCatalogue": 
+					[
+						{
+							"id": "26.2.2.99",
+							"comments" : "KritiskSygBornesumSpaendBl - pre calc",
+							"preCalcExpr": "KritiskSygBornesumSpaendBl = (float)(KritiskSygBornesumBlMax-KritiskSygBornesumBlMin)",
+							"preCalcRequiredPEOids": [ 262, 263 ],
+							"expr": "",
+							"productElementOids": [ 269 ],
+							"requiredif": "",
+							"positiveMessage": "",
+							"negativeMessage": ""
+						},
+						{
+							"id": "26.2.2.1",
+							"comments" : "KritiskSygBornesumBlMin - requiredif placeholder",
+							"expr": "",
+							"productElementOids": [ 263 ],
+							"requiredif": "#parent#",
+							"positiveMessage": "",
+							"negativeMessage": "Minimum Kritisk Sygdom i kr Born skal angives naar reguleringstype er Ingen/Pristal"
+						},
+						{
+							"id": "26.2.2.2",
+							"comments" : "KritiskSygBornesumBlMax - requiredif placeholder",
+							"expr": "",
+							"productElementOids": [ 262 ],
+							"requiredif": "#parent#",
+							"positiveMessage": "",
+							"negativeMessage": "Maksimum Kritisk Sygdom Born i kr skal angives naar reguleringstype er Ingen/Pristal"
+						},
+						{
+							"id": "26.2.2.3",
+							"comments" : "",
+							"expr": "KritiskSygBornesumSpaendBl >= rc_KritiskSygBornesumSpaendBl_min",
+							"productElementOids": [ 269 ],
+							"requiredif": "",
+							"positiveMessage": "",
+							"negativeMessage": "Spaend for Kritisk sygdom born i kr skal vaerre stoerre end %1",
+							"negativeValCode": 102
+						},
+						{
+							"id": "26.2.2.4",
+							"comments" : "",
+							"expr": "KritiskSygBornesumSpaendBl <= rc_KritiskSygBornesumSpaendBl_max",
+							"productElementOids": [ 269 ],
+							"requiredif": "",
+							"positiveMessage": "",
+							"negativeMessage": "Spaend for Kritisk sygdom born i kr maa ikke overstige %1",
+							"negativeValCode": 103
+						}
+					]
+        	    },
+		        {
+		            "id": "26.2.3",
+		            "comments" : "KritiskSygBornesumSuppldaekn_mk - requiredif placeholder",
+	    	        "expr": "",
+		   	        "productElementOids": [ 271 ],
+   	    		    "requiredif": "#parent#",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Supplerende daekning for Kritisk sygdom i fg Boern skal angives",
+					"positiveRuleCatalogue": []
+        	    },
+		        {
+		            "id": "26.2.4",
+		            "comments" : "KritiskSygBornesumSkattekode - requiredif placeholder",
+	    	        "expr": "",
+		   	        "productElementOids": [ 268 ],
+   	    		    "requiredif": "#parent#",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Kritisk sygdom i fg Boern skatte kode skal angives",
+					"positiveRuleCatalogue": []
+        	    }			
+			]
+		 }
 	]}
 }

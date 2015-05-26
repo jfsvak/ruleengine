@@ -2898,7 +2898,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Kvartørlig",
+            "value": "Kvartårlig",
             "isDefault": false
          },
                   {
@@ -2908,7 +2908,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Halvørlig",
+            "value": "Halvårlig",
             "isDefault": false
          },
                   {
@@ -2918,7 +2918,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "ørlig",
+            "value": "Årlig",
             "isDefault": false
          },
                   {
@@ -3268,7 +3268,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -3278,7 +3278,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattepligtig døkning",
+            "value": "Skattepligtig dækning",
             "isDefault": false
          },
                   {
@@ -3498,7 +3498,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 222,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -3588,7 +3588,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "ørlig",
+            "value": "Årlig",
             "isDefault": false
          },
                   {
@@ -3688,7 +3688,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Halvørlig",
+            "value": "Halvårlig",
             "isDefault": false
          },
                   {
@@ -3798,7 +3798,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Kvartørlig",
+            "value": "Kvartårlig",
             "isDefault": false
          },
                   {
@@ -9968,7 +9968,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 268,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -9978,7 +9978,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 268,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -9988,7 +9988,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 268,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -9998,7 +9998,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 268,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -10008,7 +10008,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 268,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -10018,7 +10018,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 268,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -10038,7 +10038,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 268,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -10048,7 +10048,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 268,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -10058,7 +10058,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 268,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -10068,7 +10068,7 @@
             "generalAgreementOid": 5,
             "productElementOid": 268,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -10078,7 +10078,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 268,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -10088,7 +10088,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 268,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -10098,7 +10098,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 268,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -10108,7 +10108,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 268,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -10118,7 +10118,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 268,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -10128,7 +10128,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 268,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -10148,7 +10148,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 268,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -10158,7 +10158,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 268,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -10168,7 +10168,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 268,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -10178,7 +10178,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 268,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -10188,7 +10188,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 268,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -10198,7 +10198,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 268,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -11858,7 +11858,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -11868,7 +11868,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattepligtig døkning",
+            "value": "Skattepligtig dækning",
             "isDefault": false
          },
                   {
@@ -12058,7 +12058,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -12068,7 +12068,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattepligtig døkning",
+            "value": "Skattepligtig dækning",
             "isDefault": false
          },
                   {
@@ -12258,7 +12258,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -12268,7 +12268,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattepligtig døkning",
+            "value": "Skattepligtig dækning",
             "isDefault": false
          },
                   {
@@ -17328,7 +17328,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattepligtig døkning",
+            "value": "Skattepligtig dækning",
             "isDefault": false
          },
                   {
@@ -17338,7 +17338,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -17348,7 +17348,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattepligtig døkning",
+            "value": "Skattepligtig dækning",
             "isDefault": false
          },
                   {
@@ -17358,7 +17358,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -17368,7 +17368,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattepligtig døkning",
+            "value": "Skattepligtig dækning",
             "isDefault": false
          },
                   {
@@ -17378,7 +17378,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -17908,7 +17908,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattepligtig døkning",
+            "value": "Skattepligtig dækning",
             "isDefault": false
          },
                   {
@@ -21198,7 +21198,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Halvørlig",
+            "value": "Halvårlig",
             "isDefault": false
          },
                   {
@@ -21208,7 +21208,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Kvartørlig",
+            "value": "Kvartårlig",
             "isDefault": false
          },
                   {
@@ -21218,7 +21218,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "ørlig",
+            "value": "Årlig",
             "isDefault": false
          },
                   {
@@ -21228,7 +21228,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "ørlig",
+            "value": "Årlig",
             "isDefault": false
          },
                   {
@@ -21238,7 +21238,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Kvartørlig",
+            "value": "Kvartårlig",
             "isDefault": false
          },
                   {
@@ -21248,7 +21248,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Halvørlig",
+            "value": "Halvårlig",
             "isDefault": false
          },
                   {
@@ -21258,7 +21258,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Halvørlig",
+            "value": "Halvårlig",
             "isDefault": false
          },
                   {
@@ -21268,7 +21268,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Kvartørlig",
+            "value": "Kvartårlig",
             "isDefault": false
          },
                   {
@@ -21278,7 +21278,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "ørlig",
+            "value": "Årlig",
             "isDefault": false
          },
                   {
@@ -21288,7 +21288,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "ørlig",
+            "value": "Årlig",
             "isDefault": false
          },
                   {
@@ -21298,7 +21298,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Halvørlig",
+            "value": "Halvårlig",
             "isDefault": false
          },
                   {
@@ -21308,7 +21308,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Kvartørlig",
+            "value": "Kvartårlig",
             "isDefault": false
          },
                   {
@@ -22128,7 +22128,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -22138,7 +22138,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattepligtig døkning",
+            "value": "Skattepligtig dækning",
             "isDefault": false
          },
                   {
@@ -23358,7 +23358,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattepligtig døkning",
+            "value": "Skattepligtig dækning",
             "isDefault": false
          },
                   {
@@ -23378,7 +23378,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattepligtig døkning",
+            "value": "Skattepligtig dækning",
             "isDefault": false
          },
                   {
@@ -23388,7 +23388,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattepligtig døkning",
+            "value": "Skattepligtig dækning",
             "isDefault": false
          },
                   {
@@ -23398,7 +23398,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattepligtig døkning",
+            "value": "Skattepligtig dækning",
             "isDefault": false
          },
                   {
@@ -23408,7 +23408,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattepligtig døkning",
+            "value": "Skattepligtig dækning",
             "isDefault": false
          },
                   {
@@ -23418,7 +23418,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattepligtig døkning",
+            "value": "Skattepligtig dækning",
             "isDefault": false
          },
                   {
@@ -23428,7 +23428,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattepligtig døkning",
+            "value": "Skattepligtig dækning",
             "isDefault": false
          },
                   {
@@ -23438,7 +23438,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattepligtig døkning",
+            "value": "Skattepligtig dækning",
             "isDefault": false
          },
                   {
@@ -23448,7 +23448,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattepligtig døkning",
+            "value": "Skattepligtig dækning",
             "isDefault": false
          },
                   {
@@ -23458,7 +23458,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattepligtig døkning",
+            "value": "Skattepligtig dækning",
             "isDefault": false
          },
                   {
@@ -23468,7 +23468,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattepligtig døkning",
+            "value": "Skattepligtig dækning",
             "isDefault": false
          },
                   {
@@ -23478,7 +23478,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattepligtig døkning",
+            "value": "Skattepligtig dækning",
             "isDefault": false
          },
                   {
@@ -23488,7 +23488,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattepligtig døkning",
+            "value": "Skattepligtig dækning",
             "isDefault": false
          },
                   {
@@ -23498,7 +23498,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattepligtig døkning",
+            "value": "Skattepligtig dækning",
             "isDefault": false
          },
                   {
@@ -23508,7 +23508,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattepligtig døkning",
+            "value": "Skattepligtig dækning",
             "isDefault": false
          },
                   {
@@ -27788,7 +27788,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 222,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -27798,7 +27798,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 222,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -27808,7 +27808,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 222,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -27818,7 +27818,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 222,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -27828,7 +27828,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 222,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -27838,7 +27838,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 222,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -27848,7 +27848,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 222,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -27858,7 +27858,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 222,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -27868,7 +27868,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 222,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -27878,7 +27878,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 222,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -27888,7 +27888,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 222,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -27898,7 +27898,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 222,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -27908,7 +27908,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 222,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -27918,7 +27918,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 222,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -27928,7 +27928,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 222,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -28858,7 +28858,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -28868,7 +28868,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -28878,7 +28878,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -28888,7 +28888,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -28898,7 +28898,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -28908,7 +28908,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -28928,7 +28928,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -28938,7 +28938,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -28948,7 +28948,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -28958,7 +28958,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -28968,7 +28968,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -28978,7 +28978,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -28988,7 +28988,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -28998,7 +28998,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -29008,7 +29008,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -29848,7 +29848,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Halvørlig",
+            "value": "Halvårlig",
             "isDefault": false
          },
                   {
@@ -29858,7 +29858,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Kvartørlig",
+            "value": "Kvartårlig",
             "isDefault": false
          },
                   {
@@ -29868,7 +29868,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "ørlig",
+            "value": "Årlig",
             "isDefault": false
          },
                   {
@@ -30828,7 +30828,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Halvørlig",
+            "value": "Halvårlig",
             "isDefault": false
          },
                   {
@@ -30838,7 +30838,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Kvartørlig",
+            "value": "Kvartårlig",
             "isDefault": false
          },
                   {
@@ -30858,7 +30858,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "ørlig",
+            "value": "Årlig",
             "isDefault": false
          },
                   {
@@ -31848,7 +31848,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Halvørlig",
+            "value": "Halvårlig",
             "isDefault": false
          },
                   {
@@ -31858,7 +31858,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Kvartørlig",
+            "value": "Kvartårlig",
             "isDefault": false
          },
                   {
@@ -31868,7 +31868,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "ørlig",
+            "value": "Årlig",
             "isDefault": false
          },
                   {
@@ -32458,7 +32458,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -32468,7 +32468,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattepligtig døkning",
+            "value": "Skattepligtig dækning",
             "isDefault": false
          },
                   {
@@ -36148,7 +36148,7 @@
             "generalAgreementOid": 5,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "ørlig",
+            "value": "Årlig",
             "isDefault": false
          },
                   {
@@ -36458,7 +36458,7 @@
             "generalAgreementOid": 5,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -36628,7 +36628,7 @@
             "generalAgreementOid": 5,
             "productElementOid": 222,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -42978,7 +42978,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Halvørlig",
+            "value": "Halvårlig",
             "isDefault": false
          },
                   {
@@ -42988,7 +42988,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Kvartørlig",
+            "value": "Kvartårlig",
             "isDefault": false
          },
                   {
@@ -43008,7 +43008,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "ørlig",
+            "value": "Årlig",
             "isDefault": false
          },
                   {
@@ -43658,7 +43658,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattepligtig døkning",
+            "value": "Skattepligtig dækning",
             "isDefault": false
          },
                   {
@@ -43668,7 +43668,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -44858,7 +44858,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Kvartørlig",
+            "value": "Kvartårlig",
             "isDefault": false
          },
                   {
@@ -44868,7 +44868,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Halvørlig",
+            "value": "Halvårlig",
             "isDefault": false
          },
                   {
@@ -44878,7 +44878,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "ørlig",
+            "value": "Årlig",
             "isDefault": false
          },
                   {
@@ -45608,7 +45608,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattepligtig døkning",
+            "value": "Skattepligtig dækning",
             "isDefault": false
          },
                   {
@@ -46418,7 +46418,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "ørlig",
+            "value": "Årlig",
             "isDefault": false
          },
                   {
@@ -46428,7 +46428,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Halvørlig",
+            "value": "Halvårlig",
             "isDefault": false
          },
                   {
@@ -46438,7 +46438,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Kvartørlig",
+            "value": "Kvartårlig",
             "isDefault": false
          },
                   {
@@ -46478,7 +46478,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "ørlig",
+            "value": "Årlig",
             "isDefault": false
          },
                   {
@@ -46578,7 +46578,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Halvørlig",
+            "value": "Halvårlig",
             "isDefault": false
          },
                   {
@@ -46628,7 +46628,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Kvartørlig",
+            "value": "Kvartårlig",
             "isDefault": false
          },
                   {
@@ -48518,7 +48518,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "ørlig",
+            "value": "Årlig",
             "isDefault": false
          },
                   {
@@ -48548,7 +48548,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Halvørlig",
+            "value": "Halvårlig",
             "isDefault": false
          },
                   {
@@ -48608,7 +48608,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Kvartørlig",
+            "value": "Kvartårlig",
             "isDefault": false
          },
                   {
@@ -49188,7 +49188,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Halvørlig",
+            "value": "Halvårlig",
             "isDefault": false
          },
                   {
@@ -49198,7 +49198,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Kvartørlig",
+            "value": "Kvartårlig",
             "isDefault": false
          },
                   {
@@ -49208,7 +49208,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "ørlig",
+            "value": "Årlig",
             "isDefault": false
          },
                   {
@@ -51118,7 +51118,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "ørlig",
+            "value": "Årlig",
             "isDefault": false
          },
                   {
@@ -51128,7 +51128,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Kvartørlig",
+            "value": "Kvartårlig",
             "isDefault": false
          },
                   {
@@ -51138,7 +51138,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Halvørlig",
+            "value": "Halvårlig",
             "isDefault": false
          },
                   {
@@ -52308,7 +52308,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -52318,7 +52318,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattepligtig døkning",
+            "value": "Skattepligtig dækning",
             "isDefault": false
          },
                   {
@@ -52528,7 +52528,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 222,
             "comparisonTypeOid": 3,
-            "value": "Skattefri døkning",
+            "value": "Skattefri dækning",
             "isDefault": false
          },
                   {
@@ -53448,7 +53448,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "ørlig",
+            "value": "Årlig",
             "isDefault": false
          },
                   {
@@ -53458,7 +53458,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Halvørlig",
+            "value": "Halvårlig",
             "isDefault": false
          },
                   {
@@ -53468,7 +53468,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Kvartørlig",
+            "value": "Kvartårlig",
             "isDefault": false
          },
                   {
@@ -54178,7 +54178,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "ørlig",
+            "value": "Årlig",
             "isDefault": false
          },
                   {
@@ -54188,7 +54188,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Halvørlig",
+            "value": "Halvårlig",
             "isDefault": false
          },
                   {
@@ -54198,7 +54198,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Kvartørlig",
+            "value": "Kvartårlig",
             "isDefault": false
          },
                   {
@@ -54858,7 +54858,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "ørlig",
+            "value": "Årlig",
             "isDefault": false
          },
                   {
@@ -54868,7 +54868,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Halvørlig",
+            "value": "Halvårlig",
             "isDefault": false
          },
                   {
@@ -54878,7 +54878,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Kvartørlig",
+            "value": "Kvartårlig",
             "isDefault": false
          },
                   {
@@ -55558,7 +55558,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "ørlig",
+            "value": "Årlig",
             "isDefault": false
          },
                   {
@@ -55568,7 +55568,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Halvørlig",
+            "value": "Halvårlig",
             "isDefault": false
          },
                   {
@@ -55588,7 +55588,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Kvartørlig",
+            "value": "Kvartårlig",
             "isDefault": false
          },
                   {
@@ -56298,7 +56298,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "ørlig",
+            "value": "Årlig",
             "isDefault": false
          },
                   {
@@ -56308,7 +56308,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Halvørlig",
+            "value": "Halvårlig",
             "isDefault": false
          },
                   {
@@ -56318,7 +56318,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Kvartørlig",
+            "value": "Kvartårlig",
             "isDefault": false
          },
                   {
@@ -58879,7 +58879,7 @@
          },
                   {
             "oid": 26,
-            "name": "Overskud fra gruppedøkningerne bruges til nedsøttelse af nøste ørs præmie",
+            "name": "Overskud fra gruppedækningerne bruges til nedsøttelse af nøste ørs præmie",
             "type": "Overskud",
             "elementTypeOid": 4
          },
@@ -58933,7 +58933,7 @@
          },
                   {
             "oid": 14,
-            "name": "Sørlig udbetalingsbestemmelse (klausul 853)",
+            "name": "SÅrlig udbetalingsbestemmelse (klausul 853)",
             "type": "risiko",
             "elementTypeOid": 4
          },

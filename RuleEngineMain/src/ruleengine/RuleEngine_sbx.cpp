@@ -507,7 +507,16 @@ void RuleEngine::_validateOptionAllowed(const sbx::ProductElementValue& pev, sbx
 		// if it exists as an enum/equals constant, then check if the value is allowed
 		if ( !this->_isOptionAllowed(pev) )
 		{
-			valResult.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kValueNotAllowed, pev.getProductElementOid(), _VAR_NAME(pev.getProductElementOid()), "Value not allowed") );
+			stringstream optionsString {};
+
+			auto options = _container.getOptionsList(pev.getProductElementOid());
+
+			for_each(options.cbegin(), options.cend(), [&optionsString](std::shared_ptr<sbx::Constant> c) { optionsString << c->stringValue() << ", ";} );
+
+			stringstream msg {};
+			msg << "Value [" << pev.stringValue() << "] not allowed! Allowed options: [" << optionsString.str() << "]";
+
+			valResult.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kValueNotAllowed, pev.getProductElementOid(), _VAR_NAME(pev.getProductElementOid()), msg.str().substr(0, msg.str().length()-2)) );
 		}
 	}
 }
