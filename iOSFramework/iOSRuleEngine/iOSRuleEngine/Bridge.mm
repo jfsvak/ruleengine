@@ -85,6 +85,55 @@ std::string get_file_contents(const char *filename)
     throw(1);
 }
 
+-(NSArray*)getAllowedValuesFor:(NSInteger)oid withType:(uint8_t)valueType {
+    typedef enum _valueType{
+        kValueTypeText          =0,
+        kValueTypeInt           =1,
+        kValueTypeDouble        =2,
+        kValueTypeDate          =3,
+        kValueTypeBool          =4,
+        kValueTypeArray         =5,
+        kValueTypeInput         =6,
+        kValueTypeInvalid       =-1
+    }ValueType;
+
+    sbx::ProductElementOid peOid = (sbx::ProductElementOid)oid;
+    NSMutableArray *result;
+    try {
+        std::vector<std::shared_ptr<sbx::Constant>> list = re.getOptionsList(peOid);
+        
+        result = [NSMutableArray arrayWithCapacity:list.size()];
+        
+        for (std::shared_ptr<sbx::Constant> constant : list) {
+            switch (valueType) {
+                case kValueTypeText:
+                    [result addObject:[NSString stringWithCString:constant->stringValue().c_str() encoding:NSUTF8StringEncoding]];
+                    break;
+                case kValueTypeInt:
+                    [result addObject:[NSNumber numberWithLong:constant->longValue()]];
+                    break;
+                case kValueTypeDouble:
+                    [result addObject:[NSNumber numberWithDouble:constant->doubleValue()]];
+                    break;
+                case kValueTypeBool:
+                    [result addObject:[NSNumber numberWithBool:constant->boolValue()]];
+                    break;
+                default:
+                    [result addObject:[NSString stringWithCString:constant->stringValue().c_str() encoding:NSUTF8StringEncoding]];
+                    break;
+            }
+        }
+    } catch (std::exception error) {
+        NSLog(@"getAllowedValuesFor:%zd -> %s", oid, error.std::exception::what());
+    } catch (mup::ParserError error) {
+        NSLog(@"getAllowedValuesFor:%zd -> mup::ParserError %s", oid, error.GetMsg().c_str());
+    } catch (...) {
+        NSLog(@"getAllowedValuesFor:%zd unknown exception", oid);
+    }
+    
+    return [result sortedArrayUsingComparator:^(NSString* a, NSString* b) { return [a compare:b options:NSNumericSearch]; }];
+}
+
 -(NSArray*)getAllowedValuesFor:(NSInteger)oid {
     sbx::ProductElementOid peOid = (sbx::ProductElementOid)oid;
     NSMutableArray *result;
@@ -107,7 +156,7 @@ std::string get_file_contents(const char *filename)
     return [result sortedArrayUsingComparator:^(NSString* a, NSString* b) { return [a compare:b options:NSNumericSearch]; }];
 }
 
--(id)getDefaultValueFor:(NSInteger)oid {
+-(NSString*)getDefaultStringValueFor:(NSInteger)oid {
     sbx::ProductElementOid peOid = (sbx::ProductElementOid)oid;
     
     NSString *result;
@@ -149,6 +198,51 @@ std::string get_file_contents(const char *filename)
     
     return result;
 }
+
+-(NSNumber*)getDefaultLongValueFor:(NSInteger)oid {
+    sbx::ProductElementOid peOid = (sbx::ProductElementOid)oid;
+    
+    NSNumber *result;
+    
+    try {
+        std::shared_ptr<sbx::Constant> constant = re.getDefaultValue(peOid);
+        result = [NSNumber numberWithLong:constant->longValue()];
+    } catch (std::exception error) {
+        NSLog(@"getDefaultValueFor:%zd -> %s", oid, error.std::exception::what());
+        re.printVariablesInParser();
+    } catch (mup::ParserError error) {
+        NSLog(@"getDefaultValueFor:%zd -> mup::ParserError %s", oid, error.GetMsg().c_str());
+        re.printVariablesInParser();
+    } catch (...) {
+        NSLog(@"getDefaultValueFor:%zd unknown exception", oid);
+        re.printVariablesInParser();
+    }
+    
+    return result;
+}
+
+-(NSNumber*)getDefaultDoubleValueFor:(NSInteger)oid {
+    sbx::ProductElementOid peOid = (sbx::ProductElementOid)oid;
+    
+    NSNumber *result;
+    
+    try {
+        std::shared_ptr<sbx::Constant> constant = re.getDefaultValue(peOid);
+        result = [NSNumber numberWithDouble:constant->doubleValue()];
+    } catch (std::exception error) {
+        NSLog(@"getDefaultValueFor:%zd -> %s", oid, error.std::exception::what());
+        re.printVariablesInParser();
+    } catch (mup::ParserError error) {
+        NSLog(@"getDefaultValueFor:%zd -> mup::ParserError %s", oid, error.GetMsg().c_str());
+        re.printVariablesInParser();
+    } catch (...) {
+        NSLog(@"getDefaultValueFor:%zd unknown exception", oid);
+        re.printVariablesInParser();
+    }
+    
+    return result;
+}
+
 
 -(NSArray*)validatePE:(unsigned short) peOid {
     NSMutableArray *allResults = [NSMutableArray array];
