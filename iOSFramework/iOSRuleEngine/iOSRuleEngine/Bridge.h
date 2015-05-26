@@ -24,6 +24,7 @@
 
 -(NSArray*)getAllowedValuesFor:(NSInteger)oid;
 -(id)getDefaultValueFor:(NSInteger)oid;
+-(NSNumber*)getDefaultBOOLValueFor:(NSInteger)oid;
 
 -(void)createTA:(NSString*)CVR konceptOid:(unsigned short)konceptOid;
 -(void)setValue:(id)value forPE:(unsigned short) peOid;

@@ -66,8 +66,7 @@
 }
 
 -(void)unsetPEOid:(unsigned short) peOid {
-    auto values = ta.getValues();
-    values.erase(peOid);
+    ta.remove(peOid);
 }
 
 std::string get_file_contents(const char *filename)
@@ -115,6 +114,28 @@ std::string get_file_contents(const char *filename)
     try {
         std::shared_ptr<sbx::Constant> constant = re.getDefaultValue(peOid);
         result = [NSString stringWithCString:constant->stringValue().c_str() encoding:NSUTF8StringEncoding];
+    } catch (std::exception error) {
+        NSLog(@"getDefaultValueFor:%zd -> %s", oid, error.std::exception::what());
+        re.printVariablesInParser();
+    } catch (mup::ParserError error) {
+        NSLog(@"getDefaultValueFor:%zd -> mup::ParserError %s", oid, error.GetMsg().c_str());
+        re.printVariablesInParser();
+    } catch (...) {
+        NSLog(@"getDefaultValueFor:%zd unknown exception", oid);
+        re.printVariablesInParser();
+    }
+    
+    return result;
+}
+
+-(NSNumber*)getDefaultBOOLValueFor:(NSInteger)oid {
+    sbx::ProductElementOid peOid = (sbx::ProductElementOid)oid;
+    
+    NSNumber *result;
+    
+    try {
+        std::shared_ptr<sbx::Constant> constant = re.getDefaultValue(peOid);
+        result = [NSNumber numberWithBool:constant->boolValue()];
     } catch (std::exception error) {
         NSLog(@"getDefaultValueFor:%zd -> %s", oid, error.std::exception::what());
         re.printVariablesInParser();
