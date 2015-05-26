@@ -5,7 +5,10 @@ C++FLAGS = -std=c++11 ;
 LINKFLAGS = -lc++ ;
 HDRS = libs/gtest/include libs/muparserx/parser RuleEngineMain/src/json RuleEngineMain/src ;
 
-Main retests : RuleEngineMain/src/test/testFravalgrisiko_mk.cpp RuleEngineMain/src/test/testruleengine.cpp RuleEngineMain/src/test/testUdlobsalder_Pension.cpp RuleEngineMain/src/test/ruleenginetestutils.cpp ;
+TEST_DIR = RuleEngineMain/src/test/ ;
+TEST_FILES = ruleenginetestutils.cpp testDodsfaldsdaekning_i_procent.cpp testFravalgrisiko_mk.cpp testFullTAValidation.cpp testOpsparingsprodukt.cpp testUdlobsalder_Pension.cpp testruleengine.cpp ;
+
+Main retests : $(TESTS_DIR)$(TESTS_FILES) ;
 
 LinkLibraries retests : libmuparserx libgtest libjson libre ;
 
