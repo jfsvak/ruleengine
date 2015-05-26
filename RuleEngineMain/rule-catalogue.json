@@ -20,7 +20,7 @@
 		   	        "productElementOids": [ 231 ],
    	    		    "requiredif": "#parent#",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "FravalgRisikoAlder skal sangives, hvis Fravalg Risiko er valgt"
+	            	"negativeMessage": "FravalgRisikoAlder skal sangives, hvis risiko er fravalgt"
         	    }
             ],
 	        "negativeRuleCatalogue": []
