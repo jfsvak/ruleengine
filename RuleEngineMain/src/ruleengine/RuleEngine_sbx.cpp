@@ -103,6 +103,7 @@ void RuleEngine::_initRuleCatalogue(sbx::RuleCatalogue* ruleCatalogue, const Jso
 			string requiredif = valueIterator->get("requiredif", "").asString();
 			string positiveMessage = valueIterator->get("positiveMessage", "").asString();
 			string negativeMessage = valueIterator->get("negativeMessage", "").asString();
+			int negativeValCode = valueIterator->get("negativeValCode", 0).asInt();
 
 			if (RuleEngine::_printDebug) { cout << "  Creating Rule [" << id << "], expr [" << expr << "]" << endl; }
 
@@ -117,6 +118,8 @@ void RuleEngine::_initRuleCatalogue(sbx::RuleCatalogue* ruleCatalogue, const Jso
 				parent = make_shared<sbx::Rule>(id + "p", requiredif, nullptr, "", "");
 
 			std::shared_ptr<sbx::Rule> rule = make_shared<sbx::Rule>(id, expr, parent, positiveMessage, negativeMessage, preCalcExpr);
+
+			rule->setNegativeValCode(negativeValCode);
 
 			Json::Value requiredPEOids = valueIterator->get("preCalcRequiredPEOids", "");
 
@@ -658,6 +661,7 @@ void RuleEngine::_executeRule(unsigned short peOidBeingValidated, std::shared_pt
 		else {
 			// If no negative message, we don't consider the negative outcome as a failure
 			if (rule->getNegativeMessage() != "") {
+				sbx::ValidationCode negativeValCode = toValCode(rule->getNegativeValCode(), sbx::ValidationCode::kFail);
 				valResult.addValidationResult( sbx::ValidationResult(negativeValCode, peOidBeingValidated, _VAR_NAME(peOidBeingValidated), rule->getNegativeMessage(), rule->getRuleId(), rule->getExpr()) );
 			}
 		}

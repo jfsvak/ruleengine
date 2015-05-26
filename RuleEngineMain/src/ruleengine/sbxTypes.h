@@ -13,6 +13,7 @@
 #include <string>
 #include <iostream>
 
+
 namespace sbx {
 
 std::string toUpper(const std::string& s);
@@ -92,8 +93,8 @@ enum ValidationCode : unsigned short {
 
 	// Validation Codes for values (inside pe's)
 	kValueNotAllowed 				= 101,		// value is not allowed i.e. not found in options list
-	kValueUnderLimit 				= 103,		// Value is under the allowed limit
-	kValueOverLimit 				= 104,		// Value is over the allowed limit
+	kValueUnderLimit 				= 102,		// Value is under the allowed limit
+	kValueOverLimit 				= 103,		// Value is over the allowed limit
 
 	// Validation Codes for product elements, not the actual value is being validated
 	kProductElementNotAllowed		= 201,		// Product element shouldn't be on the TA (and therefore not have a value either)
@@ -103,6 +104,7 @@ enum ValidationCode : unsigned short {
 	kTokenNotDefined				= 301		// If an expression (maybe custom) contains a token that hasn't been loaded into the parser
 };
 
+sbx::ValidationCode toValCode(unsigned short valCode, sbx::ValidationCode defaultValCode = sbx::ValidationCode::kFail);
 } // namespace sbx
 
 #endif // RULEENGINE_SBXTYPES_H_

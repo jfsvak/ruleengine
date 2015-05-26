@@ -136,7 +136,8 @@
 	    	        "productElementOids": [ 78 ],
 	    	        "requiredif": "",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Spaend i invalidesum i kr skal mindst vaere %1"
+	            	"negativeMessage": "Spaend i invalidesum i kr skal mindst vaere %1",
+					"negativeValCode": 102
             	},
             	{
 		            "id": "24.1.4",
@@ -144,7 +145,8 @@
 	    	        "productElementOids": [ 78 ],
 	    	        "requiredif": "",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Spaend i invalidesum i kr maa ikke overstige %1"
+	            	"negativeMessage": "Spaend i invalidesum i kr maa ikke overstige %1",
+					"negativeValCode": 103
             	}
             ],
 	        "negativeRuleCatalogue": []
@@ -184,7 +186,8 @@
 	    	        "productElementOids": [ 81 ],
 	    	        "requiredif": "",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Spaend i invalidesum i procent skal mindst vaere %1"
+	            	"negativeMessage": "Spaend i invalidesum i procent skal mindst vaere %1",
+					"negativeValCode": 102
             	},
             	{
 		            "id": "24.2.4",
@@ -192,7 +195,8 @@
 	    	        "productElementOids": [ 81 ],
 	    	        "requiredif": "",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Spaend i invalidesum i procent maa ikke overstige %1"
+	            	"negativeMessage": "Spaend i invalidesum i procent maa ikke overstige %1",
+					"negativeValCode": 103
             	}
             ],
 	        "negativeRuleCatalogue": []
@@ -223,7 +227,8 @@
 	    	        "productElementOids": [ 3 ],
 	    	        "requiredif": "",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Spænd i d�dsfaldsd�kning i kr skal mindst v�re [rc_DoedSpandBl_min] kr."
+	            	"negativeMessage": "Spænd i d�dsfaldsd�kning i kr skal mindst v�re [rc_DoedSpandBl_min] kr.",
+					"negativeValCode": 102
             	},
             	{
 		            "id": "25.1.4",
@@ -231,7 +236,8 @@
 	    	        "productElementOids": [ 3 ],
 	    	        "requiredif": "",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Spænd i d�dsfaldsd�kning i kr m� ikke overstige %1"
+	            	"negativeMessage": "Spænd i d�dsfaldsd�kning i kr m� ikke overstige %1",
+					"negativeValCode": 103
             	}
             ],
 	        "negativeRuleCatalogue": []
@@ -272,7 +278,8 @@
 		   	        "productElementOids": [ 9 ],
    	    		    "requiredif": "#parent#",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Spænd for dødsfaldsdækning i pct skal være større end %1"
+	            	"negativeMessage": "Spænd for dødsfaldsdækning i pct skal være større end %1",
+					"negativeValCode": 102
         	    },
 		        {
 		            "id": "25.2.5",
@@ -280,7 +287,8 @@
 		   	        "productElementOids": [ 9 ],
    	    		    "requiredif": "",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Spænd for dødsfaldsdækning i pct må ikke overstige %1"
+	            	"negativeMessage": "Spænd for dødsfaldsdækning i pct må ikke overstige %1",
+					"negativeValCode": 103
         	    }
             ],
 	        "negativeRuleCatalogue": []
@@ -301,6 +309,17 @@
 			"preCalcRequiredPEOids": [ 6, 7 ],
 	        "expr": "",
 	        "productElementOids": [ 9 ],
+	        "requiredif": "",
+	        "positiveMessage": "",
+	        "negativeMessage": ""
+         },
+		 {
+		    "id": "99.2",
+		    "comments" : "pre calculation for DoedSpaendBl",
+			"preCalcExpr": "DoedSpaendBl = (int)(DoedBlOblMax-DoedBlGrMin)",
+			"preCalcRequiredPEOids": [ 1, 2 ],
+	        "expr": "",
+	        "productElementOids": [ 3 ],
 	        "requiredif": "",
 	        "positiveMessage": "",
 	        "negativeMessage": ""

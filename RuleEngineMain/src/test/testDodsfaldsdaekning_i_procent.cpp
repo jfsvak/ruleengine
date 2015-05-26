@@ -123,8 +123,8 @@ TEST_F(Doedsfaldsdaekning_KI_OSV_25_49, Doedfaldsdaekning_Whole_Section_GAGE_POS
 
 	RuleEngine::_printDebugAtValidation = true;
 
-	re.getContainer().printConstants(17, 5);
-	re.getContainer().printConstants(17, 139);
+//	re.getContainer().printConstants(17, 5);
+//	re.getContainer().printConstants(17, 139?);
 
 	const auto& r = re.validate(ta,
 			{

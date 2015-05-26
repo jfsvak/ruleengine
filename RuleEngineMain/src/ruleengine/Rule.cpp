@@ -113,4 +113,14 @@ Rule::~Rule()
 	delete _negativeRuleCatalogue;
 }
 
+unsigned short Rule::getNegativeValCode() const
+{
+	return _negativeValCode;
+}
+
+void Rule::setNegativeValCode(unsigned short negativeValCode)
+{
+	_negativeValCode = negativeValCode;
+}
+
 } /* namespace sbx */

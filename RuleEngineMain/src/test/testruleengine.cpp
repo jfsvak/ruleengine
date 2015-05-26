@@ -78,5 +78,5 @@ TEST_F(ProductElementValidationTest, relatedPEValueSpaendIsOverTheLimit) {
 	auto v = result.getValidationResults(kDoedSpaendPct);
 	cout << result;
 	ASSERT_EQ(1, v.size());
-	EXPECT_EQ(kFail, v.at(0).getValidationCode());
+	EXPECT_EQ(kValueOverLimit, v.at(0).getValidationCode());
 }
