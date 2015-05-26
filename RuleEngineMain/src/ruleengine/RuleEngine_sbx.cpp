@@ -743,7 +743,7 @@ sbx::ValidationResults RuleEngine::validate(const sbx::TA& ta, bool full)
 		std::set<unsigned short, less<unsigned short>> allowedProductElementOids {_getAllowedPEOids()};
 
 		// run through all available values on the TA and check to see if they are OK
-		//   1. check if they are allowed according to the konceptinfo
+		//   check if they are allowed according to the konceptinfo
 		for (auto& item : ta.getValues()) {
 			const sbx::ProductElementValue& pev = item.second;
 			unsigned short peOid = pev.getProductElementOid();
@@ -767,10 +767,6 @@ sbx::ValidationResults RuleEngine::validate(const sbx::TA& ta, bool full)
 			// run through all the allowed product elements and check if its on the TA. If its not, then check if its optional. If its not optional, add a message stating its required
 			for (auto& peOid : allowedProductElementOids)
 			{
-//				if ( _isRequired(peOid, valResults, full) ) {
-//					valResults.merge(this->validate(ta, peOid));
-//				}
-
 				// If it's not on the TA and it is not optional, tell that the pe is required
 				if ( !ta.hasValue(peOid) && !_isOptional(peOid, valResults) )
 					valResults.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kProductElementRequired, peOid, _VAR_NAME(peOid), "Value is missing") );
