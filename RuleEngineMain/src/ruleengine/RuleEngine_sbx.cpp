@@ -301,7 +301,7 @@ void RuleEngine::_defineConstant(const std::string& name, double constant)
 /**
  * Delegate call to RuleConstantContainer::getOptionsList(...)
  */
-vector<string> RuleEngine::getOptions(ProductElementOid productElement)
+std::vector<string> RuleEngine::getOptions(ProductElementOid productElement)
 {
 	return _container.getOptions(productElement);
 }
@@ -309,7 +309,7 @@ vector<string> RuleEngine::getOptions(ProductElementOid productElement)
 /**
  * Delegate call to RuleConstantContainer::getOptionsList(...)
  */
-const std::vector<std::shared_ptr<Constant>>& RuleEngine::getOptionsList(sbx::ProductElementOid productElement)
+std::vector<std::shared_ptr<Constant>> RuleEngine::getOptionsList(sbx::ProductElementOid productElement)
 {
 	return _container.getOptionsList(productElement);
 }
@@ -876,7 +876,7 @@ std::set<unsigned short, std::less<unsigned short>> RuleEngine::_getAllowedPEOid
 	return allowedProductElementOids;
 }
 
-const std::shared_ptr<sbx::Constant>& RuleEngine::getDefaultValue(sbx::ProductElementOid productElement)
+std::shared_ptr<sbx::Constant> RuleEngine::getDefaultValue(sbx::ProductElementOid productElement)
 {
 	// look up the productElement oid and see in which internal map to find the constant
 	// for now just assume that the product element is found in equals/enum map

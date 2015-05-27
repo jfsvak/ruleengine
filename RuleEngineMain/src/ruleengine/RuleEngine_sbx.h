@@ -50,8 +50,8 @@ public:
 	void parseRuleCatalogueJSON(const std::string& jsonContents);
 
 	std::vector<std::string> getOptions(sbx::ProductElementOid productElement);
-	const std::vector<std::shared_ptr<Constant>>& getOptionsList(sbx::ProductElementOid productElement);
-	const std::shared_ptr<sbx::Constant>& getDefaultValue(sbx::ProductElementOid productElementOid);
+	std::vector<std::shared_ptr<Constant>> getOptionsList(sbx::ProductElementOid productElement);
+	std::shared_ptr<sbx::Constant> getDefaultValue(sbx::ProductElementOid productElementOid);
 	std::shared_ptr<sbx::Constant> getConstant(sbx::ProductElementOid productElement, sbx::ComparisonTypes comparisonType);
 
 	sbx::ValidationResults validate(const TA&, unsigned short peOidToValidate); // simple delegate method to vector-method
