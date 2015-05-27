@@ -243,7 +243,18 @@ TEST_F(Incremental_TA_CONTEXT_KI_OSV_25_50, Incremental_TA_POSITIVE) {
 	if (r.isAllOk()) cout << r;
 	ASSERT_EQ(1, r.getValidationResults(kPrivate_Premium_BL).size());
 	EXPECT_EQ(sbx::ValidationCode::kProductElementRequired, r.getValidationResults(kPrivate_Premium_BL).at(0).getValidationCode());
-	ta.setValue(kPrivate_Taxed_MK, false);
+	ta.setValue(kPrivate_Premium_BL, (double) 150234.5);
+	r = re.validate(ta, full);
+	EXPECT_TRUE(r.isAllOk());
+	if (!r.isAllOk()) cout << r;
+
+	ta.setValue(kBidragEjFoesteTrin_MK, true);
+	r = re.validate(ta, full);
+	EXPECT_TRUE(r.isAllOk());
+	if (!r.isAllOk()) cout << r;
+
+	// how to validate incoming contribution ladder?
+
 
 
 }

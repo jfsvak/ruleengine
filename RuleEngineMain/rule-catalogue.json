@@ -638,6 +638,30 @@
             "negativeValCode": 101,
             "positiveRuleCatalogue": [],
 	        "negativeRuleCatalogue": []
+         },
+		 {
+         	"comments" : "Salary Page: Privately taxed",
+         	
+            "id": "31.2",
+            "expr": "Private_Taxed_MK == true",
+   	        "productElementOids": [ 260 ],
+   	        "requiredif": "",
+            "positiveMessage": "",
+            "negativeMessage": "",
+            "positiveRuleCatalogue": 
+            [
+	        	{
+		            "id": "31.2.1",
+		            "comments" : "Private_Premium_BL - requiredif placeholder",
+	    	        "expr": "",
+		   	        "productElementOids": [ 261 ],
+   	    		    "requiredif": "#parent#",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "",
+					"positiveRuleCatalogue": []
+        	    }
+            ],
+	        "negativeRuleCatalogue": []
          }
 	]}
 }
