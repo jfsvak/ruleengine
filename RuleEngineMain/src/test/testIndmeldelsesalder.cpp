@@ -18,7 +18,7 @@
 using namespace std;
 using namespace sbx;
 
-class RuleEngine_CONTEXT_KI_OSV_25_50 : public ::testing::Test  {
+class Indmeldelsesalder_CONTEXT_KI_OSV_25_50 : public ::testing::Test  {
 protected:
     virtual void SetUp() {
         re = RuleEngine();
@@ -37,30 +37,14 @@ protected:
 };
 
 
-// Test Udlobsalder_Pension - PE(71)-P(13)
-// Allowed values, 60, 62, 65, 67
-TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, UdloebsalderPension_POSITIVE) {
+// Test kIndmeldelsesalder and getting options prior to that
+TEST_F(Indmeldelsesalder_CONTEXT_KI_OSV_25_50, Indmeldelsesalder_POSITIVE) {
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
-	auto options = re.getOptionsList(kUdlobsalder_Pension);
-	ta.setValue(kUdlobsalder_Pension, (long) 60 );
-	re.getContainer().printConstants(17, (unsigned short) kUdlobsalder_Pension);
+	auto options = re.getOptionsList(kIndmeldelsesalder);
+	ta.setValue(kIndmeldelsesalder, (long) 18 );
+	re.getContainer().printConstants(17, (unsigned short) kIndmeldelsesalder);
 
-	auto r = re.validate(ta, (unsigned short) kUdlobsalder_Pension);
+	auto r = re.validate(ta, (unsigned short) kIndmeldelsesalder);
 	EXPECT_EQ(true, r.isAllOk());
-}
-
-
-// Test Udlobsalder_Pension - PE(71)-P(13)
-// Allowed values, 60, 62, 65, 67
-TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, UdloebsalderPension_NEGATIVE) {
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
-	ta.setValue(kUdlobsalder_Pension, (long) 61); // value not allowed
-
-	RuleEngine::_printDebugAtValidation = true;
-
-	auto r = re.validate(ta, (unsigned short) kUdlobsalder_Pension);
-	EXPECT_FALSE(r.isAllOk());
-
-	auto v = r.getValidationResults(kUdlobsalder_Pension);
-	EXPECT_EQ(kValueNotAllowed, v.at(0).getValidationCode());
+	if (!r.isAllOk()) cout << r;
 }

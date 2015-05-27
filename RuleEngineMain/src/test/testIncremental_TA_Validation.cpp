@@ -38,9 +38,9 @@ TEST_F(Incremental_TA_CONTEXT_KI_OSV_25_50, Incremental_TA_POSITIVE) {
 	RuleEngine::_printDebugAtValidation = true;
 
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
-	ta.setValue(kUdlobsalder_Pension, (long) 67);
-
-	auto r = re.validate(ta, false);
+	ta.setValue(kIndmeldelsesalder, (long) 18);
+	auto r = re.validate(ta, (unsigned short) kIndmeldelsesalder);
+//	auto r = re.validate(ta, false);
 	cout << r;
 	EXPECT_TRUE(r.isAllOk());
 

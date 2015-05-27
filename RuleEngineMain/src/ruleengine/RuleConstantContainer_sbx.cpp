@@ -299,7 +299,7 @@ std::vector<std::string> RuleConstantContainer::getOptions(unsigned short produc
 		throw domain_error("Context not initialised!");
 	}
 
-	std::vector<std::shared_ptr<Constant>> constantList = _ukOptionsMap[_underKonceptOid][(productElementOid)];
+	std::vector<std::shared_ptr<Constant>> constantList = this->getOptionsList(productElementOid);
 	// create new vector of strings only
 	std::vector<string> stringOptions(0);
 
@@ -314,14 +314,18 @@ std::vector<std::string> RuleConstantContainer::getOptions(unsigned short produc
 /**
  * Gets a vector of shared_ptr->Constant
  */
-const std::vector<std::shared_ptr<Constant>>& RuleConstantContainer::getOptionsList(unsigned short  productElementOid)
+std::vector<std::shared_ptr<Constant>> RuleConstantContainer::getOptionsList(unsigned short productElementOid)
 {
 	if (!_contextInitialised)
 	{
 		throw domain_error("Context not initialised!");
 	}
 
-	return _ukOptionsMap[_underKonceptOid][productElementOid];
+	if (_ukOptionsMap.find(_underKonceptOid) != _ukOptionsMap.cend()
+			&& _ukOptionsMap.at(_underKonceptOid).find(productElementOid) != _ukOptionsMap.at(_underKonceptOid).cend())
+		return _ukOptionsMap[_underKonceptOid][productElementOid];
+
+	return {};
 }
 
 

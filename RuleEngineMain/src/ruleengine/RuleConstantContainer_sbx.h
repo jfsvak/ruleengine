@@ -36,7 +36,7 @@ public:
 	bool existsAs(unsigned short peOid, const sbx::ComparisonTypes&) const;
 
 	std::vector<std::string> getOptions(unsigned short productElementOid);
-	const std::vector<std::shared_ptr<sbx::Constant>>& getOptionsList(unsigned short productElementOid);
+	std::vector<std::shared_ptr<sbx::Constant>> getOptionsList(unsigned short productElementOid);
 	std::shared_ptr<sbx::Constant> getConstant(unsigned short productElement, const sbx::ComparisonTypes& comparisonType);
 
 	const std::set<unsigned short>& getProductOids(unsigned short parameterOid) const;

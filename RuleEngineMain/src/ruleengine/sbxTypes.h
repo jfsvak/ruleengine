@@ -59,6 +59,7 @@ enum ProductElementOid : unsigned short {
 			kTaeBlGrMin								= 14,
 			kTaeBlOblMax							= 15,
 			kTaeSpaendBl							= 16,
+			kIndmeldelsesalder						= 57,
 			kUdlobsalder_Pension					= 71,
 			kTraditionel_MK							= 72,
 			kLink_MK								= 73,
