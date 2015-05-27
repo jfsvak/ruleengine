@@ -131,7 +131,22 @@ std::string get_file_contents(const char *filename)
         NSLog(@"getAllowedValuesFor:%zd unknown exception", oid);
     }
     
-    return [result sortedArrayUsingComparator:^(NSString* a, NSString* b) { return [a compare:b options:NSNumericSearch]; }];
+    
+    switch (valueType) {
+        case kValueTypeText:
+            result = [result sortedArrayUsingComparator:^(NSString* a, NSString* b) { return [a compare:b options:NSNumericSearch]; }];
+            break;
+        case kValueTypeInt:
+            result = [result sortedArrayUsingComparator:^(NSNumber* a, NSNumber* b) { return [a compare:b]; }];
+            break;
+        case kValueTypeDouble:
+            result = [result sortedArrayUsingComparator:^(NSNumber* a, NSNumber* b) { return [a compare:b]; }];
+            break;
+        default:
+            break;
+    }
+    
+    return result; //[result sortedArrayUsingComparator:^(NSString* a, NSString* b) { return [a compare:b options:NSNumericSearch]; }];
 }
 
 -(NSArray*)getAllowedValuesFor:(NSInteger)oid {
