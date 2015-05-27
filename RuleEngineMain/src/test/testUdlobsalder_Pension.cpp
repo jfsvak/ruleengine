@@ -43,7 +43,6 @@ TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, UdloebsalderPension_POSITIVE) {
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
 	auto options = re.getOptionsList(kUdlobsalder_Pension);
 	ta.setValue(kUdlobsalder_Pension, (long) 60 );
-	re.getContainer().printConstants(17, (unsigned short) kUdlobsalder_Pension);
 
 	auto r = re.validate(ta, (unsigned short) kUdlobsalder_Pension);
 	EXPECT_EQ(true, r.isAllOk());
