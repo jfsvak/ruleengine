@@ -111,11 +111,10 @@ void RuleEngine::_initRuleCatalogue(sbx::RuleCatalogue* ruleCatalogue, const Jso
 
 			std::shared_ptr<sbx::Rule> parent;
 
-
 			if (requiredif == "#parent#")
 				parent = ruleCatalogue->getParent();
 			else
-				parent = make_shared<sbx::Rule>(id + "p", requiredif, nullptr, "", "");
+				parent = make_shared<sbx::Rule>(id + ".R", requiredif, nullptr, "", "");
 
 			std::shared_ptr<sbx::Rule> rule = make_shared<sbx::Rule>(id, expr, parent, positiveMessage, negativeMessage, preCalcExpr);
 
@@ -770,6 +769,87 @@ sbx::ValidationResults RuleEngine::validate(const sbx::TA& ta, bool full)
 				// If it's not on the TA and it is not optional, tell that the pe is required
 				if ( !ta.hasValue(peOid) && !_isOptional(peOid, valResults) )
 					valResults.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kProductElementRequired, peOid, _VAR_NAME(peOid), "Value is missing") );
+			}
+		}
+		else
+		{
+			// if partial validation, then run through all values on the TA and see if the make other pe's required.
+			//  TODO do this by evaluating expr's and if true, then run positiveRuleCatalogue for that rule?
+			//       If a sub rule has requiredif rule, then those peoids are required, so set kProductElementRequired
+			for ( auto& item : ta.getValues() )
+			{
+				unsigned short peOid = item.first;
+
+				if (_peOidToRules.find(peOid) != _peOidToRules.end())
+				{
+					const auto& rangeOfRules = _peOidToRules.equal_range(peOid); // std::pair <std::multimap<unsigned short, sbx::Rule*>::iterator, std::multimap<unsigned short, sbx::Rule*>::iterator> range = _peOidToRules.equal_range(peOidToValidate);
+
+					for (auto it = rangeOfRules.first; it != rangeOfRules.second; it++) //	for (std::multimap<unsigned short, sbx::Rule*>::iterator it = range.first; it != range.second; it++)
+					{
+						std::shared_ptr<sbx::Rule> parentRule = it->second;
+
+						// if the rule has an expression AND a rule catalogue, then evaluate the expr
+						if (parentRule->getExpr() != "" && parentRule->getPositiveRuleCatalogue() != nullptr)
+						{
+							try {
+								mup::Value result = _execute(parentRule->getExpr(), parentRule->getRuleId());
+
+								if ( result.GetBool() )
+								{
+									// for all rules in the positive rule catalogue
+									for ( auto ruleFromPositiveCatalogue : parentRule->getPositiveRuleCatalogue()->getRules())
+									{
+										// if there is a requiredif rule and it has an expr...
+										if ( ruleFromPositiveCatalogue->getRequiredIfRule() != nullptr && ruleFromPositiveCatalogue->getRequiredIfRule()->getExpr() != "" )
+										{
+											std::shared_ptr<sbx::Rule> requiredIfRule = ruleFromPositiveCatalogue->getRequiredIfRule();
+
+											bool required { false };
+
+											// if the requiredIf-rule is the same as the parent rule with the positiveRuleCatalogue
+											if ( requiredIfRule->getRuleId() == parentRule->getRuleId() ) {
+												// since we have determined that the topLevelRule is already true, we just set the peOids to
+												required = true;
+											}
+											else // requiredIf-rule is different from parent, so evaluate it seperately
+											{
+												try {
+													// evaluate the requiredif rule
+													required = _execute(requiredIfRule->getExpr(), requiredIfRule->getRuleId() ).GetBool();
+												} catch (const mup::ParserError& e) {
+													cout << "Evaluation of requiredIfRule failed: " << endl;
+													sbx::mubridge::handle(e);
+												}
+											}
+
+											if (required)
+											{
+												// if required, then go through peOids on the ruleFromPositiveCatalogue and see if they are on the TA (or in parser)???
+												for (auto peOid : ruleFromPositiveCatalogue->getProductElementOids())
+												{
+													// if the peOid doesn't have a value on the TA, then add kProductElementRequired
+													if ( !ta.hasValue(peOid) )
+													{
+														valResults.addValidationResult(
+																sbx::ValidationResult(  sbx::ValidationCode::kProductElementRequired,
+																						peOid,
+																						_VAR_NAME(peOid),
+																						"Product Element required",
+																						ruleFromPositiveCatalogue->getRuleId(),
+																						ruleFromPositiveCatalogue->getExpr()) );
+													}  /* TODO anything if ta.hasValue(peOid) == true ??? */
+												}
+											}
+										}
+									}
+								}  /* TODO anthing to do if rule eval was false ?? */
+							} catch (const mup::ParserError& e) {
+								cout << "Evaluation of parentRule failed: " << endl;
+								sbx::mubridge::handle(e);
+							}
+						}
+					}
+				}
 			}
 		}
 

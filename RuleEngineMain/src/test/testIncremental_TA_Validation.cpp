@@ -36,19 +36,214 @@ protected:
 
 TEST_F(Incremental_TA_CONTEXT_KI_OSV_25_50, Incremental_TA_POSITIVE) {
 	RuleEngine::_printDebugAtValidation = true;
-
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
-	ta.setValue(kIndmeldelsesalder, (long) 18);
-	auto r = re.validate(ta, (unsigned short) kIndmeldelsesalder);
-//	auto r = re.validate(ta, false);
+
+	bool full {false};
+	auto r = re.validate(ta, full);
+	EXPECT_TRUE(r.isAllOk());
+	if (!r.isAllOk())
+		cout << r;
+
+	//************************************************************
+	// GENERAL PAGE
+	//************************************************************
+	//
+
+	//
+	// ***** Date
+	//
+	// need to calculate Ikraftdato minus rc_Ikraftdato_min number of months and see if todays date is before that.
+	// same with rc_Ikraftdato_max
+	ta.setValue(kIkraftDato, (long) 11);
+//	r = re.validate(ta, full);
+//	EXPECT_FALSE(r.isAllOk());
+//	if (r.isAllOk()) cout << r;
+//	ASSERT_EQ(1, r.getValidationResults(kIkraftDato).size());
+//	EXPECT_EQ(sbx::ValidationCode::kProductElementRequired, r.getValidationResults(kIkraftDato).at(0).getValidationCode());
+
+
+	//
+	// ***** Indmeldelseskriterier, age, anciennitet
+	//
+	ta.setValue(kIndmeldelsesAlder, (long) 5);
+	r = re.validate(ta, full);
+	EXPECT_FALSE(r.isAllOk());
+	if (!r.isAllOk()) cout << r;
+	ASSERT_EQ(1, r.getValidationResults(kIndmeldelsesAlder).size());
+	EXPECT_EQ(sbx::ValidationCode::kValueUnderLimit, r.getValidationResults(kIndmeldelsesAlder).at(0).getValidationCode());
+
+	ta.setValue(kIndmeldelsesAlder, (long) 31);
+	r = re.validate(ta, full);
+
+	EXPECT_FALSE(r.isAllOk());
+	if (r.isAllOk()) cout << r;
+	ASSERT_EQ(1, r.getValidationResults(kIndmeldelsesAlder).size());
+	EXPECT_EQ(sbx::ValidationCode::kValueOverLimit, r.getValidationResults(kIndmeldelsesAlder).at(0).getValidationCode());
+
+	ta.setValue(kIndmeldelsesAlder, (long) 20);
+	r = re.validate(ta, full);
+	EXPECT_TRUE(r.isAllOk());
+	if (!r.isAllOk()) cout << r;
+
+
+	ta.setValue(kAnciennitet, (long) 30);
+	r = re.validate(ta, full);
+	ASSERT_EQ(1, r.getValidationResults(kAnciennitet).size());
+	EXPECT_EQ(sbx::ValidationCode::kValueOverLimit, r.getValidationResults(kAnciennitet).at(0).getValidationCode());
+	ta.setValue(kAnciennitet, (long) 12);
+	r = re.validate(ta, full);
+	EXPECT_TRUE(r.isAllOk());
+	if (!r.isAllOk()) cout << r;
+
+
+	ta.setValue(kAnciennitetTidlArbejdsplads, true);
+	r = re.validate(ta, full);
+	EXPECT_TRUE(r.isAllOk());
+	if (!r.isAllOk()) cout << r;
+
+	//
+	// ***** Fravalg grupper
+	//
+	ta.setValue(kGrpElever, true);
+	ta.setValue(kGrpLaerlinge, true);
+	ta.setValue(kGrpStuderende, true);
+	r = re.validate(ta, full);
+	EXPECT_TRUE(r.isAllOk());
+	if (!r.isAllOk()) cout << r;
+
+
+	//
+	//************************************************************
+	// PRODUKT PAGE
+	//************************************************************
+	//
+	//
+	// ****** Udlobsalder
+	//
+	ta.setValue(kUdlobsalder_Pension, (long) 67);
+	r = re.validate(ta, full);
+	EXPECT_TRUE(r.isAllOk());
+	if (!r.isAllOk())
+		cout << r;
+
+
+	//
+	// ******* Fravalg af risikodaekning
+	//
+	ta.setValue(kFravalgRisiko_MK, true);
+	r = re.validate(ta, full);
 	cout << r;
+
+	EXPECT_FALSE(r.isAllOk());
+	ASSERT_EQ(1, r.getValidationResults(kFravalgRisikoAlder).size());
+	EXPECT_EQ(sbx::ValidationCode::kProductElementRequired, r.getValidationResults(kFravalgRisikoAlder).at(0).getValidationCode());
+	ta.setValue(kFravalgRisikoAlder, (long) 45);
+
+	// now age is set, so all should be ok
+	r = re.validate(ta, full);
 	EXPECT_TRUE(r.isAllOk());
 
-	ta.setValue(kFravalgRisiko_MK, true);
-	r = re.validate(ta, false);
-	cout << r;
 
-//	EXPECT_FALSE(r.isAllOk());
-//	EXPECT_EQ(1, r.getValidationResults(kFravalgRisikoAlder).size());
-//	EXPECT_EQ(sbx::ValidationCode::kProductElementRequired, r.getValidationResults(kFravalgRisikoAlder).at(0).getValidationCode());
+	//
+	// ****** Opsparingsprodukter
+	//
+	ta.setValue(kStandardProduct, "Traditionel_MK");
+	ta.setValue(kTraditionel_MK, false);
+	//    expecting to fail as the standardprodukt hasn't been set on the ta
+	r = re.validate(ta, full);
+	EXPECT_FALSE(r.isAllOk());
+	if (r.isAllOk()) cout << r;
+
+	ta.setValue(kTraditionel_MK, true);
+	ta.setValue(kLink_MK, true);
+	ta.setValue(kMarkedspension_MK, true);
+	ta.setValue(kTidspensionMedGaranti_MK, true);
+	ta.setValue(kTidspensionUdenGaranti_MK, true);
+
+	//    now savings products has been set, so everything should be fine
+	r = re.validate(ta, full);
+	EXPECT_TRUE(r.isAllOk());
+	if (!r.isAllOk()) cout << r;
+
+	ta.setValue(kUdbetalingsform, re.getDefaultValue(kUdbetalingsform)->stringValue());
+	r = re.validate(ta, full);
+	EXPECT_TRUE(r.isAllOk());
+	if (!r.isAllOk()) cout << r;
+
+	ta.setValue(kUdbetalingsperiode, re.getDefaultValue(kUdbetalingsperiode)->longValue());
+	r = re.validate(ta, full);
+	EXPECT_TRUE(r.isAllOk());
+	if (!r.isAllOk()) cout << r;
+
+	ta.setValue(kMaxAndelLinkBidragPCT, (double) 5.5);
+	r = re.validate(ta, full);
+	EXPECT_TRUE(r.isAllOk());
+	if (!r.isAllOk()) cout << r;
+
+	ta.setValue(kMaxAndelMarkedspensionBidragPct, (double) 6.1);
+	r = re.validate(ta, full);
+	EXPECT_TRUE(r.isAllOk());
+	if (!r.isAllOk()) cout << r;
+
+	ta.setValue(kLinkKunForEgetBidrag_MK, true);
+	r = re.validate(ta, full);
+	EXPECT_TRUE(r.isAllOk());
+	if (!r.isAllOk()) cout << r;
+
+	//
+	// Invaliditetsdaekning
+	//
+//	ta.setValue(kInvalidesum);
+
+
+
+	//
+	//************************************************************
+	// SALARY PAGE
+	//************************************************************
+	//
+	//
+	// ***** Lon og betaling
+	//
+	ta.setValue(kLoenDefinition, "garbage");
+	r = re.validate(ta, full);
+	EXPECT_FALSE(r.isAllOk());
+	if (r.isAllOk()) cout << r;
+	ASSERT_EQ(1, r.getValidationResults(kLoenDefinition).size());
+	EXPECT_EQ(sbx::ValidationCode::kValueNotAllowed, r.getValidationResults(kLoenDefinition).at(0).getValidationCode());
+	ta.setValue(kLoenDefinition, re.getDefaultValue(kLoenDefinition)->stringValue());
+
+	ta.setValue(kLoenRegulering, "december");
+	r = re.validate(ta, full);
+	EXPECT_FALSE(r.isAllOk());
+	if (r.isAllOk()) cout << r;
+	ASSERT_EQ(1, r.getValidationResults(kLoenRegulering).size());
+	EXPECT_EQ(sbx::ValidationCode::kValueNotAllowed, r.getValidationResults(kLoenRegulering).at(0).getValidationCode());
+	ta.setValue(kLoenRegulering, "januar");
+
+	ta.setValue(kLoenreguleringsfrekvens, "garbage");
+	r = re.validate(ta, full);
+	EXPECT_FALSE(r.isAllOk());
+	if (r.isAllOk()) cout << r;
+	ASSERT_EQ(1, r.getValidationResults(kLoenreguleringsfrekvens).size());
+	EXPECT_EQ(sbx::ValidationCode::kValueNotAllowed, r.getValidationResults(kLoenreguleringsfrekvens).at(0).getValidationCode());
+	ta.setValue(kLoenreguleringsfrekvens, re.getDefaultValue(kLoenreguleringsfrekvens)->stringValue());
+
+	ta.setValue(kBidragsstigningsform, "garbage");
+	r = re.validate(ta, full);
+	EXPECT_FALSE(r.isAllOk());
+	if (r.isAllOk()) cout << r;
+	ASSERT_EQ(1, r.getValidationResults(kBidragsstigningsform).size());
+	EXPECT_EQ(sbx::ValidationCode::kValueNotAllowed, r.getValidationResults(kBidragsstigningsform).at(0).getValidationCode());
+	ta.setValue(kBidragsstigningsform, "Ingen");
+
+	ta.setValue(kPrivate_Taxed_MK, true);
+	r = re.validate(ta, full);
+	EXPECT_FALSE(r.isAllOk());
+	if (r.isAllOk()) cout << r;
+	ASSERT_EQ(1, r.getValidationResults(kPrivate_Premium_BL).size());
+	EXPECT_EQ(sbx::ValidationCode::kProductElementRequired, r.getValidationResults(kPrivate_Premium_BL).at(0).getValidationCode());
+	ta.setValue(kPrivate_Taxed_MK, false);
+
+
 }

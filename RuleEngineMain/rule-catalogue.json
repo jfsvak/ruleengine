@@ -3,10 +3,36 @@
       "ruleCatalogue":       
       [
          {
-            "id": "21.1",
-
+         	"comments" : "General Page: Date",
+         	
+            "id": "10.1",
+            "expr": "IkraftDato != \"\"",
+   	        "productElementOids": [ 68 ],
+   	        "requiredif": "",
+            "positiveMessage": "",
+            "negativeMessage": "Ikraftdato skal udfyldes",
+            "negativeValCode": 202,
+            "positiveRuleCatalogue": [],
+	        "negativeRuleCatalogue": []
+         },
+         {
+         	"comments" : "General Page: Indmeldelseskriterier",
+         	
+            "id": "11.2",
+            "expr": "",
+   	        "productElementOids": [ 68 ],
+   	        "requiredif": "",
+            "positiveMessage": "",
+            "negativeMessage": "",
+            "positiveRuleCatalogue": [],
+	        "negativeRuleCatalogue": []
+         },
+         
+         
+         {
          	"comments" : "Product Page: Retirement age etc",
-
+         	
+            "id": "21.1",
             "expr": "FravalgRisiko_mk == true",
    	        "productElementOids": [ 230 ],
    	        "requiredif": "",
@@ -26,10 +52,9 @@
 	        "negativeRuleCatalogue": []
          },
          {
-            "id": "22.1",
-
          	"comments" : "Product Page: Opsparingsprodukter",
 
+            "id": "22.1",
             "expr": "StandardProdukt == \"Traditionel_MK\" && Traditionel_MK == false",
    	        "productElementOids": [ 95 ],
    	        "requiredif": "",
@@ -81,7 +106,7 @@
          {
             "id": "23.1",
 
-         	"comments" : "Product Page: Invaliditetsdaekning (TAE) Procent",
+         	"comments" : "*** empty for now, please fill up *** Product Page: Invaliditetsdaekning (TAE) Procent",
 
             "expr": "",
             "productElementOids": [  ],
@@ -91,7 +116,7 @@
 	        [
             	{
 		            "id": "1.1",
-		            "comments" : "requiredif placeholder",
+		            "comments" : " *** empty for now, please fill up *** requiredif placeholder",
 	    	        "expr": "",
 	    	        "productElementOids": [  ],
 	    	        "requiredif": "#parent#",
@@ -223,9 +248,18 @@
 					"positiveMessage": "",
 					"negativeMessage": ""
 				},
+				{
+				    "id": "25.1.1",
+				    "comments" : "DoedBlGrMin - requiredif placeholder for min KR",
+			        "expr": "",
+			        "productElementOids": [ 1 ],
+			        "requiredif": "DoedReguleringskode == \"Ingen\" or DoedReguleringskode == \"Pristal\" or DoedReguleringskode == \"Gage\"",
+			        "positiveMessage": "",
+			        "negativeMessage": "Minimum doedsfaldsdaekning i kr skal angives naar reguleringstype er Pristal eller Ingen"
+		        },
             	{
 		            "id": "25.1.2",
-		            "comments" : "requiredif placeholder for KR",
+		            "comments" : "DoedBlOblMax - requiredif placeholder for KR",
 	    	        "expr": "",
 	    	        "productElementOids": [ 2 ],
 	    	        "requiredif": "#parent#",
@@ -277,6 +311,15 @@
 					"negativeMessage": ""
 				},
 				{
+				    "id": "25.2.0",
+				    "comments" : "DoedBlGrMin - requiredif placeholder for min KR",
+			        "expr": "",
+			        "productElementOids": [ 1 ],
+			        "requiredif": "DoedReguleringskode == \"Ingen\" or DoedReguleringskode == \"Pristal\" or DoedReguleringskode == \"Gage\"",
+			        "positiveMessage": "",
+			        "negativeMessage": "Minimum doedsfaldsdaekning i kr skal angives naar reguleringstype er Gage"
+		        },
+				{
 		            "id": "25.2.1",
 		            "comments" : "requiredif placeholder for min pct",
 	    	        "expr": "",
@@ -315,17 +358,6 @@
             ],
 	        "negativeRuleCatalogue": []
          },
-		 
-		 {
-		    "id": "25.3",
-		    "comments" : "requiredif placeholder for min KR",
-	        "expr": "",
-	        "productElementOids": [ 1 ],
-	        "requiredif": "DoedReguleringskode == \"Ingen\" or DoedReguleringskode == \"Pristal\" or DoedReguleringskode == \"Gage\"",
-	        "positiveMessage": "",
-	        "negativeMessage": "Minimum doedsfaldsdaekning i kr skal angives naar reguleringstype er Pristal eller Ingen"
-         },
-
 		 {
 		    "id": "26.1",
 		    "comments" : "KritiskSygdom_I_FG",
@@ -470,9 +502,19 @@
         	    },
 				{
 					"id": "26.1.4",
-		            "comments" : "KritiskSygSuppldaekn_mk",
+		            "comments" : "KritiskSygSuppldaekn_mk - requiredif placeholder",
 	    	        "expr": "",
 		   	        "productElementOids": [ 224 ],
+   	    		    "requiredif": "#parent#",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Mulighed for supplerende daekning skal angives naar Kritisk sygdom i FG er valgt",
+					"positiveRuleCatalogue": []
+				},
+				{
+					"id": "26.1.5",
+		            "comments" : "KritiskSygSkattekode - requiredif placeholder",
+	    	        "expr": "",
+		   	        "productElementOids": [ 222 ],
    	    		    "requiredif": "#parent#",
 	        	    "positiveMessage": "",
 	            	"negativeMessage": "Mulighed for supplerende daekning skal angives naar Kritisk sygdom i FG er valgt",
@@ -583,6 +625,19 @@
 					"positiveRuleCatalogue": []
         	    }			
 			]
-		 }
+		 },
+		 {
+         	"comments" : "Salary Page: ",
+         	
+            "id": "31.1",
+            "expr": "LoenRegulering == \"januar\" or LoenRegulering == \"februar\"",
+   	        "productElementOids": [ 147 ],
+   	        "requiredif": "",
+            "positiveMessage": "",
+            "negativeMessage": "Reguleringsmaaned ikke gyldig",
+            "negativeValCode": 101,
+            "positiveRuleCatalogue": [],
+	        "negativeRuleCatalogue": []
+         }
 	]}
 }

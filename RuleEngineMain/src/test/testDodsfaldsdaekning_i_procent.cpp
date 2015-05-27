@@ -18,7 +18,7 @@
 using namespace std;
 using namespace sbx;
 
-class Doedsfaldsdaekning_KI_OSV_25_49 : public ::testing::Test  {
+class Doedsfaldsdaekning_I_Procent_KI_OSV_25_49 : public ::testing::Test  {
 protected:
     virtual void SetUp() {
     	RuleEngine::_printDebugAtValidation = false;
@@ -43,7 +43,7 @@ protected:
 // Expected result:
 //   Validation of value should be ok
 //   But a warning should be set that says the DoedReguleringskode is not set in the parser
-TEST_F(Doedsfaldsdaekning_KI_OSV_25_49, DoedBlGrMin_Single_Value_OK_With_Warning) {
+TEST_F(Doedsfaldsdaekning_I_Procent_KI_OSV_25_49, DoedBlGrMin_Single_Value_OK_With_Warning) {
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
 	ta.setValue(kDoedBlGrMin, (long) 100000);
 	RuleEngine::_printDebugAtValidation = true;
@@ -54,8 +54,12 @@ TEST_F(Doedsfaldsdaekning_KI_OSV_25_49, DoedBlGrMin_Single_Value_OK_With_Warning
 		cout << r;
 
 	auto v = r.getWarnings(kDoedReguleringskode);
-	ASSERT_EQ(1, v.size());
+
+	// expecting 2 warnings, because the kDoedReguleringskode has two rules, and its missing in both expressions
+	//   and if both cases it should be kTokenNotDefined
+	ASSERT_EQ(2, v.size());
 	EXPECT_EQ(kTokenNotDefined, v.at(0).getValidationCode());
+	EXPECT_EQ(kTokenNotDefined, v.at(1).getValidationCode());
 }
 
 // Test DoedBlGrMin
@@ -63,7 +67,7 @@ TEST_F(Doedsfaldsdaekning_KI_OSV_25_49, DoedBlGrMin_Single_Value_OK_With_Warning
 // Expected result:
 //   Validation of value for DoedBlGrMin should be ok
 //   But a warning should be set that says the DoedReguleringskode is not set in the parser
-TEST_F(Doedsfaldsdaekning_KI_OSV_25_49, DoedBlGrMin_Single_Value_OK_With_Warning2) {
+TEST_F(Doedsfaldsdaekning_I_Procent_KI_OSV_25_49, DoedBlGrMin_Single_Value_OK_With_Warning2) {
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
 	ta.setValue(kDoedBlGrMin, (long) 100000);
 	RuleEngine::_printDebugAtValidation = true;
@@ -103,7 +107,7 @@ TEST_F(Doedsfaldsdaekning_KI_OSV_25_49, DoedBlGrMin_Single_Value_OK_With_Warning
  *  no warnings expected
  *
  */
-TEST_F(Doedsfaldsdaekning_KI_OSV_25_49, Doedfaldsdaekning_Whole_Section_GAGE_POSITIVE) {
+TEST_F(Doedsfaldsdaekning_I_Procent_KI_OSV_25_49, Doedfaldsdaekning_Whole_Section_GAGE_POSITIVE) {
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
 	ta.setValue(kDoedReguleringskode, "Gage");
 	ta.setValue(kDoedPctGrMin, (long) 200);
@@ -167,7 +171,7 @@ TEST_F(Doedsfaldsdaekning_KI_OSV_25_49, Doedfaldsdaekning_Whole_Section_GAGE_POS
  *  no warnings expected
  *
  */
-TEST_F(Doedsfaldsdaekning_KI_OSV_25_49, DoedReguleringstype_GAGE_POSITIVE) {
+TEST_F(Doedsfaldsdaekning_I_Procent_KI_OSV_25_49, DoedReguleringstype_GAGE_POSITIVE) {
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
 	ta.setValue(kDoedReguleringskode, "Gage");
 	ta.setValue(kDoedPctGrMin, (long) 200);
@@ -203,7 +207,7 @@ TEST_F(Doedsfaldsdaekning_KI_OSV_25_49, DoedReguleringstype_GAGE_POSITIVE) {
 // Test Gage with max amount, which should fail
 // Expected:
 //    No value allowed for DoedBlOblMax as DoedReguleringskode == Gage
-TEST_F(Doedsfaldsdaekning_KI_OSV_25_49, DoedBlOblMax_Single_Value_NOT_OK) {
+TEST_F(Doedsfaldsdaekning_I_Procent_KI_OSV_25_49, DoedBlOblMax_Single_Value_NOT_OK) {
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
 	ta.setValue(kDoedReguleringskode, "Gage");
 	ta.setValue(kDoedBlOblMax, (long) 700000);
@@ -225,7 +229,7 @@ TEST_F(Doedsfaldsdaekning_KI_OSV_25_49, DoedBlOblMax_Single_Value_NOT_OK) {
 // Allowed values:
 // Expected:
 //    Warnings should contain a warning say that the product element being validated is missing on the TA
-TEST_F(Doedsfaldsdaekning_KI_OSV_25_49, DoedBlGrMin_ValidateNonExistingToken_NOT_OK) {
+TEST_F(Doedsfaldsdaekning_I_Procent_KI_OSV_25_49, DoedBlGrMin_ValidateNonExistingToken_NOT_OK) {
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
 	ta.setValue(kDoedReguleringskode, "Pristal");
 

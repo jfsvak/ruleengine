@@ -98,6 +98,8 @@ TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50, KritiskSygdom_I_FG_True_Pristal_
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
 	ta.setValue(kKritiskSygdom_i_FG_mk, true);
 	ta.setValue(kKritiskSygReguleringskode, "Pristal");
+	ta.setValue(kKritiskSygSuppldaekn_mk, false);
+	ta.setValue(kKritiskSygSkattekode, re.getDefaultValue(kKritiskSygSkattekode)->stringValue());
 	ta.setValue(kKritiskSygBlMin, (long) 400000);
 	ta.setValue(kKritiskSygBlMax, (long) 604935);
 
@@ -123,6 +125,7 @@ TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50, KritiskSygdom_I_FG_True_SupplDae
 	});
 	cout << r;
 
+	// all is expected to be ok, as we are only validating two specific pe's
 	EXPECT_TRUE(r.isAllOk());
 }
 

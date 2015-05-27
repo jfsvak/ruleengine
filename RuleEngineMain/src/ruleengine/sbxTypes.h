@@ -59,7 +59,20 @@ enum ProductElementOid : unsigned short {
 			kTaeBlGrMin								= 14,
 			kTaeBlOblMax							= 15,
 			kTaeSpaendBl							= 16,
-			kIndmeldelsesalder						= 57,
+
+			kbagud_mk								= 39,
+
+			kIndmeldelsesAlder						= 57,
+			kAnciennitet							= 59,
+
+			kGrpElever								= 61,
+			kGrpStuderende							= 62,
+			kGrpVikarer								= 63,
+			kGrpLaerlinge							= 64,
+			kGrpSeniorMedarbejdere					= 65,
+			kEjIndmeldelseOverAlder					= 66,
+			kIkraftDato								= 68,
+
 			kUdlobsalder_Pension					= 71,
 			kTraditionel_MK							= 72,
 			kLink_MK								= 73,
@@ -73,14 +86,42 @@ enum ProductElementOid : unsigned short {
 			kBoerneSumSpaendBl						= 93,
 			kBoerneUdloebsalder						= 94,
 			kStandardProduct						= 95,
+
+			kAnciennitetTidlArbejdsplads			= 109,
+
 			kDoedDaekningstype						= 139,
+
 			kLoenDefinition							= 146,
 			kLoenRegulering							= 147,
+			kLoenreguleringsfrekvens				= 148,
+			kBidragsstigningsform					= 149,
+			kIndslusning_MK							= 150,
+			kTAE_Udlobsforskellig_MK				= 151,
+			kBidragEjFoesteTrin_MK					= 152,
+			kAar									= 153,
+			kAttestGrFaktor							= 155,
+			kBidragInklHospdaekningPctMin			= 156,
+			kBidragsEksklHospdaekningPctMin			= 157,
+
+
 
 			kHelbredsopl_frivilligbidrag_indenfor_spaend	= 158,
 
+			kOmtegning_MK							= 160,
+
+			kUdbetalingsperiode						= 174,
+			kMaxAndelLinkBidragPCT					= 184,
+			kUdbetalingsform						= 192,
+
 			kBoerneRenteSoliMax						= 183,
+
+			kMaxAndelMarkedspensionBidragPct		= 208,
+			kLinkKunForEgetBidrag_MK				= 209,
 			kTidspensionUdenGaranti_MK 				= 210,
+			kFrivilligAftaleMinPct					= 211,
+			kFrivilligAftaleMinKr					= 212,
+			kMinAndelTraditionelPct					= 213,
+			kMinAndelTraditionelPctType				= 214,
 			kKritiskSygBlMin						= 215,
 			kKritiskSygBlMax						= 216,
 			kKritiskSygSpaendBl						= 217,
@@ -92,11 +133,23 @@ enum ProductElementOid : unsigned short {
 			kKritiskSygTegningsmaxBl				= 223,
 			kKritiskSygSuppldaekn_mk				= 224,
 			kKritiskSygdom_i_FG_mk					= 225,
-
-
+			kInvalidesumReguleringskode				= 226,
+			kInvalidesumSoliMax						= 228,
 			kBoernerente_Reguleringstype			= 229,
 			kFravalgRisiko_MK						= 230,
 			kFravalgRisikoAlder						= 231,
+			kFravalgLivrente_mk						= 232,
+			kEjIndmeldelseEleverUnderAlder			= 233,
+			kGrpEleverRisikoPakke					= 234,
+			kGrpSkatPrivateIndehaver				= 235,
+			kOmtegndato								= 236,
+			kOmtegnperiode							= 237,
+
+			kModetype								= 248,
+			kModearrangor							= 249,
+
+			kPrivate_Taxed_MK						= 260,
+			kPrivate_Premium_BL						= 261,
 			kKritiskSygBornesumBlMax				= 262,
 			kKritiskSygBornesumBlMin				= 263,
 			kKritiskSygBornesum_i_FG_mk				= 264,
