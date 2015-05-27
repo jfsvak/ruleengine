@@ -30,7 +30,6 @@
 -(instancetype)initWithConstants:(NSString*)constantsFilePath ruleCatalog:(NSString*)ruleCatalogFilePath  {
     self = [super init];
     if (self) {
-        re = sbx::RuleEngine();
         re.initConstants(get_file_contents(constantsFilePath.UTF8String));
         re.parseRuleCatalogueJSON(get_file_contents(ruleCatalogFilePath.UTF8String));
     }
@@ -52,6 +51,8 @@
                 NSAssert(YES, @"Can't add parameter to koncept info: %@", parametersDictionary);
             }
         }
+        
+        ki.addParameterValue(11, @"true");
     }
     
     re.initContext(ki);
@@ -61,9 +62,22 @@
     ta = sbx::TA([CVR UTF8String], konceptOid);
 }
 
--(void)setValue:(id)value forPE:(unsigned short) peOid {
+-(void)setStringValue:(NSString*)value forPE:(unsigned short) peOid {
     ta.setValue(peOid, std::string([[value description] UTF8String]));
 }
+
+-(void)setLongValue:(NSNumber*)value forPE:(unsigned short) peOid {
+    ta.setValue(peOid, [value longValue]);
+}
+
+-(void)setDoubleValue:(NSNumber*)value forPE:(unsigned short) peOid {
+    ta.setValue(peOid, [value longValue]);
+}
+
+-(void)setBoolValue:(NSNumber*)value forPE:(unsigned short) peOid {
+    ta.setValue(peOid, [value longValue]);
+}
+
 
 -(void)unsetPEOid:(unsigned short) peOid {
     ta.remove(peOid);
@@ -259,11 +273,24 @@ std::string get_file_contents(const char *filename)
 }
 
 
--(NSArray*)validatePE:(unsigned short) peOid {
+-(NSArray*)validatePE:(unsigned short) peOid printDebug:(BOOL) printDebug {
     NSMutableArray *allResults = [NSMutableArray array];
-
     try {
-        sbx::ValidationResults results = re.validate(ta, peOid);
+        if (printDebug) {
+            re.getContainer().printConstants(27, 57);
+            
+            re._printDebugAtValidation = true;
+        }
+        sbx::ValidationResults results = re.validate(ta, false);
+        if (printDebug) {
+            re._printDebugAtValidation = false;
+        }
+        
+        if (printDebug) {
+            std::cout << results;
+            re.printConstantsInParser();
+        }
+        
         bool ok = results.isAllOk();
         if (!ok) {
             for (auto result : results.getValidationResults()) {
