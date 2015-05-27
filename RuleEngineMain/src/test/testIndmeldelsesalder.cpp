@@ -42,7 +42,6 @@ TEST_F(Indmeldelsesalder_CONTEXT_KI_OSV_25_50, Indmeldelsesalder_POSITIVE) {
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
 	auto options = re.getOptionsList(kIndmeldelsesAlder);
 	ta.setValue(kIndmeldelsesAlder, (long) 18 );
-	re.getContainer().printConstants(17, (unsigned short) kIndmeldelsesAlder);
 
 	auto r = re.validate(ta, (unsigned short) kIndmeldelsesAlder);
 	EXPECT_EQ(true, r.isAllOk());
