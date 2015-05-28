@@ -1,4 +1,4 @@
 
 SubDir TOP RuleEngineMain src ruleengine ;
 
-Library libre : Constant_sbx.cpp KonceptInfo_sbx.cpp Parameter_sbx.cpp PrintUtils_sbx.cpp ProductElementValue_sbx.cpp ProductElement_sbx.cpp Product_sbx.cpp Rule.cpp RuleCatalogue.cpp RuleConstantContainer_sbx.cpp RuleEngine_sbx.cpp TA_sbx.cpp ValidationResult.cpp ValidationResults.cpp Utils.cpp sbxTypes.cpp mubridge/GetTAValue.cpp mubridge/utils.cpp ;
+Library libre : ContributionStep.cpp Constant_sbx.cpp KonceptInfo_sbx.cpp Parameter_sbx.cpp PrintUtils_sbx.cpp ProductElementValue_sbx.cpp ProductElement_sbx.cpp Product_sbx.cpp Rule.cpp RuleCatalogue.cpp RuleConstantContainer_sbx.cpp RuleEngine_sbx.cpp TA_sbx.cpp ValidationResult.cpp ValidationResults.cpp Utils.cpp mubridge/GetTAValue.cpp mubridge/utils.cpp ;
