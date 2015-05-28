@@ -71,13 +71,12 @@
 }
 
 -(void)setDoubleValue:(NSNumber*)value forPE:(unsigned short) peOid {
-    ta.setValue(peOid, [value longValue]);
+    ta.setValue(peOid, [value doubleValue]);
 }
 
 -(void)setBoolValue:(NSNumber*)value forPE:(unsigned short) peOid {
-    ta.setValue(peOid, [value longValue]);
+    ta.setValue(peOid, static_cast<bool>([value boolValue]));
 }
-
 
 -(void)unsetPEOid:(unsigned short) peOid {
     ta.remove(peOid);
