@@ -45,7 +45,7 @@ TEST_F(Full_TA_CONTEXT_KI_OSV_25_50, Full_TA_POSITIVE) {
 
 	auto r = re.validate(ta);
 	EXPECT_FALSE(r.isAllOk());
-	// total is 186, so should be 186 minus the number of pe's set above
+	// total is 187, so should be 187 minus the number of pe's set above
 	EXPECT_EQ(182, r.sizeValidationResults());
 	cout << r;
 
