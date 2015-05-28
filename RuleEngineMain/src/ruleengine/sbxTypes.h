@@ -9,8 +9,9 @@
 #ifndef RULEENGINE_SBXTYPES_H_
 #define RULEENGINE_SBXTYPES_H_
 
+#ifdef __cplusplus
 namespace sbx {
-
+#endif
 
 enum ComparisonTypes : unsigned short {
 	kUnknown	= 0,
@@ -180,6 +181,8 @@ enum ValidationCode : unsigned short {
 };
 
 
+#ifdef __cplusplus
 } // namespace sbx
+#endif
 
 #endif // RULEENGINE_SBXTYPES_H_

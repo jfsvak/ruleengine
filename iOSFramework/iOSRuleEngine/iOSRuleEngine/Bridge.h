@@ -11,7 +11,7 @@
 
 @interface ValidationResult : NSObject
 @property (nonatomic) NSInteger oid;
-@property (nonatomic) NSInteger validationCode;
+@property (nonatomic) unsigned short validationCode;
 @property (nonatomic, strong) NSString *message;
 @end
 

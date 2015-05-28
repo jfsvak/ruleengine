@@ -145,7 +145,7 @@
 		3A56894F1B0C3816009E5AB1 /* RuleConstantContainer_sbx.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5689321B0C3816009E5AB1 /* RuleConstantContainer_sbx.h */; };
 		3A5689501B0C3816009E5AB1 /* RuleEngine_sbx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A5689331B0C3816009E5AB1 /* RuleEngine_sbx.cpp */; };
 		3A5689511B0C3816009E5AB1 /* RuleEngine_sbx.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5689341B0C3816009E5AB1 /* RuleEngine_sbx.h */; };
-		3A5689521B0C3816009E5AB1 /* sbxTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5689351B0C3816009E5AB1 /* sbxTypes.h */; };
+		3A5689521B0C3816009E5AB1 /* sbxTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5689351B0C3816009E5AB1 /* sbxTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3A5689531B0C3816009E5AB1 /* TA_sbx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A5689361B0C3816009E5AB1 /* TA_sbx.cpp */; };
 		3A5689541B0C3816009E5AB1 /* TA_sbx.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A5689371B0C3816009E5AB1 /* TA_sbx.h */; };
 		3A5689551B0C3816009E5AB1 /* ValidationResult.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A5689381B0C3816009E5AB1 /* ValidationResult.cpp */; };
@@ -579,11 +579,11 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A5688F81B0C37E3009E5AB1 /* mpPackageNonCmplx.h in Headers */,
+				3A5689521B0C3816009E5AB1 /* sbxTypes.h in Headers */,
 				3A5689141B0C37E3009E5AB1 /* mpVariable.h in Headers */,
+				3A5688F81B0C37E3009E5AB1 /* mpPackageNonCmplx.h in Headers */,
 				3A5689021B0C37E3009E5AB1 /* mpParserMessageProvider.h in Headers */,
 				3A5688D51B0C37E3009E5AB1 /* mpIfThenElse.h in Headers */,
-				3A5689521B0C3816009E5AB1 /* sbxTypes.h in Headers */,
 				3A5689091B0C37E3009E5AB1 /* mpTest.h in Headers */,
 				3A5688E41B0C37E3009E5AB1 /* mpOprtBinAssign.h in Headers */,
 				3A5688CA1B0C37E3009E5AB1 /* mpFuncCommon.h in Headers */,
