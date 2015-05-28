@@ -21,6 +21,8 @@
 -(instancetype)initWithConstants:(NSString*)constantsFilePath ruleCatalog:(NSString*)ruleCatalogFilePath;
 -(void)setSubKonceptOid:(NSInteger)subKonceptOid parameters:(NSDictionary*)parametersDictionary;
 
+-(void)createTA:(NSString*)CVR konceptOid:(unsigned short)konceptOid;
+
 -(NSArray*)getAllowedValuesFor:(NSInteger)oid withType:(uint8_t)valueType;
 -(NSArray*)getAllowedValuesFor:(NSInteger)oid;
 
@@ -29,8 +31,6 @@
 -(NSNumber*)getDefaultLongValueFor:(NSInteger)oid;
 -(NSNumber*)getDefaultDoubleValueFor:(NSInteger)oid;
 
--(void)createTA:(NSString*)CVR konceptOid:(unsigned short)konceptOid;
-
 -(void)setStringValue:(NSString*)value forPE:(unsigned short) peOid;
 -(void)setLongValue:(NSNumber*)value forPE:(unsigned short) peOid;
 -(void)setDoubleValue:(NSNumber*)value forPE:(unsigned short) peOid;
@@ -38,5 +38,28 @@
 
 -(void)unsetPEOid:(unsigned short) peOid;
 
+/**
+ *  Validate single product element
+ *  @param peOid      product element OID
+ *  @param printDebug print debug info from c++ code
+ *  @return array of ValidationResult objects, could contain results for other elements, could contain more than one result per product element
+ */
 -(NSArray*)validatePE:(unsigned short) peOid printDebug:(BOOL) printDebug;
+
+/**
+ *  Validate list of product elements
+ *  @param peList     array of NSNumber objects with OIDs to validate
+ *  @param printDebug print debug info from c++ code
+ *  @return array of ValidationResult objects, could contain results for other elements, could contain more than one result per product element
+ */
+-(NSArray*)validatePEList:(NSArray*)peList printDebug:(BOOL) printDebug;
+
+/**
+ *  Validate current TA
+ *  @param full       full (YES), or partial (NO) validation
+ *  @param printDebug print debug info from c++ code
+ *  @return array of ValidationResult objects, could contain more than one result per product element
+ */
+-(NSArray*)validateTAFull:(BOOL)full printDebug:(BOOL) printDebug;
+
 @end

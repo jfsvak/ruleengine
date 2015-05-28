@@ -271,16 +271,15 @@ std::string get_file_contents(const char *filename)
     return result;
 }
 
-
 -(NSArray*)validatePE:(unsigned short) peOid printDebug:(BOOL) printDebug {
     NSMutableArray *allResults = [NSMutableArray array];
     try {
         if (printDebug) {
-            re.getContainer().printConstants(27, 57);
-            
             re._printDebugAtValidation = true;
         }
-        sbx::ValidationResults results = re.validate(ta, false);
+        
+        sbx::ValidationResults results = re.validate(ta, peOid);
+        
         if (printDebug) {
             re._printDebugAtValidation = false;
         }
@@ -312,6 +311,95 @@ std::string get_file_contents(const char *filename)
     }
     
     return allResults;
+}
+
+-(NSArray*)validatePEList:(NSArray*)peList printDebug:(BOOL) printDebug {
+    NSMutableArray *allResults = [NSMutableArray array];
+    std::vector<unsigned short> peVector;
+    try {
+        if (printDebug) {
+            re._printDebugAtValidation = true;
+        }
+        
+        for (NSNumber *peOid in peList) {
+            peVector.push_back([peOid shortValue]);
+        }
+        sbx::ValidationResults results = re.validate(ta, peVector);
+        
+        if (printDebug) {
+            re._printDebugAtValidation = false;
+        }
+        
+        if (printDebug) {
+            std::cout << results;
+            re.printConstantsInParser();
+        }
+        
+        bool ok = results.isAllOk();
+        if (!ok) {
+            for (auto result : results.getValidationResults()) {
+                ValidationResult *r = [ValidationResult new];
+                r.message = [NSString stringWithCString:result.second.getMessage().c_str() encoding:NSUTF8StringEncoding];
+                r.validationCode = static_cast<uint16_t>(result.second.getValidationCode());
+                r.oid = result.first;
+                [allResults addObject:r];
+            }
+        }
+    } catch (std::exception error) {
+        NSLog(@"validatePEList:%@ -> %s", peList, error.std::exception::what());
+        re.printVariablesInParser();
+    } catch (mup::ParserError error) {
+        NSLog(@"validatePEList:%@ -> mup::ParserError %s", peList, error.GetMsg().c_str());
+        re.printVariablesInParser();
+    } catch (...) {
+        NSLog(@"validatePEList:%@ unknown exception", peList);
+        re.printVariablesInParser();
+    }
+    
+    return allResults;
+}
+
+-(NSArray*)validateTAFull:(BOOL)full printDebug:(BOOL) printDebug {
+    NSMutableArray *allResults = [NSMutableArray array];
+    try {
+        if (printDebug) {
+            re._printDebugAtValidation = true;
+        }
+        
+        sbx::ValidationResults results = re.validate(ta, static_cast<bool>(full));
+        
+        if (printDebug) {
+            re._printDebugAtValidation = false;
+        }
+        
+        if (printDebug) {
+            std::cout << results;
+            re.printConstantsInParser();
+        }
+        
+        bool ok = results.isAllOk();
+        if (!ok) {
+            for (auto result : results.getValidationResults()) {
+                ValidationResult *r = [ValidationResult new];
+                r.message = [NSString stringWithCString:result.second.getMessage().c_str() encoding:NSUTF8StringEncoding];
+                r.validationCode = static_cast<uint16_t>(result.second.getValidationCode());
+                r.oid = result.first;
+                [allResults addObject:r];
+            }
+        }
+    } catch (std::exception error) {
+        NSLog(@"validateTAFull:%d -> %s", full, error.std::exception::what());
+        re.printVariablesInParser();
+    } catch (mup::ParserError error) {
+        NSLog(@"validateTAFull:%d -> mup::ParserError %s", full, error.GetMsg().c_str());
+        re.printVariablesInParser();
+    } catch (...) {
+        NSLog(@"validateTAFull:%d unknown exception", full);
+        re.printVariablesInParser();
+    }
+    
+    return allResults;
+	
 }
 
 @end
