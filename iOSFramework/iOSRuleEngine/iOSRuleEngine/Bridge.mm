@@ -36,6 +36,22 @@
     return self;
 }
 
+std::string get_file_contents(const char *filename)
+{
+    std::ifstream inf(filename, std::ios::in | std::ios::binary);
+    if (inf)
+    {
+        std::string contents;
+        inf.seekg(0, std::ios::end);
+        contents.resize(inf.tellg());
+        inf.seekg(0, std::ios::beg);
+        inf.read(&contents[0], contents.size());
+        inf.close();
+        return(contents);
+    }
+    throw(1);
+}
+
 -(void)setSubKonceptOid:(NSInteger)subKonceptOid parameters:(NSDictionary*)parametersDictionary {
     std::map<unsigned short, std::string> parameters;
     
@@ -62,6 +78,17 @@
     ta = sbx::TA([CVR UTF8String], konceptOid);
 }
 
+-(void)setTAUnionAgreementRelation:(uint8_t)relation {
+    ta.setUar(static_cast<sbx::UnionAgreementRelationship>(relation));
+}
+
+-(void)addContributionStep:(int8_t)index employeePct:(double)employeePct companyPct:(double)companyPct {
+    sbx::ContributionStep step(index, employeePct, companyPct);
+    ta.addContributionStep(step);
+}
+
+#pragma mark - value setters
+
 -(void)setStringValue:(NSString*)value forPE:(unsigned short) peOid {
     ta.setValue(peOid, std::string([[value description] UTF8String]));
 }
@@ -82,21 +109,7 @@
     ta.remove(peOid);
 }
 
-std::string get_file_contents(const char *filename)
-{
-    std::ifstream inf(filename, std::ios::in | std::ios::binary);
-    if (inf)
-    {
-        std::string contents;
-        inf.seekg(0, std::ios::end);
-        contents.resize(inf.tellg());
-        inf.seekg(0, std::ios::beg);
-        inf.read(&contents[0], contents.size());
-        inf.close();
-        return(contents);
-    }
-    throw(1);
-}
+#pragma mark - get options list
 
 -(NSArray*)getAllowedValuesFor:(NSInteger)oid withType:(uint8_t)valueType {
     typedef enum _valueType{
@@ -184,6 +197,8 @@ std::string get_file_contents(const char *filename)
     return [result sortedArrayUsingComparator:^(NSString* a, NSString* b) { return [a compare:b options:NSNumericSearch]; }];
 }
 
+#pragma mark - get defaults
+
 -(NSString*)getDefaultStringValueFor:(NSInteger)oid {
     sbx::ProductElementOid peOid = (sbx::ProductElementOid)oid;
     
@@ -270,6 +285,8 @@ std::string get_file_contents(const char *filename)
     
     return result;
 }
+
+#pragma mark - validation
 
 -(NSArray*)validatePE:(unsigned short) peOid printDebug:(BOOL) printDebug {
     NSMutableArray *allResults = [NSMutableArray array];
@@ -399,7 +416,7 @@ std::string get_file_contents(const char *filename)
     }
     
     return allResults;
-	
 }
+
 
 @end
