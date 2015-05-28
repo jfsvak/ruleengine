@@ -669,7 +669,7 @@ void RuleEngine::_executeRule(unsigned short peOidBeingValidated, std::shared_pt
 		else {
 			// If no negative message, we don't consider the negative outcome as a failure
 			if (rule->getNegativeMessage() != "") {
-				sbx::ValidationCode negativeValCode = toValCode(rule->getNegativeValCode(), sbx::ValidationCode::kFail);
+				sbx::ValidationCode negativeValCode = sbx::utils::toValCode(rule->getNegativeValCode(), sbx::ValidationCode::kFail);
 				valResult.addValidationResult( sbx::ValidationResult(negativeValCode, peOidBeingValidated, _VAR_NAME(peOidBeingValidated), rule->getNegativeMessage(), rule->getRuleId(), rule->getExpr()) );
 			}
 		}

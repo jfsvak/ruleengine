@@ -4,6 +4,7 @@
 
 #include "Constant_sbx.h"
 #include "sbxTypes.h"
+#include "Utils.h"
 
 using namespace std;
 
@@ -110,7 +111,7 @@ namespace sbx {
    */
   bool Constant::boolValue() const
   {
-	  return toBool(_stringValue);
+	  return sbx::utils::toBool(_stringValue);
   }
 
   short Constant::getUnderKonceptOid() const

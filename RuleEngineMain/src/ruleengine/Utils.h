@@ -8,6 +8,7 @@
 #ifndef RULEENGINE_UTILS_H_
 #define RULEENGINE_UTILS_H_
 
+#include <algorithm>
 #include <string>
 
 #include "ProductElement_sbx.h"
@@ -15,6 +16,10 @@
 
 namespace sbx {
 namespace utils {
+
+std::string toUpper(const std::string& s);
+bool toBool(const std::string& s);
+sbx::ValidationCode toValCode(unsigned short valCode, sbx::ValidationCode defaultValCode = sbx::ValidationCode::kFail);
 
 std::string comparisonTypeName(const sbx::ComparisonTypes& comparisonType);
 std::string constructRCName(const sbx::ProductElement& pe, const sbx::ComparisonTypes& ct);

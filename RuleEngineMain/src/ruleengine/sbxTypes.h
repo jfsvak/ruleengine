@@ -9,15 +9,8 @@
 #ifndef RULEENGINE_SBXTYPES_H_
 #define RULEENGINE_SBXTYPES_H_
 
-#include <algorithm>
-#include <string>
-#include <iostream>
-
-
 namespace sbx {
 
-std::string toUpper(const std::string& s);
-bool toBool(const std::string& s);
 
 enum ComparisonTypes : unsigned short {
 	kUnknown	= 0,
@@ -186,7 +179,7 @@ enum ValidationCode : unsigned short {
 	kTokenNotDefined				= 301		// If an expression (maybe custom) contains a token that hasn't been loaded into the parser
 };
 
-sbx::ValidationCode toValCode(unsigned short valCode, sbx::ValidationCode defaultValCode = sbx::ValidationCode::kFail);
+
 } // namespace sbx
 
 #endif // RULEENGINE_SBXTYPES_H_

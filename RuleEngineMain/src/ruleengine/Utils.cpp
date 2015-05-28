@@ -7,6 +7,9 @@
 
 #include "Utils.h"
 
+#include <algorithm>
+#include <iostream>
+#include <string>
 #include <sstream>
 
 using namespace std;
@@ -61,6 +64,29 @@ std::string constructMinMaxExpr(const sbx::ProductElement& pe, const sbx::Compar
 	return exp.str();
 }
 
+std::string toUpper(const std::string& s)
+{
+	std::string upperS = s;
+	std::transform(upperS.begin(), upperS.end(), upperS.begin(), ::toupper);
+	return upperS;
+}
+
+bool toBool(const std::string& s)
+{
+
+	return (sbx::utils::toUpper(s) == "TRUE" || s == "1");
+}
+
+sbx::ValidationCode toValCode(unsigned short valCode, sbx::ValidationCode defaultValCode)
+{
+	if (       (valCode >= (unsigned short) sbx::ValidationCode::kOK && valCode <= sbx::ValidationCode::kProductElementNotDefined)
+			|| (valCode >= (unsigned short) sbx::ValidationCode::kValueNotAllowed && valCode <= sbx::ValidationCode::kValueOverLimit)
+			|| (valCode >= (unsigned short) sbx::ValidationCode::kProductElementNotAllowed && valCode <= sbx::ValidationCode::kProductElementRequired)
+			|| (valCode >= (unsigned short) sbx::ValidationCode::kTokenNotDefined && valCode <= sbx::ValidationCode::kTokenNotDefined) )
+		return static_cast<sbx::ValidationCode>(valCode);
+
+	return defaultValCode;
+}
 
 } // namespace utils
 } /* namespace sbx */

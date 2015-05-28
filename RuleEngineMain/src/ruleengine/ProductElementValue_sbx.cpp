@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #include "ProductElementValue_sbx.h"
+#include "Utils.h"
 
 using namespace std;
 
@@ -49,7 +50,7 @@ double ProductElementValue::doubleValue() const
 	return atof(_stringValue.c_str());
 }
 
-bool ProductElementValue::boolValue() const{ return toBool(_stringValue); }
+bool ProductElementValue::boolValue() const{ return sbx::utils::toBool(_stringValue); }
 
 unsigned short ProductElementValue::getProductElementOid() const
 {
