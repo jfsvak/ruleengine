@@ -38,6 +38,9 @@ private:
 	// oid from basedata for subkoncept
 	unsigned short _underkonceptOid;
 
+	// oid from basedata for koncept
+	unsigned short _konceptOid;
+
 	/**
 	 *  map of parameter oid to value (string)
 	 *  first: parameterOid

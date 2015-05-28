@@ -22,6 +22,7 @@
 #include "muParser/mpValue.h"
 
 #include "Constant_sbx.h"
+#include "ContributionStep.h"
 #include "KonceptInfo_sbx.h"
 #include "ProductElement_sbx.h"
 #include "Rule.h"
@@ -75,7 +76,6 @@ private:
 	// Method to validate the value of a product element
 	void _validateValue(const sbx::ProductElementValue&, sbx::ValidationResults&);
 
-
 	//
 	// Methods for pure value validations
 	//
@@ -109,6 +109,7 @@ private:
 	void _defineConstant(const std::string& name, double constant);
 
 	void _loadParser(const TA& ta);
+	void _loadLadder(const TA& ta);
 
 	sbx::ProductElement _PE(unsigned short peOid);
 	std::string _VAR_NAME(unsigned short peOid);
@@ -128,7 +129,7 @@ private:
 
 
 	// ParserX is initialised when the KonceptInfo has been parsed in for initialisation
-	mup::ParserX _parser { mup::pckALL_NON_COMPLEX };
+	mup::ParserX _parser { mup::pckALL_NON_COMPLEX | mup::pckMATRIX };
 	bool _refreshParserValues = true;
 
 	/**

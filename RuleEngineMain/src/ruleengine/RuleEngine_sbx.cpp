@@ -339,7 +339,7 @@ void RuleEngine::_loadParser(const TA& ta)
 	// clear all vars in parser, and
 	_parser.ClearVar();
 
-	// initialise all values for TA into parser
+	// initialise all PE values for TA into parser
 	for (auto& item : ta.getValues())
 	{
 		const sbx::ProductElementValue& pev = item.second;
@@ -369,8 +369,63 @@ void RuleEngine::_loadParser(const TA& ta)
 		}
 	}
 
+	_loadLadder(ta);
+
 	// execute all precalc rules to update the parser
 	_executePreCalcRules();
+}
+
+/**
+ * Creating a 3 x n (x,y) matrix to hold contributions
+ *
+ * x = column
+ * y = row, idx (Ingen, Age, Senority, Year (20150612)
+ *
+ * Senority:
+ *
+ *  idx | empPct | compPct
+ * -----|--------|--------
+ *   0  |   3.5  |  4.5
+ *   1  |   4.5  |  5.5
+ *   2  |   5.5  |  6.5
+ *
+ * Age:
+ *
+ *  idx | empPct | compPct
+ * -----|--------|--------
+ *   18 |   3.5  |  4.5
+ *   20 |   4.5  |  5.5
+ *   25 |   5.5  |  6.5
+ *
+ * so (2,2) = compPct == 6.5
+ */
+void RuleEngine::_loadLadder(const TA& ta)
+{
+	// if the variable is already in the parser, remove it
+	if (_parser.IsVarDefined(sbx::kBidragstrappe_VARNAME)) {
+		_parser.RemoveVar(sbx::kBidragstrappe_VARNAME);
+	}
+
+	// if the ladder is already in the value map, then remove it
+	if (_mupValueMap.find(sbx::kBidragstrappe_VARNAME) != _mupValueMap.cend()) {
+		_mupValueMap.erase(sbx::kBidragstrappe_VARNAME);
+	}
+
+	auto n = ta.getContributionLadder().size();
+	std::shared_ptr<mup::Value> ladderMatrix = make_shared<mup::Value>(n, 2, 0);
+	// if not already there, create and insert a new value
+	_mupValueMap.insert( std::pair<std::string, std::shared_ptr<mup::Value>> (sbx::kBidragstrappe_VARNAME, ladderMatrix));
+
+	int i {0};
+	// initialise contribution ladder matrix
+	for (auto it = ta.getContributionLadder().cbegin(); it != ta.getContributionLadder().cend() ; it++)
+	{
+		ladderMatrix->At(i, 0) = it->index();
+		ladderMatrix->At(i, 1) = it->employeePct();
+		ladderMatrix->At(i, 2) = it->companyPct();
+
+		i++;
+	}
 }
 
 /**

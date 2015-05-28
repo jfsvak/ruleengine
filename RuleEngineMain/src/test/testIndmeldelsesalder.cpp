@@ -26,10 +26,12 @@ protected:
         re.parseRuleCatalogueJSON(get_file_contents("rule-catalogue.json"));
 
         KonceptInfo ki {17, // UnderkonceptOid:OSV 25-49
-        	{ {11, "true"}, // Parameter-Basis
-        	  {1, "true"}, // Solidarisk faellestarif
-			  {6, "true"} // SEB Firmapensionspulje
+        	{ { 1, "true"}, // Solidarisk faellestarif
+			  { 6, "true"}, // SEB Firmapensionspulje
+        	  {11, "true"}, // Parameter-Basis
+			  {15, "true"}, // FG-Spaend
         	} };
+
         re.initContext(ki);
     }
 
@@ -44,6 +46,6 @@ TEST_F(Indmeldelsesalder_CONTEXT_KI_OSV_25_50, Indmeldelsesalder_POSITIVE) {
 	ta.setValue(kIndmeldelsesAlder, (long) 18 );
 
 	auto r = re.validate(ta, (unsigned short) kIndmeldelsesAlder);
-	EXPECT_EQ(true, r.isAllOk());
+	EXPECT_TRUE(r.isAllOk());
 	if (!r.isAllOk()) cout << r;
 }

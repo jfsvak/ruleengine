@@ -120,10 +120,39 @@ void TA::remove(unsigned short peOid)
 	_peValuesMap.erase(peOid);
 }
 
+// allow duplicate steps to be added to the ladder
+// During validation, these duplicate steps will be validated and error messages returned
+TA& TA::addContributionStep(const sbx::ContributionStep& step)
+{
+	// insert step
+	_ladder.insert(step);
+	return *this;
+}
+
+// allow duplicate steps to be added to the ladder
+// During validation, these duplicate steps will be validated and error messages returned
+TA& TA::removeContributionStep(const sbx::ContributionStep& step)
+{
+	// insert step
+	_ladder.erase(step);
+	return *this;
+}
+
+std::multiset<sbx::ContributionStep> TA::getContributionLadder() const
+{
+	return _ladder;
+}
+
 const std::map<unsigned short, sbx::ProductElementValue>& TA::getValues() const { return _peValuesMap; }
 const std::string& TA::getCVR() const { return _cvr; }
 unsigned short TA::getKonceptOid() const { return _konceptOid; }
 bool TA::hasValue(unsigned short productElementOid) const { return (_peValuesMap.find(productElementOid) != _peValuesMap.cend()); }
+const std::string& TA::getCvr() const { return _cvr;}
+TA& TA::setCvr(const std::string& cvr) { _cvr = cvr; return *this; }
+TA& TA::setUar(sbx::UnionAgreementRelationship uar) { _uar = uar; return *this; }
+TA& TA::setUnionAgreementOid(unsigned short unionAgreementOid) { _unionAgreementOid = unionAgreementOid; return *this; }
+sbx::UnionAgreementRelationship TA::getUar() const { return _uar; }
+unsigned short TA::getUnionAgreementOid() const { return _unionAgreementOid; }
 
 TA::~TA() {}
 

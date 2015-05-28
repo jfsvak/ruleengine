@@ -155,9 +155,9 @@ enum ProductElementOid : unsigned short {
 			kKritiskSygBornesumspaendpc				= 270,
 			kKritiskSygBornesumSuppldaekn_mk		= 271,
 			kKritiskSygBornesumTegningsmaxBl		= 272,
-			kSeneste_Underskriftsdato				= 273
-};
+			kSeneste_Underskriftsdato				= 273,
 
+};
 
 enum ValidationCode : unsigned short {
 	kUnknownValidationCode			= 0,		// If everything goes wrong, this code is used
@@ -180,6 +180,12 @@ enum ValidationCode : unsigned short {
 	kTokenNotDefined				= 301		// If an expression (maybe custom) contains a token that hasn't been loaded into the parser
 };
 
+
+enum UnionAgreementRelationship {
+	OUTSIDE,
+	FOLLOWS,
+	INCLUDED
+};
 
 #ifdef __cplusplus
 } // namespace sbx
