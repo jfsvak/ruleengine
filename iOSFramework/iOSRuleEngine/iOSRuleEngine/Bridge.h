@@ -11,7 +11,7 @@
 
 @interface ValidationResult : NSObject
 @property (nonatomic) NSInteger oid;
-@property (nonatomic) NSInteger validationCode;
+@property (nonatomic) unsigned short validationCode;
 @property (nonatomic, strong) NSString *message;
 @end
 
@@ -30,8 +30,13 @@
 -(NSNumber*)getDefaultDoubleValueFor:(NSInteger)oid;
 
 -(void)createTA:(NSString*)CVR konceptOid:(unsigned short)konceptOid;
--(void)setValue:(id)value forPE:(unsigned short) peOid;
+
+-(void)setStringValue:(NSString*)value forPE:(unsigned short) peOid;
+-(void)setLongValue:(NSNumber*)value forPE:(unsigned short) peOid;
+-(void)setDoubleValue:(NSNumber*)value forPE:(unsigned short) peOid;
+-(void)setBoolValue:(NSNumber*)value forPE:(unsigned short) peOid;
+
 -(void)unsetPEOid:(unsigned short) peOid;
 
--(NSArray*)validatePE:(unsigned short) peOid;
+-(NSArray*)validatePE:(unsigned short) peOid printDebug:(BOOL) printDebug;
 @end
