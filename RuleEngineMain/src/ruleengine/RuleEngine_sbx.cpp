@@ -486,7 +486,7 @@ sbx::ValidationResults RuleEngine::validate(const TA& ta, const std::vector<unsi
 		//   not a validation error
 		_validateCustomRules(peOid, valResults);
 
-		if (peOid == kBidragstrappe)
+		if (peOid == sbx::ProductElementOid::kBidragstrappe)
 		{
 			// TODO do matrix validation here for the contribution ladder
 

@@ -15,6 +15,7 @@
 using namespace std;
 
 namespace sbx {
+
 namespace utils {
 
 std::string comparisonTypeName(const sbx::ComparisonTypes& comparisonType)

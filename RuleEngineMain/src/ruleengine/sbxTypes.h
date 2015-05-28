@@ -157,6 +157,7 @@ enum ProductElementOid : unsigned short {
 			kKritiskSygBornesumTegningsmaxBl		= 272,
 			kSeneste_Underskriftsdato				= 273,
 
+
 			// artificial pe
 			kBidragstrappe							= 999
 };
