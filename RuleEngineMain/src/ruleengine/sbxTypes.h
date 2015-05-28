@@ -157,7 +157,10 @@ enum ProductElementOid : unsigned short {
 			kKritiskSygBornesumTegningsmaxBl		= 272,
 			kSeneste_Underskriftsdato				= 273,
 
+			// artificial pe
+			kBidragstrappe							= 999
 };
+
 
 enum ValidationCode : unsigned short {
 	kUnknownValidationCode			= 0,		// If everything goes wrong, this code is used

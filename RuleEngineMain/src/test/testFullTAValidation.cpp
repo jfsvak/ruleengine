@@ -46,12 +46,12 @@ TEST_F(Full_TA_CONTEXT_KI_OSV_25_50, Full_TA_POSITIVE) {
 	auto r = re.validate(ta);
 	EXPECT_FALSE(r.isAllOk());
 	// total is 186, so should be 186 minus the number of pe's set above
-	EXPECT_EQ(181, r.sizeValidationResults());
+	EXPECT_EQ(182, r.sizeValidationResults());
 	cout << r;
 
 	ta.setValue(kDoedReguleringskode, "Ingen"); // should make DoedPctGrMin, DoedPctOblMax, DoedSpaendPct notRequired and therefore lower the amount of missing pe's to 181-4=177
 	r = re.validate(ta);
-	EXPECT_EQ(177, r.sizeValidationResults());
+	EXPECT_EQ(178, r.sizeValidationResults());
 //	if (r.sizeValidationResults() != 181)
 		cout << r;
 }
@@ -64,7 +64,7 @@ TEST_F(Full_TA_CONTEXT_KI_OSV_25_50, Full_TA_NUMBER_OF_VALIDATIONRESULTS) {
 
 	r = re.validate(ta);
 	EXPECT_FALSE(r.isAllOk());
-	EXPECT_EQ(186, r.sizeValidationResults());
+	EXPECT_EQ(187, r.sizeValidationResults());
 
 //	cout << r;
 }

@@ -433,7 +433,7 @@
 							"expr": "KritiskSygspaendpc <= rc_KritiskSygspaendpc_max",
 							"productElementOids": [ 220 ],
 							"requiredif": "",
-							"positiveMessavge": "",
+							"positiveMessage": "",
 							"negativeMessage": "Spaend for Kritisk sygdom i procent maa ikke overstige %1",
 							"negativeValCode": 103
 						}
@@ -667,7 +667,7 @@
          	"comments" : "Salary Page: Contribution Ladder",
          	
             "id": "33.1",
-            "expr": "",
+            "expr": "Bidragsstigningsform == \"Ingen\"",
    	        "productElementOids": [ 149 ],
    	        "requiredif": "",
             "positiveMessage": "",
@@ -675,13 +675,25 @@
             "positiveRuleCatalogue": 
             [
 	        	{
-		            "id": "31.2.1",
-		            "comments" : "Private_Premium_BL - requiredif placeholder",
-	    	        "expr": "",
-		   	        "productElementOids": [ 261 ],
+		            "id": "33.2.1",
+		            "comments" : "Contribution ladder Ingen - first step has to be 0 requiredif placeholder",
+	    	        "expr": "Bidragstrappe[0,0] == 0",
+		   	        "productElementOids": [ 999 ],
    	    		    "requiredif": "#parent#",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "",
+	            	"negativeMessage": "Der eneste trin skal starte med 0, Ingen er valgt som Bidragsstigningsform",
+	            	"negativeValCode": 101,
+					"positiveRuleCatalogue": []
+        	    },
+        	    {
+		            "id": "33.2.2",
+		            "comments" : "Contribution ladder Ingen - first step has to be 0 requiredif placeholder",
+	    	        "expr": "sizeof(Bidragstrappe) == 1",
+		   	        "productElementOids": [ 999 ],
+   	    		    "requiredif": "#parent#",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Der maa kun vare et trin nar 'Ingen' er valgt som Bidragsstigningsform",
+	            	"negativeValCode": 101,
 					"positiveRuleCatalogue": []
         	    }
             ],

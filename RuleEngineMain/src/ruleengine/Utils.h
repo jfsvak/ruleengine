@@ -15,6 +15,8 @@
 #include "sbxTypes.h"
 
 namespace sbx {
+const std::string kBidragstrappe_VARNAME = "Bidragstrappe";
+
 namespace utils {
 
 std::string toUpper(const std::string& s);

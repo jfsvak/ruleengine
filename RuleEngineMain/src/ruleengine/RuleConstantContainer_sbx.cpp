@@ -133,9 +133,7 @@ void RuleConstantContainer::_initProducts(const Json::Value& products)
 
 	if (products.size() > 0)
 	{
-		if (RuleConstantContainer::_printDebug) {
-			cout << "  Looping over [" << products.size() << "] json products to create" << endl;
-		}
+		if (RuleConstantContainer::_printDebug) { cout << "  Looping over [" << products.size() << "] json products to create" << endl; }
 
 		// iterate over the list of products and create shared_ptr Product objects to put into the RuleConstantContainer
 		for (Json::ValueIterator jsonProduct = products.begin(); jsonProduct != products.end(); ++jsonProduct)
@@ -161,11 +159,20 @@ void RuleConstantContainer::_initProducts(const Json::Value& products)
 
 					_productElementMap[peOid] = pePtr;
 					_varNameToPEOidMap[variableName] = peOid;
+
 				}
+			}
+
+			// hard code productelement for bidragstrappe (999) and set relation to product "Samlet_bidragsprocent"
+			if (productOid == 76) {
+				_productElementMap[(unsigned short) kBidragstrappe] = make_shared<sbx::ProductElement>(static_cast<unsigned short>(kBidragstrappe), kBidragstrappe_VARNAME, kBidragstrappe_VARNAME, sbx::ProductElementTypes::kUnknownPEType, 76);
+				_varNameToPEOidMap[kBidragstrappe_VARNAME] = (unsigned short) kBidragstrappe;
+				productPtr->addProductElementOid(kBidragstrappe);
 			}
 
 			_productsMap[productOid] = productPtr;
 		}
+
 	}
 	else
 	{
@@ -434,9 +441,7 @@ std::size_t RuleConstantContainer::size() const
 sbx::ProductElement RuleConstantContainer::getProductElement(unsigned short productElementOid)
 {
 	if (_productElementMap.find(productElementOid) != _productElementMap.cend())
-	{
 		return _productElementMap.at(productElementOid);
-	}
 
 	std::stringstream s {};
 	s << productElementOid;

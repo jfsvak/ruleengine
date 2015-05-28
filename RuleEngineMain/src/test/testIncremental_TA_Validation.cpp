@@ -236,6 +236,7 @@ TEST_F(Incremental_TA_CONTEXT_KI_OSV_25_50, Incremental_TA_POSITIVE) {
 	ASSERT_EQ(1, r.getValidationResults(kBidragsstigningsform).size());
 	EXPECT_EQ(sbx::ValidationCode::kValueNotAllowed, r.getValidationResults(kBidragsstigningsform).at(0).getValidationCode());
 	ta.setValue(kBidragsstigningsform, "Ingen");
+	ta.addContributionStep({0, 2, 2});
 
 	ta.setValue(kPrivate_Taxed_MK, true);
 	r = re.validate(ta, full);

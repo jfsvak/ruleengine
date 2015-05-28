@@ -412,20 +412,27 @@ void RuleEngine::_loadLadder(const TA& ta)
 	}
 
 	auto n = ta.getContributionLadder().size();
-	std::shared_ptr<mup::Value> ladderMatrix = make_shared<mup::Value>(n, 2, 0);
-	// if not already there, create and insert a new value
-	_mupValueMap.insert( std::pair<std::string, std::shared_ptr<mup::Value>> (sbx::kBidragstrappe_VARNAME, ladderMatrix));
 
-	int i {0};
-	// initialise contribution ladder matrix
-	for (auto it = ta.getContributionLadder().cbegin(); it != ta.getContributionLadder().cend() ; it++)
-	{
-		ladderMatrix->At(i, 0) = it->index();
-		ladderMatrix->At(i, 1) = it->employeePct();
-		ladderMatrix->At(i, 2) = it->companyPct();
+	if (n > 0) {
+		std::shared_ptr<mup::Value> ladderMatrix = make_shared<mup::Value>(n, 3, 0);
+		// if not already there, create and insert a new value
+		_mupValueMap.insert( std::pair<std::string, std::shared_ptr<mup::Value>> (sbx::kBidragstrappe_VARNAME, ladderMatrix));
 
-		i++;
+		int i {0};
+		// initialise contribution ladder matrix
+		for (auto it : ta.getContributionLadder())
+		{
+			ladderMatrix->At(i, 0) = it.index();
+			ladderMatrix->At(i, 1) = it.employeePct();
+			ladderMatrix->At(i, 2) = it.companyPct();
+
+			i++;
+		}
+
+		// Put matrix into parser
+		_parser.DefineVar(sbx::kBidragstrappe_VARNAME, mup::Variable(_mupValueMap[sbx::kBidragstrappe_VARNAME].get()));
 	}
+
 }
 
 /**
@@ -478,6 +485,12 @@ sbx::ValidationResults RuleEngine::validate(const TA& ta, const std::vector<unsi
 		//   If they are not, the requiredif rule will not evaluate but throw an exception and will be handled as a warning,
 		//   not a validation error
 		_validateCustomRules(peOid, valResults);
+
+		if (peOid == kBidragstrappe)
+		{
+			// TODO do matrix validation here for the contribution ladder
+
+		}
 	}
 
 	return valResults;
@@ -595,6 +608,7 @@ void RuleEngine::_validateCustomRules(unsigned short peOid, sbx::ValidationResul
 				_executeRule( peOid, rule, valResults );
 
 			// if there is a requiredif-rule, then validate it to check if this productelement is required to be there or not
+			//   if its not required to be there, we set kProductElementNotAllowed
 			if ((rule->getRequiredIfRule() != nullptr) && rule->getRequiredIfRule()->getExpr() != "")
 				_executeRequiredIfRule(peOid, rule->getRequiredIfRule(), valResults);
 		}

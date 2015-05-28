@@ -124,8 +124,14 @@ void TA::remove(unsigned short peOid)
 // During validation, these duplicate steps will be validated and error messages returned
 TA& TA::addContributionStep(const sbx::ContributionStep& step)
 {
+
 	// insert step
 	_ladder.insert(step);
+
+	// if this is the first step to be added, then set a 'fake' placeholder value for the peoid 999==kBidragstrappe
+	if (_ladder.size() == 1)
+		this->setValue(kBidragstrappe, (double) 0);
+
 	return *this;
 }
 
@@ -135,6 +141,11 @@ TA& TA::removeContributionStep(const sbx::ContributionStep& step)
 {
 	// insert step
 	_ladder.erase(step);
+
+	// if not more steps in the ladder, remove the 'fake' placeholder pevalue
+	if (_ladder.size() == 0)
+		this->remove(kBidragstrappe);
+
 	return *this;
 }
 
