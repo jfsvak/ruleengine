@@ -6,6 +6,7 @@
  */
 #include "ValidationResults.h"
 
+#include <algorithm>
 #include <iostream>
 #include <map>
 #include <vector>
@@ -126,6 +127,49 @@ std::vector<sbx::ValidationResult> ValidationResults::_getSubSet(const std::mult
 	}
 
 	return v;
+}
+
+/**
+ * Check for existens of a message with validationCode for that particular peOid
+ * returns true if one or more messages exists for that peOid with that validation code
+ * otherwise return false
+ */
+bool sbx::ValidationResults::hasMessages(unsigned short peOid, sbx::ValidationCode validationCode) const
+{
+	if ( _validationResultMap.find(peOid) != _validationResultMap.cend() )
+	{
+		const auto& range = _validationResultMap.equal_range(peOid);
+
+		for ( auto it = range.first; it != range.second; it++ )
+		{
+			if ( it->second.getValidationCode() == validationCode)
+				return true;
+		}
+	}
+
+	return false;
+}
+
+/**
+ * Check for existens of a warning validationCode for that particular peOid
+ * returns true if one or more warnings exists for that peOid with that validation code
+ * otherwise return false
+ */
+bool sbx::ValidationResults::hasWarnings(unsigned short peOid, sbx::ValidationCode validationCode) const
+{
+	if ( _warningsMap.find(peOid) != _warningsMap.cend() )
+	{
+		const auto& range = _warningsMap.equal_range(peOid);
+
+//		for_each(range.first, range.second, []( std::iterator<pair<const unsigned short int,ValidationResult>> it) (if (it->second.getValidationCode() == validationCode) return true; ));
+		for ( auto it = range.first; it != range.second; it++ )
+		{
+			if ( it->second.getValidationCode() == validationCode)
+				return true;
+		}
+	}
+
+	return false;
 }
 
 ValidationResults::~ValidationResults()

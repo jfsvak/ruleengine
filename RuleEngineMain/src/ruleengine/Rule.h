@@ -28,13 +28,15 @@ public:
 	const std::string& getNegativeMessage() const;
 
 	std::shared_ptr<sbx::Rule> getRequiredIfRule();
-	void setIsRequiredIfTrue(std::shared_ptr<sbx::Rule>);
+	std::shared_ptr<sbx::Rule> getNotAllowedIfRule();
+	void setNotAllowedIfRule(std::shared_ptr<sbx::Rule>);
+//	void setIsRequiredIfTrue(std::shared_ptr<sbx::Rule>);
 	void addProductElementOid(unsigned short productElementOid);
 	void addPreCalcRequiredPEOid(unsigned short requiredPEOid);
 	const std::vector<unsigned short>& getProductElementOids() const;
 	const std::vector<unsigned short>& getPreCalcRequiredPEOids() const;
 
-	void setRequiredExpr(const std::string& requiredExpr);
+//	void setRequiredExpr(const std::string& requiredExpr);
 	void setPositiveRuleCatalogue(sbx::RuleCatalogue*);
 	void setNegativeRuleCatalogue(sbx::RuleCatalogue*);
 
@@ -56,6 +58,7 @@ private:
 	unsigned short _negativeValCode;
 
 	std::shared_ptr<sbx::Rule> _requiredIfRule;
+	std::shared_ptr<sbx::Rule> _notAllowedIfRule;
 
 	sbx::RuleCatalogue* _positiveRuleCatalogue;
 	sbx::RuleCatalogue* _negativeRuleCatalogue;

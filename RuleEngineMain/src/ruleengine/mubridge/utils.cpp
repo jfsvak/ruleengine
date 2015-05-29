@@ -35,7 +35,7 @@ void handle(const mup::ParserError& e, sbx::ValidationResults& valResult, const 
 	case mup::ecUNASSIGNABLE_TOKEN:
 		handled = true;
 		r.setValidationCode( (handleAsError) ? sbx::ValidationCode::kProductElementRequired : sbx::ValidationCode::kTokenNotDefined );
-		s << "Token '" << e.GetToken() << "' not found on in parser: Msg[" << e.GetMsg() << "]";
+		s << "Token '" << e.GetToken() << "' not found on in parser: Msg[" << e.GetMsg() << "] ( from sbx::mubridge::handle(...) )";
 		break;
 	default:
 		s << "Unhandled ParserError caught:" << " Token[" << e.GetToken() << "], code[" << e.GetCode() << "], msg[" << e.GetMsg() << "], expr[" << e.GetExpr() << "]";

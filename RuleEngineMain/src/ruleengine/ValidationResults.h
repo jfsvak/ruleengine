@@ -34,11 +34,15 @@ public:
 	std::vector<sbx::ValidationResult> getValidationResults(unsigned short peOid);
 	std::vector<sbx::ValidationResult> getWarnings(unsigned short peOid);
 
+
 	int sizeValidationResults() const;
 	int sizeWarnings() const;
 
 	bool isAllOk() const;
 	bool hasWarnings() const;
+
+	bool hasMessages(unsigned short peOid, sbx::ValidationCode) const;
+	bool hasWarnings(unsigned short peOid, sbx::ValidationCode) const;
 
 	virtual ~ValidationResults();
 private:

@@ -244,8 +244,6 @@ TEST_F(Doedsfaldsdaekning_I_Procent_KI_OSV_25_49, DoedBlGrMin_ValidateNonExistin
 //	if (!r.isAllOk())
 		cout << r;
 
-	ASSERT_EQ(1, r.sizeWarnings());
-	std::vector<sbx::ValidationResult> v = r.getWarnings(kDoedBlOblMax);
-
-	EXPECT_EQ(sbx::ValidationCode::kProductElementNotDefined, v.at(0).getValidationCode());
+	ASSERT_EQ(1, r.getWarnings(kDoedBlOblMax).size());
+	EXPECT_EQ(sbx::ValidationCode::kProductElementRequired, r.getWarnings(kDoedBlOblMax).at(0).getValidationCode());
 }

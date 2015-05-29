@@ -90,7 +90,7 @@ private:
 	//
 	void _validateCustomRules(unsigned short peOid, sbx::ValidationResults&);
 	// checks if the product element is required to be the TA for the context and other values on ta's. Uses custom rules to validate this requiredness
-	bool _isRequired(unsigned short peOid, sbx::ValidationResults&, bool fullValidation = false);
+	std::shared_ptr<sbx::Rule> _isRequired(unsigned short peOid, sbx::ValidationResults&, bool fullValidation = false);
 	bool _isOptional(unsigned short peOid, sbx::ValidationResults&);
 
 	void _executeRule(unsigned short peOidToValidate, std::shared_ptr<sbx::Rule>, sbx::ValidationResults&, sbx::ValidationCode negativeValCode = sbx::ValidationCode::kFail);

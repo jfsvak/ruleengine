@@ -87,10 +87,10 @@ std::shared_ptr<sbx::Rule> Rule::getRequiredIfRule()
 	return _requiredIfRule;
 }
 
-void Rule::setIsRequiredIfTrue(std::shared_ptr<sbx::Rule> rule)
-{
-	_requiredIfRule = rule;
-}
+//void Rule::setIsRequiredIfTrue(std::shared_ptr<sbx::Rule> rule)
+//{
+//	_requiredIfRule = rule;
+//}
 
 void Rule::addProductElementOid(unsigned short productElementOid)
 {
@@ -116,6 +116,16 @@ Rule::~Rule()
 unsigned short Rule::getNegativeValCode() const
 {
 	return _negativeValCode;
+}
+
+std::shared_ptr<sbx::Rule> Rule::getNotAllowedIfRule()
+{
+	return _notAllowedIfRule;
+}
+
+void Rule::setNotAllowedIfRule(std::shared_ptr<sbx::Rule> notAllowedIfRule)
+{
+	_notAllowedIfRule = notAllowedIfRule;
 }
 
 void Rule::setNegativeValCode(unsigned short negativeValCode)

@@ -50,10 +50,21 @@ TEST_F(ContributionLadder_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Ingen) {
 	EXPECT_FALSE(r.isAllOk());
 //	if (r.isAllOk())
 		cout << r;
-	ASSERT_EQ(2, r.getValidationResults(kBidragstrappe).size());
+	ASSERT_EQ(1, r.getValidationResults(kBidragstrappe).size());
 	EXPECT_EQ(kProductElementRequired, r.getValidationResults(kBidragstrappe).at(0).getValidationCode());
 
-	cout << " ******* Adding index 3" << endl;
+	r = re.validate(ta, (unsigned short) kBidragsstigningsform );
+	EXPECT_TRUE(r.isAllOk());
+//	if (r.isAllOk())
+		cout << r;
+
+	r = re.validate(ta, {kBidragsstigningsform, kBidragstrappe} );
+	EXPECT_TRUE(r.isAllOk());
+//	if (r.isAllOk())
+		cout << r;
+	ASSERT_EQ(3, r.getWarnings(kBidragstrappe).size());
+	EXPECT_EQ(kProductElementRequired, r.getWarnings(kBidragstrappe).at(0).getValidationCode());
+
 	//  now add one step, but let it start from 3 (!=0), and it should fail
 	ta.addContributionStep({3, 3.4, 5.3});
 	r = re.validate(ta, false);
@@ -90,3 +101,17 @@ TEST_F(ContributionLadder_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Ingen) {
 		cout << r;
 }
 
+TEST_F(ContributionLadder_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Alder) {
+	RuleEngine::_printDebugAtValidation = true;
+	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	ta.setValue(kBidragsstigningsform, "Alder" );
+
+	auto r = re.validate(ta, false);
+	EXPECT_FALSE(r.isAllOk());
+//	if (r.isAllOk())
+		cout << r;
+	ASSERT_EQ(1, r.getValidationResults(kBidragstrappe).size());
+	EXPECT_EQ(kProductElementRequired, r.getValidationResults(kBidragstrappe).at(0).getValidationCode());
+
+//	ta.addContributionStep( {} );
+}

@@ -171,7 +171,17 @@ TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50, KritiskSygdom_I_FG_True_GAGE_NEG
 	});
 	cout << r;
 
+	// expected to fail because kKritiskSygReguleringskode == Gage,
+	//   so kKritiskSygBlMin, kKritiskSygBlMax, and kKritiskSygSpaendBl should not be there
 	EXPECT_FALSE(r.isAllOk());
+	ASSERT_EQ(1, r.getValidationResults(kKritiskSygBlMin).size());
+	EXPECT_EQ(sbx::ValidationCode::kProductElementNotAllowed, r.getValidationResults(kKritiskSygBlMin).at(0).getValidationCode());
+
+	ASSERT_EQ(1, r.getValidationResults(kKritiskSygBlMax).size());
+	EXPECT_EQ(sbx::ValidationCode::kProductElementNotAllowed, r.getValidationResults(kKritiskSygBlMax).at(0).getValidationCode());
+
+	ASSERT_EQ(1, r.getValidationResults(kKritiskSygSpaendBl).size());
+	EXPECT_EQ(sbx::ValidationCode::kProductElementNotAllowed, r.getValidationResults(kKritiskSygBlMin).at(0).getValidationCode());
 }
 
 // Test KritiskSygdom_I_FG - selected, but no value
@@ -264,10 +274,8 @@ TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50, KritiskSygdom_I_FG_False_SupplDa
 	cout << r;
 
 	EXPECT_FALSE(r.isAllOk());
-
-	auto v = r.getValidationResults(kKritiskSygSuppldaekn_mk);
-	ASSERT_EQ(2, v.size());
-//	EXPECT_EQ(sbx::ValidationCode::kProductElementNotAllowed, v.at(0).getValidationCode());
+	// expecting two errors, that true is not valied and the pe is not allowed
+	ASSERT_EQ(2, r.getValidationResults(kKritiskSygSuppldaekn_mk).size());
 }
 
 TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50, KritiskSygdom_I_FG_False_SupplDaekning_False_NEGATIVE) {

@@ -43,7 +43,9 @@ private:
 	sbx::ValidationCode _code;
 	unsigned short _productElementOid;
 	std::string _variableName;
+	// TODO rename to causedBy
 	std::string _ruleId;
+	// TODO rename to causedByExpr
 	std::string _expr;
 	std::string _message;
 };
