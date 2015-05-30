@@ -61,9 +61,10 @@ private:
 	void printConstant(const std::shared_ptr<sbx::Constant>& c) const;
     void _initInternalMaps();
 	void _initRuleConstants(const Json::Value& ruleConstantsList);
-	void _initProducts(const Json::Value& products);
+	void _initProductElements(const Json::Value& products);
 	void _initParameters(const Json::Value& parameters);
 	void _initParametersToProducts(const Json::Value& parameters);
+	void _addFakeProductElements(std::shared_ptr<sbx::Product> productPtr);
 
 	/**
 	 * vector of shared pointers holding all global constants for all contexts

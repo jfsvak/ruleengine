@@ -20,7 +20,7 @@
 using namespace std;
 using namespace sbx;
 
-class ContributionLadder_CONTEXT_KI_OSV_25_50 : public ::testing::Test  {
+class ContributionLadder_Ingen_CONTEXT_KI_OSV_25_50 : public ::testing::Test  {
 protected:
     virtual void SetUp() {
         re = RuleEngine();
@@ -40,10 +40,11 @@ protected:
 
 
 // Test kIndmeldelsesalder and getting options prior to that
-TEST_F(ContributionLadder_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Ingen) {
+TEST_F(ContributionLadder_Ingen_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Ingen) {
 	RuleEngine::_printDebugAtValidation = true;
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
 	ta.setValue(kBidragsstigningsform, "Ingen" );
+	ta.setValue(kHospitalsdaekning_MK, false);
 
 	// expecting complains about missing step
 	auto r = re.validate(ta, false);
@@ -62,7 +63,7 @@ TEST_F(ContributionLadder_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Ingen) {
 	EXPECT_TRUE(r.isAllOk());
 //	if (r.isAllOk())
 		cout << r;
-	ASSERT_EQ(3, r.getWarnings(kBidragstrappe).size());
+	ASSERT_EQ(4, r.getWarnings(kBidragstrappe).size());
 	EXPECT_EQ(kProductElementRequired, r.getWarnings(kBidragstrappe).at(0).getValidationCode());
 
 	//  now add one step, but let it start from 3 (!=0), and it should fail
@@ -71,8 +72,7 @@ TEST_F(ContributionLadder_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Ingen) {
 	EXPECT_FALSE(r.isAllOk());
 //	if (r.isAllOk())
 		cout << r;
-	ASSERT_EQ(1, r.getValidationResults(kBidragstrappe).size());
-	EXPECT_EQ(kValueNotAllowed, r.getValidationResults(kBidragstrappe).at(0).getValidationCode());
+	EXPECT_TRUE(r.hasMessages(kBidragstrappe, kValueNotAllowed));
 
 	//  now remove that step, and add one that starts from 0 and no complains
 	ta.removeContributionStep({3, 0,0});
@@ -82,15 +82,13 @@ TEST_F(ContributionLadder_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Ingen) {
 //	if (!r.isAllOk())
 		cout << r;
 
-
 	//  then add one more and it should complain again, that only 1 step is allowed, when "Ingen" is selected in Bidragsstigningsform
-	ta.addContributionStep({1, 5.4, 3.0});
+	ta.addContributionStep({1, 4, 6});
 	r = re.validate(ta, false);
 	EXPECT_FALSE(r.isAllOk());
 //	if (r.isAllOk())
 		cout << r;
-	ASSERT_EQ(1, r.getValidationResults(kBidragstrappe).size());
-	EXPECT_EQ(kValueNotAllowed, r.getValidationResults(kBidragstrappe).at(0).getValidationCode());
+	EXPECT_TRUE(r.hasMessages(kBidragstrappe, kValueNotAllowed));
 
 
 	//  now remove the last step (index!=0), and everything should be fine again
@@ -99,19 +97,4 @@ TEST_F(ContributionLadder_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Ingen) {
 	EXPECT_TRUE(r.isAllOk());
 //	if (!r.isAllOk())
 		cout << r;
-}
-
-TEST_F(ContributionLadder_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Alder) {
-	RuleEngine::_printDebugAtValidation = true;
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
-	ta.setValue(kBidragsstigningsform, "Alder" );
-
-	auto r = re.validate(ta, false);
-	EXPECT_FALSE(r.isAllOk());
-//	if (r.isAllOk())
-		cout << r;
-	ASSERT_EQ(1, r.getValidationResults(kBidragstrappe).size());
-	EXPECT_EQ(kProductElementRequired, r.getValidationResults(kBidragstrappe).at(0).getValidationCode());
-
-//	ta.addContributionStep( {} );
 }

@@ -16,6 +16,11 @@
 
 namespace sbx {
 const std::string kBidragstrappe_VARNAME = "Bidragstrappe";
+const std::string kAftaleIkraftdato_VARNAME = "AftaleIkraftdato";
+
+const unsigned short kSamlet_Bidragsprocent_ProductOid { 76 };
+const unsigned short kIkraftdato_Nuvaerende_ProductOid { 58 };
+
 
 namespace utils {
 

@@ -664,8 +664,17 @@
             ],
 	        "negativeRuleCatalogue": []
          },
-         
-         
+         {
+		    "id": "33.1",
+	        "comments" : "Contribution ladder Alder - first step should be higher than mandatory contribution",
+	        "expr": "Bidragstrappe[0,1] + Bidragstrappe[0,2] >= ((Hospitalsdaekning_MK == true) ? rc_BidragInklHospdaekningPctMin_min : rc_BidragsEksklHospdaekningPctMin_min)",
+	        "productElementOids": [ 999 ],
+   		    "requiredif": "#parent#",
+	   	    "positiveMessage": "",
+	       	"negativeMessage": "Den totale procent skal vaere storre end %1",
+	        "negativeValCode": 102,
+			"positiveRuleCatalogue": []
+         },
 		 {
          	"comments" : "Salary Page: Contribution Ladder Ingen",
          	
@@ -716,17 +725,89 @@
 	        	{
 		            "id": "33.3.1",
 		            "comments" : "Contribution ladder Alder - first step rule",
-	    	        "expr": "Bidragstrappe[0,0] >= 18",
+	    	        "expr": "Bidragstrappe[0,0] == IndmeldelsesAlder",
 		   	        "productElementOids": [ 999 ],
    	    		    "requiredif": "#parent#",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Der foerste trin skal starte med 18 aar eller derover",
+	            	"negativeMessage": "Der foerste trin skal starte med tidligste indmeldelsesalder",
 	            	"negativeValCode": 101,
 					"positiveRuleCatalogue": []
         	    },
         	    {
 		            "id": "33.3.2",
 		            "comments" : "Contribution ladder Alder - atleast one step",
+	    	        "expr": "sizeof(Bidragstrappe) >= 1",
+		   	        "productElementOids": [ 999 ],
+   	    		    "requiredif": "#parent#",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Der skal mindst vaere et trin",
+	            	"negativeValCode": 101,
+					"positiveRuleCatalogue": []
+        	    }
+            ],
+	        "negativeRuleCatalogue": []
+         },
+		 {
+         	"comments" : "Salary Page: Contribution Ladder - Anciennitet",
+         	
+            "id": "33.4",
+            "expr": "Bidragsstigningsform == \"Anciennitet\"",
+   	        "productElementOids": [ 149 ],
+   	        "requiredif": "",
+            "positiveMessage": "",
+            "negativeMessage": "",
+            "positiveRuleCatalogue": 
+            [
+	        	{
+		            "id": "33.4.1",
+		            "comments" : "Contribution ladder Anciennitet - first step rule",
+	    	        "expr": "Bidragstrappe[0,0] == 0",
+		   	        "productElementOids": [ 999 ],
+   	    		    "requiredif": "#parent#",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Der foerste trin skal starte med 0 ",
+	            	"negativeValCode": 101,
+					"positiveRuleCatalogue": []
+        	    },
+        	    {
+		            "id": "33.4.2",
+		            "comments" : "Contribution ladder Anciennitet - atleast one step",
+	    	        "expr": "sizeof(Bidragstrappe) >= 1",
+		   	        "productElementOids": [ 999 ],
+   	    		    "requiredif": "#parent#",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Der skal mindst vaere et trin",
+	            	"negativeValCode": 101,
+					"positiveRuleCatalogue": []
+        	    }
+            ],
+	        "negativeRuleCatalogue": []
+         },
+		 {
+         	"comments" : "Salary Page: Contribution Ladder - Date",
+         	
+            "id": "33.5",
+            "expr": "Bidragsstigningsform == \"Dato\"",
+   	        "productElementOids": [ 149 ],
+   	        "requiredif": "",
+            "positiveMessage": "",
+            "negativeMessage": "",
+            "positiveRuleCatalogue": 
+            [
+	        	{
+		            "id": "33.5.1",
+		            "comments" : "Contribution ladder Dato - first step rule",
+	    	        "expr": "Bidragstrappe[0,0] == AftaleIkraftdato",
+		   	        "productElementOids": [ 999 ],
+   	    		    "requiredif": "#parent#",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Der foerste trin skal starte med ikraftdatoen for aftalen",
+	            	"negativeValCode": 101,
+					"positiveRuleCatalogue": []
+        	    },
+        	    {
+		            "id": "33.5.2",
+		            "comments" : "Contribution ladder Dato - atleast one step",
 	    	        "expr": "sizeof(Bidragstrappe) >= 1",
 		   	        "productElementOids": [ 999 ],
    	    		    "requiredif": "#parent#",

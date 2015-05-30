@@ -64,7 +64,7 @@ void RuleConstantContainer::initConstants(const std::string& jsonContents)
 	{
 		// if we can parse the json string, then get the list of rule constants
 		_initRuleConstants(root["data"].get("ruleConstant", 0));
-		_initProducts(root["data"].get("product", 0));
+		_initProductElements(root["data"].get("product", 0));
 		_initParameters(root["data"].get("parameter", 0));
 		_initParametersToProducts(root["data"].get("parameterProduct", 0));
 	}
@@ -128,7 +128,7 @@ void RuleConstantContainer::_initRuleConstants(const Json::Value& ruleConstantLi
 /**
  * Initialise the internal map of products and product elements
  */
-void RuleConstantContainer::_initProducts(const Json::Value& products)
+void RuleConstantContainer::_initProductElements(const Json::Value& products)
 {
 
 	if (products.size() > 0)
@@ -159,24 +159,34 @@ void RuleConstantContainer::_initProducts(const Json::Value& products)
 
 					_productElementMap[peOid] = pePtr;
 					_varNameToPEOidMap[variableName] = peOid;
-
 				}
 			}
 
-			// hard code productelement for bidragstrappe (999) and set relation to product "Samlet_bidragsprocent"
-			if (productOid == 76) {
-				_productElementMap[(unsigned short) kBidragstrappe] = make_shared<sbx::ProductElement>(static_cast<unsigned short>(kBidragstrappe), kBidragstrappe_VARNAME, kBidragstrappe_VARNAME, sbx::ProductElementTypes::kUnknownPEType, 76);
-				_varNameToPEOidMap[kBidragstrappe_VARNAME] = (unsigned short) kBidragstrappe;
-				productPtr->addProductElementOid(kBidragstrappe);
-			}
+			_addFakeProductElements(productPtr);
 
 			_productsMap[productOid] = productPtr;
 		}
-
 	}
 	else
 	{
 		if (RuleConstantContainer::_printErr) cerr << "No Products found to load" << endl;
+	}
+}
+
+void RuleConstantContainer::_addFakeProductElements(std::shared_ptr<sbx::Product> productPtr)
+{
+	// hard code productelement for bidragstrappe (999) and set relation to product "Samlet_bidragsprocent"
+	if (productPtr->getOid() == sbx::kSamlet_Bidragsprocent_ProductOid) {
+		_productElementMap[(unsigned short) sbx::ProductElementOid::kBidragstrappe] = make_shared<sbx::ProductElement>(static_cast<unsigned short>(sbx::ProductElementOid::kBidragstrappe), kBidragstrappe_VARNAME, kBidragstrappe_VARNAME, sbx::ProductElementTypes::kUnknownPEType, kSamlet_Bidragsprocent_ProductOid);
+		_varNameToPEOidMap[kBidragstrappe_VARNAME] = (unsigned short) sbx::ProductElementOid::kBidragstrappe;
+		productPtr->addProductElementOid(sbx::ProductElementOid::kBidragstrappe);
+	}
+
+	// hardcode product element for AftaleIkraftdato (998) and set relation to product "Ikraftdato_Nuvaerende"
+	if (productPtr->getOid() == sbx::kIkraftdato_Nuvaerende_ProductOid) {
+		_productElementMap[(unsigned short) sbx::ProductElementOid::kAftaleIkraftdato] = make_shared<sbx::ProductElement>(static_cast<unsigned short>(sbx::ProductElementOid::kAftaleIkraftdato), kAftaleIkraftdato_VARNAME, kAftaleIkraftdato_VARNAME, sbx::ProductElementTypes::kLong, kIkraftdato_Nuvaerende_ProductOid);
+		_varNameToPEOidMap[kAftaleIkraftdato_VARNAME] = (unsigned short) sbx::ProductElementOid::kAftaleIkraftdato;
+		productPtr->addProductElementOid(sbx::ProductElementOid::kAftaleIkraftdato);
 	}
 }
 

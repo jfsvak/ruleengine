@@ -134,7 +134,7 @@ std::vector<sbx::ValidationResult> ValidationResults::_getSubSet(const std::mult
  * returns true if one or more messages exists for that peOid with that validation code
  * otherwise return false
  */
-bool sbx::ValidationResults::hasMessages(unsigned short peOid, sbx::ValidationCode validationCode) const
+bool ValidationResults::hasMessages(unsigned short peOid, sbx::ValidationCode validationCode) const
 {
 	if ( _validationResultMap.find(peOid) != _validationResultMap.cend() )
 	{
@@ -155,7 +155,7 @@ bool sbx::ValidationResults::hasMessages(unsigned short peOid, sbx::ValidationCo
  * returns true if one or more warnings exists for that peOid with that validation code
  * otherwise return false
  */
-bool sbx::ValidationResults::hasWarnings(unsigned short peOid, sbx::ValidationCode validationCode) const
+bool ValidationResults::hasWarnings(unsigned short peOid, sbx::ValidationCode validationCode) const
 {
 	if ( _warningsMap.find(peOid) != _warningsMap.cend() )
 	{

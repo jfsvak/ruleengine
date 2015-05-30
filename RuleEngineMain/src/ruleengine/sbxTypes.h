@@ -80,6 +80,8 @@ enum ProductElementOid : unsigned short {
 			kBoerneSumSpaendBl						= 93,
 			kBoerneUdloebsalder						= 94,
 			kStandardProduct						= 95,
+			kKritiskSygdom_MK						= 96,
+			kHospitalsdaekning_MK					= 97,
 
 			kAnciennitetTidlArbejdsplads			= 109,
 
@@ -159,6 +161,7 @@ enum ProductElementOid : unsigned short {
 
 
 			// artificial pe
+			kAftaleIkraftdato						= 998,
 			kBidragstrappe							= 999
 };
 

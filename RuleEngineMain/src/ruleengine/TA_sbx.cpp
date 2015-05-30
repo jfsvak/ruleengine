@@ -9,6 +9,7 @@
 
 #include <iomanip>
 #include <map>
+#include <stdlib.h>
 #include <string>
 #include <sstream>
 
@@ -53,6 +54,14 @@ TA& TA::setValue(unsigned short productElementOid, double value)
 }
 
 TA& TA::setValue(unsigned short productElementOid, long value)
+{
+	// TODO xjes find better way to convert long to string
+	std::stringstream s {};
+	s << value;
+	return this->setValue(productElementOid, s.str());
+}
+
+TA& TA::setValue(unsigned short productElementOid, int value)
 {
 	// TODO xjes find better way to convert long to string
 	std::stringstream s {};

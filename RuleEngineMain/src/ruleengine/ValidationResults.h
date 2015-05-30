@@ -34,7 +34,6 @@ public:
 	std::vector<sbx::ValidationResult> getValidationResults(unsigned short peOid);
 	std::vector<sbx::ValidationResult> getWarnings(unsigned short peOid);
 
-
 	int sizeValidationResults() const;
 	int sizeWarnings() const;
 

@@ -375,10 +375,10 @@ void RuleEngine::_loadParser(const TA& ta)
 }
 
 /**
- * Creating a 3 x n (x,y) matrix to hold contributions
+ * Creating a 3 x n (y,x) matrix to hold contributions
  *
- * x = column
  * y = row, idx (Ingen, Age, Senority, Year (20150612)
+ * x = column
  *
  * Senority:
  *
@@ -396,7 +396,7 @@ void RuleEngine::_loadParser(const TA& ta)
  *   20 |   4.5  |  5.5
  *   25 |   5.5  |  6.5
  *
- * so (2,2) = compPct == 6.5
+ * so (1,2) = compPct == 6.5
  */
 void RuleEngine::_loadLadder(const TA& ta)
 {
@@ -482,17 +482,25 @@ sbx::ValidationResults RuleEngine::validate(const TA& ta, const std::vector<unsi
 
 		// Even if the value doesn't exists on the TA, we still run custom rules, as there might be
 		//   custom calculations to run and validate, such as DoedSpaendPct etc.
-		// Validate custom rules uses muParser and rules loaded from rule catalogue. It also runs requiredif-rule
-		//   It's safe to run the requiredif rules again, in addition to the above _isRequired(),
-		//   since we in the below case of _validateCustomRules assume that the values are on the TA.
-		//   If they are not, the requiredif rule will not evaluate but throw an exception and will be handled as a warning,
-		//   not a validation error
 		_validateCustomRules(peOid, valResults);
 
 		if (peOid == sbx::ProductElementOid::kBidragstrappe)
 		{
-			// TODO do matrix validation here for the contribution ladder
+			double previousStepTotal {0};
 
+			// TODO do matrix validation here for the contribution ladder
+			// loop through the steps and validate each step expecting increasing totals
+			for (auto& step : ta.getContributionLadder()) {
+				double total {step.employeePct() + step.companyPct()};
+
+				if (total < previousStepTotal) {
+					valResults.addValidationResult(
+							sbx::ValidationResult(sbx::kValueUnderLimit, peOid, _VAR_NAME(peOid), "Den totale bidragsprocent skal vaere stigende"));
+					break;
+				}
+
+				previousStepTotal = total;
+			}
 		}
 	}
 
