@@ -93,7 +93,7 @@ namespace sbx {
   long Constant::longValue() const
   {
 	  // convert string into a long value
-	  return atol(_stringValue.c_str());
+	  return stol(_stringValue);
   }
 
   /**
@@ -102,7 +102,7 @@ namespace sbx {
   double Constant::doubleValue() const
   {
 	  // convert string into a double value
-      return atof(_stringValue.c_str());
+      return stod(_stringValue);
   }
 
   /**
