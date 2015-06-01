@@ -87,6 +87,11 @@ std::string get_file_contents(const char *filename)
     ta.addContributionStep(step);
 }
 
+-(void)removeContributionStep:(int8_t)index employeePct:(double)employeePct companyPct:(double)companyPct {
+    sbx::ContributionStep step(index, employeePct, companyPct);
+    ta.removeContributionStep(step);
+}
+
 #pragma mark - value setters
 
 -(void)setStringValue:(NSString*)value forPE:(unsigned short) peOid {
@@ -316,6 +321,10 @@ std::string get_file_contents(const char *filename)
                 [allResults addObject:r];
             }
         }
+        
+        if (printDebug) {
+            re.printVariablesInParser();
+        }
     } catch (const std::exception &error) {
         NSLog(@"validatePE:%zd -> %s", peOid, error.what());
         re.printVariablesInParser();
@@ -362,6 +371,10 @@ std::string get_file_contents(const char *filename)
                 [allResults addObject:r];
             }
         }
+        
+        if (printDebug) {
+            re.printVariablesInParser();
+        }
     } catch (const std::exception &error) {
         NSLog(@"validatePEList:%@ -> %s", peList, error.what());
         re.printVariablesInParser();
@@ -403,6 +416,10 @@ std::string get_file_contents(const char *filename)
                 r.oid = result.first;
                 [allResults addObject:r];
             }
+        }
+        
+        if (printDebug) {
+            re.printVariablesInParser();
         }
     } catch (const std::exception &error) {
         NSLog(@"validateTAFull:%d -> %s", full, error.what());
