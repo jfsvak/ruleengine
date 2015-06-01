@@ -329,7 +329,7 @@
 				},
             	{
 		            "id": "24.1.1",
-		            "comments" : "requiredif placeholder",
+		            "comments" : "InvalidesumBlMin - requiredif placeholder",
 	    	        "expr": "",
 	    	        "productElementOids": [ 76 ],
 	    	        "requiredif": "#parent#",
@@ -338,7 +338,7 @@
             	},
 				{
 		            "id": "24.1.2",
-		            "comments" : "requiredif placeholder",
+		            "comments" : "InvalidesumBlMax - requiredif placeholder",
 	    	        "expr": "",
 	    	        "productElementOids": [ 77 ],
 	    	        "requiredif": "#parent#",

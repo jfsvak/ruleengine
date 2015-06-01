@@ -936,6 +936,9 @@ sbx::ValidationResults RuleEngine::validate(const sbx::TA& ta, bool full)
 									// for all rules in the positive rule catalogue
 									for ( auto ruleFromPositiveCatalogue : parentRule->getPositiveRuleCatalogue()->getRules())
 									{
+										// TODO run the ruleFromPositiveCatalogue
+//										_executeRule(peOid, ruleFromPositiveCatalogue, valResults);
+
 										// if there is a requiredif rule and it has an expr...
 										if ( ruleFromPositiveCatalogue->getRequiredIfRule() != nullptr && ruleFromPositiveCatalogue->getRequiredIfRule()->getExpr() != "" )
 										{
