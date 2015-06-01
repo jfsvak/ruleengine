@@ -37,26 +37,6 @@ protected:
     RuleEngine re;
 };
 
-class Doedsfaldsdaekning_KI_OSV_Over_99 : public ::testing::Test  {
-protected:
-    virtual void SetUp() {
-    	RuleEngine::_printDebugAtValidation = false;
-    	re = RuleEngine();
-        re.initConstants(get_file_contents("basedata-ruleconstants.json"));
-        re.parseRuleCatalogueJSON(get_file_contents("rule-catalogue.json"));
-
-        KonceptInfo ki {19, // UnderkonceptOid:OSV >99
-        	{ { 11, "true"}, // Parameter-Basis
-        	  {  1, "true"}, // Solidarisk faellestarif
-			  { 15, "true"}, // FG_Span
-			  {  6, "true"} // SEB Firmapensionspulje
-        	} };
-        re.initContext(ki);
-    }
-
-    RuleEngine re;
-};
-
 TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_I_Kr_Ingen) {
 	RuleEngine::_printDebugAtValidation = true;
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
