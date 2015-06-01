@@ -213,7 +213,7 @@ TEST_F(Incremental_TA_CONTEXT_KI_OSV_25_50, Incremental_TA_POSITIVE) {
 	EXPECT_EQ(sbx::ValidationCode::kValueNotAllowed, r.getValidationResults(kLoenDefinition).at(0).getValidationCode());
 	ta.setValue(kLoenDefinition, re.getDefaultValue(kLoenDefinition)->stringValue());
 
-	ta.setValue(kLoenRegulering, "december");
+	ta.setValue(kLoenRegulering, "garbage");
 	r = re.validate(ta, full);
 	EXPECT_FALSE(r.isAllOk());
 	if (r.isAllOk()) cout << r;
@@ -238,24 +238,21 @@ TEST_F(Incremental_TA_CONTEXT_KI_OSV_25_50, Incremental_TA_POSITIVE) {
 	ta.setValue(kBidragsstigningsform, "Ingen");
 	ta.addContributionStep({0, 2, 2});
 
-	ta.setValue(kPrivate_Taxed_MK, true);
-	r = re.validate(ta, full);
+	ta.setValue(kPrivate_Taxed_MK, true); // set privately taxed but no value for premium
+	r = re.validate(ta, full); // ...and expect to fail
 	EXPECT_FALSE(r.isAllOk());
 	if (r.isAllOk()) cout << r;
 	ASSERT_EQ(1, r.getValidationResults(kPrivate_Premium_BL).size());
 	EXPECT_EQ(sbx::ValidationCode::kProductElementRequired, r.getValidationResults(kPrivate_Premium_BL).at(0).getValidationCode());
-	ta.setValue(kPrivate_Premium_BL, (double) 150234.5);
-	r = re.validate(ta, full);
+
+	ta.setValue(kPrivate_Premium_BL, (double) 150234.5); // set a premium ...
+	r = re.validate(ta, full); // ... and expect not to fail
 	EXPECT_TRUE(r.isAllOk());
 	if (!r.isAllOk()) cout << r;
 
-	ta.setValue(kBidragEjFoesteTrin_MK, true);
+	ta.setValue(kBidragEjFoesteTrin_MK, true); // set the
 	r = re.validate(ta, full);
 	EXPECT_TRUE(r.isAllOk());
 	if (!r.isAllOk()) cout << r;
-
-	// how to validate incoming contribution ladder?
-
-
 
 }

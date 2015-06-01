@@ -106,7 +106,7 @@
          {
             "id": "23.1",
 
-         	"comments" : "*** empty for now, please fill up *** Product Page: Invaliditetsdaekning (TAE) Procent",
+         	"comments" : "please fill up *** Product Page: Invaliditetsdaekning (TAE) Procent",
 
             "expr": "",
             "productElementOids": [  ],
@@ -631,7 +631,7 @@
          	"comments" : "Salary Page: ",
          	
             "id": "31.1",
-            "expr": "LoenRegulering == \"januar\" or LoenRegulering == \"februar\"",
+            "expr": "toupper(LoenRegulering) == \"JANUAR\" or toupper(LoenRegulering) == \"FEBRUAR\" or toupper(LoenRegulering) == \"MARTS\" or toupper(LoenRegulering) == \"APRIL\" or toupper(LoenRegulering) == \"MAJ\" or toupper(LoenRegulering) == \"JUNI\" or toupper(LoenRegulering) == \"JULI\" or toupper(LoenRegulering) == \"AUGUST\" or toupper(LoenRegulering) == \"SEPTEMBER\" or toupper(LoenRegulering) == \"OKTOBER\" or toupper(LoenRegulering) == \"NOVEMBER\" or toupper(LoenRegulering) == \"DECEMBER\"",
    	        "productElementOids": [ 147 ],
    	        "requiredif": "",
             "positiveMessage": "",

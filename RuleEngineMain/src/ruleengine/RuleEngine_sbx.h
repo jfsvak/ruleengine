@@ -105,6 +105,7 @@ private:
 	void _clearContext();
 
 	std::set<unsigned short, std::less<unsigned short>> _getAllowedPEOids();
+	std::string getConstFromParser(const std::string& constName);
 
 	void _defineConstant(const std::string& name, double constant);
 

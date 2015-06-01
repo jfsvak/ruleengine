@@ -477,7 +477,7 @@ sbx::ValidationResults RuleEngine::validate(const TA& ta, const std::vector<unsi
 			// If it's required and missing, then add msg
 			std::shared_ptr<sbx::Rule> requiredIfRule = _isRequired(peOid, valResults);
 			if ( requiredIfRule != nullptr )
-				valResults.addWarning( sbx::ValidationResult(sbx::ValidationCode::kProductElementRequired, peOid, _VAR_NAME(peOid), "Value not found on TA", requiredIfRule->getRuleId(), requiredIfRule->getExpr()) );
+				valResults.addWarning( sbx::ValidationResult(sbx::ValidationCode::kProductElementRequired, peOid, _VAR_NAME(peOid), "Vaerdi for [" + _VAR_NAME(peOid) + "] ikke angivet", requiredIfRule->getRuleId(), requiredIfRule->getExpr()) );
 		}
 
 		// Even if the value doesn't exists on the TA, we still run custom rules, as there might be
@@ -558,7 +558,7 @@ void RuleEngine::_validateMinMax(const sbx::ProductElementValue& pev, sbx::Valid
 
 		if (!result.GetBool()) {
 			// value was not greater or equal to min
-			r.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kValueUnderLimit, peOid, _VAR_NAME(peOid), "Value is under the limit", "", expr) );
+			r.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kValueUnderLimit, peOid, _VAR_NAME(peOid), "Vaerdien [" + pev.stringValue() + "] for [" + _VAR_NAME(peOid) + "] maa ikke vaere mindre end [" + this->getConstFromParser(sbx::utils::constructRCName(_PE(peOid), sbx::ComparisonTypes::kMin)) + "]", "", expr) );
 		}
 	} catch (const mup::ParserError& e) {
 		sbx::mubridge::handle(e, r, _container);
@@ -571,7 +571,7 @@ void RuleEngine::_validateMinMax(const sbx::ProductElementValue& pev, sbx::Valid
 
 		if (!result.GetBool()) {
 			// value was not lesser or equal to max
-			r.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kValueOverLimit, peOid, _VAR_NAME(peOid), "Value is over the limit", "", expr) );
+			r.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kValueOverLimit, peOid, _VAR_NAME(peOid), "Vaerdien [" + pev.stringValue() + "] for [" + _VAR_NAME(peOid) + "] maa ikke overstiger [" + this->getConstFromParser(sbx::utils::constructRCName(_PE(peOid), sbx::ComparisonTypes::kMax)) + "]", "", expr) );
 		}
 	} catch (const mup::ParserError& e) {
 		sbx::mubridge::handle(e, r, _container);
@@ -1034,6 +1034,23 @@ std::shared_ptr<sbx::Constant> RuleEngine::getDefaultValue(sbx::ProductElementOi
 	}
 
 	return options.back();
+}
+
+std::string RuleEngine::getConstFromParser(const std::string& constName)
+{
+	try {
+		mup::var_maptype vmap = _parser.GetConst();
+		for (mup::var_maptype::iterator item = vmap.begin(); item != vmap.end(); ++item) {
+			if (item->first == constName)
+				return ((mup::Value&) (*(item->second))).GetString();
+		}
+	}
+	catch (const mup::ParserError &e) {
+		sbx::mubridge::handle(e);
+	}
+
+	// no value found, so return dummy string
+	return "<ingen vaerdi>";
 }
 
 void RuleEngine::printVariablesInParser() { _printVariablesInParser(_parser); }
