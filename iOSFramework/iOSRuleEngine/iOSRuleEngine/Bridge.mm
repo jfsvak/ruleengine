@@ -87,6 +87,11 @@ std::string get_file_contents(const char *filename)
     ta.addContributionStep(step);
 }
 
+-(void)removeContributionStep:(int8_t)index employeePct:(double)employeePct companyPct:(double)companyPct {
+    sbx::ContributionStep step(index, employeePct, companyPct);
+    ta.removeContributionStep(step);
+}
+
 #pragma mark - value setters
 
 -(void)setStringValue:(NSString*)value forPE:(unsigned short) peOid {
@@ -149,8 +154,8 @@ std::string get_file_contents(const char *filename)
                     break;
             }
         }
-    } catch (std::exception error) {
-        NSLog(@"getAllowedValuesFor:%zd -> %s", oid, error.std::exception::what());
+    } catch (const std::exception &error) {
+        NSLog(@"getAllowedValuesFor:%zd -> %s", oid, error.what());
     } catch (mup::ParserError error) {
         NSLog(@"getAllowedValuesFor:%zd -> mup::ParserError %s", oid, error.GetMsg().c_str());
     } catch (...) {
@@ -186,8 +191,8 @@ std::string get_file_contents(const char *filename)
         for (std::shared_ptr<sbx::Constant> constant : list) {
             [result addObject:[NSString stringWithCString:constant->stringValue().c_str() encoding:NSUTF8StringEncoding]];
         }
-    } catch (std::exception error) {
-        NSLog(@"getAllowedValuesFor:%zd -> %s", oid, error.std::exception::what());
+    } catch (const std::exception &error) {
+        NSLog(@"getAllowedValuesFor:%zd -> %s", oid, error.what());
     } catch (mup::ParserError error) {
         NSLog(@"getAllowedValuesFor:%zd -> mup::ParserError %s", oid, error.GetMsg().c_str());
     } catch (...) {
@@ -206,8 +211,8 @@ std::string get_file_contents(const char *filename)
     try {
         std::shared_ptr<sbx::Constant> constant = re.getDefaultValue(peOid);
         result = [NSString stringWithCString:constant->stringValue().c_str() encoding:NSUTF8StringEncoding];
-    } catch (std::exception error) {
-        NSLog(@"getDefaultValueFor:%zd -> %s", oid, error.std::exception::what());
+    } catch (const std::exception &error) {
+        NSLog(@"getDefaultValueFor:%zd -> %s", oid, error.what());
         re.printVariablesInParser();
     } catch (mup::ParserError error) {
         NSLog(@"getDefaultValueFor:%zd -> mup::ParserError %s", oid, error.GetMsg().c_str());
@@ -228,8 +233,8 @@ std::string get_file_contents(const char *filename)
     try {
         std::shared_ptr<sbx::Constant> constant = re.getDefaultValue(peOid);
         result = [NSNumber numberWithBool:constant->boolValue()];
-    } catch (std::exception error) {
-        NSLog(@"getDefaultValueFor:%zd -> %s", oid, error.std::exception::what());
+    } catch (const std::exception &error) {
+        NSLog(@"getDefaultValueFor:%zd -> %s", oid, error.what());
         re.printVariablesInParser();
     } catch (mup::ParserError error) {
         NSLog(@"getDefaultValueFor:%zd -> mup::ParserError %s", oid, error.GetMsg().c_str());
@@ -250,8 +255,8 @@ std::string get_file_contents(const char *filename)
     try {
         std::shared_ptr<sbx::Constant> constant = re.getDefaultValue(peOid);
         result = [NSNumber numberWithLong:constant->longValue()];
-    } catch (std::exception error) {
-        NSLog(@"getDefaultValueFor:%zd -> %s", oid, error.std::exception::what());
+    } catch (const std::exception &error) {
+        NSLog(@"getDefaultValueFor:%zd -> %s", oid, error.what());
         re.printVariablesInParser();
     } catch (mup::ParserError error) {
         NSLog(@"getDefaultValueFor:%zd -> mup::ParserError %s", oid, error.GetMsg().c_str());
@@ -272,8 +277,8 @@ std::string get_file_contents(const char *filename)
     try {
         std::shared_ptr<sbx::Constant> constant = re.getDefaultValue(peOid);
         result = [NSNumber numberWithDouble:constant->doubleValue()];
-    } catch (std::exception error) {
-        NSLog(@"getDefaultValueFor:%zd -> %s", oid, error.std::exception::what());
+    } catch (const std::exception &error) {
+        NSLog(@"getDefaultValueFor:%zd -> %s", oid, error.what());
         re.printVariablesInParser();
     } catch (mup::ParserError error) {
         NSLog(@"getDefaultValueFor:%zd -> mup::ParserError %s", oid, error.GetMsg().c_str());
@@ -316,8 +321,12 @@ std::string get_file_contents(const char *filename)
                 [allResults addObject:r];
             }
         }
-    } catch (std::exception error) {
-        NSLog(@"validatePE:%zd -> %s", peOid, error.std::exception::what());
+        
+        if (printDebug) {
+            re.printVariablesInParser();
+        }
+    } catch (const std::exception &error) {
+        NSLog(@"validatePE:%zd -> %s", peOid, error.what());
         re.printVariablesInParser();
     } catch (mup::ParserError error) {
         NSLog(@"validatePE:%zd -> mup::ParserError %s", peOid, error.GetMsg().c_str());
@@ -362,8 +371,12 @@ std::string get_file_contents(const char *filename)
                 [allResults addObject:r];
             }
         }
-    } catch (std::exception error) {
-        NSLog(@"validatePEList:%@ -> %s", peList, error.std::exception::what());
+        
+        if (printDebug) {
+            re.printVariablesInParser();
+        }
+    } catch (const std::exception &error) {
+        NSLog(@"validatePEList:%@ -> %s", peList, error.what());
         re.printVariablesInParser();
     } catch (mup::ParserError error) {
         NSLog(@"validatePEList:%@ -> mup::ParserError %s", peList, error.GetMsg().c_str());
@@ -404,8 +417,12 @@ std::string get_file_contents(const char *filename)
                 [allResults addObject:r];
             }
         }
-    } catch (std::exception error) {
-        NSLog(@"validateTAFull:%d -> %s", full, error.std::exception::what());
+        
+        if (printDebug) {
+            re.printVariablesInParser();
+        }
+    } catch (const std::exception &error) {
+        NSLog(@"validateTAFull:%d -> %s", full, error.what());
         re.printVariablesInParser();
     } catch (mup::ParserError error) {
         NSLog(@"validateTAFull:%d -> mup::ParserError %s", full, error.GetMsg().c_str());
