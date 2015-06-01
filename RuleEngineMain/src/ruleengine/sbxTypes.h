@@ -49,14 +49,23 @@ enum ProductElementOid : unsigned short {
 			kDoedSkattekode							= 5,
 			kDoedPctGrMin							= 6,
 			kDoedPctOblMax							= 7,
+			kDoedAbsolutMaxSoli						= 8,
 			kDoedSpaendPct							= 9,
-			kTaeBlGrMin								= 14,
-			kTaeBlOblMax							= 15,
-			kTaeSpaendBl							= 16,
+			kTAEPctGrMin							= 10,
+			kTAEPctOblMax							= 11,
+			kTAESpaendPct							= 12,
+			kTAESoliMax								= 13,
+			kTAEBlGrMin								= 14,
+			kTAEBlOblMax							= 15,
+			kTAESpaendBl							= 16,
 
+			kTAETilfirma_MK							= 24,
 			kbagud_mk								= 39,
 
+			kRetVedInv								= 42,
+
 			kIndmeldelsesAlder						= 57,
+
 			kAnciennitet							= 59,
 
 			kGrpElever								= 61,
@@ -67,14 +76,27 @@ enum ProductElementOid : unsigned short {
 			kEjIndmeldelseOverAlder					= 66,
 			kIkraftDato								= 68,
 
+			kTAE_Udlobsalder						= 70,
 			kUdlobsalder_Pension					= 71,
 			kTraditionel_MK							= 72,
 			kLink_MK								= 73,
 			kMarkedspension_MK						= 74,
 			kTidspensionMedGaranti_MK				= 75,
+			kInvalidesumBlMin						= 76,
+			kInvalidesumBlMax						= 77,
+			kInvalidesumSpaendBl					= 78,
+			kInvalidesumPctMin						= 79,
+			kInvalidesumPctMax						= 80,
+			kInvalidesumSpaendPct					= 81,
 			kDoedReguleringskode					= 82,
+			kTAEReguleringskode						= 83,
+			kGrpIndgaarIDepotsikring_MK				= 84,
 			kBoerneRentePctMin						= 85,
+			kBoerneRentePctMax						= 86,
+			kBoerneRenteSpaendPct					= 87,
 			kBoerneRenteBlMin						= 88,
+			kBoerneRenteBlMax						= 89,
+			kBoerneRenteSpaendBl					= 90,
 			kBoerneSumBlMin							= 91,
 			kBoerneSumBlMax							= 92,
 			kBoerneSumSpaendBl						= 93,
@@ -85,6 +107,7 @@ enum ProductElementOid : unsigned short {
 
 			kAnciennitetTidlArbejdsplads			= 109,
 
+			kTAEDaekningstype						= 138,
 			kDoedDaekningstype						= 139,
 
 			kLoenDefinition							= 146,
@@ -98,12 +121,10 @@ enum ProductElementOid : unsigned short {
 			kAttestGrFaktor							= 155,
 			kBidragInklHospdaekningPctMin			= 156,
 			kBidragsEksklHospdaekningPctMin			= 157,
-
-
-
 			kHelbredsopl_frivilligbidrag_indenfor_spaend	= 158,
 
 			kOmtegning_MK							= 160,
+			kRisikoGruppe							= 161,
 
 			kUdbetalingsperiode						= 174,
 			kMaxAndelLinkBidragPCT					= 184,
@@ -140,10 +161,25 @@ enum ProductElementOid : unsigned short {
 			kGrpSkatPrivateIndehaver				= 235,
 			kOmtegndato								= 236,
 			kOmtegnperiode							= 237,
+			kInvalidesumUdlobsalder					= 238,
 
+			kHospitalsdaekningLeverandoer			= 243,
+			kHospitalsdaekningFrivillig_MK			= 244,
+			kMaks_Pensionsgivende_Loen_MK			= 245,
+			kMaks_Pensionsgivende_Loen				= 246,
+			kInvalidesumSuppldaekn_MK				= 247,
 			kModetype								= 248,
 			kModearrangor							= 249,
 
+			kHelbred_leverandorskift				= 251,
+			kFagspec_mk								= 252,
+			kKortTAE_Daekning						= 253,
+			kKortTAE_Min_obl_faktor					= 254,
+			kKortTAE_Daekningsperiode				= 255,
+			kKortTAE_Tegningsmax_faktor				= 256,
+			kKortTAE_Max_obl_faktor					= 257,
+			kKortTAE_Tegningsmax_bl					= 258,
+			kKortTAE_MaxAfOmsaetning_pct	 		= 259,
 			kPrivate_Taxed_MK						= 260,
 			kPrivate_Premium_BL						= 261,
 			kKritiskSygBornesumBlMax				= 262,

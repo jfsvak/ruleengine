@@ -23,7 +23,7 @@ int testConstant(void) {
 	//	sbx::Constant* c_ptr;
 	//	std::vector<Constant> global_constants;
 	//	sbx::ConstantTemplate<std::string> c {"hello"};
-	sbx::Constant c { 1, 0, sbx::kTaeBlGrMin, sbx::kMin, "123.45" };
+	sbx::Constant c { 1, 0, sbx::kTAEBlGrMin, sbx::kMin, "123.45" };
 	cout << "String: " << c.stringValue() << endl;
 	cout << "Long: " << c.longValue() << endl;
 	cout << "Double: " << c.doubleValue()*2 << endl;

@@ -105,6 +105,7 @@ void RuleEngine::_initRuleCatalogue(sbx::RuleCatalogue* ruleCatalogue, const Jso
 			string positiveMessage = valueIterator->get("positiveMessage", "").asString();
 			string negativeMessage = valueIterator->get("negativeMessage", "").asString();
 			int negativeValCode = valueIterator->get("negativeValCode", 0).asInt();
+			int positiveValCode = valueIterator->get("positiveValCode", 0).asInt();
 
 			if (RuleEngine::_printDebug) { cout << "  Creating Rule [" << id << "], expr [" << expr << "]" << endl; }
 
@@ -118,6 +119,7 @@ void RuleEngine::_initRuleCatalogue(sbx::RuleCatalogue* ruleCatalogue, const Jso
 
 			rule->setNotAllowedIfRule((notallowedifexpr == "#parent#") ? ruleCatalogue->getParent() : make_shared<sbx::Rule>(id + ".NA", notallowedifexpr, nullptr, "", ""));
 			rule->setNegativeValCode(negativeValCode);
+			rule->setPositiveValCode(positiveValCode);
 
 			Json::Value requiredPEOids = valueIterator->get("preCalcRequiredPEOids", "");
 
@@ -795,14 +797,15 @@ void RuleEngine::_executeRule(unsigned short peOidBeingValidated, std::shared_pt
 		if (result.GetBool()) {
 			// only add message, if it's not empty
 			if (rule->getPositiveMessage() != "") {
-				valResult.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kFail, peOidBeingValidated, _VAR_NAME(peOidBeingValidated), rule->getPositiveMessage() +  "( from positiveMsg _executeRule(...) )", rule->getRuleId(), rule->getExpr()) );
+				sbx::ValidationCode positiveValCode = sbx::utils::toValCode(rule->getPositiveValCode(), sbx::ValidationCode::kFail);
+				valResult.addValidationResult( sbx::ValidationResult(positiveValCode, peOidBeingValidated, _VAR_NAME(peOidBeingValidated), rule->getPositiveMessage() +  " ( from positiveMsg _executeRule(...) )", rule->getRuleId(), rule->getExpr()) );
 			}
 		}
 		else {
 			// If no negative message, we don't consider the negative outcome as a failure
 			if (rule->getNegativeMessage() != "") {
 				sbx::ValidationCode negativeValCode = sbx::utils::toValCode(rule->getNegativeValCode(), sbx::ValidationCode::kFail);
-				valResult.addValidationResult( sbx::ValidationResult(negativeValCode, peOidBeingValidated, _VAR_NAME(peOidBeingValidated), rule->getNegativeMessage() +  "( from megativeMsg _executeRule(...) )", rule->getRuleId(), rule->getExpr()) );
+				valResult.addValidationResult( sbx::ValidationResult(negativeValCode, peOidBeingValidated, _VAR_NAME(peOidBeingValidated), rule->getNegativeMessage() +  " ( from megativeMsg _executeRule(...) )", rule->getRuleId(), rule->getExpr()) );
 			}
 		}
 	}
@@ -1041,8 +1044,14 @@ std::string RuleEngine::getConstFromParser(const std::string& constName)
 	try {
 		mup::var_maptype vmap = _parser.GetConst();
 		for (mup::var_maptype::iterator item = vmap.begin(); item != vmap.end(); ++item) {
-			if (item->first == constName)
-				return ((mup::Value&) (*(item->second))).GetString();
+//			cout << item->first << " == " << constName << " ? " << boolalpha << (item->first == constName) << endl;
+			if (item->first == constName) {
+				mup::Value& mupConst = (mup::Value&) (*(item->second));
+				std::stringstream ss {};
+				ss << mupConst;
+				return ss.str();
+						//((mup::Value&) (*(item->second))).GetString();
+			}
 		}
 	}
 	catch (const mup::ParserError &e) {
@@ -1050,6 +1059,7 @@ std::string RuleEngine::getConstFromParser(const std::string& constName)
 	}
 
 	// no value found, so return dummy string
+//	cout << "Could not find " << constName << endl;
 	return "<ingen vaerdi>";
 }
 

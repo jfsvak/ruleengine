@@ -133,4 +133,14 @@ void Rule::setNegativeValCode(unsigned short negativeValCode)
 	_negativeValCode = negativeValCode;
 }
 
+unsigned short Rule::getPositiveValCode() const
+{
+	return _positiveValCode;
+}
+
+void Rule::setPositiveValCode(unsigned short positiveValCode)
+{
+	_positiveValCode = positiveValCode;
+}
+
 } /* namespace sbx */

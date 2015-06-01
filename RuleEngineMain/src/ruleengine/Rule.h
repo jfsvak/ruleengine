@@ -46,6 +46,8 @@ public:
 	virtual ~Rule();
 	unsigned short getNegativeValCode() const;
 	void setNegativeValCode(unsigned short negativeValCode);
+	unsigned short getPositiveValCode() const;
+	void setPositiveValCode(unsigned short positiveValCode);
 
 private:
 	std::string _ruleId;
@@ -55,6 +57,7 @@ private:
 	std::vector<unsigned short> _preCalcRequiredPEOids;
 	std::string _positiveMessage;
 	std::string _negativeMessage;
+	unsigned short _positiveValCode;
 	unsigned short _negativeValCode;
 
 	std::shared_ptr<sbx::Rule> _requiredIfRule;
