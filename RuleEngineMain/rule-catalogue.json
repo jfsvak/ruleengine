@@ -561,6 +561,162 @@
             ],
 	        "negativeRuleCatalogue": []
          },
+         {
+            "id": "25.3",
+
+         	"comments" : "Product Page: Boernerente - Gage",
+
+            "expr": "Boernerente_Reguleringstype == \"Gage\"",
+   	        "productElementOids": [ 229 ],
+   	        "requiredif": "",
+            "positiveMessage": "",
+            "negativeMessage": "",
+            "positiveRuleCatalogue":
+	        [
+		        {
+					"id": "25.3.99",
+					"comments" : "BoerneRenteSpaendPct - pre calculation",
+					"preCalcExpr": "BoerneRenteSpaendPct = (BoerneRentePctMax-BoerneRentePctMin)",
+					"preCalcRequiredPEOids": [ 85, 86 ],
+					"expr": "",
+					"productElementOids": [ 87 ],
+					"requiredif": "",
+					"positiveMessage": "",
+					"negativeMessage": ""
+				},
+				{
+				    "id": "25.3.1",
+				    "comments" : "BoerneRentePctMin - requiredif placeholder for min pct",
+			        "expr": "",
+			        "productElementOids": [ 85 ],
+			        "requiredif": "#parent#",
+			        "positiveMessage": "",
+			        "negativeMessage": "Minimum boernerente i pct skal angives naar reguleringstype er Gage"
+		        },
+				{
+		            "id": "25.3.2",
+		            "comments" : "BoerneRentePctMax requiredif placeholder for max pct",
+	    	        "expr": "",
+		   	        "productElementOids": [ 86 ],
+   	    		    "requiredif": "#parent#",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Maksimum boernerente i procent skal angives naar reguleringstype er Gage"
+        	    },
+		        {
+		            "id": "25.3.4",
+	    	        "expr": "(BoerneRentePctMax-BoerneRentePctMin) >= rc_BoerneRenteSpaendPct_min",
+		   	        "productElementOids": [ 87 ],
+   	    		    "requiredif": "#parent#",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Spænd for boernerente i pct skal være større end %1",
+					"negativeValCode": 102
+        	    },
+		        {
+		            "id": "25.3.5",
+	    	        "expr": "(BoerneRentePctMax-BoerneRentePctMin) <= rc_BoerneRenteSpaendPct_max",
+		   	        "productElementOids": [ 87 ],
+   	    		    "requiredif": "#parent#",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Spænd for boernerente i pct må ikke overstige %1",
+					"negativeValCode": 103
+        	    }
+            ],
+	        "negativeRuleCatalogue": []
+         },
+         
+         {
+            "id": "25.4",
+
+         	"comments" : "Product Page: Boernerente - Pristal",
+
+            "expr": "Boernerente_Reguleringstype == \"Pristal\"",
+   	        "productElementOids": [ 229 ],
+   	        "requiredif": "",
+            "positiveMessage": "",
+            "negativeMessage": "",
+            "positiveRuleCatalogue":
+	        [
+		        {
+					"id": "25.4.99",
+					"comments" : "BoerneRenteSpaendBl - pre calculation",
+					"preCalcExpr": "BoerneRenteSpaendBl=(BoerneRenteBlMax-BoerneRenteBlMin)",
+					"preCalcRequiredPEOids": [ 88, 89 ],
+					"expr": "",
+					"productElementOids": [ 90 ],
+					"requiredif": "",
+					"positiveMessage": "",
+					"negativeMessage": ""
+				},
+				{
+				    "id": "25.4.1",
+				    "comments" : "BoerneRenteBlMin - requiredif placeholder for min pct",
+			        "expr": "",
+			        "productElementOids": [ 88 ],
+			        "requiredif": "#parent#",
+			        "positiveMessage": "",
+			        "negativeMessage": "Minimum boernerente i kr skal angives naar reguleringstype er Gage"
+		        },
+				{
+		            "id": "25.4.2",
+		            "comments" : "BoerneRenteBlMax requiredif placeholder for max pct",
+	    	        "expr": "",
+		   	        "productElementOids": [ 89 ],
+   	    		    "requiredif": "#parent#",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Maksimum boernerente i kr skal angives naar reguleringstype er Gage"
+        	    },
+		        {
+		            "id": "25.4.4",
+	    	        "expr": "(BoerneRenteBlMax-BoerneRenteBlMin) >= rc_BoerneRenteSpaendBl_min",
+		   	        "productElementOids": [ 90 ],
+   	    		    "requiredif": "#parent#",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Spænd for boernerente i kr skal være større end %1",
+					"negativeValCode": 102
+        	    },
+		        {
+		            "id": "25.4.5",
+	    	        "expr": "(BoerneRenteBlMax-BoerneRenteBlMin) <= rc_BoerneRenteSpaendBl_max",
+		   	        "productElementOids": [ 90 ],
+   	    		    "requiredif": "#parent#",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Spænd for boernerente i kr må ikke overstige %1",
+					"negativeValCode": 103
+        	    }
+            ],
+	        "negativeRuleCatalogue": []
+         },
+         
+         {
+			"id": "25.5.99",
+			"comments" : "BoerneSumSpaendBl - pre calculation",
+			"preCalcExpr": "BoerneSumSpaendBl=(BoerneSumBlMax-BoerneSumBlMin)",
+			"preCalcRequiredPEOids": [ 91, 92 ],
+			"expr": "",
+			"productElementOids": [ 93 ],
+			"requiredif": "",
+			"positiveMessage": "",
+			"negativeMessage": ""
+		 },
+         {
+            "id": "25.5.1",
+	        "expr": "(BoerneSumBlMax-BoerneSumBlMin) >= rc_BoerneSumSpaendBl_min",
+   	        "productElementOids": [ 93 ],
+		    "requiredif": "",
+    	    "positiveMessage": "",
+        	"negativeMessage": "Spænd for boernesum i kr skal være større end %1",
+			"negativeValCode": 102
+	     },
+         {
+            "id": "25.5.2",
+	        "expr": "(BoerneSumBlMax-BoerneSumBlMin) <= rc_BoerneSumSpaendBl_max",
+   	        "productElementOids": [ 93 ],
+		    "requiredif": "",
+    	    "positiveMessage": "",
+        	"negativeMessage": "Spænd for boernesum i kr må ikke overstige %1",
+			"negativeValCode": 103
+	     },
+	     
 		 {
 		    "id": "26.1",
 		    "comments" : "KritiskSygdom_I_FG",
@@ -725,6 +881,7 @@
 			],
 			"negativeRuleCatalogue": []
          },
+         
 		 {
 			"id": "26.2",
 		    "comments" : "KritiskSygBornesum_i_FG_mk - ",
@@ -828,6 +985,184 @@
         	    }			
 			]
 		 },
+		 
+		 
+		 
+		 {
+         	"comments" : "Product Page: Behandlingsforsikring",
+         	
+            "id": "27.1",
+            "expr": "Hospitalsdaekning_MK == true",
+   	        "productElementOids": [ 97 ],
+   	        "requiredif": "",
+            "positiveMessage": "",
+            "negativeMessage": "",
+            "positiveRuleCatalogue": 
+            [
+		        {
+		            "id": "27.1.1",
+		            "comments" : "HospitalsdaekningLeverandoer - requiredif placeholder",
+	    	        "expr": "",
+		   	        "productElementOids": [ 243 ],
+   	    		    "requiredif": "#parent#",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "",
+					"positiveRuleCatalogue": []
+        	    },
+		        {
+		            "id": "27.1.2",
+		            "comments" : "HospitalsdaekningFrivillig_MK - requiredif placeholder",
+	    	        "expr": "",
+		   	        "productElementOids": [ 244 ],
+   	    		    "requiredif": "#parent#",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "",
+					"positiveRuleCatalogue": []
+        	    }
+            ],
+	        "negativeRuleCatalogue": []
+         },
+		 
+		 
+		 
+		 {
+         	"comments" : "Product Page: Eksisterende ordninger",
+         	
+            "id": "28.1",
+            "expr": "EksisterendeOrdning_MK == true",
+   	        "productElementOids": [ 140 ],
+   	        "requiredif": "",
+            "positiveMessage": "",
+            "negativeMessage": "",
+            "positiveRuleCatalogue": 
+            [
+		        {
+		            "id": "28.1.1",
+		            "comments" : "Pensionsudbyder - requiredif placeholder",
+	    	        "expr": "",
+		   	        "productElementOids": [ 142 ],
+   	    		    "requiredif": "#parent#",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "",
+					"positiveRuleCatalogue": []
+        	    },
+		        {
+		            "id": "28.1.2",
+		            "comments" : "IndtraedelseSenere_MK - requiredif placeholder",
+	    	        "expr": "IndtraedelseSenere_MK == true",
+		   	        "productElementOids": [ 143 ],
+   	    		    "requiredif": "#parent#",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "",
+					"positiveRuleCatalogue": 
+					[
+				        {
+				            "id": "28.1.2.1",
+				            "comments" : "Indtraedelsesdato - requiredif placeholder",
+			    	        "expr": "",
+				   	        "productElementOids": [ 144 ],
+		   	    		    "requiredif": "#parent#",
+			        	    "positiveMessage": "",
+			            	"negativeMessage": "Indtraedelsesdato skal angives naar der indtraedese senere",
+							"positiveRuleCatalogue": []
+		        	    }
+					]
+        	    },
+		        {
+		            "id": "28.1.3",
+		            "comments" : "OblDaekningSammeStoerrelse_MK - requiredif placeholder",
+	    	        "expr": "",
+		   	        "productElementOids": [ 145 ],
+   	    		    "requiredif": "#parent#",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "",
+					"positiveRuleCatalogue": []
+        	    },
+		        {
+		            "id": "28.1.4",
+		            "comments" : "Helbred_leverandorskift - requiredif placeholder",
+	    	        "expr": "",
+		   	        "productElementOids": [ 251 ],
+   	    		    "requiredif": "#parent#",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "",
+					"positiveRuleCatalogue": []
+        	    }
+            ],
+	        "negativeRuleCatalogue": []
+         },
+
+
+
+		 {
+         	"comments" : "Product Page: Virksomhedsomdannelse kFusion_MK ",
+         	
+            "id": "29.1",
+            "expr": "Fusion_MK == true",
+   	        "productElementOids": [ 201 ],
+   	        "requiredif": "",
+            "positiveMessage": "",
+            "negativeMessage": "",
+            "positiveRuleCatalogue": 
+            [
+		        {
+		            "id": "29.1.1",
+		            "comments" : "FusionIndtraedelsesdato- requiredif placeholder",
+	    	        "expr": "",
+		   	        "productElementOids": [ 202 ],
+   	    		    "requiredif": "#parent#",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "",
+					"positiveRuleCatalogue": []
+        	    },
+		        {
+		            "id": "29.1.2",
+		            "comments" : "FusionTidligerePensionsordning_MK- requiredif placeholder",
+	    	        "expr": "FusionTidligerePensionsordning_MK == true",
+		   	        "productElementOids": [ 203 ],
+   	    		    "requiredif": "#parent#",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "",
+					"positiveRuleCatalogue": 
+					[
+				        {
+				            "id": "29.1.2.1",
+				            "comments" : "FusionPensionsselskab - requiredif placeholder",
+			    	        "expr": "",
+				   	        "productElementOids": [ 204 ],
+		   	    		    "requiredif": "#parent#",
+			        	    "positiveMessage": "",
+			            	"negativeMessage": "",
+							"positiveRuleCatalogue": []
+		        	    }
+					]
+        	    },
+		        {
+		            "id": "29.1.3",
+		            "comments" : "FusionOblDaekningSammeStoerrelse_MK- requiredif placeholder",
+	    	        "expr": "",
+		   	        "productElementOids": [ 205 ],
+   	    		    "requiredif": "#parent#",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "",
+					"positiveRuleCatalogue": []
+        	    },
+		        {
+		            "id": "29.1.4",
+		            "comments" : "Helbred_leverandorskift - requiredif placeholder",
+	    	        "expr": "",
+		   	        "productElementOids": [ 251 ],
+   	    		    "requiredif": "#parent#",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "",
+					"positiveRuleCatalogue": []
+        	    }
+            ],
+	        "negativeRuleCatalogue": []
+         },
+
+
+
 		 {
          	"comments" : "Salary Page: ",
          	

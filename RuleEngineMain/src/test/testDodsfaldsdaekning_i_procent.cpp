@@ -130,7 +130,7 @@ TEST_F(Doedsfaldsdaekning_I_Procent_KI_OSV_25_49, Doedfaldsdaekning_Whole_Sectio
 //	re.getContainer().printConstants(17, 5);
 //	re.getContainer().printConstants(17, 139?);
 
-	const auto& r = re.validate(ta,
+	auto r = re.validate(ta,
 			{
 			kDoedReguleringskode,
 			kDoedPctGrMin,
@@ -152,7 +152,7 @@ TEST_F(Doedsfaldsdaekning_I_Procent_KI_OSV_25_49, Doedfaldsdaekning_Whole_Sectio
 //	if (!r.isAllOk())
 		cout << r;
 
-	EXPECT_EQ(8, r.getWarnings().size());
+	EXPECT_EQ(6, r.getWarnings().size());
 }
 
 /**

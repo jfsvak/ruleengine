@@ -257,6 +257,7 @@ void RuleEngine::_executePreCalcRules()
 				_execute(ruleIt->second->getPreCalcExpr(), ruleIt->second->getRuleId());
 				_parser.EnableAutoCreateVar(false);
 			} catch (const mup::ParserError& e) {
+				_parser.EnableAutoCreateVar(false);
 				// already handled inside execute
 			}
 		}
@@ -350,6 +351,7 @@ void RuleEngine::_loadParser(const TA& ta)
 		{
 		case kDate:
 			// TODO: how to validate date??
+			_defineVariable<int>(pe.getVariableName(), pev.longValue());
 			break;
 		case kBool:
 			_defineVariable<bool>(pe.getVariableName(), pev.boolValue());
@@ -357,10 +359,12 @@ void RuleEngine::_loadParser(const TA& ta)
 		case kText:
 			_defineVariable<std::string>(pe.getVariableName(), pev.stringValue());
 			break;
-		case kLong: // fall throughs down to double
+		case kLong: // fall throughs down to long
 		case kMonth:
 		case kYear:
-		case kCurr:
+			_defineVariable<int>(pe.getVariableName(), pev.longValue());
+			break;
+		case kCurr: // fall throughs down to double
 		case kPercent:
 			_defineVariable<double>(pe.getVariableName(), pev.doubleValue());
 			break;
@@ -850,7 +854,7 @@ mup::Value RuleEngine::_execute(const std::string& expr, const std::string& rule
 		_parser.SetExpr(expr);
 		if (RuleEngine::_printDebugAtValidation) { cout << "Executing ruleId[" << ruleId << "], expr[" << expr << "]...";}
 		result = _parser.Eval();
-		if (RuleEngine::_printDebugAtValidation) { cout << "=[" << boolalpha << result.GetBool() << "]" << endl;}
+		if (RuleEngine::_printDebugAtValidation) { cout << "=[" << boolalpha << result << "]" << endl;}
 	} catch (const mup::ParserError& e)	{
 		if (RuleEngine::_printDebugAtValidation) { cout << " ... ! Exception evaluating the expression..." << endl;}
 		sbx::mubridge::handle(e);
@@ -968,8 +972,8 @@ sbx::ValidationResults RuleEngine::validate(const sbx::TA& ta, bool full)
 												// if required, then go through peOids on the ruleFromPositiveCatalogue and see if they are on the TA (or in parser)???
 												for (auto peOid : ruleFromPositiveCatalogue->getProductElementOids())
 												{
-													// if the peOid doesn't have a value on the TA, then add kProductElementRequired is that messages isn't already there
-													if ( !ta.hasValue(peOid) )
+													// if the peOid doesn't have a value on the TA or in the parser, then add kProductElementRequired if that messages isn't already there
+													if ( !_parser.IsVarDefined(_VAR_NAME(peOid)))
 													{
 														// if we haven't already concluded that the peOid is required, then add a message
 														if ( !valResults.hasMessages(peOid, sbx::ValidationCode::kProductElementRequired))

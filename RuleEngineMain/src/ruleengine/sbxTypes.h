@@ -109,7 +109,12 @@ enum ProductElementOid : unsigned short {
 
 			kTAEDaekningstype						= 138,
 			kDoedDaekningstype						= 139,
-
+			kEksisterendeOrdning_MK					= 140,
+			kTransomkostninger						= 141,
+			kPensionsudbyder						= 142,
+			kIndtraedelseSenere_MK					= 143,
+			kIndtraedelsesdato						= 144,
+			kOblDaekningSammeStoerrelse_MK			= 145,
 			kLoenDefinition							= 146,
 			kLoenRegulering							= 147,
 			kLoenreguleringsfrekvens				= 148,
@@ -131,6 +136,12 @@ enum ProductElementOid : unsigned short {
 			kUdbetalingsform						= 192,
 
 			kBoerneRenteSoliMax						= 183,
+
+			kFusion_MK								= 201,
+			kFusionIndtraedelsesdato				= 202,
+			kFusionTidligerePensionsordning_MK		= 203,
+			kFusionPensionsselskab					= 204,
+			kFusionOblDaekningSammeStoerrelse_MK	= 205,
 
 			kMaxAndelMarkedspensionBidragPct		= 208,
 			kLinkKunForEgetBidrag_MK				= 209,
