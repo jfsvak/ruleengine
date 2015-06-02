@@ -203,6 +203,51 @@ TEST_F(ContributionLadder_Alder_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Alder
 
 
 
+TEST_F(ContributionLadder_Alder_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Alder_AddAll_POSITIVE) {
+	RuleEngine::_printDebugAtValidation = true;
+	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	ta.setValue(kBidragsstigningsform, "Alder" );
+	ta.setValue(kHospitalsdaekning_MK, true);
+	ta.setValue(kHospitalsdaekningLeverandoer, "Codan");
+	ta.setValue(kHospitalsdaekningFrivillig_MK, false);
+	ta.setValue(kIndmeldelsesAlder, 18);
+
+	std::vector<sbx::ContributionStep> v { {18,1,1}, {22,4,4}, {25,4,4} };
+	ta.setContributionSteps(v);
+
+	auto r = re.validate(ta, false);
+	cout << r;
+	EXPECT_FALSE(r.isAllOk());
+
+	ASSERT_EQ(1, r.getValidationResults(kBidragstrappe).size());
+	EXPECT_TRUE(r.hasMessages(kBidragstrappe, kValueUnderLimit));
+
+	ta.setContributionSteps({ {18,3,3}, {25,4,4}, {24,3,4} });
+	r = re.validate(ta, false);
+	cout << r;
+	EXPECT_TRUE(r.isAllOk());
+}
+
+TEST_F(ContributionLadder_Alder_CONTEXT_KI_OSV_25_50, Duplicate_Alder_Index_NEGATIVE) {
+	RuleEngine::_printDebugAtValidation = true;
+	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	ta.setValue(kAftaleIkraftdato, (long) 20150601);
+	ta.setValue(kBidragsstigningsform, "Alder" );
+	ta.setValue(kHospitalsdaekning_MK, true);
+	ta.setValue(kHospitalsdaekningLeverandoer, "Codan");
+	ta.setValue(kHospitalsdaekningFrivillig_MK, false);
+	ta.setValue(kIndmeldelsesAlder, 18);
+
+	ta.setContributionSteps({ {18,3,3}, {25,4,4}, {24,3,4}, {24,3,4} });
+	auto r = re.validate(ta, false);
+	cout << r;
+	EXPECT_FALSE(r.isAllOk());
+
+	EXPECT_EQ(1, r.getValidationResults(kBidragstrappe).size());
+	EXPECT_TRUE(r.hasMessages(kBidragstrappe, kValueUnderLimit));
+
+}
+
 
 
 

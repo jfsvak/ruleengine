@@ -14,6 +14,7 @@
 #include <sstream>
 
 #include "ProductElementValue_sbx.h"
+#include "ContributionStep.h"
 
 namespace sbx {
 
@@ -109,12 +110,6 @@ sbx::ProductElementValue TA::getValue(unsigned short productElementOid) const
 	return sbx::ProductElementValue(productElementOid, "");
 }
 
-TA& TA::setCVR(const std::string& cvr)
-{
-	_cvr = cvr;
-	return *this;
-}
-
 TA& TA::setKonceptOid(unsigned short konceptOid)
 {
 	_konceptOid = konceptOid;
@@ -167,12 +162,28 @@ const std::map<unsigned short, sbx::ProductElementValue>& TA::getValues() const 
 const std::string& TA::getCVR() const { return _cvr; }
 unsigned short TA::getKonceptOid() const { return _konceptOid; }
 bool TA::hasValue(unsigned short productElementOid) const { return (_peValuesMap.find(productElementOid) != _peValuesMap.cend()); }
-const std::string& TA::getCvr() const { return _cvr;}
 TA& TA::setCvr(const std::string& cvr) { _cvr = cvr; return *this; }
 TA& TA::setUar(sbx::UnionAgreementRelationship uar) { _uar = uar; return *this; }
 TA& TA::setUnionAgreementOid(unsigned short unionAgreementOid) { _unionAgreementOid = unionAgreementOid; return *this; }
 sbx::UnionAgreementRelationship TA::getUar() const { return _uar; }
 unsigned short TA::getUnionAgreementOid() const { return _unionAgreementOid; }
+
+TA& TA::setContributionSteps(const std::vector<sbx::ContributionStep>& ladder)
+{
+	_ladder.clear();
+
+	for (const auto& step : ladder) {
+		this->addContributionStep(step);
+	}
+
+	return *this;
+}
+
+TA& TA::removeContributionSteps()
+{
+	_ladder.clear();
+	return *this;
+}
 
 TA::~TA() {}
 

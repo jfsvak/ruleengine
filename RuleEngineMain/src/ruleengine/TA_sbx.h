@@ -11,6 +11,7 @@
 #include <map>
 #include <set>
 #include <string>
+#include <vector>
 
 #include "EmploymentGroup.h"
 #include "ContributionStep.h"
@@ -25,7 +26,7 @@ public:
 	TA(const std::string& cvr, unsigned short konceptOid);
 	TA(const std::string& cvr, unsigned short konceptOid, const std::map<unsigned short, sbx::ProductElementValue>& peValues);
 
-	TA& setCVR(const std::string& cvr);
+	TA& setCvr(const std::string& cvr);
 	TA& setKonceptOid(unsigned short konceptOid);
 	TA& setValue(unsigned short productElementOid, const char* value);
 	TA& setValue(unsigned short productElementOid, bool value);
@@ -33,12 +34,13 @@ public:
 	TA& setValue(unsigned short productElementOid, double value);
 	TA& setValue(unsigned short productElementOid, long value);
 	TA& setValue(unsigned short productElementOid, int value);
-	TA& setCvr(const std::string& cvr);
 	TA& setUar(sbx::UnionAgreementRelationship uar);
 	TA& setUnionAgreementOid(unsigned short unionAgreementOid);
-
 	TA& addContributionStep(const sbx::ContributionStep&);
+	TA& setContributionSteps(const std::vector<sbx::ContributionStep>&);
 	TA& removeContributionStep(const sbx::ContributionStep& step);
+	TA& removeContributionSteps();
+
 	std::multiset<sbx::ContributionStep> getContributionLadder() const;
 
 	const std::string& getCVR() const;
@@ -46,18 +48,15 @@ public:
 	sbx::ProductElementValue& getValue(unsigned short productElementOid);
 	sbx::ProductElementValue getValue(unsigned short productElementOid) const;
 	const std::map<unsigned short, sbx::ProductElementValue>& getValues() const;
-	int getInceptionDateAsInt() const;
 
 	void remove(unsigned short peOid);
 	bool hasValue(unsigned short productElementOid) const;
 
-	const std::string& getCvr() const;
 	sbx::UnionAgreementRelationship getUar() const;
 	unsigned short getUnionAgreementOid() const;
+	const std::string& getInceptionDate() const;
 
 	virtual ~TA();
-	const std::string& getInceptionDate() const;
-	void setInceptionDate(const std::string& inceptionDate);
 
 private:
 	std::string _cvr;
