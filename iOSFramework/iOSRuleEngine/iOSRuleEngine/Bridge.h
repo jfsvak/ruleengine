@@ -38,7 +38,7 @@
 -(void)setBoolValue:(NSNumber*)value forPE:(unsigned short) peOid;
 
 -(void)addContributionStep:(int8_t)index employeePct:(double)employeePct companyPct:(double)companyPct;
--(void)removeContributionStep:(int8_t)index employeePct:(double)employeePct companyPct:(double)companyPct;
+-(void)removeAllContributionSteps;
 
 -(void)unsetPEOid:(unsigned short) peOid;
 
