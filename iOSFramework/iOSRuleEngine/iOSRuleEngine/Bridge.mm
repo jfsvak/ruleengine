@@ -87,14 +87,8 @@ std::string get_file_contents(const char *filename)
     ta.addContributionStep(step);
 }
 
--(void)removeContributionStep:(int8_t)index employeePct:(double)employeePct companyPct:(double)companyPct {
-    sbx::ContributionStep step(index, employeePct, companyPct);
-    ta.removeContributionStep(step);
-}
-
 -(void)removeAllContributionSteps {
-    auto ladder = ta.getContributionLadder();
-    ladder.clear();
+    ta.removeContributionSteps();
 }
 
 #pragma mark - value setters
@@ -215,7 +209,9 @@ std::string get_file_contents(const char *filename)
     NSString *result;
     try {
         std::shared_ptr<sbx::Constant> constant = re.getDefaultValue(peOid);
-        result = [NSString stringWithCString:constant->stringValue().c_str() encoding:NSUTF8StringEncoding];
+        if (constant != nullptr) {
+            result = [NSString stringWithCString:constant->stringValue().c_str() encoding:NSUTF8StringEncoding];
+        }
     } catch (const std::exception &error) {
         NSLog(@"getDefaultValueFor:%zd -> %s", oid, error.what());
         re.printVariablesInParser();
@@ -237,7 +233,9 @@ std::string get_file_contents(const char *filename)
     
     try {
         std::shared_ptr<sbx::Constant> constant = re.getDefaultValue(peOid);
-        result = [NSNumber numberWithBool:constant->boolValue()];
+        if (constant != nullptr) {
+            result = [NSNumber numberWithBool:constant->boolValue()];
+        }
     } catch (const std::exception &error) {
         NSLog(@"getDefaultValueFor:%zd -> %s", oid, error.what());
         re.printVariablesInParser();
@@ -259,7 +257,9 @@ std::string get_file_contents(const char *filename)
     
     try {
         std::shared_ptr<sbx::Constant> constant = re.getDefaultValue(peOid);
-        result = [NSNumber numberWithLong:constant->longValue()];
+        if (constant != nullptr) {
+            result = [NSNumber numberWithLong:constant->longValue()];
+        }
     } catch (const std::exception &error) {
         NSLog(@"getDefaultValueFor:%zd -> %s", oid, error.what());
         re.printVariablesInParser();
@@ -281,7 +281,9 @@ std::string get_file_contents(const char *filename)
     
     try {
         std::shared_ptr<sbx::Constant> constant = re.getDefaultValue(peOid);
-        result = [NSNumber numberWithDouble:constant->doubleValue()];
+        if (constant != nullptr) {
+            result = [NSNumber numberWithDouble:constant->doubleValue()];
+        }
     } catch (const std::exception &error) {
         NSLog(@"getDefaultValueFor:%zd -> %s", oid, error.what());
         re.printVariablesInParser();
