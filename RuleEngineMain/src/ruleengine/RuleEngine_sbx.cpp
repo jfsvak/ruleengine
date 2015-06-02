@@ -497,7 +497,7 @@ sbx::ValidationResults RuleEngine::validate(const TA& ta, const std::vector<unsi
 		{
 			double previousStepTotal {0};
 
-			int previousIndex {0};
+			int previousIndex {-1};
 
 			// TODO do matrix validation here for the contribution ladder
 			// loop through the steps and validate each step expecting increasing totals

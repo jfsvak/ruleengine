@@ -1202,10 +1202,10 @@
          },
          {
 		    "id": "33.1",
-	        "comments" : "Contribution ladder Alder - first step should be higher than mandatory contribution",
+	        "comments" : "Contribution ladder - first step should be higher than mandatory contribution",
 	        "expr": "Bidragstrappe[0,1] + Bidragstrappe[0,2] >= ((Hospitalsdaekning_MK == true) ? rc_BidragInklHospdaekningPctMin_min : rc_BidragsEksklHospdaekningPctMin_min)",
 	        "productElementOids": [ 999 ],
-   		    "requiredif": "#parent#",
+   		    "requiredif": "",
 	   	    "positiveMessage": "",
 	       	"negativeMessage": "Den totale procent skal vaere storre end %1",
 	        "negativeValCode": 102,

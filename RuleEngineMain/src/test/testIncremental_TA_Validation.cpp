@@ -246,6 +246,7 @@ TEST_F(Incremental_TA_CONTEXT_KI_OSV_25_50, Incremental_TA_POSITIVE) {
 	EXPECT_EQ(sbx::ValidationCode::kProductElementRequired, r.getValidationResults(kPrivate_Premium_BL).at(0).getValidationCode());
 
 	ta.setValue(kPrivate_Premium_BL, (double) 150234.5); // set a premium ...
+	ta.setValue(kHospitalsdaekning_MK, false);
 	r = re.validate(ta, full); // ... and expect not to fail
 	EXPECT_TRUE(r.isAllOk());
 	if (!r.isAllOk()) cout << r;

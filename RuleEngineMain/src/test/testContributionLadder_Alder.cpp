@@ -50,8 +50,8 @@ TEST_F(ContributionLadder_Alder_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Alder
 	EXPECT_FALSE(r.isAllOk());
 //	if (r.isAllOk())
 		cout << r;
-	ASSERT_EQ(1, r.getValidationResults(kBidragstrappe).size());
-	EXPECT_EQ(kProductElementRequired, r.getValidationResults(kBidragstrappe).at(0).getValidationCode());
+	EXPECT_EQ(1, r.getValidationResults(kBidragstrappe).size());
+	EXPECT_TRUE(r.hasMessages(kBidragstrappe, kProductElementRequired));
 
 	ta.addContributionStep( {18,2.5, 5} );
 }
@@ -68,8 +68,8 @@ TEST_F(ContributionLadder_Alder_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Alder
 	EXPECT_FALSE(r.isAllOk());
 //	if (r.isAllOk())
 		cout << r;
-	ASSERT_EQ(1, r.getValidationResults(kBidragstrappe).size());
-	EXPECT_EQ(kProductElementRequired, r.getValidationResults(kBidragstrappe).at(0).getValidationCode());
+	EXPECT_EQ(1, r.getValidationResults(kBidragstrappe).size());
+	EXPECT_TRUE(r.hasMessages(kBidragstrappe, kProductElementRequired));
 
 	ta.addContributionStep( {19, 1, 1} );
 	re.printConstantsInParser();
@@ -77,7 +77,7 @@ TEST_F(ContributionLadder_Alder_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Alder
 	EXPECT_FALSE(r.isAllOk());
 //	if (r.isAllOk())
 		cout << r;
-	ASSERT_EQ(2, r.getValidationResults(kBidragstrappe).size());
+	EXPECT_EQ(2, r.getValidationResults(kBidragstrappe).size());
 	EXPECT_TRUE(r.hasMessages(kBidragstrappe, kValueNotAllowed));
 	EXPECT_TRUE(r.hasMessages(kBidragstrappe, kValueUnderLimit));
 
@@ -100,8 +100,8 @@ TEST_F(ContributionLadder_Alder_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Alder
 	auto r = re.validate(ta, false);
 	EXPECT_FALSE(r.isAllOk());
 	cout << r;
-	ASSERT_EQ(1, r.getValidationResults(kBidragstrappe).size());
-	EXPECT_EQ(kValueUnderLimit, r.getValidationResults(kBidragstrappe).at(0).getValidationCode());
+	EXPECT_EQ(1, r.getValidationResults(kBidragstrappe).size());
+	EXPECT_TRUE(r.hasMessages(kBidragstrappe, kValueUnderLimit));
 	EXPECT_EQ("33.1", r.getValidationResults(kBidragstrappe).at(0).getRuleId());
 
 	ta.removeContributionStep( {18, 2, 1} ); // remove and set new step that equals to 4
@@ -124,8 +124,8 @@ TEST_F(ContributionLadder_Alder_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Alder
 	auto r = re.validate(ta, false);
 	EXPECT_FALSE(r.isAllOk());
 	cout << r;
-	ASSERT_EQ(1, r.getValidationResults(kBidragstrappe).size());
-	EXPECT_EQ(kValueUnderLimit, r.getValidationResults(kBidragstrappe).at(0).getValidationCode());
+	EXPECT_EQ(1, r.getValidationResults(kBidragstrappe).size());
+	EXPECT_TRUE(r.hasMessages(kBidragstrappe, kValueUnderLimit));
 	EXPECT_EQ("33.1", r.getValidationResults(kBidragstrappe).at(0).getRuleId());
 
 	ta.removeContributionStep( {18, 2, 2} ); // remove and set new step that equals to 5
@@ -178,8 +178,8 @@ TEST_F(ContributionLadder_Alder_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Alder
 	r = re.validate(ta, false);
 	EXPECT_FALSE(r.isAllOk());
 	cout << r;
-	ASSERT_EQ(1, r.getValidationResults(kBidragstrappe).size());
-	EXPECT_EQ(kValueUnderLimit, r.getValidationResults(kBidragstrappe).at(0).getValidationCode());
+	EXPECT_EQ(1, r.getValidationResults(kBidragstrappe).size());
+	EXPECT_TRUE(r.hasMessages(kBidragstrappe, kValueUnderLimit));
 }
 
 TEST_F(ContributionLadder_Alder_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Alder_Before_Indmeldelsesalder_NEGATIVE) {
@@ -196,8 +196,8 @@ TEST_F(ContributionLadder_Alder_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Alder
 	EXPECT_FALSE(r.isAllOk());
 	cout << r;
 
-	ASSERT_EQ(1, r.getValidationResults(kBidragstrappe).size());
-	EXPECT_EQ(kValueNotAllowed, r.getValidationResults(kBidragstrappe).at(0).getValidationCode());
+	EXPECT_EQ(1, r.getValidationResults(kBidragstrappe).size());
+	EXPECT_TRUE(r.hasMessages(kBidragstrappe, kValueNotAllowed));
 }
 
 
@@ -207,6 +207,7 @@ TEST_F(ContributionLadder_Alder_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Alder
 	RuleEngine::_printDebugAtValidation = true;
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
 	ta.setValue(kBidragsstigningsform, "Alder" );
+	ta.setValue(kPrivate_Taxed_MK, false);
 	ta.setValue(kHospitalsdaekning_MK, true);
 	ta.setValue(kHospitalsdaekningLeverandoer, "Codan");
 	ta.setValue(kHospitalsdaekningFrivillig_MK, false);
@@ -218,8 +219,7 @@ TEST_F(ContributionLadder_Alder_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Alder
 	auto r = re.validate(ta, false);
 	cout << r;
 	EXPECT_FALSE(r.isAllOk());
-
-	ASSERT_EQ(1, r.getValidationResults(kBidragstrappe).size());
+	EXPECT_EQ(1, r.getValidationResults(kBidragstrappe).size());
 	EXPECT_TRUE(r.hasMessages(kBidragstrappe, kValueUnderLimit));
 
 	ta.setContributionSteps({ {18,3,3}, {25,4,4}, {24,3,4} });
