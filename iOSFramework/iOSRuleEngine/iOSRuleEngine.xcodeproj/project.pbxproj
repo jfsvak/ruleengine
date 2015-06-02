@@ -953,9 +953,10 @@
 		3A5688621B0C360C009E5AB1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COPY_PHASE_STRIP = NO;
+				COPY_PHASE_STRIP = YES;
 				DEAD_CODE_STRIPPING = NO;
 				DSTROOT = /tmp/iOSRuleEngine.dst;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iOSRuleEngine/iOSRuleEngine-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
@@ -968,9 +969,10 @@
 		3A5688631B0C360C009E5AB1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COPY_PHASE_STRIP = NO;
+				COPY_PHASE_STRIP = YES;
 				DEAD_CODE_STRIPPING = NO;
 				DSTROOT = /tmp/iOSRuleEngine.dst;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iOSRuleEngine/iOSRuleEngine-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
