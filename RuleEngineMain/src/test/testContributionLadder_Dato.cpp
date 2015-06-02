@@ -114,6 +114,8 @@ TEST_F(ContributionLadder_Dato_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Dato_1
 	ta.setValue(kAftaleIkraftdato, 20150601);
 	ta.setValue(kBidragsstigningsform, "Dato" );
 	ta.setValue(kHospitalsdaekning_MK, true);
+	ta.setValue(kHospitalsdaekningLeverandoer, "Codan");
+	ta.setValue(kHospitalsdaekningFrivillig_MK, false);
 
 	ta.addContributionStep( {20150601, 2, 2} ); // == 4 which is below BidragInklHispdaekningPctMin == 5
 	auto r = re.validate(ta, false);
@@ -136,6 +138,8 @@ TEST_F(ContributionLadder_Dato_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Dato_3
 	ta.setValue(kAftaleIkraftdato, 20150601);
 	ta.setValue(kBidragsstigningsform, "Dato" );
 	ta.setValue(kHospitalsdaekning_MK, true);
+	ta.setValue(kHospitalsdaekningLeverandoer, "Codan");
+	ta.setValue(kHospitalsdaekningFrivillig_MK, false);
 
 	ta.addContributionStep( {20150601, 2.6, 3} );
 	auto r = re.validate(ta, false);
@@ -159,6 +163,8 @@ TEST_F(ContributionLadder_Dato_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Dato_3
 	ta.setValue(kAftaleIkraftdato, 20150601);
 	ta.setValue(kBidragsstigningsform, "Dato" );
 	ta.setValue(kHospitalsdaekning_MK, true);
+	ta.setValue(kHospitalsdaekningLeverandoer, "Codan");
+	ta.setValue(kHospitalsdaekningFrivillig_MK, false);
 
 	ta.addContributionStep( {20150601, 2, 3} );
 	auto r = re.validate(ta, false);

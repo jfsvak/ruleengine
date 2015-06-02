@@ -111,6 +111,8 @@ TEST_F(ContributionLadder_Anciennitet_CONTEXT_KI_OSV_25_50, Bidragsstigningsform
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
 	ta.setValue(kBidragsstigningsform, "Anciennitet" );
 	ta.setValue(kHospitalsdaekning_MK, true);
+	ta.setValue(kHospitalsdaekningLeverandoer, "Codan");
+	ta.setValue(kHospitalsdaekningFrivillig_MK, false);
 
 	ta.addContributionStep( {0, 2, 2} ); // == 4 which is below BidragInklHispdaekningPctMin == 5
 	auto r = re.validate(ta, false);
@@ -132,6 +134,8 @@ TEST_F(ContributionLadder_Anciennitet_CONTEXT_KI_OSV_25_50, Bidragsstigningsform
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
 	ta.setValue(kBidragsstigningsform, "Anciennitet" );
 	ta.setValue(kHospitalsdaekning_MK, true);
+	ta.setValue(kHospitalsdaekningLeverandoer, "Codan");
+	ta.setValue(kHospitalsdaekningFrivillig_MK, false);
 
 	ta.addContributionStep( {0, 2.6, 3} );
 	auto r = re.validate(ta, false);
@@ -154,6 +158,8 @@ TEST_F(ContributionLadder_Anciennitet_CONTEXT_KI_OSV_25_50, Bidragsstigningsform
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
 	ta.setValue(kBidragsstigningsform, "Anciennitet" );
 	ta.setValue(kHospitalsdaekning_MK, true);
+	ta.setValue(kHospitalsdaekningLeverandoer, "Codan");
+	ta.setValue(kHospitalsdaekningFrivillig_MK, false);
 
 	ta.addContributionStep( {0, 2, 3} );
 	auto r = re.validate(ta, false);
