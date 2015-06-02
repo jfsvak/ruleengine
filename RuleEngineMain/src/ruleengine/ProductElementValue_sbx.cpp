@@ -38,7 +38,7 @@ std::string ProductElementValue::stringValue() const
 long ProductElementValue::longValue() const
 {
 	// convert string into a long value
-	return stol(_stringValue);
+	return atol(_stringValue.c_str());
 }
 
 /**
@@ -47,7 +47,7 @@ long ProductElementValue::longValue() const
 double ProductElementValue::doubleValue() const
 {
 	// convert string into a double value
-	return stod(_stringValue);
+	return atof(_stringValue.c_str());
 }
 
 bool ProductElementValue::boolValue() const{ return sbx::utils::toBool(_stringValue); }
