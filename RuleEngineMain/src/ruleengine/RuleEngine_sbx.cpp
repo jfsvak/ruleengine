@@ -43,11 +43,14 @@ bool RuleEngine::_printDebug {false};
 bool RuleEngine::_printDebugAtValidation {false};
 
 sbx::RuleEngine::RuleEngine()
-{}
+{
+//	_parser.DefineFun(new SubtractMonths{});
+}
 
 sbx::RuleEngine::RuleEngine(const sbx::RuleEngine& other)
 		: _container {other._container}
 {
+//	_parser.DefineFun(new SubtractMonths{});
 	// TODO !!!!! proper copy/cloning of pointers in map
 }
 
@@ -483,7 +486,7 @@ sbx::ValidationResults RuleEngine::validate(const TA& ta, const std::vector<unsi
 			// If it's required and missing, then add msg
 			std::shared_ptr<sbx::Rule> requiredIfRule = _isRequired(peOid, valResults);
 			if ( requiredIfRule != nullptr )
-				valResults.addWarning( sbx::ValidationResult(sbx::ValidationCode::kProductElementRequired, peOid, _VAR_NAME(peOid), "Vaerdi for [" + _VAR_NAME(peOid) + "] ikke angivet", requiredIfRule->getRuleId(), requiredIfRule->getExpr()) );
+				valResults.addWarning( sbx::ValidationResult(sbx::ValidationCode::kProductElementRequired, peOid, _VAR_NAME(peOid), "Værdi for [" + _VAR_NAME(peOid) + "] ikke angivet", requiredIfRule->getRuleId(), requiredIfRule->getExpr()) );
 		}
 
 		// Even if the value doesn't exists on the TA, we still run custom rules, as there might be
@@ -494,18 +497,29 @@ sbx::ValidationResults RuleEngine::validate(const TA& ta, const std::vector<unsi
 		{
 			double previousStepTotal {0};
 
+			int previousIndex {0};
+
 			// TODO do matrix validation here for the contribution ladder
 			// loop through the steps and validate each step expecting increasing totals
 			for (auto& step : ta.getContributionLadder()) {
+
 				double total {step.employeePct() + step.companyPct()};
 
+				std::stringstream ss {};
+				ss << step.index();
+
+				// if the total procentage is not increasing, then add message
 				if (total < previousStepTotal) {
-					valResults.addValidationResult(
-							sbx::ValidationResult(sbx::kValueUnderLimit, peOid, _VAR_NAME(peOid), "Den totale bidragsprocent skal vaere stigende"));
-					break;
+					valResults.addValidationResult(sbx::ValidationResult(sbx::kValueUnderLimit, peOid, _VAR_NAME(peOid) + "_" + ss.str(), "Den totale bidragsprocent skal vaere stigende"));
+				}
+
+				// if this step is similar to previous step, then add message
+				if (step.index() == previousIndex) {
+					valResults.addValidationResult(sbx::ValidationResult(sbx::kValueNotAllowed, peOid, _VAR_NAME(peOid) + "_" + ss.str(), "Dette trin findes allerede"));
 				}
 
 				previousStepTotal = total;
+				previousIndex = step.index();
 			}
 		}
 	}
@@ -598,7 +612,7 @@ void RuleEngine::_validateOptionAllowed(const sbx::ProductElementValue& pev, sbx
 			for_each(options.cbegin(), options.cend(), [&optionsString](std::shared_ptr<sbx::Constant> c) { optionsString << c->stringValue() << ", ";} );
 
 			stringstream msg {};
-			msg << "Value [" << pev.stringValue() << "] not allowed! Allowed options: [" << optionsString.str() << "]" << "( from _validationOptionAllowed(...) )";
+			msg << "Value [" << pev.stringValue() << "] not allowed! Allowed options: [" << optionsString.str().substr(0, optionsString.str().length()-2) << "]" << "( from _validationOptionAllowed(...) )";
 
 			valResult.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kValueNotAllowed, pev.getProductElementOid(), _VAR_NAME(pev.getProductElementOid()), msg.str().substr(0, msg.str().length()-2)) );
 		}
@@ -908,7 +922,7 @@ sbx::ValidationResults RuleEngine::validate(const sbx::TA& ta, bool full)
 			{
 				// If it's not on the TA and it is not optional, tell that the pe is required
 				if ( !ta.hasValue(peOid) && !_isOptional(peOid, valResults) )
-					valResults.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kProductElementRequired, peOid, _VAR_NAME(peOid), "Value is missing ( from validate(ta, bool) )") );
+					valResults.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kProductElementRequired, peOid, _VAR_NAME(peOid), "Værdi for [" + _VAR_NAME(peOid) + "] ikke angivet (from validate(ta, bool))") );
 			}
 		}
 		else
@@ -973,19 +987,15 @@ sbx::ValidationResults RuleEngine::validate(const sbx::TA& ta, bool full)
 												for (auto peOid : ruleFromPositiveCatalogue->getProductElementOids())
 												{
 													// if the peOid doesn't have a value on the TA or in the parser, then add kProductElementRequired if that messages isn't already there
-													if ( !_parser.IsVarDefined(_VAR_NAME(peOid)))
+													if ( !_parser.IsVarDefined(_VAR_NAME(peOid)) && !valResults.hasMessages(peOid, sbx::ValidationCode::kProductElementRequired))
 													{
-														// if we haven't already concluded that the peOid is required, then add a message
-														if ( !valResults.hasMessages(peOid, sbx::ValidationCode::kProductElementRequired))
-														{
 															valResults.addValidationResult(
 																	sbx::ValidationResult(  sbx::ValidationCode::kProductElementRequired,
 																							peOid,
 																							_VAR_NAME(peOid),
-																							"Product Element required when '" + requiredIfRule->getExpr() + "' ( from validate(ta, partial) ) original ruleid [" + ruleFromPositiveCatalogue->getRuleId() + "]",
+																							"Værdi for [" + _VAR_NAME(peOid) + "] ikke angivet. Værdi er påkrævet når : " + requiredIfRule->getExpr() + "' (from validate(ta, partial) ) original ruleid [" + ruleFromPositiveCatalogue->getRuleId() + "]",
 																							requiredIfRule->getRuleId(),
 																							requiredIfRule->getExpr()) );
-														}
 													}  /* TODO anything if ta.hasValue(peOid) == true ??? */
 												}
 											}
@@ -1034,7 +1044,8 @@ std::shared_ptr<sbx::Constant> RuleEngine::getDefaultValue(sbx::ProductElementOi
 	if (options.size() <= 0) {
 		ostringstream s;
 		s << "No default value for product element oid [" << static_cast<unsigned short>(productElement) << "]!";
-		throw domain_error(s.str());
+		cout << s.str();
+		return nullptr;
 	}
 
 	for (const auto& option : options) {
@@ -1051,13 +1062,11 @@ std::string RuleEngine::getConstFromParser(const std::string& constName)
 	try {
 		mup::var_maptype vmap = _parser.GetConst();
 		for (mup::var_maptype::iterator item = vmap.begin(); item != vmap.end(); ++item) {
-//			cout << item->first << " == " << constName << " ? " << boolalpha << (item->first == constName) << endl;
 			if (item->first == constName) {
 				mup::Value& mupConst = (mup::Value&) (*(item->second));
 				std::stringstream ss {};
 				ss << mupConst;
 				return ss.str();
-						//((mup::Value&) (*(item->second))).GetString();
 			}
 		}
 	}
@@ -1066,7 +1075,6 @@ std::string RuleEngine::getConstFromParser(const std::string& constName)
 	}
 
 	// no value found, so return dummy string
-//	cout << "Could not find " << constName << endl;
 	return "<ingen vaerdi>";
 }
 

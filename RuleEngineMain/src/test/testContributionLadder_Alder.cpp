@@ -244,7 +244,7 @@ TEST_F(ContributionLadder_Alder_CONTEXT_KI_OSV_25_50, Duplicate_Alder_Index_NEGA
 	EXPECT_FALSE(r.isAllOk());
 
 	EXPECT_EQ(1, r.getValidationResults(kBidragstrappe).size());
-	EXPECT_TRUE(r.hasMessages(kBidragstrappe, kValueUnderLimit));
+	EXPECT_TRUE(r.hasMessages(kBidragstrappe, kValueNotAllowed));
 
 }
 
