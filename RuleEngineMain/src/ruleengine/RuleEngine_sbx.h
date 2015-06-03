@@ -93,8 +93,7 @@ private:
 	std::shared_ptr<sbx::Rule> _isRequired(unsigned short peOid, sbx::ValidationResults&, bool fullValidation = false);
 	bool _isOptional(unsigned short peOid, sbx::ValidationResults&);
 
-	void _executeRule(unsigned short peOidToValidate, std::shared_ptr<sbx::Rule>, sbx::ValidationResults&, sbx::ValidationCode negativeValCode = sbx::ValidationCode::kFail);
-	void _executeRequiredIfRule(unsigned short peOidToValidate, std::shared_ptr<sbx::Rule>, sbx::ValidationResults&);
+	void _evaluateRule(unsigned short peOidToValidate, std::shared_ptr<sbx::Rule>, sbx::ValidationResults&, sbx::ValidationCode negativeValCode = sbx::ValidationCode::kFail);
 	mup::Value _execute(const std::string& expr, const std::string& ruleId);
 	void _executePreCalcRules();
 
@@ -114,6 +113,7 @@ private:
 
 	sbx::ProductElement _PE(unsigned short peOid);
 	std::string _VAR_NAME(unsigned short peOid);
+	std::string _GUI_NAME(unsigned short peOid);
 
 	sbx::KonceptInfo _ki;
 	sbx::RuleConstantContainer _container;

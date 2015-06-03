@@ -34,6 +34,7 @@
 #include "RuleCatalogue.h"
 #include "Utils.h"
 #include "ValidationResults.h"
+#include "mubridge/SubtractMonths.h"
 
 using namespace std;
 
@@ -44,13 +45,13 @@ bool RuleEngine::_printDebugAtValidation {false};
 
 sbx::RuleEngine::RuleEngine()
 {
-//	_parser.DefineFun(new SubtractMonths{});
+	_parser.DefineFun(new SubtractMonths);
 }
 
 sbx::RuleEngine::RuleEngine(const sbx::RuleEngine& other)
 		: _container {other._container}
 {
-//	_parser.DefineFun(new SubtractMonths{});
+	_parser.DefineFun(new SubtractMonths());
 	// TODO !!!!! proper copy/cloning of pointers in map
 }
 
@@ -486,7 +487,7 @@ sbx::ValidationResults RuleEngine::validate(const TA& ta, const std::vector<unsi
 			// If it's required and missing, then add msg
 			std::shared_ptr<sbx::Rule> requiredIfRule = _isRequired(peOid, valResults);
 			if ( requiredIfRule != nullptr )
-				valResults.addWarning( sbx::ValidationResult(sbx::ValidationCode::kProductElementRequired, peOid, _VAR_NAME(peOid), "Værdi for [" + _VAR_NAME(peOid) + "] ikke angivet", requiredIfRule->getRuleId(), requiredIfRule->getExpr()) );
+				valResults.addWarning( sbx::ValidationResult(sbx::ValidationCode::kProductElementRequired, peOid, _VAR_NAME(peOid), "Værdi for [" + _GUI_NAME(peOid) + "] ikke angivet", requiredIfRule->getRuleId(), requiredIfRule->getExpr()) );
 		}
 
 		// Even if the value doesn't exists on the TA, we still run custom rules, as there might be
@@ -496,7 +497,6 @@ sbx::ValidationResults RuleEngine::validate(const TA& ta, const std::vector<unsi
 		if (peOid == sbx::ProductElementOid::kBidragstrappe)
 		{
 			double previousStepTotal {0};
-
 			int previousIndex {-1};
 
 			// TODO do matrix validation here for the contribution ladder
@@ -578,7 +578,7 @@ void RuleEngine::_validateMinMax(const sbx::ProductElementValue& pev, sbx::Valid
 
 		if (!result.GetBool()) {
 			// value was not greater or equal to min
-			r.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kValueUnderLimit, peOid, _VAR_NAME(peOid), "Vaerdien [" + pev.stringValue() + "] for [" + _VAR_NAME(peOid) + "] maa ikke vaere mindre end [" + this->getConstFromParser(sbx::utils::constructRCName(_PE(peOid), sbx::ComparisonTypes::kMin)) + "]", "", expr) );
+			r.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kValueUnderLimit, peOid, _VAR_NAME(peOid), "Vaerdien [" + pev.stringValue() + "] for [" + _GUI_NAME(peOid) + "] maa ikke vaere mindre end [" + this->getConstFromParser(sbx::utils::constructRCName(_PE(peOid), sbx::ComparisonTypes::kMin)) + "]", "", expr) );
 		}
 	} catch (const mup::ParserError& e) {
 		sbx::mubridge::handle(e, r, _container);
@@ -591,7 +591,7 @@ void RuleEngine::_validateMinMax(const sbx::ProductElementValue& pev, sbx::Valid
 
 		if (!result.GetBool()) {
 			// value was not lesser or equal to max
-			r.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kValueOverLimit, peOid, _VAR_NAME(peOid), "Vaerdien [" + pev.stringValue() + "] for [" + _VAR_NAME(peOid) + "] maa ikke overstiger [" + this->getConstFromParser(sbx::utils::constructRCName(_PE(peOid), sbx::ComparisonTypes::kMax)) + "]", "", expr) );
+			r.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kValueOverLimit, peOid, _VAR_NAME(peOid), "Vaerdien [" + pev.stringValue() + "] for [" + _GUI_NAME(peOid) + "] maa ikke overstiger [" + this->getConstFromParser(sbx::utils::constructRCName(_PE(peOid), sbx::ComparisonTypes::kMax)) + "]", "", expr) );
 		}
 	} catch (const mup::ParserError& e) {
 		sbx::mubridge::handle(e, r, _container);
@@ -612,7 +612,7 @@ void RuleEngine::_validateOptionAllowed(const sbx::ProductElementValue& pev, sbx
 			for_each(options.cbegin(), options.cend(), [&optionsString](std::shared_ptr<sbx::Constant> c) { optionsString << c->stringValue() << ", ";} );
 
 			stringstream msg {};
-			msg << "Value [" << pev.stringValue() << "] not allowed! Allowed options: [" << optionsString.str().substr(0, optionsString.str().length()-2) << "]" << "( from _validationOptionAllowed(...) )";
+			msg << "Værdi [" << pev.stringValue() << "] er ikke tilladt! Tilladte værdier er : [" << optionsString.str().substr(0, optionsString.str().length()-2) << "]" << "( from _validationOptionAllowed(...) )";
 
 			valResult.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kValueNotAllowed, pev.getProductElementOid(), _VAR_NAME(pev.getProductElementOid()), msg.str().substr(0, msg.str().length()-2)) );
 		}
@@ -640,22 +640,14 @@ void RuleEngine::_validateCustomRules(unsigned short peOid, sbx::ValidationResul
 				try {
 					mup::Value requiredIfResult = _execute(rule->getRequiredIfRule()->getExpr(), rule->getRequiredIfRule()->getRuleId());
 
-					if ( requiredIfResult.GetBool() )
+					if ( requiredIfResult.GetType() == 'b' && requiredIfResult.GetBool() )
 					{
-						// if the pe is required, and it's value is not in the parser, then add message if it's not already there
-//						if (!_parser.IsVarDefined(_VAR_NAME(peOid)) && !valResults.hasWarnings(peOid, kProductElementRequired)) {
-//							valResults.addWarning(
-//									sbx::ValidationResult(
-//											sbx::ValidationCode::kProductElementRequired,
-//											peOid,
-//											_VAR_NAME(peOid),
-//											"Product Element required when '" + rule->getRequiredIfRule()->getExpr() + "' ( from required==true in _validateCustomRules(...) ) original ruleid [" + rule->getRuleId() + "]",
-//											rule->getRequiredIfRule()->getRuleId(),
-//											rule->getRequiredIfRule()->getExpr()));
-//						}
-
 						if ( rule->getExpr() != "" )
-							_executeRule( peOid, rule, valResults );
+							_evaluateRule( peOid, rule, valResults );
+					}
+					else if ( requiredIfResult.GetType() != 'b' )
+ 					{
+						cout << "RequiredIf expr [" << rule->getRequiredIfRule()->getExpr() << "] didn't evaluate to a boolean. Result : " << requiredIfResult << "]" << endl;
 					}
 				} catch (const mup::ParserError& e) {
 					sbx::mubridge::handle(e, valResults, this->getContainer());
@@ -665,7 +657,7 @@ void RuleEngine::_validateCustomRules(unsigned short peOid, sbx::ValidationResul
 			{
 				if (rule->getExpr() != "") { // no requiredIf rule, then just execute this rule
 					try {
-						_executeRule( peOid, rule, valResults );
+						_evaluateRule( peOid, rule, valResults );
 					} catch (const mup::ParserError& e) {
 						sbx::mubridge::handle(e, valResults, this->getContainer());
 					}
@@ -680,16 +672,19 @@ void RuleEngine::_validateCustomRules(unsigned short peOid, sbx::ValidationResul
 					mup::Value notAllowedIfResult = _execute(rule->getNotAllowedIfRule()->getExpr(), rule->getNotAllowedIfRule()->getRuleId());
 
 					// if the peOid is not allowed and it's value is set in the parser, set message that pe is not allowed, if the msg is not already there
-					if ( notAllowedIfResult.GetBool() && _parser.IsVarDefined(_VAR_NAME(peOid)) )
+					if ( notAllowedIfResult.GetType() == 'b' && notAllowedIfResult.GetBool() && _parser.IsVarDefined(_VAR_NAME(peOid)) && !valResults.hasMessages(peOid, kProductElementNotAllowed))
 					{
-						if (!valResults.hasMessages(peOid, kProductElementNotAllowed))
-							valResults.addValidationResult( sbx::ValidationResult(
-									sbx::ValidationCode::kProductElementNotAllowed,
-									peOid,
-									_VAR_NAME(peOid),
-									"Product Element is not allowed ( from notallowed == true in _validateCustomRules(...) )",
-									rule->getNotAllowedIfRule()->getRuleId(),
-									rule->getNotAllowedIfRule()->getExpr()) );
+						valResults.addValidationResult( sbx::ValidationResult(
+								sbx::ValidationCode::kProductElementNotAllowed,
+								peOid,
+								_VAR_NAME(peOid),
+								"Der skal ikke angives værdi for [" + _GUI_NAME(peOid) + "] ( from notallowed == true in _validateCustomRules(...) )",
+								rule->getNotAllowedIfRule()->getRuleId(),
+								rule->getNotAllowedIfRule()->getExpr()) );
+					}
+					else if ( notAllowedIfResult.GetType() != 'b' )
+ 					{
+						cout << "notAllowedIf expr [" << rule->getNotAllowedIfRule()->getExpr() << "] didn't evaluate to a boolean. Result : [" << notAllowedIfResult << "]" << endl;
 					}
 				} catch (const mup::ParserError& e) {
 					sbx::mubridge::handle(e, valResults, this->getContainer());
@@ -745,7 +740,9 @@ std::shared_ptr<sbx::Rule> RuleEngine::_isRequired(unsigned short peOid, sbx::Va
 
 				try {
 					// If the requiredif rule evaluates to true, we know deterministically that its required and can therefore safely return the rule that requires the element without continuing evaluating more rules
-					if ( _execute(rule->getRequiredIfRule()->getExpr(), rule->getRequiredIfRule()->getRuleId()).GetBool() ) {
+					mup::Value r = _execute(rule->getRequiredIfRule()->getExpr(), rule->getRequiredIfRule()->getRuleId());
+
+					if ( r.GetType() == 'b' && r.GetBool() ) {
 						return rule->getRequiredIfRule();
 					}
 				} catch (const mup::ParserError& e) {
@@ -789,8 +786,10 @@ bool RuleEngine::_isOptional(unsigned short peOid, sbx::ValidationResults& valRe
 			if ((rule->getRequiredIfRule() != nullptr) && rule->getRequiredIfRule()->getExpr() != "") {
 
 				try {
-					// if the requiredif rule evaluates to false, we assume the pe is optional as there should only be one requiredif rule per pe
-					if ( !_execute(rule->getRequiredIfRule()->getExpr(), rule->getRequiredIfRule()->getRuleId()).GetBool() ) {
+					// if the requiredif rule evaluates to false, we assume the pe is optional
+					mup::Value r = _execute(rule->getRequiredIfRule()->getExpr(), rule->getRequiredIfRule()->getRuleId());
+
+					if ( r.GetType() == 'b' && !r.GetBool() ) {
 						return true;
 					}
 				} catch (const mup::ParserError& e) {
@@ -808,7 +807,7 @@ bool RuleEngine::_isOptional(unsigned short peOid, sbx::ValidationResults& valRe
 
 /**
  */
-void RuleEngine::_executeRule(unsigned short peOidBeingValidated, std::shared_ptr<sbx::Rule> rule, sbx::ValidationResults& valResult, sbx::ValidationCode negativeValCode) {
+void RuleEngine::_evaluateRule(unsigned short peOidBeingValidated, std::shared_ptr<sbx::Rule> rule, sbx::ValidationResults& valResult, sbx::ValidationCode negativeValCode) {
 	try {
 		mup::Value result = _execute(rule->getExpr(), rule->getRuleId());
 
@@ -828,31 +827,7 @@ void RuleEngine::_executeRule(unsigned short peOidBeingValidated, std::shared_pt
 		}
 	}
 	catch (const mup::ParserError& e) {
-		// TODO if full validation, then handle as failure, otherwise as warning
 		sbx::mubridge::handle(e, valResult, _container);
-	}
-}
-
-/**
- * Validates the rule as a requiredif rule, meaning that the peOidBeingValidated
- * is only allowed on the TA if the requiredIf rule validates to true.
- * If it's false, we add a message saying the pe is not allowed.
- *
- * We assume there is only one requiredif rule per pe, so its safe to assume that if that evaluates to false, the element is not allowed
- */
-void RuleEngine::_executeRequiredIfRule(unsigned short peOidBeingValidated, std::shared_ptr<sbx::Rule> requiredIfRule, sbx::ValidationResults& valResults) {
-	try {
-		mup::Value result = _execute(requiredIfRule->getExpr(), requiredIfRule->getRuleId());
-
-		// If the evaluation is false, we add a failure to the child PE saying it's not allowed
-		if ( !result.GetBool() )
-			valResults.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kProductElementNotAllowed, peOidBeingValidated, _VAR_NAME(peOidBeingValidated), "Product Element is not allowed ( from _executeRequiredIfRule(...) )", requiredIfRule->getRuleId(), requiredIfRule->getExpr()) );
-
-
-		// TODO consider adding handling else case, i.e. infoValidations
-	}
-	catch (const mup::ParserError& e) {
-		sbx::mubridge::handle(e, valResults, _container);
 	}
 }
 
@@ -920,9 +895,9 @@ sbx::ValidationResults RuleEngine::validate(const sbx::TA& ta, bool full)
 			// run through all the allowed product elements and check if its on the TA. If its not, then check if its optional. If its not optional, add a message stating its required
 			for (auto& peOid : allowedProductElementOids)
 			{
-				// If it's not on the TA and it is not optional, tell that the pe is required
-				if ( !ta.hasValue(peOid) && !_isOptional(peOid, valResults) )
-					valResults.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kProductElementRequired, peOid, _VAR_NAME(peOid), "Værdi for [" + _VAR_NAME(peOid) + "] ikke angivet (from validate(ta, bool))") );
+				// If it's not in the parser, it is not optional, tell that the pe is required
+				if ( !_parser.IsVarDefined(_VAR_NAME(peOid)) && _isRequired(peOid, valResults, true) )
+					valResults.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kProductElementRequired, peOid, _VAR_NAME(peOid), "Værdi for [" + _GUI_NAME(peOid) + "] ikke angivet (from validate(ta, bool))") );
 			}
 		}
 		else
@@ -949,7 +924,7 @@ sbx::ValidationResults RuleEngine::validate(const sbx::TA& ta, bool full)
 								mup::Value result = _execute(parentRule->getExpr(), parentRule->getRuleId());
 
 								// if the rule == true, then check for
-								if ( result.GetBool() )
+								if ( result.GetType() == 'b' && result.GetBool() )
 								{
 									// for all rules in the positive rule catalogue
 									for ( auto ruleFromPositiveCatalogue : parentRule->getPositiveRuleCatalogue()->getRules())
@@ -974,7 +949,13 @@ sbx::ValidationResults RuleEngine::validate(const sbx::TA& ta, bool full)
 											{
 												try {
 													// evaluate the requiredif rule
-													required = _execute(requiredIfRule->getExpr(), requiredIfRule->getRuleId() ).GetBool();
+													mup::Value r = _execute(requiredIfRule->getExpr(), requiredIfRule->getRuleId() );
+
+													required = (r.GetType() == 'b' && r.GetBool());
+
+													if (r.GetType() != 'b') {
+														cout << "Required Rule expr [" << requiredIfRule->getExpr() << "] not evaluating to a boolean. Setting required == false" << endl;
+													}
 												} catch (const mup::ParserError& e) {
 													cout << "Evaluation of requiredIfRule failed: " << endl;
 													sbx::mubridge::handle(e);
@@ -993,7 +974,7 @@ sbx::ValidationResults RuleEngine::validate(const sbx::TA& ta, bool full)
 																	sbx::ValidationResult(  sbx::ValidationCode::kProductElementRequired,
 																							peOid,
 																							_VAR_NAME(peOid),
-																							"Værdi for [" + _VAR_NAME(peOid) + "] ikke angivet. Værdi er påkrævet når : " + requiredIfRule->getExpr() + "' (from validate(ta, partial) ) original ruleid [" + ruleFromPositiveCatalogue->getRuleId() + "]",
+																							"Værdi for [" + _GUI_NAME(peOid) + "] ikke angivet. Værdi er påkrævet når : " + requiredIfRule->getExpr() + "' (from validate(ta, partial) ) original ruleid [" + ruleFromPositiveCatalogue->getRuleId() + "]",
 																							requiredIfRule->getRuleId(),
 																							requiredIfRule->getExpr()) );
 													}  /* TODO anything if ta.hasValue(peOid) == true ??? */
@@ -1001,7 +982,12 @@ sbx::ValidationResults RuleEngine::validate(const sbx::TA& ta, bool full)
 											}
 										}
 									}
-								}  /* TODO anthing to do if rule eval was false ?? */
+								}
+								else
+								{
+									if (result.GetType() !='b')
+										cout << "Parent Rule expr [" << parentRule->getExpr() << "] not evaluating to a boolean, so assuming not required." << endl;
+								}
 							} catch (const mup::ParserError& e) {
 								cout << "Evaluation of parentRule failed: " << endl;
 								sbx::mubridge::handle(e);
@@ -1189,6 +1175,15 @@ std::string RuleEngine::_VAR_NAME(unsigned short peOid)
 {
 	try {
 		return _container.getProductElement(peOid).getVariableName();
+	} catch (const domain_error& e) {
+		return std::string ("");
+	}
+}
+
+std::string RuleEngine::_GUI_NAME(unsigned short peOid)
+{
+	try {
+		return _container.getProductElement(peOid).getGuiName();
 	} catch (const domain_error& e) {
 		return std::string ("");
 	}

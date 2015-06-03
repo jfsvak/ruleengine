@@ -362,6 +362,35 @@ TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_Kortvarig_Overbyg
 
 }
 
+TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_TAEUdloebsalder_POSITIVE) {
+	RuleEngine::_printDebugAtValidation = true;
+	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	ta.setValue(kTAE_Udlobsforskellig_MK, false);
+
+	auto r = re.validate(ta, false);
+//	if (!r.isAllOk())
+		cout << r;
+	EXPECT_TRUE(r.isAllOk()); // should be missing both KortTAE_Min_obl_faktor and KortTAE_Daekningsperiode
+
+	ta.setValue(kTAE_Udlobsforskellig_MK, true);
+	r = re.validate(ta, false);
+	cout << r;
+	EXPECT_FALSE(r.isAllOk());
+	EXPECT_EQ(1, r.getValidationResults().size());
+	EXPECT_TRUE(r.hasMessages(kTAE_Udlobsalder, kProductElementRequired));
+
+	ta.setValue(kTAE_Udlobsalder, 46);
+	r = re.validate(ta, false);
+	cout << r;
+	EXPECT_FALSE(r.isAllOk());
+	EXPECT_EQ(1, r.getValidationResults().size());
+	EXPECT_TRUE(r.hasMessages(kTAE_Udlobsalder, kValueNotAllowed));
+
+	ta.setValue(kTAE_Udlobsalder, 65);
+	r = re.validate(ta, false);
+	cout << r;
+	EXPECT_TRUE(r.isAllOk());
+}
 
 
 

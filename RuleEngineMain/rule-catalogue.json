@@ -306,6 +306,30 @@
 	        "negativeRuleCatalogue": []
      	 },
          {
+            "id": "23.5",
+
+         	"comments" : "Product Page: Invaliditetsdaekning (TAE) - TAE_Udlobsforskellig_MK",
+
+            "expr": "TAE_Udlobsforskellig_MK == true",
+            "productElementOids": [ 151 ],
+            "positiveMessage": "",
+            "negativeMessage": "",
+            "positiveRuleCatalogue":
+	        [
+            	{
+		            "id": "23.5.1",
+		            "comments" : "TAE_Udlobsalder - requiredif placeholder",
+	    	        "expr": "",
+	    	        "productElementOids": [ 70 ],
+	    	        "requiredif": "#parent#",
+			        "notallowedif": "TAE_Udlobsforskellig_MK != true",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Udløbsalder skal angives"
+            	}
+            ],
+	        "negativeRuleCatalogue": []
+     	 },
+         {
             "id": "24.1",
 
          	"comments" : "Product Page: Invalidesum - Kr",
@@ -1095,7 +1119,7 @@
 
 
 		 {
-         	"comments" : "Product Page: Virksomhedsomdannelse kFusion_MK ",
+         	"comments" : "Product Page: Virksomhedsomdannelse Fusion_MK ",
          	
             "id": "29.1",
             "expr": "Fusion_MK == true",
@@ -1108,7 +1132,7 @@
 		        {
 		            "id": "29.1.1",
 		            "comments" : "FusionIndtraedelsesdato- requiredif placeholder",
-	    	        "expr": "",
+	    	        "expr": "subtract_months(FusionIndtraedelsesdato, 5)",
 		   	        "productElementOids": [ 202 ],
    	    		    "requiredif": "#parent#",
 	        	    "positiveMessage": "",
