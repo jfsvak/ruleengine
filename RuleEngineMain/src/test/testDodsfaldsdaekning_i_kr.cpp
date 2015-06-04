@@ -167,3 +167,29 @@ TEST_F(Doedsfaldsdaekning_KI_OSV_Over_99, DoedReguleringstype_Ingen_POSITIVE) {
 //	if (!r.isAllOk())
 		cout << r;
 }
+
+
+TEST_F(Doedsfaldsdaekning_KI_OSV_Over_99, DoedReguleringstype_Ingen_NEGATIVE_OverLimit) {
+	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	ta.setValue(kDoedReguleringskode, "Ingen");
+	ta.setValue(kDoedBlGrMin, (long) 300000);
+	ta.setValue(kDoedBlOblMax, (long) 750000);
+
+	RuleEngine::_printDebugAtValidation = true;
+
+	auto r = re.validate(ta,
+			{
+			kDoedReguleringskode,
+			kDoedBlGrMin,
+			kDoedBlOblMax,
+			kDoedSpaendBl
+	});
+
+	EXPECT_FALSE(r.isAllOk());
+//	if (!r.isAllOk())
+		cout << r;
+	EXPECT_EQ(2, r.getValidationResults().size());
+	EXPECT_TRUE(r.hasMessages(kDoedBlOblMax, kValueOverLimit));
+	EXPECT_TRUE(r.hasMessages(kDoedSpaendBl, kValueOverLimit));
+
+}

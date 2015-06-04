@@ -15,6 +15,7 @@
 #include <iterator>
 #include <set>
 #include <map>
+#include <string>
 #include <sstream>
 #include <stdexcept>
 
@@ -125,14 +126,20 @@ void RuleEngine::_initRuleCatalogue(sbx::RuleCatalogue* ruleCatalogue, const Jso
 			rule->setNegativeValCode(negativeValCode);
 			rule->setPositiveValCode(positiveValCode);
 
-			Json::Value requiredPEOids = valueIterator->get("preCalcRequiredPEOids", "");
 
+			Json::Value requiredPEOids = valueIterator->get("preCalcRequiredPEOids", "");
 			if (requiredPEOids.size() > 0)
 				for (Json::ValueIterator requiredPEOidIterator = requiredPEOids.begin(); requiredPEOidIterator != requiredPEOids.end(); ++requiredPEOidIterator)
 					rule->addPreCalcRequiredPEOid(requiredPEOidIterator->asInt());
 
-			Json::Value peOids = valueIterator->get("productElementOids", "");
 
+			Json::Value negativeMessageParameters = valueIterator->get("negativeMessageParameters", "");
+			if (negativeMessageParameters.size() > 0)
+				for (Json::ValueIterator negativeMessageParametersIterator = negativeMessageParameters.begin(); negativeMessageParametersIterator != negativeMessageParameters.end(); ++negativeMessageParametersIterator)
+					rule->addNegativeMessageParameter(negativeMessageParametersIterator->asString());
+
+
+			Json::Value peOids = valueIterator->get("productElementOids", "");
 			if (peOids.size() > 0)
 			{
 				// run through and set peOids on rule and add rule to peOid multimap or preCalcExprMap
@@ -487,7 +494,7 @@ sbx::ValidationResults RuleEngine::validate(const TA& ta, const std::vector<unsi
 			// If it's required and missing, then add msg
 			std::shared_ptr<sbx::Rule> requiredIfRule = _isRequired(peOid, valResults);
 			if ( requiredIfRule != nullptr )
-				valResults.addWarning( sbx::ValidationResult(sbx::ValidationCode::kProductElementRequired, peOid, _VAR_NAME(peOid), "Værdi for [" + _GUI_NAME(peOid) + "] ikke angivet", requiredIfRule->getRuleId(), requiredIfRule->getExpr()) );
+				valResults.addWarning( sbx::ValidationResult(sbx::ValidationCode::kProductElementRequired, peOid, _VAR_NAME(peOid), "Vï¿½rdi for [" + _GUI_NAME(peOid) + "] ikke angivet", requiredIfRule->getRuleId(), requiredIfRule->getExpr()) );
 		}
 
 		// Even if the value doesn't exists on the TA, we still run custom rules, as there might be
@@ -618,7 +625,7 @@ void RuleEngine::_validateOptionAllowed(const sbx::ProductElementValue& pev, sbx
 			for_each(options.cbegin(), options.cend(), [&optionsString](std::shared_ptr<sbx::Constant> c) { optionsString << c->stringValue() << ", ";} );
 
 			stringstream msg {};
-			msg << "Værdi [" << pev.stringValue() << "] er ikke tilladt! Tilladte værdier er : [" << optionsString.str().substr(0, optionsString.str().length()-2) << "]" << "( from _validationOptionAllowed(...) )";
+			msg << "VÃ¦rdi [" << pev.stringValue() << "] er ikke tilladt! Tilladte vÃ¦rdier er : [" << optionsString.str().substr(0, optionsString.str().length()-2) << "]" << "( from _validationOptionAllowed(...) )";
 
 			valResult.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kValueNotAllowed, pev.getProductElementOid(), _VAR_NAME(pev.getProductElementOid()), msg.str().substr(0, msg.str().length()-2)) );
 		}
@@ -684,7 +691,7 @@ void RuleEngine::_validateCustomRules(unsigned short peOid, sbx::ValidationResul
 								sbx::ValidationCode::kProductElementNotAllowed,
 								peOid,
 								_VAR_NAME(peOid),
-								"Der skal ikke angives værdi for [" + _GUI_NAME(peOid) + "] ( from notallowed == true in _validateCustomRules(...) )",
+								"Der skal ikke angives vÃ¦rdi for [" + _GUI_NAME(peOid) + "] ( from notallowed == true in _validateCustomRules(...) )",
 								rule->getNotAllowedIfRule()->getRuleId(),
 								rule->getNotAllowedIfRule()->getExpr()) );
 					}
@@ -827,8 +834,40 @@ void RuleEngine::_evaluateRule(unsigned short peOidBeingValidated, std::shared_p
 		else {
 			// If no negative message, we don't consider the negative outcome as a failure
 			if (rule->getNegativeMessage() != "") {
+				string msg = rule->getNegativeMessage();
+
+				int i { 1 };
+
+				for (auto& parameterIt : rule->getNegativeMessageParameters() )
+				{
+					cout << "Looking for " << parameterIt << endl;
+					stringstream parameter {};
+					try {
+						if (_parser.IsConstDefined(parameterIt))
+						{
+							parameter << (mup::Value&) _parser.GetConst().at(parameterIt);
+						}
+						else if (_parser.IsVarDefined(parameterIt))
+						{
+							parameter << (mup::Value&) _parser.GetVar().at(parameterIt);
+						}
+					} catch (const mup::ParserError& e) {
+						sbx::mubridge::handle(e);
+					}
+
+					stringstream ss{};
+					ss << i;
+					string str = "%" + ss.str();
+					cout << "searchstring: " << str << endl;
+					int pos = msg.find(str);
+					cout << "pos: " << pos << endl;
+					msg.replace(pos, 2, parameter.str());
+					i++;
+					cout << "Msg after replacement: " << msg << endl;
+				}
+
 				sbx::ValidationCode negativeValCode = sbx::utils::toValCode(rule->getNegativeValCode(), sbx::ValidationCode::kFail);
-				valResult.addValidationResult( sbx::ValidationResult(negativeValCode, peOidBeingValidated, _VAR_NAME(peOidBeingValidated), rule->getNegativeMessage() +  " ( from megativeMsg _executeRule(...) )", rule->getRuleId(), rule->getExpr()) );
+				valResult.addValidationResult( sbx::ValidationResult(negativeValCode, peOidBeingValidated, _VAR_NAME(peOidBeingValidated), msg +  " ( from megativeMsg _executeRule(...) )", rule->getRuleId(), rule->getExpr()) );
 			}
 		}
 	}
@@ -903,7 +942,7 @@ sbx::ValidationResults RuleEngine::validate(const sbx::TA& ta, bool full)
 			{
 				// If it's not in the parser, it is not optional, tell that the pe is required
 				if ( !_parser.IsVarDefined(_VAR_NAME(peOid)) && _isRequired(peOid, valResults, true) )
-					valResults.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kProductElementRequired, peOid, _VAR_NAME(peOid), "Værdi for [" + _GUI_NAME(peOid) + "] ikke angivet (from validate(ta, bool))") );
+					valResults.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kProductElementRequired, peOid, _VAR_NAME(peOid), "Vï¿½rdi for [" + _GUI_NAME(peOid) + "] ikke angivet (from validate(ta, bool))") );
 			}
 		}
 		else
@@ -980,7 +1019,7 @@ sbx::ValidationResults RuleEngine::validate(const sbx::TA& ta, bool full)
 																	sbx::ValidationResult(  sbx::ValidationCode::kProductElementRequired,
 																							peOid,
 																							_VAR_NAME(peOid),
-																							"Værdi for [" + _GUI_NAME(peOid) + "] ikke angivet. Værdi er påkrævet når : " + requiredIfRule->getExpr() + "' (from validate(ta, partial) ) original ruleid [" + ruleFromPositiveCatalogue->getRuleId() + "]",
+																							"Vï¿½rdi for [" + _GUI_NAME(peOid) + "] ikke angivet. Vï¿½rdi er pï¿½krï¿½vet nï¿½r : " + requiredIfRule->getExpr() + "' (from validate(ta, partial) ) original ruleid [" + ruleFromPositiveCatalogue->getRuleId() + "]",
 																							requiredIfRule->getRuleId(),
 																							requiredIfRule->getExpr()) );
 													}  /* TODO anything if ta.hasValue(peOid) == true ??? */
@@ -1067,7 +1106,7 @@ std::string RuleEngine::getConstFromParser(const std::string& constName)
 	}
 
 	// no value found, so return dummy string
-	return "<ingen vaerdi>";
+	return "<ingen vï¿½rdi>";
 }
 
 void RuleEngine::printVariablesInParser() { _printVariablesInParser(_parser); }
@@ -1122,8 +1161,8 @@ void RuleEngine::_printExpressionVariables(mup::ParserX& p)
 	for (mup::var_maptype::iterator item = vmap.begin(); item != vmap.end(); ++item)
 	{
 		cout << item->first << "=";
-//		mup::Variable var = (mup::Variable&) (*(item->second));
-//		cout << var << "\n";
+		mup::Variable var = (mup::Variable&) (*(item->second));
+		cout << var << "\n";
 		cout << endl;
 	}
 	cout << "------------- Expressions END ------------" << endl;

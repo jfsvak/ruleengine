@@ -499,7 +499,8 @@
 	    	        "requiredif": "",
 	    	        "notallowedif": "DoedReguleringskode == \"Gage\"",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Spænd i d�dsfaldsd�kning i kr skal mindst v�re [rc_DoedSpandBl_min] kr.",
+	            	"negativeMessage": "Spænd i d�dsfaldsd�kning i kr skal mindst v�re [%1] kr.",
+	            	"negativeMessageParameters": [ "rc_DoedSpandBl_min" ],
 					"negativeValCode": 102
             	},
             	{
@@ -508,7 +509,8 @@
 	    	        "productElementOids": [ 3 ],
 	    	        "requiredif": "",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Spænd i d�dsfaldsd�kning i kr m� ikke overstige %1",
+	            	"negativeMessage": "Spænd i d�dsfaldsd�kning i kr m� ikke overstige %1 kr",
+	            	"negativeMessageParameters": [ "rc_DoedSpandBl_max" ],
 					"negativeValCode": 103
             	}
             ],

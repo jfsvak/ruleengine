@@ -143,4 +143,20 @@ void Rule::setPositiveValCode(unsigned short positiveValCode)
 	_positiveValCode = positiveValCode;
 }
 
+const std::vector<std::string>& Rule::getNegativeMessageParameters() const
+{
+	return _negativeMessageParameters;
+}
+
+void Rule::setNegativeMessageParameters(const std::vector<std::string>& negativeMessageParameters)
+{
+	_negativeMessageParameters = negativeMessageParameters;
+}
+
+void Rule::addNegativeMessageParameter(const std::string& parameter)
+{
+	_negativeMessageParameters.push_back(parameter);
+}
+
+
 } /* namespace sbx */

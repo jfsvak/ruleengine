@@ -48,6 +48,9 @@ public:
 	void setNegativeValCode(unsigned short negativeValCode);
 	unsigned short getPositiveValCode() const;
 	void setPositiveValCode(unsigned short positiveValCode);
+	const std::vector<std::string>& getNegativeMessageParameters() const;
+	void setNegativeMessageParameters(const std::vector<std::string>& negativeMessageParameters);
+	void addNegativeMessageParameter(const std::string& parameter);
 
 private:
 	std::string _ruleId;
@@ -57,6 +60,7 @@ private:
 	std::vector<unsigned short> _preCalcRequiredPEOids;
 	std::string _positiveMessage;
 	std::string _negativeMessage;
+	std::vector<std::string> _negativeMessageParameters;
 	unsigned short _positiveValCode;
 	unsigned short _negativeValCode;
 
