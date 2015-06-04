@@ -487,7 +487,7 @@ sbx::ValidationResults RuleEngine::validate(const TA& ta, const std::vector<unsi
 			// If it's required and missing, then add msg
 			std::shared_ptr<sbx::Rule> requiredIfRule = _isRequired(peOid, valResults);
 			if ( requiredIfRule != nullptr )
-				valResults.addWarning( sbx::ValidationResult(sbx::ValidationCode::kProductElementRequired, peOid, _VAR_NAME(peOid), "Værdi for [" + _GUI_NAME(peOid) + "] ikke angivet", requiredIfRule->getRuleId(), requiredIfRule->getExpr()) );
+				valResults.addWarning( sbx::ValidationResult(sbx::ValidationCode::kProductElementRequired, peOid, _VAR_NAME(peOid), "VÃ¦rdi for [" + _GUI_NAME(peOid) + "] ikke angivet", requiredIfRule->getRuleId(), requiredIfRule->getExpr()) );
 		}
 
 		// Even if the value doesn't exists on the TA, we still run custom rules, as there might be
@@ -618,7 +618,7 @@ void RuleEngine::_validateOptionAllowed(const sbx::ProductElementValue& pev, sbx
 			for_each(options.cbegin(), options.cend(), [&optionsString](std::shared_ptr<sbx::Constant> c) { optionsString << c->stringValue() << ", ";} );
 
 			stringstream msg {};
-			msg << "Værdi [" << pev.stringValue() << "] er ikke tilladt! Tilladte værdier er : [" << optionsString.str().substr(0, optionsString.str().length()-2) << "]" << "( from _validationOptionAllowed(...) )";
+			msg << "VÃ¦rdi [" << pev.stringValue() << "] er ikke tilladt! Tilladte vÃ¦rdier er : [" << optionsString.str().substr(0, optionsString.str().length()-2) << "]" << "( from _validationOptionAllowed(...) )";
 
 			valResult.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kValueNotAllowed, pev.getProductElementOid(), _VAR_NAME(pev.getProductElementOid()), msg.str().substr(0, msg.str().length()-2)) );
 		}
@@ -684,7 +684,7 @@ void RuleEngine::_validateCustomRules(unsigned short peOid, sbx::ValidationResul
 								sbx::ValidationCode::kProductElementNotAllowed,
 								peOid,
 								_VAR_NAME(peOid),
-								"Der skal ikke angives værdi for [" + _GUI_NAME(peOid) + "] ( from notallowed == true in _validateCustomRules(...) )",
+								"Der skal ikke angives vÃ¦rdi for [" + _GUI_NAME(peOid) + "] ( from notallowed == true in _validateCustomRules(...) )",
 								rule->getNotAllowedIfRule()->getRuleId(),
 								rule->getNotAllowedIfRule()->getExpr()) );
 					}
@@ -903,7 +903,7 @@ sbx::ValidationResults RuleEngine::validate(const sbx::TA& ta, bool full)
 			{
 				// If it's not in the parser, it is not optional, tell that the pe is required
 				if ( !_parser.IsVarDefined(_VAR_NAME(peOid)) && _isRequired(peOid, valResults, true) )
-					valResults.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kProductElementRequired, peOid, _VAR_NAME(peOid), "Værdi for [" + _GUI_NAME(peOid) + "] ikke angivet (from validate(ta, bool))") );
+					valResults.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kProductElementRequired, peOid, _VAR_NAME(peOid), "VÃ¦rdi for [" + _GUI_NAME(peOid) + "] ikke angivet (from validate(ta, bool))") );
 			}
 		}
 		else
@@ -980,7 +980,7 @@ sbx::ValidationResults RuleEngine::validate(const sbx::TA& ta, bool full)
 																	sbx::ValidationResult(  sbx::ValidationCode::kProductElementRequired,
 																							peOid,
 																							_VAR_NAME(peOid),
-																							"Værdi for [" + _GUI_NAME(peOid) + "] ikke angivet. Værdi er påkrævet når : " + requiredIfRule->getExpr() + "' (from validate(ta, partial) ) original ruleid [" + ruleFromPositiveCatalogue->getRuleId() + "]",
+																							"VÃ¦rdi for [" + _GUI_NAME(peOid) + "] ikke angivet. VÃ¦rdi er pÃ¥krÃ¦vet nÃ¥r : " + requiredIfRule->getExpr() + "' (from validate(ta, partial) ) original ruleid [" + ruleFromPositiveCatalogue->getRuleId() + "]",
 																							requiredIfRule->getRuleId(),
 																							requiredIfRule->getExpr()) );
 													}  /* TODO anything if ta.hasValue(peOid) == true ??? */
