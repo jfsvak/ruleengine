@@ -578,7 +578,10 @@ void RuleEngine::_validateMinMax(const sbx::ProductElementValue& pev, sbx::Valid
 
 		if (!result.GetBool()) {
 			// value was not greater or equal to min
-			r.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kValueUnderLimit, peOid, _VAR_NAME(peOid), "Vaerdien [" + pev.stringValue() + "] for [" + _GUI_NAME(peOid) + "] maa ikke vaere mindre end [" + this->getConstFromParser(sbx::utils::constructRCName(_PE(peOid), sbx::ComparisonTypes::kMin)) + "]", "", expr) );
+			stringstream ss {};
+//			ss.imbue(std::locale("da_DK.UTF8"));
+			ss << "Vaerdien [" << pev.longValue() << "] for [" << _GUI_NAME(peOid) << "] maa ikke vaere mindre end [" << this->getConstFromParser(sbx::utils::constructRCName(_PE(peOid), sbx::ComparisonTypes::kMin)) << "]";
+			r.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kValueUnderLimit, peOid, _VAR_NAME(peOid), ss.str(), "", expr) );
 		}
 	} catch (const mup::ParserError& e) {
 		sbx::mubridge::handle(e, r, _container);
@@ -590,8 +593,11 @@ void RuleEngine::_validateMinMax(const sbx::ProductElementValue& pev, sbx::Valid
 		mup::Value result = _execute(expr, "Max-expr");
 
 		if (!result.GetBool()) {
+			stringstream ss {};
+//			ss.imbue(std::locale("da_DK.UTF8"));
+			ss << "Vaerdien [" << pev.longValue() << "] for [" << _GUI_NAME(peOid) << "] maa ikke overstiger [" << this->getConstFromParser(sbx::utils::constructRCName(_PE(peOid), sbx::ComparisonTypes::kMax)) << "]";
 			// value was not lesser or equal to max
-			r.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kValueOverLimit, peOid, _VAR_NAME(peOid), "Vaerdien [" + pev.stringValue() + "] for [" + _GUI_NAME(peOid) + "] maa ikke overstiger [" + this->getConstFromParser(sbx::utils::constructRCName(_PE(peOid), sbx::ComparisonTypes::kMax)) + "]", "", expr) );
+			r.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kValueOverLimit, peOid, _VAR_NAME(peOid), ss.str(), "", expr) );
 		}
 	} catch (const mup::ParserError& e) {
 		sbx::mubridge::handle(e, r, _container);
@@ -876,7 +882,7 @@ sbx::ValidationResults RuleEngine::validate(const sbx::TA& ta, bool full)
 			const sbx::ProductElementValue& pev = item.second;
 			unsigned short peOid = pev.getProductElementOid();
 
-			// if peOid was not found in the allowed list of pe's allowed on this konceptinfo, then add a validation message
+			// if peOid is not found in the allowed list of pe's allowed on this konceptinfo, then add a validation message
 			if (allowedProductElementOids.find(peOid) == allowedProductElementOids.cend()) {
 				stringstream msg {};
 				msg << "Product element oid [" << peOid << "] not allowed for this konceptInfo" << "( from validate(ta, " << boolalpha << full << ") )";

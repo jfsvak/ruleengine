@@ -22,6 +22,7 @@ class Behandlingsforsikring_KI_OSV_25_49 : public ::testing::Test  {
 protected:
     virtual void SetUp() {
     	RuleEngine::_printDebugAtValidation = false;
+    	RuleEngine::_printDebug = true;
     	re = RuleEngine();
         re.initConstants(get_file_contents("basedata-ruleconstants.json"));
         re.parseRuleCatalogueJSON(get_file_contents("rule-catalogue.json"));

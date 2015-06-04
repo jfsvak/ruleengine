@@ -63,10 +63,10 @@ void RuleConstantContainer::initConstants(const std::string& jsonContents)
 	if (parsingSuccessful)
 	{
 		// if we can parse the json string, then get the list of rule constants
-		_initRuleConstants(root["data"].get("ruleConstant", 0));
-		_initProductElements(root["data"].get("product", 0));
-		_initParameters(root["data"].get("parameter", 0));
-		_initParametersToProducts(root["data"].get("parameterProduct", 0));
+		_initRuleConstants(root["data"].get("FIRMA_RULE_ENGINE", 0).get("ruleConstants", 0));
+		_initProductElements(root["data"].get("FIRMA_RULE_ENGINE", 0).get("products", 0));
+		_initParameters(root["data"].get("FIRMA_RULE_ENGINE", 0).get("parameters", 0));
+		_initParametersToProducts(root["data"].get("FIRMA_RULE_ENGINE", 0).get("parameterProducts", 0));
 	}
 	else
 	{
@@ -143,7 +143,7 @@ void RuleConstantContainer::_initProductElements(const Json::Value& products)
 
 			shared_ptr<Product> productPtr = make_shared<sbx::Product>(static_cast<unsigned short>(productOid), name);
 
-			Json::Value productElements = jsonProduct->get("productElement", 0);
+			Json::Value productElements = jsonProduct->get("productElements", 0);
 
 			if (productElements.size() > 0)
 			{

@@ -124,8 +124,31 @@ TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_I_Kr_Pristal_NEGA
 
 	EXPECT_EQ(3, r.getValidationResults().size());
 	EXPECT_TRUE(r.hasMessages(kTAEBlOblMax, kValueOverLimit));
-
 }
+
+TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_I_Kr_Pristal_Scientific_Output) {
+	RuleEngine::_printDebugAtValidation = true;
+	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	ta.setValue(kTAEReguleringskode, "Pristal");
+
+	auto r = re.validate(ta, false);
+	EXPECT_FALSE(r.isAllOk());
+//	if (!r.isAllOk())
+		cout << r;
+	EXPECT_EQ(2, r.getValidationResults().size());
+	EXPECT_TRUE(r.hasMessages(kTAEBlGrMin, kProductElementRequired));
+	EXPECT_TRUE(r.hasMessages(kTAEBlOblMax, kProductElementRequired));
+
+	ta.setValue(kTAEBlGrMin, 200000);
+	ta.setValue(kTAEBlOblMax, 800000000); // now set amounts and it should be happy
+	r = re.validate(ta, false);
+	cout << r;
+	EXPECT_FALSE(r.isAllOk()); //
+
+	EXPECT_EQ(3, r.getValidationResults().size());
+	EXPECT_TRUE(r.hasMessages(kTAEBlOblMax, kValueOverLimit));
+}
+
 
 TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_I_PCT_Gage) {
 	RuleEngine::_printDebugAtValidation = true;
@@ -149,7 +172,7 @@ TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_I_PCT_Gage) {
 	EXPECT_EQ(1, r.getValidationResults().size());
 	EXPECT_TRUE(r.hasMessages(kTAEBlGrMin, kProductElementRequired));
 
-	ta.setValue(kTAEBlGrMin, 100000); // now set the min amount and execpt it to be ok
+	ta.setValue(kTAEBlGrMin, 900000000); // now set the min amount and execpt it to be ok
 	r = re.validate(ta, false);
 	cout << r;
 	EXPECT_TRUE(r.isAllOk()); // expect to find TAEBlGrMin
