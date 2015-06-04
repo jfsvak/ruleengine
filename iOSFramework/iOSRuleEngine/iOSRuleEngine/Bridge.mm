@@ -91,11 +91,6 @@ std::string get_file_contents(const char *filename)
     ta.removeContributionSteps();
 }
 
--(void)removeAllContributionSteps {
-    auto ladder = ta.getContributionLadder();
-    ladder.clear();
-}
-
 #pragma mark - value setters
 
 -(void)setStringValue:(NSString*)value forPE:(unsigned short) peOid {
