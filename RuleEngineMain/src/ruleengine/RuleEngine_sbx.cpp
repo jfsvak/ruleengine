@@ -517,7 +517,7 @@ sbx::ValidationResults RuleEngine::validate(const TA& ta, const std::vector<unsi
 
 				// if the total procentage is not increasing, then add message
 				if (total < previousStepTotal) {
-					valResults.addValidationResult(sbx::ValidationResult(sbx::kValueUnderLimit, peOid, _VAR_NAME(peOid) + "_" + ss.str(), "Den totale bidragsprocent skal vaere stigende"));
+					valResults.addValidationResult(sbx::ValidationResult(sbx::kValueUnderLimit, peOid, _VAR_NAME(peOid) + "_" + ss.str(), "Den totale bidragsprocent skal være stigende"));
 				}
 
 				// if this step is similar to previous step, then add message
@@ -587,7 +587,7 @@ void RuleEngine::_validateMinMax(const sbx::ProductElementValue& pev, sbx::Valid
 			// value was not greater or equal to min
 			stringstream ss {};
 //			ss.imbue(std::locale("da_DK.UTF8"));
-			ss << "Vaerdien [" << pev.longValue() << "] for [" << _GUI_NAME(peOid) << "] maa ikke vaere mindre end [" << this->getConstFromParser(sbx::utils::constructRCName(_PE(peOid), sbx::ComparisonTypes::kMin)) << "]";
+			ss << "Værdien [" << pev.longValue() << "] for [" << _GUI_NAME(peOid) << "] må ikke være mindre end [" << this->getConstFromParser(sbx::utils::constructRCName(_PE(peOid), sbx::ComparisonTypes::kMin)) << "]";
 			r.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kValueUnderLimit, peOid, _VAR_NAME(peOid), ss.str(), "", expr) );
 		}
 	} catch (const mup::ParserError& e) {
@@ -602,7 +602,7 @@ void RuleEngine::_validateMinMax(const sbx::ProductElementValue& pev, sbx::Valid
 		if (!result.GetBool()) {
 			stringstream ss {};
 //			ss.imbue(std::locale("da_DK.UTF8"));
-			ss << "Vaerdien [" << pev.longValue() << "] for [" << _GUI_NAME(peOid) << "] maa ikke overstiger [" << this->getConstFromParser(sbx::utils::constructRCName(_PE(peOid), sbx::ComparisonTypes::kMax)) << "]";
+			ss << "Værdien [" << pev.longValue() << "] for [" << _GUI_NAME(peOid) << "] må ikke overstiger [" << this->getConstFromParser(sbx::utils::constructRCName(_PE(peOid), sbx::ComparisonTypes::kMax)) << "]";
 			// value was not lesser or equal to max
 			r.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kValueOverLimit, peOid, _VAR_NAME(peOid), ss.str(), "", expr) );
 		}

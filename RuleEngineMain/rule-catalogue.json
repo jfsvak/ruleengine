@@ -46,7 +46,7 @@
    	    		    "requiredif": "#parent#",
    	    		    "notallowedif": "FravalgRisiko_mk == false",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "FravalgRisikoAlder skal ikke angives, naar risiko ikke er fravalgt"
+	            	"negativeMessage": "FravalgRisikoAlder skal ikke angives, når risiko ikke er fravalgt"
         	    }
             ],
 	        "negativeRuleCatalogue": []
@@ -58,7 +58,7 @@
             "expr": "StandardProdukt == \"Traditionel_MK\" && Traditionel_MK == false",
    	        "productElementOids": [ 95 ],
    	        "requiredif": "",
-            "positiveMessage": "Traditionel kan kun vaelges som Standardprodukt hvis det ogsaa er tilvalgt paa aftalen",
+            "positiveMessage": "Traditionel kan kun vælges som Standardprodukt hvis det også er tilvalgt på aftalen",
             "negativeMessage": "",
             "positiveRuleCatalogue": [],
 	        "negativeRuleCatalogue": []
@@ -68,7 +68,7 @@
             "expr": "StandardProdukt == \"Markedspension_MK\" && Markedspension_MK == false",
    	        "productElementOids": [ 95 ],
    	        "requiredif": "",
-            "positiveMessage": "Markedspension kan kun vaelges som Standardprodukt hvis det ogsaa er tilvalgt paa aftalen",
+            "positiveMessage": "Markedspension kan kun vælges som Standardprodukt hvis det også er tilvalgt på aftalen",
             "negativeMessage": "",
             "positiveRuleCatalogue": [],
 	        "negativeRuleCatalogue": []
@@ -78,7 +78,7 @@
             "expr": "StandardProdukt == \"TidspensionMedGaranti_MK\" && TidspensionMedGaranti_MK == false",
    	        "productElementOids": [ 95 ],
    	        "requiredif": "",
-            "positiveMessage": "Tidspension Med Garanti kan kun vaelges som Standardprodukt hvis det ogsaa er tilvalgt paa aftalen",
+            "positiveMessage": "Tidspension Med Garanti kan kun vælges som Standardprodukt hvis det også er tilvalgt på aftalen",
             "negativeMessage": "",
             "positiveRuleCatalogue": [],
 	        "negativeRuleCatalogue": []
@@ -88,7 +88,7 @@
             "expr": "StandardProdukt == \"TidspensionUdenGaranti_MK\" && TidspensionUdenGaranti_MK == false",
    	        "productElementOids": [ 95 ],
    	        "requiredif": "",
-            "positiveMessage": "Tidspension Uden Garanti kan kun vaelges som Standardprodukt hvis det ogsaa er tilvalgt paa aftalen",
+            "positiveMessage": "Tidspension Uden Garanti kan kun vælges som Standardprodukt hvis det også er tilvalgt på aftalen",
             "negativeMessage": "",
             "positiveRuleCatalogue": [],
 	        "negativeRuleCatalogue": []
@@ -98,7 +98,7 @@
             "expr": "StandardProdukt == \"Link_MK\" && Link_MK == false",
    	        "productElementOids": [ 95 ],
    	        "requiredif": "",
-            "positiveMessage": "Link kan kun vaelges som Standardprodukt hvis det ogsaa er tilvalgt paa aftalen",
+            "positiveMessage": "Link kan kun vælges som Standardprodukt hvis det også er tilvalgt på aftalen",
             "negativeMessage": "",
             "positiveRuleCatalogue": [],
 	        "negativeRuleCatalogue": []
@@ -106,7 +106,7 @@
          {
             "id": "23.1",
 
-         	"comments" : "Product Page: Invaliditetsdaekning (TAE) - Gage",
+         	"comments" : "Product Page: Invaliditetsdækning (TAE) - Gage",
 
             "expr": "TAEReguleringskode == \"Gage\"",
             "productElementOids": [ 83 ],
@@ -132,7 +132,7 @@
 	    	        "productElementOids": [ 10 ],
 	    	        "requiredif": "#parent#",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Minimum invaliditetsdaekning i procent skal angives naar reguleringstypen 'Gage' er valgt"
+	            	"negativeMessage": "Minimum invaliditetsdækning i procent skal angives når reguleringstypen 'Gage' er valgt"
             	},
             	{
 		            "id": "23.1.2",
@@ -142,7 +142,7 @@
 	    	        "requiredif": "#parent#",
 	    	        "notallowedif": "",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Maksimum invaliditetsdaekning i procent skal angives naar reguleringstypen 'Gage' er valgt"
+	            	"negativeMessage": "Maksimum invaliditetsdækning i procent skal angives når reguleringstypen 'Gage' er valgt"
             	},
             	{
 		            "id": "23.1.3",
@@ -150,7 +150,7 @@
 	    	        "productElementOids": [ 10, 11, 12 ],
 	    	        "requiredif": "",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Spaend i invaliditetsdaekning i procent skal mindst vaere %1",
+	            	"negativeMessage": "Spænd i invaliditetsdækning i procent skal mindst være %1",
 					"negativeValCode": 102
             	},
             	{
@@ -159,7 +159,7 @@
 	    	        "productElementOids": [ 10, 11, 12 ],
 	    	        "requiredif": "",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Spaend i invaliditetsdaekning i procent maa ikke overstige %1",
+	            	"negativeMessage": "Spænd i invaliditetsdækning i procent må ikke overstige %1",
 					"negativeValCode": 103
 				},
 				{
@@ -169,7 +169,7 @@
 					"productElementOids": [ 14 ],
 					"requiredif": "TAEReguleringskode == \"Ingen\" or TAEReguleringskode == \"Pristal\" or TAEReguleringskode == \"Gage\"",
 					"positiveMessage": "",
-					"negativeMessage": "Minimum invaliditetsdaekning i kr skal angives naar reguleringstypen 'Ingen/Pristal/Gage' er valgt"
+					"negativeMessage": "Minimum invaliditetsdækning i kr skal angives når reguleringstypen 'Ingen/Pristal/Gage' er valgt"
             	}
             ],
 	        "negativeRuleCatalogue": []
@@ -177,7 +177,7 @@
          {
             "id": "23.2",
 
-         	"comments" : "Product Page: Invaliditetsdaekning (TAE) - Ingen/Pristal",
+         	"comments" : "Product Page: Invaliditetsdækning (TAE) - Ingen/Pristal",
 
             "expr": "TAEReguleringskode == \"Ingen\" or TAEReguleringskode == \"Pristal\"",
             "productElementOids": [ 83 ],
@@ -203,7 +203,7 @@
 	    	        "productElementOids": [ 15 ],
 	    	        "requiredif": "#parent#",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Maksimum invaliditetsdaekning i kr skal angives naar reguleringstypen 'Ingen/Pristal' er valgt"
+	            	"negativeMessage": "Maksimum invaliditetsdækning i kr skal angives når reguleringstypen 'Ingen/Pristal' er valgt"
             	},
             	{
 		            "id": "23.2.3",
@@ -211,7 +211,7 @@
 	    	        "productElementOids": [ 14, 15, 16 ],
 	    	        "requiredif": "",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Spaend i invaliditetsdaekning i kr skal mindst vaere %1",
+	            	"negativeMessage": "Spænd i invaliditetsdækning i kr skal mindst være %1",
 					"negativeValCode": 102
             	},
             	{
@@ -220,7 +220,7 @@
 	    	        "productElementOids": [ 14, 15, 16 ],
 	    	        "requiredif": "",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Spaend i invaliditetsdaekning i kr maa ikke overstige %1",
+	            	"negativeMessage": "Spænd i invaliditetsdækning i kr må ikke overstige %1",
 					"negativeValCode": 103
             	},
 				{
@@ -230,7 +230,7 @@
 					"productElementOids": [ 14 ],
 					"requiredif": "TAEReguleringskode == \"Ingen\" or TAEReguleringskode == \"Pristal\" or TAEReguleringskode == \"Gage\"",
 					"positiveMessage": "",
-					"negativeMessage": "Minimum invaliditetsdaekning i kr skal angives naar reguleringstypen 'Ingen/Pristal/Gage' er valgt"
+					"negativeMessage": "Minimum invaliditetsdækning i kr skal angives når reguleringstypen 'Ingen/Pristal/Gage' er valgt"
             	}
             	
             ],
@@ -239,7 +239,7 @@
          {
             "id": "23.3",
 
-         	"comments" : "Product Page: Invaliditetsdaekning (TAE) - Individuel daekning",
+         	"comments" : "Product Page: Invaliditetsdaekning (TAE) - Individuel dækning",
 
             "expr": "TAESoliMax == \"Obligatorisk maks\" or TAESoliMax == \"Ingen\"",
             "productElementOids": [ 13 ],
@@ -255,7 +255,7 @@
 	    	        "requiredif": "#parent#",
 			        "notallowedif": "TAESoliMax == \"Tegningsmaks\"",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Daekningstype for individuel daekning skal angives naar Obligatorisk Maks er valgt"
+	            	"negativeMessage": "Dækningstype for individuel dækning skal angives når Obligatorisk Maks er valgt"
             	}
             	
             ],
@@ -280,7 +280,7 @@
 	    	        "requiredif": "#parent#",
 			        "notallowedif": "KortTAE_Daekning == \"Ingen\"",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Daekningsperiode for kortvarig overbygning skal angives hvis Frivillig eller Obligatorisk er valgt."
+	            	"negativeMessage": "Dækningsperiode for kortvarig overbygning skal angives hvis Frivillig eller Obligatorisk er valgt."
             	},
             	{
 		            "id": "23.4.2",
@@ -288,7 +288,7 @@
 	    	        "expr": "KortTAE_Daekning == \"Frivillig\" and KortTAE_Min_obl_faktor != 0",
 	    	        "productElementOids": [ 254 ],
 	    	        "requiredif": "#parent#",
-	        	    "positiveMessage": "Minimum antal daekninger skal vaere 0",
+	        	    "positiveMessage": "Minimum antal dækninger skal være 0",
 	            	"negativeMessage": "",
 	            	"positiveValCode": 101
             	},
@@ -298,7 +298,7 @@
 	    	        "expr": "KortTAE_Daekning == \"Obligatorisk\" and KortTAE_Min_obl_faktor > rc_KortTAE_Max_obl_faktor_max",
 	    	        "productElementOids": [ 254 ],
 	    	        "requiredif": "#parent#",
-	        	    "positiveMessage": "Minimum antal daekninger maa ikke overstige rc_KortTAE_Max_obl_faktor_max",
+	        	    "positiveMessage": "Minimum antal dækninger må ikke overstige rc_KortTAE_Max_obl_faktor_max",
 	            	"negativeMessage": "",
 	            	"positiveValCode": 103
             	}            	
@@ -358,7 +358,7 @@
 	    	        "productElementOids": [ 76 ],
 	    	        "requiredif": "#parent#",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Minimum Invalidesum i kr skal angives naar reguleringstype er Ingen eller Pristal"
+	            	"negativeMessage": "Minimum Invalidesum i kr skal angives når reguleringstype er Ingen eller Pristal"
             	},
 				{
 		            "id": "24.1.2",
@@ -367,7 +367,7 @@
 	    	        "productElementOids": [ 77 ],
 	    	        "requiredif": "#parent#",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Maksimum Invalidesum i kr skal angives naar reguleringstype er Ingen eller Pristal"
+	            	"negativeMessage": "Maksimum Invalidesum i kr skal angives når reguleringstype er Ingen eller Pristal"
             	},
             	{
 		            "id": "24.1.3",
@@ -375,7 +375,7 @@
 	    	        "productElementOids": [ 78 ],
 	    	        "requiredif": "",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Spaend i invalidesum i kr skal mindst vaere %1",
+	            	"negativeMessage": "Spænd i invalidesum i kr skal mindst være %1",
 					"negativeValCode": 102
             	},
             	{
@@ -384,7 +384,7 @@
 	    	        "productElementOids": [ 78 ],
 	    	        "requiredif": "",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Spaend i invalidesum i kr maa ikke overstige %1",
+	            	"negativeMessage": "Spænd i invalidesum i kr må ikke overstige %1",
 					"negativeValCode": 103
             	}
             ],
@@ -419,7 +419,7 @@
 	    	        "productElementOids": [ 79 ],
 	    	        "requiredif": "#parent#",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Minimum Invalidesum i procent skal angives naar reguleringstype er Gage"
+	            	"negativeMessage": "Minimum Invalidesum i procent skal angives når reguleringstype er Gage"
             	},
 				{
 		            "id": "24.2.2",
@@ -428,7 +428,7 @@
 	    	        "productElementOids": [ 80 ],
 	    	        "requiredif": "#parent#",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Maksimum Invalidesum i procent skal angives naar reguleringstype er Gage"
+	            	"negativeMessage": "Maksimum Invalidesum i procent skal angives når reguleringstype er Gage"
             	},
             	{
 		            "id": "24.2.3",
@@ -436,7 +436,7 @@
 	    	        "productElementOids": [ 81 ],
 	    	        "requiredif": "",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Spaend i invalidesum i procent skal mindst vaere %1",
+	            	"negativeMessage": "Spænd i invalidesum i procent skal mindst være %1",
 					"negativeValCode": 102
             	},
             	{
@@ -445,7 +445,7 @@
 	    	        "productElementOids": [ 81 ],
 	    	        "requiredif": "",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Spaend i invalidesum i procent maa ikke overstige %1",
+	            	"negativeMessage": "Spænd i invalidesum i procent må ikke overstige %1",
 					"negativeValCode": 103
             	}
             ],
@@ -454,7 +454,7 @@
          {
             "id": "25.1",
 
-         	"comments" : "Product Page: Dodsfaldsdaekning - Ingen/Pristal",
+         	"comments" : "Product Page: Dodsfaldsdækning - Ingen/Pristal",
 
             "expr": "DoedReguleringskode == \"Ingen\" or DoedReguleringskode == \"Pristal\"",
             "productElementOids": [ 82 ],
@@ -480,7 +480,7 @@
 			        "productElementOids": [ 1 ],
 			        "requiredif": "DoedReguleringskode == \"Ingen\" or DoedReguleringskode == \"Pristal\" or DoedReguleringskode == \"Gage\"",
 			        "positiveMessage": "",
-			        "negativeMessage": "Minimum doedsfaldsdaekning i kr skal angives naar reguleringstype er Pristal eller Ingen"
+			        "negativeMessage": "Minimum dødsfaldsdækning i kr skal angives når reguleringstype er Pristal eller Ingen"
 		        },
             	{
 		            "id": "25.1.2",
@@ -490,7 +490,7 @@
 	    	        "requiredif": "#parent#",
 	    	        "notallowedif": "DoedReguleringskode == \"Gage\"",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Maksimum doedsfaldsdaekning i kr skal angives naar reguleringstype er Pristal eller Ingen"
+	            	"negativeMessage": "Maksimum dødsfaldsdækning i kr skal angives når reguleringstype er Pristal eller Ingen"
             	},
             	{
 		            "id": "25.1.3",
@@ -499,7 +499,7 @@
 	    	        "requiredif": "",
 	    	        "notallowedif": "DoedReguleringskode == \"Gage\"",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Spænd i d�dsfaldsd�kning i kr skal mindst v�re [%1] kr.",
+	            	"negativeMessage": "Spænd i dødsfaldsdækning i kr skal mindst være [%1] kr.",
 	            	"negativeMessageParameters": [ "rc_DoedSpandBl_min" ],
 					"negativeValCode": 102
             	},
@@ -519,7 +519,7 @@
          {
             "id": "25.2",
 
-         	"comments" : "Product Page: Dodsfaldsdaekning - Gage",
+         	"comments" : "Product Page: Dodsfaldsdækning - Gage",
 
             "expr": "DoedReguleringskode == \"Gage\"",
    	        "productElementOids": [ 82 ],
@@ -546,7 +546,7 @@
 			        "productElementOids": [ 1 ],
 			        "requiredif": "DoedReguleringskode == \"Ingen\" or DoedReguleringskode == \"Pristal\" or DoedReguleringskode == \"Gage\"",
 			        "positiveMessage": "",
-			        "negativeMessage": "Minimum doedsfaldsdaekning i kr skal angives naar reguleringstype er Gage"
+			        "negativeMessage": "Minimum dødsfaldsdækning i kr skal angives når reguleringstype er Gage"
 		        },
 				{
 		            "id": "25.2.1",
@@ -555,7 +555,7 @@
 		   	        "productElementOids": [ 6 ],
    	    		    "requiredif": "#parent#",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Minimum doedsfaldsdaekning i procent skal angives naar reguleringstype er Gage"
+	            	"negativeMessage": "Minimum dødsfaldsdækning i procent skal angives når reguleringstype er Gage"
         	    },
 		        {
 		            "id": "25.2.2",
@@ -564,7 +564,7 @@
 		   	        "productElementOids": [ 7 ],
    	    		    "requiredif": "#parent#",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Maksimum doedsfaldsdaekning i procent skal angives naar reguleringstype er Gage"
+	            	"negativeMessage": "Maksimum dødsfaldsdækning i procent skal angives når reguleringstype er Gage"
         	    },
 		        {
 		            "id": "25.2.4",
@@ -617,7 +617,7 @@
 			        "productElementOids": [ 85 ],
 			        "requiredif": "#parent#",
 			        "positiveMessage": "",
-			        "negativeMessage": "Minimum boernerente i pct skal angives naar reguleringstype er Gage"
+			        "negativeMessage": "Minimum børnerente i pct skal angives når reguleringstype er Gage"
 		        },
 				{
 		            "id": "25.3.2",
@@ -626,7 +626,7 @@
 		   	        "productElementOids": [ 86 ],
    	    		    "requiredif": "#parent#",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Maksimum boernerente i procent skal angives naar reguleringstype er Gage"
+	            	"negativeMessage": "Maksimum børnerente i procent skal angives når reguleringstype er Gage"
         	    },
 		        {
 		            "id": "25.3.4",
@@ -634,7 +634,7 @@
 		   	        "productElementOids": [ 87 ],
    	    		    "requiredif": "#parent#",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Spænd for boernerente i pct skal være større end %1",
+	            	"negativeMessage": "Spænd for børnerente i pct skal være større end %1",
 					"negativeValCode": 102
         	    },
 		        {
@@ -643,7 +643,7 @@
 		   	        "productElementOids": [ 87 ],
    	    		    "requiredif": "#parent#",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Spænd for boernerente i pct må ikke overstige %1",
+	            	"negativeMessage": "Spænd for børnerente i pct må ikke overstige %1",
 					"negativeValCode": 103
         	    }
             ],
@@ -680,7 +680,7 @@
 			        "productElementOids": [ 88 ],
 			        "requiredif": "#parent#",
 			        "positiveMessage": "",
-			        "negativeMessage": "Minimum boernerente i kr skal angives naar reguleringstype er Gage"
+			        "negativeMessage": "Minimum børnerente i kr skal angives når reguleringstype er Gage"
 		        },
 				{
 		            "id": "25.4.2",
@@ -689,7 +689,7 @@
 		   	        "productElementOids": [ 89 ],
    	    		    "requiredif": "#parent#",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Maksimum boernerente i kr skal angives naar reguleringstype er Gage"
+	            	"negativeMessage": "Maksimum børnerente i kr skal angives når reguleringstype er Gage"
         	    },
 		        {
 		            "id": "25.4.4",
@@ -697,7 +697,7 @@
 		   	        "productElementOids": [ 90 ],
    	    		    "requiredif": "#parent#",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Spænd for boernerente i kr skal være større end %1",
+	            	"negativeMessage": "Spænd for børnerente i kr skal være større end %1",
 					"negativeValCode": 102
         	    },
 		        {
@@ -706,7 +706,7 @@
 		   	        "productElementOids": [ 90 ],
    	    		    "requiredif": "#parent#",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Spænd for boernerente i kr må ikke overstige %1",
+	            	"negativeMessage": "Spænd for børnerente i kr må ikke overstige %1",
 					"negativeValCode": 103
         	    }
             ],
@@ -730,7 +730,7 @@
    	        "productElementOids": [ 93 ],
 		    "requiredif": "",
     	    "positiveMessage": "",
-        	"negativeMessage": "Spænd for boernesum i kr skal være større end %1",
+        	"negativeMessage": "Spænd for børnesum i kr skal være større end %1",
 			"negativeValCode": 102
 	     },
          {
@@ -739,7 +739,7 @@
    	        "productElementOids": [ 93 ],
 		    "requiredif": "",
     	    "positiveMessage": "",
-        	"negativeMessage": "Spænd for boernesum i kr må ikke overstige %1",
+        	"negativeMessage": "Spænd for børnesum i kr må ikke overstige %1",
 			"negativeValCode": 103
 	     },
 	     
@@ -783,7 +783,7 @@
 							"productElementOids": [ 218 ],
 							"requiredif": "#parent#",
 							"positiveMessage": "",
-							"negativeMessage": "Minimum Kritisk Sygdom i Pct skal angives naar reguleringstype er Gage"
+							"negativeMessage": "Minimum Kritisk Sygdom i Pct skal angives når reguleringstype er Gage"
 						},
 						{
 							"id": "26.1.2.2",
@@ -792,7 +792,7 @@
 							"productElementOids": [ 219 ],
 							"requiredif": "#parent#",
 							"positiveMessage": "",
-							"negativeMessage": "Maksimum Kritisk Sygdom i Pct skal angives naar reguleringstype er Gage"
+							"negativeMessage": "Maksimum Kritisk Sygdom i Pct skal angives når reguleringstype er Gage"
 						},
 						{
 							"id": "26.1.2.3",
@@ -801,7 +801,7 @@
 							"productElementOids": [ 220 ],
 							"requiredif": "",
 							"positiveMessage": "",
-							"negativeMessage": "Spaend for Kritisk sygdom i procent skal vaerre stoerre end %1",
+							"negativeMessage": "Spænd for Kritisk sygdom i procent skal værre større end %1",
 							"negativeValCode": 102
 						},
 						{
@@ -811,7 +811,7 @@
 							"productElementOids": [ 220 ],
 							"requiredif": "",
 							"positiveMessage": "",
-							"negativeMessage": "Spaend for Kritisk sygdom i procent maa ikke overstige %1",
+							"negativeMessage": "Spænd for Kritisk sygdom i procent må ikke overstige %1",
 							"negativeValCode": 103
 						}
 					]
@@ -846,7 +846,7 @@
 							"requiredif": "#parent#",
 							"notallowedif": "KritiskSygReguleringskode != \"Ingen\" and KritiskSygReguleringskode != \"Pristal\"",
 							"positiveMessage": "",
-							"negativeMessage": "Minimum Kritisk Sygdom i kr skal angives naar reguleringstype er Ingen/Pristal"
+							"negativeMessage": "Minimum Kritisk Sygdom i kr skal angives når reguleringstype er Ingen/Pristal"
 						},
 						{
 							"id": "26.1.3.2",
@@ -856,7 +856,7 @@
 							"requiredif": "#parent#",
 							"notallowedif": "KritiskSygReguleringskode != \"Ingen\" and KritiskSygReguleringskode != \"Pristal\"",
 							"positiveMessage": "",
-							"negativeMessage": "Maksimum Kritisk Sygdom i kr skal angives naar reguleringstype er Ingen/Pristal"
+							"negativeMessage": "Maksimum Kritisk Sygdom i kr skal angives når reguleringstype er Ingen/Pristal"
 						},
 						{
 							"id": "26.1.3.3",
@@ -866,7 +866,7 @@
 							"requiredif": "",
 							"notallowedif": "KritiskSygReguleringskode != \"Ingen\" and KritiskSygReguleringskode != \"Pristal\"",
 							"positiveMessage": "",
-							"negativeMessage": "Spaend for Kritisk sygdom i kr skal vaerre stoerre end %1",
+							"negativeMessage": "Spænd for Kritisk sygdom i kr skal værre større end %1",
 							"negativeValCode": 102
 						},
 						{
@@ -877,7 +877,7 @@
 							"requiredif": "",
 							"notallowedif": "KritiskSygReguleringskode != \"Ingen\" and KritiskSygReguleringskode != \"Pristal\"",
 							"positiveMessage": "",
-							"negativeMessage": "Spaend for Kritisk sygdom i kr maa ikke overstige %1",
+							"negativeMessage": "Spænd for Kritisk sygdom i kr må ikke overstige %1",
 							"negativeValCode": 103
 						}
 					]
@@ -890,7 +890,7 @@
    	    		    "requiredif": "#parent#",
    	    		    "notallowedif": "KritiskSygdom_i_FG_mk == false",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Mulighed for supplerende daekning skal angives naar Kritisk sygdom i FG er valgt",
+	            	"negativeMessage": "Mulighed for supplerende dækning skal angives når Kritisk sygdom i FG er valgt",
 					"positiveRuleCatalogue": []
 				},
 				{
@@ -901,7 +901,7 @@
    	    		    "requiredif": "#parent#",
    	    		    "notallowedif": "KritiskSygdom_i_FG_mk == false",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Mulighed for supplerende daekning skal angives naar Kritisk sygdom i FG er valgt",
+	            	"negativeMessage": "Mulighed for supplerende dækning skal angives når Kritisk sygdom i FG er valgt",
 					"positiveRuleCatalogue": []
 				}
 			],
@@ -925,7 +925,7 @@
 		   	        "productElementOids": [ 267 ],
    	    		    "requiredif": "#parent#",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Reguleringstype for Kritisk sygdom i fg Boern skal angives",
+	            	"negativeMessage": "Reguleringstype for Kritisk sygdom i fg Børn skal angives",
 					"positiveRuleCatalogue": []
         	    },
 		        {
@@ -956,7 +956,7 @@
 							"productElementOids": [ 263 ],
 							"requiredif": "#parent#",
 							"positiveMessage": "",
-							"negativeMessage": "Minimum Kritisk Sygdom i kr Born skal angives naar reguleringstype er Ingen/Pristal"
+							"negativeMessage": "Minimum Kritisk Sygdom i kr Born skal angives når reguleringstype er Ingen/Pristal"
 						},
 						{
 							"id": "26.2.2.2",
@@ -965,7 +965,7 @@
 							"productElementOids": [ 262 ],
 							"requiredif": "#parent#",
 							"positiveMessage": "",
-							"negativeMessage": "Maksimum Kritisk Sygdom Born i kr skal angives naar reguleringstype er Ingen/Pristal"
+							"negativeMessage": "Maksimum Kritisk Sygdom Born i kr skal angives når reguleringstype er Ingen/Pristal"
 						},
 						{
 							"id": "26.2.2.3",
@@ -974,7 +974,7 @@
 							"productElementOids": [ 269 ],
 							"requiredif": "",
 							"positiveMessage": "",
-							"negativeMessage": "Spaend for Kritisk sygdom born i kr skal vaerre stoerre end %1",
+							"negativeMessage": "Spænd for Kritisk sygdom born i kr skal værre større end %1",
 							"negativeValCode": 102
 						},
 						{
@@ -984,7 +984,7 @@
 							"productElementOids": [ 269 ],
 							"requiredif": "",
 							"positiveMessage": "",
-							"negativeMessage": "Spaend for Kritisk sygdom born i kr maa ikke overstige %1",
+							"negativeMessage": "Spænd for Kritisk sygdom born i kr må ikke overstige %1",
 							"negativeValCode": 103
 						}
 					]
@@ -996,7 +996,7 @@
 		   	        "productElementOids": [ 271 ],
    	    		    "requiredif": "#parent#",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Supplerende daekning for Kritisk sygdom i fg Boern skal angives",
+	            	"negativeMessage": "Supplerende dækning for Kritisk sygdom i fg Børn skal angives",
 					"positiveRuleCatalogue": []
         	    },
 		        {
@@ -1006,7 +1006,7 @@
 		   	        "productElementOids": [ 268 ],
    	    		    "requiredif": "#parent#",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Kritisk sygdom i fg Boern skatte kode skal angives",
+	            	"negativeMessage": "Kritisk sygdom i fg Børn skatte kode skal angives",
 					"positiveRuleCatalogue": []
         	    }			
 			]
@@ -1089,7 +1089,7 @@
 				   	        "productElementOids": [ 144 ],
 		   	    		    "requiredif": "#parent#",
 			        	    "positiveMessage": "",
-			            	"negativeMessage": "Indtraedelsesdato skal angives naar der indtraedese senere",
+			            	"negativeMessage": "Indtrædelsesdato skal angives når der indtrædese senere",
 							"positiveRuleCatalogue": []
 		        	    }
 					]
@@ -1197,7 +1197,7 @@
    	        "productElementOids": [ 147 ],
    	        "requiredif": "",
             "positiveMessage": "",
-            "negativeMessage": "Reguleringsmaaned ikke gyldig",
+            "negativeMessage": "Reguleringsmåned ikke gyldig",
             "negativeValCode": 101,
             "positiveRuleCatalogue": [],
 	        "negativeRuleCatalogue": []
@@ -1233,7 +1233,7 @@
 	        "productElementOids": [ 999 ],
    		    "requiredif": "",
 	   	    "positiveMessage": "",
-	       	"negativeMessage": "Den totale procent skal vaere storre end %1",
+	       	"negativeMessage": "Den totale procent skal være storre end %1",
 	        "negativeValCode": 102,
 			"positiveRuleCatalogue": []
          },
@@ -1266,7 +1266,7 @@
 		   	        "productElementOids": [ 999 ],
    	    		    "requiredif": "#parent#",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Der maa kun vare et trin nar 'Ingen' er valgt som Bidragsstigningsform",
+	            	"negativeMessage": "Der må kun vare et trin nar 'Ingen' er valgt som Bidragsstigningsform",
 	            	"negativeValCode": 101,
 					"positiveRuleCatalogue": []
         	    }
@@ -1291,7 +1291,7 @@
 		   	        "productElementOids": [ 999 ],
    	    		    "requiredif": "#parent#",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Der foerste trin skal starte med tidligste indmeldelsesalder",
+	            	"negativeMessage": "Der første trin skal starte med tidligste indmeldelsesalder",
 	            	"negativeValCode": 101,
 					"positiveRuleCatalogue": []
         	    },
@@ -1302,7 +1302,7 @@
 		   	        "productElementOids": [ 999 ],
    	    		    "requiredif": "#parent#",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Der skal mindst vaere et trin",
+	            	"negativeMessage": "Der skal mindst være et trin",
 	            	"negativeValCode": 101,
 					"positiveRuleCatalogue": []
         	    }
@@ -1327,7 +1327,7 @@
 		   	        "productElementOids": [ 999 ],
    	    		    "requiredif": "#parent#",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Der foerste trin skal starte med 0 ",
+	            	"negativeMessage": "Der første trin skal starte med 0 ",
 	            	"negativeValCode": 101,
 					"positiveRuleCatalogue": []
         	    },
@@ -1338,7 +1338,7 @@
 		   	        "productElementOids": [ 999 ],
    	    		    "requiredif": "#parent#",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Der skal mindst vaere et trin",
+	            	"negativeMessage": "Der skal mindst være et trin",
 	            	"negativeValCode": 101,
 					"positiveRuleCatalogue": []
         	    }
@@ -1363,7 +1363,7 @@
 		   	        "productElementOids": [ 999 ],
    	    		    "requiredif": "#parent#",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Der foerste trin skal starte med ikraftdatoen for aftalen",
+	            	"negativeMessage": "Der første trin skal starte med ikraftdatoen for aftalen",
 	            	"negativeValCode": 101,
 					"positiveRuleCatalogue": []
         	    },
@@ -1374,7 +1374,7 @@
 		   	        "productElementOids": [ 999 ],
    	    		    "requiredif": "#parent#",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Der skal mindst vaere et trin",
+	            	"negativeMessage": "Der skal mindst være et trin",
 	            	"negativeValCode": 101,
 					"positiveRuleCatalogue": []
         	    }

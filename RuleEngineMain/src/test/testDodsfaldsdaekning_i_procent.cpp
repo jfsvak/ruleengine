@@ -115,8 +115,8 @@ TEST_F(Doedsfaldsdaekning_I_Procent_KI_OSV_25_49, Doedfaldsdaekning_Whole_Sectio
 	ta.setValue(kDoedBlGrMin, (long) 200000);
 
 	ta.setValue(kDoedSoliMax, "Tegningsmaks");
-	ta.setValue(kDoedDaekningstype, "115 DØD Gennemsnitspræmie");
-	ta.setValue(kDoedSkattekode, "Skattefri dækning");
+	ta.setValue(kDoedDaekningstype, "115 DÃ˜D GennemsnitsprÃ¦mie");
+	ta.setValue(kDoedSkattekode, "Skattefri dÃ¦kning");
 
 	ta.setValue(kBoernerente_Reguleringstype, "Gage");
 	ta.setValue(kBoerneUdloebsalder, (long) 24);
