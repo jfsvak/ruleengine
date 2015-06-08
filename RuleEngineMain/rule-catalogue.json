@@ -151,6 +151,7 @@
 	    	        "requiredif": "",
 	        	    "positiveMessage": "",
 	            	"negativeMessage": "Spænd i invaliditetsdækning i procent skal mindst være %1",
+	            	"negativeMessageParameters": [ "rc_TAESpaendPct_min" ],
 					"negativeValCode": 102
             	},
             	{
@@ -160,6 +161,7 @@
 	    	        "requiredif": "",
 	        	    "positiveMessage": "",
 	            	"negativeMessage": "Spænd i invaliditetsdækning i procent må ikke overstige %1",
+	            	"negativeMessageParameters": [ "rc_TAESpaendPct_max" ],
 					"negativeValCode": 103
 				},
 				{
@@ -212,6 +214,7 @@
 	    	        "requiredif": "",
 	        	    "positiveMessage": "",
 	            	"negativeMessage": "Spænd i invaliditetsdækning i kr skal mindst være %1",
+	            	"negativeMessageParameters": [ "rc_TAESpaendBl_min" ],
 					"negativeValCode": 102
             	},
             	{
@@ -221,6 +224,7 @@
 	    	        "requiredif": "",
 	        	    "positiveMessage": "",
 	            	"negativeMessage": "Spænd i invaliditetsdækning i kr må ikke overstige %1",
+	            	"negativeMessageParameters": [ "rc_TAESpaendBl_max" ],
 					"negativeValCode": 103
             	},
 				{
@@ -298,7 +302,8 @@
 	    	        "expr": "KortTAE_Daekning == \"Obligatorisk\" and KortTAE_Min_obl_faktor > rc_KortTAE_Max_obl_faktor_max",
 	    	        "productElementOids": [ 254 ],
 	    	        "requiredif": "#parent#",
-	        	    "positiveMessage": "Minimum antal dækninger må ikke overstige rc_KortTAE_Max_obl_faktor_max",
+	        	    "positiveMessage": "Minimum antal dækninger må ikke overstige %1",
+	            	"negativeMessageParameters": [ "rc_KortTAE_Max_obl_faktor_max" ],
 	            	"negativeMessage": "",
 	            	"positiveValCode": 103
             	}            	
@@ -376,6 +381,7 @@
 	    	        "requiredif": "",
 	        	    "positiveMessage": "",
 	            	"negativeMessage": "Spænd i invalidesum i kr skal mindst være %1",
+	            	"negativeMessageParameters": [ "rc_InvalidesumSpaendBl_min" ],
 					"negativeValCode": 102
             	},
             	{
@@ -385,6 +391,7 @@
 	    	        "requiredif": "",
 	        	    "positiveMessage": "",
 	            	"negativeMessage": "Spænd i invalidesum i kr må ikke overstige %1",
+	            	"negativeMessageParameters": [ "rc_InvalidesumSpaendBl_max" ],
 					"negativeValCode": 103
             	}
             ],
@@ -436,7 +443,8 @@
 	    	        "productElementOids": [ 81 ],
 	    	        "requiredif": "",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Spænd i invalidesum i procent skal mindst være %1",
+	            	"negativeMessage": "Spænd i invalidesum i procent skal mindst være %1%",
+	            	"negativeMessageParameters": [ "rc_InvalidesumSpaendPct_min" ],
 					"negativeValCode": 102
             	},
             	{
@@ -445,7 +453,8 @@
 	    	        "productElementOids": [ 81 ],
 	    	        "requiredif": "",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Spænd i invalidesum i procent må ikke overstige %1",
+	            	"negativeMessage": "Spænd i invalidesum i procent må ikke overstige %1%",
+	            	"negativeMessageParameters": [ "rc_InvalidesumSpaendPct_max" ],
 					"negativeValCode": 103
             	}
             ],
@@ -499,8 +508,8 @@
 	    	        "requiredif": "",
 	    	        "notallowedif": "DoedReguleringskode == \"Gage\"",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Spænd i dødsfaldsdækning i kr skal mindst være [%1] kr.",
-	            	"negativeMessageParameters": [ "rc_DoedSpandBl_min" ],
+	            	"negativeMessage": "Spænd i dødsfaldsdækning i kr skal mindst være %1 kr.",
+	            	"negativeMessageParameters": [ "rc_DoedSpaendBl_min" ],
 					"negativeValCode": 102
             	},
             	{
@@ -509,8 +518,8 @@
 	    	        "productElementOids": [ 3 ],
 	    	        "requiredif": "",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Spænd i d�dsfaldsd�kning i kr m� ikke overstige %1 kr",
-	            	"negativeMessageParameters": [ "rc_DoedSpandBl_max" ],
+	            	"negativeMessage": "Spænd i dødsfaldsdækning i kr må ikke overstige %1 kr.",
+	            	"negativeMessageParameters": [ "rc_DoedSpaendBl_max" ],
 					"negativeValCode": 103
             	}
             ],
@@ -573,6 +582,7 @@
    	    		    "requiredif": "#parent#",
 	        	    "positiveMessage": "",
 	            	"negativeMessage": "Spænd for dødsfaldsdækning i pct skal være større end %1",
+	            	"negativeMessageParameters": [ "rc_DoedSpaendPct_min" ],
 					"negativeValCode": 102
         	    },
 		        {
@@ -582,6 +592,7 @@
    	    		    "requiredif": "",
 	        	    "positiveMessage": "",
 	            	"negativeMessage": "Spænd for dødsfaldsdækning i pct må ikke overstige %1",
+	            	"negativeMessageParameters": [ "rc_DoedSpaendPct_max" ],
 					"negativeValCode": 103
         	    }
             ],
@@ -635,6 +646,7 @@
    	    		    "requiredif": "#parent#",
 	        	    "positiveMessage": "",
 	            	"negativeMessage": "Spænd for børnerente i pct skal være større end %1",
+	            	"negativeMessageParameters": ["rc_BoerneRenteSpaendPct_min" ],
 					"negativeValCode": 102
         	    },
 		        {
@@ -644,6 +656,7 @@
    	    		    "requiredif": "#parent#",
 	        	    "positiveMessage": "",
 	            	"negativeMessage": "Spænd for børnerente i pct må ikke overstige %1",
+	            	"negativeMessageParameters": [ "rc_BoerneRenteSpaendPct_max" ],
 					"negativeValCode": 103
         	    }
             ],
@@ -695,9 +708,10 @@
 		            "id": "25.4.4",
 	    	        "expr": "(BoerneRenteBlMax-BoerneRenteBlMin) >= rc_BoerneRenteSpaendBl_min",
 		   	        "productElementOids": [ 90 ],
-   	    		    "requiredif": "#parent#",
 	        	    "positiveMessage": "",
+   	    		    "requiredif": "#parent#",
 	            	"negativeMessage": "Spænd for børnerente i kr skal være større end %1",
+	            	"negativeMessageParameters": [ "rc_BoerneRenteSpaendBl_min" ],
 					"negativeValCode": 102
         	    },
 		        {
@@ -707,6 +721,7 @@
    	    		    "requiredif": "#parent#",
 	        	    "positiveMessage": "",
 	            	"negativeMessage": "Spænd for børnerente i kr må ikke overstige %1",
+	            	"negativeMessageParameters": [ "rc_BoerneRenteSpaendBl_max" ],
 					"negativeValCode": 103
         	    }
             ],
@@ -731,6 +746,7 @@
 		    "requiredif": "",
     	    "positiveMessage": "",
         	"negativeMessage": "Spænd for børnesum i kr skal være større end %1",
+           	"negativeMessageParameters": [ "rc_BoerneSumSpaendBl_min" ],
 			"negativeValCode": 102
 	     },
          {
@@ -740,6 +756,7 @@
 		    "requiredif": "",
     	    "positiveMessage": "",
         	"negativeMessage": "Spænd for børnesum i kr må ikke overstige %1",
+           	"negativeMessageParameters": [ "rc_BoerneSumSpaendBl_max" ],
 			"negativeValCode": 103
 	     },
 	     
@@ -802,6 +819,7 @@
 							"requiredif": "",
 							"positiveMessage": "",
 							"negativeMessage": "Spænd for Kritisk sygdom i procent skal værre større end %1",
+				           	"negativeMessageParameters": [ "rc_KritiskSygspaendpc_min" ],
 							"negativeValCode": 102
 						},
 						{
@@ -812,6 +830,7 @@
 							"requiredif": "",
 							"positiveMessage": "",
 							"negativeMessage": "Spænd for Kritisk sygdom i procent må ikke overstige %1",
+				           	"negativeMessageParameters": [ "rc_KritiskSygspaendpc_max" ],
 							"negativeValCode": 103
 						}
 					]
@@ -867,6 +886,7 @@
 							"notallowedif": "KritiskSygReguleringskode != \"Ingen\" and KritiskSygReguleringskode != \"Pristal\"",
 							"positiveMessage": "",
 							"negativeMessage": "Spænd for Kritisk sygdom i kr skal værre større end %1",
+				           	"negativeMessageParameters": [ "rc_KritiskSygSpaendBl_min" ],
 							"negativeValCode": 102
 						},
 						{
@@ -878,6 +898,7 @@
 							"notallowedif": "KritiskSygReguleringskode != \"Ingen\" and KritiskSygReguleringskode != \"Pristal\"",
 							"positiveMessage": "",
 							"negativeMessage": "Spænd for Kritisk sygdom i kr må ikke overstige %1",
+				           	"negativeMessageParameters": [ "rc_KritiskSygSpaendBl_max" ],
 							"negativeValCode": 103
 						}
 					]
@@ -975,6 +996,7 @@
 							"requiredif": "",
 							"positiveMessage": "",
 							"negativeMessage": "Spænd for Kritisk sygdom born i kr skal værre større end %1",
+				           	"negativeMessageParameters": [ "rc_KritiskSygBornesumSpaendBl_min" ],
 							"negativeValCode": 102
 						},
 						{
@@ -985,6 +1007,7 @@
 							"requiredif": "",
 							"positiveMessage": "",
 							"negativeMessage": "Spænd for Kritisk sygdom born i kr må ikke overstige %1",
+				           	"negativeMessageParameters": [ "rc_KritiskSygBornesumSpaendBl_max"  ],
 							"negativeValCode": 103
 						}
 					]
@@ -1089,7 +1112,7 @@
 				   	        "productElementOids": [ 144 ],
 		   	    		    "requiredif": "#parent#",
 			        	    "positiveMessage": "",
-			            	"negativeMessage": "Indtrædelsesdato skal angives når der indtrædese senere",
+			            	"negativeMessage": "Indtrædelsesdato skal angives når der indtrædes senere",
 							"positiveRuleCatalogue": []
 		        	    }
 					]
@@ -1134,7 +1157,7 @@
 		        {
 		            "id": "29.1.1",
 		            "comments" : "FusionIndtraedelsesdato- requiredif placeholder",
-	    	        "expr": "subtract_months(FusionIndtraedelsesdato, 5)",
+	    	        "expr": "",
 		   	        "productElementOids": [ 202 ],
    	    		    "requiredif": "#parent#",
 	        	    "positiveMessage": "",
@@ -1233,7 +1256,8 @@
 	        "productElementOids": [ 999 ],
    		    "requiredif": "",
 	   	    "positiveMessage": "",
-	       	"negativeMessage": "Den totale procent skal være storre end %1",
+	       	"negativeMessage": "Den totale procent skal være storre end %1/%2",
+           	"negativeMessageParameters": [ "rc_BidragInklHospdaekningPctMin_min", "rc_BidragsEksklHospdaekningPctMin_min" ],
 	        "negativeValCode": 102,
 			"positiveRuleCatalogue": []
          },

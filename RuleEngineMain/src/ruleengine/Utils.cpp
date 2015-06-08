@@ -7,9 +7,8 @@
 
 #include "Utils.h"
 
-#include <algorithm>
 #include <iostream>
-#include <string>
+#include <iomanip>
 #include <sstream>
 
 using namespace std;
@@ -78,6 +77,92 @@ bool toBool(const std::string& s)
 	return (sbx::utils::toUpper(s) == "TRUE" || s == "1");
 }
 
+std::string formatValue(const mup::Value& val)
+{
+	std::stringstream ss {};
+	std::locale dk_locale(std::locale(), new sbx::utils::dk_numpunct { });
+	ss.imbue(dk_locale);
+
+	switch(val.GetType())
+	{
+	case 'i': return formatValue(val.GetInteger());
+	case 'f': return formatValue(val.GetFloat());
+	case 'b': return formatValue(val.GetBool());
+	default:
+		ss << val;
+	}
+
+	return ss.str();
+}
+
+std::string formatValue(string v) {
+	std::stringstream ss {};
+	std::locale dk_locale(std::locale(), new sbx::utils::dk_numpunct { });
+	ss.imbue(dk_locale);
+	ss << boolalpha << v;
+	return ss.str();
+}
+
+std::string formatValue(long v) {
+	std::stringstream ss {};
+	std::locale dk_locale(std::locale(), new sbx::utils::dk_numpunct { });
+	ss.imbue(dk_locale);
+	ss << std::setprecision(0) << fixed << v;
+	return ss.str();
+}
+
+std::string formatValue(int v) {
+	std::stringstream ss {};
+	std::locale dk_locale(std::locale(), new sbx::utils::dk_numpunct { });
+	ss.imbue(dk_locale);
+	ss << std::setprecision(0) << fixed << v;
+	return ss.str();
+}
+
+std::string formatValue(bool v) {
+	std::stringstream ss {};
+	std::locale dk_locale(std::locale(), new sbx::utils::dk_numpunct { });
+	ss.imbue(dk_locale);
+	ss << boolalpha << v;
+	return ss.str();
+}
+
+std::string formatValue(double v) {
+	std::stringstream ss {};
+	std::locale dk_locale(std::locale(), new sbx::utils::dk_numpunct { });
+	ss.imbue(dk_locale);
+	ss << std::setprecision(2) << fixed << v;
+	return ss.str();
+}
+
+std::string formatMessage(std::string msg, const std::vector<std::string>& parameters)
+{
+	try
+	{
+		int i { 1 };
+
+		for (auto& parameter : parameters) {
+			stringstream ss{};
+			ss << "%" << i;
+			int pos = msg.find(ss.str());
+
+			if (pos > -1)
+				msg.replace(pos, 2, parameter);
+			else
+				cout << "[" << ss.str() << "] not found in msg: " << msg << endl;
+
+			i++;
+		}
+	}
+	catch (const exception& e) {
+		cerr << "Exception during string formatting: " << e.what() << endl;
+	}
+
+	return msg;
+}
+
+
+
 sbx::ValidationCode toValCode(unsigned short valCode, sbx::ValidationCode defaultValCode)
 {
 	if (       (valCode >= (unsigned short) sbx::ValidationCode::kOK && valCode <= sbx::ValidationCode::kProductElementNotDefined)
@@ -88,6 +173,13 @@ sbx::ValidationCode toValCode(unsigned short valCode, sbx::ValidationCode defaul
 
 	return defaultValCode;
 }
+
+char dk_numpunct::do_thousands_sep() const { return '.'; }
+std::string dk_numpunct::do_grouping() const { return "\03"; }
+char dk_numpunct::do_decimal_point() const { return ','; };
+std::string dk_numpunct::do_truename() const { return "Ja"; };
+std::string dk_numpunct::do_falsename() const { return "Nej"; };
+
 
 } // namespace utils
 } /* namespace sbx */

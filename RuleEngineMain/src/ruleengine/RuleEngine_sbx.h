@@ -105,7 +105,8 @@ private:
 
 	std::set<unsigned short, std::less<unsigned short>> _getAllowedPEOids();
 	std::string getConstFromParser(const std::string& constName);
-
+	std::string getVarFromParser(const std::string& constName);
+	std::vector<std::string> getParametersFromParser(const std::vector<std::string>& parameters);
 	void _defineConstant(const std::string& name, double constant);
 
 	void _loadParser(const TA& ta);

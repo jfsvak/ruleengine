@@ -18,7 +18,7 @@
 using namespace std;
 using namespace sbx;
 
-class Doedsfaldsdaekning_KI_OSV_25_49 : public ::testing::Test  {
+class Doedsfaldsdaekning_i_kr_KI_OSV_25_49 : public ::testing::Test  {
 protected:
     virtual void SetUp() {
     	RuleEngine::_printDebugAtValidation = false;
@@ -37,7 +37,7 @@ protected:
     RuleEngine re;
 };
 
-class Doedsfaldsdaekning_KI_OSV_Over_99 : public ::testing::Test  {
+class Doedsfaldsdaekning_i_kr_KI_OSV_Over_99 : public ::testing::Test  {
 protected:
     virtual void SetUp() {
     	RuleEngine::_printDebugAtValidation = false;
@@ -56,7 +56,7 @@ protected:
     RuleEngine re;
 };
 
-TEST_F(Doedsfaldsdaekning_KI_OSV_25_49, Doedfaldsdaekning_Whole_Section_Pristal_POSITIVE) {
+TEST_F(Doedsfaldsdaekning_i_kr_KI_OSV_25_49, Doedfaldsdaekning_Whole_Section_Pristal_POSITIVE) {
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
 	ta.setValue(kDoedReguleringskode, "Pristal");
 	ta.setValue(kDoedBlGrMin, (long) 400000);
@@ -75,6 +75,7 @@ TEST_F(Doedsfaldsdaekning_KI_OSV_25_49, Doedfaldsdaekning_Whole_Section_Pristal_
 
 	RuleEngine::_printDebugAtValidation = true;
 
+	re.printConstantsInParser();
 	const auto& r = re.validate(ta,
 			{
 			kDoedReguleringskode,
@@ -97,7 +98,7 @@ TEST_F(Doedsfaldsdaekning_KI_OSV_25_49, Doedfaldsdaekning_Whole_Section_Pristal_
 		cout << r;
 }
 
-TEST_F(Doedsfaldsdaekning_KI_OSV_25_49, DoedReguleringstype_Ingen_POSITIVE) {
+TEST_F(Doedsfaldsdaekning_i_kr_KI_OSV_25_49, DoedReguleringstype_Ingen_POSITIVE) {
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
 	ta.setValue(kDoedReguleringskode, "Ingen");
 	ta.setValue(kDoedBlGrMin, (long) 400000);
@@ -105,6 +106,7 @@ TEST_F(Doedsfaldsdaekning_KI_OSV_25_49, DoedReguleringstype_Ingen_POSITIVE) {
 
 	RuleEngine::_printDebugAtValidation = true;
 
+	re.printConstantsInParser();
 	auto r = re.validate(ta,
 			{
 			kDoedReguleringskode,
@@ -119,7 +121,7 @@ TEST_F(Doedsfaldsdaekning_KI_OSV_25_49, DoedReguleringstype_Ingen_POSITIVE) {
 		cout << r;
 }
 
-TEST_F(Doedsfaldsdaekning_KI_OSV_25_49, DoedReguleringstype_Ingen_SpanOverLimit_Negative) {
+TEST_F(Doedsfaldsdaekning_i_kr_KI_OSV_25_49, DoedReguleringstype_Ingen_SpanOverLimit_Negative) {
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
 	ta.setValue(kDoedReguleringskode, "Ingen");
 	ta.setValue(kDoedBlGrMin, (long) 200000);
@@ -127,6 +129,7 @@ TEST_F(Doedsfaldsdaekning_KI_OSV_25_49, DoedReguleringstype_Ingen_SpanOverLimit_
 
 	RuleEngine::_printDebugAtValidation = true;
 
+	re.printConstantsInParser();
 	auto r = re.validate(ta,
 			{
 			kDoedReguleringskode,
@@ -146,7 +149,7 @@ TEST_F(Doedsfaldsdaekning_KI_OSV_25_49, DoedReguleringstype_Ingen_SpanOverLimit_
 }
 
 
-TEST_F(Doedsfaldsdaekning_KI_OSV_Over_99, DoedReguleringstype_Ingen_POSITIVE) {
+TEST_F(Doedsfaldsdaekning_i_kr_KI_OSV_Over_99, DoedReguleringstype_Ingen_POSITIVE) {
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
 	ta.setValue(kDoedReguleringskode, "Ingen");
 	ta.setValue(kDoedBlGrMin, (long) 200000);
@@ -154,6 +157,7 @@ TEST_F(Doedsfaldsdaekning_KI_OSV_Over_99, DoedReguleringstype_Ingen_POSITIVE) {
 
 	RuleEngine::_printDebugAtValidation = true;
 
+	re.printConstantsInParser();
 	auto r = re.validate(ta,
 			{
 			kDoedReguleringskode,
@@ -169,7 +173,7 @@ TEST_F(Doedsfaldsdaekning_KI_OSV_Over_99, DoedReguleringstype_Ingen_POSITIVE) {
 }
 
 
-TEST_F(Doedsfaldsdaekning_KI_OSV_Over_99, DoedReguleringstype_Ingen_NEGATIVE_OverLimit) {
+TEST_F(Doedsfaldsdaekning_i_kr_KI_OSV_Over_99, DoedReguleringstype_Ingen_NEGATIVE_OverLimit) {
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
 	ta.setValue(kDoedReguleringskode, "Ingen");
 	ta.setValue(kDoedBlGrMin, (long) 300000);
@@ -177,6 +181,7 @@ TEST_F(Doedsfaldsdaekning_KI_OSV_Over_99, DoedReguleringstype_Ingen_NEGATIVE_Ove
 
 	RuleEngine::_printDebugAtValidation = true;
 
+	re.printConstantsInParser();
 	auto r = re.validate(ta,
 			{
 			kDoedReguleringskode,

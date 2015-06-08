@@ -13,6 +13,7 @@
 #include <iostream>
 #include <iomanip>
 #include <iterator>
+#include <locale>
 #include <set>
 #include <map>
 #include <string>
@@ -587,7 +588,7 @@ void RuleEngine::_validateMinMax(const sbx::ProductElementValue& pev, sbx::Valid
 			// value was not greater or equal to min
 			stringstream ss {};
 //			ss.imbue(std::locale("da_DK.UTF8"));
-			ss << "Værdien [" << pev.longValue() << "] for [" << _GUI_NAME(peOid) << "] må ikke være mindre end [" << this->getConstFromParser(sbx::utils::constructRCName(_PE(peOid), sbx::ComparisonTypes::kMin)) << "]";
+			ss << "Værdien [" << sbx::utils::formatValue(pev.longValue()) << "] for [" << _GUI_NAME(peOid) << "] må ikke være mindre end [" << this->getConstFromParser(sbx::utils::constructRCName(_PE(peOid), sbx::ComparisonTypes::kMin)) << "]";
 			r.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kValueUnderLimit, peOid, _VAR_NAME(peOid), ss.str(), "", expr) );
 		}
 	} catch (const mup::ParserError& e) {
@@ -602,7 +603,7 @@ void RuleEngine::_validateMinMax(const sbx::ProductElementValue& pev, sbx::Valid
 		if (!result.GetBool()) {
 			stringstream ss {};
 //			ss.imbue(std::locale("da_DK.UTF8"));
-			ss << "Værdien [" << pev.longValue() << "] for [" << _GUI_NAME(peOid) << "] må ikke overstiger [" << this->getConstFromParser(sbx::utils::constructRCName(_PE(peOid), sbx::ComparisonTypes::kMax)) << "]";
+			ss << "Værdien [" << sbx::utils::formatValue(pev.longValue()) << "] for [" << _GUI_NAME(peOid) << "] må ikke overstiger [" << this->getConstFromParser(sbx::utils::constructRCName(_PE(peOid), sbx::ComparisonTypes::kMax)) << "]";
 			// value was not lesser or equal to max
 			r.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kValueOverLimit, peOid, _VAR_NAME(peOid), ss.str(), "", expr) );
 		}
@@ -625,7 +626,7 @@ void RuleEngine::_validateOptionAllowed(const sbx::ProductElementValue& pev, sbx
 			for_each(options.cbegin(), options.cend(), [&optionsString](std::shared_ptr<sbx::Constant> c) { optionsString << c->stringValue() << ", ";} );
 
 			stringstream msg {};
-			msg << "Værdi [" << pev.stringValue() << "] er ikke tilladt! Tilladte værdier er : [" << optionsString.str().substr(0, optionsString.str().length()-2) << "]" << "( from _validationOptionAllowed(...) )";
+			msg << "Værdi [" << sbx::utils::formatValue(pev.stringValue()) << "] er ikke tilladt! Tilladte værdier er : [" << optionsString.str().substr(0, optionsString.str().length()-2) << "]";
 
 			valResult.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kValueNotAllowed, pev.getProductElementOid(), _VAR_NAME(pev.getProductElementOid()), msg.str().substr(0, msg.str().length()-2)) );
 		}
@@ -691,7 +692,7 @@ void RuleEngine::_validateCustomRules(unsigned short peOid, sbx::ValidationResul
 								sbx::ValidationCode::kProductElementNotAllowed,
 								peOid,
 								_VAR_NAME(peOid),
-								"Der skal ikke angives værdi for [" + _GUI_NAME(peOid) + "] ( from notallowed == true in _validateCustomRules(...) )",
+								"Der skal ikke angives værdi for [" + _GUI_NAME(peOid) + "]",
 								rule->getNotAllowedIfRule()->getRuleId(),
 								rule->getNotAllowedIfRule()->getExpr()) );
 					}
@@ -827,47 +828,20 @@ void RuleEngine::_evaluateRule(unsigned short peOidBeingValidated, std::shared_p
 		if (result.GetBool()) {
 			// only add message, if it's not empty
 			if (rule->getPositiveMessage() != "") {
+				auto p = getParametersFromParser(rule->getNegativeMessageParameters());
+				string msg = sbx::utils::formatMessage(rule->getNegativeMessage(), p);
 				sbx::ValidationCode positiveValCode = sbx::utils::toValCode(rule->getPositiveValCode(), sbx::ValidationCode::kFail);
-				valResult.addValidationResult( sbx::ValidationResult(positiveValCode, peOidBeingValidated, _VAR_NAME(peOidBeingValidated), rule->getPositiveMessage() +  " ( from positiveMsg _executeRule(...) )", rule->getRuleId(), rule->getExpr()) );
+				valResult.addValidationResult( sbx::ValidationResult(positiveValCode, peOidBeingValidated, _VAR_NAME(peOidBeingValidated), msg, rule->getRuleId(), rule->getExpr()) );
 			}
 		}
 		else {
 			// If no negative message, we don't consider the negative outcome as a failure
 			if (rule->getNegativeMessage() != "") {
-				string msg = rule->getNegativeMessage();
-
-				int i { 1 };
-
-				for (auto& parameterIt : rule->getNegativeMessageParameters() )
-				{
-					cout << "Looking for " << parameterIt << endl;
-					stringstream parameter {};
-					try {
-						if (_parser.IsConstDefined(parameterIt))
-						{
-							parameter << (mup::Value&) _parser.GetConst().at(parameterIt);
-						}
-						else if (_parser.IsVarDefined(parameterIt))
-						{
-							parameter << (mup::Value&) _parser.GetVar().at(parameterIt);
-						}
-					} catch (const mup::ParserError& e) {
-						sbx::mubridge::handle(e);
-					}
-
-					stringstream ss{};
-					ss << i;
-					string str = "%" + ss.str();
-					cout << "searchstring: " << str << endl;
-					int pos = msg.find(str);
-					cout << "pos: " << pos << endl;
-					msg.replace(pos, 2, parameter.str());
-					i++;
-					cout << "Msg after replacement: " << msg << endl;
-				}
+				auto p = getParametersFromParser(rule->getNegativeMessageParameters());
+				string msg = sbx::utils::formatMessage(rule->getNegativeMessage(), p);
 
 				sbx::ValidationCode negativeValCode = sbx::utils::toValCode(rule->getNegativeValCode(), sbx::ValidationCode::kFail);
-				valResult.addValidationResult( sbx::ValidationResult(negativeValCode, peOidBeingValidated, _VAR_NAME(peOidBeingValidated), msg +  " ( from megativeMsg _executeRule(...) )", rule->getRuleId(), rule->getExpr()) );
+				valResult.addValidationResult( sbx::ValidationResult(negativeValCode, peOidBeingValidated, _VAR_NAME(peOidBeingValidated), msg, rule->getRuleId(), rule->getExpr()) );
 			}
 		}
 	}
@@ -924,7 +898,7 @@ sbx::ValidationResults RuleEngine::validate(const sbx::TA& ta, bool full)
 			// if peOid is not found in the allowed list of pe's allowed on this konceptinfo, then add a validation message
 			if (allowedProductElementOids.find(peOid) == allowedProductElementOids.cend()) {
 				stringstream msg {};
-				msg << "Product element oid [" << peOid << "] not allowed for this konceptInfo" << "( from validate(ta, " << boolalpha << full << ") )";
+				msg << "Product element oid [" << peOid << "] not allowed for this konceptInfo";
 				valResults.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kProductElementNotAllowed, peOid, _VAR_NAME(peOid), msg.str()) );
 			}
 			else {
@@ -942,7 +916,7 @@ sbx::ValidationResults RuleEngine::validate(const sbx::TA& ta, bool full)
 			{
 				// If it's not in the parser, it is not optional, tell that the pe is required
 				if ( !_parser.IsVarDefined(_VAR_NAME(peOid)) && _isRequired(peOid, valResults, true) )
-					valResults.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kProductElementRequired, peOid, _VAR_NAME(peOid), "Værdi for [" + _GUI_NAME(peOid) + "] ikke angivet (from validate(ta, bool))") );
+					valResults.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kProductElementRequired, peOid, _VAR_NAME(peOid), "Værdi for [" + _GUI_NAME(peOid) + "] ikke angivet") );
 			}
 		}
 		else
@@ -1095,9 +1069,7 @@ std::string RuleEngine::getConstFromParser(const std::string& constName)
 		for (mup::var_maptype::iterator item = vmap.begin(); item != vmap.end(); ++item) {
 			if (item->first == constName) {
 				mup::Value& mupConst = (mup::Value&) (*(item->second));
-				std::stringstream ss {};
-				ss << mupConst;
-				return ss.str();
+				return sbx::utils::formatValue(mupConst);
 			}
 		}
 	}
@@ -1106,7 +1078,26 @@ std::string RuleEngine::getConstFromParser(const std::string& constName)
 	}
 
 	// no value found, so return dummy string
-	return "<ingen v�rdi>";
+	return "<ingen værdi>";
+}
+
+std::string RuleEngine::getVarFromParser(const std::string& constName)
+{
+	try {
+		mup::var_maptype vmap = _parser.GetVar();
+		for (mup::var_maptype::iterator item = vmap.begin(); item != vmap.end(); ++item) {
+			if (item->first == constName) {
+				mup::Variable& mupConst = (mup::Variable&) (*(item->second));
+				return sbx::utils::formatValue(mupConst);
+			}
+		}
+	}
+	catch (const mup::ParserError &e) {
+		sbx::mubridge::handle(e);
+	}
+
+	// no value found, so return dummy string
+	return "<ingen værdi>";
 }
 
 void RuleEngine::printVariablesInParser() { _printVariablesInParser(_parser); }
@@ -1151,6 +1142,25 @@ void RuleEngine::_printConstantsInParser(mup::ParserX& p)
 sbx::RuleCatalogue& RuleEngine::getRuleCatalogue()
 {
 	return _ruleCatalogue;
+}
+
+std::vector<std::string> RuleEngine::getParametersFromParser(const std::vector<std::string>& parameters)
+{
+	std::vector<std::string> formattedParameters {};
+
+	for (auto& parameterIt : parameters )
+	{
+		string parameter {"not found"};
+
+		if (_parser.IsConstDefined(parameterIt))
+			parameter = this->getConstFromParser(parameterIt);
+		else if (_parser.IsVarDefined(parameterIt))
+			parameter = this->getVarFromParser(parameterIt);
+
+		formattedParameters.push_back(parameter);
+	}
+
+	return formattedParameters;
 }
 
 void RuleEngine::_printExpressionVariables(mup::ParserX& p)

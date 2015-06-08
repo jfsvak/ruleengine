@@ -9,7 +9,10 @@
 #define RULEENGINE_UTILS_H_
 
 #include <algorithm>
+#include <locale>
 #include <string>
+
+#include "muParser/mpValue.h"
 
 #include "ProductElement_sbx.h"
 #include "sbxTypes.h"
@@ -24,6 +27,18 @@ const unsigned short kIkraftdato_Nuvaerende_ProductOid { 58 };
 
 namespace utils {
 
+
+class dk_numpunct : public std::numpunct<char>
+{
+  protected:
+    virtual char do_thousands_sep() const;
+    virtual char do_decimal_point() const;
+    virtual std::string do_truename() const;
+    virtual std::string do_falsename() const;
+    virtual std::string do_grouping() const;
+
+};
+
 std::string toUpper(const std::string& s);
 bool toBool(const std::string& s);
 sbx::ValidationCode toValCode(unsigned short valCode, sbx::ValidationCode defaultValCode = sbx::ValidationCode::kFail);
@@ -31,6 +46,12 @@ sbx::ValidationCode toValCode(unsigned short valCode, sbx::ValidationCode defaul
 std::string comparisonTypeName(const sbx::ComparisonTypes& comparisonType);
 std::string constructRCName(const sbx::ProductElement& pe, const sbx::ComparisonTypes& ct);
 std::string constructMinMaxExpr(const sbx::ProductElement& pe, const sbx::ComparisonTypes& ct);
+std::string formatValue(const mup::Value& val);
+std::string formatValue(long);
+std::string formatValue(int);
+std::string formatValue(double);
+std::string formatValue(bool);
+std::string formatMessage(std::string str, const std::vector<std::string>& parameters);
 
 }
 
