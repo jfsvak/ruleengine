@@ -70,8 +70,7 @@ void RuleConstantContainer::initConstants(const std::string& jsonContents)
 	}
 	else
 	{
-		if (RuleConstantContainer::_printErr)
-			cout << "Could not parse json string" << endl;
+		cerr << "Could not parse json string: " << reader.getFormattedErrorMessages() << endl;
 		throw invalid_argument(reader.getFormattedErrorMessages());
 	}
 
@@ -124,7 +123,6 @@ void RuleConstantContainer::_initRuleConstants(const Json::Value& ruleConstantLi
 		if (RuleConstantContainer::_printErr) cerr << "No rule constants found to load" << endl;
 	}
 }
-
 /**
  * Initialise the internal map of products and product elements
  */
@@ -176,17 +174,42 @@ void RuleConstantContainer::_initProductElements(const Json::Value& products)
 void RuleConstantContainer::_addFakeProductElements(std::shared_ptr<sbx::Product> productPtr)
 {
 	// hard code productelement for bidragstrappe (999) and set relation to product "Samlet_bidragsprocent"
-	if (productPtr->getOid() == sbx::kSamlet_Bidragsprocent_ProductOid) {
-		_productElementMap[(unsigned short) sbx::ProductElementOid::kBidragstrappe] = make_shared<sbx::ProductElement>(static_cast<unsigned short>(sbx::ProductElementOid::kBidragstrappe), kBidragstrappe_VARNAME, kBidragstrappe_VARNAME, sbx::ProductElementTypes::kUnknownPEType, kSamlet_Bidragsprocent_ProductOid);
+	if (productPtr->getOid() == (unsigned short) sbx::ProductOid::kSamlet_Bidragsprocent_ProductOid)
+	{
+		_productElementMap[(unsigned short) sbx::ProductElementOid::kBidragstrappe] = make_shared<sbx::ProductElement>(static_cast<unsigned short>(sbx::ProductElementOid::kBidragstrappe), kBidragstrappe_VARNAME, kBidragstrappe_VARNAME, sbx::ProductElementTypes::kUnknownPEType, sbx::ProductOid::kSamlet_Bidragsprocent_ProductOid);
 		_varNameToPEOidMap[kBidragstrappe_VARNAME] = (unsigned short) sbx::ProductElementOid::kBidragstrappe;
 		productPtr->addProductElementOid(sbx::ProductElementOid::kBidragstrappe);
 	}
 
 	// hardcode product element for AftaleIkraftdato (998) and set relation to product "Ikraftdato_Nuvaerende"
-	if (productPtr->getOid() == sbx::kIkraftdato_Nuvaerende_ProductOid) {
-		_productElementMap[(unsigned short) sbx::ProductElementOid::kAftaleIkraftdato] = make_shared<sbx::ProductElement>(static_cast<unsigned short>(sbx::ProductElementOid::kAftaleIkraftdato), kAftaleIkraftdato_VARNAME, kAftaleIkraftdato_VARNAME, sbx::ProductElementTypes::kLong, kIkraftdato_Nuvaerende_ProductOid);
+	if (productPtr->getOid() == (unsigned short) sbx::ProductOid::kIkraftdato_Nuvaerende_ProductOid)
+	{
+		_productElementMap[(unsigned short) sbx::ProductElementOid::kAftaleIkraftdato] = make_shared<sbx::ProductElement>(static_cast<unsigned short>(sbx::ProductElementOid::kAftaleIkraftdato), kAftaleIkraftdato_VARNAME, kAftaleIkraftdato_VARNAME, sbx::ProductElementTypes::kLong, sbx::ProductOid::kIkraftdato_Nuvaerende_ProductOid);
 		_varNameToPEOidMap[kAftaleIkraftdato_VARNAME] = (unsigned short) sbx::ProductElementOid::kAftaleIkraftdato;
 		productPtr->addProductElementOid(sbx::ProductElementOid::kAftaleIkraftdato);
+	}
+
+	if (productPtr->getOid() == (unsigned short) sbx::ProductOid::kOverenskomst_ProductOid)
+	{
+		// UnionAgreementOid
+		_productElementMap[(unsigned short) (sbx::ProductElementOid::kUnionAgreementOid)]
+						   = make_shared<sbx::ProductElement>( static_cast<unsigned short>(sbx::ProductElementOid::kUnionAgreementOid),
+								   	   	   	   	   	   	   	   kUnionAgreementOid_VARNAME,
+															   kUnionAgreementOid_VARNAME,
+															   sbx::ProductElementTypes::kLong,
+															   sbx::ProductOid::kOverenskomst_ProductOid);
+		_varNameToPEOidMap[kUnionAgreementOid_VARNAME] = (unsigned short) (sbx::ProductElementOid::kUnionAgreementOid);
+		productPtr->addProductElementOid(sbx::ProductElementOid::kUnionAgreementOid);
+
+		// UnionAgreementRelationship
+		_productElementMap[(unsigned short) (sbx::ProductElementOid::kUnionAgreementRelationship)]
+						   = make_shared<sbx::ProductElement>( static_cast<unsigned short>(sbx::ProductElementOid::kUnionAgreementRelationship),
+								   	   	   	   	   	   	   	   kUnionAgreementRelationship_VARNAME,
+															   kUnionAgreementRelationship_VARNAME,
+															   sbx::ProductElementTypes::kText,
+															   sbx::ProductOid::kOverenskomst_ProductOid);
+		_varNameToPEOidMap[kUnionAgreementRelationship_VARNAME] = (unsigned short) (sbx::ProductElementOid::kUnionAgreementRelationship);
+		productPtr->addProductElementOid(sbx::ProductElementOid::kUnionAgreementRelationship);
 	}
 }
 

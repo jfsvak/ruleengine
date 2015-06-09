@@ -16,7 +16,7 @@ using namespace std;
 namespace sbx {
 bool Product::_printDebug = false;
 
-Product::Product(unsigned short oid, std::string& name)
+Product::Product(unsigned short oid, const std::string& name)
 		: _oid {oid},
 		  _name {name},
 		  _productElementOids {}

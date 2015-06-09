@@ -20,9 +20,15 @@
 namespace sbx {
 const std::string kBidragstrappe_VARNAME = "Bidragstrappe";
 const std::string kAftaleIkraftdato_VARNAME = "AftaleIkraftdato";
+const std::string kUnionAgreementRelationship_VARNAME = "UnionAgreementRelationship";
+const std::string kUnionAgreementOid_VARNAME = "UnionAgreementOid";
 
-const unsigned short kSamlet_Bidragsprocent_ProductOid { 76 };
-const unsigned short kIkraftdato_Nuvaerende_ProductOid { 58 };
+const std::string kUnionAgreementEmployerPct1stStep = "UnionAgreementEmployerPct1stStep";
+const std::string kUnionAgreementTotalPct1stStep = "UnionAgreementTotalPct1stStep";
+
+const std::string kOUTSIDE = "U";
+const std::string kFOLLOWS = "F";
+const std::string kINCLUDED = "O";
 
 
 namespace utils {

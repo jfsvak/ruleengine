@@ -34,10 +34,13 @@ enum ProductElementTypes : unsigned short {
 };
 
 enum ProductOid : unsigned short {
-	kUnknownProduct		 	= 0,
-	kP_194					= 194,
-	kP_217					= 217,
-	kP_218					= 218
+	kUnknownProduct		 				= 0,
+    kIkraftdato_Nuvaerende_ProductOid 	= 58,
+	kSamlet_Bidragsprocent_ProductOid 	= 76,
+	kOverenskomst_ProductOid 			= 92,
+	kP_194								= 194,
+	kP_217								= 217,
+	kP_218								= 218
 };
 
 enum ProductElementOid : unsigned short {
@@ -212,6 +215,8 @@ enum ProductElementOid : unsigned short {
 
 
 			// artificial pe
+			kUnionAgreementRelationship				= 996,
+			kUnionAgreementOid						= 997,
 			kAftaleIkraftdato						= 998,
 			kBidragstrappe							= 999
 };

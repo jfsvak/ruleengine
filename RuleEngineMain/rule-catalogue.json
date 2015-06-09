@@ -3,6 +3,64 @@
       "ruleCatalogue":       
       [
          {
+         	"comments" : "TA settings - union agreement",
+         	
+            "id": "1.1",
+            "expr": "UnionAgreementRelationship == \"F\" or UnionAgreementRelationship == \"O\"",
+   	        "productElementOids": [ 997 ],
+   	        "requiredif": "",
+            "positiveMessage": "",
+            "negativeMessage": "",
+	        "positiveRuleCatalogue": 
+	        [
+		        {
+		        	"comments" : "UnionAgreementOid - requiredif",
+		            "id": "1.1.1",
+	    	        "expr": "",
+		   	        "productElementOids": [ 997 ],
+   	    		    "requiredif": "#parent#",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Overenskomst skal vælges når aftalen følger eller er omfattet af en overenskomst"
+        	    }
+	        ]
+         },
+         
+         {
+         	"comments" : "TA settings - union agreement",
+         	
+            "id": "1.2",
+            "expr": "UnionAgreementRelationship == \"U\"",
+   	        "productElementOids": [ 997 ],
+   	        "requiredif": "",
+            "positiveMessage": "",
+            "negativeMessage": "",
+	        "positiveRuleCatalogue": 
+	        [
+		        {
+		        	"comments" : "UnionAgreementOid - not allowed ",
+		            "id": "1.1.2",
+	    	        "expr": "",
+		   	        "productElementOids": [ 997 ],
+   	    		    "requiredif": "",
+   	    		    "notallowedif": "UnionAgreementRelationship == \"U\"",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Overenskomst skal ikke vælges når aftalen er udenfor overenskomst"
+        	    },
+		        {
+		        	"comments" : "Bidragsstigningsform - not allowed ",
+		            "id": "1.1.3",
+	    	        "expr": "",
+		   	        "productElementOids": [ 149 ],
+   	    		    "requiredif": "",
+   	    		    "notallowedif": "UnionAgreementRelationship == \"F\" or UnionAgreementRelationship == \"O\"",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Bidragsstigningsform skal ikke angives når aftalen er udenfor overenskomst"
+        	    }
+	        ]
+         },
+         
+         
+         {
          	"comments" : "General Page: Date",
          	
             "id": "10.1",
@@ -1525,6 +1583,100 @@
             ],
 	        "negativeRuleCatalogue": []
          },
+         
+         {
+         	"comments" : "Salary Page: Contribution Ladder - Follows Union agreement",
+         	
+            "id": "33.6",
+            "expr": "UnionAgreementRelationship == \"F\" or UnionAgreementRelationship == \"O\"",
+   	        "productElementOids": [ 996 ],
+   	        "requiredif": "",
+            "positiveMessage": "",
+            "negativeMessage": "",
+            "positiveRuleCatalogue": 
+            [
+	        	{
+		            "id": "33.6.1",
+		            "comments" : "BidragEjFoesteTrin_MK - requiredif",
+	    	        "expr": "",
+		   	        "productElementOids": [ 152 ],
+   	    		    "requiredif": "#parent#",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Der skal angives om indtrædelse skal ske med højere bidragsprocent",
+					"positiveRuleCatalogue": []
+        	    },
+	        	{
+		            "id": "33.6.2",
+		            "comments" : "",
+	    	        "expr": "BidragEjFoesteTrin_MK == true",
+		   	        "productElementOids": [ 152 ],
+   	    		    "requiredif": "#parent#",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "",
+					"positiveRuleCatalogue": 
+					[
+		        	    {
+				            "id": "33.6.2.1",
+				            "comments" : "Bidragstrappe needs one step if BidragEjFoesteTrin_MK == true",
+			    	        "expr": "sizeof(Bidragstrappe) == 0",
+				   	        "productElementOids": [ 999 ],
+		   	    		    "requiredif": "#parent#",
+			        	    "positiveMessage": "Der skal angives et trin, når der indtrædes med højere bidragsprocent",
+			            	"positiveValCode": 202,
+			            	"negativeMessage": "",
+							"positiveRuleCatalogue": []
+		        	    },
+		        	    {
+				            "id": "33.6.2.2",
+				            "comments" : "Bidragstrappe needs one step if BidragEjFoesteTrin_MK == true",
+			    	        "expr": "sizeof(Bidragstrappe) > 1",
+				   	        "productElementOids": [ 999 ],
+		   	    		    "requiredif": "#parent#",
+			        	    "positiveMessage": "Der skal kun angives et trin angives et trin, når der indtrædes med højere bidragsprocent",
+			            	"positiveValCode": 101,
+			            	"negativeMessage": "",
+							"positiveRuleCatalogue": []
+		        	    },
+		        	    {
+				            "id": "33.6.2.3",
+				            "comments" : "Employer Percent needs to be bigger than union agreement ladder 1st step",
+			    	        "expr": "Bidragstrappe[0,2] > UnionAgreementEmployerPct1stStep",
+				   	        "productElementOids": [ 999 ],
+		   	    		    "requiredif": "#parent#",
+			        	    "positiveMessage": "",
+			            	"negativeMessage": "Arbejdsgiverprocent skal være højere end %1%",
+			            	"negativeMessageParameters":[ "UnionAgreementEmployerPct1stStep" ],
+			            	"negativeValCode": 102,
+							"positiveRuleCatalogue": []
+		        	    },
+		        	    {
+				            "id": "33.6.2.4",
+				            "comments" : "Total Percent needs to be bigger than union agreement ladder 1st step",
+			    	        "expr": "Bidragstrappe[0,1] + Bidragstrappe[0,2] > UnionAgreementTotalPct1stStep",
+				   	        "productElementOids": [ 999 ],
+		   	    		    "requiredif": "#parent#",
+			        	    "positiveMessage": "",
+			            	"negativeMessage": "Den totale procent skal være højere end %1%",
+			            	"negativeMessageParameters":[ "UnionAgreementTotalPct1stStep" ],
+			            	"negativeValCode": 102,
+							"positiveRuleCatalogue": []
+		        	    }				
+					]
+        	    },
+	        	{
+		            "id": "33.6.3",
+		            "comments" : "Bidragstrappe not allowed if Omfatter or Følger and BidragEjFoersteTrin_MK == false",
+	    	        "expr": "",
+		   	        "productElementOids": [ 999 ],
+   	    		    "requiredif": "",
+   	    		    "notallowedif": "BidragEjFoesteTrin_MK == false and (UnionAgreementRelationship == \"F\" or UnionAgreementRelationship == \"O\")",
+	        	    "positiveMessage": "",
+					"positiveRuleCatalogue": []
+        	    }
+            ],
+	        "negativeRuleCatalogue": []
+         },
+         
  		 {
          	"comments" : "Misc rule - DoedAbsolutMaxSoli",
             "id": "99.1",
@@ -1607,6 +1759,13 @@
             "id": "99.12",
             "expr": "",
    	        "productElementOids": [ 235 ],
+   	        "requiredif": "false"
+         },
+ 		 {
+         	"comments" : "Misc rule - Overenskomst",
+            "id": "99.12",
+            "expr": "",
+   	        "productElementOids": [ 167 ],
    	        "requiredif": "false"
          }
 	]}

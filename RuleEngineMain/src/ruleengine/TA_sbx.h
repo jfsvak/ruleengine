@@ -34,8 +34,6 @@ public:
 	TA& setValue(unsigned short productElementOid, double value);
 	TA& setValue(unsigned short productElementOid, long value);
 	TA& setValue(unsigned short productElementOid, int value);
-	TA& setUar(sbx::UnionAgreementRelationship uar);
-	TA& setUnionAgreementOid(unsigned short unionAgreementOid);
 	TA& addContributionStep(const sbx::ContributionStep&);
 	TA& setContributionSteps(const std::vector<sbx::ContributionStep>&);
 	TA& removeContributionStep(const sbx::ContributionStep& step);
@@ -48,13 +46,11 @@ public:
 	sbx::ProductElementValue& getValue(unsigned short productElementOid);
 	sbx::ProductElementValue getValue(unsigned short productElementOid) const;
 	const std::map<unsigned short, sbx::ProductElementValue>& getValues() const;
+	const std::string& getInceptionDate() const;
 
 	void remove(unsigned short peOid);
 	bool hasValue(unsigned short productElementOid) const;
 
-	sbx::UnionAgreementRelationship getUar() const;
-	unsigned short getUnionAgreementOid() const;
-	const std::string& getInceptionDate() const;
 
 	virtual ~TA();
 
@@ -63,9 +59,6 @@ private:
 	unsigned short _konceptOid;
 	// map of productElement oid to productElementValues
 	std::map<unsigned short, sbx::ProductElementValue> _peValuesMap;
-
-	unsigned short _unionAgreementOid;
-	sbx::UnionAgreementRelationship _uar;
 
 	std::multiset<sbx::ContributionStep> _ladder;
 };
