@@ -27,6 +27,40 @@
             "positiveRuleCatalogue": [],
 	        "negativeRuleCatalogue": []
          },
+
+         {
+         	"comments" : "General Page: Omtegning",
+         	
+            "id": "11.3",
+            "expr": "Omtegning_MK == true",
+   	        "productElementOids": [ 160 ],
+   	        "requiredif": "",
+            "positiveMessage": "",
+            "negativeMessage": "",
+            "positiveRuleCatalogue": 
+            [
+		        {
+		        	"comments" : "Omtegndato - requiredif placeholder",
+		            "id": "11.3.1",
+	    	        "expr": "",
+		   	        "productElementOids": [ 236 ],
+   	    		    "requiredif": "#parent#",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Hvis omtegning er valgt, skal der angives en omtegningsdato"
+        	    },
+		        {
+		        	"comments" : "Omtegnperiode - requiredif placeholder",
+		            "id": "11.3.2",
+	    	        "expr": "",
+		   	        "productElementOids": [ 237 ],
+   	    		    "requiredif": "#parent#",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Hvis omtegning er valgt, skal der angives en omtegningsperiode"
+        	    }
+            ],
+	        "negativeRuleCatalogue": []
+         },
+
          
          {
          	"comments" : "Product Page: Retirement age etc",
@@ -51,6 +85,7 @@
             ],
 	        "negativeRuleCatalogue": []
          },
+
          {
          	"comments" : "Product Page: Opsparingsprodukter",
 
@@ -121,7 +156,7 @@
 					"preCalcRequiredPEOids": [ 10, 11 ],
 					"expr": "",
 					"productElementOids": [ 12 ],
-					"requiredif": "",
+					"requiredif": "#parent#",
 					"positiveMessage": "",
 					"negativeMessage": ""
 				},
@@ -194,7 +229,7 @@
 					"preCalcRequiredPEOids": [ 14, 15 ],
 					"expr": "",
 					"productElementOids": [ 16 ],
-					"requiredif": "",
+					"requiredif": "#parent#",
 					"positiveMessage": "",
 					"negativeMessage": ""
 				},
@@ -352,7 +387,7 @@
 					"preCalcRequiredPEOids": [ 76, 77 ],
 					"expr": "",
 					"productElementOids": [ 78 ],
-					"requiredif": "",
+					"requiredif": "#parent#",
 					"positiveMessage": "",
 					"negativeMessage": ""
 				},
@@ -361,9 +396,9 @@
 		            "comments" : "InvalidesumBlMin - requiredif placeholder",
 	    	        "expr": "",
 	    	        "productElementOids": [ 76 ],
-	    	        "requiredif": "#parent#",
+	    	        "requiredif": "InvalidesumReguleringskode == \"Ingen\" or InvalidesumReguleringskode == \"Pristal\" or InvalidesumReguleringskode == \"Gage\"",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Minimum Invalidesum i kr skal angives når reguleringstype er Ingen eller Pristal"
+	            	"negativeMessage": "Minimum Invalidesum i kr skal angives når reguleringstype er Ingen, Pristal eller Gage"
             	},
 				{
 		            "id": "24.1.2",
@@ -415,13 +450,13 @@
 					"preCalcRequiredPEOids": [ 79, 80 ],
 					"expr": "",
 					"productElementOids": [ 81 ],
-					"requiredif": "",
+					"requiredif": "#parent#",
 					"positiveMessage": "",
 					"negativeMessage": ""
 				},
             	{
 		            "id": "24.2.1",
-		            "comments" : "requiredif placeholder",
+		            "comments" : "InvalidesumPctMin - requiredif placeholder",
 	    	        "expr": "",
 	    	        "productElementOids": [ 79 ],
 	    	        "requiredif": "#parent#",
@@ -430,7 +465,7 @@
             	},
 				{
 		            "id": "24.2.2",
-		            "comments" : "requiredif placeholder",
+		            "comments" : "InvalidesumPctMax - requiredif placeholder",
 	    	        "expr": "",
 	    	        "productElementOids": [ 80 ],
 	    	        "requiredif": "#parent#",
@@ -478,7 +513,7 @@
 					"preCalcRequiredPEOids": [ 1, 2 ],
 					"expr": "",
 					"productElementOids": [ 3 ],
-					"requiredif": "",
+					"requiredif": "#parent#",
 					"positiveMessage": "",
 					"negativeMessage": ""
 				},
@@ -544,7 +579,7 @@
 					"preCalcRequiredPEOids": [ 6, 7 ],
 					"expr": "",
 					"productElementOids": [ 9 ],
-					"requiredif": "",
+					"requiredif": "#parent#",
 					"positiveMessage": "",
 					"negativeMessage": ""
 				},
@@ -598,6 +633,7 @@
             ],
 	        "negativeRuleCatalogue": []
          },
+        	    
          {
             "id": "25.3",
 
@@ -617,7 +653,7 @@
 					"preCalcRequiredPEOids": [ 85, 86 ],
 					"expr": "",
 					"productElementOids": [ 87 ],
-					"requiredif": "",
+					"requiredif": "#parent#",
 					"positiveMessage": "",
 					"negativeMessage": ""
 				},
@@ -682,7 +718,7 @@
 					"preCalcRequiredPEOids": [ 88, 89 ],
 					"expr": "",
 					"productElementOids": [ 90 ],
-					"requiredif": "",
+					"requiredif": "#parent#",
 					"positiveMessage": "",
 					"negativeMessage": ""
 				},
@@ -759,7 +795,29 @@
            	"negativeMessageParameters": [ "rc_BoerneSumSpaendBl_max" ],
 			"negativeValCode": 103
 	     },
-	     
+         
+         {
+            "id": "25.6",
+	        "expr": "DoedSoliMax == \"Obligatorisk maks\" or DoedSoliMax == \"Ingen\"",
+   	        "productElementOids": [ 4 ],
+		    "requiredif": "",
+    	    "positiveMessage": "",
+        	"negativeMessage": "",
+        	"positiveRuleCatalogue": 
+        	[
+		        {
+		            "id": "25.6.1",
+		            "comment": "DoedDaekningstype - requiredif placeholde",
+	    	        "expr": "",
+		   	        "productElementOids": [ 139 ],
+   	    		    "requiredif": "#parent#",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Dækningstype skal angives når Maksimum for solidarisk dækning er [%1]",
+	            	"negativeMessageParameters": [ "DoedSoliMax" ]
+        	    }
+        	]
+ 	     },
+     
 		 {
 		    "id": "26.1",
 		    "comments" : "KritiskSygdom_I_FG",
@@ -789,7 +847,7 @@
 							"preCalcRequiredPEOids": [ 218, 219 ],
 							"expr": "",
 							"productElementOids": [ 220 ],
-							"requiredif": "",
+							"requiredif": "#parent#",
 							"positiveMessage": "",
 							"negativeMessage": ""
 						},
@@ -840,7 +898,7 @@
 		            "comments" : "",
 	    	        "expr": "KritiskSygReguleringskode == \"Ingen\" or KritiskSygReguleringskode == \"Pristal\"",
 		   	        "productElementOids": [ 221 ],
-   	    		    "requiredif": "",
+   	    		    "requiredif": "#parent#",
 	        	    "positiveMessage": "",
 	            	"negativeMessage": "",
 					"positiveRuleCatalogue":
@@ -852,7 +910,7 @@
 							"preCalcRequiredPEOids": [ 215, 216 ],
 							"expr": "",
 							"productElementOids": [ 217 ],
-							"requiredif": "",
+							"requiredif": "#parent#",
 							"notallowedif": "KritiskSygReguleringskode != \"Ingen\" and KritiskSygReguleringskode != \"Pristal\"",
 							"positiveMessage": "",
 							"negativeMessage": ""
@@ -934,7 +992,7 @@
 		    "comments" : "KritiskSygBornesum_i_FG_mk - ",
 	        "expr": "KritiskSygBornesum_i_FG_mk == true",
 		    "productElementOids": [ 264 ],
-   	        "requiredif": "#parent#",
+   	        "requiredif": "",
 	        "positiveMessage": "",
 	      	"negativeMessage": "",
 		    "positiveRuleCatalogue": 
@@ -954,7 +1012,7 @@
 		            "comments" : "KritiskSygBornesumReguleringskode - Belob",
 	    	        "expr": "KritiskSygBornesumReguleringskode == \"Ingen\" or KritiskSygBornesumReguleringskode == \"Pristal\"",
 		   	        "productElementOids": [ 267 ],
-   	    		    "requiredif": "",
+   	    		    "requiredif": "#parent#",
 	        	    "positiveMessage": "",
 	            	"negativeMessage": "",
 					"positiveRuleCatalogue": 
@@ -966,7 +1024,7 @@
 							"preCalcRequiredPEOids": [ 262, 263 ],
 							"expr": "",
 							"productElementOids": [ 269 ],
-							"requiredif": "",
+							"requiredif": "#parent#",
 							"positiveMessage": "",
 							"negativeMessage": ""
 						},
@@ -1031,10 +1089,72 @@
 	        	    "positiveMessage": "",
 	            	"negativeMessage": "Kritisk sygdom i fg Børn skatte kode skal angives",
 					"positiveRuleCatalogue": []
-        	    }			
+        	    },		
+		        {
+		            "id": "26.2.5",
+		            "comments" : "KritiskSygBornesumReguleringskode - Gage",
+	    	        "expr": "KritiskSygBornesumReguleringskode == \"Gage\"",
+		   	        "productElementOids": [ 267 ],
+   	    		    "requiredif": "#parent#",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "",
+					"positiveRuleCatalogue": 
+					[
+						{
+							"id": "26.2.5.99",
+							"comments" : "KritiskSygBornesumSpaendpc - pre calc",
+							"preCalcExpr": "KritiskSygBornesumSpaendpc = (float)(KritiskSygBornesumPctMax-KritiskSygBornesumPctMin)",
+							"preCalcRequiredPEOids": [ 265, 266 ],
+							"expr": "",
+							"productElementOids": [ 270 ],
+							"requiredif": "#parent#",
+							"positiveMessage": "",
+							"negativeMessage": ""
+						},
+						{
+							"id": "26.2.5.1",
+							"comments" : "KritiskSygBornesumPctMin - requiredif placeholder",
+							"expr": "",
+							"productElementOids": [ 266 ],
+							"requiredif": "#parent#",
+							"positiveMessage": "",
+							"negativeMessage": "Minimum Kritisk Sygdom i pct Born skal angives når reguleringstype er Gage"
+						},
+						{
+							"id": "26.2.5.2",
+							"comments" : "KritiskSygBornesumPctMax - requiredif placeholder",
+							"expr": "",
+							"productElementOids": [ 265 ],
+							"requiredif": "#parent#",
+							"positiveMessage": "",
+							"negativeMessage": "Maksimum Kritisk Sygdom Born i pct skal angives når reguleringstype er Gage"
+						},
+						{
+							"id": "26.2.5.3",
+							"comments" : "",
+							"expr": "KritiskSygBornesumSpaendpc >= rc_KritiskSygBornesumSpaendpc_min",
+							"productElementOids": [ 270 ],
+							"requiredif": "",
+							"positiveMessage": "",
+							"negativeMessage": "Spænd for Kritisk sygdom born i pct skal værre større end %1",
+				           	"negativeMessageParameters": [ "rc_KritiskSygBornesumSpaendpc_min" ],
+							"negativeValCode": 102
+						},
+						{
+							"id": "26.2.5.4",
+							"comments" : "",
+							"expr": "KritiskSygBornesumSpaendpc <= rc_KritiskSygBornesumSpaendpc_max",
+							"productElementOids": [ 270 ],
+							"requiredif": "",
+							"positiveMessage": "",
+							"negativeMessage": "Spænd for Kritisk sygdom born i pct må ikke overstige %1",
+				           	"negativeMessageParameters": [ "rc_KritiskSygBornesumSpaendpc_max"  ],
+							"negativeValCode": 103
+						}
+					]
+        	    }
 			]
 		 },
-		 
 		 
 		 
 		 {
@@ -1404,6 +1524,90 @@
         	    }
             ],
 	        "negativeRuleCatalogue": []
+         },
+ 		 {
+         	"comments" : "Misc rule - DoedAbsolutMaxSoli",
+            "id": "99.1",
+            "expr": "",
+   	        "productElementOids": [ 8 ],
+   	        "requiredif": "false"
+         },
+ 		 {
+         	"comments" : "Misc rule - IkraftDato",
+            "id": "99.2",
+            "expr": "",
+   	        "productElementOids": [ 68 ],
+   	        "requiredif": "false"
+         },
+ 		 {
+         	"comments" : "Misc rule - GrpIndgaarIDepotsikring_MK",
+            "id": "99.3",
+            "expr": "",
+   	        "productElementOids": [ 84 ],
+   	        "requiredif": "false"
+         },
+ 		 {
+         	"comments" : "Misc rule - Indslusning_MK",
+            "id": "99.4",
+            "expr": "",
+   	        "productElementOids": [ 150 ],
+   	        "requiredif": "false"
+         },
+ 		 {
+         	"comments" : "Misc rule - Aar",
+            "id": "99.5",
+            "expr": "",
+   	        "productElementOids": [ 153 ],
+   	        "requiredif": "false"
+         },
+ 		 {
+         	"comments" : "Misc rule - BidragInklHospdaekningPctMin",
+            "id": "99.6",
+            "expr": "",
+   	        "productElementOids": [ 156 ],
+   	        "requiredif": "false"
+         },
+ 		 {
+         	"comments" : "Misc rule - BidragsEksklHospdaekningPctMin",
+            "id": "99.7",
+            "expr": "",
+   	        "productElementOids": [ 157 ],
+   	        "requiredif": "false"
+         },
+ 		 {
+         	"comments" : "Misc rule - LoenDefinitionKonvSup",
+            "id": "99.8",
+            "expr": "",
+   	        "productElementOids": [ 194 ],
+   	        "requiredif": "false"
+         },
+ 		 {
+         	"comments" : "Misc rule - LoenDefinitionNotAllowedForUdenfor",
+            "id": "99.9",
+            "expr": "",
+   	        "productElementOids": [ 195 ],
+   	        "requiredif": "false"
+         },
+ 		 {
+         	"comments" : "Misc rule - EjIndmeldelseEleverUnderAlder",
+            "id": "99.10",
+            "expr": "",
+   	        "productElementOids": [ 233 ],
+   	        "requiredif": "false"
+         },
+ 		 {
+         	"comments" : "Misc rule - GrpEleverRisikoPakke",
+            "id": "99.11",
+            "expr": "",
+   	        "productElementOids": [ 234 ],
+   	        "requiredif": "false"
+         },
+ 		 {
+         	"comments" : "Misc rule - GrpSkatPrivateIndehaver",
+            "id": "99.12",
+            "expr": "",
+   	        "productElementOids": [ 235 ],
+   	        "requiredif": "false"
          }
 	]}
 }

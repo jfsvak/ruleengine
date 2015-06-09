@@ -46,9 +46,10 @@ TEST_F(Invalidesum_KI_OSV_25_49, Invalidesum_I_Kr_Ingen_POSITIVE) {
 	EXPECT_FALSE(r.isAllOk());
 //	if (!r.isAllOk())
 		cout << r;
-	EXPECT_EQ(2, r.getValidationResults().size());
+	EXPECT_EQ(3, r.getValidationResults().size());
 	EXPECT_TRUE(r.hasMessages(kInvalidesumBlMin, kProductElementRequired));
 	EXPECT_TRUE(r.hasMessages(kInvalidesumBlMax, kProductElementRequired));
+	EXPECT_TRUE(r.hasMessages(kInvalidesumSpaendBl, kProductElementRequired));
 
 	ta.setValue(kInvalidesumBlMin, 20000);
 	ta.setValue(kInvalidesumBlMax, 20000); // now set amounts and it should be happy
@@ -93,9 +94,10 @@ TEST_F(Invalidesum_KI_OSV_25_49, Invalidesum_I_Pct_POSITIVE) {
 	EXPECT_FALSE(r.isAllOk());
 //	if (!r.isAllOk())
 		cout << r;
-	EXPECT_EQ(2, r.getValidationResults().size());
+	EXPECT_EQ(3, r.getValidationResults().size());
 	EXPECT_TRUE(r.hasMessages(kInvalidesumPctMin, kProductElementRequired));
 	EXPECT_TRUE(r.hasMessages(kInvalidesumPctMax, kProductElementRequired));
+	EXPECT_TRUE(r.hasMessages(kInvalidesumSpaendPct, kProductElementRequired));
 
 	ta.setValue(kInvalidesumPctMin, 40);
 	ta.setValue(kInvalidesumPctMax, 40); // now set amounts and it should be happy

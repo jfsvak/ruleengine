@@ -246,14 +246,14 @@ void RuleConstantContainer::_initParametersToProducts(const Json::Value& paramet
 			int productOid = jsonParameterToProduct->get("productOid", 0).asInt();
 			int underkonceptOid = jsonParameterToProduct->get("underKonceptOid", 0).asInt();
 //			bool displayOnKIDisp = jsonParameterToProduct->get("displayOnKonceptInfoDisp", false).asBool();
-//			bool displayOnTA = jsonParameterToProduct->get("displayOnTA", false).asBool();
+			bool displayOnTA = jsonParameterToProduct->get("displayOnTA", false).asBool();
 
 			// add the parameterOid -> productOid relation for that underkoncept to the vector of productOids
 			// that contains many productOids to one parameterOid for one underkonceptOid
 			_parameterOidToProductOids[underkonceptOid][parameterOid].insert(productOid);
 
 			// if product found in product map, add all the product elements to the list of allowed product elements for this parameterOid
-			if (_productsMap.find(productOid) != _productsMap.cend())
+			if (_productsMap.find(productOid) != _productsMap.cend() && displayOnTA)
 			{
 				shared_ptr<sbx::Product> product = _productsMap.at(productOid);
 				_parameterOidToProductElementOids[underkonceptOid][parameterOid].insert(product->getProductElementOids().cbegin(), product->getProductElementOids().cend());

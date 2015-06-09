@@ -132,10 +132,14 @@ enum ProductElementOid : unsigned short {
 			kRisikoGruppe							= 161,
 
 			kUdbetalingsperiode						= 174,
-			kMaxAndelLinkBidragPCT					= 184,
-			kUdbetalingsform						= 192,
 
 			kBoerneRenteSoliMax						= 183,
+			kMaxAndelLinkBidragPCT					= 184,
+
+			kUdbetalingsform						= 192,
+			kInvalidesumSkattekode					= 193,
+			kLoenDefinitionKonvSup					= 194,
+			kLoenDefinitionNotAllowedForUdenfor		= 195,
 
 			kFusion_MK								= 201,
 			kFusionIndtraedelsesdato				= 202,

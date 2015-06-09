@@ -46,9 +46,10 @@ TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_I_Kr_Ingen) {
 	EXPECT_FALSE(r.isAllOk());
 //	if (!r.isAllOk())
 		cout << r;
-	EXPECT_EQ(2, r.getValidationResults().size());
+	EXPECT_EQ(3, r.getValidationResults().size());
 	EXPECT_TRUE(r.hasMessages(kTAEBlGrMin, kProductElementRequired));
 	EXPECT_TRUE(r.hasMessages(kTAEBlOblMax, kProductElementRequired));
+	EXPECT_TRUE(r.hasMessages(kTAESpaendBl, kProductElementRequired));
 
 	ta.setValue(kTAEBlGrMin, 100000);
 	ta.setValue(kTAEBlOblMax, 200000); // now set amounts and it should be happy
@@ -67,9 +68,10 @@ TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_I_Kr_Ingen_NEGATI
 	EXPECT_FALSE(r.isAllOk());
 //	if (!r.isAllOk())
 		cout << r;
-	EXPECT_EQ(2, r.getValidationResults().size());
+	EXPECT_EQ(3, r.getValidationResults().size());
 	EXPECT_TRUE(r.hasMessages(kTAEBlGrMin, kProductElementRequired));
 	EXPECT_TRUE(r.hasMessages(kTAEBlOblMax, kProductElementRequired));
+	EXPECT_TRUE(r.hasMessages(kTAESpaendBl, kProductElementRequired));
 
 	ta.setValue(kTAEBlGrMin, 200000); // the span is too big, so should complain
 	ta.setValue(kTAEBlOblMax, 900000); // now set max amounts to more than allowed
@@ -91,9 +93,10 @@ TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_I_Kr_Pristal) {
 	EXPECT_FALSE(r.isAllOk());
 //	if (!r.isAllOk())
 		cout << r;
-	EXPECT_EQ(2, r.getValidationResults().size());
+	EXPECT_EQ(3, r.getValidationResults().size());
 	EXPECT_TRUE(r.hasMessages(kTAEBlGrMin, kProductElementRequired));
 	EXPECT_TRUE(r.hasMessages(kTAEBlOblMax, kProductElementRequired));
+	EXPECT_TRUE(r.hasMessages(kTAESpaendBl, kProductElementRequired));
 
 	ta.setValue(kTAEBlGrMin, 100000);
 	ta.setValue(kTAEBlOblMax, 200000); // now set amounts and it should be happy
@@ -112,9 +115,10 @@ TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_I_Kr_Pristal_NEGA
 	EXPECT_FALSE(r.isAllOk());
 //	if (!r.isAllOk())
 		cout << r;
-	EXPECT_EQ(2, r.getValidationResults().size());
+	EXPECT_EQ(3, r.getValidationResults().size());
 	EXPECT_TRUE(r.hasMessages(kTAEBlGrMin, kProductElementRequired));
 	EXPECT_TRUE(r.hasMessages(kTAEBlOblMax, kProductElementRequired));
+	EXPECT_TRUE(r.hasMessages(kTAESpaendBl, kProductElementRequired));
 
 	ta.setValue(kTAEBlGrMin, 200000);
 	ta.setValue(kTAEBlOblMax, 900000); // now set amounts and it should be happy
@@ -135,9 +139,10 @@ TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_I_Kr_Pristal_Scie
 	EXPECT_FALSE(r.isAllOk());
 //	if (!r.isAllOk())
 		cout << r;
-	EXPECT_EQ(2, r.getValidationResults().size());
+	EXPECT_EQ(3, r.getValidationResults().size());
 	EXPECT_TRUE(r.hasMessages(kTAEBlGrMin, kProductElementRequired));
 	EXPECT_TRUE(r.hasMessages(kTAEBlOblMax, kProductElementRequired));
+	EXPECT_TRUE(r.hasMessages(kTAESpaendBl, kProductElementRequired));
 
 	ta.setValue(kTAEBlGrMin, 200000);
 	ta.setValue(kTAEBlOblMax, 800000000); // now set amounts and it should be happy
@@ -159,10 +164,11 @@ TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_I_PCT_Gage) {
 	EXPECT_FALSE(r.isAllOk());
 //	if (!r.isAllOk())
 		cout << r;
-	EXPECT_EQ(3, r.getValidationResults().size());
+	EXPECT_EQ(4, r.getValidationResults().size());
 	EXPECT_TRUE(r.hasMessages(kTAEPctGrMin, kProductElementRequired));
 	EXPECT_TRUE(r.hasMessages(kTAEPctOblMax, kProductElementRequired));
 	EXPECT_TRUE(r.hasMessages(kTAEBlGrMin, kProductElementRequired));
+	EXPECT_TRUE(r.hasMessages(kTAESpaendPct, kProductElementRequired));
 
 	ta.setValue(kTAEPctGrMin, 40);
 	ta.setValue(kTAEPctOblMax, 50); // now set pct and it should be only complain about missing amount

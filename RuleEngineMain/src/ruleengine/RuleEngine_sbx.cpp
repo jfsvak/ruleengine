@@ -115,10 +115,11 @@ void RuleEngine::_initRuleCatalogue(sbx::RuleCatalogue* ruleCatalogue, const Jso
 
 			if (RuleEngine::_printDebug) { cout << "  Creating Rule [" << id << "], expr [" << expr << "]" << endl; }
 
+
 			std::shared_ptr<sbx::Rule> rule = make_shared<sbx::Rule>(
 					id,
 					expr,
-					((requiredifexpr == "#parent#") ? ruleCatalogue->getParent() : make_shared<sbx::Rule>(id + ".R", requiredifexpr, nullptr, "", "")),
+					((requiredifexpr == "") ? nullptr : ((requiredifexpr == "#parent#") ? ruleCatalogue->getParent() : make_shared<sbx::Rule>(id + ".R", requiredifexpr, nullptr, "", ""))),
 					positiveMessage,
 					negativeMessage,
 					preCalcExpr);
@@ -626,9 +627,9 @@ void RuleEngine::_validateOptionAllowed(const sbx::ProductElementValue& pev, sbx
 			for_each(options.cbegin(), options.cend(), [&optionsString](std::shared_ptr<sbx::Constant> c) { optionsString << c->stringValue() << ", ";} );
 
 			stringstream msg {};
-			msg << "Værdi [" << sbx::utils::formatValue(pev.stringValue()) << "] er ikke tilladt! Tilladte værdier er : [" << optionsString.str().substr(0, optionsString.str().length()-2) << "]";
+			msg << "Værdi [" << sbx::utils::formatValue(pev.stringValue()) << "] er ikke tilladt! Tilladte værdier er : [" << optionsString.str().substr(0, optionsString.str().length()-1) << "]";
 
-			valResult.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kValueNotAllowed, pev.getProductElementOid(), _VAR_NAME(pev.getProductElementOid()), msg.str().substr(0, msg.str().length()-2)) );
+			valResult.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kValueNotAllowed, pev.getProductElementOid(), _VAR_NAME(pev.getProductElementOid()), msg.str().substr(0, msg.str().length()-1)) );
 		}
 	}
 }
@@ -723,6 +724,8 @@ bool RuleEngine::_isOptionAllowed(const sbx::ProductElementValue& pev)
 			break;
 
 		default:
+			if (pev.getProductElementOid() == kTransomkostninger)
+				cout << "Constant [" << constant->stringValue() << "], pev[" << pev.stringValue() << "]" << endl;
 			if (constant->stringValue() == pev.stringValue())
 				return true;
 		}
@@ -769,6 +772,7 @@ std::shared_ptr<sbx::Rule> RuleEngine::_isRequired(unsigned short peOid, sbx::Va
 
 				// if the requiredif-rule was false, we continue executing other potential rules to see if they make the pe required
 			}
+
 		}
 	}
 
@@ -777,15 +781,16 @@ std::shared_ptr<sbx::Rule> RuleEngine::_isRequired(unsigned short peOid, sbx::Va
 }
 
 /**
- * Run through specific rules to see if requiredif rules validates to false.
- * If it does, we assume the pe is optional and return true. We can do this,
- * because we assume there is only one requiredif rule per pe.
+ * Run through specific rules to see if any requiredif rule validates to true.
+ * All requiredif rules has to positively evaluate to false.
+ * If just one requiredif rule validates to true, the pe is not optional.
  *
- * If no requiredif rule (should only be one) states that the pe is optional (ie. by evaluating to false),
- * we assume that the pe is required, and therefore return false in the end
+ * If all requiredif rules evaluate to false,
+ * we know that the pe is actually optional (not required by any rule)
+ * and therefore answer true in the end.
  *
- * In case of missing token, we continue to look for a positive confirmation of optionality by a 'negative' requiredif rule.
- * A warning of the missing token is added though
+ * In case of missing token or other ParserError, we answer false, as we cannot positively confirm
+ * that the pe is not required by the requiredif rule or not, so we assume not optional.
  */
 bool RuleEngine::_isOptional(unsigned short peOid, sbx::ValidationResults& valResults)
 {
@@ -793,30 +798,67 @@ bool RuleEngine::_isOptional(unsigned short peOid, sbx::ValidationResults& valRe
 		// run through all specific rules
 		const auto& rangeOfRules = _peOidToRules.equal_range(peOid); // std::pair <std::multimap<unsigned short, std::shared_ptr<sbx::Rule>::iterator, std::multimap<unsigned short, std::shared_ptr<sbx::Rule>::iterator> range = _peOidToRules.equal_range(peOidToValidate);
 
+		bool requiredIfRulesExists {false};
 		for (auto it = rangeOfRules.first; it != rangeOfRules.second; it++) { //	for (std::multimap<unsigned short, std::shared_ptr<sbx::Rule>::iterator it = range.first; it != range.second; it++)
 			std::shared_ptr<sbx::Rule> rule = it->second;
 
 			// if there is a requiredif-rule, then run it
 			if ((rule->getRequiredIfRule() != nullptr) && rule->getRequiredIfRule()->getExpr() != "") {
+				requiredIfRulesExists = true;
+				bool grandParentRequired {false};
 
-				try {
-					// if the requiredif rule evaluates to false, we assume the pe is optional
-					mup::Value r = _execute(rule->getRequiredIfRule()->getExpr(), rule->getRequiredIfRule()->getRuleId());
+				std::shared_ptr<sbx::Rule> requiredIfRule = rule->getRequiredIfRule();
+				std::shared_ptr<sbx::Rule> grandParentRule = requiredIfRule->getRequiredIfRule();
 
-					if ( r.GetType() == 'b' && !r.GetBool() ) {
-						return true;
+				// if there is a grand parent rule, then run that first
+				if (grandParentRule != nullptr && grandParentRule->getExpr() != "")
+				{
+					try {
+						mup::Value r = _execute(grandParentRule->getExpr(), grandParentRule->getRuleId());
+
+						// if the grandparent requiredif rule evaluates to true, we will also try to evaluate the parent rule, otherwise there is no need
+						if ( r.GetType() == 'b' && r.GetBool() ) {
+							grandParentRequired = true;
+						}
+					} catch (const mup::ParserError& e) {
+						sbx::mubridge::handle(e, valResults, _container);
+
+						// in case of exception, we cannot reliably deduct that the requiredif rule is false, so we assume that the pe is not optional,
+						//  and straight away return false
+						return false;
 					}
-				} catch (const mup::ParserError& e) {
-					sbx::mubridge::handle(e, valResults, _container);
 				}
 
-				// if the requiredif-rule was false, we continue executing other potential rules to see if they make the pe required
-			}
-		}
-	}
+				// if no grandparent or grandparentrule == true
+				if (grandParentRule == nullptr || grandParentRequired) {
+					try {
+						mup::Value r = _execute(requiredIfRule->getExpr(), requiredIfRule->getRuleId());
 
-	// if no rules specifically said that the peOid is optional, we assume it's required by answering false
-	return false;
+						// if the requiredif rule evaluates to true, we know positively that the pe is not optional, and can straight away answer false
+						if ( r.GetType() == 'b' && r.GetBool() ) {
+							return false;
+						}
+					} catch (const mup::ParserError& e) {
+						sbx::mubridge::handle(e, valResults, _container);
+
+						// in case of exception, we cannot reliably deduct that the requiredif rule is false, so we assume that the pe is not optional,
+						//  and straight away return false
+						return false;
+					}
+				}
+			}
+		} // for loop
+
+		if (requiredIfRulesExists)
+			// if requiredIf rules existed, they all must have validated without error to false, so we can safely assume the pe is optional
+			return true;
+		else
+			// if no requiredIf rules existed, we assume the pe is not optional
+			return false;
+	}
+	else
+		// if no pe-specific rules existed, we assume the pe is not optional
+		return false;
 }
 
 /**
@@ -914,9 +956,13 @@ sbx::ValidationResults RuleEngine::validate(const sbx::TA& ta, bool full)
 			// run through all the allowed product elements and check if its on the TA. If its not, then check if its optional. If its not optional, add a message stating its required
 			for (auto& peOid : allowedProductElementOids)
 			{
-				// If it's not in the parser, it is not optional, tell that the pe is required
-				if ( !_parser.IsVarDefined(_VAR_NAME(peOid)) && _isRequired(peOid, valResults, true) )
-					valResults.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kProductElementRequired, peOid, _VAR_NAME(peOid), "Værdi for [" + _GUI_NAME(peOid) + "] ikke angivet") );
+				bool definedInParser = _parser.IsVarDefined(_VAR_NAME(peOid));
+				bool optional = _isOptional(peOid, valResults);
+//				cout << "PE[" << _VAR_NAME(peOid) << "]" << ", DefinedInParser[" << boolalpha << definedInParser << "] optional[" << boolalpha << optional << "]" << endl;
+
+				// If it's not in the parser, and it's not optional, tell that the pe is required
+				if ( !definedInParser && !optional )
+					valResults.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kProductElementRequired, peOid, _VAR_NAME(peOid), "Optional: Værdi for [" + _GUI_NAME(peOid) + "] ikke angivet") );
 			}
 		}
 		else
