@@ -124,7 +124,7 @@ void RuleEngine::_initRuleCatalogue(sbx::RuleCatalogue* ruleCatalogue, const Jso
 					negativeMessage,
 					preCalcExpr);
 
-			rule->setNotAllowedIfRule((notallowedifexpr == "#parent#") ? ruleCatalogue->getParent() : make_shared<sbx::Rule>(id + ".NA", notallowedifexpr, nullptr, "", ""));
+			rule->setNotAllowedIfRule( (notallowedifexpr == "") ? nullptr : ((notallowedifexpr == "#parent#") ? ruleCatalogue->getParent() : make_shared<sbx::Rule>(id + ".NA", notallowedifexpr, nullptr, "", "")));
 			rule->setNegativeValCode(negativeValCode);
 			rule->setPositiveValCode(positiveValCode);
 
@@ -387,6 +387,9 @@ void RuleEngine::_loadParser(const TA& ta)
 		}
 	}
 
+	// set union agreement ladder employer pct and total pct
+	_defineVariable<int>(sbx::kUnionAgreementEmployerPct1stStep, (int) 3);
+	_defineVariable<int>(sbx::kUnionAgreementTotalPct1stStep, (int) 5);
 	_loadLadder(ta);
 
 	// execute all precalc rules to update the parser
@@ -870,8 +873,7 @@ void RuleEngine::_evaluateRule(unsigned short peOidBeingValidated, std::shared_p
 		if (result.GetBool()) {
 			// only add message, if it's not empty
 			if (rule->getPositiveMessage() != "") {
-				auto p = getParametersFromParser(rule->getNegativeMessageParameters());
-				string msg = sbx::utils::formatMessage(rule->getNegativeMessage(), p);
+				string msg = rule->getPositiveMessage();
 				sbx::ValidationCode positiveValCode = sbx::utils::toValCode(rule->getPositiveValCode(), sbx::ValidationCode::kFail);
 				valResult.addValidationResult( sbx::ValidationResult(positiveValCode, peOidBeingValidated, _VAR_NAME(peOidBeingValidated), msg, rule->getRuleId(), rule->getExpr()) );
 			}

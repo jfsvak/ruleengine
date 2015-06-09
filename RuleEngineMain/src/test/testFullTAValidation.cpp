@@ -7,6 +7,7 @@
 #include "../ruleengine/KonceptInfo_sbx.h"
 #include "../ruleengine/RuleEngine_sbx.h"
 #include "../ruleengine/TA_sbx.h"
+#include "../ruleengine/Utils.h"
 #include "../ruleengine/ValidationResult.h"
 #include "../ruleengine/ValidationResults.h"
 
@@ -38,11 +39,17 @@ protected:
 TEST_F(Full_TA_CONTEXT_KI_OSV_25_50, Full_TA_POSITIVE) {
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
 	RuleEngine::_printDebugAtValidation = true;
-	int total = 132;
+	int total {134};
 
 	auto r = re.validate(ta);
 	EXPECT_FALSE(r.isAllOk());
 	EXPECT_EQ(total, r.sizeValidationResults());
+	cout << r;
+
+	// union agreement
+	ta.setValue(kUnionAgreementRelationship, sbx::kOUTSIDE);
+	r = re.validate(ta);
+	EXPECT_EQ(total-=3, r.sizeValidationResults());
 	cout << r;
 
 	//
@@ -409,9 +416,8 @@ TEST_F(Full_TA_CONTEXT_KI_OSV_25_50, Full_TA_POSITIVE) {
 	ta.setValue(kLoenRegulering, "januar");
 	ta.setValue(kLoenreguleringsfrekvens, re.getDefaultValue(kLoenreguleringsfrekvens)->stringValue());
 	ta.setValue(kBidragsstigningsform, "Alder");
-	ta.setValue(kBidragEjFoesteTrin_MK, false);
 	r = re.validate(ta);
-	EXPECT_EQ(total-=5, r.sizeValidationResults());
+	EXPECT_EQ(total-=4, r.sizeValidationResults());
 	cout << r;
 	ta.setValue(kPrivate_Taxed_MK, false);
 	r = re.validate(ta);

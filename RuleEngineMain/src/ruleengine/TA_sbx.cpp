@@ -163,10 +163,6 @@ const std::string& TA::getCVR() const { return _cvr; }
 unsigned short TA::getKonceptOid() const { return _konceptOid; }
 bool TA::hasValue(unsigned short productElementOid) const { return (_peValuesMap.find(productElementOid) != _peValuesMap.cend()); }
 TA& TA::setCvr(const std::string& cvr) { _cvr = cvr; return *this; }
-TA& TA::setUar(sbx::UnionAgreementRelationship uar) { _uar = uar; return *this; }
-TA& TA::setUnionAgreementOid(unsigned short unionAgreementOid) { _unionAgreementOid = unionAgreementOid; return *this; }
-sbx::UnionAgreementRelationship TA::getUar() const { return _uar; }
-unsigned short TA::getUnionAgreementOid() const { return _unionAgreementOid; }
 
 TA& TA::setContributionSteps(const std::vector<sbx::ContributionStep>& ladder)
 {
@@ -186,5 +182,6 @@ TA& TA::removeContributionSteps()
 }
 
 TA::~TA() {}
+
 
 } /* namespace sbx */

@@ -251,7 +251,7 @@ TEST_F(Incremental_TA_CONTEXT_KI_OSV_25_50, Incremental_TA_POSITIVE) {
 	EXPECT_TRUE(r.isAllOk());
 	if (!r.isAllOk()) cout << r;
 
-	ta.setValue(kBidragEjFoesteTrin_MK, true); // set the
+	ta.setValue(kBidragEjFoesteTrin_MK, false); // set the
 	r = re.validate(ta, full);
 	EXPECT_TRUE(r.isAllOk());
 	if (!r.isAllOk()) cout << r;

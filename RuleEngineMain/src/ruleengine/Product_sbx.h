@@ -18,7 +18,7 @@ public:
 
 	Product();
 	Product(const sbx::Product&); // copy constructor
-	Product(unsigned short oid, std::string& name);
+	Product(unsigned short oid, const std::string& name);
 
 	const std::string& getName() const;
 	unsigned short getOid();
