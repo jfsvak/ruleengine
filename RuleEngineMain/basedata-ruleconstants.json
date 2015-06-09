@@ -1,4 +1,4 @@
-{
+ï»¿{
    "data": {"FIRMA_RULE_ENGINE":    {
       "ruleConstants":       [
                   {
@@ -1548,7 +1548,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1415 TAE Gennemsnitspræmie",
+            "value": "1415 TAE GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -1658,7 +1658,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1417 TAE Naturlig præmie",
+            "value": "1417 TAE Naturlig prÃ¦mie",
             "isDefault": false
          },
                   {
@@ -2648,7 +2648,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "115 DØD Gennemsnitspræmie",
+            "value": "115 DÃ˜D GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -2698,7 +2698,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "0415 IR Gennemsnitspræmie",
+            "value": "0415 IR GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -2708,7 +2708,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1415 TAE Gennemsnitspræmie",
+            "value": "1415 TAE GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -2718,7 +2718,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1417 TAE Naturlig præmie",
+            "value": "1417 TAE Naturlig prÃ¦mie",
             "isDefault": false
          },
                   {
@@ -2728,7 +2728,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "117 DØD Naturlig præmie",
+            "value": "117 DÃ˜D Naturlig prÃ¦mie",
             "isDefault": false
          },
                   {
@@ -2738,7 +2738,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "115 DØD Gennemsnitspræmie",
+            "value": "115 DÃ˜D GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -2758,7 +2758,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "117 DØD Naturlig præmie",
+            "value": "117 DÃ˜D Naturlig prÃ¦mie",
             "isDefault": false
          },
                   {
@@ -2828,7 +2828,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast pensionsgivende løn",
+            "value": "Fast pensionsgivende lÃ¸n",
             "isDefault": false
          },
                   {
@@ -2838,7 +2838,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Løn ekskl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n ekskl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -2848,7 +2848,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Løn inkl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n inkl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -2888,7 +2888,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -2898,7 +2898,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast løn",
+            "value": "Fast lÃ¸n",
             "isDefault": false
          },
                   {
@@ -2908,7 +2908,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast løn inkl.bonus",
+            "value": "Fast lÃ¸n inkl.bonus",
             "isDefault": false
          },
                   {
@@ -2918,7 +2918,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Kvartårlig",
+            "value": "KvartÃ¥rlig",
             "isDefault": false
          },
                   {
@@ -2928,7 +2928,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Halvårlig",
+            "value": "HalvÃ¥rlig",
             "isDefault": false
          },
                   {
@@ -2938,7 +2938,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Årlig",
+            "value": "Ã…rlig",
             "isDefault": false
          },
                   {
@@ -3288,7 +3288,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -3298,7 +3298,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattepligtig dækning",
+            "value": "Skattepligtig dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -3318,7 +3318,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Løn inkl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n inkl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -3328,7 +3328,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Løn ekskl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n ekskl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -3338,7 +3338,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast pensionsgivende løn",
+            "value": "Fast pensionsgivende lÃ¸n",
             "isDefault": false
          },
                   {
@@ -3348,7 +3348,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -3358,7 +3358,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Løn ekskl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n ekskl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -3368,7 +3368,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast løn inkl.bonus",
+            "value": "Fast lÃ¸n inkl.bonus",
             "isDefault": false
          },
                   {
@@ -3378,7 +3378,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast løn",
+            "value": "Fast lÃ¸n",
             "isDefault": false
          },
                   {
@@ -3388,7 +3388,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 195,
             "comparisonTypeOid": 4,
-            "value": "I henhold til lønoverenskomst",
+            "value": "I henhold til lÃ¸noverenskomst",
             "isDefault": false
          },
                   {
@@ -3418,7 +3418,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Løn inkl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n inkl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -3508,7 +3508,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast pensionsgivende løn",
+            "value": "Fast pensionsgivende lÃ¸n",
             "isDefault": false
          },
                   {
@@ -3518,7 +3518,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 222,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -3608,7 +3608,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Årlig",
+            "value": "Ã…rlig",
             "isDefault": false
          },
                   {
@@ -3708,7 +3708,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Halvårlig",
+            "value": "HalvÃ¥rlig",
             "isDefault": false
          },
                   {
@@ -3818,7 +3818,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Kvartårlig",
+            "value": "KvartÃ¥rlig",
             "isDefault": false
          },
                   {
@@ -4078,7 +4078,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 243,
             "comparisonTypeOid": 4,
-            "value": "Mølholm",
+            "value": "MÃ¸lholm",
             "isDefault": false
          },
                   {
@@ -4178,7 +4178,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattepligtig dækning",
+            "value": "Skattepligtig dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -4188,7 +4188,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -5318,7 +5318,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 243,
             "comparisonTypeOid": 4,
-            "value": "Mølholm",
+            "value": "MÃ¸lholm",
             "isDefault": false
          },
                   {
@@ -5328,7 +5328,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 243,
             "comparisonTypeOid": 4,
-            "value": "Mølholm",
+            "value": "MÃ¸lholm",
             "isDefault": false
          },
                   {
@@ -5348,7 +5348,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 243,
             "comparisonTypeOid": 4,
-            "value": "Mølholm",
+            "value": "MÃ¸lholm",
             "isDefault": false
          },
                   {
@@ -5358,7 +5358,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 243,
             "comparisonTypeOid": 4,
-            "value": "Mølholm",
+            "value": "MÃ¸lholm",
             "isDefault": false
          },
                   {
@@ -5368,7 +5368,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 243,
             "comparisonTypeOid": 4,
-            "value": "Mølholm",
+            "value": "MÃ¸lholm",
             "isDefault": false
          },
                   {
@@ -5378,7 +5378,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 243,
             "comparisonTypeOid": 4,
-            "value": "Mølholm",
+            "value": "MÃ¸lholm",
             "isDefault": false
          },
                   {
@@ -5388,7 +5388,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 243,
             "comparisonTypeOid": 4,
-            "value": "Mølholm",
+            "value": "MÃ¸lholm",
             "isDefault": false
          },
                   {
@@ -5398,7 +5398,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 243,
             "comparisonTypeOid": 4,
-            "value": "Mølholm",
+            "value": "MÃ¸lholm",
             "isDefault": false
          },
                   {
@@ -5408,7 +5408,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 243,
             "comparisonTypeOid": 4,
-            "value": "Mølholm",
+            "value": "MÃ¸lholm",
             "isDefault": false
          },
                   {
@@ -5418,7 +5418,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 243,
             "comparisonTypeOid": 4,
-            "value": "Mølholm",
+            "value": "MÃ¸lholm",
             "isDefault": false
          },
                   {
@@ -5428,7 +5428,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 243,
             "comparisonTypeOid": 4,
-            "value": "Mølholm",
+            "value": "MÃ¸lholm",
             "isDefault": false
          },
                   {
@@ -5438,7 +5438,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 243,
             "comparisonTypeOid": 4,
-            "value": "Mølholm",
+            "value": "MÃ¸lholm",
             "isDefault": false
          },
                   {
@@ -5458,7 +5458,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 243,
             "comparisonTypeOid": 4,
-            "value": "Mølholm",
+            "value": "MÃ¸lholm",
             "isDefault": false
          },
                   {
@@ -5468,7 +5468,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 243,
             "comparisonTypeOid": 4,
-            "value": "Mølholm",
+            "value": "MÃ¸lholm",
             "isDefault": false
          },
                   {
@@ -5478,7 +5478,7 @@
             "generalAgreementOid": 5,
             "productElementOid": 243,
             "comparisonTypeOid": 4,
-            "value": "Mølholm",
+            "value": "MÃ¸lholm",
             "isDefault": false
          },
                   {
@@ -5488,7 +5488,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 243,
             "comparisonTypeOid": 4,
-            "value": "Mølholm",
+            "value": "MÃ¸lholm",
             "isDefault": false
          },
                   {
@@ -5498,7 +5498,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 243,
             "comparisonTypeOid": 4,
-            "value": "Mølholm",
+            "value": "MÃ¸lholm",
             "isDefault": false
          },
                   {
@@ -5508,7 +5508,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 243,
             "comparisonTypeOid": 4,
-            "value": "Mølholm",
+            "value": "MÃ¸lholm",
             "isDefault": false
          },
                   {
@@ -5518,7 +5518,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 243,
             "comparisonTypeOid": 4,
-            "value": "Mølholm",
+            "value": "MÃ¸lholm",
             "isDefault": false
          },
                   {
@@ -5528,7 +5528,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 243,
             "comparisonTypeOid": 4,
-            "value": "Mølholm",
+            "value": "MÃ¸lholm",
             "isDefault": false
          },
                   {
@@ -10198,7 +10198,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 268,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -10208,7 +10208,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 268,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -10218,7 +10218,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 268,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -10228,7 +10228,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 268,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -10238,7 +10238,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 268,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -10248,7 +10248,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 268,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -10268,7 +10268,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 268,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -10278,7 +10278,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 268,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -10288,7 +10288,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 268,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -10298,7 +10298,7 @@
             "generalAgreementOid": 5,
             "productElementOid": 268,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -10308,7 +10308,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 268,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -10318,7 +10318,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 268,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -10328,7 +10328,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 268,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -10338,7 +10338,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 268,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -10348,7 +10348,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 268,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -10358,7 +10358,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 268,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -10378,7 +10378,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 268,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -10388,7 +10388,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 268,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -10398,7 +10398,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 268,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -10408,7 +10408,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 268,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -10418,7 +10418,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 268,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -10428,7 +10428,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 268,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -11388,7 +11388,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -11458,7 +11458,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattepligtig dækning",
+            "value": "Skattepligtig dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -12088,7 +12088,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -12098,7 +12098,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattepligtig dækning",
+            "value": "Skattepligtig dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -12288,7 +12288,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -12298,7 +12298,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattepligtig dækning",
+            "value": "Skattepligtig dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -12498,7 +12498,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -12508,7 +12508,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattepligtig dækning",
+            "value": "Skattepligtig dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -16358,7 +16358,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "0415 IR Gennemsnitspræmie",
+            "value": "0415 IR GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -16368,7 +16368,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "0415 IR Gennemsnitspræmie",
+            "value": "0415 IR GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -16378,7 +16378,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "0415 IR Gennemsnitspræmie",
+            "value": "0415 IR GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -16388,7 +16388,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "0415 IR Gennemsnitspræmie",
+            "value": "0415 IR GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -16398,7 +16398,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "0415 IR Gennemsnitspræmie",
+            "value": "0415 IR GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -16408,7 +16408,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "0415 IR Gennemsnitspræmie",
+            "value": "0415 IR GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -16418,7 +16418,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "0415 IR Gennemsnitspræmie",
+            "value": "0415 IR GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -16428,7 +16428,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "0415 IR Gennemsnitspræmie",
+            "value": "0415 IR GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -16438,7 +16438,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "0415 IR Gennemsnitspræmie",
+            "value": "0415 IR GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -16448,7 +16448,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "0415 IR Gennemsnitspræmie",
+            "value": "0415 IR GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -16458,7 +16458,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "0415 IR Gennemsnitspræmie",
+            "value": "0415 IR GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -16468,7 +16468,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "0415 IR Gennemsnitspræmie",
+            "value": "0415 IR GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -17648,7 +17648,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattepligtig dækning",
+            "value": "Skattepligtig dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -17658,7 +17658,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -17668,7 +17668,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattepligtig dækning",
+            "value": "Skattepligtig dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -17678,7 +17678,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -17688,7 +17688,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattepligtig dækning",
+            "value": "Skattepligtig dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -17698,7 +17698,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -18238,7 +18238,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattepligtig dækning",
+            "value": "Skattepligtig dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -21098,7 +21098,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1415 TAE Gennemsnitspræmie",
+            "value": "1415 TAE GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -21108,7 +21108,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1417 TAE Naturlig præmie",
+            "value": "1417 TAE Naturlig prÃ¦mie",
             "isDefault": false
          },
                   {
@@ -21118,7 +21118,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1415 TAE Gennemsnitspræmie",
+            "value": "1415 TAE GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -21128,7 +21128,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1417 TAE Naturlig præmie",
+            "value": "1417 TAE Naturlig prÃ¦mie",
             "isDefault": false
          },
                   {
@@ -21138,7 +21138,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1415 TAE Gennemsnitspræmie",
+            "value": "1415 TAE GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -21148,7 +21148,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1417 TAE Naturlig præmie",
+            "value": "1417 TAE Naturlig prÃ¦mie",
             "isDefault": false
          },
                   {
@@ -21178,7 +21178,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1415 TAE Gennemsnitspræmie",
+            "value": "1415 TAE GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -21188,7 +21188,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1417 TAE Naturlig præmie",
+            "value": "1417 TAE Naturlig prÃ¦mie",
             "isDefault": false
          },
                   {
@@ -21198,7 +21198,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "115 DØD Gennemsnitspræmie",
+            "value": "115 DÃ˜D GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -21208,7 +21208,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "117 DØD Naturlig præmie",
+            "value": "117 DÃ˜D Naturlig prÃ¦mie",
             "isDefault": false
          },
                   {
@@ -21218,7 +21218,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "115 DØD Gennemsnitspræmie",
+            "value": "115 DÃ˜D GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -21228,7 +21228,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "117 DØD Naturlig præmie",
+            "value": "117 DÃ˜D Naturlig prÃ¦mie",
             "isDefault": false
          },
                   {
@@ -21498,7 +21498,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Løn ekskl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n ekskl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -21508,7 +21508,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Løn inkl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n inkl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -21518,7 +21518,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast pensionsgivende løn",
+            "value": "Fast pensionsgivende lÃ¸n",
             "isDefault": false
          },
                   {
@@ -21528,7 +21528,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Løn ekskl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n ekskl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -21538,7 +21538,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Løn inkl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n inkl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -21548,7 +21548,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast pensionsgivende løn",
+            "value": "Fast pensionsgivende lÃ¸n",
             "isDefault": false
          },
                   {
@@ -21558,7 +21558,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Løn ekskl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n ekskl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -21568,7 +21568,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Løn inkl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n inkl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -21578,7 +21578,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast pensionsgivende løn",
+            "value": "Fast pensionsgivende lÃ¸n",
             "isDefault": false
          },
                   {
@@ -21588,7 +21588,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Løn ekskl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n ekskl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -21598,7 +21598,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Løn inkl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n inkl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -21608,7 +21608,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast pensionsgivende løn",
+            "value": "Fast pensionsgivende lÃ¸n",
             "isDefault": false
          },
                   {
@@ -21618,7 +21618,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Halvårlig",
+            "value": "HalvÃ¥rlig",
             "isDefault": false
          },
                   {
@@ -21628,7 +21628,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Kvartårlig",
+            "value": "KvartÃ¥rlig",
             "isDefault": false
          },
                   {
@@ -21638,7 +21638,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Årlig",
+            "value": "Ã…rlig",
             "isDefault": false
          },
                   {
@@ -21648,7 +21648,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Årlig",
+            "value": "Ã…rlig",
             "isDefault": false
          },
                   {
@@ -21658,7 +21658,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Kvartårlig",
+            "value": "KvartÃ¥rlig",
             "isDefault": false
          },
                   {
@@ -21668,7 +21668,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Halvårlig",
+            "value": "HalvÃ¥rlig",
             "isDefault": false
          },
                   {
@@ -21678,7 +21678,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Halvårlig",
+            "value": "HalvÃ¥rlig",
             "isDefault": false
          },
                   {
@@ -21688,7 +21688,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Kvartårlig",
+            "value": "KvartÃ¥rlig",
             "isDefault": false
          },
                   {
@@ -21698,7 +21698,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Årlig",
+            "value": "Ã…rlig",
             "isDefault": false
          },
                   {
@@ -21708,7 +21708,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Årlig",
+            "value": "Ã…rlig",
             "isDefault": false
          },
                   {
@@ -21718,7 +21718,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Halvårlig",
+            "value": "HalvÃ¥rlig",
             "isDefault": false
          },
                   {
@@ -21728,7 +21728,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Kvartårlig",
+            "value": "KvartÃ¥rlig",
             "isDefault": false
          },
                   {
@@ -22518,7 +22518,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "115 DØD Gennemsnitspræmie",
+            "value": "115 DÃ˜D GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -22528,7 +22528,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "117 DØD Naturlig præmie",
+            "value": "117 DÃ˜D Naturlig prÃ¦mie",
             "isDefault": false
          },
                   {
@@ -22558,7 +22558,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -22568,7 +22568,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattepligtig dækning",
+            "value": "Skattepligtig dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -23278,7 +23278,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Løn ekskl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n ekskl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -23288,7 +23288,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Løn inkl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n inkl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -23298,7 +23298,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast pensionsgivende løn",
+            "value": "Fast pensionsgivende lÃ¸n",
             "isDefault": false
          },
                   {
@@ -23308,7 +23308,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Løn ekskl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n ekskl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -23318,7 +23318,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Løn inkl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n inkl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -23328,7 +23328,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast pensionsgivende løn",
+            "value": "Fast pensionsgivende lÃ¸n",
             "isDefault": false
          },
                   {
@@ -23338,7 +23338,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Løn ekskl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n ekskl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -23358,7 +23358,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Løn inkl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n inkl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -23368,7 +23368,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast pensionsgivende løn",
+            "value": "Fast pensionsgivende lÃ¸n",
             "isDefault": false
          },
                   {
@@ -23378,7 +23378,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Løn ekskl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n ekskl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -23388,7 +23388,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Løn inkl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n inkl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -23398,7 +23398,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast pensionsgivende løn",
+            "value": "Fast pensionsgivende lÃ¸n",
             "isDefault": false
          },
                   {
@@ -23408,7 +23408,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast pensionsgivende løn",
+            "value": "Fast pensionsgivende lÃ¸n",
             "isDefault": false
          },
                   {
@@ -23418,7 +23418,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Løn ekskl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n ekskl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -23428,7 +23428,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Løn inkl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n inkl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -23438,7 +23438,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast pensionsgivende løn",
+            "value": "Fast pensionsgivende lÃ¸n",
             "isDefault": false
          },
                   {
@@ -23448,7 +23448,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Løn ekskl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n ekskl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -23468,7 +23468,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Løn inkl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n inkl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -23478,7 +23478,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast pensionsgivende løn",
+            "value": "Fast pensionsgivende lÃ¸n",
             "isDefault": false
          },
                   {
@@ -23488,7 +23488,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Løn ekskl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n ekskl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -23498,7 +23498,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Løn inkl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n inkl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -23508,7 +23508,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Løn ekskl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n ekskl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -23518,7 +23518,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Løn inkl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n inkl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -23528,7 +23528,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast pensionsgivende løn",
+            "value": "Fast pensionsgivende lÃ¸n",
             "isDefault": false
          },
                   {
@@ -23538,7 +23538,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Løn ekskl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n ekskl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -23548,7 +23548,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Løn inkl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n inkl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -23558,7 +23558,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast pensionsgivende løn",
+            "value": "Fast pensionsgivende lÃ¸n",
             "isDefault": false
          },
                   {
@@ -23578,7 +23578,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Løn ekskl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n ekskl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -23588,7 +23588,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Løn inkl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n inkl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -23598,7 +23598,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast pensionsgivende løn",
+            "value": "Fast pensionsgivende lÃ¸n",
             "isDefault": false
          },
                   {
@@ -23608,7 +23608,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Løn ekskl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n ekskl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -23618,7 +23618,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Løn inkl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n inkl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -23628,7 +23628,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast pensionsgivende løn",
+            "value": "Fast pensionsgivende lÃ¸n",
             "isDefault": false
          },
                   {
@@ -23638,7 +23638,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Løn ekskl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n ekskl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -23648,7 +23648,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Løn inkl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n inkl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -23658,7 +23658,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast pensionsgivende løn",
+            "value": "Fast pensionsgivende lÃ¸n",
             "isDefault": false
          },
                   {
@@ -23668,7 +23668,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Løn ekskl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n ekskl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -23688,7 +23688,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Løn inkl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n inkl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -23698,7 +23698,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast pensionsgivende løn",
+            "value": "Fast pensionsgivende lÃ¸n",
             "isDefault": false
          },
                   {
@@ -23708,7 +23708,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Løn ekskl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n ekskl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -23718,7 +23718,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Løn inkl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n inkl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -23728,7 +23728,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast pensionsgivende løn",
+            "value": "Fast pensionsgivende lÃ¸n",
             "isDefault": false
          },
                   {
@@ -23738,7 +23738,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Løn ekskl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n ekskl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -23748,7 +23748,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Løn inkl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n inkl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -23758,7 +23758,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast pensionsgivende løn",
+            "value": "Fast pensionsgivende lÃ¸n",
             "isDefault": false
          },
                   {
@@ -23768,7 +23768,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 195,
             "comparisonTypeOid": 4,
-            "value": "I henhold til lønoverenskomst",
+            "value": "I henhold til lÃ¸noverenskomst",
             "isDefault": false
          },
                   {
@@ -23778,7 +23778,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 195,
             "comparisonTypeOid": 4,
-            "value": "I henhold til lønoverenskomst",
+            "value": "I henhold til lÃ¸noverenskomst",
             "isDefault": false
          },
                   {
@@ -23788,7 +23788,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattepligtig dækning",
+            "value": "Skattepligtig dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -23808,7 +23808,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattepligtig dækning",
+            "value": "Skattepligtig dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -23818,7 +23818,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattepligtig dækning",
+            "value": "Skattepligtig dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -23828,7 +23828,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattepligtig dækning",
+            "value": "Skattepligtig dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -23838,7 +23838,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattepligtig dækning",
+            "value": "Skattepligtig dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -23848,7 +23848,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattepligtig dækning",
+            "value": "Skattepligtig dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -23858,7 +23858,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattepligtig dækning",
+            "value": "Skattepligtig dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -23868,7 +23868,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattepligtig dækning",
+            "value": "Skattepligtig dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -23878,7 +23878,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattepligtig dækning",
+            "value": "Skattepligtig dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -23888,7 +23888,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattepligtig dækning",
+            "value": "Skattepligtig dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -23898,7 +23898,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattepligtig dækning",
+            "value": "Skattepligtig dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -23908,7 +23908,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattepligtig dækning",
+            "value": "Skattepligtig dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -23918,7 +23918,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattepligtig dækning",
+            "value": "Skattepligtig dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -23928,7 +23928,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattepligtig dækning",
+            "value": "Skattepligtig dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -23938,7 +23938,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattepligtig dækning",
+            "value": "Skattepligtig dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -25528,7 +25528,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 195,
             "comparisonTypeOid": 4,
-            "value": "I henhold til lønoverenskomst",
+            "value": "I henhold til lÃ¸noverenskomst",
             "isDefault": false
          },
                   {
@@ -25538,7 +25538,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 195,
             "comparisonTypeOid": 4,
-            "value": "I henhold til lønoverenskomst",
+            "value": "I henhold til lÃ¸noverenskomst",
             "isDefault": false
          },
                   {
@@ -25548,7 +25548,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 195,
             "comparisonTypeOid": 4,
-            "value": "I henhold til lønoverenskomst",
+            "value": "I henhold til lÃ¸noverenskomst",
             "isDefault": false
          },
                   {
@@ -25558,7 +25558,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 195,
             "comparisonTypeOid": 4,
-            "value": "I henhold til lønoverenskomst",
+            "value": "I henhold til lÃ¸noverenskomst",
             "isDefault": false
          },
                   {
@@ -25568,7 +25568,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 195,
             "comparisonTypeOid": 4,
-            "value": "I henhold til lønoverenskomst",
+            "value": "I henhold til lÃ¸noverenskomst",
             "isDefault": false
          },
                   {
@@ -25578,7 +25578,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 195,
             "comparisonTypeOid": 4,
-            "value": "I henhold til lønoverenskomst",
+            "value": "I henhold til lÃ¸noverenskomst",
             "isDefault": false
          },
                   {
@@ -25588,7 +25588,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 195,
             "comparisonTypeOid": 4,
-            "value": "I henhold til lønoverenskomst",
+            "value": "I henhold til lÃ¸noverenskomst",
             "isDefault": false
          },
                   {
@@ -25598,7 +25598,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 195,
             "comparisonTypeOid": 4,
-            "value": "I henhold til lønoverenskomst",
+            "value": "I henhold til lÃ¸noverenskomst",
             "isDefault": false
          },
                   {
@@ -25608,7 +25608,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 195,
             "comparisonTypeOid": 4,
-            "value": "I henhold til lønoverenskomst",
+            "value": "I henhold til lÃ¸noverenskomst",
             "isDefault": false
          },
                   {
@@ -25618,7 +25618,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 195,
             "comparisonTypeOid": 4,
-            "value": "I henhold til lønoverenskomst",
+            "value": "I henhold til lÃ¸noverenskomst",
             "isDefault": false
          },
                   {
@@ -25638,7 +25638,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 195,
             "comparisonTypeOid": 4,
-            "value": "I henhold til lønoverenskomst",
+            "value": "I henhold til lÃ¸noverenskomst",
             "isDefault": false
          },
                   {
@@ -25648,7 +25648,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 195,
             "comparisonTypeOid": 4,
-            "value": "I henhold til lønoverenskomst",
+            "value": "I henhold til lÃ¸noverenskomst",
             "isDefault": false
          },
                   {
@@ -25658,7 +25658,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 195,
             "comparisonTypeOid": 4,
-            "value": "I henhold til lønoverenskomst",
+            "value": "I henhold til lÃ¸noverenskomst",
             "isDefault": false
          },
                   {
@@ -26278,7 +26278,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -26288,7 +26288,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -26298,7 +26298,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -26308,7 +26308,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -26318,7 +26318,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -26328,7 +26328,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -26338,7 +26338,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -26348,7 +26348,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -26358,7 +26358,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -26368,7 +26368,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -26378,7 +26378,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -26388,7 +26388,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -26398,7 +26398,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -26408,7 +26408,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -26418,7 +26418,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -26428,7 +26428,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -26438,7 +26438,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -26448,7 +26448,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -28218,7 +28218,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 222,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -28228,7 +28228,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 222,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -28238,7 +28238,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 222,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -28248,7 +28248,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 222,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -28258,7 +28258,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 222,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -28268,7 +28268,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 222,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -28278,7 +28278,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 222,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -28288,7 +28288,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 222,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -28298,7 +28298,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 222,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -28308,7 +28308,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 222,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -28318,7 +28318,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 222,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -28328,7 +28328,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 222,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -28338,7 +28338,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 222,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -28348,7 +28348,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 222,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -28358,7 +28358,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 222,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -29288,7 +29288,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -29298,7 +29298,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -29308,7 +29308,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -29318,7 +29318,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -29328,7 +29328,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -29338,7 +29338,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -29358,7 +29358,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -29368,7 +29368,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -29378,7 +29378,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -29388,7 +29388,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -29398,7 +29398,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -29408,7 +29408,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -29418,7 +29418,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -29428,7 +29428,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -29438,7 +29438,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -29458,7 +29458,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "115 DØD Gennemsnitspræmie",
+            "value": "115 DÃ˜D GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -29468,7 +29468,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "117 DØD Naturlig præmie",
+            "value": "117 DÃ˜D Naturlig prÃ¦mie",
             "isDefault": false
          },
                   {
@@ -29478,7 +29478,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "115 DØD Gennemsnitspræmie",
+            "value": "115 DÃ˜D GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -29488,7 +29488,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "117 DØD Naturlig præmie",
+            "value": "117 DÃ˜D Naturlig prÃ¦mie",
             "isDefault": false
          },
                   {
@@ -29648,7 +29648,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "0415 IR Gennemsnitspræmie",
+            "value": "0415 IR GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -29658,7 +29658,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1415 TAE Gennemsnitspræmie",
+            "value": "1415 TAE GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -29668,7 +29668,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1417 TAE Naturlig præmie",
+            "value": "1417 TAE Naturlig prÃ¦mie",
             "isDefault": false
          },
                   {
@@ -30298,7 +30298,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Halvårlig",
+            "value": "HalvÃ¥rlig",
             "isDefault": false
          },
                   {
@@ -30308,7 +30308,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Kvartårlig",
+            "value": "KvartÃ¥rlig",
             "isDefault": false
          },
                   {
@@ -30318,7 +30318,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Årlig",
+            "value": "Ã…rlig",
             "isDefault": false
          },
                   {
@@ -30428,7 +30428,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast pensionsgivende løn",
+            "value": "Fast pensionsgivende lÃ¸n",
             "isDefault": false
          },
                   {
@@ -30438,7 +30438,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Løn ekskl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n ekskl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -30448,7 +30448,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Løn inkl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n inkl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -30658,7 +30658,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "0415 IR Gennemsnitspræmie",
+            "value": "0415 IR GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -30668,7 +30668,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1415 TAE Gennemsnitspræmie",
+            "value": "1415 TAE GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -30678,7 +30678,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1417 TAE Naturlig præmie",
+            "value": "1417 TAE Naturlig prÃ¦mie",
             "isDefault": false
          },
                   {
@@ -31308,7 +31308,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Halvårlig",
+            "value": "HalvÃ¥rlig",
             "isDefault": false
          },
                   {
@@ -31318,7 +31318,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Kvartårlig",
+            "value": "KvartÃ¥rlig",
             "isDefault": false
          },
                   {
@@ -31338,7 +31338,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Årlig",
+            "value": "Ã…rlig",
             "isDefault": false
          },
                   {
@@ -31448,7 +31448,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast pensionsgivende løn",
+            "value": "Fast pensionsgivende lÃ¸n",
             "isDefault": false
          },
                   {
@@ -31458,7 +31458,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Løn ekskl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n ekskl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -31468,7 +31468,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Løn inkl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n inkl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -31698,7 +31698,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "0415 IR Gennemsnitspræmie",
+            "value": "0415 IR GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -31708,7 +31708,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1415 TAE Gennemsnitspræmie",
+            "value": "1415 TAE GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -31718,7 +31718,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1417 TAE Naturlig præmie",
+            "value": "1417 TAE Naturlig prÃ¦mie",
             "isDefault": false
          },
                   {
@@ -32348,7 +32348,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Halvårlig",
+            "value": "HalvÃ¥rlig",
             "isDefault": false
          },
                   {
@@ -32358,7 +32358,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Kvartårlig",
+            "value": "KvartÃ¥rlig",
             "isDefault": false
          },
                   {
@@ -32368,7 +32368,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Årlig",
+            "value": "Ã…rlig",
             "isDefault": false
          },
                   {
@@ -32478,7 +32478,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast pensionsgivende løn",
+            "value": "Fast pensionsgivende lÃ¸n",
             "isDefault": false
          },
                   {
@@ -32488,7 +32488,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Løn ekskl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n ekskl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -32498,7 +32498,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Løn inkl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n inkl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -32648,7 +32648,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "115 DØD Gennemsnitspræmie",
+            "value": "115 DÃ˜D GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -32658,7 +32658,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "117 DØD Naturlig præmie",
+            "value": "117 DÃ˜D Naturlig prÃ¦mie",
             "isDefault": false
          },
                   {
@@ -32688,7 +32688,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -32698,7 +32698,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattepligtig dækning",
+            "value": "Skattepligtig dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -32908,7 +32908,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "115 DØD Gennemsnitspræmie",
+            "value": "115 DÃ˜D GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -32918,7 +32918,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "117 DØD Naturlig præmie",
+            "value": "117 DÃ˜D Naturlig prÃ¦mie",
             "isDefault": false
          },
                   {
@@ -32958,7 +32958,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -32968,7 +32968,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattepligtig dækning",
+            "value": "Skattepligtig dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -34708,7 +34708,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1415 TAE Gennemsnitspræmie",
+            "value": "1415 TAE GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -34818,7 +34818,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1417 TAE Naturlig præmie",
+            "value": "1417 TAE Naturlig prÃ¦mie",
             "isDefault": false
          },
                   {
@@ -34928,7 +34928,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "115 DØD Gennemsnitspræmie",
+            "value": "115 DÃ˜D GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -35678,7 +35678,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -35688,7 +35688,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -35698,7 +35698,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -35708,7 +35708,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -35718,7 +35718,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -35728,7 +35728,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -35738,7 +35738,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -35748,7 +35748,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -35758,7 +35758,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -35768,7 +35768,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -35778,7 +35778,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -35788,7 +35788,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -35798,7 +35798,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -35808,7 +35808,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -35818,7 +35818,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -35828,7 +35828,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -36498,7 +36498,7 @@
             "generalAgreementOid": 5,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1415 TAE Gennemsnitspræmie",
+            "value": "1415 TAE GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -36508,7 +36508,7 @@
             "generalAgreementOid": 5,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1417 TAE Naturlig præmie",
+            "value": "1417 TAE Naturlig prÃ¦mie",
             "isDefault": false
          },
                   {
@@ -36518,7 +36518,7 @@
             "generalAgreementOid": 5,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "115 DØD Gennemsnitspræmie",
+            "value": "115 DÃ˜D GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -36528,7 +36528,7 @@
             "generalAgreementOid": 5,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "117 DØD Naturlig præmie",
+            "value": "117 DÃ˜D Naturlig prÃ¦mie",
             "isDefault": false
          },
                   {
@@ -36598,7 +36598,7 @@
             "generalAgreementOid": 5,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Løn ekskl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n ekskl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -36608,7 +36608,7 @@
             "generalAgreementOid": 5,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Løn inkl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n inkl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -36628,7 +36628,7 @@
             "generalAgreementOid": 5,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast pensionsgivende løn",
+            "value": "Fast pensionsgivende lÃ¸n",
             "isDefault": false
          },
                   {
@@ -36658,7 +36658,7 @@
             "generalAgreementOid": 5,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -36668,7 +36668,7 @@
             "generalAgreementOid": 5,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Årlig",
+            "value": "Ã…rlig",
             "isDefault": false
          },
                   {
@@ -36978,7 +36978,7 @@
             "generalAgreementOid": 5,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -36998,7 +36998,7 @@
             "generalAgreementOid": 5,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast pensionsgivende løn",
+            "value": "Fast pensionsgivende lÃ¸n",
             "isDefault": false
          },
                   {
@@ -37008,7 +37008,7 @@
             "generalAgreementOid": 5,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Løn inkl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n inkl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -37018,7 +37018,7 @@
             "generalAgreementOid": 5,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Løn ekskl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n ekskl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -37028,7 +37028,7 @@
             "generalAgreementOid": 5,
             "productElementOid": 195,
             "comparisonTypeOid": 4,
-            "value": "I henhold til lønoverenskomst",
+            "value": "I henhold til lÃ¸noverenskomst",
             "isDefault": false
          },
                   {
@@ -37148,7 +37148,7 @@
             "generalAgreementOid": 5,
             "productElementOid": 222,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -40268,7 +40268,7 @@
             "generalAgreementOid": 5,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -40348,7 +40348,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast løn",
+            "value": "Fast lÃ¸n",
             "isDefault": false
          },
                   {
@@ -40358,7 +40358,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast løn",
+            "value": "Fast lÃ¸n",
             "isDefault": false
          },
                   {
@@ -40368,7 +40368,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast løn",
+            "value": "Fast lÃ¸n",
             "isDefault": false
          },
                   {
@@ -40378,7 +40378,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast løn",
+            "value": "Fast lÃ¸n",
             "isDefault": false
          },
                   {
@@ -40388,7 +40388,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast løn",
+            "value": "Fast lÃ¸n",
             "isDefault": false
          },
                   {
@@ -40408,7 +40408,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast løn",
+            "value": "Fast lÃ¸n",
             "isDefault": false
          },
                   {
@@ -40418,7 +40418,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast løn",
+            "value": "Fast lÃ¸n",
             "isDefault": false
          },
                   {
@@ -40428,7 +40428,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast løn",
+            "value": "Fast lÃ¸n",
             "isDefault": false
          },
                   {
@@ -40438,7 +40438,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast løn",
+            "value": "Fast lÃ¸n",
             "isDefault": false
          },
                   {
@@ -40448,7 +40448,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast løn",
+            "value": "Fast lÃ¸n",
             "isDefault": false
          },
                   {
@@ -40458,7 +40458,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast løn",
+            "value": "Fast lÃ¸n",
             "isDefault": false
          },
                   {
@@ -40468,7 +40468,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast løn",
+            "value": "Fast lÃ¸n",
             "isDefault": false
          },
                   {
@@ -40478,7 +40478,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast løn",
+            "value": "Fast lÃ¸n",
             "isDefault": false
          },
                   {
@@ -40488,7 +40488,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast løn",
+            "value": "Fast lÃ¸n",
             "isDefault": false
          },
                   {
@@ -40498,7 +40498,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast løn",
+            "value": "Fast lÃ¸n",
             "isDefault": false
          },
                   {
@@ -40518,7 +40518,7 @@
             "generalAgreementOid": 5,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast løn",
+            "value": "Fast lÃ¸n",
             "isDefault": false
          },
                   {
@@ -40528,7 +40528,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast løn",
+            "value": "Fast lÃ¸n",
             "isDefault": false
          },
                   {
@@ -40538,7 +40538,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast løn",
+            "value": "Fast lÃ¸n",
             "isDefault": false
          },
                   {
@@ -40548,7 +40548,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast løn",
+            "value": "Fast lÃ¸n",
             "isDefault": false
          },
                   {
@@ -40558,7 +40558,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast løn",
+            "value": "Fast lÃ¸n",
             "isDefault": false
          },
                   {
@@ -40568,7 +40568,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast løn",
+            "value": "Fast lÃ¸n",
             "isDefault": false
          },
                   {
@@ -40578,7 +40578,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast løn",
+            "value": "Fast lÃ¸n",
             "isDefault": false
          },
                   {
@@ -40588,7 +40588,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast løn",
+            "value": "Fast lÃ¸n",
             "isDefault": false
          },
                   {
@@ -40598,7 +40598,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast løn",
+            "value": "Fast lÃ¸n",
             "isDefault": false
          },
                   {
@@ -40608,7 +40608,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast løn",
+            "value": "Fast lÃ¸n",
             "isDefault": false
          },
                   {
@@ -40628,7 +40628,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast løn",
+            "value": "Fast lÃ¸n",
             "isDefault": false
          },
                   {
@@ -40638,7 +40638,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast løn",
+            "value": "Fast lÃ¸n",
             "isDefault": false
          },
                   {
@@ -40648,7 +40648,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast løn",
+            "value": "Fast lÃ¸n",
             "isDefault": false
          },
                   {
@@ -40658,7 +40658,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast løn",
+            "value": "Fast lÃ¸n",
             "isDefault": false
          },
                   {
@@ -40668,7 +40668,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast løn",
+            "value": "Fast lÃ¸n",
             "isDefault": false
          },
                   {
@@ -40678,7 +40678,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast løn",
+            "value": "Fast lÃ¸n",
             "isDefault": false
          },
                   {
@@ -40688,7 +40688,7 @@
             "generalAgreementOid": 5,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast løn",
+            "value": "Fast lÃ¸n",
             "isDefault": false
          },
                   {
@@ -40698,7 +40698,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast løn inkl.bonus",
+            "value": "Fast lÃ¸n inkl.bonus",
             "isDefault": false
          },
                   {
@@ -40708,7 +40708,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast løn inkl.bonus",
+            "value": "Fast lÃ¸n inkl.bonus",
             "isDefault": false
          },
                   {
@@ -40718,7 +40718,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast løn inkl.bonus",
+            "value": "Fast lÃ¸n inkl.bonus",
             "isDefault": false
          },
                   {
@@ -40738,7 +40738,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast løn inkl.bonus",
+            "value": "Fast lÃ¸n inkl.bonus",
             "isDefault": false
          },
                   {
@@ -40748,7 +40748,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast løn inkl.bonus",
+            "value": "Fast lÃ¸n inkl.bonus",
             "isDefault": false
          },
                   {
@@ -40758,7 +40758,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast løn inkl.bonus",
+            "value": "Fast lÃ¸n inkl.bonus",
             "isDefault": false
          },
                   {
@@ -40768,7 +40768,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast løn inkl.bonus",
+            "value": "Fast lÃ¸n inkl.bonus",
             "isDefault": false
          },
                   {
@@ -40778,7 +40778,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast løn inkl.bonus",
+            "value": "Fast lÃ¸n inkl.bonus",
             "isDefault": false
          },
                   {
@@ -40788,7 +40788,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast løn inkl.bonus",
+            "value": "Fast lÃ¸n inkl.bonus",
             "isDefault": false
          },
                   {
@@ -40798,7 +40798,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast løn inkl.bonus",
+            "value": "Fast lÃ¸n inkl.bonus",
             "isDefault": false
          },
                   {
@@ -40808,7 +40808,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast løn inkl.bonus",
+            "value": "Fast lÃ¸n inkl.bonus",
             "isDefault": false
          },
                   {
@@ -40818,7 +40818,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast løn inkl.bonus",
+            "value": "Fast lÃ¸n inkl.bonus",
             "isDefault": false
          },
                   {
@@ -40828,7 +40828,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast løn inkl.bonus",
+            "value": "Fast lÃ¸n inkl.bonus",
             "isDefault": false
          },
                   {
@@ -40848,7 +40848,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast løn inkl.bonus",
+            "value": "Fast lÃ¸n inkl.bonus",
             "isDefault": false
          },
                   {
@@ -40858,7 +40858,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast løn inkl.bonus",
+            "value": "Fast lÃ¸n inkl.bonus",
             "isDefault": false
          },
                   {
@@ -40868,7 +40868,7 @@
             "generalAgreementOid": 5,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast løn inkl.bonus",
+            "value": "Fast lÃ¸n inkl.bonus",
             "isDefault": false
          },
                   {
@@ -40878,7 +40878,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast løn inkl.bonus",
+            "value": "Fast lÃ¸n inkl.bonus",
             "isDefault": false
          },
                   {
@@ -40888,7 +40888,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast løn inkl.bonus",
+            "value": "Fast lÃ¸n inkl.bonus",
             "isDefault": false
          },
                   {
@@ -40898,7 +40898,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast løn inkl.bonus",
+            "value": "Fast lÃ¸n inkl.bonus",
             "isDefault": false
          },
                   {
@@ -40908,7 +40908,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast løn inkl.bonus",
+            "value": "Fast lÃ¸n inkl.bonus",
             "isDefault": false
          },
                   {
@@ -40918,7 +40918,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast løn inkl.bonus",
+            "value": "Fast lÃ¸n inkl.bonus",
             "isDefault": false
          },
                   {
@@ -40928,7 +40928,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast løn inkl.bonus",
+            "value": "Fast lÃ¸n inkl.bonus",
             "isDefault": false
          },
                   {
@@ -40938,7 +40938,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast løn inkl.bonus",
+            "value": "Fast lÃ¸n inkl.bonus",
             "isDefault": false
          },
                   {
@@ -40958,7 +40958,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast løn inkl.bonus",
+            "value": "Fast lÃ¸n inkl.bonus",
             "isDefault": false
          },
                   {
@@ -40968,7 +40968,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast løn inkl.bonus",
+            "value": "Fast lÃ¸n inkl.bonus",
             "isDefault": false
          },
                   {
@@ -40978,7 +40978,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast løn inkl.bonus",
+            "value": "Fast lÃ¸n inkl.bonus",
             "isDefault": false
          },
                   {
@@ -40988,7 +40988,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast løn inkl.bonus",
+            "value": "Fast lÃ¸n inkl.bonus",
             "isDefault": false
          },
                   {
@@ -40998,7 +40998,7 @@
             "generalAgreementOid": 3,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast løn inkl.bonus",
+            "value": "Fast lÃ¸n inkl.bonus",
             "isDefault": false
          },
                   {
@@ -41008,7 +41008,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast løn inkl.bonus",
+            "value": "Fast lÃ¸n inkl.bonus",
             "isDefault": false
          },
                   {
@@ -41018,7 +41018,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast løn inkl.bonus",
+            "value": "Fast lÃ¸n inkl.bonus",
             "isDefault": false
          },
                   {
@@ -41028,7 +41028,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast løn inkl.bonus",
+            "value": "Fast lÃ¸n inkl.bonus",
             "isDefault": false
          },
                   {
@@ -41038,7 +41038,7 @@
             "generalAgreementOid": 5,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast løn inkl.bonus",
+            "value": "Fast lÃ¸n inkl.bonus",
             "isDefault": false
          },
                   {
@@ -43388,7 +43388,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1415 TAE Gennemsnitspræmie",
+            "value": "1415 TAE GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -43398,7 +43398,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1417 TAE Naturlig præmie",
+            "value": "1417 TAE Naturlig prÃ¦mie",
             "isDefault": false
          },
                   {
@@ -43498,7 +43498,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Løn ekskl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n ekskl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -43508,7 +43508,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Løn inkl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n inkl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -43518,7 +43518,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast pensionsgivende løn",
+            "value": "Fast pensionsgivende lÃ¸n",
             "isDefault": false
          },
                   {
@@ -43528,7 +43528,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Halvårlig",
+            "value": "HalvÃ¥rlig",
             "isDefault": false
          },
                   {
@@ -43538,7 +43538,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Kvartårlig",
+            "value": "KvartÃ¥rlig",
             "isDefault": false
          },
                   {
@@ -43558,7 +43558,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Årlig",
+            "value": "Ã…rlig",
             "isDefault": false
          },
                   {
@@ -43798,7 +43798,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "0415 IR Gennemsnitspræmie",
+            "value": "0415 IR GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -43898,7 +43898,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "115 DØD Gennemsnitspræmie",
+            "value": "115 DÃ˜D GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -43908,7 +43908,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "117 DØD Naturlig præmie",
+            "value": "117 DÃ˜D Naturlig prÃ¦mie",
             "isDefault": false
          },
                   {
@@ -43938,7 +43938,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Løn ekskl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n ekskl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -43948,7 +43948,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Løn inkl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n inkl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -43958,7 +43958,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast pensionsgivende løn",
+            "value": "Fast pensionsgivende lÃ¸n",
             "isDefault": false
          },
                   {
@@ -43968,7 +43968,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 195,
             "comparisonTypeOid": 4,
-            "value": "I henhold til lønoverenskomst",
+            "value": "I henhold til lÃ¸noverenskomst",
             "isDefault": false
          },
                   {
@@ -44208,7 +44208,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattepligtig dækning",
+            "value": "Skattepligtig dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -44218,7 +44218,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -45198,7 +45198,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "0415 IR Gennemsnitspræmie",
+            "value": "0415 IR GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -45218,7 +45218,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1415 TAE Gennemsnitspræmie",
+            "value": "1415 TAE GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -45228,7 +45228,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1417 TAE Naturlig præmie",
+            "value": "1417 TAE Naturlig prÃ¦mie",
             "isDefault": false
          },
                   {
@@ -45238,7 +45238,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "117 DØD Naturlig præmie",
+            "value": "117 DÃ˜D Naturlig prÃ¦mie",
             "isDefault": false
          },
                   {
@@ -45248,7 +45248,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "115 DØD Gennemsnitspræmie",
+            "value": "115 DÃ˜D GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -45338,7 +45338,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast pensionsgivende løn",
+            "value": "Fast pensionsgivende lÃ¸n",
             "isDefault": false
          },
                   {
@@ -45348,7 +45348,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Løn ekskl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n ekskl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -45358,7 +45358,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Løn inkl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n inkl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -45388,7 +45388,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -45398,7 +45398,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast løn",
+            "value": "Fast lÃ¸n",
             "isDefault": false
          },
                   {
@@ -45408,7 +45408,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast løn inkl.bonus",
+            "value": "Fast lÃ¸n inkl.bonus",
             "isDefault": false
          },
                   {
@@ -45428,7 +45428,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Kvartårlig",
+            "value": "KvartÃ¥rlig",
             "isDefault": false
          },
                   {
@@ -45438,7 +45438,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Halvårlig",
+            "value": "HalvÃ¥rlig",
             "isDefault": false
          },
                   {
@@ -45448,7 +45448,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Årlig",
+            "value": "Ã…rlig",
             "isDefault": false
          },
                   {
@@ -45578,7 +45578,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -45748,7 +45748,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -45928,7 +45928,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1415 TAE Gennemsnitspræmie",
+            "value": "1415 TAE GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -45948,7 +45948,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast løn",
+            "value": "Fast lÃ¸n",
             "isDefault": false
          },
                   {
@@ -45958,7 +45958,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast løn",
+            "value": "Fast lÃ¸n",
             "isDefault": false
          },
                   {
@@ -45968,7 +45968,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast løn inkl.bonus",
+            "value": "Fast lÃ¸n inkl.bonus",
             "isDefault": false
          },
                   {
@@ -45978,7 +45978,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast løn inkl.bonus",
+            "value": "Fast lÃ¸n inkl.bonus",
             "isDefault": false
          },
                   {
@@ -46028,7 +46028,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1417 TAE Naturlig præmie",
+            "value": "1417 TAE Naturlig prÃ¦mie",
             "isDefault": false
          },
                   {
@@ -46138,7 +46138,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "115 DØD Gennemsnitspræmie",
+            "value": "115 DÃ˜D GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -46178,7 +46178,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 5,
             "comparisonTypeOid": 4,
-            "value": "Skattepligtig dækning",
+            "value": "Skattepligtig dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -46248,7 +46248,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "117 DØD Naturlig præmie",
+            "value": "117 DÃ˜D Naturlig prÃ¦mie",
             "isDefault": false
          },
                   {
@@ -46738,7 +46738,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Løn ekskl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n ekskl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -46848,7 +46848,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Løn inkl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n inkl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -46858,7 +46858,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1415 TAE Gennemsnitspræmie",
+            "value": "1415 TAE GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -46868,7 +46868,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1417 TAE Naturlig præmie",
+            "value": "1417 TAE Naturlig prÃ¦mie",
             "isDefault": false
          },
                   {
@@ -46878,7 +46878,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "115 DØD Gennemsnitspræmie",
+            "value": "115 DÃ˜D GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -46888,7 +46888,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "117 DØD Naturlig præmie",
+            "value": "117 DÃ˜D Naturlig prÃ¦mie",
             "isDefault": false
          },
                   {
@@ -46958,7 +46958,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast pensionsgivende løn",
+            "value": "Fast pensionsgivende lÃ¸n",
             "isDefault": false
          },
                   {
@@ -46978,7 +46978,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Løn ekskl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n ekskl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -46988,7 +46988,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Løn inkl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n inkl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -46998,7 +46998,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast pensionsgivende løn",
+            "value": "Fast pensionsgivende lÃ¸n",
             "isDefault": false
          },
                   {
@@ -47008,7 +47008,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Årlig",
+            "value": "Ã…rlig",
             "isDefault": false
          },
                   {
@@ -47018,7 +47018,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Halvårlig",
+            "value": "HalvÃ¥rlig",
             "isDefault": false
          },
                   {
@@ -47028,7 +47028,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Kvartårlig",
+            "value": "KvartÃ¥rlig",
             "isDefault": false
          },
                   {
@@ -47068,7 +47068,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Årlig",
+            "value": "Ã…rlig",
             "isDefault": false
          },
                   {
@@ -47168,7 +47168,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Halvårlig",
+            "value": "HalvÃ¥rlig",
             "isDefault": false
          },
                   {
@@ -47218,7 +47218,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Kvartårlig",
+            "value": "KvartÃ¥rlig",
             "isDefault": false
          },
                   {
@@ -47268,7 +47268,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "0415 IR Gennemsnitspræmie",
+            "value": "0415 IR GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -47408,7 +47408,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Løn ekskl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n ekskl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -47418,7 +47418,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Løn inkl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n inkl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -47428,7 +47428,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast pensionsgivende løn",
+            "value": "Fast pensionsgivende lÃ¸n",
             "isDefault": false
          },
                   {
@@ -47438,7 +47438,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 195,
             "comparisonTypeOid": 4,
-            "value": "I henhold til lønoverenskomst",
+            "value": "I henhold til lÃ¸noverenskomst",
             "isDefault": false
          },
                   {
@@ -47508,7 +47508,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -47678,7 +47678,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -47878,7 +47878,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast løn",
+            "value": "Fast lÃ¸n",
             "isDefault": false
          },
                   {
@@ -47888,7 +47888,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast løn",
+            "value": "Fast lÃ¸n",
             "isDefault": false
          },
                   {
@@ -47898,7 +47898,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast løn inkl.bonus",
+            "value": "Fast lÃ¸n inkl.bonus",
             "isDefault": false
          },
                   {
@@ -47918,7 +47918,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast løn inkl.bonus",
+            "value": "Fast lÃ¸n inkl.bonus",
             "isDefault": false
          },
                   {
@@ -48458,7 +48458,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "117 DØD Naturlig præmie",
+            "value": "117 DÃ˜D Naturlig prÃ¦mie",
             "isDefault": false
          },
                   {
@@ -48988,7 +48988,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Løn ekskl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n ekskl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -49058,7 +49058,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Løn inkl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n inkl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -49098,7 +49098,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast pensionsgivende løn",
+            "value": "Fast pensionsgivende lÃ¸n",
             "isDefault": false
          },
                   {
@@ -49128,7 +49128,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Årlig",
+            "value": "Ã…rlig",
             "isDefault": false
          },
                   {
@@ -49158,7 +49158,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Halvårlig",
+            "value": "HalvÃ¥rlig",
             "isDefault": false
          },
                   {
@@ -49218,7 +49218,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Kvartårlig",
+            "value": "KvartÃ¥rlig",
             "isDefault": false
          },
                   {
@@ -49648,7 +49648,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1415 TAE Gennemsnitspræmie",
+            "value": "1415 TAE GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -49668,7 +49668,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1417 TAE Naturlig præmie",
+            "value": "1417 TAE Naturlig prÃ¦mie",
             "isDefault": false
          },
                   {
@@ -49678,7 +49678,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "115 DØD Gennemsnitspræmie",
+            "value": "115 DÃ˜D GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -49688,7 +49688,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "117 DØD Naturlig præmie",
+            "value": "117 DÃ˜D Naturlig prÃ¦mie",
             "isDefault": false
          },
                   {
@@ -49768,7 +49768,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Løn ekskl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n ekskl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -49778,7 +49778,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Løn inkl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n inkl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -49788,7 +49788,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast pensionsgivende løn",
+            "value": "Fast pensionsgivende lÃ¸n",
             "isDefault": false
          },
                   {
@@ -49798,7 +49798,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Halvårlig",
+            "value": "HalvÃ¥rlig",
             "isDefault": false
          },
                   {
@@ -49808,7 +49808,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Kvartårlig",
+            "value": "KvartÃ¥rlig",
             "isDefault": false
          },
                   {
@@ -49818,7 +49818,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Årlig",
+            "value": "Ã…rlig",
             "isDefault": false
          },
                   {
@@ -50048,7 +50048,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "0415 IR Gennemsnitspræmie",
+            "value": "0415 IR GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -50168,7 +50168,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Løn ekskl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n ekskl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -50178,7 +50178,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Løn inkl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n inkl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -50198,7 +50198,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast pensionsgivende løn",
+            "value": "Fast pensionsgivende lÃ¸n",
             "isDefault": false
          },
                   {
@@ -50208,7 +50208,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 195,
             "comparisonTypeOid": 4,
-            "value": "I henhold til lønoverenskomst",
+            "value": "I henhold til lÃ¸noverenskomst",
             "isDefault": false
          },
                   {
@@ -50278,7 +50278,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -50478,7 +50478,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -50698,7 +50698,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast løn",
+            "value": "Fast lÃ¸n",
             "isDefault": false
          },
                   {
@@ -50708,7 +50708,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast løn",
+            "value": "Fast lÃ¸n",
             "isDefault": false
          },
                   {
@@ -50718,7 +50718,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast løn inkl.bonus",
+            "value": "Fast lÃ¸n inkl.bonus",
             "isDefault": false
          },
                   {
@@ -50728,7 +50728,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast løn inkl.bonus",
+            "value": "Fast lÃ¸n inkl.bonus",
             "isDefault": false
          },
                   {
@@ -51628,7 +51628,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1415 TAE Gennemsnitspræmie",
+            "value": "1415 TAE GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -51638,7 +51638,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1417 TAE Naturlig præmie",
+            "value": "1417 TAE Naturlig prÃ¦mie",
             "isDefault": false
          },
                   {
@@ -51718,7 +51718,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Løn ekskl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n ekskl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -51728,7 +51728,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Løn inkl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n inkl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -51738,7 +51738,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast pensionsgivende løn",
+            "value": "Fast pensionsgivende lÃ¸n",
             "isDefault": false
          },
                   {
@@ -51748,7 +51748,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Årlig",
+            "value": "Ã…rlig",
             "isDefault": false
          },
                   {
@@ -51758,7 +51758,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Kvartårlig",
+            "value": "KvartÃ¥rlig",
             "isDefault": false
          },
                   {
@@ -51768,7 +51768,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Halvårlig",
+            "value": "HalvÃ¥rlig",
             "isDefault": false
          },
                   {
@@ -52008,7 +52008,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "0415 IR Gennemsnitspræmie",
+            "value": "0415 IR GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -52108,7 +52108,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "115 DØD Gennemsnitspræmie",
+            "value": "115 DÃ˜D GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -52118,7 +52118,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "117 DØD Naturlig præmie",
+            "value": "117 DÃ˜D Naturlig prÃ¦mie",
             "isDefault": false
          },
                   {
@@ -52158,7 +52158,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Løn ekskl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n ekskl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -52168,7 +52168,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Løn inkl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n inkl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -52178,7 +52178,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast pensionsgivende løn",
+            "value": "Fast pensionsgivende lÃ¸n",
             "isDefault": false
          },
                   {
@@ -52188,7 +52188,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 195,
             "comparisonTypeOid": 4,
-            "value": "I henhold til lønoverenskomst",
+            "value": "I henhold til lÃ¸noverenskomst",
             "isDefault": false
          },
                   {
@@ -52258,7 +52258,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -52418,7 +52418,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -52618,7 +52618,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast løn",
+            "value": "Fast lÃ¸n",
             "isDefault": false
          },
                   {
@@ -52628,7 +52628,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast løn",
+            "value": "Fast lÃ¸n",
             "isDefault": false
          },
                   {
@@ -52648,7 +52648,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast løn inkl.bonus",
+            "value": "Fast lÃ¸n inkl.bonus",
             "isDefault": false
          },
                   {
@@ -52658,7 +52658,7 @@
             "generalAgreementOid": 6,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast løn inkl.bonus",
+            "value": "Fast lÃ¸n inkl.bonus",
             "isDefault": false
          },
                   {
@@ -52938,7 +52938,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -52948,7 +52948,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 193,
             "comparisonTypeOid": 3,
-            "value": "Skattepligtig dækning",
+            "value": "Skattepligtig dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -52968,7 +52968,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Løn inkl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n inkl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -52978,7 +52978,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Løn ekskl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n ekskl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -52988,7 +52988,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast pensionsgivende løn",
+            "value": "Fast pensionsgivende lÃ¸n",
             "isDefault": false
          },
                   {
@@ -52998,7 +52998,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Bruttoløn",
+            "value": "BruttolÃ¸n",
             "isDefault": false
          },
                   {
@@ -53008,7 +53008,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast løn inkl.bonus",
+            "value": "Fast lÃ¸n inkl.bonus",
             "isDefault": false
          },
                   {
@@ -53018,7 +53018,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 194,
             "comparisonTypeOid": 3,
-            "value": "Fast løn",
+            "value": "Fast lÃ¸n",
             "isDefault": false
          },
                   {
@@ -53028,7 +53028,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 195,
             "comparisonTypeOid": 4,
-            "value": "I henhold til lønoverenskomst",
+            "value": "I henhold til lÃ¸noverenskomst",
             "isDefault": false
          },
                   {
@@ -53158,7 +53158,7 @@
             "generalAgreementOid": 4,
             "productElementOid": 222,
             "comparisonTypeOid": 3,
-            "value": "Skattefri dækning",
+            "value": "Skattefri dÃ¦kning",
             "isDefault": false
          },
                   {
@@ -53858,7 +53858,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1415 TAE Gennemsnitspræmie",
+            "value": "1415 TAE GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -53958,7 +53958,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1417 TAE Naturlig præmie",
+            "value": "1417 TAE Naturlig prÃ¦mie",
             "isDefault": false
          },
                   {
@@ -53968,7 +53968,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "115 DØD Gennemsnitspræmie",
+            "value": "115 DÃ˜D GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -53978,7 +53978,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "117 DØD Naturlig præmie",
+            "value": "117 DÃ˜D Naturlig prÃ¦mie",
             "isDefault": false
          },
                   {
@@ -54048,7 +54048,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Løn ekskl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n ekskl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -54058,7 +54058,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Løn inkl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n inkl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -54068,7 +54068,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast pensionsgivende løn",
+            "value": "Fast pensionsgivende lÃ¸n",
             "isDefault": false
          },
                   {
@@ -54078,7 +54078,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Årlig",
+            "value": "Ã…rlig",
             "isDefault": false
          },
                   {
@@ -54088,7 +54088,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Halvårlig",
+            "value": "HalvÃ¥rlig",
             "isDefault": false
          },
                   {
@@ -54098,7 +54098,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Kvartårlig",
+            "value": "KvartÃ¥rlig",
             "isDefault": false
          },
                   {
@@ -54678,7 +54678,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1415 TAE Gennemsnitspræmie",
+            "value": "1415 TAE GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -54688,7 +54688,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1417 TAE Naturlig præmie",
+            "value": "1417 TAE Naturlig prÃ¦mie",
             "isDefault": false
          },
                   {
@@ -54698,7 +54698,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "115 DØD Gennemsnitspræmie",
+            "value": "115 DÃ˜D GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -54708,7 +54708,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "117 DØD Naturlig præmie",
+            "value": "117 DÃ˜D Naturlig prÃ¦mie",
             "isDefault": false
          },
                   {
@@ -54778,7 +54778,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Løn ekskl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n ekskl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -54788,7 +54788,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Løn inkl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n inkl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -54798,7 +54798,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast pensionsgivende løn",
+            "value": "Fast pensionsgivende lÃ¸n",
             "isDefault": false
          },
                   {
@@ -54808,7 +54808,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Årlig",
+            "value": "Ã…rlig",
             "isDefault": false
          },
                   {
@@ -54818,7 +54818,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Halvårlig",
+            "value": "HalvÃ¥rlig",
             "isDefault": false
          },
                   {
@@ -54828,7 +54828,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Kvartårlig",
+            "value": "KvartÃ¥rlig",
             "isDefault": false
          },
                   {
@@ -55358,7 +55358,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1415 TAE Gennemsnitspræmie",
+            "value": "1415 TAE GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -55368,7 +55368,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1417 TAE Naturlig præmie",
+            "value": "1417 TAE Naturlig prÃ¦mie",
             "isDefault": false
          },
                   {
@@ -55378,7 +55378,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "115 DØD Gennemsnitspræmie",
+            "value": "115 DÃ˜D GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -55388,7 +55388,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "117 DØD Naturlig præmie",
+            "value": "117 DÃ˜D Naturlig prÃ¦mie",
             "isDefault": false
          },
                   {
@@ -55458,7 +55458,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Løn ekskl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n ekskl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -55478,7 +55478,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Løn inkl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n inkl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -55488,7 +55488,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast pensionsgivende løn",
+            "value": "Fast pensionsgivende lÃ¸n",
             "isDefault": false
          },
                   {
@@ -55498,7 +55498,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Årlig",
+            "value": "Ã…rlig",
             "isDefault": false
          },
                   {
@@ -55508,7 +55508,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Halvårlig",
+            "value": "HalvÃ¥rlig",
             "isDefault": false
          },
                   {
@@ -55518,7 +55518,7 @@
             "generalAgreementOid": 1,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Kvartårlig",
+            "value": "KvartÃ¥rlig",
             "isDefault": false
          },
                   {
@@ -56068,7 +56068,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1415 TAE Gennemsnitspræmie",
+            "value": "1415 TAE GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -56078,7 +56078,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1417 TAE Naturlig præmie",
+            "value": "1417 TAE Naturlig prÃ¦mie",
             "isDefault": false
          },
                   {
@@ -56088,7 +56088,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "115 DØD Gennemsnitspræmie",
+            "value": "115 DÃ˜D GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -56098,7 +56098,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "117 DØD Naturlig præmie",
+            "value": "117 DÃ˜D Naturlig prÃ¦mie",
             "isDefault": false
          },
                   {
@@ -56178,7 +56178,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Løn ekskl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n ekskl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -56188,7 +56188,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Løn inkl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n inkl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -56198,7 +56198,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast pensionsgivende løn",
+            "value": "Fast pensionsgivende lÃ¸n",
             "isDefault": false
          },
                   {
@@ -56208,7 +56208,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Årlig",
+            "value": "Ã…rlig",
             "isDefault": false
          },
                   {
@@ -56218,7 +56218,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Halvårlig",
+            "value": "HalvÃ¥rlig",
             "isDefault": false
          },
                   {
@@ -56238,7 +56238,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Kvartårlig",
+            "value": "KvartÃ¥rlig",
             "isDefault": false
          },
                   {
@@ -56818,7 +56818,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1415 TAE Gennemsnitspræmie",
+            "value": "1415 TAE GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -56828,7 +56828,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 138,
             "comparisonTypeOid": 3,
-            "value": "1417 TAE Naturlig præmie",
+            "value": "1417 TAE Naturlig prÃ¦mie",
             "isDefault": false
          },
                   {
@@ -56838,7 +56838,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "115 DØD Gennemsnitspræmie",
+            "value": "115 DÃ˜D GennemsnitsprÃ¦mie",
             "isDefault": false
          },
                   {
@@ -56848,7 +56848,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 139,
             "comparisonTypeOid": 3,
-            "value": "117 DØD Naturlig præmie",
+            "value": "117 DÃ˜D Naturlig prÃ¦mie",
             "isDefault": false
          },
                   {
@@ -56918,7 +56918,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Løn ekskl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n ekskl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -56928,7 +56928,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Løn inkl. tantieme, bonus, overarbejde mv",
+            "value": "LÃ¸n inkl. tantieme, bonus, overarbejde mv",
             "isDefault": false
          },
                   {
@@ -56938,7 +56938,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 146,
             "comparisonTypeOid": 3,
-            "value": "Fast pensionsgivende løn",
+            "value": "Fast pensionsgivende lÃ¸n",
             "isDefault": false
          },
                   {
@@ -56948,7 +56948,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Årlig",
+            "value": "Ã…rlig",
             "isDefault": false
          },
                   {
@@ -56958,7 +56958,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Halvårlig",
+            "value": "HalvÃ¥rlig",
             "isDefault": false
          },
                   {
@@ -56968,7 +56968,7 @@
             "generalAgreementOid": 2,
             "productElementOid": 148,
             "comparisonTypeOid": 3,
-            "value": "Kvartårlig",
+            "value": "KvartÃ¥rlig",
             "isDefault": false
          },
                   {
@@ -57924,7 +57924,7 @@
             "productElements": [            {
                "oid": 238,
                "variableName": "InvalidesumUdlobsalder",
-               "guiName": "Invalidesum udløbsalder",
+               "guiName": "Invalidesum udlÃ¸bsalder",
                "elementTypeOid": 1
             }]
          },
@@ -59481,7 +59481,7 @@
          },
                   {
             "oid": 8,
-            "name": "SEB Fælles Pensionspulje for advokater og revisor",
+            "name": "SEB FÃ¦lles Pensionspulje for advokater og revisor",
             "type": "risiko",
             "elementTypeOid": 0
          },
@@ -59529,25 +59529,25 @@
          },
                   {
             "oid": 26,
-            "name": "Overskud fra gruppedækningerne bruges til nedsættelse af næste års præmie",
+            "name": "Overskud fra gruppedÃ¦kningerne bruges til nedsÃ¦ttelse af nÃ¦ste Ã¥rs prÃ¦mie",
             "type": "Overskud",
             "elementTypeOid": 0
          },
                   {
             "oid": 25,
-            "name": "Overskud fra risikoregnskabet fordeles på aftalerne",
+            "name": "Overskud fra risikoregnskabet fordeles pÃ¥ aftalerne",
             "type": "Overskud",
             "elementTypeOid": 0
          },
                   {
             "oid": 24,
-            "name": "Solidarisk præmiefritagelse",
+            "name": "Solidarisk prÃ¦miefritagelse",
             "type": "risiko",
             "elementTypeOid": 0
          },
                   {
             "oid": 20,
-            "name": "Præmien er garanteret",
+            "name": "PrÃ¦mien er garanteret",
             "type": "Rabat",
             "elementTypeOid": 0
          },
@@ -59565,7 +59565,7 @@
          },
                   {
             "oid": 17,
-            "name": "SEB Tømmerhandelpension",
+            "name": "SEB TÃ¸mmerhandelpension",
             "type": "risiko",
             "elementTypeOid": 0
          },
@@ -59577,13 +59577,13 @@
          },
                   {
             "oid": 15,
-            "name": "FG-spænd",
+            "name": "FG-spÃ¦nd",
             "type": "FG_span",
             "elementTypeOid": 0
          },
                   {
             "oid": 14,
-            "name": "Særlig udbetalingsbestemmelse (klausul 853)",
+            "name": "SÃ¦rlig udbetalingsbestemmelse (klausul 853)",
             "type": "risiko",
             "elementTypeOid": 0
          },
@@ -59613,7 +59613,7 @@
          },
                   {
             "oid": 1,
-            "name": "Solidarisk fællestarif",
+            "name": "Solidarisk fÃ¦llestarif",
             "type": "Tarif",
             "elementTypeOid": 0
          },
@@ -59631,7 +59631,7 @@
          },
                   {
             "oid": 22,
-            "name": "Rabat for Død i procent",
+            "name": "Rabat for DÃ¸d i procent",
             "type": "Rabat",
             "elementTypeOid": 0
          },
