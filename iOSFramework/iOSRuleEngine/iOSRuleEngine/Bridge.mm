@@ -68,8 +68,6 @@ std::string get_file_contents(const char *filename)
                 NSAssert(YES, @"Can't add parameter to koncept info: %@", parametersDictionary);
             }
         }
-        
-//        ki.addParameterValue(11, @"true");
     }
     
     re.initContext(ki);
@@ -81,6 +79,10 @@ std::string get_file_contents(const char *filename)
 
 -(void)setTAUnionAgreementRelation:(uint8_t)relation {
     ta.setUar(static_cast<sbx::UnionAgreementRelationship>(relation));
+}
+
+-(void)setTAUnionAgreement:(uint8_t)uaOid {
+    ta.setValue(sbx::ProductElementOid::kUnionAgreementOid, uaOid);
 }
 
 -(void)addContributionStep:(int8_t)index employeePct:(double)employeePct companyPct:(double)companyPct {
