@@ -13,6 +13,7 @@
 @property (nonatomic) NSInteger oid;
 @property (nonatomic) unsigned short validationCode;
 @property (nonatomic, strong) NSString *message;
+@property (nonatomic, strong) NSString *variable;
 @end
 
 

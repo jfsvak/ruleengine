@@ -1,8 +1,10 @@
 #include <iostream>
 #include <vector>
 
-#include "../../googletestlib/include/gtest/gtest.h"
-#include "../../googletestlib/include/gtest/internal/gtest-internal.h"
+#include "gtest/gtest.h"
+#include "gtest/internal/gtest-internal.h"
+//#include "../../googletestlib/include/gtest/gtest.h"
+//#include "../../googletestlib/include/gtest/internal/gtest-internal.h"
 #include "../ruleengine/ContributionStep.h"
 #include "../ruleengine/KonceptInfo_sbx.h"
 #include "../ruleengine/RuleEngine_sbx.h"
