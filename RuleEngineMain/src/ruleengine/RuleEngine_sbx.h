@@ -112,6 +112,8 @@ private:
 	void _loadParser(const TA& ta);
 	void _loadLadder(const TA& ta);
 
+    std::string getFormattedValue(const std::shared_ptr<sbx::Constant>&);
+    std::string getFormattedValue(const sbx::ProductElementValue&);
 	sbx::ProductElement _PE(unsigned short peOid);
 	std::string _VAR_NAME(unsigned short peOid);
 	std::string _GUI_NAME(unsigned short peOid);

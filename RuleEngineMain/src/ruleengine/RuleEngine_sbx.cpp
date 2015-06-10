@@ -482,7 +482,7 @@ sbx::ValidationResults RuleEngine::validate(const TA& ta, const std::vector<unsi
 	if (_refreshParserValues)
 		_loadParser(ta);
 
-	if (RuleEngine::_printDebugAtValidation) printVariablesInParser();
+//	if (RuleEngine::_printDebugAtValidation) printVariablesInParser();
 
 	for (auto& peOid : peOidsToValidate) {
 
@@ -591,7 +591,6 @@ void RuleEngine::_validateMinMax(const sbx::ProductElementValue& pev, sbx::Valid
 		if (!result.GetBool()) {
 			// value was not greater or equal to min
 			stringstream ss {};
-//			ss.imbue(std::locale("da_DK.UTF8"));
 			ss << "Værdien [" << sbx::utils::formatValue(pev.longValue()) << "] for [" << _GUI_NAME(peOid) << "] må ikke være mindre end [" << this->getConstFromParser(sbx::utils::constructRCName(_PE(peOid), sbx::ComparisonTypes::kMin)) << "]";
 			r.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kValueUnderLimit, peOid, _VAR_NAME(peOid), ss.str(), "", expr) );
 		}
@@ -606,7 +605,6 @@ void RuleEngine::_validateMinMax(const sbx::ProductElementValue& pev, sbx::Valid
 
 		if (!result.GetBool()) {
 			stringstream ss {};
-//			ss.imbue(std::locale("da_DK.UTF8"));
 			ss << "Værdien [" << sbx::utils::formatValue(pev.longValue()) << "] for [" << _GUI_NAME(peOid) << "] må ikke overstiger [" << this->getConstFromParser(sbx::utils::constructRCName(_PE(peOid), sbx::ComparisonTypes::kMax)) << "]";
 			// value was not lesser or equal to max
 			r.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kValueOverLimit, peOid, _VAR_NAME(peOid), ss.str(), "", expr) );
@@ -625,14 +623,20 @@ void RuleEngine::_validateOptionAllowed(const sbx::ProductElementValue& pev, sbx
 		{
 			stringstream optionsString {};
 
-			auto options = _container.getOptionsList(pev.getProductElementOid());
+			const auto& options = _container.getOptionsList(pev.getProductElementOid());
 
-			for_each(options.cbegin(), options.cend(), [&optionsString](std::shared_ptr<sbx::Constant> c) { optionsString << c->stringValue() << ", ";} );
+            for (auto option : options)
+            {
+                optionsString << getFormattedValue(option);
+            }
+                
+            optionsString << ", ";
+            
 
 			stringstream msg {};
-			msg << "Værdi [" << sbx::utils::formatValue(pev.stringValue()) << "] er ikke tilladt! Tilladte værdier er : [" << optionsString.str().substr(0, optionsString.str().length()-1) << "]";
+			msg << "Værdien [" << getFormattedValue(pev) << "] er ikke tilladt! Tilladte værdier er : [" << optionsString.str().substr(0, optionsString.str().length()-2) << "]";
 
-			valResult.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kValueNotAllowed, pev.getProductElementOid(), _VAR_NAME(pev.getProductElementOid()), msg.str().substr(0, msg.str().length()-1)) );
+			valResult.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kValueNotAllowed, pev.getProductElementOid(), _VAR_NAME(pev.getProductElementOid()), msg.str()) );
 		}
 	}
 }
@@ -727,8 +731,6 @@ bool RuleEngine::_isOptionAllowed(const sbx::ProductElementValue& pev)
 			break;
 
 		default:
-			if (pev.getProductElementOid() == kTransomkostninger)
-				cout << "Constant [" << constant->stringValue() << "], pev[" << pev.stringValue() << "]" << endl;
 			if (constant->stringValue() == pev.stringValue())
 				return true;
 		}
@@ -926,6 +928,8 @@ mup::Value RuleEngine::_execute(const std::string& expr, const std::string& rule
  */
 sbx::ValidationResults RuleEngine::validate(const sbx::TA& ta, bool full)
 {
+    if (RuleEngine::_printDebugAtValidation) printVariablesInParser();
+
 	_loadParser(ta);
 	_refreshParserValues = false;
 	sbx::ValidationResults valResults {};
@@ -964,7 +968,7 @@ sbx::ValidationResults RuleEngine::validate(const sbx::TA& ta, bool full)
 
 				// If it's not in the parser, and it's not optional, tell that the pe is required
 				if ( !definedInParser && !optional )
-					valResults.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kProductElementRequired, peOid, _VAR_NAME(peOid), "Optional: Værdi for [" + _GUI_NAME(peOid) + "] ikke angivet") );
+					valResults.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kProductElementRequired, peOid, _VAR_NAME(peOid), "Værdi for [" + _GUI_NAME(peOid) + "] skal angives!") );
 			}
 		}
 		else
@@ -1262,6 +1266,55 @@ void RuleEngine::printRule(std::shared_ptr<sbx::Rule> rule, int depth)
 	cout << "], ";
 
 	cout << "posMsg=[" << rule->getPositiveMessage() << "], negMsg=[" << rule->getNegativeMessage() << "]" << endl;
+}
+    
+std::string RuleEngine::getFormattedValue(const std::shared_ptr<sbx::Constant>& c)
+{
+    switch(_PE(c->getProductElement()).getElementType())
+    {
+        case kBool:
+            return sbx::utils::formatValue(c->boolValue());
+            break;
+        case kCurr:
+        case kPercent:
+            return sbx::utils::formatValue(c->doubleValue());
+            break;
+        case kLong:
+        case kYear:
+        case kMonth:
+            return sbx::utils::formatValue(c->longValue());
+            break;
+        case kText:
+            return c->stringValue();
+            break;
+        default:
+            return c->stringValue();
+    }
+    
+}
+
+std::string RuleEngine::getFormattedValue(const sbx::ProductElementValue& pev)
+{
+    switch(_PE(pev.getProductElementOid()).getElementType())
+    {
+        case kBool:
+            return sbx::utils::formatValue(pev.boolValue());
+            break;
+        case kCurr:
+        case kPercent:
+            return sbx::utils::formatValue(pev.doubleValue());
+            break;
+        case kLong:
+        case kYear:
+        case kMonth:
+            return sbx::utils::formatValue(pev.longValue());
+            break;
+        case kText:
+            return pev.stringValue();
+            break;
+        default:
+            return pev.stringValue();
+    }
 }
 
 sbx::ProductElement RuleEngine::_PE(unsigned short peOid)
