@@ -59,16 +59,17 @@ std::string get_file_contents(const char *filename)
     
     if (parametersDictionary) {
         for (NSNumber *oid in parametersDictionary) {
+            short oidShort = [oid shortValue];
             if ([parametersDictionary[oid] isKindOfClass:[NSString class]]) {
-                ki.addParameterValue(static_cast<unsigned short>([oid shortValue]), std::string([parametersDictionary[oid] UTF8String]));
-            } else if([oid isEqual:@14]) {
-                ki.addParameterValue(14, [parametersDictionary[oid] boolValue]);
+                ki.addParameterValue(static_cast<unsigned short>(oidShort), std::string([parametersDictionary[oid] UTF8String]));
+            } else if(oidShort == 14 || oidShort == 11 || oidShort == 15) { // BOOL values encoded as NSNumber
+                ki.addParameterValue(oidShort, [parametersDictionary[oid] boolValue]);
             } else {
                 NSAssert(YES, @"Can't add parameter to koncept info: %@", parametersDictionary);
             }
         }
         
-        ki.addParameterValue(11, @"true");
+//        ki.addParameterValue(11, @"true");
     }
     
     re.initContext(ki);
@@ -300,8 +301,26 @@ std::string get_file_contents(const char *filename)
 
 #pragma mark - validation
 
--(NSArray*)validatePE:(unsigned short) peOid printDebug:(BOOL) printDebug {
+-(NSArray*)mapValidationResults:(sbx::ValidationResults) results {
     NSMutableArray *allResults = [NSMutableArray array];
+
+    bool ok = results.isAllOk();
+    if (!ok) {
+        for (auto result : results.getValidationResults()) {
+            ValidationResult *r = [ValidationResult new];
+            r.message = [NSString stringWithCString:result.second.getMessage().c_str() encoding:NSUTF8StringEncoding];
+            r.validationCode = static_cast<uint16_t>(result.second.getValidationCode());
+            r.oid = result.first;
+            r.variable = [NSString stringWithCString:result.second.getVariableName().c_str() encoding:NSUTF8StringEncoding];
+            [allResults addObject:r];
+        }
+    }
+    
+    return allResults;
+}
+
+-(NSArray*)validatePE:(unsigned short) peOid printDebug:(BOOL) printDebug {
+    NSArray *allResults;
     try {
         if (printDebug) {
             re._printDebugAtValidation = true;
@@ -318,16 +337,7 @@ std::string get_file_contents(const char *filename)
             re.printConstantsInParser();
         }
         
-        bool ok = results.isAllOk();
-        if (!ok) {
-            for (auto result : results.getValidationResults()) {
-                ValidationResult *r = [ValidationResult new];
-                r.message = [NSString stringWithCString:result.second.getMessage().c_str() encoding:NSUTF8StringEncoding];
-                r.validationCode = static_cast<uint16_t>(result.second.getValidationCode());
-                r.oid = result.first;
-                [allResults addObject:r];
-            }
-        }
+        allResults = [self mapValidationResults:results];
         
         if (printDebug) {
             re.printVariablesInParser();
@@ -347,7 +357,7 @@ std::string get_file_contents(const char *filename)
 }
 
 -(NSArray*)validatePEList:(NSArray*)peList printDebug:(BOOL) printDebug {
-    NSMutableArray *allResults = [NSMutableArray array];
+    NSArray *allResults;
     std::vector<unsigned short> peVector;
     try {
         if (printDebug) {
@@ -368,16 +378,7 @@ std::string get_file_contents(const char *filename)
             re.printConstantsInParser();
         }
         
-        bool ok = results.isAllOk();
-        if (!ok) {
-            for (auto result : results.getValidationResults()) {
-                ValidationResult *r = [ValidationResult new];
-                r.message = [NSString stringWithCString:result.second.getMessage().c_str() encoding:NSUTF8StringEncoding];
-                r.validationCode = static_cast<uint16_t>(result.second.getValidationCode());
-                r.oid = result.first;
-                [allResults addObject:r];
-            }
-        }
+        allResults = [self mapValidationResults:results];
         
         if (printDebug) {
             re.printVariablesInParser();
@@ -397,7 +398,7 @@ std::string get_file_contents(const char *filename)
 }
 
 -(NSArray*)validateTAFull:(BOOL)full printDebug:(BOOL) printDebug {
-    NSMutableArray *allResults = [NSMutableArray array];
+    NSArray *allResults;
     try {
         if (printDebug) {
             re._printDebugAtValidation = true;
@@ -414,16 +415,7 @@ std::string get_file_contents(const char *filename)
             re.printConstantsInParser();
         }
         
-        bool ok = results.isAllOk();
-        if (!ok) {
-            for (auto result : results.getValidationResults()) {
-                ValidationResult *r = [ValidationResult new];
-                r.message = [NSString stringWithCString:result.second.getMessage().c_str() encoding:NSUTF8StringEncoding];
-                r.validationCode = static_cast<uint16_t>(result.second.getValidationCode());
-                r.oid = result.first;
-                [allResults addObject:r];
-            }
-        }
+        allResults = [self mapValidationResults:results];
         
         if (printDebug) {
             re.printVariablesInParser();
