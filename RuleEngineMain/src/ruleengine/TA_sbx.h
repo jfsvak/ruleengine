@@ -53,13 +53,16 @@ public:
 
 
 	virtual ~TA();
+	sbx::UnionAgreementRelationship getUar() const;
+	TA& setUar(sbx::UnionAgreementRelationship uar);
+	unsigned short getUnionAgreementOid() const;
+	TA& setUnionAgreementOid(unsigned short unionAgreementOid);
 
 private:
 	std::string _cvr;
 	unsigned short _konceptOid;
 	// map of productElement oid to productElementValues
 	std::map<unsigned short, sbx::ProductElementValue> _peValuesMap;
-
 	std::multiset<sbx::ContributionStep> _ladder;
 };
 

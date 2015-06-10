@@ -49,6 +49,16 @@ TEST_F(ContributionLadder_Follows_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_POS
 	cout << r;
 	EXPECT_EQ(1, r.getValidationResults(kBidragEjFoesteTrin_MK).size());
 	EXPECT_TRUE(r.hasMessages(kBidragEjFoesteTrin_MK, kProductElementRequired));
+	ta.remove(kUnionAgreementOid);
+	ta.remove(kUnionAgreementRelationship);
+	ta.setUar(sbx::UnionAgreementRelationship::FOLLOWS);
+	ta.setUnionAgreementOid(6);
+
+	r = re.validate(ta, false);
+	EXPECT_FALSE(r.isAllOk());
+	cout << r;
+	EXPECT_EQ(1, r.getValidationResults(kBidragEjFoesteTrin_MK).size());
+	EXPECT_TRUE(r.hasMessages(kBidragEjFoesteTrin_MK, kProductElementRequired));
 
 	ta.setValue(kBidragEjFoesteTrin_MK, false);
 	r = re.validate(ta, false);

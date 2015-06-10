@@ -15,6 +15,8 @@
 
 #include "ProductElementValue_sbx.h"
 #include "ContributionStep.h"
+#include "Utils.h"
+
 
 namespace sbx {
 
@@ -183,5 +185,45 @@ TA& TA::removeContributionSteps()
 
 TA::~TA() {}
 
+sbx::UnionAgreementRelationship TA::getUar() const
+{
+	if (this->getValue(kUnionAgreementRelationship).stringValue() == sbx::kFOLLOWS)
+		return sbx::UnionAgreementRelationship::FOLLOWS;
+	else if (this->getValue(kUnionAgreementRelationship).stringValue() == sbx::kOUTSIDE)
+		return sbx::UnionAgreementRelationship::OUTSIDE;
+	else if (this->getValue(kUnionAgreementRelationship).stringValue() == sbx::kINCLUDED)
+		return sbx::UnionAgreementRelationship::INCLUDED;
+
+	return sbx::UnionAgreementRelationship::OUTSIDE;
+}
+
+TA& TA::setUar(sbx::UnionAgreementRelationship uar)
+{
+	switch(uar)
+	{
+	case FOLLOWS:
+		this->setValue(sbx::ProductElementOid::kUnionAgreementRelationship, sbx::kFOLLOWS);
+		break;
+	case OUTSIDE:
+		this->setValue(sbx::ProductElementOid::kUnionAgreementRelationship, sbx::kOUTSIDE);
+		break;
+	case INCLUDED:
+		this->setValue(sbx::ProductElementOid::kUnionAgreementRelationship, sbx::kINCLUDED);
+		break;
+	}
+
+	return *this;
+}
+
+unsigned short TA::getUnionAgreementOid() const
+{
+	return this->getValue(kUnionAgreementOid).longValue();
+}
+
+TA& TA::setUnionAgreementOid(unsigned short unionAgreementOid)
+{
+	this->setValue(sbx::ProductElementOid::kUnionAgreementOid, (long) unionAgreementOid);
+	return *this;
+}
 
 } /* namespace sbx */
