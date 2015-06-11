@@ -1660,7 +1660,14 @@
 			            	"negativeMessageParameters":[ "UnionAgreementTotalPct1stStep" ],
 			            	"negativeValCode": 102,
 							"positiveRuleCatalogue": []
-		        	    }				
+                        },
+                        {
+                            "comments" : "Aar - requiredif",
+                            "id": "33.6.2.5",
+                            "expr": "",
+                            "productElementOids": [ 153 ],
+                            "requiredif": "#parent#"
+		        	    }
 					]
         	    },
 	        	{
@@ -1672,97 +1679,97 @@
    	    		    "notallowedif": "BidragEjFoesteTrin_MK == false and (UnionAgreementRelationship == \"F\" or UnionAgreementRelationship == \"O\")",
 	        	    "positiveMessage": "",
 					"positiveRuleCatalogue": []
-        	    }
+                },
+                {
+                    "comments" : "Aar - notallowedif",
+                    "id": "33.6.4",
+                    "expr": "",
+                    "productElementOids": [ 153 ],
+                    "notallowedif": "BidragEjFoesteTrin_MK == false or UnionAgreementRelationship == \"U\""
+                }
             ],
 	        "negativeRuleCatalogue": []
          },
          
  		 {
-         	"comments" : "Misc rule - DoedAbsolutMaxSoli",
+         	"comments" : "Misc rule - DoedAbsolutMaxSoli - not relevant",
             "id": "99.1",
             "expr": "",
    	        "productElementOids": [ 8 ],
    	        "requiredif": "false"
          },
  		 {
-         	"comments" : "Misc rule - IkraftDato",
+         	"comments" : "Misc rule - IkraftDato  - is used as a constant for validation, so not required as a ta value",
             "id": "99.2",
             "expr": "",
    	        "productElementOids": [ 68 ],
    	        "requiredif": "false"
          },
  		 {
-         	"comments" : "Misc rule - GrpIndgaarIDepotsikring_MK",
+         	"comments" : "Misc rule - GrpIndgaarIDepotsikring_MK - should be set to 0",
             "id": "99.3",
             "expr": "",
    	        "productElementOids": [ 84 ],
-   	        "requiredif": "false"
+   	        "requiredif": ""
          },
  		 {
-         	"comments" : "Misc rule - Indslusning_MK",
+         	"comments" : "Misc rule - Indslusning_MK - should be set to 0",
             "id": "99.4",
             "expr": "",
    	        "productElementOids": [ 150 ],
-   	        "requiredif": "false"
+   	        "requiredif": ""
          },
  		 {
-         	"comments" : "Misc rule - Aar",
-            "id": "99.5",
-            "expr": "",
-   	        "productElementOids": [ 153 ],
-   	        "requiredif": "false"
-         },
- 		 {
-         	"comments" : "Misc rule - BidragInklHospdaekningPctMin",
+         	"comments" : "Misc rule - BidragInklHospdaekningPctMin - is used as a constant for validation, so not required as a ta value",
             "id": "99.6",
             "expr": "",
    	        "productElementOids": [ 156 ],
    	        "requiredif": "false"
          },
  		 {
-         	"comments" : "Misc rule - BidragsEksklHospdaekningPctMin",
+         	"comments" : "Misc rule - BidragsEksklHospdaekningPctMin - is used as a constant for validation, so not required as a ta value",
             "id": "99.7",
             "expr": "",
    	        "productElementOids": [ 157 ],
    	        "requiredif": "false"
          },
  		 {
-         	"comments" : "Misc rule - LoenDefinitionKonvSup",
+         	"comments" : "Misc rule - LoenDefinitionKonvSup - is used as a constant for validation, so not required as a ta value",
             "id": "99.8",
             "expr": "",
    	        "productElementOids": [ 194 ],
    	        "requiredif": "false"
          },
  		 {
-         	"comments" : "Misc rule - LoenDefinitionNotAllowedForUdenfor",
+         	"comments" : "Misc rule - LoenDefinitionNotAllowedForUdenfor - is used as a constant for validation, so not required as a ta value",
             "id": "99.9",
             "expr": "",
    	        "productElementOids": [ 195 ],
    	        "requiredif": "false"
          },
  		 {
-         	"comments" : "Misc rule - EjIndmeldelseEleverUnderAlder",
+         	"comments" : "Misc rule - EjIndmeldelseEleverUnderAlder - not relevant",
             "id": "99.10",
             "expr": "",
    	        "productElementOids": [ 233 ],
    	        "requiredif": "false"
          },
  		 {
-         	"comments" : "Misc rule - GrpEleverRisikoPakke",
+         	"comments" : "Misc rule - GrpEleverRisikoPakke - not relevant",
             "id": "99.11",
             "expr": "",
    	        "productElementOids": [ 234 ],
    	        "requiredif": "false"
          },
  		 {
-         	"comments" : "Misc rule - GrpSkatPrivateIndehaver",
+         	"comments" : "Misc rule - GrpSkatPrivateIndehaver - not relevant",
             "id": "99.12",
             "expr": "",
    	        "productElementOids": [ 235 ],
    	        "requiredif": "false"
          },
  		 {
-         	"comments" : "Misc rule - Overenskomst",
+         	"comments" : "Misc rule - Overenskomst - fake product element used for validation in rule engine",
             "id": "99.12",
             "expr": "",
    	        "productElementOids": [ 167 ],
