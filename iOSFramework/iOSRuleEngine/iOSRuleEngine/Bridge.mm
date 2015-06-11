@@ -85,7 +85,7 @@ std::string get_file_contents(const char *filename)
     ta.setValue(sbx::ProductElementOid::kUnionAgreementOid, uaOid);
 }
 
--(void)addContributionStep:(int8_t)index employeePct:(double)employeePct companyPct:(double)companyPct {
+-(void)addContributionStep:(long)index employeePct:(double)employeePct companyPct:(double)companyPct {
     sbx::ContributionStep step(index, employeePct, companyPct);
     ta.addContributionStep(step);
 }
