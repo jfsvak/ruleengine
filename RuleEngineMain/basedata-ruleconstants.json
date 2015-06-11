@@ -9,7 +9,7 @@
             "productElementOid": 244,
             "comparisonTypeOid": 4,
             "value": "0",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10219,
@@ -19,7 +19,7 @@
             "productElementOid": 244,
             "comparisonTypeOid": 4,
             "value": "0",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 1022,
@@ -39,7 +39,7 @@
             "productElementOid": 244,
             "comparisonTypeOid": 4,
             "value": "0",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10221,
@@ -49,7 +49,7 @@
             "productElementOid": 244,
             "comparisonTypeOid": 4,
             "value": "0",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10222,
@@ -59,7 +59,7 @@
             "productElementOid": 244,
             "comparisonTypeOid": 4,
             "value": "0",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10223,
@@ -69,7 +69,7 @@
             "productElementOid": 244,
             "comparisonTypeOid": 4,
             "value": "0",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10224,
@@ -79,7 +79,7 @@
             "productElementOid": 244,
             "comparisonTypeOid": 4,
             "value": "0",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10225,
@@ -89,7 +89,7 @@
             "productElementOid": 244,
             "comparisonTypeOid": 4,
             "value": "0",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10226,
@@ -99,7 +99,7 @@
             "productElementOid": 244,
             "comparisonTypeOid": 4,
             "value": "0",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10227,
@@ -109,7 +109,7 @@
             "productElementOid": 244,
             "comparisonTypeOid": 4,
             "value": "0",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10228,
@@ -119,7 +119,7 @@
             "productElementOid": 244,
             "comparisonTypeOid": 4,
             "value": "0",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10229,
@@ -129,7 +129,7 @@
             "productElementOid": 244,
             "comparisonTypeOid": 4,
             "value": "0",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 1023,
@@ -149,7 +149,7 @@
             "productElementOid": 244,
             "comparisonTypeOid": 4,
             "value": "0",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10231,
@@ -159,7 +159,7 @@
             "productElementOid": 244,
             "comparisonTypeOid": 4,
             "value": "0",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10232,
@@ -169,7 +169,7 @@
             "productElementOid": 244,
             "comparisonTypeOid": 4,
             "value": "0",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10233,
@@ -179,7 +179,7 @@
             "productElementOid": 244,
             "comparisonTypeOid": 4,
             "value": "0",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10234,
@@ -189,7 +189,7 @@
             "productElementOid": 244,
             "comparisonTypeOid": 4,
             "value": "0",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10235,
@@ -199,7 +199,7 @@
             "productElementOid": 244,
             "comparisonTypeOid": 4,
             "value": "0",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10236,
@@ -209,7 +209,7 @@
             "productElementOid": 244,
             "comparisonTypeOid": 4,
             "value": "0",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10237,
@@ -219,7 +219,7 @@
             "productElementOid": 244,
             "comparisonTypeOid": 4,
             "value": "0",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10238,
@@ -2809,7 +2809,7 @@
             "productElementOid": 145,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 10505,
@@ -2819,7 +2819,7 @@
             "productElementOid": 145,
             "comparisonTypeOid": 3,
             "value": "1",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10506,
@@ -3189,7 +3189,7 @@
             "productElementOid": 145,
             "comparisonTypeOid": 3,
             "value": "1",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10551,
@@ -3259,7 +3259,7 @@
             "productElementOid": 145,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 10561,
@@ -4069,7 +4069,7 @@
             "productElementOid": 243,
             "comparisonTypeOid": 4,
             "value": "Codan",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10649,
@@ -4089,7 +4089,7 @@
             "productElementOid": 244,
             "comparisonTypeOid": 4,
             "value": "0",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10651,
@@ -5099,7 +5099,7 @@
             "productElementOid": 243,
             "comparisonTypeOid": 4,
             "value": "Codan",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10179,
@@ -5109,7 +5109,7 @@
             "productElementOid": 243,
             "comparisonTypeOid": 4,
             "value": "Codan",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 1018,
@@ -5129,7 +5129,7 @@
             "productElementOid": 243,
             "comparisonTypeOid": 4,
             "value": "Codan",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10181,
@@ -5139,7 +5139,7 @@
             "productElementOid": 243,
             "comparisonTypeOid": 4,
             "value": "Codan",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10182,
@@ -5149,7 +5149,7 @@
             "productElementOid": 243,
             "comparisonTypeOid": 4,
             "value": "Codan",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10183,
@@ -5159,7 +5159,7 @@
             "productElementOid": 243,
             "comparisonTypeOid": 4,
             "value": "Codan",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10184,
@@ -5169,7 +5169,7 @@
             "productElementOid": 243,
             "comparisonTypeOid": 4,
             "value": "Codan",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10185,
@@ -5179,7 +5179,7 @@
             "productElementOid": 243,
             "comparisonTypeOid": 4,
             "value": "Codan",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10186,
@@ -5189,7 +5189,7 @@
             "productElementOid": 243,
             "comparisonTypeOid": 4,
             "value": "Codan",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10187,
@@ -5199,7 +5199,7 @@
             "productElementOid": 243,
             "comparisonTypeOid": 4,
             "value": "Codan",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10188,
@@ -5209,7 +5209,7 @@
             "productElementOid": 243,
             "comparisonTypeOid": 4,
             "value": "Codan",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10189,
@@ -5219,7 +5219,7 @@
             "productElementOid": 243,
             "comparisonTypeOid": 4,
             "value": "Codan",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 1019,
@@ -5239,7 +5239,7 @@
             "productElementOid": 243,
             "comparisonTypeOid": 4,
             "value": "Codan",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10191,
@@ -5249,7 +5249,7 @@
             "productElementOid": 243,
             "comparisonTypeOid": 4,
             "value": "Codan",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10192,
@@ -5259,7 +5259,7 @@
             "productElementOid": 243,
             "comparisonTypeOid": 4,
             "value": "Codan",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10193,
@@ -5269,7 +5269,7 @@
             "productElementOid": 243,
             "comparisonTypeOid": 4,
             "value": "Codan",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10194,
@@ -5279,7 +5279,7 @@
             "productElementOid": 243,
             "comparisonTypeOid": 4,
             "value": "Codan",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10195,
@@ -5289,7 +5289,7 @@
             "productElementOid": 243,
             "comparisonTypeOid": 4,
             "value": "Codan",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10196,
@@ -5299,7 +5299,7 @@
             "productElementOid": 243,
             "comparisonTypeOid": 4,
             "value": "Codan",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10197,
@@ -5309,7 +5309,7 @@
             "productElementOid": 243,
             "comparisonTypeOid": 4,
             "value": "Codan",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10198,
@@ -21419,7 +21419,7 @@
             "productElementOid": 145,
             "comparisonTypeOid": 3,
             "value": "1",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 2062,
@@ -21429,7 +21429,7 @@
             "productElementOid": 145,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 2063,
@@ -21439,7 +21439,7 @@
             "productElementOid": 145,
             "comparisonTypeOid": 3,
             "value": "1",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 2064,
@@ -21449,7 +21449,7 @@
             "productElementOid": 145,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 2065,
@@ -21459,7 +21459,7 @@
             "productElementOid": 145,
             "comparisonTypeOid": 3,
             "value": "1",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 2066,
@@ -21469,7 +21469,7 @@
             "productElementOid": 145,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 2067,
@@ -21479,7 +21479,7 @@
             "productElementOid": 145,
             "comparisonTypeOid": 3,
             "value": "1",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 2068,
@@ -21489,7 +21489,7 @@
             "productElementOid": 145,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 2069,
@@ -30259,7 +30259,7 @@
             "productElementOid": 145,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 2512,
@@ -30269,7 +30269,7 @@
             "productElementOid": 145,
             "comparisonTypeOid": 3,
             "value": "1",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 2513,
@@ -31269,7 +31269,7 @@
             "productElementOid": 145,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 2664,
@@ -31279,7 +31279,7 @@
             "productElementOid": 145,
             "comparisonTypeOid": 3,
             "value": "1",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 2665,
@@ -32309,7 +32309,7 @@
             "productElementOid": 145,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 2816,
@@ -32319,7 +32319,7 @@
             "productElementOid": 145,
             "comparisonTypeOid": 3,
             "value": "1",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 2817,
@@ -36579,7 +36579,7 @@
             "productElementOid": 145,
             "comparisonTypeOid": 3,
             "value": "1",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 4377,
@@ -36589,7 +36589,7 @@
             "productElementOid": 145,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 4378,
@@ -43479,7 +43479,7 @@
             "productElementOid": 145,
             "comparisonTypeOid": 3,
             "value": "1",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 5804,
@@ -43489,7 +43489,7 @@
             "productElementOid": 145,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 5805,
@@ -45319,7 +45319,7 @@
             "productElementOid": 145,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 6481,
@@ -45329,7 +45329,7 @@
             "productElementOid": 145,
             "comparisonTypeOid": 3,
             "value": "1",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 6482,
@@ -46519,7 +46519,7 @@
             "productElementOid": 145,
             "comparisonTypeOid": 3,
             "value": "1",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 5990,
@@ -46629,7 +46629,7 @@
             "productElementOid": 145,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 6000,
@@ -46949,7 +46949,7 @@
             "productElementOid": 145,
             "comparisonTypeOid": 3,
             "value": "1",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 603,
@@ -46969,7 +46969,7 @@
             "productElementOid": 145,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 6031,
@@ -48879,7 +48879,7 @@
             "productElementOid": 145,
             "comparisonTypeOid": 3,
             "value": "1",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 5231,
@@ -48949,7 +48949,7 @@
             "productElementOid": 145,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 5240,
@@ -49739,7 +49739,7 @@
             "productElementOid": 145,
             "comparisonTypeOid": 3,
             "value": "1",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 5349,
@@ -49749,7 +49749,7 @@
             "productElementOid": 145,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 535,
@@ -51689,7 +51689,7 @@
             "productElementOid": 145,
             "comparisonTypeOid": 3,
             "value": "1",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 558,
@@ -51709,7 +51709,7 @@
             "productElementOid": 145,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 5581,
@@ -54029,7 +54029,7 @@
             "productElementOid": 145,
             "comparisonTypeOid": 3,
             "value": "1",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 676,
@@ -54039,7 +54039,7 @@
             "productElementOid": 145,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 677,
@@ -54759,7 +54759,7 @@
             "productElementOid": 145,
             "comparisonTypeOid": 3,
             "value": "1",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 752,
@@ -54769,7 +54769,7 @@
             "productElementOid": 145,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 753,
@@ -55439,7 +55439,7 @@
             "productElementOid": 145,
             "comparisonTypeOid": 3,
             "value": "1",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 828,
@@ -55449,7 +55449,7 @@
             "productElementOid": 145,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 829,
@@ -56159,7 +56159,7 @@
             "productElementOid": 145,
             "comparisonTypeOid": 3,
             "value": "1",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 904,
@@ -56169,7 +56169,7 @@
             "productElementOid": 145,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 905,
@@ -56899,7 +56899,7 @@
             "productElementOid": 145,
             "comparisonTypeOid": 3,
             "value": "1",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 980,
@@ -56909,7 +56909,7 @@
             "productElementOid": 145,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 981,
