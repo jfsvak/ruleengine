@@ -63,6 +63,15 @@ TEST_F(ContributionLadder_Follows_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_POS
 	EXPECT_TRUE(r.hasMessages(kBidragEjFoesteTrin_MK, kProductElementRequired));
 
 	ta.setValue(kBidragEjFoesteTrin_MK, false);
+	ta.setValue(kAar, 2015);
+	r = re.validate(ta, false);
+	EXPECT_FALSE(r.isAllOk());
+	cout << r;
+	EXPECT_EQ(1, r.getValidationResults(kAar).size());
+	EXPECT_TRUE(r.hasMessages(kAar, kProductElementNotAllowed));
+
+
+	ta.remove(kAar);
 	r = re.validate(ta, false);
 	EXPECT_TRUE(r.isAllOk());
 	cout << r;
@@ -100,7 +109,14 @@ TEST_F(ContributionLadder_Follows_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_POS
 	ta.removeContributionSteps();
 	ta.addContributionStep( {0, 4, 4} );
 	r = re.validate(ta, false);
+	EXPECT_FALSE(r.isAllOk());
+	EXPECT_EQ(1, r.getValidationResults(kAar).size());
+	EXPECT_TRUE(r.hasMessages(kAar, kProductElementRequired));
+
+	ta.setValue(kAar, 2015);
+	r = re.validate(ta, false);
 	EXPECT_TRUE(r.isAllOk());
+
 	cout << r;
 	ta.addContributionStep( {2, 5, 4} );
 	r = re.validate(ta, false);
