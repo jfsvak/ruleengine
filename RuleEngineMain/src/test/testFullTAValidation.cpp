@@ -39,7 +39,7 @@ protected:
 TEST_F(Full_TA_CONTEXT_KI_OSV_25_50, Full_TA_POSITIVE) {
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
 	RuleEngine::_printDebugAtValidation = true;
-	int total {137};
+	int total {136};
 
 	auto r = re.validate(ta);
 	EXPECT_FALSE(r.isAllOk());
@@ -49,7 +49,7 @@ TEST_F(Full_TA_CONTEXT_KI_OSV_25_50, Full_TA_POSITIVE) {
 	// union agreement
 	ta.setValue(kUnionAgreementRelationship, sbx::kOUTSIDE);
 	r = re.validate(ta);
-	EXPECT_EQ(total-=4, r.sizeValidationResults());
+	EXPECT_EQ(total-=3, r.sizeValidationResults());
 	cout << r;
 
 	//

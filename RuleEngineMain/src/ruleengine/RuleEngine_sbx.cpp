@@ -67,6 +67,11 @@ void RuleEngine::initConstants(const std::string& jsonContents)
 	_container.initConstants(jsonContents);
 }
 
+void RuleEngine::initUAContributionSteps(const std::map<unsigned short, std::vector<sbx::ContributionStep>>& uaLadders)
+{
+	_container.initUAContributionSteps(uaLadders);
+}
+
 /**
  *
  */
@@ -388,8 +393,7 @@ void RuleEngine::_loadParser(const TA& ta)
 	}
 
 	// set union agreement ladder employer pct and total pct
-	_defineVariable<int>(sbx::kUnionAgreementEmployerPct1stStep, (int) 3);
-	_defineVariable<int>(sbx::kUnionAgreementTotalPct1stStep, (int) 5);
+	_loadUAContributionStep(ta);
 	_loadLadder(ta);
 
 	// execute all precalc rules to update the parser
@@ -454,6 +458,23 @@ void RuleEngine::_loadLadder(const TA& ta)
 		_parser.DefineVar(sbx::kBidragstrappe_VARNAME, mup::Variable(_mupValueMap[sbx::kBidragstrappe_VARNAME].get()));
 	}
 
+}
+
+void RuleEngine::_loadUAContributionStep(const TA& ta)
+{
+	if (_parser.IsConstDefined(sbx::kUnionAgreementEmployerPct1stStep))
+		_parser.RemoveConst(sbx::kUnionAgreementEmployerPct1stStep);
+
+	if (_parser.IsConstDefined(sbx::kUnionAgreementTotalPct1stStep))
+		_parser.RemoveConst(sbx::kUnionAgreementTotalPct1stStep);
+
+	if (ta.getValue(kUnionAgreementRelationship).stringValue() == sbx::kFOLLOWS || ta.getValue(kUnionAgreementRelationship).stringValue() == sbx::kINCLUDED)
+	{
+		int uaOid = ta.getValue(kUnionAgreementOid).longValue();
+		shared_ptr<ContributionStep> step = _container.getUAContributionStep(uaOid);
+		_parser.DefineConst(sbx::kUnionAgreementEmployerPct1stStep, step->companyPct());
+		_parser.DefineConst(sbx::kUnionAgreementTotalPct1stStep, step->companyPct()+step->employeePct());
+	}
 }
 
 /**

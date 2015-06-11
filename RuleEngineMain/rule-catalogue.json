@@ -1666,7 +1666,7 @@
                             "id": "33.6.2.5",
                             "expr": "",
                             "productElementOids": [ 153 ],
-                            "requiredif": "#parent#"
+                            "requiredif": "false"
 		        	    }
 					]
         	    },

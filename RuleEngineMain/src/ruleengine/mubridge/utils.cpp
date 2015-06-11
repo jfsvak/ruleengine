@@ -16,10 +16,10 @@ void handle(const mup::ParserError& e) {
 	switch(e.GetCode()) {
 	case mup::ecUNASSIGNABLE_TOKEN:
 		// TODO maybe do something fancy if we know the error code
-		cout << "\n**** Undefined token ParserError caught:" << " Token[" << e.GetToken() << "], code[" << e.GetCode() << "], msg[" << e.GetMsg() << "], expr[" << e.GetExpr() << "]" << endl;
+		cout << "Undefined token:" << " Token[" << e.GetToken() << "], code[" << e.GetCode() << "], expr[" << e.GetExpr() << "]" << endl;
 		break;
 	default:
-		cout << "\n**** Unhandled ParserError caught:" << " Token[" << e.GetToken() << "], code[" << e.GetCode() << "], msg[" << e.GetMsg() << "], expr[" << e.GetExpr() << "]" << endl;
+		cout << "Unhandled ParserError caught:" << " Token[" << e.GetToken() << "], code[" << e.GetCode() << "], msg[" << e.GetMsg() << "], expr[" << e.GetExpr() << "]" << endl;
 		break;
 	}
 }

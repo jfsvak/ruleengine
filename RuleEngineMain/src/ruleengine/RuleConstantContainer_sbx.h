@@ -16,6 +16,7 @@
 
 #include "sbxTypes.h"
 #include "Constant_sbx.h"
+#include "ContributionStep.h"
 #include "Product_sbx.h"
 #include "Parameter_sbx.h"
 #include "ProductElement_sbx.h"
@@ -32,6 +33,7 @@ public:
 	void initGlobalConstants(const std::vector<sbx::Constant>& globalConstants);
 	void initConstants(const std::string& jsonContents);
 	void initContext(const unsigned short underkoncept_oid, const short unionAgreementOid);
+	void initUAContributionSteps(const std::map<unsigned short, std::vector<sbx::ContributionStep>>&);
 
 	bool existsAs(unsigned short peOid, const sbx::ComparisonTypes&) const;
 
@@ -43,6 +45,7 @@ public:
 	std::set<unsigned short> getProductElementOids(unsigned short parameterOid) const;
 	sbx::ProductElement getProductElement(unsigned short productElementOid);
 	unsigned short getProductElementOid(const std::string& varName) const;
+	std::shared_ptr<sbx::ContributionStep> getUAContributionStep(unsigned short uaOid);
 
 	std::shared_ptr<sbx::Constant> createConstant(unsigned short underkonceptOid, unsigned short unionAgreementOid, unsigned short peOid, sbx::ComparisonTypes comparisonType);
 
@@ -139,6 +142,12 @@ private:
 	 * Value is a set of allowed product element oids
 	 */
 	std::map<unsigned short, std::map<unsigned short, std::set<unsigned short>>> _parameterOidToProductElementOids;
+
+	/**
+	 * Index: union agreement oid
+	 * Value: one contribution step
+	 */
+	std::map<unsigned short, std::vector<sbx::ContributionStep>> _uaContributionLadders;
 
 	short _underKonceptOid;
 	short _unionAgreementOid;

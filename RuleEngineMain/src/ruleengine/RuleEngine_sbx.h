@@ -47,6 +47,7 @@ public:
 	void initConstants(const std::vector<Constant>& globalConstants);
 	void initConstants(const std::string& jsonContents);
 	void initContext(const sbx::KonceptInfo& ki);
+	void initUAContributionSteps(const std::map<unsigned short, std::vector<sbx::ContributionStep>>&);
 
 	void parseRuleCatalogueJSON(const std::string& jsonContents);
 
@@ -111,6 +112,7 @@ private:
 
 	void _loadParser(const TA& ta);
 	void _loadLadder(const TA& ta);
+	void _loadUAContributionStep(const TA& ta);
 
     std::string getFormattedValue(const std::shared_ptr<sbx::Constant>&);
     std::string getFormattedValue(const sbx::ProductElementValue&);

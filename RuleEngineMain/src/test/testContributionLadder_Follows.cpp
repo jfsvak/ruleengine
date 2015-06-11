@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <map>
 
 #include "gtest/gtest.h"
 #include "gtest/internal/gtest-internal.h"
@@ -31,6 +32,9 @@ protected:
 				  {15, "true"} // FG-Spaend
 				} };
 			re.initContext(ki);
+			std::map<unsigned short, std::vector<sbx::ContributionStep>> uaSteps{};
+			uaSteps.insert( { 6, { {0, 2, 3} } } ) ;
+			re.initUAContributionSteps( uaSteps );
     	} catch (const exception& e) {
     		cerr << "Exception: " << e.what() << endl;
     	}
@@ -108,12 +112,6 @@ TEST_F(ContributionLadder_Follows_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_POS
 
 	ta.removeContributionSteps();
 	ta.addContributionStep( {0, 4, 4} );
-	r = re.validate(ta, false);
-	EXPECT_FALSE(r.isAllOk());
-	EXPECT_EQ(1, r.getValidationResults(kAar).size());
-	EXPECT_TRUE(r.hasMessages(kAar, kProductElementRequired));
-
-	ta.setValue(kAar, 2015);
 	r = re.validate(ta, false);
 	EXPECT_TRUE(r.isAllOk());
 

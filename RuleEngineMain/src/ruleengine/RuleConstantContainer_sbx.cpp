@@ -495,6 +495,20 @@ unsigned short RuleConstantContainer::getProductElementOid(const std::string& va
 	return (unsigned short) kUnknownProductElement;
 }
 
+void RuleConstantContainer::initUAContributionSteps(const std::map<unsigned short, std::vector<sbx::ContributionStep>>& uaLadders)
+{
+	_uaContributionLadders = uaLadders;
+}
+
+std::shared_ptr<sbx::ContributionStep> RuleConstantContainer::getUAContributionStep(unsigned short uaOid)
+{
+	if (_uaContributionLadders.find(uaOid) != _uaContributionLadders.cend() && !_uaContributionLadders.at(uaOid).empty())
+		return make_shared<sbx::ContributionStep>(_uaContributionLadders.at(uaOid).front());
+
+	stringstream ss{};
+	ss << uaOid;
+	throw domain_error("Contribution ladder for Union Agreement [" + ss.str() + "] not initialised!");
+}
 /**
  * Outputs to cout the entire content of Constant Container
  */
