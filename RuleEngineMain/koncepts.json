@@ -1,0 +1,2182 @@
+﻿{
+   "data": {"KONCEPTS":    [
+            {
+         "oid": 10,
+         "name": "EDC",
+         "subKoncepts": [         {
+            "oid": 38,
+            "name": "Mellem 1 og 9999 ansatte",
+            "minEmployeeNumber": 1,
+            "maxEmployeeNumber": 9999,
+            "parameters":             [
+                              {
+                  "oid": 30,
+                  "name": "SEB EDC",
+                  "type": "risiko",
+                  "elementTypeOid": 0
+               },
+                              {
+                  "oid": 18,
+                  "name": "Fornyelsesdato",
+                  "type": "Rabat",
+                  "elementTypeOid": 0
+               },
+                              {
+                  "oid": 26,
+                  "name": "Overskud fra gruppedækningerne bruges til nedsættelse af næste års præmie",
+                  "type": "Overskud",
+                  "elementTypeOid": 0
+               },
+                              {
+                  "oid": 25,
+                  "name": "Overskud fra risikoregnskabet fordeles på aftalerne",
+                  "type": "Overskud",
+                  "elementTypeOid": 0
+               },
+                              {
+                  "oid": 20,
+                  "name": "Præmien er garanteret",
+                  "type": "Rabat",
+                  "elementTypeOid": 0
+               },
+                              {
+                  "oid": 2,
+                  "name": "Solidarisk egentarif",
+                  "type": "Tarif",
+                  "elementTypeOid": 0
+               },
+                              {
+                  "oid": 19,
+                  "name": "Rabatten er garanteret",
+                  "type": "Rabat",
+                  "elementTypeOid": 0
+               },
+                              {
+                  "oid": 15,
+                  "name": "FG-spænd",
+                  "type": "FG_span",
+                  "elementTypeOid": 0
+               },
+                              {
+                  "oid": 11,
+                  "name": "basis",
+                  "type": "basis",
+                  "elementTypeOid": 0
+               },
+                              {
+                  "oid": 10,
+                  "name": "FG - Egen Gruppe",
+                  "type": "FG",
+                  "elementTypeOid": 0
+               },
+                              {
+                  "oid": 1,
+                  "name": "Solidarisk fællestarif",
+                  "type": "Tarif",
+                  "elementTypeOid": 0
+               },
+                              {
+                  "oid": 23,
+                  "name": "Til dato",
+                  "type": "Rabat",
+                  "elementTypeOid": 0
+               },
+                              {
+                  "oid": 22,
+                  "name": "Rabat for Død i procent",
+                  "type": "Rabat",
+                  "elementTypeOid": 0
+               },
+                              {
+                  "oid": 21,
+                  "name": "Rabat for TAE i procent",
+                  "type": "Rabat",
+                  "elementTypeOid": 0
+               }
+            ]
+         }]
+      },
+            {
+         "oid": 2,
+         "name": "IT Pension",
+         "subKoncepts":          [
+                        {
+               "oid": 5,
+               "name": "mellem 10 og 24",
+               "minEmployeeNumber": 10,
+               "maxEmployeeNumber": 25,
+               "parameters":                [
+                                    {
+                     "oid": 18,
+                     "name": "Fornyelsesdato",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 7,
+                     "name": "SEB IT Pensionspulje",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 26,
+                     "name": "Overskud fra gruppedækningerne bruges til nedsættelse af næste års præmie",
+                     "type": "Overskud",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 25,
+                     "name": "Overskud fra risikoregnskabet fordeles på aftalerne",
+                     "type": "Overskud",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 24,
+                     "name": "Solidarisk præmiefritagelse",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 20,
+                     "name": "Præmien er garanteret",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 19,
+                     "name": "Rabatten er garanteret",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 15,
+                     "name": "FG-spænd",
+                     "type": "FG_span",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 11,
+                     "name": "basis",
+                     "type": "basis",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 1,
+                     "name": "Solidarisk fællestarif",
+                     "type": "Tarif",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 23,
+                     "name": "Til dato",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 22,
+                     "name": "Rabat for Død i procent",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 21,
+                     "name": "Rabat for TAE i procent",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  }
+               ]
+            },
+                        {
+               "oid": 6,
+               "name": "mellem 25 og 49",
+               "minEmployeeNumber": 25,
+               "maxEmployeeNumber": 50,
+               "parameters":                [
+                                    {
+                     "oid": 18,
+                     "name": "Fornyelsesdato",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 7,
+                     "name": "SEB IT Pensionspulje",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 26,
+                     "name": "Overskud fra gruppedækningerne bruges til nedsættelse af næste års præmie",
+                     "type": "Overskud",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 25,
+                     "name": "Overskud fra risikoregnskabet fordeles på aftalerne",
+                     "type": "Overskud",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 24,
+                     "name": "Solidarisk præmiefritagelse",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 20,
+                     "name": "Præmien er garanteret",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 2,
+                     "name": "Solidarisk egentarif",
+                     "type": "Tarif",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 19,
+                     "name": "Rabatten er garanteret",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 15,
+                     "name": "FG-spænd",
+                     "type": "FG_span",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 11,
+                     "name": "basis",
+                     "type": "basis",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 1,
+                     "name": "Solidarisk fællestarif",
+                     "type": "Tarif",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 23,
+                     "name": "Til dato",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 22,
+                     "name": "Rabat for Død i procent",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 21,
+                     "name": "Rabat for TAE i procent",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  }
+               ]
+            },
+                        {
+               "oid": 8,
+               "name": "mellem 50 og 99",
+               "minEmployeeNumber": 50,
+               "maxEmployeeNumber": 100,
+               "parameters":                [
+                                    {
+                     "oid": 18,
+                     "name": "Fornyelsesdato",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 7,
+                     "name": "SEB IT Pensionspulje",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 26,
+                     "name": "Overskud fra gruppedækningerne bruges til nedsættelse af næste års præmie",
+                     "type": "Overskud",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 25,
+                     "name": "Overskud fra risikoregnskabet fordeles på aftalerne",
+                     "type": "Overskud",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 24,
+                     "name": "Solidarisk præmiefritagelse",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 20,
+                     "name": "Præmien er garanteret",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 2,
+                     "name": "Solidarisk egentarif",
+                     "type": "Tarif",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 19,
+                     "name": "Rabatten er garanteret",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 15,
+                     "name": "FG-spænd",
+                     "type": "FG_span",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 11,
+                     "name": "basis",
+                     "type": "basis",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 1,
+                     "name": "Solidarisk fællestarif",
+                     "type": "Tarif",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 23,
+                     "name": "Til dato",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 22,
+                     "name": "Rabat for Død i procent",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 21,
+                     "name": "Rabat for TAE i procent",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  }
+               ]
+            },
+                        {
+               "oid": 9,
+               "name": "over 99",
+               "minEmployeeNumber": 100,
+               "maxEmployeeNumber": 99999,
+               "parameters":                [
+                                    {
+                     "oid": 18,
+                     "name": "Fornyelsesdato",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 7,
+                     "name": "SEB IT Pensionspulje",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 3,
+                     "name": "Eget risikoregnskab",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 26,
+                     "name": "Overskud fra gruppedækningerne bruges til nedsættelse af næste års præmie",
+                     "type": "Overskud",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 25,
+                     "name": "Overskud fra risikoregnskabet fordeles på aftalerne",
+                     "type": "Overskud",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 24,
+                     "name": "Solidarisk præmiefritagelse",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 20,
+                     "name": "Præmien er garanteret",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 2,
+                     "name": "Solidarisk egentarif",
+                     "type": "Tarif",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 19,
+                     "name": "Rabatten er garanteret",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 15,
+                     "name": "FG-spænd",
+                     "type": "FG_span",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 14,
+                     "name": "Særlig udbetalingsbestemmelse (klausul 853)",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 11,
+                     "name": "basis",
+                     "type": "basis",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 1,
+                     "name": "Solidarisk fællestarif",
+                     "type": "Tarif",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 23,
+                     "name": "Til dato",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 22,
+                     "name": "Rabat for Død i procent",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 21,
+                     "name": "Rabat for TAE i procent",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  }
+               ]
+            },
+                        {
+               "oid": 4,
+               "name": "under 10",
+               "minEmployeeNumber": 1,
+               "maxEmployeeNumber": 10,
+               "parameters": []
+            }
+         ]
+      },
+            {
+         "oid": 4,
+         "name": "OSV",
+         "subKoncepts":          [
+                        {
+               "oid": 17,
+               "name": "mellem 25 og 49",
+               "minEmployeeNumber": 25,
+               "maxEmployeeNumber": 50,
+               "parameters":                [
+                                    {
+                     "oid": 18,
+                     "name": "Fornyelsesdato",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 6,
+                     "name": "SEB Firmapensionspulje",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 27,
+                     "name": "Ingen risikogruppe",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 26,
+                     "name": "Overskud fra gruppedækningerne bruges til nedsættelse af næste års præmie",
+                     "type": "Overskud",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 25,
+                     "name": "Overskud fra risikoregnskabet fordeles på aftalerne",
+                     "type": "Overskud",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 24,
+                     "name": "Solidarisk præmiefritagelse",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 20,
+                     "name": "Præmien er garanteret",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 2,
+                     "name": "Solidarisk egentarif",
+                     "type": "Tarif",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 19,
+                     "name": "Rabatten er garanteret",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 15,
+                     "name": "FG-spænd",
+                     "type": "FG_span",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 11,
+                     "name": "basis",
+                     "type": "basis",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 10,
+                     "name": "FG - Egen Gruppe",
+                     "type": "FG",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 1,
+                     "name": "Solidarisk fællestarif",
+                     "type": "Tarif",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 23,
+                     "name": "Til dato",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 22,
+                     "name": "Rabat for Død i procent",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 21,
+                     "name": "Rabat for TAE i procent",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  }
+               ]
+            },
+                        {
+               "oid": 18,
+               "name": "Mellem 50 og 99",
+               "minEmployeeNumber": 50,
+               "maxEmployeeNumber": 100,
+               "parameters":                [
+                                    {
+                     "oid": 18,
+                     "name": "Fornyelsesdato",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 6,
+                     "name": "SEB Firmapensionspulje",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 27,
+                     "name": "Ingen risikogruppe",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 26,
+                     "name": "Overskud fra gruppedækningerne bruges til nedsættelse af næste års præmie",
+                     "type": "Overskud",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 25,
+                     "name": "Overskud fra risikoregnskabet fordeles på aftalerne",
+                     "type": "Overskud",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 24,
+                     "name": "Solidarisk præmiefritagelse",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 20,
+                     "name": "Præmien er garanteret",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 2,
+                     "name": "Solidarisk egentarif",
+                     "type": "Tarif",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 19,
+                     "name": "Rabatten er garanteret",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 15,
+                     "name": "FG-spænd",
+                     "type": "FG_span",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 11,
+                     "name": "basis",
+                     "type": "basis",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 10,
+                     "name": "FG - Egen Gruppe",
+                     "type": "FG",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 1,
+                     "name": "Solidarisk fællestarif",
+                     "type": "Tarif",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 23,
+                     "name": "Til dato",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 22,
+                     "name": "Rabat for Død i procent",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 21,
+                     "name": "Rabat for TAE i procent",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  }
+               ]
+            },
+                        {
+               "oid": 19,
+               "name": "over 99",
+               "minEmployeeNumber": 100,
+               "maxEmployeeNumber": 99999,
+               "parameters":                [
+                                    {
+                     "oid": 18,
+                     "name": "Fornyelsesdato",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 6,
+                     "name": "SEB Firmapensionspulje",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 3,
+                     "name": "Eget risikoregnskab",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 27,
+                     "name": "Ingen risikogruppe",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 26,
+                     "name": "Overskud fra gruppedækningerne bruges til nedsættelse af næste års præmie",
+                     "type": "Overskud",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 25,
+                     "name": "Overskud fra risikoregnskabet fordeles på aftalerne",
+                     "type": "Overskud",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 24,
+                     "name": "Solidarisk præmiefritagelse",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 20,
+                     "name": "Præmien er garanteret",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 2,
+                     "name": "Solidarisk egentarif",
+                     "type": "Tarif",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 19,
+                     "name": "Rabatten er garanteret",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 15,
+                     "name": "FG-spænd",
+                     "type": "FG_span",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 14,
+                     "name": "Særlig udbetalingsbestemmelse (klausul 853)",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 11,
+                     "name": "basis",
+                     "type": "basis",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 10,
+                     "name": "FG - Egen Gruppe",
+                     "type": "FG",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 23,
+                     "name": "Til dato",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 22,
+                     "name": "Rabat for Død i procent",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 21,
+                     "name": "Rabat for TAE i procent",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  }
+               ]
+            },
+                        {
+               "oid": 27,
+               "name": "Mellem 10 og 25 ansatte",
+               "minEmployeeNumber": 10,
+               "maxEmployeeNumber": 25,
+               "parameters":                [
+                                    {
+                     "oid": 18,
+                     "name": "Fornyelsesdato",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 6,
+                     "name": "SEB Firmapensionspulje",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 27,
+                     "name": "Ingen risikogruppe",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 26,
+                     "name": "Overskud fra gruppedækningerne bruges til nedsættelse af næste års præmie",
+                     "type": "Overskud",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 25,
+                     "name": "Overskud fra risikoregnskabet fordeles på aftalerne",
+                     "type": "Overskud",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 24,
+                     "name": "Solidarisk præmiefritagelse",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 20,
+                     "name": "Præmien er garanteret",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 2,
+                     "name": "Solidarisk egentarif",
+                     "type": "Tarif",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 19,
+                     "name": "Rabatten er garanteret",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 15,
+                     "name": "FG-spænd",
+                     "type": "FG_span",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 11,
+                     "name": "basis",
+                     "type": "basis",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 10,
+                     "name": "FG - Egen Gruppe",
+                     "type": "FG",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 1,
+                     "name": "Solidarisk fællestarif",
+                     "type": "Tarif",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 23,
+                     "name": "Til dato",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 22,
+                     "name": "Rabat for Død i procent",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 21,
+                     "name": "Rabat for TAE i procent",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  }
+               ]
+            },
+                        {
+               "oid": 28,
+               "name": "Mellem 5 og 9",
+               "minEmployeeNumber": 5,
+               "maxEmployeeNumber": 10,
+               "parameters":                [
+                                    {
+                     "oid": 18,
+                     "name": "Fornyelsesdato",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 6,
+                     "name": "SEB Firmapensionspulje",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 27,
+                     "name": "Ingen risikogruppe",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 26,
+                     "name": "Overskud fra gruppedækningerne bruges til nedsættelse af næste års præmie",
+                     "type": "Overskud",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 25,
+                     "name": "Overskud fra risikoregnskabet fordeles på aftalerne",
+                     "type": "Overskud",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 24,
+                     "name": "Solidarisk præmiefritagelse",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 20,
+                     "name": "Præmien er garanteret",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 2,
+                     "name": "Solidarisk egentarif",
+                     "type": "Tarif",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 19,
+                     "name": "Rabatten er garanteret",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 15,
+                     "name": "FG-spænd",
+                     "type": "FG_span",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 11,
+                     "name": "basis",
+                     "type": "basis",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 10,
+                     "name": "FG - Egen Gruppe",
+                     "type": "FG",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 1,
+                     "name": "Solidarisk fællestarif",
+                     "type": "Tarif",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 23,
+                     "name": "Til dato",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 22,
+                     "name": "Rabat for Død i procent",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 21,
+                     "name": "Rabat for TAE i procent",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  }
+               ]
+            },
+                        {
+               "oid": 16,
+               "name": "under 5 ansatte",
+               "minEmployeeNumber": 1,
+               "maxEmployeeNumber": 5,
+               "parameters": [               {
+                  "oid": 27,
+                  "name": "Ingen risikogruppe",
+                  "type": "risiko",
+                  "elementTypeOid": 0
+               }]
+            }
+         ]
+      },
+            {
+         "oid": 5,
+         "name": "SSG",
+         "subKoncepts":          [
+                        {
+               "oid": 21,
+               "name": "mellem 8 og 24 ansatte",
+               "minEmployeeNumber": 8,
+               "maxEmployeeNumber": 99999,
+               "parameters":                [
+                                    {
+                     "oid": 18,
+                     "name": "Fornyelsesdato",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 26,
+                     "name": "Overskud fra gruppedækningerne bruges til nedsættelse af næste års præmie",
+                     "type": "Overskud",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 25,
+                     "name": "Overskud fra risikoregnskabet fordeles på aftalerne",
+                     "type": "Overskud",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 24,
+                     "name": "Solidarisk præmiefritagelse",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 20,
+                     "name": "Præmien er garanteret",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 19,
+                     "name": "Rabatten er garanteret",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 16,
+                     "name": "SSG Pulje i SEB Pension",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 15,
+                     "name": "FG-spænd",
+                     "type": "FG_span",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 13,
+                     "name": "FG - AMP Gruppe",
+                     "type": "FG",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 11,
+                     "name": "basis",
+                     "type": "basis",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 1,
+                     "name": "Solidarisk fællestarif",
+                     "type": "Tarif",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 23,
+                     "name": "Til dato",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 22,
+                     "name": "Rabat for Død i procent",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 21,
+                     "name": "Rabat for TAE i procent",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  }
+               ]
+            },
+                        {
+               "oid": 20,
+               "name": "Under 8 ansatte",
+               "minEmployeeNumber": 1,
+               "maxEmployeeNumber": 8,
+               "parameters":                [
+                                    {
+                     "oid": 16,
+                     "name": "SSG Pulje i SEB Pension",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 13,
+                     "name": "FG - AMP Gruppe",
+                     "type": "FG",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 11,
+                     "name": "basis",
+                     "type": "basis",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 1,
+                     "name": "Solidarisk fællestarif",
+                     "type": "Tarif",
+                     "elementTypeOid": 0
+                  }
+               ]
+            }
+         ]
+      },
+            {
+         "oid": 6,
+         "name": "Tømmerhandelpension",
+         "subKoncepts":          [
+                        {
+               "oid": 23,
+               "name": "Mellem 5 og 24 ansatte",
+               "minEmployeeNumber": 5,
+               "maxEmployeeNumber": 25,
+               "parameters":                [
+                                    {
+                     "oid": 18,
+                     "name": "Fornyelsesdato",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 26,
+                     "name": "Overskud fra gruppedækningerne bruges til nedsættelse af næste års præmie",
+                     "type": "Overskud",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 25,
+                     "name": "Overskud fra risikoregnskabet fordeles på aftalerne",
+                     "type": "Overskud",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 24,
+                     "name": "Solidarisk præmiefritagelse",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 20,
+                     "name": "Præmien er garanteret",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 19,
+                     "name": "Rabatten er garanteret",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 17,
+                     "name": "SEB Tømmerhandelpension",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 13,
+                     "name": "FG - AMP Gruppe",
+                     "type": "FG",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 11,
+                     "name": "basis",
+                     "type": "basis",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 1,
+                     "name": "Solidarisk fællestarif",
+                     "type": "Tarif",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 23,
+                     "name": "Til dato",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 22,
+                     "name": "Rabat for Død i procent",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 21,
+                     "name": "Rabat for TAE i procent",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  }
+               ]
+            },
+                        {
+               "oid": 24,
+               "name": "Mellem 25 og 49 ansatte",
+               "minEmployeeNumber": 25,
+               "maxEmployeeNumber": 50,
+               "parameters":                [
+                                    {
+                     "oid": 18,
+                     "name": "Fornyelsesdato",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 26,
+                     "name": "Overskud fra gruppedækningerne bruges til nedsættelse af næste års præmie",
+                     "type": "Overskud",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 25,
+                     "name": "Overskud fra risikoregnskabet fordeles på aftalerne",
+                     "type": "Overskud",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 24,
+                     "name": "Solidarisk præmiefritagelse",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 20,
+                     "name": "Præmien er garanteret",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 2,
+                     "name": "Solidarisk egentarif",
+                     "type": "Tarif",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 19,
+                     "name": "Rabatten er garanteret",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 17,
+                     "name": "SEB Tømmerhandelpension",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 13,
+                     "name": "FG - AMP Gruppe",
+                     "type": "FG",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 11,
+                     "name": "basis",
+                     "type": "basis",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 23,
+                     "name": "Til dato",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 22,
+                     "name": "Rabat for Død i procent",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 21,
+                     "name": "Rabat for TAE i procent",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  }
+               ]
+            },
+                        {
+               "oid": 25,
+               "name": "Mellem 50 og 99 ansatte",
+               "minEmployeeNumber": 50,
+               "maxEmployeeNumber": 100,
+               "parameters":                [
+                                    {
+                     "oid": 18,
+                     "name": "Fornyelsesdato",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 26,
+                     "name": "Overskud fra gruppedækningerne bruges til nedsættelse af næste års præmie",
+                     "type": "Overskud",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 25,
+                     "name": "Overskud fra risikoregnskabet fordeles på aftalerne",
+                     "type": "Overskud",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 24,
+                     "name": "Solidarisk præmiefritagelse",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 20,
+                     "name": "Præmien er garanteret",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 2,
+                     "name": "Solidarisk egentarif",
+                     "type": "Tarif",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 19,
+                     "name": "Rabatten er garanteret",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 17,
+                     "name": "SEB Tømmerhandelpension",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 13,
+                     "name": "FG - AMP Gruppe",
+                     "type": "FG",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 11,
+                     "name": "basis",
+                     "type": "basis",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 23,
+                     "name": "Til dato",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 22,
+                     "name": "Rabat for Død i procent",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 21,
+                     "name": "Rabat for TAE i procent",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  }
+               ]
+            },
+                        {
+               "oid": 26,
+               "name": "over 99 ansatte",
+               "minEmployeeNumber": 100,
+               "maxEmployeeNumber": 99999,
+               "parameters":                [
+                                    {
+                     "oid": 18,
+                     "name": "Fornyelsesdato",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 3,
+                     "name": "Eget risikoregnskab",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 26,
+                     "name": "Overskud fra gruppedækningerne bruges til nedsættelse af næste års præmie",
+                     "type": "Overskud",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 25,
+                     "name": "Overskud fra risikoregnskabet fordeles på aftalerne",
+                     "type": "Overskud",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 24,
+                     "name": "Solidarisk præmiefritagelse",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 20,
+                     "name": "Præmien er garanteret",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 2,
+                     "name": "Solidarisk egentarif",
+                     "type": "Tarif",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 19,
+                     "name": "Rabatten er garanteret",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 17,
+                     "name": "SEB Tømmerhandelpension",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 14,
+                     "name": "Særlig udbetalingsbestemmelse (klausul 853)",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 13,
+                     "name": "FG - AMP Gruppe",
+                     "type": "FG",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 11,
+                     "name": "basis",
+                     "type": "basis",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 23,
+                     "name": "Til dato",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 22,
+                     "name": "Rabat for Død i procent",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 21,
+                     "name": "Rabat for TAE i procent",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  }
+               ]
+            },
+                        {
+               "oid": 22,
+               "name": "Under 5 ansatte",
+               "minEmployeeNumber": 1,
+               "maxEmployeeNumber": 5,
+               "parameters": []
+            }
+         ]
+      },
+            {
+         "oid": 7,
+         "name": "PROSA",
+         "subKoncepts":          [
+                        {
+               "oid": 29,
+               "name": "Mellem 3 og 9 ansatte",
+               "minEmployeeNumber": 3,
+               "maxEmployeeNumber": 10,
+               "parameters":                [
+                                    {
+                     "oid": 28,
+                     "name": "SEB PROSA",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 14,
+                     "name": "Særlig udbetalingsbestemmelse (klausul 853)",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 18,
+                     "name": "Fornyelsesdato",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 26,
+                     "name": "Overskud fra gruppedækningerne bruges til nedsættelse af næste års præmie",
+                     "type": "Overskud",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 25,
+                     "name": "Overskud fra risikoregnskabet fordeles på aftalerne",
+                     "type": "Overskud",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 20,
+                     "name": "Præmien er garanteret",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 2,
+                     "name": "Solidarisk egentarif",
+                     "type": "Tarif",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 19,
+                     "name": "Rabatten er garanteret",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 15,
+                     "name": "FG-spænd",
+                     "type": "FG_span",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 11,
+                     "name": "basis",
+                     "type": "basis",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 10,
+                     "name": "FG - Egen Gruppe",
+                     "type": "FG",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 1,
+                     "name": "Solidarisk fællestarif",
+                     "type": "Tarif",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 23,
+                     "name": "Til dato",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 22,
+                     "name": "Rabat for Død i procent",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 21,
+                     "name": "Rabat for TAE i procent",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  }
+               ]
+            },
+                        {
+               "oid": 30,
+               "name": "Mellem 10 og 9999 ansatte",
+               "minEmployeeNumber": 10,
+               "maxEmployeeNumber": 9999,
+               "parameters":                [
+                                    {
+                     "oid": 28,
+                     "name": "SEB PROSA",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 14,
+                     "name": "Særlig udbetalingsbestemmelse (klausul 853)",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 18,
+                     "name": "Fornyelsesdato",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 26,
+                     "name": "Overskud fra gruppedækningerne bruges til nedsættelse af næste års præmie",
+                     "type": "Overskud",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 25,
+                     "name": "Overskud fra risikoregnskabet fordeles på aftalerne",
+                     "type": "Overskud",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 20,
+                     "name": "Præmien er garanteret",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 2,
+                     "name": "Solidarisk egentarif",
+                     "type": "Tarif",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 19,
+                     "name": "Rabatten er garanteret",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 15,
+                     "name": "FG-spænd",
+                     "type": "FG_span",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 11,
+                     "name": "basis",
+                     "type": "basis",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 10,
+                     "name": "FG - Egen Gruppe",
+                     "type": "FG",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 1,
+                     "name": "Solidarisk fællestarif",
+                     "type": "Tarif",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 23,
+                     "name": "Til dato",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 22,
+                     "name": "Rabat for Død i procent",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 21,
+                     "name": "Rabat for TAE i procent",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  }
+               ]
+            },
+                        {
+               "oid": 31,
+               "name": "Mellem 1 og 3 ansatte",
+               "minEmployeeNumber": 1,
+               "maxEmployeeNumber": 3,
+               "parameters": []
+            }
+         ]
+      },
+            {
+         "oid": 8,
+         "name": "Revisor",
+         "subKoncepts":          [
+                        {
+               "oid": 33,
+               "name": "Mellem 3 og 9 ansatte",
+               "minEmployeeNumber": 3,
+               "maxEmployeeNumber": 10,
+               "parameters":                [
+                                    {
+                     "oid": 11,
+                     "name": "basis",
+                     "type": "basis",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 18,
+                     "name": "Fornyelsesdato",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 6,
+                     "name": "SEB Firmapensionspulje",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 27,
+                     "name": "Ingen risikogruppe",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 26,
+                     "name": "Overskud fra gruppedækningerne bruges til nedsættelse af næste års præmie",
+                     "type": "Overskud",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 25,
+                     "name": "Overskud fra risikoregnskabet fordeles på aftalerne",
+                     "type": "Overskud",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 24,
+                     "name": "Solidarisk præmiefritagelse",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 20,
+                     "name": "Præmien er garanteret",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 2,
+                     "name": "Solidarisk egentarif",
+                     "type": "Tarif",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 19,
+                     "name": "Rabatten er garanteret",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 15,
+                     "name": "FG-spænd",
+                     "type": "FG_span",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 10,
+                     "name": "FG - Egen Gruppe",
+                     "type": "FG",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 1,
+                     "name": "Solidarisk fællestarif",
+                     "type": "Tarif",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 23,
+                     "name": "Til dato",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 22,
+                     "name": "Rabat for Død i procent",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 21,
+                     "name": "Rabat for TAE i procent",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  }
+               ]
+            },
+                        {
+               "oid": 34,
+               "name": "Mellem 10 og 9999 ansatte",
+               "minEmployeeNumber": 10,
+               "maxEmployeeNumber": 9999,
+               "parameters":                [
+                                    {
+                     "oid": 11,
+                     "name": "basis",
+                     "type": "basis",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 18,
+                     "name": "Fornyelsesdato",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 6,
+                     "name": "SEB Firmapensionspulje",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 27,
+                     "name": "Ingen risikogruppe",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 26,
+                     "name": "Overskud fra gruppedækningerne bruges til nedsættelse af næste års præmie",
+                     "type": "Overskud",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 25,
+                     "name": "Overskud fra risikoregnskabet fordeles på aftalerne",
+                     "type": "Overskud",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 24,
+                     "name": "Solidarisk præmiefritagelse",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 20,
+                     "name": "Præmien er garanteret",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 2,
+                     "name": "Solidarisk egentarif",
+                     "type": "Tarif",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 19,
+                     "name": "Rabatten er garanteret",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 15,
+                     "name": "FG-spænd",
+                     "type": "FG_span",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 10,
+                     "name": "FG - Egen Gruppe",
+                     "type": "FG",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 1,
+                     "name": "Solidarisk fællestarif",
+                     "type": "Tarif",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 23,
+                     "name": "Til dato",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 22,
+                     "name": "Rabat for Død i procent",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 21,
+                     "name": "Rabat for TAE i procent",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  }
+               ]
+            },
+                        {
+               "oid": 32,
+               "name": "Mellem 1 og 3 ansatte",
+               "minEmployeeNumber": 1,
+               "maxEmployeeNumber": 3,
+               "parameters": []
+            }
+         ]
+      },
+            {
+         "oid": 9,
+         "name": "Advokatpakken",
+         "subKoncepts":          [
+                        {
+               "oid": 36,
+               "name": "Mellem 3 og 9 ansatte",
+               "minEmployeeNumber": 3,
+               "maxEmployeeNumber": 10,
+               "parameters":                [
+                                    {
+                     "oid": 11,
+                     "name": "basis",
+                     "type": "basis",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 18,
+                     "name": "Fornyelsesdato",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 6,
+                     "name": "SEB Firmapensionspulje",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 27,
+                     "name": "Ingen risikogruppe",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 26,
+                     "name": "Overskud fra gruppedækningerne bruges til nedsættelse af næste års præmie",
+                     "type": "Overskud",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 25,
+                     "name": "Overskud fra risikoregnskabet fordeles på aftalerne",
+                     "type": "Overskud",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 24,
+                     "name": "Solidarisk præmiefritagelse",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 20,
+                     "name": "Præmien er garanteret",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 2,
+                     "name": "Solidarisk egentarif",
+                     "type": "Tarif",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 19,
+                     "name": "Rabatten er garanteret",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 15,
+                     "name": "FG-spænd",
+                     "type": "FG_span",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 10,
+                     "name": "FG - Egen Gruppe",
+                     "type": "FG",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 1,
+                     "name": "Solidarisk fællestarif",
+                     "type": "Tarif",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 23,
+                     "name": "Til dato",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 22,
+                     "name": "Rabat for Død i procent",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 21,
+                     "name": "Rabat for TAE i procent",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  }
+               ]
+            },
+                        {
+               "oid": 37,
+               "name": "Mellem 10 og 9999 ansatte",
+               "minEmployeeNumber": 10,
+               "maxEmployeeNumber": 9999,
+               "parameters":                [
+                                    {
+                     "oid": 11,
+                     "name": "basis",
+                     "type": "basis",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 18,
+                     "name": "Fornyelsesdato",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 6,
+                     "name": "SEB Firmapensionspulje",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 27,
+                     "name": "Ingen risikogruppe",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 26,
+                     "name": "Overskud fra gruppedækningerne bruges til nedsættelse af næste års præmie",
+                     "type": "Overskud",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 25,
+                     "name": "Overskud fra risikoregnskabet fordeles på aftalerne",
+                     "type": "Overskud",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 24,
+                     "name": "Solidarisk præmiefritagelse",
+                     "type": "risiko",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 20,
+                     "name": "Præmien er garanteret",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 2,
+                     "name": "Solidarisk egentarif",
+                     "type": "Tarif",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 19,
+                     "name": "Rabatten er garanteret",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 15,
+                     "name": "FG-spænd",
+                     "type": "FG_span",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 10,
+                     "name": "FG - Egen Gruppe",
+                     "type": "FG",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 1,
+                     "name": "Solidarisk fællestarif",
+                     "type": "Tarif",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 23,
+                     "name": "Til dato",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 22,
+                     "name": "Rabat for Død i procent",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  },
+                                    {
+                     "oid": 21,
+                     "name": "Rabat for TAE i procent",
+                     "type": "Rabat",
+                     "elementTypeOid": 0
+                  }
+               ]
+            },
+                        {
+               "oid": 35,
+               "name": "Mellem 1 og 3 ansatte",
+               "minEmployeeNumber": 1,
+               "maxEmployeeNumber": 3,
+               "parameters": []
+            }
+         ]
+      }
+   ]},
+   "errors": null
+}
