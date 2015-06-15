@@ -762,16 +762,6 @@
             "isDefault": false
          },
                   {
-            "oid": 1038,
-            "underKonceptOid": 10,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 3,
-            "productElementOid": 95,
-            "comparisonTypeOid": 4,
-            "value": "Markedspension_MK",
-            "isDefault": false
-         },
-                  {
             "oid": 10380,
             "underKonceptOid": 2,
             "unionAgreementOid": 0,
@@ -1009,7 +999,7 @@
             "productElementOid": 39,
             "comparisonTypeOid": 4,
             "value": "j",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 1041,
@@ -1289,26 +1279,6 @@
             "productElementOid": 70,
             "comparisonTypeOid": 3,
             "value": "67",
-            "isDefault": false
-         },
-                  {
-            "oid": 10447,
-            "underKonceptOid": 28,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 4,
-            "productElementOid": 71,
-            "comparisonTypeOid": 3,
-            "value": "62",
-            "isDefault": false
-         },
-                  {
-            "oid": 10448,
-            "underKonceptOid": 28,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 4,
-            "productElementOid": 71,
-            "comparisonTypeOid": 3,
-            "value": "60",
             "isDefault": false
          },
                   {
@@ -2579,26 +2549,6 @@
             "productElementOid": 94,
             "comparisonTypeOid": 3,
             "value": "21",
-            "isDefault": false
-         },
-                  {
-            "oid": 10484,
-            "underKonceptOid": 28,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 4,
-            "productElementOid": 95,
-            "comparisonTypeOid": 4,
-            "value": "TidspensionUdenGaranti_MK",
-            "isDefault": false
-         },
-                  {
-            "oid": 10485,
-            "underKonceptOid": 28,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 4,
-            "productElementOid": 95,
-            "comparisonTypeOid": 4,
-            "value": "Markedspension_MK",
             "isDefault": false
          },
                   {
@@ -4722,6 +4672,76 @@
             "isDefault": true
          },
                   {
+            "oid": 20369,
+            "underKonceptOid": 28,
+            "unionAgreementOid": 0,
+            "generalAgreementOid": 4,
+            "productElementOid": 39,
+            "comparisonTypeOid": 4,
+            "value": "n",
+            "isDefault": true
+         },
+                  {
+            "oid": 20370,
+            "underKonceptOid": 6,
+            "unionAgreementOid": 0,
+            "generalAgreementOid": 2,
+            "productElementOid": 39,
+            "comparisonTypeOid": 4,
+            "value": "n",
+            "isDefault": true
+         },
+                  {
+            "oid": 20371,
+            "underKonceptOid": 9,
+            "unionAgreementOid": 0,
+            "generalAgreementOid": 2,
+            "productElementOid": 39,
+            "comparisonTypeOid": 4,
+            "value": "n",
+            "isDefault": true
+         },
+                  {
+            "oid": 20372,
+            "underKonceptOid": 7,
+            "unionAgreementOid": 0,
+            "generalAgreementOid": 1,
+            "productElementOid": 39,
+            "comparisonTypeOid": 4,
+            "value": "n",
+            "isDefault": true
+         },
+                  {
+            "oid": 20373,
+            "underKonceptOid": 12,
+            "unionAgreementOid": 0,
+            "generalAgreementOid": 3,
+            "productElementOid": 39,
+            "comparisonTypeOid": 4,
+            "value": "n",
+            "isDefault": true
+         },
+                  {
+            "oid": 20374,
+            "underKonceptOid": 13,
+            "unionAgreementOid": 0,
+            "generalAgreementOid": 3,
+            "productElementOid": 39,
+            "comparisonTypeOid": 4,
+            "value": "n",
+            "isDefault": true
+         },
+                  {
+            "oid": 20375,
+            "underKonceptOid": 14,
+            "unionAgreementOid": 0,
+            "generalAgreementOid": 3,
+            "productElementOid": 39,
+            "comparisonTypeOid": 4,
+            "value": "n",
+            "isDefault": true
+         },
+                  {
             "oid": 1009,
             "underKonceptOid": 10,
             "unionAgreementOid": 0,
@@ -4732,6 +4752,106 @@
             "isDefault": false
          },
                   {
+            "oid": 20376,
+            "underKonceptOid": 15,
+            "unionAgreementOid": 0,
+            "generalAgreementOid": 3,
+            "productElementOid": 39,
+            "comparisonTypeOid": 4,
+            "value": "n",
+            "isDefault": true
+         },
+                  {
+            "oid": 20377,
+            "underKonceptOid": 8,
+            "unionAgreementOid": 0,
+            "generalAgreementOid": 2,
+            "productElementOid": 39,
+            "comparisonTypeOid": 4,
+            "value": "n",
+            "isDefault": true
+         },
+                  {
+            "oid": 20378,
+            "underKonceptOid": 2,
+            "unionAgreementOid": 0,
+            "generalAgreementOid": 1,
+            "productElementOid": 39,
+            "comparisonTypeOid": 4,
+            "value": "n",
+            "isDefault": true
+         },
+                  {
+            "oid": 20379,
+            "underKonceptOid": 17,
+            "unionAgreementOid": 0,
+            "generalAgreementOid": 4,
+            "productElementOid": 39,
+            "comparisonTypeOid": 4,
+            "value": "n",
+            "isDefault": true
+         },
+                  {
+            "oid": 20380,
+            "underKonceptOid": 18,
+            "unionAgreementOid": 0,
+            "generalAgreementOid": 4,
+            "productElementOid": 39,
+            "comparisonTypeOid": 4,
+            "value": "n",
+            "isDefault": true
+         },
+                  {
+            "oid": 20381,
+            "underKonceptOid": 10,
+            "unionAgreementOid": 0,
+            "generalAgreementOid": 3,
+            "productElementOid": 39,
+            "comparisonTypeOid": 4,
+            "value": "n",
+            "isDefault": true
+         },
+                  {
+            "oid": 20382,
+            "underKonceptOid": 19,
+            "unionAgreementOid": 0,
+            "generalAgreementOid": 4,
+            "productElementOid": 39,
+            "comparisonTypeOid": 4,
+            "value": "n",
+            "isDefault": true
+         },
+                  {
+            "oid": 20383,
+            "underKonceptOid": 21,
+            "unionAgreementOid": 0,
+            "generalAgreementOid": 5,
+            "productElementOid": 39,
+            "comparisonTypeOid": 4,
+            "value": "n",
+            "isDefault": true
+         },
+                  {
+            "oid": 20384,
+            "underKonceptOid": 25,
+            "unionAgreementOid": 0,
+            "generalAgreementOid": 6,
+            "productElementOid": 39,
+            "comparisonTypeOid": 4,
+            "value": "n",
+            "isDefault": true
+         },
+                  {
+            "oid": 20385,
+            "underKonceptOid": 3,
+            "unionAgreementOid": 0,
+            "generalAgreementOid": 1,
+            "productElementOid": 39,
+            "comparisonTypeOid": 4,
+            "value": "n",
+            "isDefault": true
+         },
+                  {
             "oid": 1010,
             "underKonceptOid": 10,
             "unionAgreementOid": 0,
@@ -4740,6 +4860,56 @@
             "comparisonTypeOid": 3,
             "value": "65",
             "isDefault": false
+         },
+                  {
+            "oid": 20386,
+            "underKonceptOid": 27,
+            "unionAgreementOid": 0,
+            "generalAgreementOid": 4,
+            "productElementOid": 39,
+            "comparisonTypeOid": 4,
+            "value": "n",
+            "isDefault": true
+         },
+                  {
+            "oid": 20387,
+            "underKonceptOid": 26,
+            "unionAgreementOid": 0,
+            "generalAgreementOid": 6,
+            "productElementOid": 39,
+            "comparisonTypeOid": 4,
+            "value": "n",
+            "isDefault": true
+         },
+                  {
+            "oid": 20388,
+            "underKonceptOid": 23,
+            "unionAgreementOid": 0,
+            "generalAgreementOid": 6,
+            "productElementOid": 39,
+            "comparisonTypeOid": 4,
+            "value": "n",
+            "isDefault": true
+         },
+                  {
+            "oid": 20389,
+            "underKonceptOid": 24,
+            "unionAgreementOid": 0,
+            "generalAgreementOid": 6,
+            "productElementOid": 39,
+            "comparisonTypeOid": 4,
+            "value": "n",
+            "isDefault": true
+         },
+                  {
+            "oid": 20390,
+            "underKonceptOid": 5,
+            "unionAgreementOid": 0,
+            "generalAgreementOid": 2,
+            "productElementOid": 39,
+            "comparisonTypeOid": 4,
+            "value": "n",
+            "isDefault": true
          },
                   {
             "oid": 1011,
@@ -7209,7 +7379,7 @@
             "productElementOid": 39,
             "comparisonTypeOid": 4,
             "value": "j",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 1240,
@@ -16349,7 +16519,7 @@
             "productElementOid": 39,
             "comparisonTypeOid": 4,
             "value": "j",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 2278,
@@ -18049,7 +18219,7 @@
             "productElementOid": 39,
             "comparisonTypeOid": 4,
             "value": "j",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 1628,
@@ -18539,7 +18709,7 @@
             "productElementOid": 39,
             "comparisonTypeOid": 4,
             "value": "j",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 1759,
@@ -18549,7 +18719,7 @@
             "productElementOid": 39,
             "comparisonTypeOid": 4,
             "value": "j",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 1760,
@@ -18559,7 +18729,7 @@
             "productElementOid": 39,
             "comparisonTypeOid": 4,
             "value": "j",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 1761,
@@ -18569,7 +18739,7 @@
             "productElementOid": 39,
             "comparisonTypeOid": 4,
             "value": "j",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 1770,
@@ -19769,7 +19939,7 @@
             "productElementOid": 39,
             "comparisonTypeOid": 4,
             "value": "j",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 1940,
@@ -20262,16 +20432,6 @@
             "isDefault": false
          },
                   {
-            "oid": 1993,
-            "underKonceptOid": 12,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 3,
-            "productElementOid": 95,
-            "comparisonTypeOid": 4,
-            "value": "Markedspension_MK",
-            "isDefault": false
-         },
-                  {
             "oid": 1994,
             "underKonceptOid": 12,
             "unionAgreementOid": 0,
@@ -20292,16 +20452,6 @@
             "isDefault": false
          },
                   {
-            "oid": 1996,
-            "underKonceptOid": 13,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 3,
-            "productElementOid": 95,
-            "comparisonTypeOid": 4,
-            "value": "Markedspension_MK",
-            "isDefault": false
-         },
-                  {
             "oid": 1997,
             "underKonceptOid": 13,
             "unionAgreementOid": 0,
@@ -20319,16 +20469,6 @@
             "productElementOid": 95,
             "comparisonTypeOid": 4,
             "value": "TidspensionMedGaranti_MK",
-            "isDefault": false
-         },
-                  {
-            "oid": 1999,
-            "underKonceptOid": 14,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 3,
-            "productElementOid": 95,
-            "comparisonTypeOid": 4,
-            "value": "Markedspension_MK",
             "isDefault": false
          },
                   {
@@ -20369,16 +20509,6 @@
             "productElementOid": 258,
             "comparisonTypeOid": 4,
             "value": "1500000",
-            "isDefault": false
-         },
-                  {
-            "oid": 2002,
-            "underKonceptOid": 15,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 3,
-            "productElementOid": 95,
-            "comparisonTypeOid": 4,
-            "value": "Markedspension_MK",
             "isDefault": false
          },
                   {
@@ -21809,7 +21939,7 @@
             "productElementOid": 39,
             "comparisonTypeOid": 4,
             "value": "j",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 2100,
@@ -26862,156 +26992,6 @@
             "isDefault": false
          },
                   {
-            "oid": 3484,
-            "underKonceptOid": 18,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 4,
-            "productElementOid": 95,
-            "comparisonTypeOid": 4,
-            "value": "TidspensionUdenGaranti_MK",
-            "isDefault": false
-         },
-                  {
-            "oid": 3485,
-            "underKonceptOid": 19,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 4,
-            "productElementOid": 95,
-            "comparisonTypeOid": 4,
-            "value": "TidspensionUdenGaranti_MK",
-            "isDefault": false
-         },
-                  {
-            "oid": 3486,
-            "underKonceptOid": 16,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 4,
-            "productElementOid": 95,
-            "comparisonTypeOid": 4,
-            "value": "TidspensionUdenGaranti_MK",
-            "isDefault": false
-         },
-                  {
-            "oid": 3487,
-            "underKonceptOid": 17,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 4,
-            "productElementOid": 95,
-            "comparisonTypeOid": 4,
-            "value": "TidspensionUdenGaranti_MK",
-            "isDefault": false
-         },
-                  {
-            "oid": 3488,
-            "underKonceptOid": 15,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 3,
-            "productElementOid": 95,
-            "comparisonTypeOid": 4,
-            "value": "TidspensionUdenGaranti_MK",
-            "isDefault": false
-         },
-                  {
-            "oid": 3489,
-            "underKonceptOid": 2,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 1,
-            "productElementOid": 95,
-            "comparisonTypeOid": 4,
-            "value": "TidspensionUdenGaranti_MK",
-            "isDefault": false
-         },
-                  {
-            "oid": 3490,
-            "underKonceptOid": 3,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 1,
-            "productElementOid": 95,
-            "comparisonTypeOid": 4,
-            "value": "TidspensionUdenGaranti_MK",
-            "isDefault": false
-         },
-                  {
-            "oid": 3491,
-            "underKonceptOid": 5,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 2,
-            "productElementOid": 95,
-            "comparisonTypeOid": 4,
-            "value": "TidspensionUdenGaranti_MK",
-            "isDefault": false
-         },
-                  {
-            "oid": 3492,
-            "underKonceptOid": 6,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 2,
-            "productElementOid": 95,
-            "comparisonTypeOid": 4,
-            "value": "TidspensionUdenGaranti_MK",
-            "isDefault": false
-         },
-                  {
-            "oid": 3493,
-            "underKonceptOid": 7,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 1,
-            "productElementOid": 95,
-            "comparisonTypeOid": 4,
-            "value": "TidspensionUdenGaranti_MK",
-            "isDefault": false
-         },
-                  {
-            "oid": 3494,
-            "underKonceptOid": 8,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 2,
-            "productElementOid": 95,
-            "comparisonTypeOid": 4,
-            "value": "TidspensionUdenGaranti_MK",
-            "isDefault": false
-         },
-                  {
-            "oid": 3495,
-            "underKonceptOid": 9,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 2,
-            "productElementOid": 95,
-            "comparisonTypeOid": 4,
-            "value": "TidspensionUdenGaranti_MK",
-            "isDefault": false
-         },
-                  {
-            "oid": 3496,
-            "underKonceptOid": 12,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 3,
-            "productElementOid": 95,
-            "comparisonTypeOid": 4,
-            "value": "TidspensionUdenGaranti_MK",
-            "isDefault": false
-         },
-                  {
-            "oid": 3497,
-            "underKonceptOid": 13,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 3,
-            "productElementOid": 95,
-            "comparisonTypeOid": 4,
-            "value": "TidspensionUdenGaranti_MK",
-            "isDefault": false
-         },
-                  {
-            "oid": 3498,
-            "underKonceptOid": 14,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 3,
-            "productElementOid": 95,
-            "comparisonTypeOid": 4,
-            "value": "TidspensionUdenGaranti_MK",
-            "isDefault": false
-         },
-                  {
             "oid": 3499,
             "underKonceptOid": 14,
             "unionAgreementOid": 0,
@@ -29772,26 +29752,6 @@
             "isDefault": true
          },
                   {
-            "oid": 2438,
-            "underKonceptOid": 17,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 4,
-            "productElementOid": 71,
-            "comparisonTypeOid": 3,
-            "value": "60",
-            "isDefault": false
-         },
-                  {
-            "oid": 2439,
-            "underKonceptOid": 17,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 4,
-            "productElementOid": 71,
-            "comparisonTypeOid": 3,
-            "value": "62",
-            "isDefault": false
-         },
-                  {
             "oid": 2440,
             "underKonceptOid": 17,
             "unionAgreementOid": 0,
@@ -29819,7 +29779,7 @@
             "productElementOid": 39,
             "comparisonTypeOid": 4,
             "value": "j",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 2451,
@@ -30160,16 +30120,6 @@
             "comparisonTypeOid": 3,
             "value": "1",
             "isDefault": true
-         },
-                  {
-            "oid": 2498,
-            "underKonceptOid": 17,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 4,
-            "productElementOid": 95,
-            "comparisonTypeOid": 4,
-            "value": "Markedspension_MK",
-            "isDefault": false
          },
                   {
             "oid": 2499,
@@ -30782,26 +30732,6 @@
             "isDefault": true
          },
                   {
-            "oid": 2590,
-            "underKonceptOid": 18,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 4,
-            "productElementOid": 71,
-            "comparisonTypeOid": 3,
-            "value": "60",
-            "isDefault": false
-         },
-                  {
-            "oid": 2591,
-            "underKonceptOid": 18,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 4,
-            "productElementOid": 71,
-            "comparisonTypeOid": 3,
-            "value": "62",
-            "isDefault": false
-         },
-                  {
             "oid": 2592,
             "underKonceptOid": 18,
             "unionAgreementOid": 0,
@@ -30829,7 +30759,7 @@
             "productElementOid": 39,
             "comparisonTypeOid": 4,
             "value": "j",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 2603,
@@ -31172,16 +31102,6 @@
             "isDefault": true
          },
                   {
-            "oid": 2650,
-            "underKonceptOid": 18,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 4,
-            "productElementOid": 95,
-            "comparisonTypeOid": 4,
-            "value": "Markedspension_MK",
-            "isDefault": false
-         },
-                  {
             "oid": 2651,
             "underKonceptOid": 18,
             "unionAgreementOid": 0,
@@ -31329,7 +31249,7 @@
             "productElementOid": 39,
             "comparisonTypeOid": 4,
             "value": "j",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 2670,
@@ -31822,26 +31742,6 @@
             "isDefault": true
          },
                   {
-            "oid": 2742,
-            "underKonceptOid": 19,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 4,
-            "productElementOid": 71,
-            "comparisonTypeOid": 3,
-            "value": "60",
-            "isDefault": false
-         },
-                  {
-            "oid": 2743,
-            "underKonceptOid": 19,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 4,
-            "productElementOid": 71,
-            "comparisonTypeOid": 3,
-            "value": "62",
-            "isDefault": false
-         },
-                  {
             "oid": 2744,
             "underKonceptOid": 19,
             "unionAgreementOid": 0,
@@ -31869,7 +31769,7 @@
             "productElementOid": 39,
             "comparisonTypeOid": 4,
             "value": "j",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 2755,
@@ -32210,16 +32110,6 @@
             "comparisonTypeOid": 3,
             "value": "1",
             "isDefault": true
-         },
-                  {
-            "oid": 2802,
-            "underKonceptOid": 19,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 4,
-            "productElementOid": 95,
-            "comparisonTypeOid": 4,
-            "value": "Markedspension_MK",
-            "isDefault": false
          },
                   {
             "oid": 2803,
@@ -33709,16 +33599,6 @@
             "productElementOid": 237,
             "comparisonTypeOid": 3,
             "value": "12",
-            "isDefault": false
-         },
-                  {
-            "oid": 506,
-            "underKonceptOid": 2,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 1,
-            "productElementOid": 95,
-            "comparisonTypeOid": 4,
-            "value": "Markedspension_MK",
             "isDefault": false
          },
                   {
@@ -35939,7 +35819,7 @@
             "productElementOid": 39,
             "comparisonTypeOid": 4,
             "value": "j",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 4295,
@@ -36402,16 +36282,6 @@
             "isDefault": false
          },
                   {
-            "oid": 4356,
-            "underKonceptOid": 21,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 5,
-            "productElementOid": 95,
-            "comparisonTypeOid": 4,
-            "value": "Markedspension_MK",
-            "isDefault": false
-         },
-                  {
             "oid": 4357,
             "underKonceptOid": 21,
             "unionAgreementOid": 0,
@@ -36420,16 +36290,6 @@
             "comparisonTypeOid": 4,
             "value": "Traditionel_MK",
             "isDefault": true
-         },
-                  {
-            "oid": 4358,
-            "underKonceptOid": 21,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 5,
-            "productElementOid": 95,
-            "comparisonTypeOid": 4,
-            "value": "TidspensionUdenGaranti_MK",
-            "isDefault": false
          },
                   {
             "oid": 4359,
@@ -42829,7 +42689,7 @@
             "productElementOid": 39,
             "comparisonTypeOid": 4,
             "value": "j",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 5733,
@@ -43282,16 +43142,6 @@
             "isDefault": false
          },
                   {
-            "oid": 5787,
-            "underKonceptOid": 25,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 6,
-            "productElementOid": 95,
-            "comparisonTypeOid": 4,
-            "value": "Markedspension_MK",
-            "isDefault": false
-         },
-                  {
             "oid": 5788,
             "underKonceptOid": 25,
             "unionAgreementOid": 0,
@@ -43429,7 +43279,7 @@
             "productElementOid": 39,
             "comparisonTypeOid": 4,
             "value": "j",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 580,
@@ -43649,16 +43499,6 @@
             "productElementOid": 152,
             "comparisonTypeOid": 3,
             "value": "1",
-            "isDefault": false
-         },
-                  {
-            "oid": 582,
-            "underKonceptOid": 3,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 1,
-            "productElementOid": 95,
-            "comparisonTypeOid": 4,
-            "value": "Markedspension_MK",
             "isDefault": false
          },
                   {
@@ -44399,7 +44239,7 @@
             "productElementOid": 39,
             "comparisonTypeOid": 4,
             "value": "j",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 6384,
@@ -44679,26 +44519,6 @@
             "productElementOid": 70,
             "comparisonTypeOid": 3,
             "value": "67",
-            "isDefault": false
-         },
-                  {
-            "oid": 6422,
-            "underKonceptOid": 27,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 4,
-            "productElementOid": 71,
-            "comparisonTypeOid": 3,
-            "value": "62",
-            "isDefault": false
-         },
-                  {
-            "oid": 6423,
-            "underKonceptOid": 27,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 4,
-            "productElementOid": 71,
-            "comparisonTypeOid": 3,
-            "value": "60",
             "isDefault": false
          },
                   {
@@ -45082,16 +44902,6 @@
             "isDefault": false
          },
                   {
-            "oid": 6459,
-            "underKonceptOid": 27,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 4,
-            "productElementOid": 95,
-            "comparisonTypeOid": 4,
-            "value": "TidspensionUdenGaranti_MK",
-            "isDefault": false
-         },
-                  {
             "oid": 646,
             "underKonceptOid": 5,
             "unionAgreementOid": 0,
@@ -45100,16 +44910,6 @@
             "comparisonTypeOid": 3,
             "value": "Gage",
             "isDefault": true
-         },
-                  {
-            "oid": 6460,
-            "underKonceptOid": 27,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 4,
-            "productElementOid": 95,
-            "comparisonTypeOid": 4,
-            "value": "Markedspension_MK",
-            "isDefault": false
          },
                   {
             "oid": 6461,
@@ -45609,16 +45409,6 @@
             "productElementOid": 210,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": false
-         },
-                  {
-            "oid": 5874,
-            "underKonceptOid": 25,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 6,
-            "productElementOid": 95,
-            "comparisonTypeOid": 4,
-            "value": "TidspensionUdenGaranti_MK",
             "isDefault": false
          },
                   {
@@ -46289,7 +46079,7 @@
             "productElementOid": 39,
             "comparisonTypeOid": 4,
             "value": "j",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 5959,
@@ -46749,16 +46539,6 @@
             "productElementOid": 94,
             "comparisonTypeOid": 3,
             "value": "21",
-            "isDefault": false
-         },
-                  {
-            "oid": 6011,
-            "underKonceptOid": 26,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 6,
-            "productElementOid": 95,
-            "comparisonTypeOid": 4,
-            "value": "Markedspension_MK",
             "isDefault": false
          },
                   {
@@ -47529,16 +47309,6 @@
             "productElementOid": 210,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": false
-         },
-                  {
-            "oid": 6099,
-            "underKonceptOid": 26,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 6,
-            "productElementOid": 95,
-            "comparisonTypeOid": 4,
-            "value": "TidspensionUdenGaranti_MK",
             "isDefault": false
          },
                   {
@@ -49119,7 +48889,7 @@
             "productElementOid": 39,
             "comparisonTypeOid": 4,
             "value": "j",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 528,
@@ -49549,16 +49319,6 @@
             "productElementOid": 149,
             "comparisonTypeOid": 3,
             "value": "Alder",
-            "isDefault": false
-         },
-                  {
-            "oid": 5330,
-            "underKonceptOid": 23,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 6,
-            "productElementOid": 95,
-            "comparisonTypeOid": 4,
-            "value": "Markedspension_MK",
             "isDefault": false
          },
                   {
@@ -50302,16 +50062,6 @@
             "isDefault": false
          },
                   {
-            "oid": 5416,
-            "underKonceptOid": 23,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 6,
-            "productElementOid": 95,
-            "comparisonTypeOid": 4,
-            "value": "TidspensionUdenGaranti_MK",
-            "isDefault": false
-         },
-                  {
             "oid": 5417,
             "underKonceptOid": 23,
             "unionAgreementOid": 0,
@@ -50999,7 +50749,7 @@
             "productElementOid": 39,
             "comparisonTypeOid": 4,
             "value": "j",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 5505,
@@ -51519,16 +51269,6 @@
             "productElementOid": 94,
             "comparisonTypeOid": 3,
             "value": "21",
-            "isDefault": false
-         },
-                  {
-            "oid": 5563,
-            "underKonceptOid": 24,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 6,
-            "productElementOid": 95,
-            "comparisonTypeOid": 4,
-            "value": "Markedspension_MK",
             "isDefault": false
          },
                   {
@@ -52289,16 +52029,6 @@
             "productElementOid": 74,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": false
-         },
-                  {
-            "oid": 5650,
-            "underKonceptOid": 24,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 6,
-            "productElementOid": 95,
-            "comparisonTypeOid": 4,
-            "value": "TidspensionUdenGaranti_MK",
             "isDefault": false
          },
                   {
@@ -53069,16 +52799,6 @@
             "productElementOid": 215,
             "comparisonTypeOid": 1,
             "value": "0",
-            "isDefault": false
-         },
-                  {
-            "oid": 658,
-            "underKonceptOid": 5,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 2,
-            "productElementOid": 95,
-            "comparisonTypeOid": 4,
-            "value": "Markedspension_MK",
             "isDefault": false
          },
                   {
@@ -54582,16 +54302,6 @@
             "isDefault": false
          },
                   {
-            "oid": 734,
-            "underKonceptOid": 6,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 2,
-            "productElementOid": 95,
-            "comparisonTypeOid": 4,
-            "value": "Markedspension_MK",
-            "isDefault": false
-         },
-                  {
             "oid": 735,
             "underKonceptOid": 6,
             "unionAgreementOid": 0,
@@ -55259,16 +54969,6 @@
             "productElementOid": 94,
             "comparisonTypeOid": 3,
             "value": "21",
-            "isDefault": false
-         },
-                  {
-            "oid": 810,
-            "underKonceptOid": 7,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 1,
-            "productElementOid": 95,
-            "comparisonTypeOid": 4,
-            "value": "Markedspension_MK",
             "isDefault": false
          },
                   {
@@ -55972,16 +55672,6 @@
             "isDefault": false
          },
                   {
-            "oid": 886,
-            "underKonceptOid": 8,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 2,
-            "productElementOid": 95,
-            "comparisonTypeOid": 4,
-            "value": "Markedspension_MK",
-            "isDefault": false
-         },
-                  {
             "oid": 887,
             "underKonceptOid": 8,
             "unionAgreementOid": 0,
@@ -56229,7 +55919,7 @@
             "productElementOid": 39,
             "comparisonTypeOid": 4,
             "value": "j",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 910,
@@ -56722,16 +56412,6 @@
             "isDefault": false
          },
                   {
-            "oid": 962,
-            "underKonceptOid": 9,
-            "unionAgreementOid": 0,
-            "generalAgreementOid": 2,
-            "productElementOid": 95,
-            "comparisonTypeOid": 4,
-            "value": "Markedspension_MK",
-            "isDefault": false
-         },
-                  {
             "oid": 963,
             "underKonceptOid": 9,
             "unionAgreementOid": 0,
@@ -57090,6 +56770,36 @@
             "comparisonTypeOid": 3,
             "value": "0",
             "isDefault": false
+         },
+                  {
+            "oid": 20435,
+            "underKonceptOid": 29,
+            "unionAgreementOid": 0,
+            "generalAgreementOid": 7,
+            "productElementOid": 71,
+            "comparisonTypeOid": 3,
+            "value": "67",
+            "isDefault": true
+         },
+                  {
+            "oid": 20436,
+            "underKonceptOid": 30,
+            "unionAgreementOid": 0,
+            "generalAgreementOid": 7,
+            "productElementOid": 71,
+            "comparisonTypeOid": 3,
+            "value": "67",
+            "isDefault": true
+         },
+                  {
+            "oid": 20437,
+            "underKonceptOid": 31,
+            "unionAgreementOid": 0,
+            "generalAgreementOid": 7,
+            "productElementOid": 71,
+            "comparisonTypeOid": 3,
+            "value": "67",
+            "isDefault": true
          }
       ],
       "products":       [
