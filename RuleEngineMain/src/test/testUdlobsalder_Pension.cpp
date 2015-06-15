@@ -42,7 +42,7 @@ protected:
 TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, UdloebsalderPension_POSITIVE) {
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
 	auto options = re.getOptionsList(kUdlobsalder_Pension);
-	ta.setValue(kUdlobsalder_Pension, (long) 60 );
+	ta.setValue(kUdlobsalder_Pension, (long) 67 );
 
 	auto r = re.validate(ta, (unsigned short) kUdlobsalder_Pension);
 	EXPECT_EQ(true, r.isAllOk());
