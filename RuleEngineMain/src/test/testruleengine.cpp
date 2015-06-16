@@ -26,10 +26,11 @@ protected:
     virtual void SetUp() {        
         re = RuleEngine();
         re.initConstants(get_file_contents("basedata-ruleconstants.json"));
+        re.initKoncepts(get_file_contents("koncepts.json"));
         re.parseRuleCatalogueJSON(get_file_contents("rule-catalogue.json"));
 
-        KonceptInfo ki {27, { {11, "true"} }};
-        re.initContext(ki);
+        KonceptInfo ki {4, 20, 0, { {11, "true"} }};
+        re.initContext(ki, OUTSIDE);
     }
 
     RuleEngine re;

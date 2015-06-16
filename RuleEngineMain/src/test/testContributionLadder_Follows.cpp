@@ -24,14 +24,15 @@ protected:
     	try {
 			re = RuleEngine();
 			re.initConstants(get_file_contents("basedata-ruleconstants.json"));
+	        re.initKoncepts(get_file_contents("koncepts.json"));
 			re.parseRuleCatalogueJSON(get_file_contents("rule-catalogue.json"));
-			KonceptInfo ki {17, // UnderkonceptOid:OSV 25-49
+			KonceptInfo ki {4, 30, 0, // UnderkonceptOid:OSV 25-49
 				{ { 1, "true"}, // Solidarisk faellestarif
 				  { 6, "true"}, // SEB Firmapensionspulje
 				  {11, "true"}, // Parameter-Basis
 				  {15, "true"} // FG-Spaend
 				} };
-			re.initContext(ki);
+			re.initContext(ki, FOLLOWS);
 			std::map<unsigned short, std::vector<sbx::ContributionStep>> uaSteps{};
 			uaSteps.insert( { 6, { {0, 2, 3} } } ) ;
 			re.initUAContributionSteps( uaSteps );

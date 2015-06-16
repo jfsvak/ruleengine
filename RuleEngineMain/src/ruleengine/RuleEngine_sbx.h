@@ -23,6 +23,7 @@
 
 #include "Constant_sbx.h"
 #include "ContributionStep.h"
+#include "Koncept_sbx.h"
 #include "KonceptInfo_sbx.h"
 #include "ProductElement_sbx.h"
 #include "Rule.h"
@@ -44,12 +45,11 @@ public:
 	RuleEngine(const sbx::RuleEngine&); // copy constructor. Handle proper copy of pointers in map
 	virtual ~RuleEngine(); // Handler proper delete of pointers
 
-	void initConstants(const std::vector<Constant>& globalConstants);
 	void initConstants(const std::string& jsonContents);
-	void initContext(const sbx::KonceptInfo& ki);
+	void initContext(const sbx::KonceptInfo& ki, sbx::UnionAgreementRelationship, sbx::unionagreement_oid = sbx::undefined_oid);
 	void initUAContributionSteps(const std::map<unsigned short, std::vector<sbx::ContributionStep>>&);
-
 	void parseRuleCatalogueJSON(const std::string& jsonContents);
+	void initKoncepts(const std::string& jsonContents);
 
 	std::vector<std::string> getOptions(sbx::ProductElementOid productElement);
 	std::vector<std::shared_ptr<Constant>> getOptionsList(sbx::ProductElementOid productElement);
@@ -64,6 +64,8 @@ public:
 
 	sbx::RuleCatalogue& getRuleCatalogue();
 	const sbx::RuleConstantContainer& getContainer() const;
+
+	const sbx::Koncept& getKoncept(sbx::koncept_oid);
 
 	// -- util methods for printing
 	void printRuleCatalogue(sbx::RuleCatalogue&, int depth);
@@ -101,6 +103,8 @@ private:
 	// -- initialisation methods
 	void _initRuleCatalogue(sbx::RuleCatalogue*, const Json::Value& ruleCatalogues);
 	void _initParserWithProductElementConstants(unsigned short peOid);
+	void _initSubkoncepts(const Json::Value& subkonceptsJSON, sbx::Koncept&);
+	void _initAllowedParameters(const Json::Value& allowedParametersJSON, sbx::Subkoncept&);
 	template <typename T> void _defineVariable(const std::string& name, const T& value);
 	void _clearContext();
 
@@ -150,6 +154,7 @@ private:
 	void _printExpressionVariables(mup::ParserX& p);
 	void _printConstantsInParser(mup::ParserX& p);
 	std::string _indent(unsigned short depth);
+
 };
 
 } // sbx namespace end

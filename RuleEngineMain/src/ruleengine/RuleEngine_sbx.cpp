@@ -57,11 +57,6 @@ sbx::RuleEngine::RuleEngine(const sbx::RuleEngine& other)
 	// TODO !!!!! proper copy/cloning of pointers in map
 }
 
-void RuleEngine::initConstants(const std::vector<sbx::Constant> &allConstants)
-{
-	_container.initGlobalConstants(allConstants);
-}
-
 void RuleEngine::initConstants(const std::string& jsonContents)
 {
 	_container.initConstants(jsonContents);
@@ -93,6 +88,11 @@ void RuleEngine::parseRuleCatalogueJSON(const std::string& jsonContents)
 		cerr << "Could not parse json string with RuleCatalogues" << endl;
 		throw invalid_argument(reader.getFormattedErrorMessages());
 	}
+}
+
+void RuleEngine::initKoncepts(const std::string& jsonContents)
+{
+	_container.initKoncepts(jsonContents);
 }
 
 /**
@@ -181,16 +181,25 @@ void RuleEngine::_initRuleCatalogue(sbx::RuleCatalogue* ruleCatalogue, const Jso
 }
 
 /**
- * Initialises local context that is used for following operations on RuleEngine
+ * Initialises local context that is used for subsequent operations on RuleEngine
  */
-void RuleEngine::initContext(const sbx::KonceptInfo& ki)
+void RuleEngine::initContext(const sbx::KonceptInfo& ki, sbx::UnionAgreementRelationship uar, sbx::unionagreement_oid uaOid)
 {
 	// first clear any previous context
 	this->_clearContext();
 
-	_ki = ki;
-	_container.initContext(ki.getUnderkonceptOid(), 0);
+	if (_container.getKoncepts().find(ki.getKonceptOid()) == _container.getKoncepts().cend()) {
+		stringstream ss {};
+		ss << ki.getKonceptOid();
+		throw domain_error("No valid koncept with oid [" + ss.str() + "]");
+	}
 
+    Koncept k = _container.getKoncepts().at(ki.getKonceptOid());
+   	Subkoncept sk = k.getSubkoncept(ki.getNumberOfEmployees());
+
+	_container.initContext(sk, uar, uaOid);
+
+	_ki = ki;
 	// init ParserX with constants for context by going through each parameter and get the product elements for that parameter
 	for (auto& parameterIt : ki.getParameterValues()) {
 		const std::set<unsigned short>& peOids = _container.getProductElementOids(parameterIt.first);
@@ -949,11 +958,12 @@ mup::Value RuleEngine::_execute(const std::string& expr, const std::string& rule
  */
 sbx::ValidationResults RuleEngine::validate(const sbx::TA& ta, bool full)
 {
-    if (RuleEngine::_printDebugAtValidation) printVariablesInParser();
 
 	_loadParser(ta);
 	_refreshParserValues = false;
 	sbx::ValidationResults valResults {};
+
+    if (RuleEngine::_printDebugAtValidation) printVariablesInParser();
 
 	try {
 		std::set<unsigned short, less<unsigned short>> allowedProductElementOids {_getAllowedPEOids()};
@@ -1368,7 +1378,15 @@ std::string RuleEngine::_GUI_NAME(unsigned short peOid)
 
 std::string RuleEngine::_indent(unsigned short depth) { return std::string(depth, ' '); }
 
-sbx::RuleEngine::~RuleEngine()
+const Koncept& sbx::RuleEngine::getKoncept(sbx::koncept_oid konceptOid)
+{
+	if (_container.getKoncepts().find(konceptOid) == _container.getKoncepts().cend())
+		throw domain_error("Koncepts not initialised");
+
+	return _container.getKoncepts().at(konceptOid);
+}
+
+RuleEngine::~RuleEngine()
 {
 //	for (auto it = _peOidToRules.end(); it != _peOidToRules.begin(); it--) {
 //		delete it->second;
@@ -1380,5 +1398,6 @@ sbx::RuleEngine::~RuleEngine()
 //		_mupValueMap.erase(it->first);
 //	}
 }
+
 
 } // sbx namespace end

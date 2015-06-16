@@ -11,42 +11,40 @@
 #include <map>
 #include <string>
 
+#include "Utils.h"
+
 namespace sbx {
 
 class KonceptInfo {
 public:
 	KonceptInfo();
-	explicit KonceptInfo(unsigned short underkonceptOid);
-	KonceptInfo(unsigned short underkonceptOid, const std::map<unsigned short, std::string>& parameterValues);
+	KonceptInfo(sbx::koncept_oid konceptOid, sbx::number_of_employees numberOfEmployees, sbx::number_of_employees numberOfRiskClassC, const std::map<sbx::parameter_oid, std::string>& parameterValues);
 
-	void addParameterValue(unsigned short parameterOid, std::string value);
-	void addParameterValue(unsigned short parameterOid, bool selected);
-	unsigned short getUnderkonceptOid() const;
+	void addParameterValue(sbx::parameter_oid parameterOid, std::string value);
+	void addParameterValue(sbx::parameter_oid parameterOid, bool selected);
 	const std::map<unsigned short, std::string>& getParameterValues() const;
 	unsigned short getNumberOfEmployees() const;
 	unsigned short getNumberOfRiskGroupC() const;
-	bool isParameterSelected(unsigned short parameterOid) const;
+	sbx::koncept_oid getKonceptOid() const;
+	bool isParameterSelected(sbx::parameter_oid parameterOid) const;
 
 	virtual ~KonceptInfo();
 private:
 	// Number of employees in this koncept
-	unsigned short _numberOfEmployees;
+	sbx::number_of_employees _numberOfEmployees;
 
 	// Number of employees in the risk group C
-	unsigned short _numberOfRiskGroupC;
-
-	// oid from basedata for subkoncept
-	unsigned short _underkonceptOid;
+	sbx::number_of_employees _numberOfRiskGroupC;
 
 	// oid from basedata for koncept
-	unsigned short _konceptOid;
+	sbx::koncept_oid _konceptOid;
 
 	/**
 	 *  map of parameter oid to value (string)
 	 *  first: parameterOid
 	 *  second: value
 	 */
-	std::map<unsigned short, std::string> _parameterValues;
+	std::map<sbx::parameter_oid, std::string> _parameterValues;
 };
 
 } /* namespace sbx */

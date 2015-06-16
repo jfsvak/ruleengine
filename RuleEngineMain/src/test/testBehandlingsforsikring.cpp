@@ -25,15 +25,16 @@ protected:
     	RuleEngine::_printDebug = true;
     	re = RuleEngine();
         re.initConstants(get_file_contents("basedata-ruleconstants.json"));
+        re.initKoncepts(get_file_contents("koncepts.json"));
         re.parseRuleCatalogueJSON(get_file_contents("rule-catalogue.json"));
 
-        KonceptInfo ki {17, // UnderkonceptOid:OSV 25-49
+        KonceptInfo ki {4, 30, 0, // UnderkonceptOid:OSV 25-49
         	{ {11, "true"}, // Parameter-Basis
         	  {1, "true"}, // Solidarisk faellestarif
 			  {15, "true"}, // FG span
 			  {6, "true"} // SEB Firmapensionspulje
         	} };
-        re.initContext(ki);
+        re.initContext(ki, OUTSIDE);
     }
 
     RuleEngine re;

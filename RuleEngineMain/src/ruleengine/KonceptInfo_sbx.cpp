@@ -10,57 +10,51 @@
 namespace sbx {
 
 KonceptInfo::KonceptInfo()
-		: _underkonceptOid {0},
+		: _konceptOid {undefined_oid},
 		  _numberOfEmployees {0},
 		  _numberOfRiskGroupC {0}
 {}
 
-KonceptInfo::KonceptInfo(unsigned short underkonceptOid)
-		: _underkonceptOid {underkonceptOid},
-		  _numberOfEmployees {0},
-		  _numberOfRiskGroupC {0}
-{}
-
-KonceptInfo::KonceptInfo(unsigned short underkonceptOid, const std::map<unsigned short, std::string>& parameterValues)
-		: _underkonceptOid {underkonceptOid},
-		  _numberOfEmployees {0},
-		  _numberOfRiskGroupC {0},
+KonceptInfo::KonceptInfo(sbx::koncept_oid konceptOid, sbx::number_of_employees numberOfEmployees, sbx::number_of_employees numberOfRiskClassC, const std::map<unsigned short, std::string>& parameterValues)
+		: _konceptOid {konceptOid},
+		  _numberOfEmployees {numberOfEmployees},
+		  _numberOfRiskGroupC {numberOfRiskClassC},
 		  _parameterValues {parameterValues}
 {}
 
-void KonceptInfo::addParameterValue(unsigned short parameterOid, std::string value)
+void KonceptInfo::addParameterValue(sbx::parameter_oid parameterOid, std::string value)
 {
 	_parameterValues.insert( {parameterOid, value} );
 }
 
-unsigned short KonceptInfo::getUnderkonceptOid() const
-{
-	return _underkonceptOid;
-}
-
-const std::map<unsigned short, std::string>& KonceptInfo::getParameterValues() const
+const std::map<sbx::parameter_oid, std::string>& KonceptInfo::getParameterValues() const
 {
 	return _parameterValues;
 }
 
-bool KonceptInfo::isParameterSelected(unsigned short parameterOid) const
+bool KonceptInfo::isParameterSelected(sbx::parameter_oid parameterOid) const
 {
 	return (_parameterValues.find(parameterOid) != _parameterValues.cend());
 }
 
-void sbx::KonceptInfo::addParameterValue(unsigned short parameterOid, bool selected)
+void sbx::KonceptInfo::addParameterValue(sbx::parameter_oid parameterOid, bool selected)
 {
 	_parameterValues.insert( {parameterOid, (selected) ? "true" : "false"});
 }
 
-unsigned short sbx::KonceptInfo::getNumberOfEmployees() const
+sbx::number_of_employees sbx::KonceptInfo::getNumberOfEmployees() const
 {
 	return _numberOfEmployees;
 }
 
-unsigned short sbx::KonceptInfo::getNumberOfRiskGroupC() const
+sbx::number_of_employees sbx::KonceptInfo::getNumberOfRiskGroupC() const
 {
 	return _numberOfRiskGroupC;
+}
+
+sbx::koncept_oid KonceptInfo::getKonceptOid() const
+{
+	return _konceptOid;
 }
 
 KonceptInfo::~KonceptInfo() { }

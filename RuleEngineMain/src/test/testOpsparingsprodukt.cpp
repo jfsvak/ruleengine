@@ -18,19 +18,20 @@
 using namespace std;
 using namespace sbx;
 
-class RuleEngine_CONTEXT_KI_OSV_25_50 : public ::testing::Test  {
+class Opsparingsproduct_RuleEngine_CONTEXT_KI_OSV_25_50 : public ::testing::Test  {
 protected:
     virtual void SetUp() {
         re = RuleEngine();
         re.initConstants(get_file_contents("basedata-ruleconstants.json"));
+        re.initKoncepts(get_file_contents("koncepts.json"));
         re.parseRuleCatalogueJSON(get_file_contents("rule-catalogue.json"));
 
-        KonceptInfo ki {17, // UnderkonceptOid:OSV 25-49
+        KonceptInfo ki {4, 30, 0, // UnderkonceptOid:OSV 25-49
         	{ {11, "true"}, // Parameter-Basis
         	  {1, "true"}, // Solidarisk faellestarif
 			  {6, "true"} // SEB Firmapensionspulje
         	} };
-        re.initContext(ki);
+        re.initContext(ki, OUTSIDE);
     }
 
     RuleEngine re;
@@ -39,7 +40,7 @@ protected:
 
 // Test Opsparingsprodukter - PE(72, 73, 74, 75, 201)-P(60)
 // Allowed values: true false
-TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, Opsparingsprodukt_ALL_SELECTED_POSITIVE) {
+TEST_F(Opsparingsproduct_RuleEngine_CONTEXT_KI_OSV_25_50, Opsparingsprodukt_ALL_SELECTED_POSITIVE) {
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
 	ta.setValue(kMarkedspension_MK, true )
 			.setValue(kTraditionel_MK, true)
@@ -54,7 +55,7 @@ TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, Opsparingsprodukt_ALL_SELECTED_POSITIVE)
 
 // Test Opsparingsprodukter - PE(72, 73, 74, 75, 201)-P(60)
 // Allowed values: true false
-TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, Opsparingsprodukt_SOME_SELECTED_POSITIVE) {
+TEST_F(Opsparingsproduct_RuleEngine_CONTEXT_KI_OSV_25_50, Opsparingsprodukt_SOME_SELECTED_POSITIVE) {
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
 	ta.setValue(kMarkedspension_MK, true )
 			.setValue(kTraditionel_MK, true)
@@ -73,7 +74,7 @@ TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, Opsparingsprodukt_SOME_SELECTED_POSITIVE
 // Expected result:
 //   Should fail due to Traditionel is selected as Standardprodukt but Traditionel_MK == false
 //
-TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, Opsparingsprodukt_NEGATIVE) {
+TEST_F(Opsparingsproduct_RuleEngine_CONTEXT_KI_OSV_25_50, Opsparingsprodukt_NEGATIVE) {
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
 	ta.setValue(kMarkedspension_MK, true);
 	ta.setValue(kTraditionel_MK, false);
@@ -97,7 +98,7 @@ TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, Opsparingsprodukt_NEGATIVE) {
 // Expected result:
 //   Should be OK as the selected StandardProdukt is also selected on the TA
 //
-TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, Opsparingsprodukt_OK) {
+TEST_F(Opsparingsproduct_RuleEngine_CONTEXT_KI_OSV_25_50, Opsparingsprodukt_OK) {
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
 	ta.setValue(kMarkedspension_MK, true);
 	ta.setValue(kTraditionel_MK, true);
@@ -115,7 +116,7 @@ TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, Opsparingsprodukt_OK) {
 // Expected result:
 //   Should be OK as the selected StandardProdukt is also selected on the TA
 //
-TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, Opsparingsprodukt_RemoveFromTA_POSITIVE) {
+TEST_F(Opsparingsproduct_RuleEngine_CONTEXT_KI_OSV_25_50, Opsparingsprodukt_RemoveFromTA_POSITIVE) {
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
 	ta.setValue(kMarkedspension_MK, true);
 	ta.setValue(kTraditionel_MK, true);
@@ -135,5 +136,55 @@ TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, Opsparingsprodukt_RemoveFromTA_POSITIVE)
 	EXPECT_FALSE(r.isAllOk());
 //	if (r.isAllOk())
 		cout << r;
+}
+
+TEST_F(Opsparingsproduct_RuleEngine_CONTEXT_KI_OSV_25_50, Opsparingsprodukt_MinAndelTraditionel_POSITIVE) {
+	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	ta.setValue(kMarkedspension_MK, true);
+	ta.setValue(kTraditionel_MK, true);
+	ta.setValue(kTidspensionMedGaranti_MK, true);
+	ta.setValue(kTidspensionUdenGaranti_MK, true);
+
+	ta.setValue(kStandardProduct, "Traditionel_MK");
+
+	RuleEngine::_printDebugAtValidation = true;
+	RuleEngine::_printDebug = true;
+	auto r = re.validate(ta, false);
+	EXPECT_TRUE(r.isAllOk());
+	cout << r;
+
+	ta.setValue(kTidspensionMedGaranti_MK, false);
+	ta.setValue(kTidspensionUdenGaranti_MK, false);
+	r = re.validate(ta, false);
+	cout << r;
+	EXPECT_FALSE(r.isAllOk());
+	EXPECT_EQ(1, r.getValidationResults(kMinAndelTraditionelPct).size());
+	EXPECT_EQ(1, r.getValidationResults(kMinAndelTraditionelPctType).size());
+	EXPECT_TRUE(r.hasMessages(kMinAndelTraditionelPct, sbx::ValidationCode::kProductElementRequired));
+	EXPECT_TRUE(r.hasMessages(kMinAndelTraditionelPctType, sbx::ValidationCode::kProductElementRequired));
+
+	ta.setValue(kMinAndelTraditionelPct, (long) 6);
+	r = re.validate(ta, false);
+	cout << r;
+	EXPECT_FALSE(r.isAllOk());
+	EXPECT_EQ(1, r.getValidationResults(kMinAndelTraditionelPctType).size());
+	EXPECT_TRUE(r.hasMessages(kMinAndelTraditionelPctType, sbx::ValidationCode::kProductElementRequired));
+
+
+	ta.setValue(kMinAndelTraditionelPctType, "% af gagen");
+	r = re.validate(ta, false);
+	cout << r;
+	EXPECT_TRUE(r.isAllOk());
+
+
+	ta.setValue(kTidspensionMedGaranti_MK, true);
+	r = re.validate(ta, false);
+	cout << r;
+	EXPECT_FALSE(r.isAllOk());
+	EXPECT_EQ(1, r.getValidationResults(kMinAndelTraditionelPct).size());
+	EXPECT_TRUE(r.hasMessages(kMinAndelTraditionelPct, sbx::ValidationCode::kProductElementNotAllowed));
+	EXPECT_EQ(1, r.getValidationResults(kMinAndelTraditionelPctType).size());
+	EXPECT_TRUE(r.hasMessages(kMinAndelTraditionelPctType, sbx::ValidationCode::kProductElementNotAllowed));
+
 }
 

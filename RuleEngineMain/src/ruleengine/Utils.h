@@ -30,6 +30,29 @@ const std::string kOUTSIDE = "U";
 const std::string kFOLLOWS = "F";
 const std::string kINCLUDED = "O";
 
+const unsigned short int undefined_oid {0};
+
+// typedefs
+typedef unsigned short int parameter_oid;
+typedef unsigned short int koncept_oid;
+typedef unsigned short int subkoncept_oid;
+typedef unsigned short int unionagreement_oid;
+typedef unsigned short int elementtype_oid;
+typedef unsigned short int product_oid;
+typedef unsigned short int productelement_oid;
+typedef unsigned short int number_of_employees;
+typedef number_of_employees max_number_of_employees;
+
+
+const koncept_oid EPENSION 				= 1;
+const koncept_oid ITPENSION 			= 2;
+const koncept_oid AMP					= 3;
+const koncept_oid OSV					= 4;
+const koncept_oid SSG					= 5;
+const koncept_oid Tommerhandelpension	= 6;
+const koncept_oid PROSA					= 7;
+const koncept_oid REVISOR				= 8;
+const koncept_oid ADVOKATPAKKEN			= 9;
 
 namespace utils {
 

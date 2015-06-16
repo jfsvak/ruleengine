@@ -5,6 +5,7 @@
  *      Author: jfsvak
  */
 
+#include <algorithm>
 #include <iostream>
 #include <iomanip>
 #include <limits>
@@ -112,9 +113,7 @@ void RuleConstantContainer::_initRuleConstants(const Json::Value& ruleConstantLi
 		}
 
 		// initialise the container with the created vector
-		if (RuleConstantContainer::_printDebug) {
-			cout << "  Initialising _container" << endl;
-		}
+		if (RuleConstantContainer::_printDebug) cout << "  Initialising _container" << endl;
 
 		_initInternalMaps();
 	}
@@ -169,6 +168,86 @@ void RuleConstantContainer::_initProductElements(const Json::Value& products)
 	{
 		if (RuleConstantContainer::_printErr) cerr << "No Products found to load" << endl;
 	}
+}
+
+const std::map<sbx::koncept_oid, sbx::Koncept>& RuleConstantContainer::getKoncepts() const
+{
+	return _koncepts;
+}
+
+void RuleConstantContainer::initKoncepts(const std::string& jsonContents)
+{
+	Json::Reader reader{Json::Features{}};
+	Json::Value root {};
+
+	bool parsingSuccessful = reader.parse(jsonContents, root);
+
+	if (parsingSuccessful)
+	{
+		Json::Value konceptsJSON = root["data"].get("KONCEPTS", 0);
+
+		// if we can parse the json string, then get initialise the koncepts
+		if (konceptsJSON.size() > 0)
+		{
+			if (RuleEngine::_printDebug) { cout << "\n  Looping over [" << konceptsJSON.size() << "] json Koncepts to initialise" << endl; }
+
+			// iterate over the list of rules and create Ruleobjects to put into the RuleConstantContainer
+			for (Json::ValueIterator valueIterator = konceptsJSON.begin(); valueIterator != konceptsJSON.end(); ++valueIterator)
+			{
+				int oid = valueIterator->get("oid", 0).asInt();
+				string name = valueIterator->get("name", "").asString();
+
+				if (RuleEngine::_printDebug) { cout << "  Creating Koncept [" << oid << "], name [" << name<< "]" << endl; }
+				Koncept k{static_cast<sbx::koncept_oid>(oid), name};
+
+				_initSubkoncepts(valueIterator->get("subKoncepts", ""), k);
+
+				_koncepts.insert(make_pair(oid, k));
+			}
+		}
+		else
+		{
+			if (RuleEngine::_printDebug) { cout << "Empty Koncepts...nothing to load" << endl; }
+		}
+	}
+	else
+	{
+		cerr << "Could not parse json string with Koncept basedata" << endl;
+		throw invalid_argument(reader.getFormattedErrorMessages());
+	}
+
+}
+
+void RuleConstantContainer::_initSubkoncepts(const Json::Value& subkonceptsJSON, sbx::Koncept& koncept)
+{
+	if (subkonceptsJSON.size() > 0)
+	{
+		if (RuleEngine::_printDebug) { cout << "\n  Looping over [" << subkonceptsJSON.size() << "] json Koncepts to initialise" << endl; }
+
+		for (Json::ValueIterator valueIterator = subkonceptsJSON.begin(); valueIterator != subkonceptsJSON.end(); ++valueIterator)
+		{
+			int subkonceptOid = valueIterator->get("oid", 0).asInt();
+			string name = valueIterator->get("name", "").asString();
+			int minEmployeeNumber = valueIterator->get("minEmployeeNumber", -1).asInt();
+			int maxEmployeeNumber = valueIterator->get("maxEmployeeNumber", -1).asInt();
+			int relatedSubkonceptOid = valueIterator->get("relatedUnderkonceptOid", 0).asInt();
+
+			if (RuleEngine::_printDebug) { cout << "  Creating Subkoncept [" << subkonceptOid << "], name [" << name<< "], min [" << minEmployeeNumber << "], max [" << maxEmployeeNumber << "], relatedsubkoncept oid [" << relatedSubkonceptOid << "]" << endl; }
+
+			Subkoncept subkoncept{static_cast<sbx::subkoncept_oid> (subkonceptOid), name, static_cast<sbx::number_of_employees>(minEmployeeNumber), static_cast<sbx::number_of_employees>(maxEmployeeNumber), static_cast<sbx::subkoncept_oid>(relatedSubkonceptOid)};
+
+			Json::Value allowedParametersJSON = valueIterator->get("parameters", "");
+
+			if (allowedParametersJSON.size() > 0)
+				for (Json::ValueIterator paramValueIterator = allowedParametersJSON.begin(); paramValueIterator != allowedParametersJSON.end(); ++paramValueIterator)
+					subkoncept.addAllowedParameter(paramValueIterator->get("oid", 0).asInt());
+
+			koncept.addSubKoncept(subkoncept);
+			_subkoncepts.insert(make_pair(subkonceptOid, subkoncept));
+		}
+	}
+	else
+		if (RuleEngine::_printDebug) { cout << "Empty Subkoncepts...nothing to load" << endl; }
 }
 
 void RuleConstantContainer::_addFakeProductElements(std::shared_ptr<sbx::Product> productPtr)
@@ -241,16 +320,19 @@ void RuleConstantContainer::_initParameters(const Json::Value& parameters)
 
 bool RuleConstantContainer::existsAs(unsigned short peOid, const sbx::ComparisonTypes& ct) const
 {
-	if (!_contextInitialised) {
+	if (!_contextInitialised)
+	{
 		throw domain_error("Context not initialised!");
 	}
 
+	subkoncept_oid skOid = _subkoncept.getOid();
+
 	switch(ct)
 	{
-	case kMin: 		return (_ukMinValuesMap.find(_underKonceptOid) != _ukMinValuesMap.cend() && _ukMinValuesMap.at(_underKonceptOid).find(peOid) != _ukMinValuesMap.at(_underKonceptOid).cend());
-	case kMax: 		return (_ukMaxValuesMap.find(_underKonceptOid) != _ukMaxValuesMap.cend() && _ukMaxValuesMap.at(_underKonceptOid).find(peOid) != _ukMaxValuesMap.at(_underKonceptOid).cend());
+	case kMin: 		return (_ukMinValuesMap.find(skOid) != _ukMinValuesMap.cend() && _ukMinValuesMap.at(skOid).find(peOid) != _ukMinValuesMap.at(skOid).cend());
+	case kMax: 		return (_ukMaxValuesMap.find(skOid) != _ukMaxValuesMap.cend() && _ukMaxValuesMap.at(skOid).find(peOid) != _ukMaxValuesMap.at(skOid).cend());
 	case kEnum:		// fall through
-	case kEquals:	return (_ukOptionsMap.find(_underKonceptOid) != _ukOptionsMap.cend() && _ukOptionsMap.at(_underKonceptOid).find(peOid) != _ukOptionsMap.at(_underKonceptOid).cend());
+	case kEquals:	return (_ukOptionsMap.find(skOid) != _ukOptionsMap.cend() && _ukOptionsMap.at(skOid).find(peOid) != _ukOptionsMap.at(skOid).cend());
 	default: 		return false;
 	}
 }
@@ -303,14 +385,29 @@ void RuleConstantContainer::_initInternalMaps()
 		switch (constant->getComparisonType())
 		{
 		case kEnum:
-			case kEquals:
-			_ukOptionsMap[constant->getUnderKonceptOid()][constant->getProductElement()].push_back(constant);
+		case kEquals:
+			if (constant->getUnderKonceptOid() != 0)
+				_ukOptionsMap[constant->getUnderKonceptOid()][constant->getProductElement()].push_back(constant);
+
+			if (constant->getUnionAgreementOid() != 0)
+				_uaOptionsMap[constant->getUnionAgreementOid()][constant->getProductElement()].push_back(constant);
+
 			break;
 		case kMin:
-			_ukMinValuesMap[constant->getUnderKonceptOid()][constant->getProductElement()] = constant;
+			if (constant->getUnderKonceptOid() != 0)
+				_ukMinValuesMap[constant->getUnderKonceptOid()][constant->getProductElement()] = constant;
+
+			if (constant->getUnionAgreementOid() != 0)
+				_uaMinValuesMap[constant->getUnionAgreementOid()][constant->getProductElement()] = constant;
+
 			break;
 		case kMax:
-			_ukMaxValuesMap[constant->getUnderKonceptOid()][constant->getProductElement()] = constant;
+			if (constant->getUnderKonceptOid() != 0)
+				_ukMaxValuesMap[constant->getUnderKonceptOid()][constant->getProductElement()] = constant;
+
+			if (constant->getUnionAgreementOid() != 0)
+				_uaMaxValuesMap[constant->getUnionAgreementOid()][constant->getProductElement()] = constant;
+
 			break;
 		default:
 			break;
@@ -321,11 +418,12 @@ void RuleConstantContainer::_initInternalMaps()
 /**
  * Initialises the local, current context for this RuleConstantContainer
  */
-void RuleConstantContainer::initContext(const unsigned short underKonceptOid, const short unionAgreementOid)
+void RuleConstantContainer::initContext(const sbx::Subkoncept& subkoncept, sbx::UnionAgreementRelationship uar, sbx::unionagreement_oid uaOid)
 {
 	// since three maps containing pointers to Constants are created in the initialisation of the globalConstants, switching context is simply to just set the underKonceptOid and unionAgreementOid
-	_underKonceptOid = underKonceptOid;
-	_unionAgreementOid = unionAgreementOid;
+	_subkoncept = subkoncept;
+	_unionAgreementRelationship = uar;
+	_unionAgreementOid = uaOid;
 	_contextInitialised = true;
 }
 
@@ -335,18 +433,14 @@ void RuleConstantContainer::initContext(const unsigned short underKonceptOid, co
 std::vector<std::string> RuleConstantContainer::getOptions(unsigned short productElementOid)
 {
 	if (!_contextInitialised)
-	{
 		throw domain_error("Context not initialised!");
-	}
 
 	std::vector<std::shared_ptr<Constant>> constantList = this->getOptionsList(productElementOid);
 	// create new vector of strings only
 	std::vector<string> stringOptions(0);
 
 	for (auto& constant : constantList)
-	{
 		stringOptions.push_back(constant->stringValue());
-	}
 
 	return stringOptions;
 }
@@ -357,13 +451,22 @@ std::vector<std::string> RuleConstantContainer::getOptions(unsigned short produc
 std::vector<std::shared_ptr<Constant>> RuleConstantContainer::getOptionsList(unsigned short productElementOid)
 {
 	if (!_contextInitialised)
-	{
 		throw domain_error("Context not initialised!");
-	}
 
-	if (_ukOptionsMap.find(_underKonceptOid) != _ukOptionsMap.cend()
-			&& _ukOptionsMap.at(_underKonceptOid).find(productElementOid) != _ukOptionsMap.at(_underKonceptOid).cend())
-		return _ukOptionsMap[_underKonceptOid][productElementOid];
+	subkoncept_oid ukOid = _subkoncept.getOid();
+
+	if (_ukOptionsMap.find(ukOid) != _ukOptionsMap.cend()
+			&& _ukOptionsMap.at(ukOid).find(productElementOid) != _ukOptionsMap.at(ukOid).cend())
+		return _ukOptionsMap.at(ukOid).at(productElementOid);
+
+	if (_subkoncept.getRelatedSubkonceptOid() != undefined_oid)
+	{
+		subkoncept_oid rukOid = _subkoncept.getRelatedSubkonceptOid();
+
+		if (_ukOptionsMap.find(rukOid) != _ukOptionsMap.cend()
+				&& _ukOptionsMap.at(rukOid).find(productElementOid) != _ukOptionsMap.at(rukOid).cend())
+			return _ukOptionsMap.at(rukOid).at(productElementOid);
+	}
 
 	return {};
 }
@@ -375,24 +478,38 @@ std::vector<std::shared_ptr<Constant>> RuleConstantContainer::getOptionsList(uns
 std::shared_ptr<sbx::Constant> RuleConstantContainer::getConstant(unsigned short productElementOid, const sbx::ComparisonTypes& comparisonType)
 {
 	if (!_contextInitialised)
-	{
 		throw domain_error("Context not initialised!");
-	}
+
+	subkoncept_oid ukOid = _subkoncept.getOid();
 
 	switch (comparisonType)
 	{
 	case kMin:
-		if (_ukMinValuesMap.find(_underKonceptOid) != _ukMinValuesMap.cend()
-				&& _ukMinValuesMap.at(_underKonceptOid).find(productElementOid) != _ukMinValuesMap.at(_underKonceptOid).cend())
+		if (_ukMinValuesMap.find(ukOid) != _ukMinValuesMap.cend()
+				&& _ukMinValuesMap.at(ukOid).find(productElementOid) != _ukMinValuesMap.at(ukOid).cend())
+			return _ukMinValuesMap[ukOid][productElementOid];
+
+		if (_subkoncept.getRelatedSubkonceptOid() != undefined_oid)
 		{
-			return _ukMinValuesMap[_underKonceptOid][productElementOid];
+			subkoncept_oid rukOid = _subkoncept.getRelatedSubkonceptOid();
+
+			if (_ukMinValuesMap.find(rukOid) != _ukMinValuesMap.cend()
+					&& _ukMinValuesMap.at(rukOid).find(productElementOid) != _ukMinValuesMap.at(rukOid).cend())
+				return _ukMinValuesMap.at(rukOid).at(productElementOid);
 		}
 		break;
 	case kMax:
-		if (_ukMaxValuesMap.find(_underKonceptOid) != _ukMaxValuesMap.cend()
-				&& _ukMaxValuesMap.at(_underKonceptOid).find(productElementOid) != _ukMaxValuesMap.at(_underKonceptOid).cend())
+		if (_ukMaxValuesMap.find(ukOid) != _ukMaxValuesMap.cend()
+				&& _ukMaxValuesMap.at(ukOid).find(productElementOid) != _ukMaxValuesMap.at(ukOid).cend())
+			return _ukMaxValuesMap.at(ukOid).at(productElementOid);
+
+		if (_subkoncept.getRelatedSubkonceptOid() != undefined_oid)
 		{
-			return _ukMaxValuesMap[_underKonceptOid][productElementOid];
+			subkoncept_oid rukOid = _subkoncept.getRelatedSubkonceptOid();
+
+			if (_ukMaxValuesMap.find(rukOid) != _ukMaxValuesMap.cend()
+					&& _ukMaxValuesMap.at(rukOid).find(productElementOid) != _ukMaxValuesMap.at(rukOid).cend())
+				return _ukMaxValuesMap.at(rukOid).at(productElementOid);
 		}
 		break;
 	case kUnknown:
@@ -426,41 +543,68 @@ std::shared_ptr<sbx::Constant> RuleConstantContainer::createConstant(unsigned sh
 	return make_shared<sbx::Constant>(underkonceptOid, unionAgreementOid, static_cast<sbx::ProductElementOid>(peOid), comparisonType, s.str(), false, false);
 }
 
-const std::set<unsigned short>& RuleConstantContainer::getProductOids(unsigned short parameterOid) const
+const std::set<unsigned short>& RuleConstantContainer::getProductOids(sbx::parameter_oid parameterOid) const
 {
 	if (_contextInitialised)
-	{
 		throw domain_error("Context not initialised!");
-	}
 
-	if (_parameterOidToProductOids.find(_underKonceptOid) != _parameterOidToProductOids.cend()
-			&& _parameterOidToProductOids.at(_underKonceptOid).find(parameterOid) != _parameterOidToProductOids.at(_underKonceptOid).cend())
+	subkoncept_oid ukOid = _subkoncept.getOid();
+
+	std::set<sbx::product_oid> productOids{};
+
+	if (_parameterOidToProductOids.find(ukOid) != _parameterOidToProductOids.cend()
+			&& _parameterOidToProductOids.at(ukOid).find(parameterOid) != _parameterOidToProductOids.at(ukOid).cend())
+		copy(	_parameterOidToProductOids.at(ukOid).at(parameterOid).cbegin(),
+				_parameterOidToProductOids.at(ukOid).at(parameterOid).cend(),
+				std::inserter(productOids, productOids.begin()));
+
+	if (_subkoncept.getRelatedSubkonceptOid() != undefined_oid)
 	{
-		return _parameterOidToProductOids.at(_underKonceptOid).at(parameterOid);
+		subkoncept_oid relatedUKOid = _subkoncept.getRelatedSubkonceptOid();
+
+		if (_parameterOidToProductOids.find(relatedUKOid) != _parameterOidToProductOids.cend()
+				&& _parameterOidToProductOids.at(relatedUKOid).find(parameterOid) != _parameterOidToProductOids.at(relatedUKOid).cend())
+			copy(	_parameterOidToProductOids.at(relatedUKOid).at(parameterOid).cbegin(),
+					_parameterOidToProductOids.at(relatedUKOid).at(parameterOid).cend(),
+					std::inserter(productOids, productOids.begin()));
 	}
 
-	throw domain_error("Product oids not found!");
+	return productOids;
 }
 
-std::set<unsigned short> RuleConstantContainer::getProductElementOids(unsigned short parameterOid) const
+std::set<unsigned short> RuleConstantContainer::getProductElementOids(sbx::parameter_oid parameterOid) const
 {
-
 	if (!_contextInitialised)
-	{
 		throw domain_error("Context not initialised!");
-	}
 
-	if (_parameterOidToProductElementOids.find(_underKonceptOid) != _parameterOidToProductElementOids.cend()
-			&& _parameterOidToProductElementOids.at(_underKonceptOid).find(parameterOid) != _parameterOidToProductElementOids.at(_underKonceptOid).cend())
+	subkoncept_oid ukOid = _subkoncept.getOid();
+
+	std::set<unsigned short> productElementOids{};
+
+	if (_parameterOidToProductElementOids.find(ukOid) != _parameterOidToProductElementOids.cend()
+			&& _parameterOidToProductElementOids.at(ukOid).find(parameterOid) != _parameterOidToProductElementOids.at(ukOid).cend())
+
+		copy(	_parameterOidToProductElementOids.at(ukOid).at(parameterOid).cbegin(),
+				_parameterOidToProductElementOids.at(ukOid).at(parameterOid).cend(),
+				std::inserter(productElementOids, productElementOids.begin()));
+	else
+		if (RuleConstantContainer::_printErr)  { cerr << "No ProductElementOids found for subkoncept [" << ukOid << "], parameterOid[" << parameterOid << "]!"; }
+
+	// add productelements for related subkoncept
+	if (_subkoncept.getRelatedSubkonceptOid() != undefined_oid)
 	{
-		return _parameterOidToProductElementOids.at(_underKonceptOid).at(parameterOid);
+		subkoncept_oid relatedUKOid = _subkoncept.getRelatedSubkonceptOid();
+
+		if (_parameterOidToProductElementOids.find(relatedUKOid) != _parameterOidToProductElementOids.cend()
+				&& _parameterOidToProductElementOids.at(relatedUKOid).find(parameterOid) != _parameterOidToProductElementOids.at(relatedUKOid).cend())
+			copy(_parameterOidToProductElementOids.at(relatedUKOid).at(parameterOid).cbegin(),
+					_parameterOidToProductElementOids.at(relatedUKOid).at(parameterOid).cend(),
+					std::inserter(productElementOids, productElementOids.begin()));
+		else
+			if (RuleConstantContainer::_printErr)  { cerr << "No ProductElementOids found for related subkoncept [" << relatedUKOid << "], parameterOid[" << parameterOid << "]!"; }
 	}
 
-	if (RuleConstantContainer::_printErr)  { cerr << "Could not find ProductElementOids for parameterOid[" << parameterOid << "], returning empty set!"; }
-
-	// TODO: FIX THIS
-	std::set<unsigned short> empty;
-	return empty;
+	return productElementOids;
 }
 
 /**
@@ -509,55 +653,112 @@ std::shared_ptr<sbx::ContributionStep> RuleConstantContainer::getUAContributionS
 	ss << uaOid;
 	throw domain_error("Contribution ladder for Union Agreement [" + ss.str() + "] not initialised!");
 }
+
+void RuleConstantContainer::printKoncepts() const
+{
+	cout << "\n\n       ---======== Koncepts =======--- \n";
+	cout << "Number of Koncepts loaded: " << _koncepts.size() << endl;
+
+	for (const auto& i : _koncepts)
+	{
+		cout << "\n" << i.second.getName() << " (" << i.second.getOid() << ")";
+
+		cout << "\nOid         Name                             Employees      Allowed Parameters";
+		cout << "\n----------  -------------------------------  -------------  ------------------------" << endl;
+		for (auto& ii : i.second.getSubkoncepts())
+		{
+			const Subkoncept& sk = ii.second;
+			stringstream ss{};
+			ss << "(" << sk.getOid() << " -> " << sk.getRelatedSubkonceptOid() << ")";
+			cout << setw(10) << ss.str();
+			cout << "  " << left << setw(31)  << sk.getName();
+			ss.str("");
+			ss << "[" << sk.getMinNumberOfEmployees() << "-" << sk.getMaxNumberOfEmployees()<< "]";
+			cout << "  " << setw(13) << ss.str();
+
+			ss.str("");
+			for_each(sk.getAllowedParameters().cbegin(), sk.getAllowedParameters().cend(), [&ss](sbx::parameter_oid pOid) { ss << pOid << ", ";});
+			cout << "  " << ss.str().substr(0, ss.str().length()-2);
+
+			cout << endl;
+		}
+	}
+	cout << "\n------------- Koncepts END ------------" << endl;
+}
+
+
 /**
  * Outputs to cout the entire content of Constant Container
  */
-void RuleConstantContainer::printConstants() const
+void RuleConstantContainer::printConstants(sbx::subkoncept_oid subkonceptOid) const
 {
-	cout << "\n       ---======== Global Constants =======--- \n\n";
-	printConstantHeader();
-
-	for (const auto& c : _globalConstants)
+	if (subkonceptOid == undefined_oid)
 	{
-		printConstant(make_shared<Constant>(c));
+		cout << "\n       ---======== Global Constants =======--- \n\n";
+		printConstantHeader();
+
+		for (const auto& c : _globalConstants)
+			printConstant(make_shared<Constant>(c));
 	}
 
-	cout << "\n\nInitialised context: Underkoncept[" << _underKonceptOid << "] / UnionAgreement[" << _unionAgreementOid << "]" << endl;
+	Subkoncept subkoncept = _subkoncepts.at(subkonceptOid);
+
+	cout << "\n\nInitialised context: Underkoncept[" << _subkoncept.getOid() << "] / UnionAgreement[" << _unionAgreementOid << "]" << endl;
 	cout << "\n\n       ---======== String Options =======--- \n";
 	printConstantHeader();
 
-	for (const auto& ukit : _ukOptionsMap)
-	{
-
-		for (const auto& peit : ukit.second)
-		{
+	if (subkonceptOid == undefined_oid)
+		for(const auto& ukit : _ukOptionsMap)
+			for (const auto& peit : ukit.second)
+				for (const auto& c : peit.second)
+					printConstant(c);
+	else
+		for (const auto& peit : _ukOptionsMap.at(subkonceptOid))
 			for (const auto& c : peit.second)
-			{
 				printConstant(c);
-			}
-		}
+
+	if (subkoncept.getRelatedSubkonceptOid() != undefined_oid)
+	{
+		cout << "      ----------Related subkoncept-------------" << endl;
+		for (const auto& peit : _ukOptionsMap.at(subkoncept.getRelatedSubkonceptOid()))
+			for (const auto& c : peit.second)
+				printConstant(c);
 	}
+
 	cout << "\n\n       ---======== Min values Options =======--- \n\n";
 	printConstantHeader();
 
-	for (const auto& ukit : _ukMinValuesMap)
+	if (subkonceptOid == undefined_oid)
+		for (const auto& ukit : _ukMinValuesMap)
+			for (const auto& peit : ukit.second)
+				printConstant(peit.second);
+	else
+		for (const auto& peit : _ukMinValuesMap.at(subkonceptOid))
+			printConstant(peit.second);
+
+	if (subkoncept.getRelatedSubkonceptOid() != undefined_oid)
 	{
-		for (const auto& peit : ukit.second)
-		{
-			const auto& c = peit.second;
-			printConstant(c);
-		}
+		cout << "      ----------Related subkoncept-------------" << endl;
+		for (const auto& peit : _ukMinValuesMap.at(subkoncept.getRelatedSubkonceptOid()))
+			printConstant(peit.second);
 	}
+
 	cout << "\n\n       ---======== Max values Options =======--- \n\n";
 	printConstantHeader();
 
-	for (const auto& ukit : _ukMaxValuesMap)
+	if (subkonceptOid == undefined_oid)
+		for (const auto& ukit : _ukMaxValuesMap)
+			for (const auto& peit : ukit.second)
+				printConstant(peit.second);
+	else
+		for (const auto& peit : _ukMaxValuesMap.at(subkonceptOid))
+			printConstant(peit.second);
+
+	if (subkoncept.getRelatedSubkonceptOid() != undefined_oid)
 	{
-		for (const auto& peit : ukit.second)
-		{
-			const auto& c = peit.second;
-			printConstant(c);
-		}
+		cout << "      ----------Related subkoncept-------------" << endl;
+		for (const auto& peit : _ukMaxValuesMap.at(subkoncept.getRelatedSubkonceptOid()))
+			printConstant(peit.second);
 	}
 }
 
@@ -581,9 +782,10 @@ void RuleConstantContainer::printConstant(const std::shared_ptr<sbx::Constant>& 
 	cout << "  " << left << setw(7) << (c->isDefault() ? "*" : "") << endl;
 }
 
-void RuleConstantContainer::printContainerOverview(unsigned short int underKonceptOid) const
+void RuleConstantContainer::printContainerOverview(sbx::subkoncept_oid underKonceptOid) const
 {
-	cout << "Current context : UK[" << _underKonceptOid << "], UA[" << _unionAgreementOid << "]" << endl;
+	subkoncept_oid ukOid = _subkoncept.getOid();
+	cout << "Current context : UK[" << ukOid << "], UA[" << _unionAgreementOid << "]" << endl;
 	cout << "Global constants: [" << size() << "]" << endl;
 	cout << "Products: [" << _productsMap.size() << "]" << endl;
 	cout << "ProductsElements: [" << _productElementMap.size() << "]" << endl;
@@ -591,7 +793,7 @@ void RuleConstantContainer::printContainerOverview(unsigned short int underKonce
 
 	// print stats for all underkoncepts
 	cout << "UK\tEquals\tMin\tMax\tParameters\n";
-	if (underKonceptOid == 0)
+	if (underKonceptOid == undefined_oid)
 	{
 		for (const auto& optionsMapItem : _ukOptionsMap)
 		{
@@ -617,9 +819,10 @@ void RuleConstantContainer::printContainerOverview(unsigned short int underKonce
 	}
 }
 
-void RuleConstantContainer::printContainerOverview(unsigned short int underKonceptOid, sbx::ComparisonTypes type) const
+void RuleConstantContainer::printContainerOverview(sbx::subkoncept_oid underKonceptOid, sbx::ComparisonTypes type) const
 {
-	cout << "Current context : Underkoncept[" << _underKonceptOid << "], UnionAgreement[" << _unionAgreementOid << "]" << endl;
+	subkoncept_oid ukOid = _subkoncept.getOid();
+	cout << "Current context : Underkoncept[" << ukOid << "], UnionAgreement[" << _unionAgreementOid << "]" << endl;
 	cout << "Showing context : Underkoncept[" << underKonceptOid << "], type[" << (int) type << "]" << endl;
 
 	switch (type)
@@ -654,21 +857,29 @@ void RuleConstantContainer::printContainerOverview(unsigned short int underKonce
 	}
 }
 
-void RuleConstantContainer::printConstants(unsigned short int underKonceptOid, unsigned short productElement) const
+void RuleConstantContainer::printConstants(sbx::subkoncept_oid underKonceptOid, sbx::productelement_oid productElement) const
 {
 	cout << "\n\n       ---======== String Options =======--- \n";
+
+	Subkoncept subkoncept = _subkoncepts.at(underKonceptOid);
 
 	if (_ukOptionsMap.find(underKonceptOid) != _ukOptionsMap.cend() && _ukOptionsMap.at(underKonceptOid).find(productElement) != _ukOptionsMap.at(underKonceptOid).end())
 	{
 		printConstantHeader();
 		for (auto& c : _ukOptionsMap.at(underKonceptOid).at(productElement))
-		{
 			printConstant(c);
-		}
 	}
 	else
-	{
 		cout << "No Options values for UK[" << underKonceptOid << "], PE[" << (int) productElement << "]" << endl;
+
+	if (subkoncept.getRelatedSubkonceptOid() != undefined_oid)
+	{
+		if (_ukOptionsMap.find(subkoncept.getRelatedSubkonceptOid()) != _ukOptionsMap.cend() && _ukOptionsMap.at(subkoncept.getRelatedSubkonceptOid()).find(productElement) != _ukOptionsMap.at(subkoncept.getRelatedSubkonceptOid()).end())
+		{
+			cout << "   ------------ Related koncept --------------" << endl;
+			for (auto& c : _ukOptionsMap.at(subkoncept.getRelatedSubkonceptOid()).at(productElement))
+				printConstant(c);
+		}
 	}
 
 	cout << "\n\n       ---======== Min values Options =======--- \n";
@@ -680,8 +891,16 @@ void RuleConstantContainer::printConstants(unsigned short int underKonceptOid, u
 		printConstant(minC);
 	}
 	else
-	{
 		cout << "No Min constant for UK[" << underKonceptOid << "], PE[" << (int) productElement << "]" << endl;
+
+	if (subkoncept.getRelatedSubkonceptOid() != undefined_oid)
+	{
+		if (_ukMinValuesMap.find(subkoncept.getRelatedSubkonceptOid()) != _ukMinValuesMap.cend() && _ukMinValuesMap.at(subkoncept.getRelatedSubkonceptOid()).find(productElement) != _ukMinValuesMap.at(subkoncept.getRelatedSubkonceptOid()).end())
+		{
+			cout << "   ------------ Related koncept --------------" << endl;
+			auto& minC = _ukMinValuesMap.at(subkoncept.getRelatedSubkonceptOid()).at(productElement);
+			printConstant(minC);
+		}
 	}
 
 	cout << "\n\n       ---======== Max values Options =======--- \n";
@@ -693,9 +912,18 @@ void RuleConstantContainer::printConstants(unsigned short int underKonceptOid, u
 		printConstant(maxC);
 	}
 	else
-	{
 		cout << "No Max constant for UK[" << underKonceptOid << "], PE[" << (int) productElement << "]" << endl;
+
+	if (subkoncept.getRelatedSubkonceptOid() != undefined_oid)
+	{
+		if (_ukMaxValuesMap.find(subkoncept.getRelatedSubkonceptOid()) != _ukMaxValuesMap.cend() && _ukMaxValuesMap.at(subkoncept.getRelatedSubkonceptOid()).find(productElement) != _ukMaxValuesMap.at(subkoncept.getRelatedSubkonceptOid()).end())
+		{
+			cout << "   ------------ Related koncept --------------" << endl;
+			auto& minC = _ukMaxValuesMap.at(subkoncept.getRelatedSubkonceptOid()).at(productElement);
+			printConstant(minC);
+		}
 	}
+
 }
 
 void RuleConstantContainer::printProducts() const
@@ -712,7 +940,7 @@ void RuleConstantContainer::printProducts() const
 
 		if (product.second->getProductElementOids().size() > 0)
 		{
-			ostringstream s;
+			ostringstream s{};
 			ostream_iterator<short> oit(s, ", ");
 			copy(product.second->getProductElementOids().cbegin(), product.second->getProductElementOids().cend(), oit);
 			cout << "  " << s.str();
@@ -746,33 +974,55 @@ void RuleConstantContainer::printParameters() const
 	}
 }
 
-void RuleConstantContainer::printParametersToProducts(unsigned short underkonceptOid) const
-		{
+void RuleConstantContainer::printParametersToProducts(sbx::subkoncept_oid underkonceptOid) const
+{
 	cout << "\n\n       ---======== Parameter To Products loaded =======--- \n";
-	cout << "Underkoncept oid: " << underkonceptOid << endl;
+	cout << "Underkoncept oid [" << underkonceptOid;
+	Subkoncept subkoncept = _subkoncepts.at(underkonceptOid);
+
+	if (subkoncept.getRelatedSubkonceptOid() != undefined_oid)
+		cout << "-> " << subkoncept.getRelatedSubkonceptOid() << "]";
+	else
+		cout << "]";
+
+	cout << endl;
+	cout << "Parameters Directly on subkoncept [" << underkonceptOid << "]" << endl;
 	cout << "Parameter Oid  Product oids" << endl;
 	cout << "-------------  -------------------------------------------------------" << endl;
 
 	if (_parameterOidToProductOids.find(underkonceptOid) != _parameterOidToProductOids.end())
-	{
-
-		for (auto& parameterToProduct : _parameterOidToProductOids.at(underkonceptOid))
-		{
-			cout << setw(13) << parameterToProduct.first;
-			if (parameterToProduct.second.size() > 0)
-			{
-				ostringstream s;
-				ostream_iterator<unsigned short> oit { s, ", " };
-				copy(parameterToProduct.second.cbegin(), parameterToProduct.second.cend(), oit);
-				cout << "  " << s.str();
-			}
-			cout << endl;
-		}
-	}
+		_printParameterList(_parameterOidToProductOids.at(underkonceptOid));
 	else
+		cout << "No Parameters To Products loaded for subkoncept [" << underkonceptOid << "]" << endl;
+
+	if (subkoncept.getRelatedSubkonceptOid() != undefined_oid)
 	{
-		cout << "No Parameters To Products loaded" << endl;
+		cout << "Parameters on related subkoncept [" << subkoncept.getRelatedSubkonceptOid() << "]" << endl;
+		cout << "Parameter Oid  Product oids" << endl;
+		cout << "-------------  -------------------------------------------------------" << endl;
+
+		if (_parameterOidToProductOids.find(subkoncept.getRelatedSubkonceptOid()) != _parameterOidToProductOids.end())
+			_printParameterList(_parameterOidToProductOids.at(subkoncept.getRelatedSubkonceptOid()));
+		else
+			cout << "No Parameters To Products loaded" << endl;
 	}
 }
+
+void RuleConstantContainer::_printParameterList(const std::map<unsigned short, std::set<unsigned short>>& values) const
+{
+	for (auto& itemIt : values)
+	{
+		cout << setw(13) << itemIt.first;
+		if (itemIt.second.size() > 0)
+		{
+			ostringstream s{};
+			ostream_iterator<unsigned short> oit { s, ", " };
+			copy(itemIt.second.cbegin(), itemIt.second.cend(), oit);
+			cout << "  " << s.str();
+		}
+		cout << endl;
+	}
+}
+
 
 } // sbx namespace end

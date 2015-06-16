@@ -20,16 +20,17 @@ protected:
     virtual void SetUp() {
         re = RuleEngine();
         re.initConstants(get_file_contents("basedata-ruleconstants.json"));
+        re.initKoncepts(get_file_contents("koncepts.json"));
         re.parseRuleCatalogueJSON(get_file_contents("rule-catalogue.json"));
 
-        KonceptInfo ki {17, // UnderkonceptOid:OSV 25-49
+        KonceptInfo ki {4, 30, 0, // UnderkonceptOid:OSV 25-49
         	{
         	  {  1, "true" }, // Solidarisk faellestarif
 			  {  6, "true" }, // SEB Firmapensionspulje
         	  { 11, "true" }, // Parameter-Basis
 			  { 15, "true" } // FG-Spaend
         	} };
-        re.initContext(ki);
+        re.initContext(ki, OUTSIDE);
     }
 
     RuleEngine re;
@@ -129,14 +130,29 @@ TEST_F(Full_TA_CONTEXT_KI_OSV_25_50, Full_TA_POSITIVE) {
 	//
 	cout << "Opsparingsprodukter:" << endl;
 	ta.setValue(kTraditionel_MK, true);
-	ta.setValue(kTidspensionMedGaranti_MK, true);
-	ta.setValue(kTidspensionUdenGaranti_MK, true);
+	ta.setValue(kTidspensionMedGaranti_MK, false);
+	ta.setValue(kTidspensionUdenGaranti_MK, false);
 	ta.setValue(kLink_MK, true);
 	ta.setValue(kMarkedspension_MK, true);
 	ta.setValue(kStandardProduct, "Traditionel_MK");
 	r = re.validate(ta);
 	EXPECT_EQ(total-=6, r.sizeValidationResults());
 	cout << r;
+
+	ta.setValue(kMinAndelTraditionelPct, (long) 6);
+	ta.setValue(kMinAndelTraditionelPctType, "% af gage");
+	r = re.validate(ta);
+	EXPECT_EQ(total-=2, r.sizeValidationResults());
+	cout << r;
+
+	ta.remove(kMinAndelTraditionelPct);
+	ta.remove(kMinAndelTraditionelPctType);
+	ta.setValue(kTidspensionMedGaranti_MK, true);
+	ta.setValue(kTidspensionUdenGaranti_MK, true);
+	r = re.validate(ta);
+	EXPECT_EQ(total, r.sizeValidationResults());
+	cout << r;
+
 
 	ta.setValue(kUdbetalingsform, re.getDefaultValue(kUdbetalingsform)->stringValue());
 	ta.setValue(kUdbetalingsperiode, re.getDefaultValue(kUdbetalingsperiode)->stringValue());
@@ -451,13 +467,11 @@ TEST_F(Full_TA_CONTEXT_KI_OSV_25_50, Full_TA_POSITIVE) {
 	ta.setValue(kKortTAE_Max_obl_faktor, re.getDefaultValue(kKortTAE_Max_obl_faktor)->longValue());
 	ta.setValue(kKritiskSygdom_MK, false);
 	ta.setValue(kTransomkostninger, "Ja");
-	ta.setValue(kMinAndelTraditionelPct, (long) 0);
-	ta.setValue(kMinAndelTraditionelPctType, "");
 	ta.setValue(kMaks_Pensionsgivende_Loen_MK, false);
 	ta.setValue(kMaks_Pensionsgivende_Loen, (long) 360000);
 
 	r = re.validate(ta);
-	EXPECT_EQ(total-=10, r.sizeValidationResults());
+	EXPECT_EQ(total-=8, r.sizeValidationResults());
 	cout << r;
 
 	ta.setValue(kGrpIndgaarIDepotsikring_MK, 0);

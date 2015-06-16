@@ -18,7 +18,7 @@
 using namespace std;
 using namespace sbx;
 
-class Boernesum_KI_OSV_25_49 : public ::testing::Test  {
+class RelatedSubkoncepts_Prosa : public ::testing::Test  {
 protected:
     virtual void SetUp() {
     	RuleEngine::_printDebugAtValidation = false;
@@ -27,7 +27,7 @@ protected:
         re.initKoncepts(get_file_contents("koncepts.json"));
         re.parseRuleCatalogueJSON(get_file_contents("rule-catalogue.json"));
 
-        KonceptInfo ki {4, 30, 0, // UnderkonceptOid:OSV 25-49
+        KonceptInfo ki {PROSA, 5, 0, // UnderkonceptOid:OSV 25-49
         	{ {11, "true"}, // Parameter-Basis
         	  {1, "true"}, // Solidarisk faellestarif
 			  {15, "true"}, // FG span
@@ -39,23 +39,51 @@ protected:
     RuleEngine re;
 };
 
-TEST_F(Boernesum_KI_OSV_25_49, Boernesum_POSITIVE) {
+TEST_F(RelatedSubkoncepts_Prosa, Udlobsalder_Pension_Allowed_Values) {
+	RuleEngine::_printDebug = true;
 	RuleEngine::_printDebugAtValidation = true;
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	re.getContainer().printKoncepts();
 
-	auto r = re.validate(ta, {kBoerneSumBlMin, kBoerneSumBlMax});
-	EXPECT_TRUE(r.isAllOk());
-//	if (!r.isAllOk())
-		cout << r;
+	re.getContainer().printConstants(18);
+	re.getContainer().printConstants(29);
+	re.getContainer().printParametersToProducts(29);
 
-	ta.setValue(kBoerneSumBlMin, 5000);
-	ta.setValue(kBoerneSumBlMax, 6000);
-	r = re.validate(ta, { kBoerneSumBlMin, kBoerneSumBlMax, kBoerneSumSpaendBl} );
+	TA ta {"20247940", PROSA};
+
+	ta.setValue(kUdlobsalder_Pension, (long) 65);
+
+	auto r = re.validate(ta, false);
 	EXPECT_FALSE(r.isAllOk());
-	//	if (!r.isAllOk())
-		cout << r;
-	EXPECT_EQ(1, r.getValidationResults().size());
-	EXPECT_TRUE(r.hasMessages(kBoerneSumSpaendBl, kValueOverLimit));
+	EXPECT_TRUE(r.hasMessages(kUdlobsalder_Pension, kValueNotAllowed));
+	cout << r;
+
+	ta.setValue(kUdlobsalder_Pension, (long) 67);
+	r = re.validate(ta, false);
+	EXPECT_TRUE(r.isAllOk());
+	cout << r;
 }
+
+TEST_F(RelatedSubkoncepts_Prosa, Private_Taxed_MK_NotAllowed) {
+	RuleEngine::_printDebug = true;
+	RuleEngine::_printDebugAtValidation = true;
+	re.getContainer().printKoncepts();
+
+	TA ta {"20247940", PROSA};
+
+	ta.setValue(kPrivate_Taxed_MK, true);
+
+	auto r = re.validate(ta, false);
+	EXPECT_FALSE(r.isAllOk());
+	EXPECT_TRUE(r.hasMessages(kPrivate_Taxed_MK, kValueNotAllowed));
+	cout << r;
+
+	ta.setValue(kPrivate_Taxed_MK, false);
+	r = re.validate(ta, false);
+	EXPECT_TRUE(r.isAllOk());
+	cout << r;
+}
+
+
+
 
 
