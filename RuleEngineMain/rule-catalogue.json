@@ -198,19 +198,33 @@
          },
          {
             "id": "22.6",
-            "expr": "MinAndelTraditionelPct > 0",
-   	        "productElementOids": [ 213 ],
-   	        "requiredif": "TidspensionUdenGaranti_MK == false and TidspensionMedGaranti_MK == false",
+            "expr": "TidspensionUdenGaranti_MK == false and TidspensionMedGaranti_MK == false",
+   	        "productElementOids": [ 75, 210 ],
+   	        "requiredif": "",
+   	        "notallowedif": "",
             "positiveMessage": "",
-            "negativeMessage": "Minimum andel til traditionel skal angives"
-         },
-         {
-            "id": "22.7",
-            "expr": "MinAndelTraditionelPctType.strlen > 0",
-   	        "productElementOids": [ 214 ],
-   	        "requiredif": "TidspensionUdenGaranti_MK == false and TidspensionMedGaranti_MK == false",
-            "positiveMessage": "",
-            "negativeMessage": "Type for Minimum andel til traditionel skal angives"
+            "negativeMessage": "",
+            "positiveRuleCatalogue":
+            [
+		         {
+		            "id": "22.6.1",
+		            "expr": "MinAndelTraditionelPct > 0",
+		   	        "productElementOids": [ 213 ],
+		   	        "requiredif": "#parent#",
+		   	        "notallowedif": "TidspensionUdenGaranti_MK == true or TidspensionMedGaranti_MK == true",
+		            "positiveMessage": "",
+		            "negativeMessage": "Minimum andel til traditionel skal angives"
+		         },
+		         {
+		            "id": "22.6.2",
+		            "expr": "MinAndelTraditionelPctType.strlen > 0",
+		   	        "productElementOids": [ 214 ],
+		   	        "requiredif": "#parent#",
+		   	        "notallowedif": "TidspensionUdenGaranti_MK == true or TidspensionMedGaranti_MK == true",
+		            "positiveMessage": "",
+		            "negativeMessage": "Type for Minimum andel til traditionel skal angives"
+         		}
+         	]
          },
          {
             "id": "23.1",
