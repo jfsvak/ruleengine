@@ -1,4 +1,4 @@
-﻿{
+{
    "data": {"KONCEPTS":    [
             {
          "oid": 10,
@@ -8,6 +8,7 @@
             "name": "Mellem 1 og 9999 ansatte",
             "minEmployeeNumber": 1,
             "maxEmployeeNumber": 9999,
+            "relatedUnderkonceptOid": 18,
             "parameters":             [
                               {
                   "oid": 30,
@@ -105,6 +106,7 @@
                "name": "mellem 10 og 24",
                "minEmployeeNumber": 10,
                "maxEmployeeNumber": 25,
+               "relatedUnderkonceptOid": null,
                "parameters":                [
                                     {
                      "oid": 18,
@@ -191,6 +193,7 @@
                "name": "mellem 25 og 49",
                "minEmployeeNumber": 25,
                "maxEmployeeNumber": 50,
+               "relatedUnderkonceptOid": null,
                "parameters":                [
                                     {
                      "oid": 18,
@@ -283,6 +286,7 @@
                "name": "mellem 50 og 99",
                "minEmployeeNumber": 50,
                "maxEmployeeNumber": 100,
+               "relatedUnderkonceptOid": null,
                "parameters":                [
                                     {
                      "oid": 18,
@@ -375,6 +379,7 @@
                "name": "over 99",
                "minEmployeeNumber": 100,
                "maxEmployeeNumber": 99999,
+               "relatedUnderkonceptOid": null,
                "parameters":                [
                                     {
                      "oid": 18,
@@ -479,6 +484,7 @@
                "name": "under 10",
                "minEmployeeNumber": 1,
                "maxEmployeeNumber": 10,
+               "relatedUnderkonceptOid": null,
                "parameters": []
             }
          ]
@@ -492,6 +498,7 @@
                "name": "mellem 25 og 49",
                "minEmployeeNumber": 25,
                "maxEmployeeNumber": 50,
+               "relatedUnderkonceptOid": null,
                "parameters":                [
                                     {
                      "oid": 18,
@@ -596,6 +603,7 @@
                "name": "Mellem 50 og 99",
                "minEmployeeNumber": 50,
                "maxEmployeeNumber": 100,
+               "relatedUnderkonceptOid": null,
                "parameters":                [
                                     {
                      "oid": 18,
@@ -700,6 +708,7 @@
                "name": "over 99",
                "minEmployeeNumber": 100,
                "maxEmployeeNumber": 99999,
+               "relatedUnderkonceptOid": null,
                "parameters":                [
                                     {
                      "oid": 18,
@@ -810,6 +819,7 @@
                "name": "Mellem 10 og 25 ansatte",
                "minEmployeeNumber": 10,
                "maxEmployeeNumber": 25,
+               "relatedUnderkonceptOid": null,
                "parameters":                [
                                     {
                      "oid": 18,
@@ -914,6 +924,7 @@
                "name": "Mellem 5 og 9",
                "minEmployeeNumber": 5,
                "maxEmployeeNumber": 10,
+               "relatedUnderkonceptOid": null,
                "parameters":                [
                                     {
                      "oid": 18,
@@ -1018,6 +1029,7 @@
                "name": "under 5 ansatte",
                "minEmployeeNumber": 1,
                "maxEmployeeNumber": 5,
+               "relatedUnderkonceptOid": null,
                "parameters": [               {
                   "oid": 27,
                   "name": "Ingen risikogruppe",
@@ -1036,6 +1048,7 @@
                "name": "mellem 8 og 24 ansatte",
                "minEmployeeNumber": 8,
                "maxEmployeeNumber": 99999,
+               "relatedUnderkonceptOid": null,
                "parameters":                [
                                     {
                      "oid": 18,
@@ -1128,6 +1141,7 @@
                "name": "Under 8 ansatte",
                "minEmployeeNumber": 1,
                "maxEmployeeNumber": 8,
+               "relatedUnderkonceptOid": null,
                "parameters":                [
                                     {
                      "oid": 16,
@@ -1166,6 +1180,7 @@
                "name": "Mellem 5 og 24 ansatte",
                "minEmployeeNumber": 5,
                "maxEmployeeNumber": 25,
+               "relatedUnderkonceptOid": null,
                "parameters":                [
                                     {
                      "oid": 18,
@@ -1252,6 +1267,7 @@
                "name": "Mellem 25 og 49 ansatte",
                "minEmployeeNumber": 25,
                "maxEmployeeNumber": 50,
+               "relatedUnderkonceptOid": null,
                "parameters":                [
                                     {
                      "oid": 18,
@@ -1338,6 +1354,7 @@
                "name": "Mellem 50 og 99 ansatte",
                "minEmployeeNumber": 50,
                "maxEmployeeNumber": 100,
+               "relatedUnderkonceptOid": null,
                "parameters":                [
                                     {
                      "oid": 18,
@@ -1424,6 +1441,7 @@
                "name": "over 99 ansatte",
                "minEmployeeNumber": 100,
                "maxEmployeeNumber": 99999,
+               "relatedUnderkonceptOid": null,
                "parameters":                [
                                     {
                      "oid": 18,
@@ -1522,6 +1540,7 @@
                "name": "Under 5 ansatte",
                "minEmployeeNumber": 1,
                "maxEmployeeNumber": 5,
+               "relatedUnderkonceptOid": null,
                "parameters": []
             }
          ]
@@ -1535,6 +1554,7 @@
                "name": "Mellem 3 og 9 ansatte",
                "minEmployeeNumber": 3,
                "maxEmployeeNumber": 10,
+               "relatedUnderkonceptOid": 18,
                "parameters":                [
                                     {
                      "oid": 28,
@@ -1633,6 +1653,7 @@
                "name": "Mellem 10 og 9999 ansatte",
                "minEmployeeNumber": 10,
                "maxEmployeeNumber": 9999,
+               "relatedUnderkonceptOid": 18,
                "parameters":                [
                                     {
                      "oid": 28,
@@ -1731,6 +1752,7 @@
                "name": "Mellem 1 og 3 ansatte",
                "minEmployeeNumber": 1,
                "maxEmployeeNumber": 3,
+               "relatedUnderkonceptOid": null,
                "parameters": []
             }
          ]
@@ -1744,6 +1766,7 @@
                "name": "Mellem 3 og 9 ansatte",
                "minEmployeeNumber": 3,
                "maxEmployeeNumber": 10,
+               "relatedUnderkonceptOid": 18,
                "parameters":                [
                                     {
                      "oid": 11,
@@ -1848,6 +1871,7 @@
                "name": "Mellem 10 og 9999 ansatte",
                "minEmployeeNumber": 10,
                "maxEmployeeNumber": 9999,
+               "relatedUnderkonceptOid": 18,
                "parameters":                [
                                     {
                      "oid": 11,
@@ -1952,6 +1976,7 @@
                "name": "Mellem 1 og 3 ansatte",
                "minEmployeeNumber": 1,
                "maxEmployeeNumber": 3,
+               "relatedUnderkonceptOid": null,
                "parameters": []
             }
          ]
@@ -1965,6 +1990,7 @@
                "name": "Mellem 3 og 9 ansatte",
                "minEmployeeNumber": 3,
                "maxEmployeeNumber": 10,
+               "relatedUnderkonceptOid": 18,
                "parameters":                [
                                     {
                      "oid": 11,
@@ -2069,6 +2095,7 @@
                "name": "Mellem 10 og 9999 ansatte",
                "minEmployeeNumber": 10,
                "maxEmployeeNumber": 9999,
+               "relatedUnderkonceptOid": 18,
                "parameters":                [
                                     {
                      "oid": 11,
@@ -2173,6 +2200,7 @@
                "name": "Mellem 1 og 3 ansatte",
                "minEmployeeNumber": 1,
                "maxEmployeeNumber": 3,
+               "relatedUnderkonceptOid": null,
                "parameters": []
             }
          ]
