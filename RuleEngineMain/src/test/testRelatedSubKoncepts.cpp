@@ -18,7 +18,7 @@
 using namespace std;
 using namespace sbx;
 
-class RelatedSubkoncepts_Prosa : public ::testing::Test  {
+class RelatedSubkoncepts : public ::testing::Test  {
 protected:
     virtual void SetUp() {
     	RuleEngine::_printDebugAtValidation = false;
@@ -39,7 +39,7 @@ protected:
     RuleEngine re;
 };
 
-TEST_F(RelatedSubkoncepts_Prosa, Udlobsalder_Pension_Allowed_Values) {
+TEST_F(RelatedSubkoncepts, Udlobsalder_Pension_Allowed_Values) {
 	RuleEngine::_printDebug = true;
 	RuleEngine::_printDebugAtValidation = true;
 	re.getContainer().printKoncepts();
@@ -63,7 +63,7 @@ TEST_F(RelatedSubkoncepts_Prosa, Udlobsalder_Pension_Allowed_Values) {
 	cout << r;
 }
 
-TEST_F(RelatedSubkoncepts_Prosa, Private_Taxed_MK_NotAllowed) {
+TEST_F(RelatedSubkoncepts, Private_Taxed_MK_NotAllowed) {
 	RuleEngine::_printDebug = true;
 	RuleEngine::_printDebugAtValidation = true;
 	re.getContainer().printKoncepts();
@@ -81,6 +81,56 @@ TEST_F(RelatedSubkoncepts_Prosa, Private_Taxed_MK_NotAllowed) {
 	r = re.validate(ta, false);
 	EXPECT_TRUE(r.isAllOk());
 	cout << r;
+}
+
+TEST_F(RelatedSubkoncepts, ContextSwitch) {
+	RuleEngine::_printDebug = true;
+	RuleEngine::_printDebugAtValidation = true;
+	RuleEngine re2{};
+	re2.initConstants(get_file_contents("basedata-ruleconstants.json"));
+	re2.initKoncepts(get_file_contents("koncepts.json"));
+	re2.parseRuleCatalogueJSON(get_file_contents("rule-catalogue.json"));
+
+    KonceptInfo kiOSV {OSV, 55, 0, //
+    	{ {11, "true"}, // Parameter-Basis
+    	  {1, "true"}, // Solidarisk faellestarif
+		  {15, "true"}, // FG span
+		  {6, "true"} // SEB Firmapensionspulje
+    	} };
+
+    re2.initContext(kiOSV, OUTSIDE);
+
+	re2.getContainer().printConstants(18, 216);
+
+	TA ta {"20247940", OSV};
+
+	ta.setValue(kKritiskSygReguleringskode, "Pristal");
+	ta.setValue(kKritiskSygBlMin, (long) 50000);
+	ta.setValue(kKritiskSygBlMax, (long) 100000);
+
+	auto r = re2.validate(ta, false);
+	EXPECT_TRUE(r.isAllOk());
+	cout << r;
+
+    KonceptInfo kiProsa {PROSA, 5, 0, //
+    	{ {11, "true"}, // Parameter-Basis
+    	  {1, "true"}, // Solidarisk faellestarif
+		  {15, "true"}, // FG span
+		  {6, "true"} // SEB Firmapensionspulje
+    	} };
+    re2.initContext(kiProsa, OUTSIDE);
+    ta.setKonceptOid(PROSA);
+
+	r = re2.validate(ta, false);
+	EXPECT_FALSE(r.isAllOk());
+	cout << r;
+	EXPECT_TRUE(r.hasMessages(kKritiskSygBlMin, kValueUnderLimit));
+
+	ta.setValue(kKritiskSygBlMin, (long) 100000);
+	r = re2.validate(ta, false);
+	EXPECT_TRUE(r.isAllOk());
+	cout << r;
+
 }
 
 
