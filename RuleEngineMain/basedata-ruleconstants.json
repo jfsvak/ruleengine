@@ -1019,7 +1019,7 @@
             "productElementOid": 42,
             "comparisonTypeOid": 3,
             "value": "50",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 10411,
@@ -1289,7 +1289,7 @@
             "productElementOid": 71,
             "comparisonTypeOid": 3,
             "value": "67",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 1045,
@@ -2279,7 +2279,7 @@
             "productElementOid": 226,
             "comparisonTypeOid": 3,
             "value": "Pristal",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10914,
@@ -2289,7 +2289,7 @@
             "productElementOid": 228,
             "comparisonTypeOid": 3,
             "value": "Tegningsmaks",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10916,
@@ -2309,7 +2309,7 @@
             "productElementOid": 226,
             "comparisonTypeOid": 3,
             "value": "Pristal",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10918,
@@ -2319,7 +2319,7 @@
             "productElementOid": 228,
             "comparisonTypeOid": 3,
             "value": "Tegningsmaks",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10919,
@@ -2429,7 +2429,7 @@
             "productElementOid": 229,
             "comparisonTypeOid": 3,
             "value": "Gage",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10929,
@@ -2479,7 +2479,7 @@
             "productElementOid": 229,
             "comparisonTypeOid": 3,
             "value": "Gage",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10933,
@@ -2599,7 +2599,7 @@
             "productElementOid": 139,
             "comparisonTypeOid": 3,
             "value": "115 DØD Gennemsnitspræmie",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10490,
@@ -2689,7 +2689,7 @@
             "productElementOid": 139,
             "comparisonTypeOid": 3,
             "value": "115 DØD Gennemsnitspræmie",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10499,
@@ -2889,7 +2889,7 @@
             "productElementOid": 148,
             "comparisonTypeOid": 3,
             "value": "Årlig",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10517,
@@ -3169,7 +3169,7 @@
             "productElementOid": 183,
             "comparisonTypeOid": 4,
             "value": "Ingen",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10554,
@@ -3239,7 +3239,7 @@
             "productElementOid": 193,
             "comparisonTypeOid": 3,
             "value": "Skattefri dækning",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10564,
@@ -3449,7 +3449,7 @@
             "productElementOid": 221,
             "comparisonTypeOid": 3,
             "value": "Gage",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 1059,
@@ -3499,7 +3499,7 @@
             "productElementOid": 225,
             "comparisonTypeOid": 3,
             "value": "1",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10595,
@@ -3509,7 +3509,7 @@
             "productElementOid": 226,
             "comparisonTypeOid": 3,
             "value": "Pristal",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10596,
@@ -3559,7 +3559,7 @@
             "productElementOid": 148,
             "comparisonTypeOid": 3,
             "value": "Årlig",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10600,
@@ -3569,7 +3569,7 @@
             "productElementOid": 228,
             "comparisonTypeOid": 3,
             "value": "Tegningsmaks",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10601,
@@ -3589,7 +3589,7 @@
             "productElementOid": 229,
             "comparisonTypeOid": 3,
             "value": "Gage",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10603,
@@ -4559,7 +4559,7 @@
             "productElementOid": 42,
             "comparisonTypeOid": 3,
             "value": "200",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 20358,
@@ -4649,7 +4649,7 @@
             "productElementOid": 183,
             "comparisonTypeOid": 4,
             "value": "Ingen",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 20367,
@@ -5039,7 +5039,7 @@
             "productElementOid": 71,
             "comparisonTypeOid": 3,
             "value": "67",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10150,
@@ -6659,7 +6659,7 @@
             "productElementOid": 255,
             "comparisonTypeOid": 3,
             "value": "<=12",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 12321,
@@ -6669,7 +6669,7 @@
             "productElementOid": 255,
             "comparisonTypeOid": 3,
             "value": "<=12",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 12322,
@@ -6679,7 +6679,7 @@
             "productElementOid": 255,
             "comparisonTypeOid": 3,
             "value": "<=12",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 12323,
@@ -6689,7 +6689,7 @@
             "productElementOid": 255,
             "comparisonTypeOid": 3,
             "value": "<=12",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 12324,
@@ -6699,7 +6699,7 @@
             "productElementOid": 255,
             "comparisonTypeOid": 3,
             "value": "<=12",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 12325,
@@ -6709,7 +6709,7 @@
             "productElementOid": 255,
             "comparisonTypeOid": 3,
             "value": "<=12",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 12326,
@@ -6719,7 +6719,7 @@
             "productElementOid": 255,
             "comparisonTypeOid": 3,
             "value": "<=12",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 12327,
@@ -6729,7 +6729,7 @@
             "productElementOid": 255,
             "comparisonTypeOid": 3,
             "value": "<=12",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 12328,
@@ -6739,7 +6739,7 @@
             "productElementOid": 255,
             "comparisonTypeOid": 3,
             "value": "<=12",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 12329,
@@ -6749,7 +6749,7 @@
             "productElementOid": 255,
             "comparisonTypeOid": 3,
             "value": "<=12",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 1233,
@@ -6769,7 +6769,7 @@
             "productElementOid": 255,
             "comparisonTypeOid": 3,
             "value": "<=12",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 12331,
@@ -6779,7 +6779,7 @@
             "productElementOid": 255,
             "comparisonTypeOid": 3,
             "value": "<=12",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 12332,
@@ -6789,7 +6789,7 @@
             "productElementOid": 255,
             "comparisonTypeOid": 3,
             "value": "<=12",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 12333,
@@ -6799,7 +6799,7 @@
             "productElementOid": 255,
             "comparisonTypeOid": 3,
             "value": "<=12",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 12334,
@@ -6809,7 +6809,7 @@
             "productElementOid": 255,
             "comparisonTypeOid": 3,
             "value": "<=12",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 12335,
@@ -6819,7 +6819,7 @@
             "productElementOid": 255,
             "comparisonTypeOid": 3,
             "value": "<=12",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 12336,
@@ -6829,7 +6829,7 @@
             "productElementOid": 255,
             "comparisonTypeOid": 3,
             "value": "<=12",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 12337,
@@ -6839,7 +6839,7 @@
             "productElementOid": 255,
             "comparisonTypeOid": 3,
             "value": "<=12",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 12338,
@@ -6849,7 +6849,7 @@
             "productElementOid": 255,
             "comparisonTypeOid": 3,
             "value": "<=12",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 12339,
@@ -6859,7 +6859,7 @@
             "productElementOid": 255,
             "comparisonTypeOid": 3,
             "value": "<=12",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 1234,
@@ -6879,7 +6879,7 @@
             "productElementOid": 255,
             "comparisonTypeOid": 3,
             "value": "<=12",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 12341,
@@ -6889,7 +6889,7 @@
             "productElementOid": 255,
             "comparisonTypeOid": 3,
             "value": "<=12",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 12342,
@@ -9199,7 +9199,7 @@
             "productElementOid": 264,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 12535,
@@ -9209,7 +9209,7 @@
             "productElementOid": 264,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 12536,
@@ -9219,7 +9219,7 @@
             "productElementOid": 264,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 12537,
@@ -9229,7 +9229,7 @@
             "productElementOid": 264,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 12538,
@@ -9239,7 +9239,7 @@
             "productElementOid": 264,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 12539,
@@ -9249,7 +9249,7 @@
             "productElementOid": 264,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 12540,
@@ -9259,7 +9259,7 @@
             "productElementOid": 264,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 12541,
@@ -9269,7 +9269,7 @@
             "productElementOid": 264,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 12542,
@@ -9279,7 +9279,7 @@
             "productElementOid": 264,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 12543,
@@ -9289,7 +9289,7 @@
             "productElementOid": 264,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 12544,
@@ -9299,7 +9299,7 @@
             "productElementOid": 264,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 12545,
@@ -9309,7 +9309,7 @@
             "productElementOid": 264,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 12546,
@@ -9319,7 +9319,7 @@
             "productElementOid": 264,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 12547,
@@ -9329,7 +9329,7 @@
             "productElementOid": 264,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 12548,
@@ -9339,7 +9339,7 @@
             "productElementOid": 264,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 12549,
@@ -9349,7 +9349,7 @@
             "productElementOid": 264,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 1255,
@@ -9369,7 +9369,7 @@
             "productElementOid": 264,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 12551,
@@ -9379,7 +9379,7 @@
             "productElementOid": 264,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 12552,
@@ -9389,7 +9389,7 @@
             "productElementOid": 264,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 12553,
@@ -9399,7 +9399,7 @@
             "productElementOid": 264,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 12554,
@@ -9409,7 +9409,7 @@
             "productElementOid": 264,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 12555,
@@ -9419,7 +9419,7 @@
             "productElementOid": 264,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 12556,
@@ -11289,7 +11289,7 @@
             "productElementOid": 264,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 12755,
@@ -11299,7 +11299,7 @@
             "productElementOid": 264,
             "comparisonTypeOid": 3,
             "value": "0",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 12756,
@@ -11529,7 +11529,7 @@
             "productElementOid": 255,
             "comparisonTypeOid": 3,
             "value": "<=12",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10968,
@@ -11569,7 +11569,7 @@
             "productElementOid": 183,
             "comparisonTypeOid": 4,
             "value": "Ingen",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10972,
@@ -11719,7 +11719,7 @@
             "productElementOid": 255,
             "comparisonTypeOid": 4,
             "value": "<=12",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 10989,
@@ -11899,7 +11899,7 @@
             "productElementOid": 255,
             "comparisonTypeOid": 3,
             "value": "<=12",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 11009,
@@ -11939,7 +11939,7 @@
             "productElementOid": 183,
             "comparisonTypeOid": 4,
             "value": "Ingen",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 11013,
@@ -12089,7 +12089,7 @@
             "productElementOid": 255,
             "comparisonTypeOid": 4,
             "value": "<=12",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 1103,
@@ -16659,7 +16659,7 @@
             "productElementOid": 42,
             "comparisonTypeOid": 4,
             "value": "50",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 2292,
@@ -16669,7 +16669,7 @@
             "productElementOid": 42,
             "comparisonTypeOid": 4,
             "value": "50",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 2293,
@@ -16679,7 +16679,7 @@
             "productElementOid": 42,
             "comparisonTypeOid": 4,
             "value": "50",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 2294,
@@ -16689,7 +16689,7 @@
             "productElementOid": 42,
             "comparisonTypeOid": 4,
             "value": "50",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 2295,
@@ -19709,7 +19709,7 @@
             "productElementOid": 71,
             "comparisonTypeOid": 3,
             "value": "67",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 1918,
@@ -19749,7 +19749,7 @@
             "productElementOid": 71,
             "comparisonTypeOid": 3,
             "value": "67",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 1922,
@@ -19789,7 +19789,7 @@
             "productElementOid": 71,
             "comparisonTypeOid": 3,
             "value": "67",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 1926,
@@ -19829,7 +19829,7 @@
             "productElementOid": 71,
             "comparisonTypeOid": 3,
             "value": "67",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 1930,
@@ -21329,7 +21329,7 @@
             "productElementOid": 139,
             "comparisonTypeOid": 3,
             "value": "115 DØD Gennemsnitspræmie",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 2038,
@@ -21349,7 +21349,7 @@
             "productElementOid": 139,
             "comparisonTypeOid": 3,
             "value": "115 DØD Gennemsnitspræmie",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 2040,
@@ -21769,7 +21769,7 @@
             "productElementOid": 148,
             "comparisonTypeOid": 3,
             "value": "Årlig",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 2084,
@@ -21779,7 +21779,7 @@
             "productElementOid": 148,
             "comparisonTypeOid": 3,
             "value": "Årlig",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 2085,
@@ -21829,7 +21829,7 @@
             "productElementOid": 148,
             "comparisonTypeOid": 3,
             "value": "Årlig",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 2090,
@@ -21839,7 +21839,7 @@
             "productElementOid": 148,
             "comparisonTypeOid": 3,
             "value": "Årlig",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 2091,
@@ -22649,7 +22649,7 @@
             "productElementOid": 139,
             "comparisonTypeOid": 3,
             "value": "115 DØD Gennemsnitspræmie",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 2934,
@@ -23279,7 +23279,7 @@
             "productElementOid": 183,
             "comparisonTypeOid": 4,
             "value": "Ingen",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3012,
@@ -23289,7 +23289,7 @@
             "productElementOid": 183,
             "comparisonTypeOid": 4,
             "value": "Ingen",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3013,
@@ -23299,7 +23299,7 @@
             "productElementOid": 183,
             "comparisonTypeOid": 4,
             "value": "Ingen",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3014,
@@ -23309,7 +23309,7 @@
             "productElementOid": 183,
             "comparisonTypeOid": 4,
             "value": "Ingen",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3015,
@@ -23319,7 +23319,7 @@
             "productElementOid": 183,
             "comparisonTypeOid": 4,
             "value": "Ingen",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3016,
@@ -23329,7 +23329,7 @@
             "productElementOid": 183,
             "comparisonTypeOid": 4,
             "value": "Ingen",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3017,
@@ -23339,7 +23339,7 @@
             "productElementOid": 183,
             "comparisonTypeOid": 4,
             "value": "Ingen",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3018,
@@ -23349,7 +23349,7 @@
             "productElementOid": 183,
             "comparisonTypeOid": 4,
             "value": "Ingen",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3019,
@@ -23359,7 +23359,7 @@
             "productElementOid": 183,
             "comparisonTypeOid": 4,
             "value": "Ingen",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 302,
@@ -23379,7 +23379,7 @@
             "productElementOid": 183,
             "comparisonTypeOid": 4,
             "value": "Ingen",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3021,
@@ -23389,7 +23389,7 @@
             "productElementOid": 183,
             "comparisonTypeOid": 4,
             "value": "Ingen",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3022,
@@ -23399,7 +23399,7 @@
             "productElementOid": 183,
             "comparisonTypeOid": 4,
             "value": "Ingen",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3023,
@@ -24389,7 +24389,7 @@
             "productElementOid": 228,
             "comparisonTypeOid": 3,
             "value": "Tegningsmaks",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3815,
@@ -24399,7 +24399,7 @@
             "productElementOid": 228,
             "comparisonTypeOid": 3,
             "value": "Tegningsmaks",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3816,
@@ -24409,7 +24409,7 @@
             "productElementOid": 228,
             "comparisonTypeOid": 3,
             "value": "Tegningsmaks",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3817,
@@ -24419,7 +24419,7 @@
             "productElementOid": 228,
             "comparisonTypeOid": 3,
             "value": "Tegningsmaks",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3818,
@@ -24429,7 +24429,7 @@
             "productElementOid": 228,
             "comparisonTypeOid": 3,
             "value": "Tegningsmaks",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3819,
@@ -24439,7 +24439,7 @@
             "productElementOid": 228,
             "comparisonTypeOid": 3,
             "value": "Tegningsmaks",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 382,
@@ -24459,7 +24459,7 @@
             "productElementOid": 228,
             "comparisonTypeOid": 3,
             "value": "Tegningsmaks",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3821,
@@ -24469,7 +24469,7 @@
             "productElementOid": 228,
             "comparisonTypeOid": 3,
             "value": "Tegningsmaks",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3822,
@@ -24479,7 +24479,7 @@
             "productElementOid": 228,
             "comparisonTypeOid": 3,
             "value": "Tegningsmaks",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3823,
@@ -24489,7 +24489,7 @@
             "productElementOid": 228,
             "comparisonTypeOid": 3,
             "value": "Tegningsmaks",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3824,
@@ -24499,7 +24499,7 @@
             "productElementOid": 228,
             "comparisonTypeOid": 3,
             "value": "Tegningsmaks",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3825,
@@ -24509,7 +24509,7 @@
             "productElementOid": 228,
             "comparisonTypeOid": 3,
             "value": "Tegningsmaks",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3826,
@@ -24519,7 +24519,7 @@
             "productElementOid": 228,
             "comparisonTypeOid": 3,
             "value": "Tegningsmaks",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3827,
@@ -24529,7 +24529,7 @@
             "productElementOid": 228,
             "comparisonTypeOid": 3,
             "value": "Tegningsmaks",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3828,
@@ -24539,7 +24539,7 @@
             "productElementOid": 228,
             "comparisonTypeOid": 3,
             "value": "Tegningsmaks",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3829,
@@ -24789,7 +24789,7 @@
             "productElementOid": 229,
             "comparisonTypeOid": 3,
             "value": "Gage",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3854,
@@ -24799,7 +24799,7 @@
             "productElementOid": 229,
             "comparisonTypeOid": 3,
             "value": "Gage",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3855,
@@ -24809,7 +24809,7 @@
             "productElementOid": 229,
             "comparisonTypeOid": 3,
             "value": "Gage",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3856,
@@ -24819,7 +24819,7 @@
             "productElementOid": 229,
             "comparisonTypeOid": 3,
             "value": "Gage",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3857,
@@ -24829,7 +24829,7 @@
             "productElementOid": 229,
             "comparisonTypeOid": 3,
             "value": "Gage",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3858,
@@ -24839,7 +24839,7 @@
             "productElementOid": 229,
             "comparisonTypeOid": 3,
             "value": "Gage",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3859,
@@ -24849,7 +24849,7 @@
             "productElementOid": 229,
             "comparisonTypeOid": 3,
             "value": "Gage",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3860,
@@ -24859,7 +24859,7 @@
             "productElementOid": 229,
             "comparisonTypeOid": 3,
             "value": "Gage",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3861,
@@ -24869,7 +24869,7 @@
             "productElementOid": 229,
             "comparisonTypeOid": 3,
             "value": "Gage",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3862,
@@ -24879,7 +24879,7 @@
             "productElementOid": 229,
             "comparisonTypeOid": 3,
             "value": "Gage",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3863,
@@ -24889,7 +24889,7 @@
             "productElementOid": 229,
             "comparisonTypeOid": 3,
             "value": "Gage",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3864,
@@ -24899,7 +24899,7 @@
             "productElementOid": 229,
             "comparisonTypeOid": 3,
             "value": "Gage",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3865,
@@ -24909,7 +24909,7 @@
             "productElementOid": 229,
             "comparisonTypeOid": 3,
             "value": "Gage",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3866,
@@ -24919,7 +24919,7 @@
             "productElementOid": 229,
             "comparisonTypeOid": 3,
             "value": "Gage",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3867,
@@ -24929,7 +24929,7 @@
             "productElementOid": 229,
             "comparisonTypeOid": 3,
             "value": "Gage",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3868,
@@ -28049,7 +28049,7 @@
             "productElementOid": 221,
             "comparisonTypeOid": 3,
             "value": "Gage",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3620,
@@ -28059,7 +28059,7 @@
             "productElementOid": 221,
             "comparisonTypeOid": 3,
             "value": "Gage",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3621,
@@ -28069,7 +28069,7 @@
             "productElementOid": 221,
             "comparisonTypeOid": 3,
             "value": "Gage",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3622,
@@ -28079,7 +28079,7 @@
             "productElementOid": 221,
             "comparisonTypeOid": 3,
             "value": "Gage",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3623,
@@ -28089,7 +28089,7 @@
             "productElementOid": 221,
             "comparisonTypeOid": 3,
             "value": "Gage",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3624,
@@ -28099,7 +28099,7 @@
             "productElementOid": 221,
             "comparisonTypeOid": 3,
             "value": "Gage",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3625,
@@ -28109,7 +28109,7 @@
             "productElementOid": 221,
             "comparisonTypeOid": 3,
             "value": "Gage",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3626,
@@ -28119,7 +28119,7 @@
             "productElementOid": 221,
             "comparisonTypeOid": 3,
             "value": "Gage",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3627,
@@ -28129,7 +28129,7 @@
             "productElementOid": 221,
             "comparisonTypeOid": 3,
             "value": "Gage",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3628,
@@ -28139,7 +28139,7 @@
             "productElementOid": 221,
             "comparisonTypeOid": 3,
             "value": "Gage",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3629,
@@ -28149,7 +28149,7 @@
             "productElementOid": 221,
             "comparisonTypeOid": 3,
             "value": "Gage",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3630,
@@ -28159,7 +28159,7 @@
             "productElementOid": 221,
             "comparisonTypeOid": 3,
             "value": "Gage",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3631,
@@ -28169,7 +28169,7 @@
             "productElementOid": 221,
             "comparisonTypeOid": 3,
             "value": "Gage",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3632,
@@ -28179,7 +28179,7 @@
             "productElementOid": 221,
             "comparisonTypeOid": 3,
             "value": "Gage",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3633,
@@ -28189,7 +28189,7 @@
             "productElementOid": 221,
             "comparisonTypeOid": 3,
             "value": "Gage",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3634,
@@ -28649,7 +28649,7 @@
             "productElementOid": 225,
             "comparisonTypeOid": 3,
             "value": "1",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3695,
@@ -28659,7 +28659,7 @@
             "productElementOid": 225,
             "comparisonTypeOid": 3,
             "value": "1",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3696,
@@ -28669,7 +28669,7 @@
             "productElementOid": 225,
             "comparisonTypeOid": 3,
             "value": "1",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3697,
@@ -28679,7 +28679,7 @@
             "productElementOid": 225,
             "comparisonTypeOid": 3,
             "value": "1",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3698,
@@ -28689,7 +28689,7 @@
             "productElementOid": 225,
             "comparisonTypeOid": 3,
             "value": "1",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3699,
@@ -28699,7 +28699,7 @@
             "productElementOid": 225,
             "comparisonTypeOid": 3,
             "value": "1",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3700,
@@ -28709,7 +28709,7 @@
             "productElementOid": 225,
             "comparisonTypeOid": 3,
             "value": "1",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3701,
@@ -28719,7 +28719,7 @@
             "productElementOid": 225,
             "comparisonTypeOid": 3,
             "value": "1",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3702,
@@ -28729,7 +28729,7 @@
             "productElementOid": 225,
             "comparisonTypeOid": 3,
             "value": "1",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3703,
@@ -28739,7 +28739,7 @@
             "productElementOid": 225,
             "comparisonTypeOid": 3,
             "value": "1",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3704,
@@ -28749,7 +28749,7 @@
             "productElementOid": 225,
             "comparisonTypeOid": 3,
             "value": "1",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3705,
@@ -28759,7 +28759,7 @@
             "productElementOid": 225,
             "comparisonTypeOid": 3,
             "value": "1",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3706,
@@ -28769,7 +28769,7 @@
             "productElementOid": 225,
             "comparisonTypeOid": 3,
             "value": "1",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3707,
@@ -28779,7 +28779,7 @@
             "productElementOid": 225,
             "comparisonTypeOid": 3,
             "value": "1",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3708,
@@ -28789,7 +28789,7 @@
             "productElementOid": 225,
             "comparisonTypeOid": 3,
             "value": "1",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3709,
@@ -29109,7 +29109,7 @@
             "productElementOid": 226,
             "comparisonTypeOid": 3,
             "value": "Pristal",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 374,
@@ -29129,7 +29129,7 @@
             "productElementOid": 226,
             "comparisonTypeOid": 3,
             "value": "Pristal",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3741,
@@ -29139,7 +29139,7 @@
             "productElementOid": 226,
             "comparisonTypeOid": 3,
             "value": "Pristal",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3742,
@@ -29149,7 +29149,7 @@
             "productElementOid": 226,
             "comparisonTypeOid": 3,
             "value": "Pristal",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3743,
@@ -29159,7 +29159,7 @@
             "productElementOid": 226,
             "comparisonTypeOid": 3,
             "value": "Pristal",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3744,
@@ -29169,7 +29169,7 @@
             "productElementOid": 226,
             "comparisonTypeOid": 3,
             "value": "Pristal",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3745,
@@ -29179,7 +29179,7 @@
             "productElementOid": 226,
             "comparisonTypeOid": 3,
             "value": "Pristal",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3746,
@@ -29189,7 +29189,7 @@
             "productElementOid": 226,
             "comparisonTypeOid": 3,
             "value": "Pristal",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3747,
@@ -29199,7 +29199,7 @@
             "productElementOid": 226,
             "comparisonTypeOid": 3,
             "value": "Pristal",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3748,
@@ -29209,7 +29209,7 @@
             "productElementOid": 226,
             "comparisonTypeOid": 3,
             "value": "Pristal",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3749,
@@ -29219,7 +29219,7 @@
             "productElementOid": 226,
             "comparisonTypeOid": 3,
             "value": "Pristal",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3750,
@@ -29229,7 +29229,7 @@
             "productElementOid": 226,
             "comparisonTypeOid": 3,
             "value": "Pristal",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3751,
@@ -29239,7 +29239,7 @@
             "productElementOid": 226,
             "comparisonTypeOid": 3,
             "value": "Pristal",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3752,
@@ -29249,7 +29249,7 @@
             "productElementOid": 226,
             "comparisonTypeOid": 3,
             "value": "Pristal",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3753,
@@ -29259,7 +29259,7 @@
             "productElementOid": 226,
             "comparisonTypeOid": 3,
             "value": "Pristal",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3754,
@@ -29269,7 +29269,7 @@
             "productElementOid": 193,
             "comparisonTypeOid": 3,
             "value": "Skattefri dækning",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3755,
@@ -29279,7 +29279,7 @@
             "productElementOid": 193,
             "comparisonTypeOid": 3,
             "value": "Skattefri dækning",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3756,
@@ -29289,7 +29289,7 @@
             "productElementOid": 193,
             "comparisonTypeOid": 3,
             "value": "Skattefri dækning",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3757,
@@ -29299,7 +29299,7 @@
             "productElementOid": 193,
             "comparisonTypeOid": 3,
             "value": "Skattefri dækning",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3758,
@@ -29309,7 +29309,7 @@
             "productElementOid": 193,
             "comparisonTypeOid": 3,
             "value": "Skattefri dækning",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3759,
@@ -29319,7 +29319,7 @@
             "productElementOid": 193,
             "comparisonTypeOid": 3,
             "value": "Skattefri dækning",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 376,
@@ -29339,7 +29339,7 @@
             "productElementOid": 193,
             "comparisonTypeOid": 3,
             "value": "Skattefri dækning",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3761,
@@ -29349,7 +29349,7 @@
             "productElementOid": 193,
             "comparisonTypeOid": 3,
             "value": "Skattefri dækning",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3762,
@@ -29359,7 +29359,7 @@
             "productElementOid": 193,
             "comparisonTypeOid": 3,
             "value": "Skattefri dækning",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3763,
@@ -29369,7 +29369,7 @@
             "productElementOid": 193,
             "comparisonTypeOid": 3,
             "value": "Skattefri dækning",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3764,
@@ -29379,7 +29379,7 @@
             "productElementOid": 193,
             "comparisonTypeOid": 3,
             "value": "Skattefri dækning",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3765,
@@ -29389,7 +29389,7 @@
             "productElementOid": 193,
             "comparisonTypeOid": 3,
             "value": "Skattefri dækning",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3766,
@@ -29399,7 +29399,7 @@
             "productElementOid": 193,
             "comparisonTypeOid": 3,
             "value": "Skattefri dækning",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3767,
@@ -29409,7 +29409,7 @@
             "productElementOid": 193,
             "comparisonTypeOid": 3,
             "value": "Skattefri dækning",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 3768,
@@ -29419,7 +29419,7 @@
             "productElementOid": 193,
             "comparisonTypeOid": 3,
             "value": "Skattefri dækning",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 2370,
@@ -29439,7 +29439,7 @@
             "productElementOid": 139,
             "comparisonTypeOid": 3,
             "value": "115 DØD Gennemsnitspræmie",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 2372,
@@ -29459,7 +29459,7 @@
             "productElementOid": 139,
             "comparisonTypeOid": 3,
             "value": "115 DØD Gennemsnitspræmie",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 2374,
@@ -29549,7 +29549,7 @@
             "productElementOid": 183,
             "comparisonTypeOid": 4,
             "value": "Ingen",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 2413,
@@ -29769,7 +29769,7 @@
             "productElementOid": 71,
             "comparisonTypeOid": 3,
             "value": "67",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 2448,
@@ -29799,7 +29799,7 @@
             "productElementOid": 42,
             "comparisonTypeOid": 3,
             "value": "50",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 2454,
@@ -30269,7 +30269,7 @@
             "productElementOid": 148,
             "comparisonTypeOid": 3,
             "value": "Årlig",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 2519,
@@ -30539,7 +30539,7 @@
             "productElementOid": 183,
             "comparisonTypeOid": 4,
             "value": "Ingen",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 2565,
@@ -30749,7 +30749,7 @@
             "productElementOid": 71,
             "comparisonTypeOid": 3,
             "value": "67",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 2600,
@@ -30779,7 +30779,7 @@
             "productElementOid": 42,
             "comparisonTypeOid": 3,
             "value": "50",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 2606,
@@ -31259,7 +31259,7 @@
             "productElementOid": 148,
             "comparisonTypeOid": 3,
             "value": "Årlig",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 2671,
@@ -31519,7 +31519,7 @@
             "productElementOid": 183,
             "comparisonTypeOid": 4,
             "value": "Ingen",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 2717,
@@ -31759,7 +31759,7 @@
             "productElementOid": 71,
             "comparisonTypeOid": 3,
             "value": "67",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 2752,
@@ -31789,7 +31789,7 @@
             "productElementOid": 42,
             "comparisonTypeOid": 3,
             "value": "50",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 2758,
@@ -32259,7 +32259,7 @@
             "productElementOid": 148,
             "comparisonTypeOid": 3,
             "value": "Årlig",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 2823,
@@ -32539,7 +32539,7 @@
             "productElementOid": 139,
             "comparisonTypeOid": 3,
             "value": "115 DØD Gennemsnitspræmie",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 2862,
@@ -32799,7 +32799,7 @@
             "productElementOid": 139,
             "comparisonTypeOid": 3,
             "value": "115 DØD Gennemsnitspræmie",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 2898,
@@ -34809,7 +34809,7 @@
             "productElementOid": 139,
             "comparisonTypeOid": 3,
             "value": "115 DØD Gennemsnitspræmie",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 5170,
@@ -36059,7 +36059,7 @@
             "productElementOid": 71,
             "comparisonTypeOid": 3,
             "value": "67",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 4335,
@@ -36379,7 +36379,7 @@
             "productElementOid": 139,
             "comparisonTypeOid": 3,
             "value": "115 DØD Gennemsnitspræmie",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 4370,
@@ -36529,7 +36529,7 @@
             "productElementOid": 148,
             "comparisonTypeOid": 3,
             "value": "Årlig",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 4387,
@@ -36769,7 +36769,7 @@
             "productElementOid": 183,
             "comparisonTypeOid": 4,
             "value": "Ingen",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 4435,
@@ -36839,7 +36839,7 @@
             "productElementOid": 193,
             "comparisonTypeOid": 3,
             "value": "Skattefri dækning",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 4452,
@@ -36989,7 +36989,7 @@
             "productElementOid": 221,
             "comparisonTypeOid": 3,
             "value": "Gage",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 4473,
@@ -37029,7 +37029,7 @@
             "productElementOid": 225,
             "comparisonTypeOid": 3,
             "value": "1",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 4479,
@@ -37069,7 +37069,7 @@
             "productElementOid": 226,
             "comparisonTypeOid": 3,
             "value": "Pristal",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 4483,
@@ -37079,7 +37079,7 @@
             "productElementOid": 228,
             "comparisonTypeOid": 3,
             "value": "Tegningsmaks",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 4484,
@@ -37109,7 +37109,7 @@
             "productElementOid": 229,
             "comparisonTypeOid": 3,
             "value": "Gage",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 4488,
@@ -40589,7 +40589,7 @@
             "productElementOid": 71,
             "comparisonTypeOid": 3,
             "value": "67",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 4830,
@@ -42979,7 +42979,7 @@
             "productElementOid": 71,
             "comparisonTypeOid": 3,
             "value": "67",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 5772,
@@ -43409,7 +43409,7 @@
             "productElementOid": 148,
             "comparisonTypeOid": 3,
             "value": "Årlig",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 5811,
@@ -43649,7 +43649,7 @@
             "productElementOid": 42,
             "comparisonTypeOid": 4,
             "value": "50",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 5845,
@@ -43739,7 +43739,7 @@
             "productElementOid": 139,
             "comparisonTypeOid": 3,
             "value": "115 DØD Gennemsnitspræmie",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 5853,
@@ -43769,7 +43769,7 @@
             "productElementOid": 183,
             "comparisonTypeOid": 4,
             "value": "Ingen",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 5856,
@@ -44029,7 +44029,7 @@
             "productElementOid": 71,
             "comparisonTypeOid": 3,
             "value": "67",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 6350,
@@ -44249,7 +44249,7 @@
             "productElementOid": 42,
             "comparisonTypeOid": 3,
             "value": "50",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 6385,
@@ -44529,7 +44529,7 @@
             "productElementOid": 71,
             "comparisonTypeOid": 3,
             "value": "67",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 6425,
@@ -45049,7 +45049,7 @@
             "productElementOid": 139,
             "comparisonTypeOid": 3,
             "value": "115 DØD Gennemsnitspræmie",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 6474,
@@ -45249,7 +45249,7 @@
             "productElementOid": 148,
             "comparisonTypeOid": 3,
             "value": "Årlig",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 6493,
@@ -45429,7 +45429,7 @@
             "productElementOid": 229,
             "comparisonTypeOid": 3,
             "value": "Gage",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 5877,
@@ -45929,7 +45929,7 @@
             "productElementOid": 139,
             "comparisonTypeOid": 3,
             "value": "115 DØD Gennemsnitspræmie",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 5930,
@@ -46389,7 +46389,7 @@
             "productElementOid": 71,
             "comparisonTypeOid": 3,
             "value": "67",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 5998,
@@ -46659,7 +46659,7 @@
             "productElementOid": 139,
             "comparisonTypeOid": 3,
             "value": "115 DØD Gennemsnitspræmie",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 6023,
@@ -46789,7 +46789,7 @@
             "productElementOid": 148,
             "comparisonTypeOid": 3,
             "value": "Årlig",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 6035,
@@ -46849,7 +46849,7 @@
             "productElementOid": 148,
             "comparisonTypeOid": 3,
             "value": "Årlig",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 6040,
@@ -47079,7 +47079,7 @@
             "productElementOid": 42,
             "comparisonTypeOid": 4,
             "value": "50",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 6072,
@@ -47179,7 +47179,7 @@
             "productElementOid": 183,
             "comparisonTypeOid": 4,
             "value": "Ingen",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 6081,
@@ -47349,7 +47349,7 @@
             "productElementOid": 229,
             "comparisonTypeOid": 3,
             "value": "Gage",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 6102,
@@ -48899,7 +48899,7 @@
             "productElementOid": 148,
             "comparisonTypeOid": 3,
             "value": "Årlig",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 5281,
@@ -48909,7 +48909,7 @@
             "productElementOid": 42,
             "comparisonTypeOid": 4,
             "value": "100",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 5283,
@@ -49199,7 +49199,7 @@
             "productElementOid": 71,
             "comparisonTypeOid": 3,
             "value": "67",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 532,
@@ -49439,7 +49439,7 @@
             "productElementOid": 139,
             "comparisonTypeOid": 3,
             "value": "115 DØD Gennemsnitspræmie",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 5342,
@@ -49579,7 +49579,7 @@
             "productElementOid": 148,
             "comparisonTypeOid": 3,
             "value": "Årlig",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 5356,
@@ -49919,7 +49919,7 @@
             "productElementOid": 183,
             "comparisonTypeOid": 4,
             "value": "Ingen",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 5398,
@@ -50079,7 +50079,7 @@
             "productElementOid": 229,
             "comparisonTypeOid": 3,
             "value": "Gage",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 5419,
@@ -51059,7 +51059,7 @@
             "productElementOid": 71,
             "comparisonTypeOid": 3,
             "value": "67",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 5544,
@@ -51489,7 +51489,7 @@
             "productElementOid": 148,
             "comparisonTypeOid": 3,
             "value": "Årlig",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 5585,
@@ -51549,7 +51549,7 @@
             "productElementOid": 71,
             "comparisonTypeOid": 3,
             "value": "67",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 5590,
@@ -51769,7 +51769,7 @@
             "productElementOid": 42,
             "comparisonTypeOid": 4,
             "value": "50",
-            "isDefault": true
+            "isDefault": false
          },
                   {
             "oid": 5621,
@@ -51849,7 +51849,7 @@
             "productElementOid": 139,
             "comparisonTypeOid": 3,
             "value": "115 DØD Gennemsnitspræmie",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 5629,
@@ -51889,7 +51889,7 @@
             "productElementOid": 183,
             "comparisonTypeOid": 4,
             "value": "Ingen",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 5632,
@@ -52049,7 +52049,7 @@
             "productElementOid": 229,
             "comparisonTypeOid": 3,
             "value": "Gage",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 5653,
@@ -52589,7 +52589,7 @@
             "productElementOid": 183,
             "comparisonTypeOid": 4,
             "value": "Ingen",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 6548,
@@ -52669,7 +52669,7 @@
             "productElementOid": 193,
             "comparisonTypeOid": 3,
             "value": "Skattefri dækning",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 6561,
@@ -52869,7 +52869,7 @@
             "productElementOid": 221,
             "comparisonTypeOid": 3,
             "value": "Gage",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 6587,
@@ -52919,7 +52919,7 @@
             "productElementOid": 225,
             "comparisonTypeOid": 3,
             "value": "1",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 6594,
@@ -52929,7 +52929,7 @@
             "productElementOid": 226,
             "comparisonTypeOid": 3,
             "value": "Pristal",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 6595,
@@ -52979,7 +52979,7 @@
             "productElementOid": 228,
             "comparisonTypeOid": 3,
             "value": "Tegningsmaks",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 660,
@@ -53009,7 +53009,7 @@
             "productElementOid": 229,
             "comparisonTypeOid": 3,
             "value": "Gage",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 6602,
@@ -53689,7 +53689,7 @@
             "productElementOid": 139,
             "comparisonTypeOid": 3,
             "value": "115 DØD Gennemsnitspræmie",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 670,
@@ -53799,7 +53799,7 @@
             "productElementOid": 148,
             "comparisonTypeOid": 3,
             "value": "Årlig",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 681,
@@ -54099,7 +54099,7 @@
             "productElementOid": 71,
             "comparisonTypeOid": 3,
             "value": "67",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 712,
@@ -54409,7 +54409,7 @@
             "productElementOid": 139,
             "comparisonTypeOid": 3,
             "value": "115 DØD Gennemsnitspræmie",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 746,
@@ -54519,7 +54519,7 @@
             "productElementOid": 148,
             "comparisonTypeOid": 3,
             "value": "Årlig",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 757,
@@ -54789,7 +54789,7 @@
             "productElementOid": 71,
             "comparisonTypeOid": 3,
             "value": "67",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 788,
@@ -55079,7 +55079,7 @@
             "productElementOid": 139,
             "comparisonTypeOid": 3,
             "value": "115 DØD Gennemsnitspræmie",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 822,
@@ -55199,7 +55199,7 @@
             "productElementOid": 148,
             "comparisonTypeOid": 3,
             "value": "Årlig",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 833,
@@ -55469,7 +55469,7 @@
             "productElementOid": 71,
             "comparisonTypeOid": 3,
             "value": "67",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 864,
@@ -55779,7 +55779,7 @@
             "productElementOid": 139,
             "comparisonTypeOid": 3,
             "value": "115 DØD Gennemsnitspræmie",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 898,
@@ -55899,7 +55899,7 @@
             "productElementOid": 148,
             "comparisonTypeOid": 3,
             "value": "Årlig",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 909,
@@ -56189,7 +56189,7 @@
             "productElementOid": 71,
             "comparisonTypeOid": 3,
             "value": "67",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 94,
@@ -56519,7 +56519,7 @@
             "productElementOid": 139,
             "comparisonTypeOid": 3,
             "value": "115 DØD Gennemsnitspræmie",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 974,
@@ -56629,7 +56629,7 @@
             "productElementOid": 148,
             "comparisonTypeOid": 3,
             "value": "Årlig",
-            "isDefault": false
+            "isDefault": true
          },
                   {
             "oid": 985,
