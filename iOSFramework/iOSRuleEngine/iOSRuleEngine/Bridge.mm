@@ -85,6 +85,14 @@ std::string get_file_contents(const char *filename)
     ta.setValue(sbx::ProductElementOid::kUnionAgreementOid, uaOid);
 }
 
+-(void)initUAContribution:(unsigned short)oid employeePct:(double)employeePct companyPct:(double)companyPct {
+    sbx::ContributionStep step(0, employeePct, companyPct);
+    std::map<unsigned short, std::vector<sbx::ContributionStep> > uaSteps;
+    std::pair<unsigned short, std::vector<sbx::ContributionStep> > uaStep(oid, std::vector<sbx::ContributionStep>{step});
+    uaSteps.insert(uaStep);
+    re.initUAContributionSteps(uaSteps);
+}
+
 -(void)addContributionStep:(long)index employeePct:(double)employeePct companyPct:(double)companyPct {
     sbx::ContributionStep step(index, employeePct, companyPct);
     ta.addContributionStep(step);
