@@ -103,7 +103,7 @@ TEST_F(ContributionLadder_Alder_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Alder
 	cout << r;
 	EXPECT_EQ(1, r.getValidationResults(kBidragstrappe).size());
 	EXPECT_TRUE(r.hasMessages(kBidragstrappe, kValueUnderLimit));
-	EXPECT_EQ("33.1", r.getValidationResults(kBidragstrappe).at(0).getRuleId());
+	EXPECT_EQ("33.1.2.1", r.getValidationResults(kBidragstrappe).at(0).getRuleId());
 
 	ta.removeContributionStep( {18, 2, 1} ); // remove and set new step that equals to 4
 	ta.addContributionStep( {18, 2, 4} );
@@ -127,7 +127,7 @@ TEST_F(ContributionLadder_Alder_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Alder
 	cout << r;
 	EXPECT_EQ(1, r.getValidationResults(kBidragstrappe).size());
 	EXPECT_TRUE(r.hasMessages(kBidragstrappe, kValueUnderLimit));
-	EXPECT_EQ("33.1", r.getValidationResults(kBidragstrappe).at(0).getRuleId());
+	EXPECT_EQ("33.1.1.1", r.getValidationResults(kBidragstrappe).at(0).getRuleId());
 
 	ta.removeContributionStep( {18, 2, 2} ); // remove and set new step that equals to 5
 	ta.addContributionStep( {18, 2, 3} );

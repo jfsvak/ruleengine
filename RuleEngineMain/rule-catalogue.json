@@ -782,6 +782,15 @@
 	            	"negativeMessage": "Spænd for børnerente i pct må ikke overstige %1",
 	            	"negativeMessageParameters": [ "rc_BoerneRenteSpaendPct_max" ],
 					"negativeValCode": 103
+        	    },
+		        {
+		            "id": "25.3.6",
+	    	        "expr": "BoerneRentePctMin > 0 and BoerneRenteSoliMax == \"Ingen\"",
+		   	        "productElementOids": [ 183 ],
+   	    		    "requiredif": "",
+	        	    "positiveMessage": "Obligatorisk børnerente skal være solidarisk",
+	            	"negativeMessage": "",
+					"positiveValCode": 101
         	    }
             ],
 	        "negativeRuleCatalogue": []
@@ -847,6 +856,15 @@
 	            	"negativeMessage": "Spænd for børnerente i kr må ikke overstige %1",
 	            	"negativeMessageParameters": [ "rc_BoerneRenteSpaendBl_max" ],
 					"negativeValCode": 103
+        	    },
+		        {
+		            "id": "25.4.6",
+	    	        "expr": "BoerneRenteBlMin > 0 and BoerneRenteSoliMax == \"Ingen\"",
+		   	        "productElementOids": [ 183 ],
+   	    		    "requiredif": "",
+	        	    "positiveMessage": "Obligatorisk børnerente skal være solidarisk",
+	            	"negativeMessage": "",
+					"positiveValCode": 101
         	    }
             ],
 	        "negativeRuleCatalogue": []
@@ -1458,16 +1476,52 @@
 	        "negativeRuleCatalogue": []
          },
          {
-		    "id": "33.1",
+		    "id": "33.1.1",
 	        "comments" : "Contribution ladder - first step should be higher than mandatory contribution",
-	        "expr": "Bidragstrappe[0,1] + Bidragstrappe[0,2] >= ((Hospitalsdaekning_MK == true) ? rc_BidragInklHospdaekningPctMin_min : rc_BidragsEksklHospdaekningPctMin_min)",
+	        "expr": "Hospitalsdaekning_MK == true",
 	        "productElementOids": [ 999 ],
    		    "requiredif": "",
 	   	    "positiveMessage": "",
-	       	"negativeMessage": "Den totale procent skal være storre end %1/%2",
-           	"negativeMessageParameters": [ "rc_BidragInklHospdaekningPctMin_min", "rc_BidragsEksklHospdaekningPctMin_min" ],
-	        "negativeValCode": 102,
-			"positiveRuleCatalogue": []
+	       	"negativeMessage": "",
+			"positiveRuleCatalogue": 
+			[
+		         {
+				    "id": "33.1.1.1",
+			        "comments" : "Contribution ladder - first step should be higher than mandatory contribution",
+			        "expr": "Bidragstrappe[0,1] + Bidragstrappe[0,2] >= rc_BidragInklHospdaekningPctMin_min",
+			        "productElementOids": [ 999 ],
+		   		    "requiredif": "#parent#",
+			   	    "positiveMessage": "",
+			       	"negativeMessage": "Den totale bidragsprocent i første trin skal være storre end %1",
+		           	"negativeMessageParameters": [ "rc_BidragInklHospdaekningPctMin_min" ],
+			        "negativeValCode": 102,
+					"positiveRuleCatalogue": []
+		         }
+			]
+         },
+         {
+		    "id": "33.1.2",
+	        "comments" : "Contribution ladder - first step should be higher than mandatory contribution",
+	        "expr": "Hospitalsdaekning_MK == false",
+	        "productElementOids": [ 999 ],
+   		    "requiredif": "",
+	   	    "positiveMessage": "",
+	       	"negativeMessage": "",
+			"positiveRuleCatalogue": 
+			[
+		         {
+				    "id": "33.1.2.1",
+			        "comments" : "Contribution ladder - first step should be higher than mandatory contribution",
+			        "expr": "Bidragstrappe[0,1] + Bidragstrappe[0,2] >= rc_BidragsEksklHospdaekningPctMin_min",
+			        "productElementOids": [ 999 ],
+		   		    "requiredif": "#parent#",
+			   	    "positiveMessage": "",
+			       	"negativeMessage": "Den totale bidragsprocent i første trin skal være storre end %1",
+		           	"negativeMessageParameters": [ "rc_BidragsEksklHospdaekningPctMin_min" ],
+			        "negativeValCode": 102,
+					"positiveRuleCatalogue": []
+		         }
+			]
          },
 		 {
          	"comments" : "Salary Page: Contribution Ladder Ingen",

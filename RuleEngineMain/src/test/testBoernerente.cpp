@@ -119,3 +119,46 @@ TEST_F(Boernerente_KI_OSV_25_49, Boernerente_Gage_NEGATIVE) {
 	EXPECT_TRUE(r.isAllOk());
 }
 
+TEST_F(Boernerente_KI_OSV_25_49, Boernerente_Gage_SoliMax) {
+	RuleEngine::_printDebugAtValidation = true;
+	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	ta.setValue(kBoernerente_Reguleringstype, "Gage");
+	ta.setValue(kBoerneRentePctMin, (long) 5);
+	ta.setValue(kBoerneRentePctMax, (long) 10);
+	ta.setValue(kBoerneRenteSoliMax, "Ingen");
+
+	auto r = re.validate(ta, false);
+//	if (!r.isAllOk())
+		cout << r;
+	EXPECT_FALSE(r.isAllOk());
+	EXPECT_EQ(1, r.getValidationResults().size());
+	EXPECT_TRUE(r.hasMessages(kBoerneRenteSoliMax, kValueNotAllowed));
+
+	ta.setValue(kBoerneRenteSoliMax, "Tegningsmaks");
+	r = re.validate(ta, false);
+//	if (!r.isAllOk())
+		cout << r;
+	EXPECT_TRUE(r.isAllOk());
+}
+
+TEST_F(Boernerente_KI_OSV_25_49, Boernerente_Pristal_SoliMax) {
+	RuleEngine::_printDebugAtValidation = true;
+	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	ta.setValue(kBoernerente_Reguleringstype, "Pristal");
+	ta.setValue(kBoerneRenteBlMin, (long) 10000);
+	ta.setValue(kBoerneRenteBlMax, (long) 20000);
+	ta.setValue(kBoerneRenteSoliMax, "Ingen");
+
+	auto r = re.validate(ta, false);
+//	if (!r.isAllOk())
+		cout << r;
+	EXPECT_FALSE(r.isAllOk());
+	EXPECT_EQ(1, r.getValidationResults().size());
+	EXPECT_TRUE(r.hasMessages(kBoerneRenteSoliMax, kValueNotAllowed));
+
+	ta.setValue(kBoerneRenteSoliMax, "Tegningsmaks");
+	r = re.validate(ta, false);
+//	if (!r.isAllOk())
+		cout << r;
+	EXPECT_TRUE(r.isAllOk());
+}

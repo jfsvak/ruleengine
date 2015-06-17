@@ -53,6 +53,7 @@ sbx::RuleEngine::RuleEngine()
 sbx::RuleEngine::RuleEngine(const sbx::RuleEngine& other)
 		: _container {other._container}
 {
+	cerr << " Copy constructor for RuleEngine was called! This behaviour is not defined" << endl;
 	_parser.DefineFun(new SubtractMonths());
 	// TODO !!!!! proper copy/cloning of pointers in map
 }

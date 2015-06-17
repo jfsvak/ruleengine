@@ -309,7 +309,7 @@ TEST_F(Full_TA_CONTEXT_KI_OSV_25_50, Full_TA_POSITIVE) {
 	r = re.validate(ta);
 	EXPECT_EQ(total-=3, r.sizeValidationResults()); // falls with span aswell
 	cout << r;
-	ta.setValue(kBoerneRenteSoliMax, re.getDefaultValue(kBoerneRenteSoliMax)->stringValue());
+	ta.setValue(kBoerneRenteSoliMax, "Tegningsmaks");
 	ta.setValue(kBoerneUdloebsalder, (long) 24);
 	ta.setValue(kBoerneSumBlMin, (long) 20000);
 	ta.setValue(kBoerneSumBlMax, (long) 20000); // +span
