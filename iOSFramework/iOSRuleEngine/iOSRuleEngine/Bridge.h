@@ -19,8 +19,9 @@
 
 
 @interface Bridge : NSObject
--(instancetype)initWithConstants:(NSString*)constantsFilePath ruleCatalog:(NSString*)ruleCatalogFilePath;
--(void)setSubKonceptOid:(NSInteger)subKonceptOid parameters:(NSDictionary*)parametersDictionary;
+-(instancetype)initWithConstants:(NSString*)constantsFilePath ruleCatalog:(NSString*)ruleCatalogFilePath koncepts:(NSString*)koncepts;
+-(void)setKonceptOid:(NSInteger)konceptOid numOfEmpl:(NSInteger)numOfEmpl numOfRiskClass:(NSInteger)numOfRiscClassC
+                                                                                parameters:(NSDictionary*)parametersDictionary;
 
 -(void)createTA:(NSString*)CVR konceptOid:(unsigned short)konceptOid;
 -(void)setTAUnionAgreementRelation:(uint8_t)relation;
@@ -39,6 +40,7 @@
 -(void)setDoubleValue:(NSNumber*)value forPE:(unsigned short) peOid;
 -(void)setBoolValue:(NSNumber*)value forPE:(unsigned short) peOid;
 
+-(void)initUAContribution:(unsigned short)oid employeePct:(double)employeePct companyPct:(double)companyPct;
 -(void)addContributionStep:(long)index employeePct:(double)employeePct companyPct:(double)companyPct;
 -(void)removeAllContributionSteps;
 
