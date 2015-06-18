@@ -27,11 +27,12 @@
     sbx::TA ta;
 }
 
--(instancetype)initWithConstants:(NSString*)constantsFilePath ruleCatalog:(NSString*)ruleCatalogFilePath  {
+-(instancetype)initWithConstants:(NSString*)constantsFilePath ruleCatalog:(NSString*)ruleCatalogFilePath koncepts:(NSString*)koncepts {
     self = [super init];
     if (self) {
         re.initConstants(get_file_contents(constantsFilePath.UTF8String));
         re.parseRuleCatalogueJSON(get_file_contents(ruleCatalogFilePath.UTF8String));
+        re.initKoncepts(get_file_contents(koncepts.UTF8String));
     }
     return self;
 }
@@ -52,10 +53,11 @@ std::string get_file_contents(const char *filename)
     throw(1);
 }
 
--(void)setSubKonceptOid:(NSInteger)subKonceptOid parameters:(NSDictionary*)parametersDictionary {
+-(void)setKonceptOid:(NSInteger)konceptOid numOfEmpl:(NSInteger)numOfEmpl numOfRiskClass:(NSInteger)numOfRiscClassC parameters:(NSDictionary*)parametersDictionary {
     std::map<unsigned short, std::string> parameters;
-    
-    sbx::KonceptInfo ki = sbx::KonceptInfo(static_cast<unsigned short>(subKonceptOid));
+
+    sbx::KonceptInfo ki = sbx::KonceptInfo(static_cast<unsigned short>(konceptOid), static_cast<unsigned short>(numOfEmpl),
+                                           static_cast<unsigned short>(numOfRiscClassC), parameters);
     
     if (parametersDictionary) {
         for (NSNumber *oid in parametersDictionary) {
@@ -70,7 +72,7 @@ std::string get_file_contents(const char *filename)
         }
     }
     
-    re.initContext(ki);
+    re.initContext(ki, sbx::OUTSIDE);
 }
 
 -(void)createTA:(NSString*)CVR konceptOid:(unsigned short)konceptOid {
