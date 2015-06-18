@@ -161,6 +161,10 @@ void RuleEngine::_initRuleCatalogue(sbx::RuleCatalogue* ruleCatalogue, const Jso
 				for (Json::ValueIterator negativeMessageParametersIterator = negativeMessageParameters.begin(); negativeMessageParametersIterator != negativeMessageParameters.end(); ++negativeMessageParametersIterator)
 					rule->addNegativeMessageParameter(negativeMessageParametersIterator->asString());
 
+			Json::Value positiveMessageParameters = valueIterator->get("positiveMessageParameters", "");
+			if (positiveMessageParameters.size() > 0)
+				for (Json::ValueIterator positiveMessageParametersIterator = positiveMessageParameters.begin(); positiveMessageParametersIterator != positiveMessageParameters.end(); ++positiveMessageParametersIterator)
+					rule->addPositiveMessageParameter(positiveMessageParametersIterator->asString());
 
 			Json::Value peOids = valueIterator->get("productElementOids", "");
 			if (peOids.size() > 0)
@@ -921,7 +925,9 @@ void RuleEngine::_evaluateRule(unsigned short peOidBeingValidated, std::shared_p
 		if (result.GetBool()) {
 			// only add message, if it's not empty
 			if (rule->getPositiveMessage() != "") {
-				string msg = rule->getPositiveMessage();
+				auto p = _getParametersFromParser(rule->getPositiveMessageParameters());
+				string msg = sbx::utils::formatMessage(rule->getPositiveMessage(), p);
+
 				sbx::ValidationCode positiveValCode = sbx::utils::toValCode(rule->getPositiveValCode(), sbx::ValidationCode::kFail);
 				valResult.addValidationResult( sbx::ValidationResult(positiveValCode, peOidBeingValidated, _VAR_NAME(peOidBeingValidated), msg, rule->getRuleId(), rule->getExpr()) );
 			}

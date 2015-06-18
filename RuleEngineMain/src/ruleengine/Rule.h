@@ -52,6 +52,10 @@ public:
 	void setNegativeMessageParameters(const std::vector<std::string>& negativeMessageParameters);
 	void addNegativeMessageParameter(const std::string& parameter);
 
+	const std::vector<std::string>& getPositiveMessageParameters() const;
+	void setPositiveMessageParameters(const std::vector<std::string>& positiveMessageParameters);
+	void addPositiveMessageParameter(const std::string& parameter);
+
 private:
 	std::string _ruleId;
 	std::string _preCalcExpr;
@@ -61,6 +65,7 @@ private:
 	std::string _positiveMessage;
 	std::string _negativeMessage;
 	std::vector<std::string> _negativeMessageParameters;
+	std::vector<std::string> _positiveMessageParameters;
 	unsigned short _positiveValCode;
 	unsigned short _negativeValCode;
 

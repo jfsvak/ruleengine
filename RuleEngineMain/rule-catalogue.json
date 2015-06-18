@@ -1288,8 +1288,6 @@
 	        "negativeRuleCatalogue": []
          },
 		 
-		 
-		 
 		 {
          	"comments" : "Product Page: Eksisterende ordninger",
          	
@@ -1423,6 +1421,22 @@
 					"positiveRuleCatalogue": []
         	    }
             ],
+	        "negativeRuleCatalogue": []
+         },
+
+
+		 {
+         	"comments" : "Product Page: Helbred_Leverandorskift",
+         	
+            "id": "29.2",
+            "expr": "Helbred_leverandorskift != \"AE\" and Fusion_MK == false and EksisterendeOrdning_MK == false",
+   	        "productElementOids": [ 251 ],
+   	        "requiredif": "",
+            "positiveMessage": "Der kan ikke vælges [%1] ved leverandørskifte",
+            "positiveValCode": 101,
+            "positiveMessageParameters": [ "Helbred_leverandorskift" ],
+            "negativeMessage": "",
+            "positiveRuleCatalogue": [],
 	        "negativeRuleCatalogue": []
          },
 

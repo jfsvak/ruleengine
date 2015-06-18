@@ -158,5 +158,19 @@ void Rule::addNegativeMessageParameter(const std::string& parameter)
 	_negativeMessageParameters.push_back(parameter);
 }
 
+void Rule::setPositiveMessageParameters(const std::vector<std::string>& positiveMessageParameters)
+{
+	_positiveMessageParameters = positiveMessageParameters;
+}
+
+const std::vector<std::string>& Rule::getPositiveMessageParameters() const
+{
+	return _positiveMessageParameters;
+}
+
+void Rule::addPositiveMessageParameter(const std::string& parameter)
+{
+	_positiveMessageParameters.push_back(parameter);
+}
 
 } /* namespace sbx */

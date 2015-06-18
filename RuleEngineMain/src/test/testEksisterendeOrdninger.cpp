@@ -84,4 +84,20 @@ TEST_F(EksisterendeOrdninger_KI_OSV_25_49, EksisterendeOrdninger_POSITIVE) {
 
 }
 
+TEST_F(EksisterendeOrdninger_KI_OSV_25_49, Helbred_Leverandorskift_NEGATIVE) {
+	RuleEngine::_printDebugAtValidation = true;
+	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	ta.setValue(kEksisterendeOrdning_MK, false);
+	ta.setValue(kFusion_MK, false);
+	ta.setValue(kHelbred_leverandorskift, "FP7");
+
+	auto r = re.validate(ta, false);
+	EXPECT_FALSE(r.isAllOk());
+//	if (!r.isAllOk())
+		cout << r;
+
+	EXPECT_TRUE(r.hasMessages(kHelbred_leverandorskift, kValueNotAllowed));
+
+}
+
 
