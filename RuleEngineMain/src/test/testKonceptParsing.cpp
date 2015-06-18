@@ -5,19 +5,15 @@
 #include "../ruleengine/RuleEngine_sbx.h"
 
 #include "ruleenginetestutils.h"
+#include "testRuleEngineInitialiser.cpp"
 
 using namespace std;
 using namespace sbx;
 
-class RuleEngine_Koncept_Parsing : public ::testing::Test  {
+class RuleEngine_Koncept_Parsing : public RuleEngineInitialiser {
 protected:
     virtual void SetUp() {
-    	RuleEngine::_printDebugAtValidation = true;
-    	RuleEngine::_printDebug = true;
-    	re = RuleEngine();
-        re.initConstants(get_file_contents("basedata-ruleconstants.json"));
-        re.parseRuleCatalogueJSON(get_file_contents("rule-catalogue.json"));
-        re.initKoncepts(get_file_contents("koncepts.json"));
+    	RuleEngineInitialiser::SetUp();
 
         KonceptInfo ki {4, 30, 0, // UnderkonceptOid:OSV 25-49
         	{ {11, "true"}, // Parameter-Basis
@@ -26,8 +22,6 @@ protected:
         	} };
         re.initContext(ki, OUTSIDE);
     }
-
-    RuleEngine re;
 };
 
 TEST_F(RuleEngine_Koncept_Parsing, Parsing_Of_Koncepts) {

@@ -16,24 +16,20 @@
 #include "../ruleengine/mubridge/utils.h"
 
 #include "ruleenginetestutils.h"
+#include "testRuleEngineInitialiser.cpp"
 
 using namespace std;
 using namespace sbx;
 
 // Common data set for all test cases in this file
-class ProductElementValidationTest : public ::testing::Test  {
+class ProductElementValidationTest : public RuleEngineInitialiser {
 protected:
-    virtual void SetUp() {        
-        re = RuleEngine();
-        re.initConstants(get_file_contents("basedata-ruleconstants.json"));
-        re.initKoncepts(get_file_contents("koncepts.json"));
-        re.parseRuleCatalogueJSON(get_file_contents("rule-catalogue.json"));
+    virtual void SetUp() {
+    	RuleEngineInitialiser::SetUp();
 
         KonceptInfo ki {4, 20, 0, { {11, "true"} }};
         re.initContext(ki, OUTSIDE);
     }
-
-    RuleEngine re;
 };
 
 // Test cases

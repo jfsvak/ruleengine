@@ -5,7 +5,7 @@
  *      Author: jfsvak
  */
 
-#include "UnionAgreementContributionStep.h"
+#include "UnionAgreementContributionStep_sbx.h"
 
 namespace sbx {
 

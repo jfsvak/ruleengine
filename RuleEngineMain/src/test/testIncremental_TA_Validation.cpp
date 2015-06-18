@@ -2,25 +2,22 @@
 #include <vector>
 #include "gtest/gtest.h"
 
-#include "ruleenginetestutils.h"
-
 #include "../ruleengine/KonceptInfo_sbx.h"
 #include "../ruleengine/RuleEngine_sbx.h"
 #include "../ruleengine/TA_sbx.h"
 #include "../ruleengine/ValidationResult.h"
 #include "../ruleengine/ValidationResults.h"
 
+#include "ruleenginetestutils.h"
+#include "testRuleEngineInitialiser.cpp"
 
 using namespace std;
 using namespace sbx;
 
-class Incremental_TA_CONTEXT_KI_OSV_25_50 : public ::testing::Test  {
+class Incremental_TA_CONTEXT_KI_OSV_25_50 : public RuleEngineInitialiser {
 protected:
     virtual void SetUp() {
-        re = RuleEngine();
-        re.initConstants(get_file_contents("basedata-ruleconstants.json"));
-        re.initKoncepts(get_file_contents("koncepts.json"));
-        re.parseRuleCatalogueJSON(get_file_contents("rule-catalogue.json"));
+    	RuleEngineInitialiser::SetUp();
 
         KonceptInfo ki {4, 30, 0, // UnderkonceptOid:OSV 25-49
         	{ {  1, "true" }, // Solidarisk faellestarif
@@ -30,8 +27,6 @@ protected:
         	} };
         re.initContext(ki, OUTSIDE);
     }
-
-    RuleEngine re;
 };
 
 

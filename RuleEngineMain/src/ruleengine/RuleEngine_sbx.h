@@ -22,7 +22,7 @@
 #include "muParser/mpValue.h"
 
 #include "Constant_sbx.h"
-#include "ContributionStep.h"
+#include "ContributionStep_sbx.h"
 #include "Koncept_sbx.h"
 #include "KonceptInfo_sbx.h"
 #include "ProductElement_sbx.h"
@@ -45,11 +45,13 @@ public:
 	RuleEngine(const sbx::RuleEngine&); // copy constructor. Handle proper copy of pointers in map
 	virtual ~RuleEngine(); // Handler proper delete of pointers
 
+	void initialiseAll(const std::string& jsonContents);
 	void initConstants(const std::string& jsonContents);
 	void initContext(const sbx::KonceptInfo& ki, sbx::UnionAgreementRelationship, sbx::unionagreement_oid = sbx::undefined_oid);
 	void initUAContributionSteps(const std::map<unsigned short, std::vector<sbx::ContributionStep>>&);
 	void parseRuleCatalogueJSON(const std::string& jsonContents);
 	void initKoncepts(const std::string& jsonContents);
+	void initUnionAgreements(const std::string& jsonContents);
 
 	std::vector<std::string> getOptions(sbx::ProductElementOid productElement);
 	std::vector<std::shared_ptr<Constant>> getOptionsList(sbx::ProductElementOid productElement);
@@ -64,6 +66,7 @@ public:
 
 	sbx::RuleCatalogue& getRuleCatalogue();
 	const sbx::RuleConstantContainer& getContainer() const;
+	bool isProductElementAllowed(sbx::productelement_oid peOid) const;
 
 	const sbx::Koncept& getKoncept(sbx::koncept_oid);
 
@@ -103,22 +106,20 @@ private:
 	// -- initialisation methods
 	void _initRuleCatalogue(sbx::RuleCatalogue*, const Json::Value& ruleCatalogues);
 	void _initParserWithProductElementConstants(unsigned short peOid);
-	void _initSubkoncepts(const Json::Value& subkonceptsJSON, sbx::Koncept&);
-	void _initAllowedParameters(const Json::Value& allowedParametersJSON, sbx::Subkoncept&);
 	template <typename T> void _defineVariable(const std::string& name, const T& value);
 	void _clearContext();
 
-	std::set<unsigned short, std::less<unsigned short>> _getAllowedPEOids();
-	std::string getConstFromParser(const std::string& constName);
-	std::string getVarFromParser(const std::string& constName);
-	std::vector<std::string> getParametersFromParser(const std::vector<std::string>& parameters);
+	std::set<sbx::productelement_oid, std::less<sbx::productelement_oid>> _getAllowedPEOids() const;
+	std::string _getConstFromParser(const std::string& constName);
+	std::string _getVarFromParser(const std::string& constName);
+	std::vector<std::string> _getParametersFromParser(const std::vector<std::string>& parameters);
 	void _defineConstant(const std::string& name, double constant);
 
 	void _loadParser(const TA& ta);
 	void _loadLadder(const TA& ta);
 	void _loadUAContributionStep(const TA& ta);
 
-    std::string getFormattedValue(const std::shared_ptr<sbx::Constant>&);
+    std::string _getFormattedValue(const std::shared_ptr<sbx::Constant>&);
     std::string getFormattedValue(const sbx::ProductElementValue&);
 	sbx::ProductElement _PE(unsigned short peOid);
 	std::string _VAR_NAME(unsigned short peOid);

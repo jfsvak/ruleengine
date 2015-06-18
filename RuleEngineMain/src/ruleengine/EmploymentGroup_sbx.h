@@ -5,8 +5,8 @@
  *      Author: jfsvak
  */
 
-#ifndef RULEENGINE_EMPLOYMENTGROUP_H_
-#define RULEENGINE_EMPLOYMENTGROUP_H_
+#ifndef RULEENGINE_EMPLOYMENTGROUP_SBX_H_
+#define RULEENGINE_EMPLOYMENTGROUP_SBX_H_
 
 #include <string>
 
@@ -23,4 +23,4 @@ private:
 
 } /* namespace sbx */
 
-#endif /* RULEENGINE_EMPLOYMENTGROUP_H_ */
+#endif /* RULEENGINE_EMPLOYMENTGROUP_SBX_H_ */

@@ -58,6 +58,16 @@ sbx::RuleEngine::RuleEngine(const sbx::RuleEngine& other)
 	// TODO !!!!! proper copy/cloning of pointers in map
 }
 
+void RuleEngine::initialiseAll(const std::string& jsonContents)
+{
+	_container.initConstants(jsonContents);
+	_container.initKoncepts(jsonContents);
+	_container.initUnionAgreements(jsonContents);
+//	this->initConstants(jsonContents);
+//	this->initKoncepts(jsonContents);
+//	this->initUnionAgreements(jsonContents);
+}
+
 void RuleEngine::initConstants(const std::string& jsonContents)
 {
 	_container.initConstants(jsonContents);
@@ -94,6 +104,11 @@ void RuleEngine::parseRuleCatalogueJSON(const std::string& jsonContents)
 void RuleEngine::initKoncepts(const std::string& jsonContents)
 {
 	_container.initKoncepts(jsonContents);
+}
+
+void RuleEngine::initUnionAgreements(const std::string& jsonContents)
+{
+	_container.initUnionAgreements(jsonContents);
 }
 
 /**
@@ -622,7 +637,7 @@ void RuleEngine::_validateMinMax(const sbx::ProductElementValue& pev, sbx::Valid
 		if (!result.GetBool()) {
 			// value was not greater or equal to min
 			stringstream ss {};
-			ss << "Værdien [" << sbx::utils::formatValue(pev.longValue()) << "] for [" << _GUI_NAME(peOid) << "] må ikke være mindre end [" << this->getConstFromParser(sbx::utils::constructRCName(_PE(peOid), sbx::ComparisonTypes::kMin)) << "]";
+			ss << "Værdien [" << sbx::utils::formatValue(pev.longValue()) << "] for [" << _GUI_NAME(peOid) << "] må ikke være mindre end [" << this->_getConstFromParser(sbx::utils::constructRCName(_PE(peOid), sbx::ComparisonTypes::kMin)) << "]";
 			r.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kValueUnderLimit, peOid, _VAR_NAME(peOid), ss.str(), "", expr) );
 		}
 	} catch (const mup::ParserError& e) {
@@ -636,7 +651,7 @@ void RuleEngine::_validateMinMax(const sbx::ProductElementValue& pev, sbx::Valid
 
 		if (!result.GetBool()) {
 			stringstream ss {};
-			ss << "Værdien [" << sbx::utils::formatValue(pev.longValue()) << "] for [" << _GUI_NAME(peOid) << "] må ikke overstiger [" << this->getConstFromParser(sbx::utils::constructRCName(_PE(peOid), sbx::ComparisonTypes::kMax)) << "]";
+			ss << "Værdien [" << sbx::utils::formatValue(pev.longValue()) << "] for [" << _GUI_NAME(peOid) << "] må ikke overstiger [" << this->_getConstFromParser(sbx::utils::constructRCName(_PE(peOid), sbx::ComparisonTypes::kMax)) << "]";
 			// value was not lesser or equal to max
 			r.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kValueOverLimit, peOid, _VAR_NAME(peOid), ss.str(), "", expr) );
 		}
@@ -658,7 +673,7 @@ void RuleEngine::_validateOptionAllowed(const sbx::ProductElementValue& pev, sbx
 
             for (auto option : options)
             {
-                optionsString << getFormattedValue(option);
+                optionsString << _getFormattedValue(option);
             }
                 
             optionsString << ", ";
@@ -914,7 +929,7 @@ void RuleEngine::_evaluateRule(unsigned short peOidBeingValidated, std::shared_p
 		else {
 			// If no negative message, we don't consider the negative outcome as a failure
 			if (rule->getNegativeMessage() != "") {
-				auto p = getParametersFromParser(rule->getNegativeMessageParameters());
+				auto p = _getParametersFromParser(rule->getNegativeMessageParameters());
 				string msg = sbx::utils::formatMessage(rule->getNegativeMessage(), p);
 
 				sbx::ValidationCode negativeValCode = sbx::utils::toValCode(rule->getNegativeValCode(), sbx::ValidationCode::kFail);
@@ -1112,12 +1127,12 @@ sbx::ValidationResults RuleEngine::validate(const sbx::TA& ta, bool full)
 	return valResults;
 }
 
-std::set<unsigned short, std::less<unsigned short>> RuleEngine::_getAllowedPEOids()
+std::set<sbx::productelement_oid, std::less<sbx::productelement_oid>> RuleEngine::_getAllowedPEOids() const
 {
-	std::set<unsigned short, less<unsigned short>> allowedProductElementOids {};
+	std::set<sbx::productelement_oid, std::less<sbx::productelement_oid>> allowedProductElementOids {};
 
 	for (auto& parameterIt : _ki.getParameterValues()) {
-		const std::set<unsigned short>& productElementOids = _container.getProductElementOids(parameterIt.first);
+		const std::set<sbx::productelement_oid>& productElementOids = _container.getProductElementOids(parameterIt.first);
 		allowedProductElementOids.insert(productElementOids.cbegin(), productElementOids.cend());
 	}
 
@@ -1146,7 +1161,7 @@ std::shared_ptr<sbx::Constant> RuleEngine::getDefaultValue(sbx::ProductElementOi
 	return options.back();
 }
 
-std::string RuleEngine::getConstFromParser(const std::string& constName)
+std::string RuleEngine::_getConstFromParser(const std::string& constName)
 {
 	try {
 		mup::var_maptype vmap = _parser.GetConst();
@@ -1165,7 +1180,7 @@ std::string RuleEngine::getConstFromParser(const std::string& constName)
 	return "<ingen værdi>";
 }
 
-std::string RuleEngine::getVarFromParser(const std::string& constName)
+std::string RuleEngine::_getVarFromParser(const std::string& constName)
 {
 	try {
 		mup::var_maptype vmap = _parser.GetVar();
@@ -1228,7 +1243,15 @@ sbx::RuleCatalogue& RuleEngine::getRuleCatalogue()
 	return _ruleCatalogue;
 }
 
-std::vector<std::string> RuleEngine::getParametersFromParser(const std::vector<std::string>& parameters)
+
+bool RuleEngine::isProductElementAllowed(sbx::productelement_oid peOid) const
+{
+	const auto& allowedPEs =_getAllowedPEOids();
+	return (allowedPEs.find(peOid) != allowedPEs.cend());
+}
+
+
+std::vector<std::string> RuleEngine::_getParametersFromParser(const std::vector<std::string>& parameters)
 {
 	std::vector<std::string> formattedParameters {};
 
@@ -1237,9 +1260,9 @@ std::vector<std::string> RuleEngine::getParametersFromParser(const std::vector<s
 		string parameter {"not found"};
 
 		if (_parser.IsConstDefined(parameterIt))
-			parameter = this->getConstFromParser(parameterIt);
+			parameter = this->_getConstFromParser(parameterIt);
 		else if (_parser.IsVarDefined(parameterIt))
-			parameter = this->getVarFromParser(parameterIt);
+			parameter = this->_getVarFromParser(parameterIt);
 
 		formattedParameters.push_back(parameter);
 	}
@@ -1300,7 +1323,7 @@ void RuleEngine::printRule(std::shared_ptr<sbx::Rule> rule, int depth)
 	cout << "posMsg=[" << rule->getPositiveMessage() << "], negMsg=[" << rule->getNegativeMessage() << "]" << endl;
 }
     
-std::string RuleEngine::getFormattedValue(const std::shared_ptr<sbx::Constant>& c)
+std::string RuleEngine::_getFormattedValue(const std::shared_ptr<sbx::Constant>& c)
 {
     switch(_PE(c->getProductElement()).getElementType())
     {
@@ -1400,5 +1423,5 @@ RuleEngine::~RuleEngine()
 //	}
 }
 
-
 } // sbx namespace end
+

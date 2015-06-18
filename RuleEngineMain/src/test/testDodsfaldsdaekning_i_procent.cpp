@@ -14,18 +14,15 @@
 #include "../ruleengine/ValidationResult.h"
 
 #include "ruleenginetestutils.h"
+#include "testRuleEngineInitialiser.cpp"
 
 using namespace std;
 using namespace sbx;
 
-class Doedsfaldsdaekning_I_Procent_KI_OSV_25_49 : public ::testing::Test  {
+class Doedsfaldsdaekning_I_Procent_KI_OSV_25_49 : public RuleEngineInitialiser {
 protected:
     virtual void SetUp() {
-    	RuleEngine::_printDebugAtValidation = false;
-    	re = RuleEngine();
-        re.initConstants(get_file_contents("basedata-ruleconstants.json"));
-        re.initKoncepts(get_file_contents("koncepts.json"));
-        re.parseRuleCatalogueJSON(get_file_contents("rule-catalogue.json"));
+    	RuleEngineInitialiser::SetUp();
 
         KonceptInfo ki {4, 30, 0, // UnderkonceptOid:OSV 25-49
         	{ {11, "true"}, // Parameter-Basis
@@ -34,8 +31,6 @@ protected:
         	} };
         re.initContext(ki, OUTSIDE);
     }
-
-    RuleEngine re;
 };
 
 

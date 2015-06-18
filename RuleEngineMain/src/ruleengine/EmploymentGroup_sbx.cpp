@@ -5,7 +5,7 @@
  *      Author: jfsvak
  */
 
-#include "EmploymentGroup.h"
+#include "EmploymentGroup_sbx.h"
 
 namespace sbx {
 

@@ -15,12 +15,14 @@
 #include <string>
 #include <sstream>
 
+#include "../json/json.h"
+
+#include "Constant_sbx.h"
 #include "RuleConstantContainer_sbx.h"
 #include "RuleEngine_sbx.h"
 #include "sbxTypes.h"
-#include "Constant_sbx.h"
 #include "Product_sbx.h"
-#include "../json/json.h"
+#include "UnionAgreementContributionStep_sbx.h"
 #include "Utils.h"
 
 using namespace std;
@@ -56,8 +58,8 @@ void RuleConstantContainer::initGlobalConstants(const vector<Constant>& global_c
 void RuleConstantContainer::initConstants(const std::string& jsonContents)
 {
 	// Load/parse the json string to get all the rule constants and create the vector of Constant objects for the container
-	Json::Reader reader;
-	Json::Value root;
+	Json::Reader reader{};
+	Json::Value root{};
 
 	bool parsingSuccessful = reader.parse(jsonContents, root);
 
@@ -249,6 +251,68 @@ void RuleConstantContainer::_initSubkoncepts(const Json::Value& subkonceptsJSON,
 	else
 		if (RuleEngine::_printDebug) { cout << "Empty Subkoncepts...nothing to load" << endl; }
 }
+
+void RuleConstantContainer::initUnionAgreements(const std::string& jsonContents)
+{
+	Json::Reader reader{Json::Features{}};
+	Json::Value root {};
+
+	bool parsingSuccessful = reader.parse(jsonContents, root);
+
+	if (parsingSuccessful)
+	{
+		Json::Value unionAgreementsJSON = root["data"].get("UNION_AGREEMENTS", 0);
+
+		// if we can parse the json string, then get initialise the koncepts
+		if (unionAgreementsJSON.size() > 0)
+		{
+			if (RuleEngine::_printDebug) { cout << "\n  Looping over [" << unionAgreementsJSON.size() << "] json UnionAgreements to initialise" << endl; }
+
+			// iterate over the list of rules and create Ruleobjects to put into the RuleConstantContainer
+			for (Json::ValueIterator valueIterator = unionAgreementsJSON.begin(); valueIterator != unionAgreementsJSON.end(); ++valueIterator)
+			{
+				int oid = valueIterator->get("oid", 0).asInt();
+				int unionAgreementNumber = valueIterator->get("unionAgreementNumber", 0).asInt();
+				string name = valueIterator->get("unionAgreementName", "").asString();
+				string name2 = valueIterator->get("unionAgreementName2", "").asString();
+
+				if (RuleEngine::_printDebug) { cout << "  Creating UnionAgreement oid [" << oid << "], unionAgreementNumber[" << unionAgreementNumber << "], name [" << name << "], name2 [" << name2 << "" << endl; }
+				UnionAgreement ua{static_cast<sbx::unionagreement_oid>(oid), unionAgreementNumber, name, name2};
+
+				Json::Value unionAgreementContributionScaleSteps = valueIterator->get("unionAgreementContributionScaleSteps", "");
+
+				if (unionAgreementContributionScaleSteps.size() > 0)
+				{
+					for (Json::ValueIterator paramValueIterator = unionAgreementContributionScaleSteps.begin(); paramValueIterator != unionAgreementContributionScaleSteps.end(); ++paramValueIterator)
+					{
+						int oid = paramValueIterator->get("oid", 0).asInt();
+						string type = paramValueIterator->get("type", 0).asString();
+						int year = paramValueIterator->get("year", 0).asInt();
+						double employeePercent = paramValueIterator->get("employeePercent", 0).asDouble();
+						double totalPercent = paramValueIterator->get("totalPercent", 0).asDouble();
+						string startDate = paramValueIterator->get("startDate", 0).asString();
+
+						UnionAgreementContributionStep step{oid, employeePercent, totalPercent, year, type, startDate};
+						ua.addContributionStep(step);
+					}
+				}
+
+				_unionAgreements.insert(make_pair(oid, ua));
+			}
+		}
+		else
+		{
+			if (RuleEngine::_printDebug) { cout << "Empty UnionAgreements...nothing to load" << endl; }
+		}
+	}
+	else
+	{
+		cerr << "Could not parse json string with UnionAgreement basedata" << endl;
+		throw invalid_argument(reader.getFormattedErrorMessages());
+	}
+
+}
+
 
 void RuleConstantContainer::_addFakeProductElements(std::shared_ptr<sbx::Product> productPtr)
 {
@@ -543,7 +607,7 @@ std::shared_ptr<sbx::Constant> RuleConstantContainer::createConstant(unsigned sh
 	return make_shared<sbx::Constant>(underkonceptOid, unionAgreementOid, static_cast<sbx::ProductElementOid>(peOid), comparisonType, s.str(), false, false);
 }
 
-const std::set<unsigned short>& RuleConstantContainer::getProductOids(sbx::parameter_oid parameterOid) const
+std::set<unsigned short> RuleConstantContainer::getProductOids(sbx::parameter_oid parameterOid) const
 {
 	if (_contextInitialised)
 		throw domain_error("Context not initialised!");
@@ -686,6 +750,31 @@ void RuleConstantContainer::printKoncepts() const
 	cout << "\n------------- Koncepts END ------------" << endl;
 }
 
+void RuleConstantContainer::printUnionAgreements() const
+{
+	cout << "\n\n       ---======== UnionAgreements =======--- \n";
+	cout << "Number of Union Agreements loaded: " << _unionAgreements.size() << endl;
+
+	for (const auto& i : _unionAgreements)
+	{
+		cout << "\n" << i.second.getName() << " (" << i.second.getOid() << ")";
+
+		cout << "\nOid  Type        Year  EmpPct  Total  StartDate";
+		cout << "\n---  ----------  ----  ------  -----  ----------" << endl;
+		for (const auto& step : i.second.getContributionSteps())
+		{
+			cout << left << setw(3) << step.oid();
+			cout << "  " << setw(10) << step.type();
+			cout << "  " << setw(4) << step.year();
+			cout << "  " << setw(6) << step.employeePct();
+			cout << "  " << setw(5) << step.totalPct();
+			cout << "  " << setw(10) << step.startDate();
+
+			cout << endl;
+		}
+	}
+	cout << "\n------------- UnionAgreements END ------------" << endl;
+}
 
 /**
  * Outputs to cout the entire content of Constant Container

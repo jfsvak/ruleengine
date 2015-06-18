@@ -17,7 +17,7 @@
 #include "../json/json.h"
 
 #include "Constant_sbx.h"
-#include "ContributionStep.h"
+#include "ContributionStep_sbx.h"
 #include "Koncept_sbx.h"
 #include "Parameter_sbx.h"
 #include "Product_sbx.h"
@@ -25,6 +25,7 @@
 #include "Utils.h"
 #include "sbxTypes.h"
 #include "Subkoncept_sbx.h"
+#include "UnionAgreement_sbx.h"
 
 namespace sbx {
 
@@ -39,6 +40,7 @@ public:
 	void initContext(const sbx::Subkoncept& subkoncept, sbx::UnionAgreementRelationship, sbx::unionagreement_oid = undefined_oid);
 	void initKoncepts(const std::string& json);
 	void initUAContributionSteps(const std::map<unsigned short, std::vector<sbx::ContributionStep>>&);
+	void initUnionAgreements(const std::string& jsonContents);
 
 	bool existsAs(unsigned short peOid, const sbx::ComparisonTypes&) const;
 
@@ -47,7 +49,7 @@ public:
 	std::shared_ptr<sbx::Constant> getConstant(unsigned short productElement, const sbx::ComparisonTypes& comparisonType);
 	const std::map<sbx::koncept_oid, sbx::Koncept>& getKoncepts() const;
 
-	const std::set<unsigned short>& getProductOids(sbx::parameter_oid parameterOid) const;
+	std::set<unsigned short> getProductOids(sbx::parameter_oid parameterOid) const;
 	std::set<unsigned short> getProductElementOids(sbx::parameter_oid parameterOid) const;
 	sbx::ProductElement getProductElement(unsigned short productElementOid);
 	unsigned short getProductElementOid(const std::string& varName) const;
@@ -57,6 +59,7 @@ public:
 
 	// ----- util functions------
 	void printKoncepts() const;
+	void printUnionAgreements() const;
 	void printConstantHeader() const;
 	void printConstants(sbx::subkoncept_oid subkonceptOid = sbx::undefined_oid) const;
 	void printConstants(sbx::subkoncept_oid subKonceptOid, sbx::productelement_oid productElement) const;
@@ -196,6 +199,12 @@ private:
 	 * Value: one contribution step
 	 */
 	std::map<sbx::unionagreement_oid, std::vector<sbx::ContributionStep>> _uaContributionLadders;
+
+	/**
+	 * Index: union agreement oid
+	 * Value: UnionAgreement
+	 */
+	std::map<sbx::unionagreement_oid, sbx::UnionAgreement> _unionAgreements;
 
 	sbx::Subkoncept _subkoncept;
 	sbx::UnionAgreementRelationship _unionAgreementRelationship;

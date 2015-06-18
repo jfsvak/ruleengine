@@ -13,8 +13,8 @@
 #include <string>
 #include <vector>
 
-#include "EmploymentGroup.h"
-#include "ContributionStep.h"
+#include "ContributionStep_sbx.h"
+#include "EmploymentGroup_sbx.h"
 #include "ProductElementValue_sbx.h"
 
 namespace sbx {

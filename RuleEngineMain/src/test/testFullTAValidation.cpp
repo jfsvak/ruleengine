@@ -2,7 +2,6 @@
 #include <vector>
 #include "gtest/gtest.h"
 
-#include "ruleenginetestutils.h"
 
 #include "../ruleengine/KonceptInfo_sbx.h"
 #include "../ruleengine/RuleEngine_sbx.h"
@@ -11,17 +10,16 @@
 #include "../ruleengine/ValidationResult.h"
 #include "../ruleengine/ValidationResults.h"
 
+#include "ruleenginetestutils.h"
+#include "testRuleEngineInitialiser.cpp"
 
 using namespace std;
 using namespace sbx;
 
-class Full_TA_CONTEXT_KI_OSV_25_50 : public ::testing::Test  {
+class Full_TA_CONTEXT_KI_OSV_25_50 : public RuleEngineInitialiser {
 protected:
     virtual void SetUp() {
-        re = RuleEngine();
-        re.initConstants(get_file_contents("basedata-ruleconstants.json"));
-        re.initKoncepts(get_file_contents("koncepts.json"));
-        re.parseRuleCatalogueJSON(get_file_contents("rule-catalogue.json"));
+    	RuleEngineInitialiser::SetUp();
 
         KonceptInfo ki {4, 30, 0, // UnderkonceptOid:OSV 25-49
         	{
@@ -32,10 +30,29 @@ protected:
         	} };
         re.initContext(ki, OUTSIDE);
     }
-
-    RuleEngine re;
 };
 
+TEST_F(Full_TA_CONTEXT_KI_OSV_25_50, ProductElementAllowed) {
+
+    KonceptInfo ki {4, 30, 0, // UnderkonceptOid:OSV 25-49
+    	{ {  2, "true" }, // Solidarisk egentarif -> denies access to kGrpIndgaarIDepotsikring_MK
+		  {  6, "true" }, // SEB Firmapensionspulje
+    	  { 11, "true" }, // Parameter-Basis
+		  { 15, "true" } // FG-Spaend
+    	} };
+    re.initContext(ki, OUTSIDE);
+
+	EXPECT_FALSE(re.isProductElementAllowed(kGrpIndgaarIDepotsikring_MK));
+
+    KonceptInfo ki2 {4, 30, 0, // UnderkonceptOid:OSV 25-49
+    	{ {  1, "true" }, // Solidarisk faellestarif -> provides access to kGrpIndgaarIDepotsikring_MK
+		  {  6, "true" }, // SEB Firmapensionspulje
+    	  { 11, "true" }, // Parameter-Basis
+		  { 15, "true" } // FG-Spaend
+    	} };
+    re.initContext(ki2, OUTSIDE);
+	EXPECT_TRUE(re.isProductElementAllowed(kGrpIndgaarIDepotsikring_MK));
+}
 
 TEST_F(Full_TA_CONTEXT_KI_OSV_25_50, Full_TA_POSITIVE) {
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV

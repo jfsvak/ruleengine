@@ -5,7 +5,7 @@
  *      Author: jfsvak
  */
 
-#include "ContributionStep.h"
+#include "ContributionStep_sbx.h"
 
 namespace sbx {
 

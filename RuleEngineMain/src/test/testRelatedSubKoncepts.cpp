@@ -14,18 +14,15 @@
 #include "../ruleengine/ValidationResult.h"
 
 #include "ruleenginetestutils.h"
+#include "testRuleEngineInitialiser.cpp"
 
 using namespace std;
 using namespace sbx;
 
-class RelatedSubkoncepts : public ::testing::Test  {
+class RelatedSubkoncepts : public RuleEngineInitialiser {
 protected:
     virtual void SetUp() {
-    	RuleEngine::_printDebugAtValidation = false;
-    	re = RuleEngine();
-        re.initConstants(get_file_contents("basedata-ruleconstants.json"));
-        re.initKoncepts(get_file_contents("koncepts.json"));
-        re.parseRuleCatalogueJSON(get_file_contents("rule-catalogue.json"));
+    	RuleEngineInitialiser::SetUp();
 
         KonceptInfo ki {PROSA, 5, 0, // UnderkonceptOid:OSV 25-49
         	{ {11, "true"}, // Parameter-Basis
@@ -35,8 +32,6 @@ protected:
         	} };
         re.initContext(ki, OUTSIDE);
     }
-
-    RuleEngine re;
 };
 
 TEST_F(RelatedSubkoncepts, Udlobsalder_Pension_Allowed_Values) {

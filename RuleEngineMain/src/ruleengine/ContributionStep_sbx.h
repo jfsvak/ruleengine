@@ -5,8 +5,8 @@
  *      Author: jfsvak
  */
 
-#ifndef RULEENGINE_CONTRIBUTIONSTEP_H_
-#define RULEENGINE_CONTRIBUTIONSTEP_H_
+#ifndef RULEENGINE_CONTRIBUTIONSTEP_SBX_H_
+#define RULEENGINE_CONTRIBUTIONSTEP_SBX_H_
 
 namespace sbx {
 
@@ -30,4 +30,4 @@ private:
 
 } /* namespace sbx */
 
-#endif /* RULEENGINE_CONTRIBUTIONSTEP_H_ */
+#endif /* RULEENGINE_CONTRIBUTIONSTEP_SBX_H_ */
