@@ -126,7 +126,20 @@ TEST_F(ContributionLadder_Follows_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_POS
 }
 
 
+TEST_F(ContributionLadder_Follows_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Alder_When_Follows) {
+	RuleEngine::_printDebugAtValidation = true;
+	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	ta.setValue(kUnionAgreementOid, 6);
+	ta.setValue(kUnionAgreementRelationship, sbx::kFOLLOWS);
+	ta.setValue(kBidragEjFoesteTrin_MK, true);
+	ta.setValue(kBidragsstigningsform, "Alder");
+	ta.addContributionStep({18, 4.5, 5.5});
 
+	auto r = re.validate(ta, false);
+	EXPECT_TRUE(r.isAllOk());
+	cout << r;
+
+}
 
 
 
