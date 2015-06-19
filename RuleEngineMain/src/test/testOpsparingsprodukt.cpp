@@ -153,11 +153,7 @@ TEST_F(Opsparingsproduct_RuleEngine_CONTEXT_KI_OSV_25_50, Opsparingsprodukt_MinA
 	ta.setValue(kTidspensionUdenGaranti_MK, false);
 	r = re.validate(ta, false);
 	cout << r;
-	EXPECT_FALSE(r.isAllOk());
-	EXPECT_EQ(1, r.getValidationResults(kMinAndelTraditionelPct).size());
-	EXPECT_EQ(1, r.getValidationResults(kMinAndelTraditionelPctType).size());
-	EXPECT_TRUE(r.hasMessages(kMinAndelTraditionelPct, sbx::ValidationCode::kProductElementRequired));
-	EXPECT_TRUE(r.hasMessages(kMinAndelTraditionelPctType, sbx::ValidationCode::kProductElementRequired));
+	EXPECT_TRUE(r.isAllOk());
 
 	ta.setValue(kMinAndelTraditionelPct, (long) 6);
 	r = re.validate(ta, false);
@@ -167,20 +163,21 @@ TEST_F(Opsparingsproduct_RuleEngine_CONTEXT_KI_OSV_25_50, Opsparingsprodukt_MinA
 	EXPECT_TRUE(r.hasMessages(kMinAndelTraditionelPctType, sbx::ValidationCode::kProductElementRequired));
 
 
-	ta.setValue(kMinAndelTraditionelPctType, "% af gagen");
+	ta.setValue(kMinAndelTraditionelPctType, "garbabe");
+	r = re.validate(ta, false);
+	cout << r;
+	EXPECT_FALSE(r.isAllOk());
+	EXPECT_TRUE(r.hasMessages(kMinAndelTraditionelPctType, sbx::ValidationCode::kValueNotAllowed));
+
+	ta.setValue(kMinAndelTraditionelPctType, "GAGE");
 	r = re.validate(ta, false);
 	cout << r;
 	EXPECT_TRUE(r.isAllOk());
 
-
 	ta.setValue(kTidspensionMedGaranti_MK, true);
 	r = re.validate(ta, false);
 	cout << r;
-	EXPECT_FALSE(r.isAllOk());
-	EXPECT_EQ(1, r.getValidationResults(kMinAndelTraditionelPct).size());
-	EXPECT_TRUE(r.hasMessages(kMinAndelTraditionelPct, sbx::ValidationCode::kProductElementNotAllowed));
-	EXPECT_EQ(1, r.getValidationResults(kMinAndelTraditionelPctType).size());
-	EXPECT_TRUE(r.hasMessages(kMinAndelTraditionelPctType, sbx::ValidationCode::kProductElementNotAllowed));
+	EXPECT_TRUE(r.isAllOk());
 
 }
 

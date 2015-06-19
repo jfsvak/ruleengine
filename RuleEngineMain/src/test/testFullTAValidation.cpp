@@ -157,13 +157,11 @@ TEST_F(Full_TA_CONTEXT_KI_OSV_25_50, Full_TA_POSITIVE) {
 	cout << r;
 
 	ta.setValue(kMinAndelTraditionelPct, (long) 6);
-	ta.setValue(kMinAndelTraditionelPctType, "% af gage");
+	ta.setValue(kMinAndelTraditionelPctType, "GAGE");
 	r = re.validate(ta);
 	EXPECT_EQ(total-=2, r.sizeValidationResults());
 	cout << r;
 
-	ta.remove(kMinAndelTraditionelPct);
-	ta.remove(kMinAndelTraditionelPctType);
 	ta.setValue(kTidspensionMedGaranti_MK, true);
 	ta.setValue(kTidspensionUdenGaranti_MK, true);
 	r = re.validate(ta);
