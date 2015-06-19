@@ -42,7 +42,7 @@ TEST_F(Full_TA_CONTEXT_KI_OSV_25_50, ProductElementAllowed) {
     	} };
     re.initContext(ki, OUTSIDE);
 
-	EXPECT_FALSE(re.isProductElementAllowed(kGrpIndgaarIDepotsikring_MK));
+	EXPECT_TRUE(re.isProductElementAllowed(kGrpIndgaarIDepotsikring_MK));
 
     KonceptInfo ki2 {4, 30, 0, // UnderkonceptOid:OSV 25-49
     	{ {  1, "true" }, // Solidarisk faellestarif -> provides access to kGrpIndgaarIDepotsikring_MK

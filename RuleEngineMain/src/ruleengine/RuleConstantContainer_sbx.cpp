@@ -1049,11 +1049,11 @@ void RuleConstantContainer::printParameters() const
 	{
 		for (auto& parameter : _parameterMap)
 		{
-			cout << setw(5) << parameter.first;
-			cout << "  " << setw(3) << parameter.second.getOid();
-			cout << "  " << setw(52) << parameter.second.getName().substr(0, 50);
-			cout << "  " << setw(11) << parameter.second.getType();
-			cout << "  " << setw(10) << (int) parameter.second.getElementType();
+			cout << right << setw(5) << parameter.first;
+			cout << "  " << right << setw(3) << parameter.second.getOid();
+			cout << "  " << left << setw(52) << parameter.second.getName().substr(0, 50);
+			cout << "  " << left << setw(11) << parameter.second.getType();
+			cout << "  " << right << setw(10) << (int) parameter.second.getElementType();
 			cout << endl;
 		}
 	}
@@ -1063,37 +1063,51 @@ void RuleConstantContainer::printParameters() const
 	}
 }
 
-void RuleConstantContainer::printParametersToProducts(sbx::subkoncept_oid underkonceptOid) const
+void RuleConstantContainer::printParametersToProducts(sbx::koncept_oid kOid) const
 {
-	cout << "\n\n       ---======== Parameter To Products loaded =======--- \n";
-	cout << "Underkoncept oid [" << underkonceptOid;
-	Subkoncept subkoncept = _subkoncepts.at(underkonceptOid);
 
-	if (subkoncept.getRelatedSubkonceptOid() != undefined_oid)
-		cout << "-> " << subkoncept.getRelatedSubkonceptOid() << "]";
-	else
-		cout << "]";
+	auto start = (kOid != undefined_oid) ? _koncepts.find(kOid) : _koncepts.cbegin();
+	auto end = (kOid != undefined_oid) ? _koncepts.find(kOid) : _koncepts.cend();
 
-	cout << endl;
-	cout << "Parameters Directly on subkoncept [" << underkonceptOid << "]" << endl;
-	cout << "Parameter Oid  Product oids" << endl;
-	cout << "-------------  -------------------------------------------------------" << endl;
-
-	if (_parameterOidToProductOids.find(underkonceptOid) != _parameterOidToProductOids.end())
-		_printParameterList(_parameterOidToProductOids.at(underkonceptOid));
-	else
-		cout << "No Parameters To Products loaded for subkoncept [" << underkonceptOid << "]" << endl;
-
-	if (subkoncept.getRelatedSubkonceptOid() != undefined_oid)
+	for (auto& it = start; it != end; it++ )
 	{
-		cout << "Parameters on related subkoncept [" << subkoncept.getRelatedSubkonceptOid() << "]" << endl;
-		cout << "Parameter Oid  Product oids" << endl;
-		cout << "-------------  -------------------------------------------------------" << endl;
+		const Koncept& koncept = it->second;
 
-		if (_parameterOidToProductOids.find(subkoncept.getRelatedSubkonceptOid()) != _parameterOidToProductOids.end())
-			_printParameterList(_parameterOidToProductOids.at(subkoncept.getRelatedSubkonceptOid()));
-		else
-			cout << "No Parameters To Products loaded" << endl;
+		cout << "\n\n    ---- " << koncept.getName() << " (" << koncept.getOid() << ") ----" << endl;
+
+		for (const auto& item : koncept.getSubkoncepts())
+		{
+			const Subkoncept& subkoncept = item.second;
+
+			cout << "\n" << subkoncept.getName() << " (" << subkoncept.getOid();
+
+			if (subkoncept.getRelatedSubkonceptOid() != undefined_oid)
+				cout << "-> " << subkoncept.getRelatedSubkonceptOid();
+
+			cout << ")" << endl;
+
+			if (_parameterOidToProductOids.find(subkoncept.getOid()) != _parameterOidToProductOids.end())
+			{
+				cout << "Parameters Directly on subkoncept [" << subkoncept.getOid() << "]" << endl;
+				cout << "ParamOid  Product oids" << endl;
+				cout << "--------  -------------------------------------------------------" << endl;
+				_printParameterList(_parameterOidToProductOids.at(subkoncept.getOid()));
+			}
+			else
+				cout << "No Parameters To Products loaded for subkoncept [" << subkoncept.getOid() << "]" << endl;
+
+			if (subkoncept.getRelatedSubkonceptOid() != undefined_oid)
+			{
+				cout << "Parameters on related subkoncept [" << subkoncept.getRelatedSubkonceptOid() << "]" << endl;
+				cout << "ParamOid  Product oids" << endl;
+				cout << "--------  -------------------------------------------------------" << endl;
+
+				if (_parameterOidToProductOids.find(subkoncept.getRelatedSubkonceptOid()) != _parameterOidToProductOids.end())
+					_printParameterList(_parameterOidToProductOids.at(subkoncept.getRelatedSubkonceptOid()));
+				else
+					cout << "No Parameters To Products loaded" << endl;
+			}
+		}
 	}
 }
 
@@ -1101,7 +1115,7 @@ void RuleConstantContainer::_printParameterList(const std::map<unsigned short, s
 {
 	for (auto& itemIt : values)
 	{
-		cout << setw(13) << itemIt.first;
+		cout << setw(8) << itemIt.first;
 		if (itemIt.second.size() > 0)
 		{
 			ostringstream s{};

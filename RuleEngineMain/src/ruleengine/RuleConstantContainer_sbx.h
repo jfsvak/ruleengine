@@ -67,7 +67,7 @@ public:
 	void printContainerOverview(sbx::subkoncept_oid subKonceptOid, sbx::ComparisonTypes type) const;
 	void printProducts() const;
 	void printParameters() const;
-	void printParametersToProducts(sbx::subkoncept_oid underkonceptOid) const;
+	void printParametersToProducts(sbx::subkoncept_oid underkonceptOid = sbx::undefined_oid) const;
 	std::size_t size() const;
 
 private:
