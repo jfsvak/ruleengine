@@ -19,7 +19,7 @@
 
 
 @interface Bridge : NSObject
--(instancetype)initWithConstants:(NSString*)constantsFilePath ruleCatalog:(NSString*)ruleCatalogFilePath koncepts:(NSString*)koncepts;
+-(instancetype)initWithConstants:(NSString*)constantsFilePath ruleCatalog:(NSString*)ruleCatalogFilePath;
 -(void)setKonceptOid:(NSInteger)konceptOid numOfEmpl:(NSInteger)numOfEmpl numOfRiskClass:(NSInteger)numOfRiscClassC
                                                                                 parameters:(NSDictionary*)parametersDictionary;
 
