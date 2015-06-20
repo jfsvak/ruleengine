@@ -27,12 +27,11 @@
     sbx::TA ta;
 }
 
--(instancetype)initWithConstants:(NSString*)constantsFilePath ruleCatalog:(NSString*)ruleCatalogFilePath koncepts:(NSString*)koncepts {
+-(instancetype)initWithConstants:(NSString*)constantsFilePath ruleCatalog:(NSString*)ruleCatalogFilePath {
     self = [super init];
     if (self) {
-        re.initConstants(get_file_contents(constantsFilePath.UTF8String));
+        re.initialiseAll(get_file_contents(constantsFilePath.UTF8String));
         re.parseRuleCatalogueJSON(get_file_contents(ruleCatalogFilePath.UTF8String));
-        re.initKoncepts(get_file_contents(koncepts.UTF8String));
     }
     return self;
 }
