@@ -1487,7 +1487,7 @@
 			        "productElementOids": [ 999 ],
 		   		    "requiredif": "#parent#",
 			   	    "positiveMessage": "",
-			       	"negativeMessage": "Den totale bidragsprocent i første trin skal være storre end %1",
+			       	"negativeMessage": "Den totale bidragsprocent i første trin skal være større end %1",
 		           	"negativeMessageParameters": [ "rc_BidragInklHospdaekningPctMin_min" ],
 			        "negativeValCode": 102,
 					"positiveRuleCatalogue": []
@@ -1511,7 +1511,7 @@
 			        "productElementOids": [ 999 ],
 		   		    "requiredif": "#parent#",
 			   	    "positiveMessage": "",
-			       	"negativeMessage": "Den totale bidragsprocent i første trin skal være storre end %1",
+			       	"negativeMessage": "Den totale bidragsprocent i første trin skal være større end %1",
 		           	"negativeMessageParameters": [ "rc_BidragsEksklHospdaekningPctMin_min" ],
 			        "negativeValCode": 102,
 					"positiveRuleCatalogue": []
