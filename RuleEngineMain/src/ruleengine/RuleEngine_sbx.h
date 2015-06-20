@@ -89,7 +89,7 @@ private:
 	void _validateOptionAllowed(const sbx::ProductElementValue&, sbx::ValidationResults&);
 	//   checks if the supplied value is an allowed option (found in the allowed list in the rule constant container
 	bool _isOptionAllowed(const sbx::ProductElementValue&);
-
+	void _checkRequiredness(std::shared_ptr<Rule> ruleFromPositiveCatalogue, std::shared_ptr<sbx::Rule> parentRule, sbx::ValidationResults& valResults);
 
 	//
 	// Methods for related pe validations/checks

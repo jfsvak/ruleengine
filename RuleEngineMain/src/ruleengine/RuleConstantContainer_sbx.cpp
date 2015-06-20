@@ -191,7 +191,7 @@ void RuleConstantContainer::initKoncepts(const std::string& jsonContents)
 		// if we can parse the json string, then get initialise the koncepts
 		if (konceptsJSON.size() > 0)
 		{
-			if (RuleEngine::_printDebug) { cout << "\n  Looping over [" << konceptsJSON.size() << "] json Koncepts to initialise" << endl; }
+			if (RuleConstantContainer::_printDebug) { cout << "\n  Looping over [" << konceptsJSON.size() << "] json Koncepts to initialise" << endl; }
 
 			// iterate over the list of rules and create Ruleobjects to put into the RuleConstantContainer
 			for (Json::ValueIterator valueIterator = konceptsJSON.begin(); valueIterator != konceptsJSON.end(); ++valueIterator)
@@ -199,7 +199,7 @@ void RuleConstantContainer::initKoncepts(const std::string& jsonContents)
 				int oid = valueIterator->get("oid", 0).asInt();
 				string name = valueIterator->get("name", "").asString();
 
-				if (RuleEngine::_printDebug) { cout << "  Creating Koncept [" << oid << "], name [" << name<< "]" << endl; }
+				if (RuleConstantContainer::_printDebug) { cout << "  Creating Koncept [" << oid << "], name [" << name<< "]" << endl; }
 				Koncept k{static_cast<sbx::koncept_oid>(oid), name};
 
 				_initSubkoncepts(valueIterator->get("subKoncepts", ""), k);
@@ -209,7 +209,7 @@ void RuleConstantContainer::initKoncepts(const std::string& jsonContents)
 		}
 		else
 		{
-			if (RuleEngine::_printDebug) { cout << "Empty Koncepts...nothing to load" << endl; }
+			if (RuleConstantContainer::_printDebug) { cout << "Empty Koncepts...nothing to load" << endl; }
 		}
 	}
 	else
@@ -224,7 +224,7 @@ void RuleConstantContainer::_initSubkoncepts(const Json::Value& subkonceptsJSON,
 {
 	if (subkonceptsJSON.size() > 0)
 	{
-		if (RuleEngine::_printDebug) { cout << "\n  Looping over [" << subkonceptsJSON.size() << "] json Koncepts to initialise" << endl; }
+		if (RuleConstantContainer::_printDebug) { cout << "\n  Looping over [" << subkonceptsJSON.size() << "] json Koncepts to initialise" << endl; }
 
 		for (Json::ValueIterator valueIterator = subkonceptsJSON.begin(); valueIterator != subkonceptsJSON.end(); ++valueIterator)
 		{
@@ -234,7 +234,7 @@ void RuleConstantContainer::_initSubkoncepts(const Json::Value& subkonceptsJSON,
 			int maxEmployeeNumber = valueIterator->get("maxEmployeeNumber", -1).asInt();
 			int relatedSubkonceptOid = valueIterator->get("relatedUnderkonceptOid", 0).asInt();
 
-			if (RuleEngine::_printDebug) { cout << "  Creating Subkoncept [" << subkonceptOid << "], name [" << name<< "], min [" << minEmployeeNumber << "], max [" << maxEmployeeNumber << "], relatedsubkoncept oid [" << relatedSubkonceptOid << "]" << endl; }
+			if (RuleConstantContainer::_printDebug) { cout << "  Creating Subkoncept [" << subkonceptOid << "], name [" << name<< "], min [" << minEmployeeNumber << "], max [" << maxEmployeeNumber << "], relatedsubkoncept oid [" << relatedSubkonceptOid << "]" << endl; }
 
 			Subkoncept subkoncept{static_cast<sbx::subkoncept_oid> (subkonceptOid), name, static_cast<sbx::number_of_employees>(minEmployeeNumber), static_cast<sbx::number_of_employees>(maxEmployeeNumber), static_cast<sbx::subkoncept_oid>(relatedSubkonceptOid)};
 
@@ -249,7 +249,7 @@ void RuleConstantContainer::_initSubkoncepts(const Json::Value& subkonceptsJSON,
 		}
 	}
 	else
-		if (RuleEngine::_printDebug) { cout << "Empty Subkoncepts...nothing to load" << endl; }
+		if (RuleConstantContainer::_printDebug) { cout << "Empty Subkoncepts...nothing to load" << endl; }
 }
 
 void RuleConstantContainer::initUnionAgreements(const std::string& jsonContents)
@@ -266,7 +266,7 @@ void RuleConstantContainer::initUnionAgreements(const std::string& jsonContents)
 		// if we can parse the json string, then get initialise the koncepts
 		if (unionAgreementsJSON.size() > 0)
 		{
-			if (RuleEngine::_printDebug) { cout << "\n  Looping over [" << unionAgreementsJSON.size() << "] json UnionAgreements to initialise" << endl; }
+			if (RuleConstantContainer::_printDebug) { cout << "\n  Looping over [" << unionAgreementsJSON.size() << "] json UnionAgreements to initialise" << endl; }
 
 			// iterate over the list of rules and create Ruleobjects to put into the RuleConstantContainer
 			for (Json::ValueIterator valueIterator = unionAgreementsJSON.begin(); valueIterator != unionAgreementsJSON.end(); ++valueIterator)
@@ -276,7 +276,7 @@ void RuleConstantContainer::initUnionAgreements(const std::string& jsonContents)
 				string name = valueIterator->get("unionAgreementName", "").asString();
 				string name2 = valueIterator->get("unionAgreementName2", "").asString();
 
-				if (RuleEngine::_printDebug) { cout << "  Creating UnionAgreement oid [" << oid << "], unionAgreementNumber[" << unionAgreementNumber << "], name [" << name << "], name2 [" << name2 << "" << endl; }
+				if (RuleConstantContainer::_printDebug) { cout << "  Creating UnionAgreement oid [" << oid << "], unionAgreementNumber[" << unionAgreementNumber << "], name [" << name << "], name2 [" << name2 << "" << endl; }
 				UnionAgreement ua{static_cast<sbx::unionagreement_oid>(oid), unionAgreementNumber, name, name2};
 
 				Json::Value unionAgreementContributionScaleSteps = valueIterator->get("unionAgreementContributionScaleSteps", "");
@@ -302,7 +302,7 @@ void RuleConstantContainer::initUnionAgreements(const std::string& jsonContents)
 		}
 		else
 		{
-			if (RuleEngine::_printDebug) { cout << "Empty UnionAgreements...nothing to load" << endl; }
+			if (RuleConstantContainer::_printDebug) { cout << "Empty UnionAgreements...nothing to load" << endl; }
 		}
 	}
 	else

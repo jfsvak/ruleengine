@@ -28,6 +28,7 @@ TEST_F(ContainerContentPrinting, PrintingConstants) {
 
 	re.getContainer().printParameters();
 	re.getContainer().printParametersToProducts();
+//	re.getContainer().printConstants(17);
 }
 
 

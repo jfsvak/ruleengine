@@ -99,7 +99,7 @@ TEST_F(ContributionLadder_Follows_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_POS
 	r = re.validate(ta, false);
 	EXPECT_FALSE(r.isAllOk());
 	cout << r;
-	EXPECT_EQ(1, r.getValidationResults(kBidragstrappe).size());
+	EXPECT_EQ(2, r.getValidationResults(kBidragstrappe).size());
 	EXPECT_TRUE(r.hasMessages(kBidragstrappe, kValueUnderLimit));
 
 	ta.removeContributionSteps();
@@ -107,7 +107,7 @@ TEST_F(ContributionLadder_Follows_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_POS
 	r = re.validate(ta, false);
 	EXPECT_FALSE(r.isAllOk());
 	cout << r;
-	EXPECT_EQ(1, r.getValidationResults(kBidragstrappe).size());
+	EXPECT_EQ(2, r.getValidationResults(kBidragstrappe).size());
 	EXPECT_TRUE(r.hasMessages(kBidragstrappe, kValueUnderLimit));
 
 	ta.removeContributionSteps();
@@ -120,7 +120,7 @@ TEST_F(ContributionLadder_Follows_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_POS
 	r = re.validate(ta, false);
 	EXPECT_FALSE(r.isAllOk());
 	cout << r;
-	EXPECT_EQ(1, r.getValidationResults(kBidragstrappe).size());
+	EXPECT_EQ(2, r.getValidationResults(kBidragstrappe).size());
 	EXPECT_TRUE(r.hasMessages(kBidragstrappe, kValueNotAllowed));
 
 }

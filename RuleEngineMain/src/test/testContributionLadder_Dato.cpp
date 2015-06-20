@@ -73,7 +73,7 @@ TEST_F(ContributionLadder_Dato_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Dato_1
 	EXPECT_FALSE(r.isAllOk());
 //	if (r.isAllOk())
 		cout << r;
-	ASSERT_EQ(2, r.getValidationResults(kBidragstrappe).size());
+	EXPECT_EQ(3, r.getValidationResults(kBidragstrappe).size());
 	EXPECT_TRUE(r.hasMessages(kBidragstrappe, kValueNotAllowed));
 	EXPECT_TRUE(r.hasMessages(kBidragstrappe, kValueUnderLimit));
 
@@ -96,8 +96,8 @@ TEST_F(ContributionLadder_Dato_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Dato_1
 	auto r = re.validate(ta, false);
 	EXPECT_FALSE(r.isAllOk());
 	cout << r;
-	ASSERT_EQ(1, r.getValidationResults(kBidragstrappe).size());
-	EXPECT_EQ(kValueUnderLimit, r.getValidationResults(kBidragstrappe).at(0).getValidationCode());
+	EXPECT_EQ(1, r.getValidationResults(kBidragstrappe).size());
+	EXPECT_TRUE(r.hasMessages(kBidragstrappe,kValueUnderLimit));
 	EXPECT_EQ("33.1.2.1", r.getValidationResults(kBidragstrappe).at(0).getRuleId());
 
 	ta.removeContributionStep( {20150601, 2, 1} ); // remove and set new step that equals to 4
@@ -120,8 +120,8 @@ TEST_F(ContributionLadder_Dato_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Dato_1
 	auto r = re.validate(ta, false);
 	EXPECT_FALSE(r.isAllOk());
 	cout << r;
-	ASSERT_EQ(1, r.getValidationResults(kBidragstrappe).size());
-	EXPECT_EQ(kValueUnderLimit, r.getValidationResults(kBidragstrappe).at(0).getValidationCode());
+	EXPECT_EQ(1, r.getValidationResults(kBidragstrappe).size());
+	EXPECT_TRUE(r.hasMessages(kBidragstrappe, kValueUnderLimit));
 	EXPECT_EQ("33.1.1.1", r.getValidationResults(kBidragstrappe).at(0).getRuleId());
 
 	ta.removeContributionStep( {20150601, 2, 2} ); // remove and set new step that equals to 5

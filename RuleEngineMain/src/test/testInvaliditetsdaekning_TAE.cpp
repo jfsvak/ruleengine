@@ -75,8 +75,9 @@ TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_I_Kr_Ingen_NEGATI
 	cout << r;
 	EXPECT_FALSE(r.isAllOk()); //
 
-	EXPECT_EQ(3, r.getValidationResults().size());
+	EXPECT_EQ(2, r.getValidationResults().size());
 	EXPECT_TRUE(r.hasMessages(kTAEBlOblMax, kValueOverLimit));
+	EXPECT_TRUE(r.hasMessages(kTAESpaendBl, kValueOverLimit));
 }
 
 
@@ -122,8 +123,9 @@ TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_I_Kr_Pristal_NEGA
 	cout << r;
 	EXPECT_FALSE(r.isAllOk()); //
 
-	EXPECT_EQ(3, r.getValidationResults().size());
+	EXPECT_EQ(2, r.getValidationResults().size());
 	EXPECT_TRUE(r.hasMessages(kTAEBlOblMax, kValueOverLimit));
+	EXPECT_TRUE(r.hasMessages(kTAESpaendBl, kValueOverLimit));
 }
 
 TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_I_Kr_Pristal_Scientific_Output) {
@@ -146,8 +148,9 @@ TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_I_Kr_Pristal_Scie
 	cout << r;
 	EXPECT_FALSE(r.isAllOk()); //
 
-	EXPECT_EQ(3, r.getValidationResults().size());
+	EXPECT_EQ(2, r.getValidationResults().size());
 	EXPECT_TRUE(r.hasMessages(kTAEBlOblMax, kValueOverLimit));
+	EXPECT_TRUE(r.hasMessages(kTAESpaendBl, kValueOverLimit));
 }
 
 
@@ -191,7 +194,7 @@ TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_I_PCT_Gage_NEGATI
 	EXPECT_FALSE(r.isAllOk());
 //	if (!r.isAllOk())
 		cout << r;
-	EXPECT_EQ(5, r.getValidationResults().size());
+	EXPECT_EQ(3, r.getValidationResults().size());
 	EXPECT_TRUE(r.hasMessages(kTAEPctGrMin, kValueUnderLimit));
 	EXPECT_TRUE(r.hasMessages(kTAEPctOblMax, kValueOverLimit));
 	EXPECT_TRUE(r.hasMessages(kTAESpaendPct, kValueOverLimit));
@@ -221,9 +224,10 @@ TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_I_PCT_Gage_NEGATI
 	EXPECT_FALSE(r.isAllOk());
 //	if (!r.isAllOk())
 		cout << r;
-	EXPECT_EQ(5, r.getValidationResults().size());
+	EXPECT_EQ(4, r.getValidationResults().size());
 	EXPECT_TRUE(r.hasMessages(kTAEPctGrMin, kValueUnderLimit));
 	EXPECT_TRUE(r.hasMessages(kTAEPctOblMax, kValueOverLimit));
+	EXPECT_TRUE(r.hasMessages(kTAESpaendPct, kValueOverLimit));
 	EXPECT_TRUE(r.hasMessages(kTAEBlGrMin, kProductElementRequired));
 
 	ta.setValue(kTAEPctGrMin, 60);
@@ -245,7 +249,7 @@ TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_I_PCT_Ingen_NEGAT
 	EXPECT_FALSE(r.isAllOk());
 //	if (!r.isAllOk())
 		cout << r;
-	EXPECT_EQ(5, r.getValidationResults().size());
+	EXPECT_EQ(3, r.getValidationResults().size());
 	EXPECT_TRUE(r.hasMessages(kTAEBlGrMin, kValueUnderLimit));
 	EXPECT_TRUE(r.hasMessages(kTAEBlOblMax, kValueOverLimit));
 	EXPECT_TRUE(r.hasMessages(kTAESpaendBl, kValueOverLimit));
@@ -268,9 +272,10 @@ TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_I_PCT_Ingen_NEGAT
 //	if (!r.isAllOk())
 		cout << r;
 	EXPECT_FALSE(r.isAllOk());
-	EXPECT_EQ(4, r.getValidationResults().size());
+	EXPECT_EQ(3, r.getValidationResults().size());
 	EXPECT_TRUE(r.hasMessages(kTAEBlGrMin, kValueUnderLimit));
 	EXPECT_TRUE(r.hasMessages(kTAEBlOblMax, kValueOverLimit));
+	EXPECT_TRUE(r.hasMessages(kTAESpaendBl, kValueOverLimit));
 
 	ta.setValue(kTAEBlGrMin, 600000);
 	ta.setValue(kTAEBlOblMax, 700000); // now set allowed amount and it should be happy
@@ -335,7 +340,7 @@ TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_Kortvarig_Overbyg
 	r = re.validate(ta, false);
 	cout << r;
 	EXPECT_FALSE(r.isAllOk());
-	EXPECT_EQ(2, r.getValidationResults().size());
+	EXPECT_EQ(3, r.getValidationResults().size());
 	EXPECT_TRUE(r.hasMessages(kKortTAE_Min_obl_faktor, kValueNotAllowed));
 	EXPECT_TRUE(r.hasMessages(kKortTAE_Daekningsperiode, kProductElementRequired));
 

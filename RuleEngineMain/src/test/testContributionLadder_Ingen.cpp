@@ -61,8 +61,8 @@ TEST_F(ContributionLadder_Ingen_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Ingen
 	EXPECT_TRUE(r.isAllOk());
 //	if (r.isAllOk())
 	cout << r;
-	ASSERT_EQ(4, r.getWarnings(kBidragstrappe).size());
-	EXPECT_EQ(kProductElementRequired, r.getWarnings(kBidragstrappe).at(0).getValidationCode());
+	EXPECT_EQ(2, r.getWarnings(kBidragstrappe).size());
+	EXPECT_TRUE(r.hasWarnings(kBidragstrappe, kProductElementRequired));
 
 	//  now add one step, but let it start from 3 (!=0), and it should fail
 	ta.addContributionStep( { 3, 3.4, 5.3 });
@@ -123,8 +123,8 @@ TEST_F(ContributionLadder_Ingen_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Ingen
 	EXPECT_TRUE(r.isAllOk());
 //	if (r.isAllOk())
 	cout << r;
-	ASSERT_EQ(4, r.getWarnings(kBidragstrappe).size());
-	EXPECT_EQ(kProductElementRequired, r.getWarnings(kBidragstrappe).at(0).getValidationCode());
+	EXPECT_EQ(2, r.getWarnings(kBidragstrappe).size());
+	EXPECT_TRUE(r.hasWarnings(kBidragstrappe, kProductElementRequired));
 
 	//  now add one step, but let it start from 3 (!=0), and it should fail
 	ta.addContributionStep( { 3, 3.4, 5.3 });
