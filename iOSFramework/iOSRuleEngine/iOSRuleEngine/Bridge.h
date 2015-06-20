@@ -27,6 +27,8 @@
 -(void)setTAUnionAgreementRelation:(uint8_t)relation;
 -(void)setTAUnionAgreement:(uint8_t)uaOid;
 
+-(BOOL)isProductElementAllowed:(NSInteger)oid;
+
 -(NSArray*)getAllowedValuesFor:(NSInteger)oid withType:(uint8_t)valueType;
 -(NSArray*)getAllowedValuesFor:(NSInteger)oid;
 

@@ -446,5 +446,9 @@ std::string get_file_contents(const char *filename)
     return allResults;
 }
 
+-(BOOL)isProductElementAllowed:(NSInteger)oid {
+    return re.isProductElementAllowed(static_cast<unsigned short>(oid));
+}
+
 
 @end
