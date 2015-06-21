@@ -44,9 +44,9 @@ public:
 
 	bool existsAs(unsigned short peOid, const sbx::ComparisonTypes&) const;
 
-	std::vector<std::string> getOptions(unsigned short productElementOid);
-	std::vector<std::shared_ptr<sbx::Constant>> getOptionsList(unsigned short productElementOid);
-	std::shared_ptr<sbx::Constant> getConstant(unsigned short productElement, const sbx::ComparisonTypes& comparisonType);
+	std::vector<std::string> getOptions(sbx::productelement_oid productElementOid);
+	std::vector<std::shared_ptr<sbx::Constant>> getOptionsList(sbx::productelement_oid productElementOid);
+	std::shared_ptr<sbx::Constant> getConstant(sbx::productelement_oid productElement, const sbx::ComparisonTypes& comparisonType);
 	const std::map<sbx::koncept_oid, sbx::Koncept>& getKoncepts() const;
 
 	std::set<unsigned short> getProductOids(sbx::parameter_oid parameterOid) const;
@@ -95,7 +95,7 @@ private:
 	 *  Subscript format is: _ukOptionsMap[underkonceptOid][productElementOid]
 	 *  Value is a vector of shared_ptr->Constant
 	 **/
-	std::map<unsigned short, std::map<unsigned short, std::vector<std::shared_ptr<sbx::Constant>>>> _ukOptionsMap;
+	std::map<sbx::subkoncept_oid, std::map<sbx::productelement_oid, std::vector<std::shared_ptr<sbx::Constant>>>> _ukOptionsMap;
 
 	/**
 	 * _ukMinValuesMap:
@@ -104,7 +104,7 @@ private:
 	 * Subscript format is: _ukMinValuesMap[underkonceptOid][productElementOid]
 	 * Value: shared_ptr to Constant
 	 */
-	std::map<unsigned short, std::map<unsigned short, std::shared_ptr<sbx::Constant>>> _ukMinValuesMap;
+	std::map<sbx::subkoncept_oid, std::map<sbx::productelement_oid, std::shared_ptr<sbx::Constant>>> _ukMinValuesMap;
 
 	/**
 	 * _ukMaxValuesMap:
@@ -114,7 +114,7 @@ private:
 	 * Subscript format is: _ukMaxValuesMap[underkonceptOid][productElementOid]
 	 * Value: shared_ptr to Constant
 	 */
-	std::map<unsigned short, std::map<unsigned short, std::shared_ptr<sbx::Constant>>> _ukMaxValuesMap;
+	std::map<sbx::subkoncept_oid, std::map<sbx::productelement_oid, std::shared_ptr<sbx::Constant>>> _ukMaxValuesMap;
 
 	/**
 	 *  _uaOptionsMap
@@ -158,41 +158,41 @@ private:
 	 * Index is productOid (unsigned short)
 	 * Values is a shared_ptr to a Product
 	 */
-	std::map<unsigned short, std::shared_ptr<sbx::Product>> _productsMap;
+	std::map<sbx::product_oid, std::shared_ptr<sbx::Product>> _productsMap;
 
 	/**
 	 * _productElementMap:
 	 * Index is productOid (unsigned short)
 	 * Values is a shared_ptr to a ProductElement
 	 */
-	std::map<unsigned short, std::shared_ptr<sbx::ProductElement>> _productElementMap;
+	std::map<sbx::product_oid, std::shared_ptr<sbx::ProductElement>> _productElementMap;
 	/**
 	 * _parameterMap:
 	 * Index is parameterOid (unsigned short)
 	 * Values is a Parameter
 	 */
-	std::map<unsigned short, sbx::Parameter> _parameterMap;
+	std::map<sbx::parameter_oid, sbx::Parameter> _parameterMap;
 
 	/**
-	 * First index is underKonceptOid
+	 * First index is subKonceptOid
 	 * Second index is parameter
 	 * Value is a set of allowed products
 	 */
-	std::map<unsigned short, std::map<unsigned short, std::set<unsigned short>>> _parameterOidToProductOids;
+	std::map<sbx::subkoncept_oid, std::map<sbx::parameter_oid, std::set<sbx::product_oid>>> _parameterOidToProductOids;
 
 	/**
-	 * First index is underKonceptOid
+	 * First index is subKonceptOid
 	 * Second index is parameter
 	 * Value is a set of allowed product element oids
 	 */
-	std::map<unsigned short, std::map<unsigned short, std::set<unsigned short>>> _parameterOidToProductElementOids;
+	std::map<sbx::subkoncept_oid, std::map<sbx::parameter_oid, std::set<sbx::productelement_oid>>> _parameterOidToProductElementOids;
 
 	/**
 	 * _varNameToPEOidMap:
-	 * Index is parameterOid (unsigned short)
-	 * Values is a Parameter
+	 * Index is varName as string
+	 * Value is productelement oid
 	 */
-	std::map<std::string, unsigned short> _varNameToPEOidMap;
+	std::map<std::string, sbx::productelement_oid> _varNameToPEOidMap;
 
 	/**
 	 * Index: union agreement oid

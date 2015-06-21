@@ -26,7 +26,7 @@ protected:
     	try {
 			RuleEngineInitialiser::SetUp();
 
-			KonceptInfo ki {4, 30, 0, // UnderkonceptOid:OSV 25-49
+			KonceptInfo ki {OSV, 30, 0, // UnderkonceptOid:OSV 25-49
 				{ { 1, "true"}, // Solidarisk faellestarif
 				  { 6, "true"}, // SEB Firmapensionspulje
 				  {11, "true"}, // Parameter-Basis
@@ -128,7 +128,7 @@ TEST_F(ContributionLadder_Follows_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_POS
 
 TEST_F(ContributionLadder_Follows_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Alder_When_Follows) {
 	RuleEngine::_printDebugAtValidation = true;
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040", OSV}; // KonceptOid 4 - OSV
 	ta.setValue(kUnionAgreementOid, 6);
 	ta.setValue(kUnionAgreementRelationship, sbx::kFOLLOWS);
 	ta.setValue(kBidragEjFoesteTrin_MK, true);
@@ -141,8 +141,64 @@ TEST_F(ContributionLadder_Follows_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Ald
 
 }
 
+TEST_F(ContributionLadder_Follows_CONTEXT_KI_OSV_25_50, Bidragstrappe_When_Follows_Ingen) {
+	RuleEngine::_printDebugAtValidation = true;
+	TA ta { "15124040", OSV}; // KonceptOid 4 - OSV
+	ta.setValue(kUnionAgreementOid, 6);
+	ta.setValue(kUnionAgreementRelationship, sbx::kFOLLOWS);
+	ta.setValue(kBidragEjFoesteTrin_MK, true);
+	ta.addContributionStep({0, 4.5, 5.5});
+	ta.setValue(kBidragsstigningsform, "Ingen");
+
+	auto r = re.validate(ta, false);
+	EXPECT_TRUE(r.isAllOk());
+	cout << r;
+}
 
 
+TEST_F(ContributionLadder_Follows_CONTEXT_KI_OSV_25_50, Bidragstrappe_When_Follows_Dato) {
+	RuleEngine::_printDebugAtValidation = true;
+	TA ta { "15124040", OSV}; // KonceptOid 4 - OSV
+	ta.setValue(kUnionAgreementOid, 6);
+	ta.setValue(kUnionAgreementRelationship, sbx::kFOLLOWS);
+	ta.setValue(kBidragEjFoesteTrin_MK, true);
+	ta.addContributionStep({0, 4.5, 5.5});
+	ta.setValue(kBidragsstigningsform, "Dato");
+
+	auto r = re.validate(ta, false);
+	EXPECT_TRUE(r.isAllOk());
+	cout << r;
+}
+
+TEST_F(ContributionLadder_Follows_CONTEXT_KI_OSV_25_50, Bidragstrappe_When_Included_Ingen) {
+	RuleEngine::_printDebugAtValidation = true;
+	TA ta { "15124040", OSV}; // KonceptOid 4 - OSV
+	ta.setValue(kUnionAgreementOid, 6);
+	ta.setValue(kUnionAgreementRelationship, sbx::kINCLUDED);
+	ta.setValue(kBidragEjFoesteTrin_MK, true);
+	ta.addContributionStep({0, 4.5, 5.5});
+	ta.setValue(kBidragsstigningsform, "Ingen");
+
+	auto r = re.validate(ta, false);
+	EXPECT_TRUE(r.isAllOk());
+	cout << r;
+
+}
+
+TEST_F(ContributionLadder_Follows_CONTEXT_KI_OSV_25_50, Bidragstrappe_When_Included_Dato) {
+	RuleEngine::_printDebugAtValidation = true;
+	TA ta { "15124040", OSV}; // KonceptOid 4 - OSV
+	ta.setValue(kUnionAgreementOid, 6);
+	ta.setValue(kUnionAgreementRelationship, sbx::kINCLUDED);
+	ta.setValue(kBidragEjFoesteTrin_MK, true);
+	ta.addContributionStep({0, 4.5, 5.5});
+	ta.setValue(kBidragsstigningsform, "Dato");
+
+	auto r = re.validate(ta, false);
+	EXPECT_TRUE(r.isAllOk());
+	cout << r;
+
+}
 
 
 

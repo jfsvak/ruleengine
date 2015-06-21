@@ -40,6 +40,7 @@ class RuleEngine
 public:
 	static bool _printDebug;
 	static bool _printDebugAtValidation;
+	static bool _printMuParserErrorInfo;
 
 	RuleEngine();
 	RuleEngine(const sbx::RuleEngine&); // copy constructor. Handle proper copy of pointers in map

@@ -317,18 +317,18 @@ void RuleConstantContainer::initUnionAgreements(const std::string& jsonContents)
 void RuleConstantContainer::_addFakeProductElements(std::shared_ptr<sbx::Product> productPtr)
 {
 	// hard code productelement for bidragstrappe (999) and set relation to product "Samlet_bidragsprocent"
-	if (productPtr->getOid() == (unsigned short) sbx::ProductOid::kSamlet_Bidragsprocent_ProductOid)
+	if (productPtr->getOid() == (sbx::product_oid) sbx::ProductOid::kSamlet_Bidragsprocent_ProductOid)
 	{
-		_productElementMap[(unsigned short) sbx::ProductElementOid::kBidragstrappe] = make_shared<sbx::ProductElement>(static_cast<unsigned short>(sbx::ProductElementOid::kBidragstrappe), kBidragstrappe_VARNAME, kBidragstrappe_VARNAME, sbx::ProductElementTypes::kUnknownPEType, sbx::ProductOid::kSamlet_Bidragsprocent_ProductOid);
-		_varNameToPEOidMap[kBidragstrappe_VARNAME] = (unsigned short) sbx::ProductElementOid::kBidragstrappe;
+		_productElementMap[(sbx::productelement_oid) sbx::ProductElementOid::kBidragstrappe] = make_shared<sbx::ProductElement>(static_cast<sbx::productelement_oid>(sbx::ProductElementOid::kBidragstrappe), kBidragstrappe_VARNAME, kBidragstrappe_VARNAME, sbx::ProductElementTypes::kUnknownPEType, sbx::ProductOid::kSamlet_Bidragsprocent_ProductOid);
+		_varNameToPEOidMap[kBidragstrappe_VARNAME] = (sbx::productelement_oid) sbx::ProductElementOid::kBidragstrappe;
 		productPtr->addProductElementOid(sbx::ProductElementOid::kBidragstrappe);
 	}
 
 	// hardcode product element for AftaleIkraftdato (998) and set relation to product "Ikraftdato_Nuvaerende"
-	if (productPtr->getOid() == (unsigned short) sbx::ProductOid::kIkraftdato_Nuvaerende_ProductOid)
+	if (productPtr->getOid() == (sbx::product_oid) sbx::ProductOid::kIkraftdato_Nuvaerende_ProductOid)
 	{
-		_productElementMap[(unsigned short) sbx::ProductElementOid::kAftaleIkraftdato] = make_shared<sbx::ProductElement>(static_cast<unsigned short>(sbx::ProductElementOid::kAftaleIkraftdato), kAftaleIkraftdato_VARNAME, kAftaleIkraftdato_VARNAME, sbx::ProductElementTypes::kLong, sbx::ProductOid::kIkraftdato_Nuvaerende_ProductOid);
-		_varNameToPEOidMap[kAftaleIkraftdato_VARNAME] = (unsigned short) sbx::ProductElementOid::kAftaleIkraftdato;
+		_productElementMap[(unsigned short) sbx::ProductElementOid::kAftaleIkraftdato] = make_shared<sbx::ProductElement>(static_cast<sbx::productelement_oid>(sbx::ProductElementOid::kAftaleIkraftdato), kAftaleIkraftdato_VARNAME, kAftaleIkraftdato_VARNAME, sbx::ProductElementTypes::kLong, sbx::ProductOid::kIkraftdato_Nuvaerende_ProductOid);
+		_varNameToPEOidMap[kAftaleIkraftdato_VARNAME] = (sbx::productelement_oid) sbx::ProductElementOid::kAftaleIkraftdato;
 		productPtr->addProductElementOid(sbx::ProductElementOid::kAftaleIkraftdato);
 	}
 
@@ -341,17 +341,17 @@ void RuleConstantContainer::_addFakeProductElements(std::shared_ptr<sbx::Product
 															   kUnionAgreementOid_VARNAME,
 															   sbx::ProductElementTypes::kLong,
 															   sbx::ProductOid::kOverenskomst_ProductOid);
-		_varNameToPEOidMap[kUnionAgreementOid_VARNAME] = (unsigned short) (sbx::ProductElementOid::kUnionAgreementOid);
+		_varNameToPEOidMap[kUnionAgreementOid_VARNAME] = (sbx::productelement_oid) (sbx::ProductElementOid::kUnionAgreementOid);
 		productPtr->addProductElementOid(sbx::ProductElementOid::kUnionAgreementOid);
 
 		// UnionAgreementRelationship
 		_productElementMap[(unsigned short) (sbx::ProductElementOid::kUnionAgreementRelationship)]
-						   = make_shared<sbx::ProductElement>( static_cast<unsigned short>(sbx::ProductElementOid::kUnionAgreementRelationship),
+						   = make_shared<sbx::ProductElement>( static_cast<sbx::productelement_oid>(sbx::ProductElementOid::kUnionAgreementRelationship),
 								   	   	   	   	   	   	   	   kUnionAgreementRelationship_VARNAME,
 															   kUnionAgreementRelationship_VARNAME,
 															   sbx::ProductElementTypes::kText,
 															   sbx::ProductOid::kOverenskomst_ProductOid);
-		_varNameToPEOidMap[kUnionAgreementRelationship_VARNAME] = (unsigned short) (sbx::ProductElementOid::kUnionAgreementRelationship);
+		_varNameToPEOidMap[kUnionAgreementRelationship_VARNAME] = (sbx::productelement_oid) (sbx::ProductElementOid::kUnionAgreementRelationship);
 		productPtr->addProductElementOid(sbx::ProductElementOid::kUnionAgreementRelationship);
 	}
 }
@@ -372,7 +372,7 @@ void RuleConstantContainer::_initParameters(const Json::Value& parameters)
 			int elementTypeOid = jsonParameter->get("elementTypeOid", 0).asInt();
 
 			// if the parameterOid is not already found in the map, then create a Parameter and add it to the map
-			Parameter parameter { static_cast<unsigned short>(oid), name, type, static_cast<sbx::ProductElementTypes>(elementTypeOid) };
+			Parameter parameter { static_cast<sbx::parameter_oid>(oid), name, type, static_cast<sbx::ProductElementTypes>(elementTypeOid) };
 			_parameterMap[oid] = parameter;
 		}
 	}
@@ -385,18 +385,23 @@ void RuleConstantContainer::_initParameters(const Json::Value& parameters)
 bool RuleConstantContainer::existsAs(unsigned short peOid, const sbx::ComparisonTypes& ct) const
 {
 	if (!_contextInitialised)
-	{
 		throw domain_error("Context not initialised!");
-	}
 
 	subkoncept_oid skOid = _subkoncept.getOid();
+	subkoncept_oid rskOid = _subkoncept.getRelatedSubkonceptOid();
 
 	switch(ct)
 	{
-	case kMin: 		return (_ukMinValuesMap.find(skOid) != _ukMinValuesMap.cend() && _ukMinValuesMap.at(skOid).find(peOid) != _ukMinValuesMap.at(skOid).cend());
-	case kMax: 		return (_ukMaxValuesMap.find(skOid) != _ukMaxValuesMap.cend() && _ukMaxValuesMap.at(skOid).find(peOid) != _ukMaxValuesMap.at(skOid).cend());
+	case kMin: 		return ((_ukMinValuesMap.find(skOid) != _ukMinValuesMap.cend() && _ukMinValuesMap.at(skOid).find(peOid) != _ukMinValuesMap.at(skOid).cend())
+						||  (_ukMinValuesMap.find(rskOid) != _ukMinValuesMap.cend() && _ukMinValuesMap.at(rskOid).find(peOid) != _ukMinValuesMap.at(rskOid).cend()));
+
+	case kMax: 		return ((_ukMaxValuesMap.find(skOid) != _ukMaxValuesMap.cend() && _ukMaxValuesMap.at(skOid).find(peOid) != _ukMaxValuesMap.at(skOid).cend())
+						||  (_ukMaxValuesMap.find(rskOid) != _ukMaxValuesMap.cend() && _ukMaxValuesMap.at(rskOid).find(peOid) != _ukMaxValuesMap.at(rskOid).cend()));
+
 	case kEnum:		// fall through
-	case kEquals:	return (_ukOptionsMap.find(skOid) != _ukOptionsMap.cend() && _ukOptionsMap.at(skOid).find(peOid) != _ukOptionsMap.at(skOid).cend());
+	case kEquals:	return ((_ukOptionsMap.find(skOid) != _ukOptionsMap.cend() && _ukOptionsMap.at(skOid).find(peOid) != _ukOptionsMap.at(skOid).cend())
+						||  (_ukOptionsMap.find(rskOid) != _ukOptionsMap.cend() && _ukOptionsMap.at(rskOid).find(peOid) != _ukOptionsMap.at(rskOid).cend()));
+
 	default: 		return false;
 	}
 }
@@ -450,26 +455,26 @@ void RuleConstantContainer::_initInternalMaps()
 		{
 		case kEnum:
 		case kEquals:
-			if (constant->getUnderKonceptOid() != 0)
+			if (constant->getUnderKonceptOid() != undefined_oid)
 				_ukOptionsMap[constant->getUnderKonceptOid()][constant->getProductElement()].push_back(constant);
 
-			if (constant->getUnionAgreementOid() != 0)
+			if (constant->getUnionAgreementOid() != undefined_oid)
 				_uaOptionsMap[constant->getUnionAgreementOid()][constant->getProductElement()].push_back(constant);
 
 			break;
 		case kMin:
-			if (constant->getUnderKonceptOid() != 0)
+			if (constant->getUnderKonceptOid() != undefined_oid)
 				_ukMinValuesMap[constant->getUnderKonceptOid()][constant->getProductElement()] = constant;
 
-			if (constant->getUnionAgreementOid() != 0)
+			if (constant->getUnionAgreementOid() != undefined_oid)
 				_uaMinValuesMap[constant->getUnionAgreementOid()][constant->getProductElement()] = constant;
 
 			break;
 		case kMax:
-			if (constant->getUnderKonceptOid() != 0)
+			if (constant->getUnderKonceptOid() != undefined_oid)
 				_ukMaxValuesMap[constant->getUnderKonceptOid()][constant->getProductElement()] = constant;
 
-			if (constant->getUnionAgreementOid() != 0)
+			if (constant->getUnionAgreementOid() != undefined_oid)
 				_uaMaxValuesMap[constant->getUnionAgreementOid()][constant->getProductElement()] = constant;
 
 			break;
@@ -494,7 +499,7 @@ void RuleConstantContainer::initContext(const sbx::Subkoncept& subkoncept, sbx::
 /**
  * Gets a vector of strings with option values for productElement
  */
-std::vector<std::string> RuleConstantContainer::getOptions(unsigned short productElementOid)
+std::vector<std::string> RuleConstantContainer::getOptions(sbx::productelement_oid productElementOid)
 {
 	if (!_contextInitialised)
 		throw domain_error("Context not initialised!");
@@ -511,8 +516,9 @@ std::vector<std::string> RuleConstantContainer::getOptions(unsigned short produc
 
 /**
  * Gets a vector of shared_ptr->Constant
+ * First looks into subkoncept, and if not found, look into related subkoncept
  */
-std::vector<std::shared_ptr<Constant>> RuleConstantContainer::getOptionsList(unsigned short productElementOid)
+std::vector<std::shared_ptr<Constant>> RuleConstantContainer::getOptionsList(sbx::productelement_oid productElementOid)
 {
 	if (!_contextInitialised)
 		throw domain_error("Context not initialised!");
@@ -539,7 +545,7 @@ std::vector<std::shared_ptr<Constant>> RuleConstantContainer::getOptionsList(uns
 /**
  * Gets a shared_ptr to a single Constant for the productElement and comparisonType
  */
-std::shared_ptr<sbx::Constant> RuleConstantContainer::getConstant(unsigned short productElementOid, const sbx::ComparisonTypes& comparisonType)
+std::shared_ptr<sbx::Constant> RuleConstantContainer::getConstant(sbx::productelement_oid productElementOid, const sbx::ComparisonTypes& comparisonType)
 {
 	if (!_contextInitialised)
 		throw domain_error("Context not initialised!");
@@ -636,14 +642,20 @@ std::set<unsigned short> RuleConstantContainer::getProductOids(sbx::parameter_oi
 	return productOids;
 }
 
-std::set<unsigned short> RuleConstantContainer::getProductElementOids(sbx::parameter_oid parameterOid) const
+/**
+ * \brief Gets allowed productelement oids for the given parameter Oid
+ *
+ * \param parameterOid parameter oid to get product elements for.
+ * \return set of product element oids allowed for the parameterOid
+ */
+std::set<sbx::productelement_oid> RuleConstantContainer::getProductElementOids(sbx::parameter_oid parameterOid) const
 {
 	if (!_contextInitialised)
 		throw domain_error("Context not initialised!");
 
 	subkoncept_oid ukOid = _subkoncept.getOid();
 
-	std::set<unsigned short> productElementOids{};
+	std::set<sbx::productelement_oid> productElementOids{};
 
 	if (_parameterOidToProductElementOids.find(ukOid) != _parameterOidToProductElementOids.cend()
 			&& _parameterOidToProductElementOids.at(ukOid).find(parameterOid) != _parameterOidToProductElementOids.at(ukOid).cend())
@@ -652,7 +664,7 @@ std::set<unsigned short> RuleConstantContainer::getProductElementOids(sbx::param
 				_parameterOidToProductElementOids.at(ukOid).at(parameterOid).cend(),
 				std::inserter(productElementOids, productElementOids.begin()));
 	else
-		if (RuleConstantContainer::_printErr)  { cerr << "No ProductElementOids found for subkoncept [" << ukOid << "], parameterOid[" << parameterOid << "]!"; }
+		if (RuleConstantContainer::_printDebug)  { cout << "No ProductElementOids found for subkoncept [" << ukOid << "], parameterOid[" << parameterOid << "]!"; }
 
 	// add productelements for related subkoncept
 	if (_subkoncept.getRelatedSubkonceptOid() != undefined_oid)
@@ -665,7 +677,7 @@ std::set<unsigned short> RuleConstantContainer::getProductElementOids(sbx::param
 					_parameterOidToProductElementOids.at(relatedUKOid).at(parameterOid).cend(),
 					std::inserter(productElementOids, productElementOids.begin()));
 		else
-			if (RuleConstantContainer::_printErr)  { cerr << "No ProductElementOids found for related subkoncept [" << relatedUKOid << "], parameterOid[" << parameterOid << "]!"; }
+			if (RuleConstantContainer::_printDebug)  { cout << "No ProductElementOids found for related subkoncept [" << relatedUKOid << "], parameterOid[" << parameterOid << "]!"; }
 	}
 
 	return productElementOids;

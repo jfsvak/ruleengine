@@ -6,6 +6,8 @@
  */
 #include "utils.h"
 
+#include "../RuleEngine_sbx.h"
+
 using namespace std;
 
 namespace sbx {
@@ -16,10 +18,12 @@ void handle(const mup::ParserError& e) {
 	switch(e.GetCode()) {
 	case mup::ecUNASSIGNABLE_TOKEN:
 		// TODO maybe do something fancy if we know the error code
-		cout << "Undefined token:" << " Token[" << e.GetToken() << "], code[" << e.GetCode() << "], expr[" << e.GetExpr() << "]" << endl;
+		if (RuleEngine::_printMuParserErrorInfo)
+			cout << "Undefined token:" << " Token[" << e.GetToken() << "], code[" << e.GetCode() << "], expr[" << e.GetExpr() << "]" << endl;
 		break;
 	default:
-		cout << "Unhandled ParserError caught:" << " Token[" << e.GetToken() << "], code[" << e.GetCode() << "], msg[" << e.GetMsg() << "], expr[" << e.GetExpr() << "]" << endl;
+		if (RuleEngine::_printMuParserErrorInfo)
+			cout << "Unhandled ParserError caught:" << " Token[" << e.GetToken() << "], code[" << e.GetCode() << "], msg[" << e.GetMsg() << "], expr[" << e.GetExpr() << "]" << endl;
 		break;
 	}
 }
@@ -44,7 +48,7 @@ void handle(const mup::ParserError& e, sbx::ValidationResults& valResult, const 
 
 	r.setMessage(s.str());
 
-	if (!handled) {
+	if (!handled && RuleEngine::_printMuParserErrorInfo) {
 		cout << "**** " << s.str() << endl << endl;
 	}
 

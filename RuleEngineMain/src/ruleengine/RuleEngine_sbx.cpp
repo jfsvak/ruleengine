@@ -44,6 +44,7 @@ namespace sbx {
 
 bool RuleEngine::_printDebug {false};
 bool RuleEngine::_printDebugAtValidation {false};
+bool RuleEngine::_printMuParserErrorInfo {false};
 
 sbx::RuleEngine::RuleEngine()
 {
@@ -988,7 +989,7 @@ sbx::ValidationResults RuleEngine::validate(const sbx::TA& ta, bool full)
     if (RuleEngine::_printDebugAtValidation) printVariablesInParser();
 
 	try {
-		std::set<unsigned short, less<unsigned short>> allowedProductElementOids {_getAllowedPEOids()};
+		std::set<sbx::productelement_oid, less<sbx::productelement_oid>> allowedProductElementOids { _getAllowedPEOids() };
 
 		// run through all available values on the TA and check to see if they are OK
 		//   check if they are allowed according to the konceptinfo
@@ -1017,7 +1018,7 @@ sbx::ValidationResults RuleEngine::validate(const sbx::TA& ta, bool full)
 			{
 				bool definedInParser = _parser.IsVarDefined(_VAR_NAME(peOid));
 				bool optional = _isOptional(peOid, valResults);
-//				cout << "PE[" << _VAR_NAME(peOid) << "]" << ", DefinedInParser[" << boolalpha << definedInParser << "] optional[" << boolalpha << optional << "]" << endl;
+				// cout << "PE[" << _VAR_NAME(peOid) << "]" << ", DefinedInParser[" << boolalpha << definedInParser << "] optional[" << boolalpha << optional << "]" << endl;
 
 				// If it's not in the parser, and it's not optional, tell that the pe is required
 				if ( !definedInParser && !optional )
@@ -1113,7 +1114,8 @@ sbx::ValidationResults RuleEngine::validate(const sbx::TA& ta, bool full)
 										cout << "Parent Rule expr [" << parentRule->getExpr() << "] not evaluating to a boolean, so assuming not required." << endl;
 								}
 							} catch (const mup::ParserError& e) {
-								cout << "Evaluation of parentRule failed: " << endl;
+								if (RuleEngine::_printMuParserErrorInfo)
+									cout << "Evaluation of parentRule failed: " << endl;
 								sbx::mubridge::handle(e);
 							}
 						}
@@ -1133,6 +1135,12 @@ sbx::ValidationResults RuleEngine::validate(const sbx::TA& ta, bool full)
 	return valResults;
 }
 
+/**
+ * Gets the allowed product elements for the current initialised context by going through parameters
+ * set on the konceptinfo and get all the allowed product elements for each parameter oid.
+ *
+ * \return set of allowed productelement oids for the current konceptinfo context
+ */
 std::set<sbx::productelement_oid, std::less<sbx::productelement_oid>> RuleEngine::_getAllowedPEOids() const
 {
 	std::set<sbx::productelement_oid, std::less<sbx::productelement_oid>> allowedProductElementOids {};
