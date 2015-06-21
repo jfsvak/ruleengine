@@ -22,7 +22,7 @@ public:
 
 	void addParameterValue(sbx::parameter_oid parameterOid, std::string value);
 	void addParameterValue(sbx::parameter_oid parameterOid, bool selected);
-	const std::map<unsigned short, std::string>& getParameterValues() const;
+	const std::map<sbx::parameter_oid, std::string>& getParameterValues() const;
 	unsigned short getNumberOfEmployees() const;
 	unsigned short getNumberOfRiskGroupC() const;
 	sbx::koncept_oid getKonceptOid() const;

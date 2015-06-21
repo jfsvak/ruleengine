@@ -29,7 +29,7 @@ UnionAgreement::UnionAgreement(sbx::unionagreement_oid oid, int unionAgreementNu
 
 void UnionAgreement::addContributionStep(const UnionAgreementContributionStep& step)
 {
-	_uaLadder.push_back(step);
+	_uaLadder.insert(step);
 }
 
 sbx::unionagreement_oid UnionAgreement::getOid() const
@@ -52,7 +52,7 @@ const std::string& UnionAgreement::getName2() const
 	return _name2;
 }
 
-const std::vector<sbx::UnionAgreementContributionStep>& UnionAgreement::getContributionSteps() const
+const std::set<sbx::UnionAgreementContributionStep>& UnionAgreement::getContributionSteps() const
 {
 	return _uaLadder;
 }

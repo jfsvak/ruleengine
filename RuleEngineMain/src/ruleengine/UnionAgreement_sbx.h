@@ -9,7 +9,7 @@
 #define RULEENGINE_UNIONAGREEMENT_SBX_H_
 
 #include <string>
-#include <vector>
+#include <set>
 
 #include "UnionAgreementContributionStep_sbx.h"
 #include "Utils.h"
@@ -27,7 +27,7 @@ public:
 	int getUnionAgreementNumber() const;
 	const std::string& getName() const;
 	const std::string& getName2() const;
-	const std::vector<sbx::UnionAgreementContributionStep>& getContributionSteps() const;
+	const std::set<sbx::UnionAgreementContributionStep>& getContributionSteps() const;
 
 	virtual ~UnionAgreement();
 private:
@@ -36,7 +36,7 @@ private:
 	std::string _name;
 	std::string _name2;
 
-	std::vector<sbx::UnionAgreementContributionStep> _uaLadder;
+	std::set<sbx::UnionAgreementContributionStep> _uaLadder;
 };
 
 } /* namespace sbx */

@@ -223,7 +223,7 @@ void RuleEngine::initContext(const sbx::KonceptInfo& ki, sbx::UnionAgreementRela
 	_ki = ki;
 	// init ParserX with constants for context by going through each parameter and get the product elements for that parameter
 	for (auto& parameterIt : ki.getParameterValues()) {
-		const std::set<unsigned short>& peOids = _container.getProductElementOids(parameterIt.first);
+		const std::set<sbx::productelement_oid>& peOids = _container.getProductElementOids(parameterIt.first);
 
 		for (auto& peOid : peOids) {
 			// get min and max values and initialise parser with that
@@ -238,6 +238,7 @@ void RuleEngine::_clearContext()
 	_parser.ClearVar();
 	_parser.ClearConst();
 	_mupValueMap.clear();
+	_ki = {};
 }
 
 void RuleEngine::_initParserWithProductElementConstants(unsigned short peOid)
