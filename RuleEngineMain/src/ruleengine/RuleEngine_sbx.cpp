@@ -549,7 +549,7 @@ sbx::ValidationResults RuleEngine::validate(const TA& ta, const std::vector<unsi
 			//   found in rule catalogue on the peOid
 			// If it's required and missing, then add msg
 			std::shared_ptr<sbx::Rule> requiredIfRule = _isRequired(peOid, valResults);
-			if ( requiredIfRule != nullptr )
+			if ( requiredIfRule != nullptr && !valResults.hasWarnings(peOid, sbx::ValidationCode::kProductElementRequired))
 				valResults.addWarning( sbx::ValidationResult(sbx::ValidationCode::kProductElementRequired, peOid, _VAR_NAME(peOid), "Værdi for [" + _GUI_NAME(peOid) + "] ikke angivet", requiredIfRule->getRuleId(), requiredIfRule->getExpr()) );
 		}
 
@@ -572,12 +572,12 @@ sbx::ValidationResults RuleEngine::validate(const TA& ta, const std::vector<unsi
 				ss << step.index();
 
 				// if the total procentage is not increasing, then add message
-				if (total < previousStepTotal) {
+				if (total < previousStepTotal && !valResults.hasMessages(peOid, sbx::kValueUnderLimit)) {
 					valResults.addValidationResult(sbx::ValidationResult(sbx::kValueUnderLimit, peOid, _VAR_NAME(peOid) + "_" + ss.str(), "Den totale bidragsprocent skal være stigende"));
 				}
 
 				// if this step is similar to previous step, then add message
-				if (step.index() == previousIndex) {
+				if (step.index() == previousIndex && !valResults.hasMessages(peOid, sbx::kValueNotAllowed)) {
 					valResults.addValidationResult(sbx::ValidationResult(sbx::kValueNotAllowed, peOid, _VAR_NAME(peOid) + "_" + ss.str(), "Dette trin findes allerede"));
 				}
 
@@ -639,7 +639,7 @@ void RuleEngine::_validateMinMax(const sbx::ProductElementValue& pev, sbx::Valid
 	try {
 		mup::Value result = _execute(expr, "Min-Expr");
 
-		if (!result.GetBool()) {
+		if (!result.GetBool() && !r.hasMessages(peOid, kValueUnderLimit)) {
 			// value was not greater or equal to min
 			stringstream ss {};
 			ss << "Værdien [" << sbx::utils::formatValue(pev.longValue()) << "] for [" << _GUI_NAME(peOid) << "] må ikke være mindre end [" << this->_getConstFromParser(sbx::utils::constructRCName(_PE(peOid), sbx::ComparisonTypes::kMin)) << "]";
@@ -654,7 +654,8 @@ void RuleEngine::_validateMinMax(const sbx::ProductElementValue& pev, sbx::Valid
 	try {
 		mup::Value result = _execute(expr, "Max-expr");
 
-		if (!result.GetBool()) {
+		if (!result.GetBool() && !r.hasMessages(peOid, kValueOverLimit))
+		{
 			stringstream ss {};
 			ss << "Værdien [" << sbx::utils::formatValue(pev.longValue()) << "] for [" << _GUI_NAME(peOid) << "] må ikke overstiger [" << this->_getConstFromParser(sbx::utils::constructRCName(_PE(peOid), sbx::ComparisonTypes::kMax)) << "]";
 			// value was not lesser or equal to max
@@ -923,24 +924,37 @@ void RuleEngine::_evaluateRule(unsigned short peOidBeingValidated, std::shared_p
 	try {
 		mup::Value result = _execute(rule->getExpr(), rule->getRuleId());
 
-		if (result.GetBool()) {
+		if (result.GetBool())
+		{
 			// only add message, if it's not empty
-			if (rule->getPositiveMessage() != "") {
-				auto p = _getParametersFromParser(rule->getPositiveMessageParameters());
-				string msg = sbx::utils::formatMessage(rule->getPositiveMessage(), p);
-
+			if (rule->getPositiveMessage() != "")
+			{
 				sbx::ValidationCode positiveValCode = sbx::utils::toValCode(rule->getPositiveValCode(), sbx::ValidationCode::kFail);
-				valResult.addValidationResult( sbx::ValidationResult(positiveValCode, peOidBeingValidated, _VAR_NAME(peOidBeingValidated), msg, rule->getRuleId(), rule->getExpr()) );
+
+				// add the validation message, if its not already there
+				if (!valResult.hasMessages(peOidBeingValidated, positiveValCode))
+				{
+					auto p = _getParametersFromParser(rule->getPositiveMessageParameters());
+					string msg = sbx::utils::formatMessage(rule->getPositiveMessage(), p);
+					valResult.addValidationResult( sbx::ValidationResult(positiveValCode, peOidBeingValidated, _VAR_NAME(peOidBeingValidated), msg, rule->getRuleId(), rule->getExpr()) );
+				}
 			}
 		}
-		else {
+		else
+		{
 			// If no negative message, we don't consider the negative outcome as a failure
-			if (rule->getNegativeMessage() != "") {
-				auto p = _getParametersFromParser(rule->getNegativeMessageParameters());
-				string msg = sbx::utils::formatMessage(rule->getNegativeMessage(), p);
-
+			if (rule->getNegativeMessage() != "")
+			{
 				sbx::ValidationCode negativeValCode = sbx::utils::toValCode(rule->getNegativeValCode(), sbx::ValidationCode::kFail);
-				valResult.addValidationResult( sbx::ValidationResult(negativeValCode, peOidBeingValidated, _VAR_NAME(peOidBeingValidated), msg, rule->getRuleId(), rule->getExpr()) );
+
+				// add the validation message, if its not already there
+				if (!valResult.hasMessages(peOidBeingValidated, negativeValCode))
+				{
+					auto p = _getParametersFromParser(rule->getNegativeMessageParameters());
+					string msg = sbx::utils::formatMessage(rule->getNegativeMessage(), p);
+
+					valResult.addValidationResult( sbx::ValidationResult(negativeValCode, peOidBeingValidated, _VAR_NAME(peOidBeingValidated), msg, rule->getRuleId(), rule->getExpr()) );
+				}
 			}
 		}
 	}
@@ -1003,35 +1017,15 @@ sbx::ValidationResults RuleEngine::validate(const sbx::TA& ta, bool full)
 				msg << "Product element oid [" << peOid << "] not allowed for this konceptInfo";
 				valResults.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kProductElementNotAllowed, peOid, _VAR_NAME(peOid), msg.str()) );
 			}
-			else {
+			else
+			{
 				// If element is allowed on the konceptinfo, then validate it.
 				//   This could result in the pe not being allowed on the TA due to other values on the ta
 				valResults.merge(this->validate(ta, peOid));
-			}
-		}
 
-		// if also full validation, run through all the expected/allowed pe's and see if they have a value and if they are required if they are missing
-		if (full)
-		{
-			// run through all the allowed product elements and check if its on the TA. If its not, then check if its optional. If its not optional, add a message stating its required
-			for (auto& peOid : allowedProductElementOids)
-			{
-				bool definedInParser = _parser.IsVarDefined(_VAR_NAME(peOid));
-				bool optional = _isOptional(peOid, valResults);
-				// cout << "PE[" << _VAR_NAME(peOid) << "]" << ", DefinedInParser[" << boolalpha << definedInParser << "] optional[" << boolalpha << optional << "]" << endl;
-
-				// If it's not in the parser, and it's not optional, tell that the pe is required
-				if ( !definedInParser && !optional )
-					valResults.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kProductElementRequired, peOid, _VAR_NAME(peOid), "Værdi for [" + _GUI_NAME(peOid) + "] skal angives!") );
-			}
-		}
-		else
-		{
-			// if partial validation, then run through all values on the TA and see if the make other pe's required.
-			//  TODO do this by evaluating expr's and if true, then run positiveRuleCatalogue for that rule?
-			//       If a sub rule has requiredif rule, then those peoids are required, so set kProductElementRequired
-			for ( auto& item : ta.getValues() )
-			{
+				// if partial validation, then run through all values on the TA and see if the make other pe's required.
+				//  TODO do this by evaluating expr's and if true, then run positiveRuleCatalogue for that rule?
+				//       If a sub rule has requiredif rule, then those peoids are required, so set kProductElementRequired
 				unsigned short peOid = item.first;
 
 				if (_peOidToRules.find(peOid) != _peOidToRules.end())
@@ -1054,58 +1048,12 @@ sbx::ValidationResults RuleEngine::validate(const sbx::TA& ta, bool full)
 									// for all rules in the positive rule catalogue
 									for ( auto ruleFromPositiveCatalogue : parentRule->getPositiveRuleCatalogue()->getRules())
 									{
-										// TODO run the ruleFromPositiveCatalogue
-//										_executeRule(peOid, ruleFromPositiveCatalogue, valResults);
+										// run the ruleFromPositiveCatalogue
+										if ( ruleFromPositiveCatalogue->getExpr() != "" )
+											for (auto oid : ruleFromPositiveCatalogue->getProductElementOids())
+												_evaluateRule(oid, ruleFromPositiveCatalogue, valResults);
 
-										// if there is a requiredif rule and it has an expr...
-										if ( ruleFromPositiveCatalogue->getRequiredIfRule() != nullptr && ruleFromPositiveCatalogue->getRequiredIfRule()->getExpr() != "" )
-										{
-											std::shared_ptr<sbx::Rule> requiredIfRule = ruleFromPositiveCatalogue->getRequiredIfRule();
-
-											bool required { false };
-
-											// if the requiredIf-rule is the same as the parent rule with the positiveRuleCatalogue
-											if ( requiredIfRule->getRuleId() == parentRule->getRuleId() )
-											{
-												// since we have determined that the topLevelRule is already true, we just set the peOids to
-												required = true;
-											}
-											else // requiredIf-rule is different from parent, so evaluate it seperately
-											{
-												try {
-													// evaluate the requiredif rule
-													mup::Value r = _execute(requiredIfRule->getExpr(), requiredIfRule->getRuleId() );
-
-													required = (r.GetType() == 'b' && r.GetBool());
-
-													if (r.GetType() != 'b') {
-														cout << "Required Rule expr [" << requiredIfRule->getExpr() << "] not evaluating to a boolean. Setting required == false" << endl;
-													}
-												} catch (const mup::ParserError& e) {
-													cout << "Evaluation of requiredIfRule failed: " << endl;
-													sbx::mubridge::handle(e);
-												}
-											}
-
-											if (required)
-											{
-												// if required, then go through peOids on the ruleFromPositiveCatalogue and see if they are on the TA (or in parser)???
-												for (auto peOid : ruleFromPositiveCatalogue->getProductElementOids())
-												{
-													// if the peOid doesn't have a value on the TA or in the parser, then add kProductElementRequired if that messages isn't already there
-													if ( !_parser.IsVarDefined(_VAR_NAME(peOid)) && !valResults.hasMessages(peOid, sbx::ValidationCode::kProductElementRequired))
-													{
-															valResults.addValidationResult(
-																	sbx::ValidationResult(  sbx::ValidationCode::kProductElementRequired,
-																							peOid,
-																							_VAR_NAME(peOid),
-																							"Værdi for [" + _GUI_NAME(peOid) + "] ikke angivet. Værdi er påkrævet når : " + requiredIfRule->getExpr() + "' (from validate(ta, partial) ) original ruleid [" + ruleFromPositiveCatalogue->getRuleId() + "]",
-																							requiredIfRule->getRuleId(),
-																							requiredIfRule->getExpr()) );
-													}  /* TODO anything if ta.hasValue(peOid) == true ??? */
-												}
-											}
-										}
+										this->_checkRequiredness(ruleFromPositiveCatalogue, parentRule, valResults);
 									}
 								}
 								else
@@ -1124,6 +1072,21 @@ sbx::ValidationResults RuleEngine::validate(const sbx::TA& ta, bool full)
 			}
 		}
 
+		// if also full validation, run through all the expected/allowed pe's and see if they have a value and if they are required if they are missing
+		if (full)
+		{
+			// run through all the allowed product elements and check if its on the TA. If its not, then check if its optional. If its not optional, add a message stating its required
+			for (auto& peOid : allowedProductElementOids)
+			{
+				bool definedInParser = _parser.IsVarDefined(_VAR_NAME(peOid));
+				bool optional = _isOptional(peOid, valResults);
+
+				// If it's not in the parser, and it's not optional, tell that the pe is required
+				if ( !definedInParser && !optional && !valResults.hasMessages(peOid, sbx::ValidationCode::kProductElementRequired))
+					valResults.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kProductElementRequired, peOid, _VAR_NAME(peOid), "Værdi for [" + _GUI_NAME(peOid) + "] skal angives!") );
+			}
+		}
+
 	} catch (const std::exception &e) {
 		cerr << e.what() << endl;
 		// if any exception occurred, then reset _refresParserValues and rethrow
@@ -1135,12 +1098,60 @@ sbx::ValidationResults RuleEngine::validate(const sbx::TA& ta, bool full)
 	return valResults;
 }
 
-/**
- * Gets the allowed product elements for the current initialised context by going through parameters
- * set on the konceptinfo and get all the allowed product elements for each parameter oid.
- *
- * \return set of allowed productelement oids for the current konceptinfo context
- */
+
+void RuleEngine::_checkRequiredness(std::shared_ptr<Rule> ruleFromPositiveCatalogue, std::shared_ptr<sbx::Rule> parentRule, sbx::ValidationResults& valResults)
+{
+	// if there is a requiredif rule and it has an expr...
+	if ( ruleFromPositiveCatalogue->getRequiredIfRule() != nullptr && ruleFromPositiveCatalogue->getRequiredIfRule()->getExpr() != "" )
+	{
+		std::shared_ptr<sbx::Rule> requiredIfRule = ruleFromPositiveCatalogue->getRequiredIfRule();
+
+		bool required { false };
+
+		// if the requiredIf-rule is the same as the parent rule with the positiveRuleCatalogue
+		if ( requiredIfRule->getRuleId() == parentRule->getRuleId() )
+		{
+			// since we have determined that the topLevelRule is already true, this is also true
+			required = true;
+		}
+		else // requiredIf-rule is different from parent, so evaluate it seperately
+		{
+			try {
+				// evaluate the requiredif rule
+				mup::Value r = _execute(requiredIfRule->getExpr(), requiredIfRule->getRuleId() );
+
+				required = (r.GetType() == 'b' && r.GetBool());
+
+				if (r.GetType() != 'b') {
+					cout << "Required Rule expr [" << requiredIfRule->getExpr() << "] not evaluating to a boolean. Setting required == false" << endl;
+				}
+			} catch (const mup::ParserError& e) {
+				cout << "Evaluation of requiredIfRule failed: " << endl;
+				sbx::mubridge::handle(e);
+			}
+		}
+
+		if (required)
+		{
+			// if required, then go through peOids on the ruleFromPositiveCatalogue and see if they are in the parser
+			for (auto peOid : ruleFromPositiveCatalogue->getProductElementOids())
+			{
+				// if the peOid doesn't have a value in the parser, then add kProductElementRequired if that messages isn't already there
+				if ( !_parser.IsVarDefined(_VAR_NAME(peOid)) && !valResults.hasMessages(peOid, sbx::ValidationCode::kProductElementRequired))
+				{
+						valResults.addValidationResult(
+								sbx::ValidationResult(  sbx::ValidationCode::kProductElementRequired,
+														peOid,
+														_VAR_NAME(peOid),
+														"Værdi for [" + _GUI_NAME(peOid) + "] ikke angivet. Værdi er påkrævet når : " + requiredIfRule->getExpr() + "' (from validate(ta, partial) ) original ruleid [" + ruleFromPositiveCatalogue->getRuleId() + "]",
+														requiredIfRule->getRuleId(),
+														requiredIfRule->getExpr()) );
+				}  /* TODO anything if ta.hasValue(peOid) == true ??? */
+			}
+		}
+	}
+}
+
 std::set<sbx::productelement_oid, std::less<sbx::productelement_oid>> RuleEngine::_getAllowedPEOids() const
 {
 	std::set<sbx::productelement_oid, std::less<sbx::productelement_oid>> allowedProductElementOids {};

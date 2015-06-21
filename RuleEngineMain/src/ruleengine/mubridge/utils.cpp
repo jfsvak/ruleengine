@@ -52,9 +52,9 @@ void handle(const mup::ParserError& e, sbx::ValidationResults& valResult, const 
 		cout << "**** " << s.str() << endl << endl;
 	}
 
-	if (handleAsError)
+	if (handleAsError && !valResult.hasMessages(r.getProductElementOid(), r.getValidationCode()))
 		valResult.addValidationResult(r);
-	else
+	else if (!valResult.hasWarnings(r.getProductElementOid(), r.getValidationCode()))
 		valResult.addWarning(r);
 }
 

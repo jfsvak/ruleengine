@@ -258,7 +258,7 @@ TEST_F(Full_TA_CONTEXT_KI_OSV_25_50, Full_TA_POSITIVE) {
 	EXPECT_EQ(total+=1, r.sizeValidationResults());
 	cout << r;
 	ta.setValue(kInvalidesumPctMin, (long) 40);
-	ta.setValue(kInvalidesumPctMax, (long) 50);
+	ta.setValue(kInvalidesumPctMax, (long) 40);
 	ta.setValue(kInvalidesumBlMin, (long) 20000);
 	r = re.validate(ta);
 	EXPECT_EQ(total-=4, r.sizeValidationResults());

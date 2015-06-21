@@ -119,7 +119,7 @@ TEST_F(Invalidesum_KI_OSV_25_49, Invalidesum_I_Pct_NEGATIVE) {
 	EXPECT_TRUE(r.hasMessages(kInvalidesumPctMax, kValueOverLimit));
 
 	ta.setValue(kInvalidesumPctMin, 10);
-	ta.setValue(kInvalidesumPctMax, 50); // now set allowed values, but with span (span==10000 > 0)
+	ta.setValue(kInvalidesumPctMax, 50); // now set allowed values, but with span (span==40 > 0)
 	r = re.validate(ta, {kInvalidesumReguleringskode, kInvalidesumPctMin, kInvalidesumPctMin, kInvalidesumSpaendPct});
 	cout << r;
 	EXPECT_FALSE(r.isAllOk()); //

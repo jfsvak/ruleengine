@@ -53,9 +53,8 @@ TEST_F(Doedsfaldsdaekning_I_Procent_KI_OSV_25_49, DoedBlGrMin_Single_Value_OK_Wi
 
 	// expecting 2 warnings, because the kDoedReguleringskode has two rules, and its missing in both expressions
 	//   and if both cases it should be kTokenNotDefined
-	ASSERT_EQ(2, v.size());
-	EXPECT_EQ(kTokenNotDefined, v.at(0).getValidationCode());
-	EXPECT_EQ(kTokenNotDefined, v.at(1).getValidationCode());
+	EXPECT_EQ(1, r.getWarnings().size());
+	EXPECT_TRUE(r.hasWarnings(kDoedReguleringskode, kTokenNotDefined));
 }
 
 // Test DoedBlGrMin
@@ -242,4 +241,25 @@ TEST_F(Doedsfaldsdaekning_I_Procent_KI_OSV_25_49, DoedBlGrMin_ValidateNonExistin
 
 	ASSERT_EQ(1, r.getWarnings(kDoedBlOblMax).size());
 	EXPECT_EQ(sbx::ValidationCode::kProductElementRequired, r.getWarnings(kDoedBlOblMax).at(0).getValidationCode());
+}
+
+
+TEST_F(Doedsfaldsdaekning_I_Procent_KI_OSV_25_49, DoedSpaendPct) {
+	RuleEngine::_printDebugAtValidation = true;
+	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	ta.setValue(kDoedReguleringskode, "Gage");
+
+	ta.setValue(kDoedBlGrMin, (long) 100000);
+	ta.setValue(kDoedPctGrMin, (long) 200);
+	ta.setValue(kDoedPctOblMax, (long) 600);
+
+	auto r = re.validate(ta, true);
+
+	EXPECT_FALSE(r.isAllOk());
+//	if (!r.isAllOk())
+		cout << r;
+
+	EXPECT_TRUE(r.hasMessages(kDoedSpaendPct, kValueOverLimit));
+
+//	re.getContainer().printConstants(17);
 }

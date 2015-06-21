@@ -76,7 +76,7 @@ TEST_F(ContributionLadder_Alder_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Alder
 	EXPECT_FALSE(r.isAllOk());
 //	if (r.isAllOk())
 		cout << r;
-	EXPECT_EQ(2, r.getValidationResults(kBidragstrappe).size());
+	EXPECT_EQ(3, r.getValidationResults(kBidragstrappe).size());
 	EXPECT_TRUE(r.hasMessages(kBidragstrappe, kValueNotAllowed));
 	EXPECT_TRUE(r.hasMessages(kBidragstrappe, kValueUnderLimit));
 
@@ -195,7 +195,7 @@ TEST_F(ContributionLadder_Alder_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Alder
 	EXPECT_FALSE(r.isAllOk());
 	cout << r;
 
-	EXPECT_EQ(1, r.getValidationResults(kBidragstrappe).size());
+	EXPECT_EQ(2, r.getValidationResults(kBidragstrappe).size());
 	EXPECT_TRUE(r.hasMessages(kBidragstrappe, kValueNotAllowed));
 }
 

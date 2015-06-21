@@ -108,7 +108,7 @@ TEST_F(Boernerente_KI_OSV_25_49, Boernerente_Gage_NEGATIVE) {
 	EXPECT_TRUE(r.hasMessages(kBoerneRenteSpaendPct, kProductElementRequired));
 
 	ta.setValue(kBoerneRentePctMin, 5);
-	ta.setValue(kBoerneRentePctMax, 15);
+	ta.setValue(kBoerneRentePctMax, 5);
 	r = re.validate(ta, false);
 //	if (!r.isAllOk())
 		cout << r;
@@ -120,7 +120,7 @@ TEST_F(Boernerente_KI_OSV_25_49, Boernerente_Gage_SoliMax) {
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
 	ta.setValue(kBoernerente_Reguleringstype, "Gage");
 	ta.setValue(kBoerneRentePctMin, (long) 5);
-	ta.setValue(kBoerneRentePctMax, (long) 10);
+	ta.setValue(kBoerneRentePctMax, (long) 5);
 	ta.setValue(kBoerneRenteSoliMax, "Ingen");
 
 	auto r = re.validate(ta, false);
@@ -142,7 +142,7 @@ TEST_F(Boernerente_KI_OSV_25_49, Boernerente_Pristal_SoliMax) {
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
 	ta.setValue(kBoernerente_Reguleringstype, "Pristal");
 	ta.setValue(kBoerneRenteBlMin, (long) 10000);
-	ta.setValue(kBoerneRenteBlMax, (long) 20000);
+	ta.setValue(kBoerneRenteBlMax, (long) 10000);
 	ta.setValue(kBoerneRenteSoliMax, "Ingen");
 
 	auto r = re.validate(ta, false);
