@@ -41,6 +41,7 @@ protected:
 TEST_F(ContributionLadder_Dato_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Dato_POSITIVE) {
 	RuleEngine::_printDebugAtValidation = true;
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	ta.setValue(kUnionAgreementRelationship, kOUTSIDE);
 	ta.setValue(kBidragsstigningsform, "Dato" );
 	ta.setValue(kHospitalsdaekning_MK, false);
 
@@ -57,6 +58,7 @@ TEST_F(ContributionLadder_Dato_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Dato_P
 TEST_F(ContributionLadder_Dato_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Dato_1_Step_POSITIVE) {
 	RuleEngine::_printDebugAtValidation = true;
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	ta.setValue(kUnionAgreementRelationship, kOUTSIDE);
 	ta.setValue(kBidragsstigningsform, "Dato" );
 	ta.setValue(kHospitalsdaekning_MK, false);
 	ta.setValue(kAftaleIkraftdato, 20150601);
@@ -88,6 +90,7 @@ TEST_F(ContributionLadder_Dato_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Dato_1
 TEST_F(ContributionLadder_Dato_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Dato_1_Step_Ekskl_NEGATIVE) {
 	RuleEngine::_printDebugAtValidation = true;
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	ta.setValue(kUnionAgreementRelationship, kOUTSIDE);
 	ta.setValue(kAftaleIkraftdato, 20150601);
 	ta.setValue(kBidragsstigningsform, "Dato" );
 	ta.setValue(kHospitalsdaekning_MK, false);
@@ -110,6 +113,7 @@ TEST_F(ContributionLadder_Dato_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Dato_1
 TEST_F(ContributionLadder_Dato_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Dato_1_Step_Inkl_NEGATIVE) {
 	RuleEngine::_printDebugAtValidation = true;
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	ta.setValue(kUnionAgreementRelationship, kOUTSIDE);
 	ta.setValue(kAftaleIkraftdato, 20150601);
 	ta.setValue(kBidragsstigningsform, "Dato" );
 	ta.setValue(kHospitalsdaekning_MK, true);
@@ -134,6 +138,7 @@ TEST_F(ContributionLadder_Dato_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Dato_1
 TEST_F(ContributionLadder_Dato_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Dato_3_Steps_Inkl_POSITIVE) {
 	RuleEngine::_printDebugAtValidation = true;
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	ta.setValue(kUnionAgreementRelationship, kOUTSIDE);
 	ta.setValue(kAftaleIkraftdato, 20150601);
 	ta.setValue(kBidragsstigningsform, "Dato" );
 	ta.setValue(kHospitalsdaekning_MK, true);
@@ -159,6 +164,7 @@ TEST_F(ContributionLadder_Dato_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Dato_3
 TEST_F(ContributionLadder_Dato_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Dato_3_Steps_Inkl_NEGATIVE) {
 	RuleEngine::_printDebugAtValidation = true;
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	ta.setValue(kUnionAgreementRelationship, kOUTSIDE);
 	ta.setValue(kAftaleIkraftdato, 20150601);
 	ta.setValue(kBidragsstigningsform, "Dato" );
 	ta.setValue(kHospitalsdaekning_MK, true);

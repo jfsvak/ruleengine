@@ -18,6 +18,7 @@
 
 #include "Constant_sbx.h"
 #include "ContributionStep_sbx.h"
+#include "Date_sbx.h"
 #include "Koncept_sbx.h"
 #include "Parameter_sbx.h"
 #include "Product_sbx.h"
@@ -39,7 +40,6 @@ public:
 	void initConstants(const std::string& jsonContents);
 	void initContext(const sbx::Subkoncept& subkoncept, sbx::UnionAgreementRelationship, sbx::unionagreement_oid = undefined_oid);
 	void initKoncepts(const std::string& json);
-	void initUAContributionSteps(const std::map<unsigned short, std::vector<sbx::ContributionStep>>&);
 	void initUnionAgreements(const std::string& jsonContents);
 
 	bool existsAs(unsigned short peOid, const sbx::ComparisonTypes&) const;
@@ -53,7 +53,7 @@ public:
 	std::set<unsigned short> getProductElementOids(sbx::parameter_oid parameterOid) const;
 	sbx::ProductElement getProductElement(unsigned short productElementOid);
 	unsigned short getProductElementOid(const std::string& varName) const;
-	std::shared_ptr<sbx::ContributionStep> getUAContributionStep(unsigned short uaOid);
+	sbx::UnionAgreementContributionStep getUAContributionStep(unsigned short uaOid, const sbx::Date& inceptionDate) const;
 
 	std::shared_ptr<sbx::Constant> createConstant(unsigned short underkonceptOid, unsigned short unionAgreementOid, unsigned short peOid, sbx::ComparisonTypes comparisonType);
 
@@ -193,12 +193,6 @@ private:
 	 * Value is productelement oid
 	 */
 	std::map<std::string, sbx::productelement_oid> _varNameToPEOidMap;
-
-	/**
-	 * Index: union agreement oid
-	 * Value: one contribution step
-	 */
-	std::map<sbx::unionagreement_oid, std::vector<sbx::ContributionStep>> _uaContributionLadders;
 
 	/**
 	 * Index: union agreement oid

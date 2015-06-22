@@ -17,6 +17,7 @@
 
 #include "../json/json.h"
 
+#include "Date_sbx.h"
 #include "Constant_sbx.h"
 #include "RuleConstantContainer_sbx.h"
 #include "RuleEngine_sbx.h"
@@ -292,7 +293,10 @@ void RuleConstantContainer::initUnionAgreements(const std::string& jsonContents)
 						double totalPercent = paramValueIterator->get("totalPercent", 0).asDouble();
 						string startDate = paramValueIterator->get("startDate", 0).asString();
 
-						UnionAgreementContributionStep step{oid, employeePercent, totalPercent, year, type, startDate};
+						sbx::Date d = (startDate.length() > 0) ? Date{startDate} : Date{"01.01.2009"};
+
+						UnionAgreementContributionStep step{oid, employeePercent, totalPercent, year, type, d};
+
 						ua.addContributionStep(step);
 					}
 				}
@@ -715,15 +719,30 @@ unsigned short RuleConstantContainer::getProductElementOid(const std::string& va
 	return (unsigned short) kUnknownProductElement;
 }
 
-void RuleConstantContainer::initUAContributionSteps(const std::map<unsigned short, std::vector<sbx::ContributionStep>>& uaLadders)
+sbx::UnionAgreementContributionStep RuleConstantContainer::getUAContributionStep(sbx::unionagreement_oid uaOid, const sbx::Date& inceptionDate) const
 {
-	_uaContributionLadders = uaLadders;
-}
+	if (_unionAgreements.find(uaOid) != _unionAgreements.cend())
+	{
+		UnionAgreement ua = _unionAgreements.at(uaOid);
 
-std::shared_ptr<sbx::ContributionStep> RuleConstantContainer::getUAContributionStep(unsigned short uaOid)
-{
-	if (_uaContributionLadders.find(uaOid) != _uaContributionLadders.cend() && !_uaContributionLadders.at(uaOid).empty())
-		return make_shared<sbx::ContributionStep>(_uaContributionLadders.at(uaOid).front());
+		if (ua.getContributionSteps().size() == 1)
+		{
+			auto step = ua.getContributionSteps().find(UnionAgreementContributionStep{ua.getContributionSteps().cbegin()->oid()});
+			return UnionAgreementContributionStep{*step};//
+		}
+
+		if (ua.getContributionSteps().size() > 0)
+		{
+			for ( UnionAgreementContributionStep step : ua.getContributionSteps())
+			{
+				if (step.startDate() >= inceptionDate)
+					return step;
+			}
+
+			auto step = ua.getContributionSteps().find(UnionAgreementContributionStep{ua.getContributionSteps().crbegin()->oid()});
+			return UnionAgreementContributionStep{step->oid(), step->employeePct(), step->totalPct(), step->year(), step->type(), step->startDate()};
+		}
+	}
 
 	stringstream ss{};
 	ss << uaOid;

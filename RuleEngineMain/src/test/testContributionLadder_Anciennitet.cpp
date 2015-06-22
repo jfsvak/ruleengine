@@ -41,6 +41,7 @@ protected:
 TEST_F(ContributionLadder_Anciennitet_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Anciennitet_POSITIVE) {
 	RuleEngine::_printDebugAtValidation = true;
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	ta.setValue(kUnionAgreementRelationship, kOUTSIDE);
 	ta.setValue(kBidragsstigningsform, "Anciennitet" );
 	ta.setValue(kHospitalsdaekning_MK, false);
 
@@ -57,6 +58,7 @@ TEST_F(ContributionLadder_Anciennitet_CONTEXT_KI_OSV_25_50, Bidragsstigningsform
 TEST_F(ContributionLadder_Anciennitet_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Anciennitet_1_Step_POSITIVE) {
 	RuleEngine::_printDebugAtValidation = true;
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	ta.setValue(kUnionAgreementRelationship, kOUTSIDE);
 	ta.setValue(kBidragsstigningsform, "Anciennitet" );
 	ta.setValue(kHospitalsdaekning_MK, false);
 
@@ -87,6 +89,7 @@ TEST_F(ContributionLadder_Anciennitet_CONTEXT_KI_OSV_25_50, Bidragsstigningsform
 TEST_F(ContributionLadder_Anciennitet_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Anciennitet_1_Step_Ekskl_NEGATIVE) {
 	RuleEngine::_printDebugAtValidation = true;
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	ta.setValue(kUnionAgreementRelationship, kOUTSIDE);
 	ta.setValue(kBidragsstigningsform, "Anciennitet" );
 	ta.setValue(kHospitalsdaekning_MK, false);
 
@@ -108,6 +111,7 @@ TEST_F(ContributionLadder_Anciennitet_CONTEXT_KI_OSV_25_50, Bidragsstigningsform
 TEST_F(ContributionLadder_Anciennitet_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Anciennitet_1_Step_Inkl_NEGATIVE) {
 	RuleEngine::_printDebugAtValidation = true;
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	ta.setValue(kUnionAgreementRelationship, kOUTSIDE);
 	ta.setValue(kBidragsstigningsform, "Anciennitet" );
 	ta.setValue(kHospitalsdaekning_MK, true);
 	ta.setValue(kHospitalsdaekningLeverandoer, "Codan");
@@ -131,6 +135,7 @@ TEST_F(ContributionLadder_Anciennitet_CONTEXT_KI_OSV_25_50, Bidragsstigningsform
 TEST_F(ContributionLadder_Anciennitet_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Anciennitet_3_Steps_Inkl_POSITIVE) {
 	RuleEngine::_printDebugAtValidation = true;
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	ta.setValue(kUnionAgreementRelationship, kOUTSIDE);
 	ta.setValue(kBidragsstigningsform, "Anciennitet" );
 	ta.setValue(kHospitalsdaekning_MK, true);
 	ta.setValue(kHospitalsdaekningLeverandoer, "Codan");
@@ -155,6 +160,7 @@ TEST_F(ContributionLadder_Anciennitet_CONTEXT_KI_OSV_25_50, Bidragsstigningsform
 TEST_F(ContributionLadder_Anciennitet_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Anciennitet_3_Steps_Inkl_NEGATIVE) {
 	RuleEngine::_printDebugAtValidation = true;
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	ta.setValue(kUnionAgreementRelationship, kOUTSIDE);
 	ta.setValue(kBidragsstigningsform, "Anciennitet" );
 	ta.setValue(kHospitalsdaekning_MK, true);
 	ta.setValue(kHospitalsdaekningLeverandoer, "Codan");

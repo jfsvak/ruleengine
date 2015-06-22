@@ -74,10 +74,10 @@ void RuleEngine::initConstants(const std::string& jsonContents)
 	_container.initConstants(jsonContents);
 }
 
-void RuleEngine::initUAContributionSteps(const std::map<unsigned short, std::vector<sbx::ContributionStep>>& uaLadders)
-{
-	_container.initUAContributionSteps(uaLadders);
-}
+//void RuleEngine::initUAContributionSteps(const std::map<unsigned short, std::vector<sbx::ContributionStep>>& uaLadders)
+//{
+//	_container.initUAContributionSteps(uaLadders);
+//}
 
 /**
  *
@@ -488,7 +488,6 @@ void RuleEngine::_loadLadder(const TA& ta)
 		// Put matrix into parser
 		_parser.DefineVar(sbx::kBidragstrappe_VARNAME, mup::Variable(_mupValueMap[sbx::kBidragstrappe_VARNAME].get()));
 	}
-
 }
 
 void RuleEngine::_loadUAContributionStep(const TA& ta)
@@ -502,9 +501,19 @@ void RuleEngine::_loadUAContributionStep(const TA& ta)
 	if (ta.getValue(kUnionAgreementRelationship).stringValue() == sbx::kFOLLOWS || ta.getValue(kUnionAgreementRelationship).stringValue() == sbx::kINCLUDED)
 	{
 		int uaOid = ta.getValue(kUnionAgreementOid).longValue();
-		shared_ptr<ContributionStep> step = _container.getUAContributionStep(uaOid);
-		_parser.DefineConst(sbx::kUnionAgreementEmployerPct1stStep, step->companyPct());
-		_parser.DefineConst(sbx::kUnionAgreementTotalPct1stStep, step->companyPct()+step->employeePct());
+		int aftaleIkraftdato = ta.getValue(kAftaleIkraftdato).longValue();
+
+		try {
+			Date inceptionDate(aftaleIkraftdato);
+			sbx::UnionAgreementContributionStep step = _container.getUAContributionStep(uaOid, inceptionDate);
+			_parser.DefineConst(sbx::kUnionAgreementEmployerPct1stStep, step.totalPct() - step.employeePct());
+			_parser.DefineConst(sbx::kUnionAgreementTotalPct1stStep, step.totalPct());
+		} catch(const invalid_argument& e) {
+			stringstream ss{};
+			ss << "Invalid inception date [" << aftaleIkraftdato << "]!";
+			cerr << ss.str() << endl;
+			throw domain_error(ss.str());
+		}
 	}
 }
 
@@ -563,7 +572,6 @@ sbx::ValidationResults RuleEngine::validate(const TA& ta, const std::vector<unsi
 			double previousStepTotal {0};
 			int previousIndex {-1};
 
-			// TODO do matrix validation here for the contribution ladder
 			// loop through the steps and validate each step expecting increasing totals
 			for (auto& step : ta.getContributionLadder()) {
 
@@ -1022,7 +1030,7 @@ sbx::ValidationResults RuleEngine::validate(const sbx::TA& ta, bool full)
 			{
 				// If element is allowed on the konceptinfo, then validate it.
 				//   This could result in the pe not being allowed on the TA due to other values on the ta
-				valResults.merge(this->validate(ta, peOid));
+				valResults.merge(this->validate(ta, vector<productelement_oid> ({peOid}) ));
 
 				// if partial validation, then run through all values on the TA and see if the make other pe's required.
 				//  TODO do this by evaluating expr's and if true, then run positiveRuleCatalogue for that rule?
@@ -1073,7 +1081,8 @@ sbx::ValidationResults RuleEngine::validate(const sbx::TA& ta, bool full)
 			}
 		}
 
-		// if also full validation, run through all the expected/allowed pe's and see if they have a value and if they are required if they are missing
+		// if full validation, run through all the expected/allowed pe's
+		//  and check for missing required pe's.
 		if (full)
 		{
 			// run through all the allowed product elements and check if its on the TA. If its not, then check if its optional. If its not optional, add a message stating its required

@@ -10,14 +10,17 @@
 
 #include <string>
 
+#include "Date_sbx.h"
 #include "Utils.h"
 
 namespace sbx {
 
 class UnionAgreementContributionStep {
+	friend std::ostream& operator << (std::ostream&, const sbx::UnionAgreementContributionStep& step);
 public:
 	UnionAgreementContributionStep();
-	UnionAgreementContributionStep(int oid, double employeePct, double totalPct, int year, const std::string& type, const std::string& startDate);
+	explicit UnionAgreementContributionStep(int oid);
+	UnionAgreementContributionStep(int oid, double employeePct, double totalPct, int year, const std::string& type, const sbx::Date& startDate);
 
 	bool operator < (const sbx::UnionAgreementContributionStep& otherStep) const;
 	int oid() const;
@@ -25,7 +28,7 @@ public:
 	double totalPct() const;
 	int year() const;
 	const std::string& type() const;
-	const std::string& startDate() const;
+	const sbx::Date& startDate() const;
 
 	virtual ~UnionAgreementContributionStep();
 private:
@@ -34,7 +37,7 @@ private:
 	double _totalPct;
 	int _year;
 	std::string _type;
-	std::string _startDate;
+	sbx::Date _startDate;
 };
 
 } /* namespace sbx */

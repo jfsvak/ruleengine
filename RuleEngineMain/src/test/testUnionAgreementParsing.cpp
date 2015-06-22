@@ -1,6 +1,9 @@
 #include "gtest/gtest.h"
 
+#include <memory>
+
 #include "../ruleengine/KonceptInfo_sbx.h"
+#include "../ruleengine/Date_sbx.h"
 
 #include "testRuleEngineInitialiser.cpp"
 
@@ -27,6 +30,10 @@ TEST_F(UnionAgreementParsing, Parsing_UnionAgreements) {
 	RuleEngine::_printDebugAtValidation = true;
 
 	re.getContainer().printUnionAgreements();
+	Date d{"01.07.2010"};
+	UnionAgreementContributionStep step = re.getContainer().getUAContributionStep((unsigned short) 3, d);
+	cout << step;
+
 }
 
 
