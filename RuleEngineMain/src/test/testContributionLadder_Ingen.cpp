@@ -41,6 +41,7 @@ TEST_F(ContributionLadder_Ingen_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Ingen
 {
 	RuleEngine::_printDebugAtValidation = true;
 	TA ta { "15124040", 4 }; // KonceptOid 4 - OSV
+	ta.setValue(kPrivate_Taxed_MK, false);
 	ta.setValue(kBidragsstigningsform, "Ingen");
 	ta.setValue(kUnionAgreementRelationship, kOUTSIDE);
 	ta.setValue(kHospitalsdaekning_MK, false);
@@ -103,6 +104,7 @@ TEST_F(ContributionLadder_Ingen_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Ingen
 	RuleEngine::_printDebugAtValidation = true;
 	TA ta { "15124040", 4 }; // KonceptOid 4 - OSV
 	ta.setValue(kUnionAgreementRelationship, kOUTSIDE);
+	ta.setValue(kPrivate_Taxed_MK, false);
 	ta.setValue(kBidragsstigningsform, "Ingen");
 	ta.setValue(kHospitalsdaekning_MK, true);
 	ta.setValue(kHospitalsdaekningLeverandoer, "Codan");

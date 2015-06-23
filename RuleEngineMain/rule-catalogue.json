@@ -1535,7 +1535,7 @@
 		         	"comments" : "Salary Page: Contribution Ladder Ingen",
 		         	
 		            "id": "33.2.1",
-		            "expr": "Bidragsstigningsform == \"Ingen\" and UnionAgreementRelationship == \"U\"",
+		            "expr": "Bidragsstigningsform == \"Ingen\" and UnionAgreementRelationship == \"U\" and Private_Taxed_MK == false",
 		   	        "productElementOids": [ 149 ],
 		   	        "requiredif": "#parent#",
 		            "positiveMessage": "",
@@ -1571,7 +1571,7 @@
 		         	"comments" : "Salary Page: Contribution Ladder - Alder",
 		         	
 		            "id": "33.2.2",
-		            "expr": "Bidragsstigningsform == \"Alder\" and UnionAgreementRelationship == \"U\"",
+		            "expr": "Bidragsstigningsform == \"Alder\" and UnionAgreementRelationship == \"U\" and Private_Taxed_MK == false",
 		   	        "productElementOids": [ 149 ],
 		   	        "requiredif": "#parent#",
 		            "positiveMessage": "",
@@ -1607,7 +1607,7 @@
 		         	"comments" : "Salary Page: Contribution Ladder - Anciennitet",
 		         	
 		            "id": "33.2.3",
-		            "expr": "Bidragsstigningsform == \"Anciennitet\" and UnionAgreementRelationship == \"U\"",
+		            "expr": "Bidragsstigningsform == \"Anciennitet\" and UnionAgreementRelationship == \"U\" and Private_Taxed_MK == false",
 		   	        "productElementOids": [ 149 ],
 		   	        "requiredif": "#parent#",
 		            "positiveMessage": "",
@@ -1643,7 +1643,7 @@
 		         	"comments" : "Salary Page: Contribution Ladder - Date",
 		         	
 		            "id": "33.2.4",
-		            "expr": "Bidragsstigningsform == \"Dato\" and UnionAgreementRelationship == \"U\"",
+		            "expr": "Bidragsstigningsform == \"Dato\" and UnionAgreementRelationship == \"U\" and Private_Taxed_MK == false",
 		   	        "productElementOids": [ 149 ],
 		   	        "requiredif": "#parent#",
 		            "positiveMessage": "",
