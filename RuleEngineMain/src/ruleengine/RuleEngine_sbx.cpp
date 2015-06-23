@@ -287,6 +287,11 @@ void RuleEngine::_initParserWithProductElementConstants(unsigned short peOid)
 	}
 }
 
+void RuleEngine::initUAContributionSteps(const std::map<unsigned short, std::vector<sbx::ContributionStep>>& uaLadders)
+{
+	// not doing anything, just here for backward compatibility
+}
+
 void RuleEngine::_executePreCalcRules()
 {
 	// for each precalc rule execute it
