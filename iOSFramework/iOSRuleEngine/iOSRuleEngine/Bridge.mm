@@ -30,8 +30,16 @@
 -(instancetype)initWithConstants:(NSString*)constantsFilePath ruleCatalog:(NSString*)ruleCatalogFilePath {
     self = [super init];
     if (self) {
-        re.initialiseAll(get_file_contents(constantsFilePath.UTF8String));
-        re.parseRuleCatalogueJSON(get_file_contents(ruleCatalogFilePath.UTF8String));
+        try {
+            re.initialiseAll(get_file_contents(constantsFilePath.UTF8String));
+            re.parseRuleCatalogueJSON(get_file_contents(ruleCatalogFilePath.UTF8String));
+        } catch (const std::exception &error) {
+            NSLog(@"Exception in rule engine initializeAll: %s", error.what());
+            return nil;
+        } catch (...) {
+            NSLog(@"Unknown exception in rule engine initializeAll");
+            return nil;
+        }
     }
     return self;
 }
@@ -52,77 +60,198 @@ std::string get_file_contents(const char *filename)
     throw(1);
 }
 
--(void)setKonceptOid:(NSInteger)konceptOid numOfEmpl:(NSInteger)numOfEmpl numOfRiskClass:(NSInteger)numOfRiscClassC parameters:(NSDictionary*)parametersDictionary {
+-(void)setKonceptOid:(NSInteger)konceptOid numOfEmpl:(NSInteger)numOfEmpl numOfRiskClass:(NSInteger)numOfRiscClassC
+                                                                              parameters:(NSDictionary*)parametersDictionary {
     std::map<unsigned short, std::string> parameters;
 
-    sbx::KonceptInfo ki = sbx::KonceptInfo(static_cast<unsigned short>(konceptOid), static_cast<unsigned short>(numOfEmpl),
-                                           static_cast<unsigned short>(numOfRiscClassC), parameters);
-    
-    if (parametersDictionary) {
-        for (NSNumber *oid in parametersDictionary) {
-            short oidShort = [oid shortValue];
-            if ([parametersDictionary[oid] isKindOfClass:[NSString class]]) {
-                ki.addParameterValue(static_cast<unsigned short>(oidShort), std::string([parametersDictionary[oid] UTF8String]));
-            } else if(oidShort == 14 || oidShort == 11 || oidShort == 15) { // BOOL values encoded as NSNumber
-                ki.addParameterValue(oidShort, [parametersDictionary[oid] boolValue]);
-            } else {
-                NSAssert(YES, @"Can't add parameter to koncept info: %@", parametersDictionary);
+    try {
+        sbx::KonceptInfo ki = sbx::KonceptInfo(static_cast<unsigned short>(konceptOid), static_cast<unsigned short>(numOfEmpl),
+                                               static_cast<unsigned short>(numOfRiscClassC), parameters);
+        
+        if (parametersDictionary) {
+            for (NSNumber *oid in parametersDictionary) {
+                short oidShort = [oid shortValue];
+                if ([parametersDictionary[oid] isKindOfClass:[NSString class]]) {
+                    ki.addParameterValue(static_cast<unsigned short>(oidShort), std::string([parametersDictionary[oid] UTF8String]));
+                } else if(oidShort == 14 || oidShort == 11 || oidShort == 15) { // BOOL values encoded as NSNumber
+                    ki.addParameterValue(oidShort, [parametersDictionary[oid] boolValue]);
+                } else {
+                    NSAssert(YES, @"Can't add parameter to koncept info: %@", parametersDictionary);
+                }
             }
         }
+        
+        re.initContext(ki, sbx::OUTSIDE);
+    } catch (const std::domain_error &error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
+    } catch (const std::exception &error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
+    } catch (mup::ParserError error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.GetMsg().c_str()] userInfo:nil];
+    } catch (...) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:@"Unknown exception" userInfo:nil];
     }
-    
-    re.initContext(ki, sbx::OUTSIDE);
 }
 
 -(void)createTA:(NSString*)CVR konceptOid:(unsigned short)konceptOid {
-    ta = sbx::TA([CVR UTF8String], konceptOid);
+    try {
+        ta = sbx::TA([CVR UTF8String], konceptOid);
+    } catch (const std::domain_error &error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
+    } catch (const std::exception &error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
+    } catch (mup::ParserError error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.GetMsg().c_str()] userInfo:nil];
+    } catch (...) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:@"Unknown exception" userInfo:nil];
+    }
 }
 
 -(void)setTAUnionAgreementRelation:(uint8_t)relation {
-    ta.setUar(static_cast<sbx::UnionAgreementRelationship>(relation));
+    try {
+        ta.setUar(static_cast<sbx::UnionAgreementRelationship>(relation));
+    } catch (const std::domain_error &error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
+    } catch (const std::exception &error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
+    } catch (mup::ParserError error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.GetMsg().c_str()] userInfo:nil];
+    } catch (...) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:@"Unknown exception" userInfo:nil];
+    }
 }
 
 -(void)setTAUnionAgreement:(uint8_t)uaOid {
-    ta.setValue(sbx::ProductElementOid::kUnionAgreementOid, uaOid);
+    try {
+        ta.setValue(sbx::ProductElementOid::kUnionAgreementOid, uaOid);
+    } catch (const std::domain_error &error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
+    } catch (const std::exception &error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
+    } catch (mup::ParserError error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.GetMsg().c_str()] userInfo:nil];
+    } catch (...) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:@"Unknown exception" userInfo:nil];
+    }
 }
 
 -(void)initUAContribution:(unsigned short)oid employeePct:(double)employeePct companyPct:(double)companyPct {
-    sbx::ContributionStep step(0, employeePct, companyPct);
-    std::map<unsigned short, std::vector<sbx::ContributionStep> > uaSteps;
-    std::pair<unsigned short, std::vector<sbx::ContributionStep> > uaStep(oid, std::vector<sbx::ContributionStep>{step});
-    uaSteps.insert(uaStep);
-    re.initUAContributionSteps(uaSteps);
+    try {
+        sbx::ContributionStep step(0, employeePct, companyPct);
+        std::map<unsigned short, std::vector<sbx::ContributionStep> > uaSteps;
+        std::pair<unsigned short, std::vector<sbx::ContributionStep> > uaStep(oid, std::vector<sbx::ContributionStep>{step});
+        uaSteps.insert(uaStep);
+        re.initUAContributionSteps(uaSteps);
+    } catch (const std::domain_error &error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
+    } catch (const std::exception &error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
+    } catch (mup::ParserError error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.GetMsg().c_str()] userInfo:nil];
+    } catch (...) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:@"Unknown exception" userInfo:nil];
+    }
 }
 
 -(void)addContributionStep:(long)index employeePct:(double)employeePct companyPct:(double)companyPct {
-    sbx::ContributionStep step(index, employeePct, companyPct);
-    ta.addContributionStep(step);
+    try {
+        sbx::ContributionStep step(index, employeePct, companyPct);
+        ta.addContributionStep(step);
+    } catch (const std::domain_error &error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
+    } catch (const std::exception &error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
+    } catch (mup::ParserError error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.GetMsg().c_str()] userInfo:nil];
+    } catch (...) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:@"Unknown exception" userInfo:nil];
+    }
 }
 
 -(void)removeAllContributionSteps {
-    ta.removeContributionSteps();
+    try {
+        ta.removeContributionSteps();
+    } catch (const std::domain_error &error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
+    } catch (const std::exception &error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
+    } catch (mup::ParserError error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.GetMsg().c_str()] userInfo:nil];
+    } catch (...) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:@"Unknown exception" userInfo:nil];
+    }
 }
 
 #pragma mark - value setters
 
 -(void)setStringValue:(NSString*)value forPE:(unsigned short) peOid {
-    ta.setValue(peOid, std::string([[value description] UTF8String]));
+    try {
+        ta.setValue(peOid, std::string([[value description] UTF8String]));
+    } catch (const std::domain_error &error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
+    } catch (const std::exception &error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
+    } catch (mup::ParserError error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.GetMsg().c_str()] userInfo:nil];
+    } catch (...) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:@"Unknown exception" userInfo:nil];
+    }
 }
 
 -(void)setLongValue:(NSNumber*)value forPE:(unsigned short) peOid {
-    ta.setValue(peOid, [value longValue]);
+    try {
+        ta.setValue(peOid, [value longValue]);
+    } catch (const std::domain_error &error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
+    } catch (const std::exception &error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
+    } catch (mup::ParserError error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.GetMsg().c_str()] userInfo:nil];
+    } catch (...) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:@"Unknown exception" userInfo:nil];
+    }
 }
 
 -(void)setDoubleValue:(NSNumber*)value forPE:(unsigned short) peOid {
-    ta.setValue(peOid, [value doubleValue]);
+    try {
+        ta.setValue(peOid, [value doubleValue]);
+    } catch (const std::domain_error &error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
+    } catch (const std::exception &error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
+    } catch (mup::ParserError error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.GetMsg().c_str()] userInfo:nil];
+    } catch (...) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:@"Unknown exception" userInfo:nil];
+    }
 }
 
 -(void)setBoolValue:(NSNumber*)value forPE:(unsigned short) peOid {
-    ta.setValue(peOid, static_cast<bool>([value boolValue]));
+    try {
+        ta.setValue(peOid, static_cast<bool>([value boolValue]));
+    } catch (const std::domain_error &error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
+    } catch (const std::exception &error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
+    } catch (mup::ParserError error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.GetMsg().c_str()] userInfo:nil];
+    } catch (...) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:@"Unknown exception" userInfo:nil];
+    }
 }
 
 -(void)unsetPEOid:(unsigned short) peOid {
-    ta.remove(peOid);
+    try {
+        ta.remove(peOid);
+    } catch (const std::domain_error &error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
+    } catch (const std::exception &error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
+    } catch (mup::ParserError error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.GetMsg().c_str()] userInfo:nil];
+    } catch (...) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:@"Unknown exception" userInfo:nil];
+    }
 }
 
 #pragma mark - get options list
@@ -165,6 +294,8 @@ std::string get_file_contents(const char *filename)
                     break;
             }
         }
+    } catch (const std::domain_error &error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
     } catch (const std::exception &error) {
         NSLog(@"getAllowedValuesFor:%zd -> %s", oid, error.what());
     } catch (mup::ParserError error) {
@@ -202,12 +333,14 @@ std::string get_file_contents(const char *filename)
         for (std::shared_ptr<sbx::Constant> constant : list) {
             [result addObject:[NSString stringWithCString:constant->stringValue().c_str() encoding:NSUTF8StringEncoding]];
         }
+    } catch (const std::domain_error &error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
     } catch (const std::exception &error) {
-        NSLog(@"getAllowedValuesFor:%zd -> %s", oid, error.what());
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
     } catch (mup::ParserError error) {
-        NSLog(@"getAllowedValuesFor:%zd -> mup::ParserError %s", oid, error.GetMsg().c_str());
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.GetMsg().c_str()] userInfo:nil];
     } catch (...) {
-        NSLog(@"getAllowedValuesFor:%zd unknown exception", oid);
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:@"Unknown exception" userInfo:nil];
     }
     
     return [result sortedArrayUsingComparator:^(NSString* a, NSString* b) { return [a compare:b options:NSNumericSearch]; }];
@@ -224,15 +357,14 @@ std::string get_file_contents(const char *filename)
         if (constant != nullptr) {
             result = [NSString stringWithCString:constant->stringValue().c_str() encoding:NSUTF8StringEncoding];
         }
+    } catch (const std::domain_error &error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
     } catch (const std::exception &error) {
-        NSLog(@"getDefaultValueFor:%zd -> %s", oid, error.what());
-        re.printVariablesInParser();
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
     } catch (mup::ParserError error) {
-        NSLog(@"getDefaultValueFor:%zd -> mup::ParserError %s", oid, error.GetMsg().c_str());
-        re.printVariablesInParser();
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.GetMsg().c_str()] userInfo:nil];
     } catch (...) {
-        NSLog(@"getDefaultValueFor:%zd unknown exception", oid);
-        re.printVariablesInParser();
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:@"Unknown exception" userInfo:nil];
     }
     
     return result;
@@ -248,15 +380,14 @@ std::string get_file_contents(const char *filename)
         if (constant != nullptr) {
             result = [NSNumber numberWithBool:constant->boolValue()];
         }
+    } catch (const std::domain_error &error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
     } catch (const std::exception &error) {
-        NSLog(@"getDefaultValueFor:%zd -> %s", oid, error.what());
-        re.printVariablesInParser();
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
     } catch (mup::ParserError error) {
-        NSLog(@"getDefaultValueFor:%zd -> mup::ParserError %s", oid, error.GetMsg().c_str());
-        re.printVariablesInParser();
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.GetMsg().c_str()] userInfo:nil];
     } catch (...) {
-        NSLog(@"getDefaultValueFor:%zd unknown exception", oid);
-        re.printVariablesInParser();
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:@"Unknown exception" userInfo:nil];
     }
     
     return result;
@@ -272,15 +403,14 @@ std::string get_file_contents(const char *filename)
         if (constant != nullptr) {
             result = [NSNumber numberWithLong:constant->longValue()];
         }
+    } catch (const std::domain_error &error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
     } catch (const std::exception &error) {
-        NSLog(@"getDefaultValueFor:%zd -> %s", oid, error.what());
-        re.printVariablesInParser();
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
     } catch (mup::ParserError error) {
-        NSLog(@"getDefaultValueFor:%zd -> mup::ParserError %s", oid, error.GetMsg().c_str());
-        re.printVariablesInParser();
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.GetMsg().c_str()] userInfo:nil];
     } catch (...) {
-        NSLog(@"getDefaultValueFor:%zd unknown exception", oid);
-        re.printVariablesInParser();
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:@"Unknown exception" userInfo:nil];
     }
     
     return result;
@@ -296,15 +426,14 @@ std::string get_file_contents(const char *filename)
         if (constant != nullptr) {
             result = [NSNumber numberWithDouble:constant->doubleValue()];
         }
+    } catch (const std::domain_error &error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
     } catch (const std::exception &error) {
-        NSLog(@"getDefaultValueFor:%zd -> %s", oid, error.what());
-        re.printVariablesInParser();
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
     } catch (mup::ParserError error) {
-        NSLog(@"getDefaultValueFor:%zd -> mup::ParserError %s", oid, error.GetMsg().c_str());
-        re.printVariablesInParser();
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.GetMsg().c_str()] userInfo:nil];
     } catch (...) {
-        NSLog(@"getDefaultValueFor:%zd unknown exception", oid);
-        re.printVariablesInParser();
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:@"Unknown exception" userInfo:nil];
     }
     
     return result;
@@ -353,15 +482,14 @@ std::string get_file_contents(const char *filename)
         if (printDebug) {
             re.printVariablesInParser();
         }
+    } catch (const std::domain_error &error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
     } catch (const std::exception &error) {
-        NSLog(@"validatePE:%zd -> %s", peOid, error.what());
-        re.printVariablesInParser();
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
     } catch (mup::ParserError error) {
-        NSLog(@"validatePE:%zd -> mup::ParserError %s", peOid, error.GetMsg().c_str());
-        re.printVariablesInParser();
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.GetMsg().c_str()] userInfo:nil];
     } catch (...) {
-        NSLog(@"validatePE:%zd unknown exception", peOid);
-        re.printVariablesInParser();
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:@"Unknown exception" userInfo:nil];
     }
     
     return allResults;
@@ -394,15 +522,14 @@ std::string get_file_contents(const char *filename)
         if (printDebug) {
             re.printVariablesInParser();
         }
+    } catch (const std::domain_error &error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
     } catch (const std::exception &error) {
-        NSLog(@"validatePEList:%@ -> %s", peList, error.what());
-        re.printVariablesInParser();
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
     } catch (mup::ParserError error) {
-        NSLog(@"validatePEList:%@ -> mup::ParserError %s", peList, error.GetMsg().c_str());
-        re.printVariablesInParser();
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.GetMsg().c_str()] userInfo:nil];
     } catch (...) {
-        NSLog(@"validatePEList:%@ unknown exception", peList);
-        re.printVariablesInParser();
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:@"Unknown exception" userInfo:nil];
     }
     
     return allResults;
@@ -431,15 +558,14 @@ std::string get_file_contents(const char *filename)
         if (printDebug) {
             re.printVariablesInParser();
         }
+    } catch (const std::domain_error &error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
     } catch (const std::exception &error) {
-        NSLog(@"validateTAFull:%d -> %s", full, error.what());
-        re.printVariablesInParser();
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
     } catch (mup::ParserError error) {
-        NSLog(@"validateTAFull:%d -> mup::ParserError %s", full, error.GetMsg().c_str());
-        re.printVariablesInParser();
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.GetMsg().c_str()] userInfo:nil];
     } catch (...) {
-        NSLog(@"validateTAFull:%d unknown exception", full);
-        re.printVariablesInParser();
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:@"Unknown exception" userInfo:nil];
     }
     
     return allResults;
