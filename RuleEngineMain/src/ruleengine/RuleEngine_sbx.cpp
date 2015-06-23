@@ -1158,7 +1158,7 @@ void RuleEngine::_checkRequiredness(std::shared_ptr<Rule> ruleFromPositiveCatalo
 								sbx::ValidationResult(  sbx::ValidationCode::kProductElementRequired,
 														peOid,
 														_VAR_NAME(peOid),
-														"Værdi for [" + _GUI_NAME(peOid) + "] ikke angivet. Værdi er påkrævet når : " + requiredIfRule->getExpr() + "' (from validate(ta, partial) ) original ruleid [" + ruleFromPositiveCatalogue->getRuleId() + "]",
+														"Værdi for [" + _GUI_NAME(peOid) + "] ikke angivet. Værdi er påkrævet når : " + requiredIfRule->getExpr(),
 														requiredIfRule->getRuleId(),
 														requiredIfRule->getExpr()) );
 				}  /* TODO anything if ta.hasValue(peOid) == true ??? */
