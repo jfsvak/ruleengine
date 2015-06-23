@@ -135,6 +135,20 @@ std::string get_file_contents(const char *filename)
     }
 }
 
+-(void)unsetTAUnionAgreement {
+    try {
+        ta.remove(sbx::ProductElementOid::kUnionAgreementOid);
+    } catch (const std::domain_error &error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
+    } catch (const std::exception &error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
+    } catch (mup::ParserError error) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.GetMsg().c_str()] userInfo:nil];
+    } catch (...) {
+        @throw [NSException exceptionWithName:@"RuleEngineException" reason:@"Unknown exception" userInfo:nil];
+    }
+}
+
 -(void)initUAContribution:(unsigned short)oid employeePct:(double)employeePct companyPct:(double)companyPct {
     try {
         sbx::ContributionStep step(0, employeePct, companyPct);
