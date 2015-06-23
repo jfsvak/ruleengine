@@ -52,7 +52,7 @@ TA& TA::setValue(unsigned short productElementOid, double value)
 {
 	// TODO fix precision conversion of double - or find better way to convert long to string
 	std::stringstream s {};
-	s << value;
+    s << std::fixed << value;
 	return this->setValue(productElementOid, s.str());
 }
 
@@ -60,7 +60,7 @@ TA& TA::setValue(unsigned short productElementOid, long value)
 {
 	// TODO xjes find better way to convert long to string
 	std::stringstream s {};
-	s << value;
+    s << std::fixed << value;
 	return this->setValue(productElementOid, s.str());
 }
 
@@ -68,7 +68,7 @@ TA& TA::setValue(unsigned short productElementOid, int value)
 {
 	// TODO xjes find better way to convert long to string
 	std::stringstream s {};
-	s << value;
+    s << std::fixed << value;
 	return this->setValue(productElementOid, s.str());
 }
 
