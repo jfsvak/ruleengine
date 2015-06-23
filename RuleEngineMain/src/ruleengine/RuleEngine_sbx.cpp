@@ -390,7 +390,7 @@ const sbx::RuleConstantContainer& RuleEngine::getContainer() const
  * Loads all ta values into the parser as variables.
  * When setting values, it checks to see if the value/variable is already there. If it is, then the value is just updated
  */
-void RuleEngine::_loadParser(const TA& ta)
+void RuleEngine::_loadParser(const TA& ta, ValidationResults& valResults)
 {
 	// clear all vars in parser, and
 	_parser.ClearVar();
@@ -429,7 +429,7 @@ void RuleEngine::_loadParser(const TA& ta)
 	}
 
 	// set union agreement ladder employer pct and total pct
-	_loadUAContributionStep(ta);
+	_loadUAContributionStep(ta, valResults);
 	_loadLadder(ta);
 
 	// execute all precalc rules to update the parser
@@ -495,7 +495,7 @@ void RuleEngine::_loadLadder(const TA& ta)
 	}
 }
 
-void RuleEngine::_loadUAContributionStep(const TA& ta)
+void RuleEngine::_loadUAContributionStep(const TA& ta, ValidationResults& valResults)
 {
 	if (_parser.IsConstDefined(sbx::kUnionAgreementEmployerPct1stStep))
 		_parser.RemoveConst(sbx::kUnionAgreementEmployerPct1stStep);
@@ -506,18 +506,24 @@ void RuleEngine::_loadUAContributionStep(const TA& ta)
 	if (ta.getValue(kUnionAgreementRelationship).stringValue() == sbx::kFOLLOWS || ta.getValue(kUnionAgreementRelationship).stringValue() == sbx::kINCLUDED)
 	{
 		int uaOid = ta.getValue(kUnionAgreementOid).longValue();
-		int aftaleIkraftdato = ta.getValue(kAftaleIkraftdato).longValue();
 
-		try {
-			Date inceptionDate(aftaleIkraftdato);
-			sbx::UnionAgreementContributionStep step = _container.getUAContributionStep(uaOid, inceptionDate);
-			_parser.DefineConst(sbx::kUnionAgreementEmployerPct1stStep, step.totalPct() - step.employeePct());
-			_parser.DefineConst(sbx::kUnionAgreementTotalPct1stStep, step.totalPct());
-		} catch(const invalid_argument& e) {
-			stringstream ss{};
-			ss << "Invalid inception date [" << aftaleIkraftdato << "]!";
-			cerr << ss.str() << endl;
-			throw domain_error(ss.str());
+		// if the ua oid is unknown, the set message for the union agreement oid
+		if (uaOid == undefined_oid)
+			valResults.addValidationResult( sbx::ValidationResult(sbx::kValueNotAllowed, kUnionAgreementOid, kUnionAgreementOid_VARNAME, "Vælg venligst en gyldig overenskomst!") );
+		else
+		{
+			int aftaleIkraftdato = ta.getValue(kAftaleIkraftdato).longValue();
+
+			try {
+				Date inceptionDate(aftaleIkraftdato);
+				sbx::UnionAgreementContributionStep step = _container.getUAContributionStep(uaOid, inceptionDate);
+				_parser.DefineConst(sbx::kUnionAgreementEmployerPct1stStep, step.totalPct() - step.employeePct());
+				_parser.DefineConst(sbx::kUnionAgreementTotalPct1stStep, step.totalPct());
+			} catch(const invalid_argument& e) {
+				stringstream ss{};
+				ss << "Ugyldig ikraftdato [" << aftaleIkraftdato << "] - " << e.what() << "!";
+				valResults.addValidationResult( sbx::ValidationResult(sbx::kValueNotAllowed, kAftaleIkraftdato, _VAR_NAME(kAftaleIkraftdato), ss.str()) );
+			}
 		}
 	}
 }
@@ -546,7 +552,7 @@ sbx::ValidationResults RuleEngine::validate(const TA& ta, const std::vector<unsi
 
 	// Check to see if we need to refresh parser values before validating
 	if (_refreshParserValues)
-		_loadParser(ta);
+		_loadParser(ta, valResults);
 
 //	if (RuleEngine::_printDebugAtValidation) printVariablesInParser();
 
@@ -1010,9 +1016,9 @@ mup::Value RuleEngine::_execute(const std::string& expr, const std::string& rule
 sbx::ValidationResults RuleEngine::validate(const sbx::TA& ta, bool full)
 {
 
-	_loadParser(ta);
-	_refreshParserValues = false;
 	sbx::ValidationResults valResults {};
+	_loadParser(ta, valResults);
+	_refreshParserValues = false;
 
     if (RuleEngine::_printDebugAtValidation) printVariablesInParser();
 

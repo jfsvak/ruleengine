@@ -116,9 +116,9 @@ private:
 	std::vector<std::string> _getParametersFromParser(const std::vector<std::string>& parameters);
 	void _defineConstant(const std::string& name, double constant);
 
-	void _loadParser(const TA& ta);
+	void _loadParser(const TA& ta, ValidationResults& valResults);
 	void _loadLadder(const TA& ta);
-	void _loadUAContributionStep(const TA& ta);
+	void _loadUAContributionStep(const TA& ta, ValidationResults& valResults);
 
     std::string _getFormattedValue(const std::shared_ptr<sbx::Constant>&);
     std::string getFormattedValue(const sbx::ProductElementValue&);
