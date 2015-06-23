@@ -26,6 +26,7 @@
 -(void)createTA:(NSString*)CVR konceptOid:(unsigned short)konceptOid;
 -(void)setTAUnionAgreementRelation:(uint8_t)relation;
 -(void)setTAUnionAgreement:(uint8_t)uaOid;
+-(void)unsetTAUnionAgreement;
 
 -(BOOL)isProductElementAllowed:(NSInteger)oid;
 
