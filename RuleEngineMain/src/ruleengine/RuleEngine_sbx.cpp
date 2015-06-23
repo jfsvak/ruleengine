@@ -512,18 +512,26 @@ void RuleEngine::_loadUAContributionStep(const TA& ta, ValidationResults& valRes
 			valResults.addValidationResult( sbx::ValidationResult(sbx::kValueNotAllowed, kUnionAgreementOid, kUnionAgreementOid_VARNAME, "Vælg venligst en gyldig overenskomst!") );
 		else
 		{
-			int aftaleIkraftdato = ta.getValue(kAftaleIkraftdato).longValue();
+            
+            
+            if (ta.hasValue(kAftaleIkraftdato))
+            {
+                int aftaleIkraftdato = ta.getValue(kAftaleIkraftdato).longValue();
+                
+                try {
+                    Date inceptionDate(aftaleIkraftdato);
+                    sbx::UnionAgreementContributionStep step = _container.getUAContributionStep(uaOid, inceptionDate);
+                    _parser.DefineConst(sbx::kUnionAgreementEmployerPct1stStep, step.totalPct() - step.employeePct());
+                    _parser.DefineConst(sbx::kUnionAgreementTotalPct1stStep, step.totalPct());
+                } catch(const invalid_argument& e) {
+                    stringstream ss{};
+                    ss << "Ugyldig ikraftdato [" << aftaleIkraftdato << "] - " << e.what() << "!";
+                    valResults.addValidationResult( sbx::ValidationResult(sbx::kValueNotAllowed, kAftaleIkraftdato, _VAR_NAME(kAftaleIkraftdato), ss.str()) );
+                }
+            }
+            else
+                valResults.addValidationResult( sbx::ValidationResult(sbx::kProductElementRequired, kAftaleIkraftdato, _VAR_NAME(kAftaleIkraftdato), "Ingen ikraftdato sat" ));
 
-			try {
-				Date inceptionDate(aftaleIkraftdato);
-				sbx::UnionAgreementContributionStep step = _container.getUAContributionStep(uaOid, inceptionDate);
-				_parser.DefineConst(sbx::kUnionAgreementEmployerPct1stStep, step.totalPct() - step.employeePct());
-				_parser.DefineConst(sbx::kUnionAgreementTotalPct1stStep, step.totalPct());
-			} catch(const invalid_argument& e) {
-				stringstream ss{};
-				ss << "Ugyldig ikraftdato [" << aftaleIkraftdato << "] - " << e.what() << "!";
-				valResults.addValidationResult( sbx::ValidationResult(sbx::kValueNotAllowed, kAftaleIkraftdato, _VAR_NAME(kAftaleIkraftdato), ss.str()) );
-			}
 		}
 	}
 }
