@@ -14,8 +14,6 @@ protected:
     	RuleEngine::_printDebug = false;
     	RuleConstantContainer::_printDebug = false;
 
-    	re = RuleEngine();
-
         re.initConstants(get_file_contents("basedata-all.json"));
         re.initKoncepts(get_file_contents("basedata-all.json"));
         re.initUnionAgreements(get_file_contents("basedata-all.json"));

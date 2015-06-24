@@ -190,7 +190,7 @@
             "id": "22.6",
             "expr": "MinAndelTraditionelPct >= 4.5",
    	        "productElementOids": [ 213 ],
-   	        "requiredif": "",
+   	        "requiredif": "false",
    	        "notallowedif": "",
             "positiveMessage": "",
             "negativeMessage": "Minimum andel til traditionel skal være større end 4,5% eller helt undlades",
@@ -200,8 +200,8 @@
 					"id": "23.1.99",
 					"comments" : "MinAndelTraditionelPctType",
 					"expr": "",
-					"productElementOids": [214 ],
-					"requiredif": "#parent#",
+					"productElementOids": [ 214 ],
+					"requiredif": "is_var_defined(\"MinAndelTraditionelPct\")",
 					"positiveMessage": "",
 					"negativeMessage": "% af Bidrag eller Gage skal angives, når der er angivet en procent"
 				}
@@ -1484,8 +1484,9 @@
 				    "id": "33.1.1.1",
 			        "comments" : "Contribution ladder - first step should be higher than mandatory contribution",
 			        "expr": "Bidragstrappe[0,1] + Bidragstrappe[0,2] >= rc_BidragInklHospdaekningPctMin_min",
+					"evaluateExprIf": "Hospitalsdaekning_MK == true and ((UnionAgreementRelationship == \"U\" and Private_Taxed_MK == false) or (UnionAgreementRelationship != \"U\" and BidragEjFoesteTrin_MK == true))",
 			        "productElementOids": [ 999 ],
-		   		    "requiredif": "#parent#",
+		   		    "requiredif": "",
 			   	    "positiveMessage": "",
 			       	"negativeMessage": "Den totale bidragsprocent i første trin skal være større end %1",
 		           	"negativeMessageParameters": [ "rc_BidragInklHospdaekningPctMin_min" ],
@@ -1508,8 +1509,9 @@
 				    "id": "33.1.2.1",
 			        "comments" : "Contribution ladder - first step should be higher than mandatory contribution",
 			        "expr": "Bidragstrappe[0,1] + Bidragstrappe[0,2] >= rc_BidragsEksklHospdaekningPctMin_min",
+			        "evaluateExprIf": "Hospitalsdaekning_MK == false and ((UnionAgreementRelationship == \"U\" and Private_Taxed_MK == false) or (UnionAgreementRelationship != \"U\" and BidragEjFoesteTrin_MK == true))",
 			        "productElementOids": [ 999 ],
-		   		    "requiredif": "#parent#",
+		   		    "requiredif": "",
 			   	    "positiveMessage": "",
 			       	"negativeMessage": "Den totale bidragsprocent i første trin skal være større end %1",
 		           	"negativeMessageParameters": [ "rc_BidragsEksklHospdaekningPctMin_min" ],
@@ -1524,7 +1526,7 @@
          	"comments" : "Salary Page: Contribution Ladder when Udenfor (outside)",
          	
             "id": "33.2",
-            "expr": "UnionAgreementRelationship == \"U\"",
+            "expr": "UnionAgreementRelationship == \"U\" and Private_Taxed_MK == false",
    	        "productElementOids": [ 149 ],
    	        "requiredif": "",
             "positiveMessage": "",
@@ -1546,6 +1548,7 @@
 				            "id": "33.2.1.1",
 				            "comments" : "Contribution ladder Ingen - first step has to be 0",
 			    	        "expr": "Bidragstrappe[0,0] == 0",
+			    	        "evaluateExprIf": "#parent#",
 				   	        "productElementOids": [ 999 ],
 		   	    		    "requiredif": "#parent#",
 			        	    "positiveMessage": "",
@@ -1557,10 +1560,11 @@
 				            "id": "33.2.2.1",
 				            "comments" : "Contribution ladder Ingen - only one step allowed",
 			    	        "expr": "sizeof(Bidragstrappe) == 1",
+			    	        "evaluateExprIf": "#parent#",
 				   	        "productElementOids": [ 999 ],
-		   	    		    "requiredif": "#parent#",
+		   	    		    "requiredif": "",
 			        	    "positiveMessage": "",
-			            	"negativeMessage": "Der må kun vare et trin nar 'Ingen' er valgt som Bidragsstigningsform",
+			            	"negativeMessage": "Der må kun vare ét trin når 'Ingen' er valgt som Bidragsstigningsform",
 			            	"negativeValCode": 101,
 							"positiveRuleCatalogue": []
 		        	    }
@@ -1582,6 +1586,7 @@
 				            "id": "33.2.2.1",
 				            "comments" : "Contribution ladder Alder - first step rule",
 			    	        "expr": "Bidragstrappe[0,0] == IndmeldelsesAlder",
+			    	        "evaluateExprIf": "#parent#",
 				   	        "productElementOids": [ 999 ],
 		   	    		    "requiredif": "#parent#",
 			        	    "positiveMessage": "",
@@ -1593,8 +1598,9 @@
 				            "id": "33.2.2.2",
 				            "comments" : "Contribution ladder Alder - atleast one step",
 			    	        "expr": "sizeof(Bidragstrappe) >= 1",
+			    	        "evaluateExprIf": "#parent#",
 				   	        "productElementOids": [ 999 ],
-		   	    		    "requiredif": "#parent#",
+		   	    		    "requiredif": "",
 			        	    "positiveMessage": "",
 			            	"negativeMessage": "Der skal mindst være et trin",
 			            	"negativeValCode": 101,
@@ -1618,6 +1624,7 @@
 				            "id": "33.2.3.1",
 				            "comments" : "Contribution ladder Anciennitet - first step rule",
 			    	        "expr": "Bidragstrappe[0,0] == 0",
+			    	        "evaluateExprIf": "#parent#",
 				   	        "productElementOids": [ 999 ],
 		   	    		    "requiredif": "#parent#",
 			        	    "positiveMessage": "",
@@ -1629,8 +1636,9 @@
 				            "id": "33.2.3.2",
 				            "comments" : "Contribution ladder Anciennitet - atleast one step",
 			    	        "expr": "sizeof(Bidragstrappe) >= 1",
+			    	        "evaluateExprIf": "#parent#",
 				   	        "productElementOids": [ 999 ],
-		   	    		    "requiredif": "#parent#",
+		   	    		    "requiredif": "",
 			        	    "positiveMessage": "",
 			            	"negativeMessage": "Der skal mindst være et trin",
 			            	"negativeValCode": 101,
@@ -1654,6 +1662,7 @@
 				            "id": "33.2.4.1",
 				            "comments" : "Contribution ladder Dato - first step rule",
 			    	        "expr": "Bidragstrappe[0,0] == AftaleIkraftdato",
+			    	        "evaluateExprIf": "#parent#",
 				   	        "productElementOids": [ 999 ],
 		   	    		    "requiredif": "#parent#",
 			        	    "positiveMessage": "",
@@ -1665,8 +1674,9 @@
 				            "id": "33.2.4.2",
 				            "comments" : "Contribution ladder Dato - atleast one step",
 			    	        "expr": "sizeof(Bidragstrappe) >= 1",
+			    	        "evaluateExprIf": "#parent#",
 				   	        "productElementOids": [ 999 ],
-		   	    		    "requiredif": "#parent#",
+		   	    		    "requiredif": "",
 			        	    "positiveMessage": "",
 			            	"negativeMessage": "Der skal mindst være et trin",
 			            	"negativeValCode": 101,
@@ -1682,7 +1692,7 @@
          {
          	"comments" : "Salary Page: Contribution Ladder - Follows Union agreement",
          	
-            "id": "33.6",
+            "id": "33.3",
             "expr": "UnionAgreementRelationship == \"F\" or UnionAgreementRelationship == \"O\"",
    	        "productElementOids": [ 996 ],
    	        "requiredif": "",
@@ -1691,7 +1701,7 @@
             "positiveRuleCatalogue": 
             [
 	        	{
-		            "id": "33.6.1",
+		            "id": "33.3.1",
 		            "comments" : "BidragEjFoesteTrin_MK - requiredif",
 	    	        "expr": "",
 		   	        "productElementOids": [ 152 ],
@@ -1701,7 +1711,7 @@
 					"positiveRuleCatalogue": []
         	    },
 	        	{
-		            "id": "33.6.2",
+		            "id": "33.3.2",
 		            "comments" : "",
 	    	        "expr": "BidragEjFoesteTrin_MK == true",
 		   	        "productElementOids": [ 152 ],
@@ -1711,9 +1721,10 @@
 					"positiveRuleCatalogue": 
 					[
 		        	    {
-				            "id": "33.6.2.1",
+				            "id": "33.3.2.1",
 				            "comments" : "Bidragstrappe needs one step if BidragEjFoesteTrin_MK == true",
 			    	        "expr": "sizeof(Bidragstrappe) == 0",
+			    	        "evaluateExprIf": "#parent#",
 				   	        "productElementOids": [ 999 ],
 		   	    		    "requiredif": "#parent#",
 			        	    "positiveMessage": "Der skal angives et trin, når der indtrædes med højere bidragsprocent",
@@ -1722,22 +1733,24 @@
 							"positiveRuleCatalogue": []
 		        	    },
 		        	    {
-				            "id": "33.6.2.2",
+				            "id": "33.3.2.2",
 				            "comments" : "Bidragstrappe needs one step if BidragEjFoesteTrin_MK == true",
 			    	        "expr": "sizeof(Bidragstrappe) > 1",
+			    	        "evaluateExprIf": "#parent#",
 				   	        "productElementOids": [ 999 ],
-		   	    		    "requiredif": "#parent#",
+		   	    		    "requiredif": "",
 			        	    "positiveMessage": "Der skal kun angives ét trin angives et trin, når der indtrædes med højere bidragsprocent",
 			            	"positiveValCode": 101,
 			            	"negativeMessage": "",
 							"positiveRuleCatalogue": []
 		        	    },
 		        	    {
-				            "id": "33.6.2.3",
+				            "id": "33.3.2.3",
 				            "comments" : "Employer Percent needs to be bigger than union agreement ladder 1st step",
 			    	        "expr": "Bidragstrappe[0,2] > UnionAgreementEmployerPct1stStep",
+			    	        "evaluateExprIf": "#parent#",
 				   	        "productElementOids": [ 999 ],
-		   	    		    "requiredif": "#parent#",
+		   	    		    "requiredif": "",
 			        	    "positiveMessage": "",
 			            	"negativeMessage": "Arbejdsgiverprocent skal være højere end %1%",
 			            	"negativeMessageParameters":[ "UnionAgreementEmployerPct1stStep" ],
@@ -1745,11 +1758,12 @@
 							"positiveRuleCatalogue": []
 		        	    },
 		        	    {
-				            "id": "33.6.2.4",
+				            "id": "33.3.2.4",
 				            "comments" : "Total Percent needs to be bigger than union agreement ladder 1st step",
 			    	        "expr": "Bidragstrappe[0,1] + Bidragstrappe[0,2] > UnionAgreementTotalPct1stStep",
+			    	        "evaluateExprIf": "#parent#",
 				   	        "productElementOids": [ 999 ],
-		   	    		    "requiredif": "#parent#",
+		   	    		    "requiredif": "",
 			        	    "positiveMessage": "",
 			            	"negativeMessage": "Den totale procent skal være højere end %1%",
 			            	"negativeMessageParameters":[ "UnionAgreementTotalPct1stStep" ],
@@ -1758,7 +1772,7 @@
                         },
                         {
                             "comments" : "Aar - requiredif",
-                            "id": "33.6.2.5",
+                            "id": "33.3.2.5",
                             "expr": "",
                             "productElementOids": [ 153 ],
                             "requiredif": "false"
@@ -1766,7 +1780,7 @@
 					]
         	    },
 	        	{
-		            "id": "33.6.3",
+		            "id": "33.3.3",
 		            "comments" : "Bidragstrappe not allowed if Omfatter or Følger and BidragEjFoersteTrin_MK == false",
 	    	        "expr": "",
 		   	        "productElementOids": [ 999 ],
@@ -1777,7 +1791,7 @@
                 },
                 {
                     "comments" : "Aar - notallowedif",
-                    "id": "33.6.4",
+                    "id": "33.3.4",
                     "expr": "",
                     "productElementOids": [ 153 ],
                     "notallowedif": "BidragEjFoesteTrin_MK == false or UnionAgreementRelationship == \"U\""

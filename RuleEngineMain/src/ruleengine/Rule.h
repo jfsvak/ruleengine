@@ -56,6 +56,9 @@ public:
 	void setPositiveMessageParameters(const std::vector<std::string>& positiveMessageParameters);
 	void addPositiveMessageParameter(const std::string& parameter);
 
+	std::shared_ptr<sbx::Rule> getEvaluateExprIfRule() const;
+	void setEvaluateExprIfRule(std::shared_ptr<sbx::Rule> evaluateExprIfRule);
+
 private:
 	std::string _ruleId;
 	std::string _preCalcExpr;
@@ -69,6 +72,7 @@ private:
 	unsigned short _positiveValCode;
 	unsigned short _negativeValCode;
 
+	std::shared_ptr<sbx::Rule> _evaluateExprIfRule;
 	std::shared_ptr<sbx::Rule> _requiredIfRule;
 	std::shared_ptr<sbx::Rule> _notAllowedIfRule;
 

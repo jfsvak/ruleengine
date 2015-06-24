@@ -51,8 +51,8 @@ TEST_F(ContributionLadder_Ingen_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Ingen
 	EXPECT_FALSE(r.isAllOk());
 //	if (r.isAllOk())
 	cout << r;
-	ASSERT_EQ(1, r.getValidationResults(kBidragstrappe).size());
-	EXPECT_EQ(kProductElementRequired, r.getValidationResults(kBidragstrappe).at(0).getValidationCode());
+	EXPECT_EQ(1, r.getValidationResults(kBidragstrappe).size());
+	EXPECT_TRUE(r.hasMessages(kBidragstrappe, kProductElementRequired));
 
 	r = re.validate(ta, (unsigned short) kBidragsstigningsform);
 	EXPECT_TRUE(r.isAllOk());
@@ -161,3 +161,28 @@ TEST_F(ContributionLadder_Ingen_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Ingen
 //	if (!r.isAllOk())
 	cout << r;
 }
+
+TEST_F(ContributionLadder_Ingen_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Ingen_PrivateTaxedMK)
+{
+	RuleEngine::_printDebugAtValidation = true;
+	TA ta { "15124040", 4 }; // KonceptOid 4 - OSV
+	ta.setValue(kAftaleIkraftdato, 20150701);
+	ta.setValue(kUnionAgreementRelationship, kOUTSIDE);
+	ta.setValue(kBidragEjFoesteTrin_MK, false);
+	ta.setValue(kBidragsstigningsform, "Ingen");
+	ta.setValue(kHospitalsdaekning_MK, false);
+	ta.setValue(kHospitalsdaekningFrivillig_MK, false);
+	ta.setValue(kPrivate_Premium_BL, 50000);
+	ta.setValue(kPrivate_Taxed_MK, true);
+
+	// expecting complains about missing step
+	auto r = re.validate(ta, true);
+	EXPECT_FALSE(r.hasMessages(kBidragstrappe, kProductElementRequired));
+	cout << r;
+
+
+}
+
+
+
+

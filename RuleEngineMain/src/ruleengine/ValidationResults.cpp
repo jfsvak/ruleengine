@@ -60,7 +60,7 @@ sbx::ValidationResults& ValidationResults::addValidationResults(const std::vecto
 	return *this;
 }
 
-std::vector<sbx::ValidationResult> ValidationResults::getValidationResults(unsigned short peOid)
+std::vector<sbx::ValidationResult> ValidationResults::getValidationResults(sbx::productelement_oid peOid)
 {
 	return _getSubSet(_validationResultMap, peOid);
 }
@@ -80,7 +80,7 @@ sbx::ValidationResults& ValidationResults::addWarning(const sbx::ValidationResul
 	return *this;
 }
 
-const std::multimap<unsigned short, sbx::ValidationResult>& ValidationResults::getWarnings() const
+const std::multimap<sbx::productelement_oid, sbx::ValidationResult>& ValidationResults::getWarnings() const
 {
 	return _warningsMap;
 }
@@ -115,7 +115,7 @@ int ValidationResults::sizeValidationResults() const { return _validationResultM
 int ValidationResults::sizeWarnings() const { return _warningsMap.size(); }
 
 // private method for getting a subset of ValidationResult's in a vector
-std::vector<sbx::ValidationResult> ValidationResults::_getSubSet(const std::multimap<unsigned short, sbx::ValidationResult>& map, unsigned short peOid)
+std::vector<sbx::ValidationResult> ValidationResults::_getSubSet(const std::multimap<sbx::productelement_oid, sbx::ValidationResult>& map, sbx::productelement_oid peOid)
 {
 	std::vector<sbx::ValidationResult> v {};
 
@@ -127,6 +127,16 @@ std::vector<sbx::ValidationResult> ValidationResults::_getSubSet(const std::mult
 	}
 
 	return v;
+}
+
+/**
+ * Check for existens of any message for the peOid
+ * returns true if one or more messages exists for that peOid nomatter the validation code
+ * otherwise return false
+ */
+bool ValidationResults::hasMessages(sbx::productelement_oid peOid) const
+{
+	return ( _validationResultMap.find(peOid) != _validationResultMap.cend() );
 }
 
 /**
@@ -155,7 +165,7 @@ bool ValidationResults::hasMessages(unsigned short peOid, sbx::ValidationCode va
  * returns true if one or more warnings exists for that peOid with that validation code
  * otherwise return false
  */
-bool ValidationResults::hasWarnings(unsigned short peOid, sbx::ValidationCode validationCode) const
+bool ValidationResults::hasWarnings(sbx::productelement_oid peOid, sbx::ValidationCode validationCode) const
 {
 	if ( _warningsMap.find(peOid) != _warningsMap.cend() )
 	{

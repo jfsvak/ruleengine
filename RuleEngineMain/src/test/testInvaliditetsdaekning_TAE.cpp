@@ -33,6 +33,20 @@ protected:
     }
 };
 
+class Invaliditetsdaekning_ITPension_50 : public RuleEngineInitialiser {
+protected:
+    virtual void SetUp() {
+    	RuleEngineInitialiser::SetUp();
+
+        KonceptInfo ki {ITPENSION, 50, 0, // UnderkonceptOid:OSV 25-49
+        	{ {11, "true"}, // Parameter-Basis
+        	  {1, "true"}, // Solidarisk faellestarif
+			  {6, "true"} // SEB Firmapensionspulje
+        	} };
+        re.initContext(ki, OUTSIDE);
+    }
+};
+
 TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_I_Kr_Ingen) {
 	RuleEngine::_printDebugAtValidation = true;
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
@@ -421,6 +435,24 @@ TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_TAEUdloebsalder_P
 	cout << r;
 	EXPECT_TRUE(r.isAllOk());
 }
+
+TEST_F(Invaliditetsdaekning_ITPension_50, Invaliditetsdaekning_TAEBlGrMin_NotRequired) {
+	RuleEngine::_printDebugAtValidation = true;
+	TA ta { "15124040", ITPENSION};
+	ta.setValue(kTAEReguleringskode, "Gage");
+	ta.setValue(kTAEPctGrMin, 40);
+	ta.setValue(kTAEPctOblMax, 50);
+
+	cout << "is taeblgrmin allowed : " << boolalpha << re.isProductElementAllowed(kTAEBlGrMin) << endl;
+	auto r = re.validate(ta, false);
+	cout << r;
+	EXPECT_FALSE(r.hasMessages(kTAEBlGrMin));
+
+	r = re.validate(ta, true);
+	cout << r;
+	EXPECT_FALSE(r.hasMessages(kTAEBlGrMin));
+}
+
 
 
 

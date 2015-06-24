@@ -36,7 +36,7 @@
 #include "RuleCatalogue.h"
 #include "Utils.h"
 #include "ValidationResults.h"
-#include "mubridge/SubtractMonths.h"
+#include "mubridge/DefinedInParser.h"
 
 using namespace std;
 
@@ -48,15 +48,15 @@ bool RuleEngine::_printMuParserErrorInfo {false};
 
 sbx::RuleEngine::RuleEngine()
 {
-	_parser.DefineFun(new SubtractMonths);
+	_parser.DefineFun(new DefinedInParser(this));
 }
 
 sbx::RuleEngine::RuleEngine(const sbx::RuleEngine& other)
 		: _container {other._container}
 {
-	cerr << " Copy constructor for RuleEngine was called! This behaviour is not defined" << endl;
-	_parser.DefineFun(new SubtractMonths());
 	// TODO !!!!! proper copy/cloning of pointers in map
+	cerr << " Copy constructor for RuleEngine was called! This behaviour is not defined" << endl;
+	_parser.DefineFun(new DefinedInParser(this));
 }
 
 void RuleEngine::initialiseAll(const std::string& jsonContents)
@@ -129,6 +129,7 @@ void RuleEngine::_initRuleCatalogue(sbx::RuleCatalogue* ruleCatalogue, const Jso
 			string expr = valueIterator->get("expr", "").asString();
 			string preCalcExpr = valueIterator->get("preCalcExpr", "").asString();
 			string requiredifexpr = valueIterator->get("requiredif", "").asString();
+			string evaluateExprIf = valueIterator->get("evaluateExprIf", "").asString();
 			string notallowedifexpr = valueIterator->get("notallowedif", "").asString();
 			string positiveMessage = valueIterator->get("positiveMessage", "").asString();
 			string negativeMessage = valueIterator->get("negativeMessage", "").asString();
@@ -147,6 +148,7 @@ void RuleEngine::_initRuleCatalogue(sbx::RuleCatalogue* ruleCatalogue, const Jso
 					preCalcExpr);
 
 			rule->setNotAllowedIfRule( (notallowedifexpr == "") ? nullptr : ((notallowedifexpr == "#parent#") ? ruleCatalogue->getParent() : make_shared<sbx::Rule>(id + ".NA", notallowedifexpr, nullptr, "", "")));
+			rule->setEvaluateExprIfRule( (evaluateExprIf == "") ? nullptr : ((evaluateExprIf == "#parent#") ? ruleCatalogue->getParent() : make_shared<sbx::Rule>(id + ".NA", evaluateExprIf, nullptr, "", "")));
 			rule->setNegativeValCode(negativeValCode);
 			rule->setPositiveValCode(positiveValCode);
 
@@ -722,39 +724,36 @@ void RuleEngine::_validateCustomRules(unsigned short peOid, sbx::ValidationResul
 	// if there are specific rules to run, then run them
 	if (_peOidToRules.find(peOid) != _peOidToRules.end())
 	{
-		const auto& rangeOfRules = _peOidToRules.equal_range(peOid); // std::pair <std::multimap<unsigned short, sbx::Rule*>::iterator, std::multimap<unsigned short, sbx::Rule*>::iterator> range = _peOidToRules.equal_range(peOidToValidate);
+		const auto& rangeOfRules = _peOidToRules.equal_range(peOid);
 
-		// for each rule, validate and add messages to valResult
-		for (auto it = rangeOfRules.first; it != rangeOfRules.second; it++) //	for (std::multimap<unsigned short, sbx::Rule*>::iterator it = range.first; it != range.second; it++)
+		// for each rule, check the evaluateExprIf rule. If its true, then continue to validate this rule and add messages to valResult
+		for (auto it = rangeOfRules.first; it != rangeOfRules.second; it++)
 		{
 			std::shared_ptr<sbx::Rule> rule = it->second;
 
-			if ( (rule->getRequiredIfRule() != nullptr) && (rule->getRequiredIfRule()->getExpr() != "") )
+			bool evaluate {true};
+
+			if ( (rule->getEvaluateExprIfRule() != nullptr) && (rule->getEvaluateExprIfRule()->getExpr() != "") )
 			{
 				try {
-					mup::Value requiredIfResult = _execute(rule->getRequiredIfRule()->getExpr(), rule->getRequiredIfRule()->getRuleId());
+					mup::Value evaluateExprIfResult = _execute(rule->getEvaluateExprIfRule()->getExpr(), rule->getEvaluateExprIfRule()->getRuleId());
 
-					if ( requiredIfResult.GetType() == 'b' && requiredIfResult.GetBool() )
-					{
-						if ( rule->getExpr() != "" )
-							_evaluateRule( peOid, rule, valResults );
-					}
-					else if ( requiredIfResult.GetType() != 'b' )
- 					{
-						cout << "RequiredIf expr [" << rule->getRequiredIfRule()->getExpr() << "] didn't evaluate to a boolean. Result : " << requiredIfResult << "]" << endl;
-					}
+					if ( evaluateExprIfResult.GetType() == 'b' )
+						evaluate = evaluateExprIfResult.GetBool();
+					else
+						cout << "EvaluateExprIf [" << rule->getEvaluateExprIfRule()->getExpr() << "] didn't evaluate to a boolean. Result : " << evaluateExprIfResult << "]" << endl;
 				} catch (const mup::ParserError& e) {
 					sbx::mubridge::handle(e, valResults, this->getContainer());
+					evaluate = false;
 				}
 			}
-			else
-			{
-				if (rule->getExpr() != "") { // no requiredIf rule, then just execute this rule
-					try {
-						_evaluateRule( peOid, rule, valResults );
-					} catch (const mup::ParserError& e) {
-						sbx::mubridge::handle(e, valResults, this->getContainer());
-					}
+
+			// if there is an expr and we should evaluate it
+			if (rule->getExpr() != "" && evaluate) {
+				try	{
+					_evaluateRule( peOid, rule, valResults );
+				} catch (const mup::ParserError& e) {
+					sbx::mubridge::handle(e, valResults, this->getContainer());
 				}
 			}
 
@@ -774,7 +773,8 @@ void RuleEngine::_validateCustomRules(unsigned short peOid, sbx::ValidationResul
 								_VAR_NAME(peOid),
 								"Der skal ikke angives værdi for [" + _GUI_NAME(peOid) + "]",
 								rule->getNotAllowedIfRule()->getRuleId(),
-								rule->getNotAllowedIfRule()->getExpr()) );
+								rule->getNotAllowedIfRule()->getExpr(),
+								"Not allowedRule check in validateCustomRules") );
 					}
 					else if ( notAllowedIfResult.GetType() != 'b' )
  					{
@@ -869,13 +869,14 @@ std::shared_ptr<sbx::Rule> RuleEngine::_isRequired(unsigned short peOid, sbx::Va
  * In case of missing token or other ParserError, we answer false, as we cannot positively confirm
  * that the pe is not required by the requiredif rule or not, so we assume not optional.
  */
-bool RuleEngine::_isOptional(unsigned short peOid, sbx::ValidationResults& valResults)
+void RuleEngine::_isOptional(sbx::productelement_oid peOid, sbx::ValidationResults& valResults)
 {
 	if (_peOidToRules.find(peOid) != _peOidToRules.end()) {
 		// run through all specific rules
 		const auto& rangeOfRules = _peOidToRules.equal_range(peOid); // std::pair <std::multimap<unsigned short, std::shared_ptr<sbx::Rule>::iterator, std::multimap<unsigned short, std::shared_ptr<sbx::Rule>::iterator> range = _peOidToRules.equal_range(peOidToValidate);
 
 		bool requiredIfRulesExists {false};
+
 		for (auto it = rangeOfRules.first; it != rangeOfRules.second; it++) { //	for (std::multimap<unsigned short, std::shared_ptr<sbx::Rule>::iterator it = range.first; it != range.second; it++)
 			std::shared_ptr<sbx::Rule> rule = it->second;
 
@@ -902,7 +903,15 @@ bool RuleEngine::_isOptional(unsigned short peOid, sbx::ValidationResults& valRe
 
 						// in case of exception, we cannot reliably deduct that the requiredif rule is false, so we assume that the pe is not optional,
 						//  and straight away return false
-						return false;
+						if ( !valResults.hasMessages(peOid, sbx::ValidationCode::kProductElementRequired))
+							valResults.addValidationResult(sbx::ValidationResult(sbx::ValidationCode::kProductElementRequired,
+																				 peOid,
+																				 _VAR_NAME(peOid),
+																				 "Værdi for [" + _GUI_NAME(peOid) + "] skal angives!",
+																				 grandParentRule->getRuleId(),
+																				 "",
+																				 "Caused by full validation - Grandparent rule failed"));
+
 					}
 				}
 
@@ -913,30 +922,54 @@ bool RuleEngine::_isOptional(unsigned short peOid, sbx::ValidationResults& valRe
 
 						// if the requiredif rule evaluates to true, we know positively that the pe is not optional, and can straight away answer false
 						if ( r.GetType() == 'b' && r.GetBool() ) {
-							return false;
+							if ( !valResults.hasMessages(peOid, sbx::ValidationCode::kProductElementRequired))
+								valResults.addValidationResult(sbx::ValidationResult(sbx::ValidationCode::kProductElementRequired,
+																					 peOid,
+																					 _VAR_NAME(peOid),
+																					 "Værdi for [" + _GUI_NAME(peOid) + "] skal angives!",
+																					 requiredIfRule->getRuleId(),
+																					 "",
+																					 "Caused by full validation - Required rule == true"));
 						}
 					} catch (const mup::ParserError& e) {
 						sbx::mubridge::handle(e, valResults, _container);
 
 						// in case of exception, we cannot reliably deduct that the requiredif rule is false, so we assume that the pe is not optional,
 						//  and straight away return false
-						return false;
+						if ( !valResults.hasMessages(peOid, sbx::ValidationCode::kProductElementRequired))
+							valResults.addValidationResult(sbx::ValidationResult(sbx::ValidationCode::kProductElementRequired,
+																				 peOid,
+																				 _VAR_NAME(peOid),
+																				 "Værdi for [" + _GUI_NAME(peOid) + "] skal angives!",
+																				 requiredIfRule->getRuleId(),
+																				 "",
+																				 "Caused by full validation - Required rule failed"));
 					}
 				}
 			}
 		} // for loop
 
-		if (requiredIfRulesExists)
-			// if requiredIf rules existed, they all must have validated without error to false, so we can safely assume the pe is optional
-			return true;
-		else
+		if (!requiredIfRulesExists)
 			// if no requiredIf rules existed, we assume the pe is not optional
-			return false;
+			if ( !valResults.hasMessages(peOid, sbx::ValidationCode::kProductElementRequired))
+				valResults.addValidationResult(sbx::ValidationResult(sbx::ValidationCode::kProductElementRequired,
+																	 peOid,
+																	 _VAR_NAME(peOid),
+																	 "Værdi for [" + _GUI_NAME(peOid) + "] skal angives!",
+																	 "",
+																	 "",
+																	 "Caused by full validation - no required rules exisits"));
 	}
 	else
 		// if no pe-specific rules existed, we assume the pe is not optional
-		return false;
-}
+		if ( !valResults.hasMessages(peOid, sbx::ValidationCode::kProductElementRequired))
+			valResults.addValidationResult(sbx::ValidationResult(sbx::ValidationCode::kProductElementRequired,
+																 peOid,
+																 _VAR_NAME(peOid),
+																 "Værdi for [" + _GUI_NAME(peOid) + "] skal angives!",
+																 "",
+																 "",
+																 "Caused by full validation - no specific rules exists"));}
 
 /**
  */
@@ -956,7 +989,13 @@ void RuleEngine::_evaluateRule(unsigned short peOidBeingValidated, std::shared_p
 				{
 					auto p = _getParametersFromParser(rule->getPositiveMessageParameters());
 					string msg = sbx::utils::formatMessage(rule->getPositiveMessage(), p);
-					valResult.addValidationResult( sbx::ValidationResult(positiveValCode, peOidBeingValidated, _VAR_NAME(peOidBeingValidated), msg, rule->getRuleId(), rule->getExpr()) );
+					valResult.addValidationResult( sbx::ValidationResult(positiveValCode,
+																		 peOidBeingValidated,
+																		 _VAR_NAME(peOidBeingValidated),
+																		 msg,
+																		 rule->getRuleId(),
+																		 rule->getExpr(),
+																		 "Evaluating rule - positive") );
 				}
 			}
 		}
@@ -973,7 +1012,13 @@ void RuleEngine::_evaluateRule(unsigned short peOidBeingValidated, std::shared_p
 					auto p = _getParametersFromParser(rule->getNegativeMessageParameters());
 					string msg = sbx::utils::formatMessage(rule->getNegativeMessage(), p);
 
-					valResult.addValidationResult( sbx::ValidationResult(negativeValCode, peOidBeingValidated, _VAR_NAME(peOidBeingValidated), msg, rule->getRuleId(), rule->getExpr()) );
+					valResult.addValidationResult( sbx::ValidationResult(negativeValCode,
+																		 peOidBeingValidated,
+																		 _VAR_NAME(peOidBeingValidated),
+																		 msg,
+																		 rule->getRuleId(),
+																		 rule->getExpr(),
+																		 "Evaluating rule - negative") );
 				}
 			}
 		}
@@ -1035,7 +1080,13 @@ sbx::ValidationResults RuleEngine::validate(const sbx::TA& ta, bool full)
 			if (allowedProductElementOids.find(peOid) == allowedProductElementOids.cend()) {
 				stringstream msg {};
 				msg << "Product element oid [" << peOid << "] not allowed for this konceptInfo";
-				valResults.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kProductElementNotAllowed, peOid, _VAR_NAME(peOid), msg.str()) );
+				valResults.addValidationResult(sbx::ValidationResult(sbx::ValidationCode::kProductElementNotAllowed,
+																	 peOid,
+																	 _VAR_NAME(peOid), // varname
+																	 msg.str(), // msg
+																	 "", // ruleId
+																	 "", // expr
+																	 "Caused by konceptinfo not allowing this product element. No rule was executed for this") );
 			}
 			else
 			{
@@ -1056,10 +1107,11 @@ sbx::ValidationResults RuleEngine::validate(const sbx::TA& ta, bool full)
 					{
 						std::shared_ptr<sbx::Rule> parentRule = it->second;
 
-						// if the rule has an expression AND a rule catalogue, then evaluate the expr
+						// if the rule has an expression AND a rule catalogue, then execute the expr
 						if (parentRule->getExpr() != "" && parentRule->getPositiveRuleCatalogue() != nullptr)
 						{
-							try {
+							try
+							{
 								mup::Value result = _execute(parentRule->getExpr(), parentRule->getRuleId());
 
 								// if the rule == true, then check for
@@ -1069,11 +1121,15 @@ sbx::ValidationResults RuleEngine::validate(const sbx::TA& ta, bool full)
 									for ( auto ruleFromPositiveCatalogue : parentRule->getPositiveRuleCatalogue()->getRules())
 									{
 										// run the ruleFromPositiveCatalogue
-										if ( ruleFromPositiveCatalogue->getExpr() != "" )
-											for (auto oid : ruleFromPositiveCatalogue->getProductElementOids())
+										for (auto oid : ruleFromPositiveCatalogue->getProductElementOids())
+										{
+											if ( ruleFromPositiveCatalogue->getExpr() != "" )
 												_evaluateRule(oid, ruleFromPositiveCatalogue, valResults);
 
-										this->_checkRequiredness(ruleFromPositiveCatalogue, parentRule, valResults);
+											// if the productelement oid is allowed
+											if (allowedProductElementOids.find(oid) != allowedProductElementOids.cend())
+												this->_checkRequiredness(oid, ruleFromPositiveCatalogue, parentRule, valResults);
+										}
 									}
 								}
 								else
@@ -1100,11 +1156,8 @@ sbx::ValidationResults RuleEngine::validate(const sbx::TA& ta, bool full)
 			for (auto& peOid : allowedProductElementOids)
 			{
 				bool definedInParser = _parser.IsVarDefined(_VAR_NAME(peOid));
-				bool optional = _isOptional(peOid, valResults);
-
-				// If it's not in the parser, and it's not optional, tell that the pe is required
-				if ( !definedInParser && !optional && !valResults.hasMessages(peOid, sbx::ValidationCode::kProductElementRequired))
-					valResults.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kProductElementRequired, peOid, _VAR_NAME(peOid), "Værdi for [" + _GUI_NAME(peOid) + "] skal angives!") );
+				if (!definedInParser)
+					_isOptional(peOid, valResults);
 			}
 		}
 
@@ -1120,7 +1173,7 @@ sbx::ValidationResults RuleEngine::validate(const sbx::TA& ta, bool full)
 }
 
 
-void RuleEngine::_checkRequiredness(std::shared_ptr<Rule> ruleFromPositiveCatalogue, std::shared_ptr<sbx::Rule> parentRule, sbx::ValidationResults& valResults)
+void RuleEngine::_checkRequiredness(sbx::productelement_oid _peOid, std::shared_ptr<Rule> ruleFromPositiveCatalogue, std::shared_ptr<sbx::Rule> parentRule, sbx::ValidationResults& valResults)
 {
 	// if there is a requiredif rule and it has an expr...
 	if ( ruleFromPositiveCatalogue->getRequiredIfRule() != nullptr && ruleFromPositiveCatalogue->getRequiredIfRule()->getExpr() != "" )
@@ -1166,7 +1219,8 @@ void RuleEngine::_checkRequiredness(std::shared_ptr<Rule> ruleFromPositiveCatalo
 														_VAR_NAME(peOid),
 														"Værdi for [" + _GUI_NAME(peOid) + "] ikke angivet. Værdi er påkrævet når : " + requiredIfRule->getExpr(),
 														requiredIfRule->getRuleId(),
-														requiredIfRule->getExpr()) );
+														requiredIfRule->getExpr(),
+														"CheckRequiredness") );
 				}  /* TODO anything if ta.hasValue(peOid) == true ??? */
 			}
 		}
@@ -1205,6 +1259,11 @@ std::shared_ptr<sbx::Constant> RuleEngine::getDefaultValue(sbx::ProductElementOi
 	}
 
 	return options.back();
+}
+
+bool RuleEngine::isVarDefined(const std::string& variable) const
+{
+	return _parser.IsVarDefined(variable);
 }
 
 std::string RuleEngine::_getConstFromParser(const std::string& constName)

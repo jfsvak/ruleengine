@@ -173,4 +173,14 @@ void Rule::addPositiveMessageParameter(const std::string& parameter)
 	_positiveMessageParameters.push_back(parameter);
 }
 
+std::shared_ptr<sbx::Rule> Rule::getEvaluateExprIfRule() const
+{
+	return _evaluateExprIfRule;
+}
+
+void Rule::setEvaluateExprIfRule(std::shared_ptr<sbx::Rule> evaluateExprIfRule)
+{
+	_evaluateExprIfRule = evaluateExprIfRule;
+}
+
 } /* namespace sbx */

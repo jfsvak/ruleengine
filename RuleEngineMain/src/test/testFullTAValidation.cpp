@@ -57,7 +57,7 @@ TEST_F(Full_TA_CONTEXT_KI_OSV_25_50, ProductElementAllowed) {
 TEST_F(Full_TA_CONTEXT_KI_OSV_25_50, Full_TA_POSITIVE) {
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
 	RuleEngine::_printDebugAtValidation = true;
-	int total {136};
+	int total {134};
 
 	auto r = re.validate(ta);
 	EXPECT_FALSE(r.isAllOk());
@@ -159,7 +159,7 @@ TEST_F(Full_TA_CONTEXT_KI_OSV_25_50, Full_TA_POSITIVE) {
 	ta.setValue(kMinAndelTraditionelPct, (long) 6);
 	ta.setValue(kMinAndelTraditionelPctType, "GAGE");
 	r = re.validate(ta);
-	EXPECT_EQ(total-=2, r.sizeValidationResults());
+	EXPECT_EQ(total, r.sizeValidationResults());
 	cout << r;
 
 	ta.setValue(kTidspensionMedGaranti_MK, true);
@@ -456,7 +456,9 @@ TEST_F(Full_TA_CONTEXT_KI_OSV_25_50, Full_TA_POSITIVE) {
 	cout << r;
 	ta.setValue(kPrivate_Taxed_MK, true);
 	r = re.validate(ta);
-	EXPECT_EQ(total+=1, r.sizeValidationResults());
+	EXPECT_EQ(total, r.sizeValidationResults());
+	EXPECT_FALSE(r.hasMessages(kBidragstrappe, kProductElementRequired));
+
 	cout << r;
 	ta.setValue(kPrivate_Premium_BL, (long) 200000);
 	ta.setValue(kbagud_mk, "j");
@@ -466,7 +468,7 @@ TEST_F(Full_TA_CONTEXT_KI_OSV_25_50, Full_TA_POSITIVE) {
 	ta.setValue(kPrivate_Taxed_MK, false);
 	ta.remove(kPrivate_Premium_BL);
 	r = re.validate(ta);
-	EXPECT_EQ(total, r.sizeValidationResults());
+	EXPECT_EQ(total+=1, r.sizeValidationResults());
 	cout << r;
 
 	ta.addContributionStep( {20, 4, 4} );

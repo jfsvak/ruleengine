@@ -71,6 +71,8 @@ public:
 
 	const sbx::Koncept& getKoncept(sbx::koncept_oid);
 
+	bool isVarDefined(const std::string& variable) const;
+
 	// -- util methods for printing
 	void printRuleCatalogue(sbx::RuleCatalogue&, int depth);
 	void printRule(std::shared_ptr<sbx::Rule>, int depth);
@@ -90,7 +92,7 @@ private:
 	void _validateOptionAllowed(const sbx::ProductElementValue&, sbx::ValidationResults&);
 	//   checks if the supplied value is an allowed option (found in the allowed list in the rule constant container
 	bool _isOptionAllowed(const sbx::ProductElementValue&);
-	void _checkRequiredness(std::shared_ptr<Rule> ruleFromPositiveCatalogue, std::shared_ptr<sbx::Rule> parentRule, sbx::ValidationResults& valResults);
+	void _checkRequiredness(sbx::productelement_oid, std::shared_ptr<Rule> ruleFromPositiveCatalogue, std::shared_ptr<sbx::Rule> parentRule, sbx::ValidationResults& valResults);
 
 	//
 	// Methods for related pe validations/checks
@@ -98,7 +100,7 @@ private:
 	void _validateCustomRules(unsigned short peOid, sbx::ValidationResults&);
 	// checks if the product element is required to be the TA for the context and other values on ta's. Uses custom rules to validate this requiredness
 	std::shared_ptr<sbx::Rule> _isRequired(unsigned short peOid, sbx::ValidationResults&, bool fullValidation = false);
-	bool _isOptional(unsigned short peOid, sbx::ValidationResults&);
+	void _isOptional(sbx::productelement_oid peOid, sbx::ValidationResults&);
 
 	void _evaluateRule(unsigned short peOidToValidate, std::shared_ptr<sbx::Rule>, sbx::ValidationResults&, sbx::ValidationCode negativeValCode = sbx::ValidationCode::kFail);
 	mup::Value _execute(const std::string& expr, const std::string& ruleId);

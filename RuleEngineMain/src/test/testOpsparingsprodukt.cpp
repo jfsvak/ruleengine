@@ -181,3 +181,38 @@ TEST_F(Opsparingsproduct_RuleEngine_CONTEXT_KI_OSV_25_50, Opsparingsprodukt_MinA
 
 }
 
+
+TEST_F(Opsparingsproduct_RuleEngine_CONTEXT_KI_OSV_25_50, Opsparingsprodukt_MinAndelTraditionel_NEGATIVE) {
+	RuleEngine::_printDebugAtValidation = true;
+	RuleEngine::_printDebug = true;
+	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	ta.setValue(kMarkedspension_MK, true);
+	ta.setValue(kTraditionel_MK, true);
+	ta.setValue(kTidspensionMedGaranti_MK, true);
+	ta.setValue(kTidspensionUdenGaranti_MK, true);
+	ta.setValue(kLink_MK, true);
+	ta.setValue(kMarkedspension_MK, false);
+
+	auto r = re.validate(ta, true);
+	EXPECT_FALSE(r.hasMessages(kMinAndelTraditionelPct));
+	EXPECT_FALSE(r.hasMessages(kMinAndelTraditionelPctType));
+	cout << r;
+
+	ta.setValue(kMinAndelTraditionelPct, (long) 5);
+	r = re.validate(ta, true);
+	EXPECT_TRUE(r.hasMessages(kMinAndelTraditionelPctType, kProductElementRequired));
+	cout << r;
+
+
+	ta.setValue(kMinAndelTraditionelPctType, "GAGE");
+	r = re.validate(ta, true);
+	EXPECT_FALSE(r.hasMessages(kMinAndelTraditionelPctType, kProductElementRequired));
+	cout << r;
+}
+
+
+
+
+
+
+

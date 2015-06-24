@@ -15,7 +15,8 @@ std::ostream& operator << (std::ostream& output, const ValidationResult& valResu
 			"Variable[" << valResult.getVariableName() << " (" << valResult.getProductElementOid() << ")], " <<
 			"expr[" << valResult.getExpr() << "], " <<
 			"RuleId[" << valResult.getRuleId() << "], " <<
-			"Msg[" << valResult.getMessage() << "]"	;
+			"Msg[" << valResult.getMessage() << "] "	<<
+			"From[" << valResult.getFrom() << "]";
 	return output;
 }
 
@@ -24,7 +25,8 @@ ValidationResult::ValidationResult()
 		  _productElementOid {0},
 		  _ruleId {""},
 		  _message {""},
-		  _expr {""}
+		  _expr {""},
+		  _from {""}
 {}
 
 ValidationResult::ValidationResult(unsigned short peOid)
@@ -32,7 +34,8 @@ ValidationResult::ValidationResult(unsigned short peOid)
 		  _productElementOid {peOid},
 		  _ruleId {""},
 		  _message {""},
-		  _expr {""}
+		  _expr {""},
+		  _from {""}
 {}
 
 /*ValidationResult::ValidationResult(const sbx::ValidationResult& other)
@@ -43,13 +46,20 @@ ValidationResult::ValidationResult(unsigned short peOid)
 		  _message { other._message }
 {}
 */
-ValidationResult::ValidationResult(sbx::ValidationCode code, unsigned short peOid, const std::string& variableName, const std::string& message, const std::string& ruleId, const std::string& expr)
+ValidationResult::ValidationResult(	sbx::ValidationCode code,
+									sbx::productelement_oid peOid,
+									const std::string& variableName,
+									const std::string& message,
+									const std::string& ruleId,
+									const std::string& expr,
+									const std::string& from)
 		: _code { code },
 		  _productElementOid {peOid},
 		  _variableName {variableName},
 		  _ruleId {ruleId},
 		  _message {message},
-		  _expr{expr}
+		  _expr {expr},
+		  _from {from}
 {}
 
 
@@ -58,6 +68,8 @@ unsigned short ValidationResult::getProductElementOid() const { return _productE
 const std::string& ValidationResult::getRuleId() const { return _ruleId; }
 const std::string& ValidationResult::getMessage() const { return _message; }
 const std::string& ValidationResult::getVariableName() const { return _variableName; }
+const std::string& ValidationResult::getExpr() const { return _expr; }
+const std::string& ValidationResult::getFrom() const { return _from; }
 
 ValidationResult& ValidationResult::setValidationCode(sbx::ValidationCode validationCode)
 {
@@ -90,7 +102,6 @@ sbx::ValidationResult& ValidationResult::setVariableName(const std::string& vari
 }
 
 
-const std::string& ValidationResult::getExpr() const { return _expr; }
 
 sbx::ValidationResult& ValidationResult::setExpr(const std::string& expr)
 {
@@ -98,7 +109,14 @@ sbx::ValidationResult& ValidationResult::setExpr(const std::string& expr)
 	return *this;
 }
 
+sbx::ValidationResult& ValidationResult::setFrom(const std::string& from)
+{
+	_from = from;
+	return *this;
+}
+
 ValidationResult::~ValidationResult()
 {}
 
 } /* namespace sbx */
+
