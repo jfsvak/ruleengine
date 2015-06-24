@@ -1014,7 +1014,9 @@
 					/Users/anton/Documents/dev/ruleengine/RuleEngineMain/src/json,
 					/Users/anton/Documents/dev/ruleengine/RuleEngineMain/src/ruleengine,
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.9;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../libs/gtest/include";
 			};
 			name = Debug;
@@ -1028,7 +1030,9 @@
 					/Users/anton/Documents/dev/ruleengine/RuleEngineMain/src/json,
 					/Users/anton/Documents/dev/ruleengine/RuleEngineMain/src/ruleengine,
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.9;
 				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../libs/gtest/include";
 			};
 			name = Release;
