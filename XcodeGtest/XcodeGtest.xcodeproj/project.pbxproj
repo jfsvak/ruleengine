@@ -348,7 +348,7 @@
 		3A2FC2FC1B3A477A00ED50BA /* ValidationResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidationResult.h; sourceTree = "<group>"; };
 		3A2FC2FD1B3A477A00ED50BA /* ValidationResults.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ValidationResults.cpp; sourceTree = "<group>"; };
 		3A2FC2FE1B3A477A00ED50BA /* ValidationResults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidationResults.h; sourceTree = "<group>"; };
-		3A2FC31B1B3A4FCC00ED50BA /* ruleenginetestutils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ruleenginetestutils.cpp; sourceTree = "<group>"; };
+		3A2FC31B1B3A4FCC00ED50BA /* ruleenginetestutils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ruleenginetestutils.cpp; path = ../RuleEngineMain/src/test/ruleenginetestutils.cpp; sourceTree = SOURCE_ROOT; };
 		3A2FC31C1B3A4FCC00ED50BA /* ruleenginetestutils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ruleenginetestutils.h; sourceTree = "<group>"; };
 		3A2FC31D1B3A4FCC00ED50BA /* testBehandlingsforsikring.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testBehandlingsforsikring.cpp; sourceTree = "<group>"; };
 		3A2FC31E1B3A4FCC00ED50BA /* testBoernerente.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testBoernerente.cpp; sourceTree = "<group>"; };
@@ -438,8 +438,8 @@
 				3A2FC2091B3A474300ED50BA /* README */,
 			);
 			name = gtest;
-			path = ../../libs/gtest;
-			sourceTree = "<group>";
+			path = ../libs/gtest;
+			sourceTree = SOURCE_ROOT;
 		};
 		3A2FC1EB1B3A474300ED50BA /* include */ = {
 			isa = PBXGroup;
@@ -587,8 +587,8 @@
 				3A2FC2681B3A475600ED50BA /* utGeneric.h */,
 			);
 			name = parser;
-			path = ../../libs/muparserx/parser;
-			sourceTree = "<group>";
+			path = ../libs/muparserx/parser;
+			sourceTree = SOURCE_ROOT;
 		};
 		3A2FC28E1B3A476900ED50BA /* json */ = {
 			isa = PBXGroup;
@@ -598,8 +598,8 @@
 				3A2FC2921B3A476900ED50BA /* jsoncpp.cpp */,
 			);
 			name = json;
-			path = ../../RuleEngineMain/src/json;
-			sourceTree = "<group>";
+			path = ../RuleEngineMain/src/json;
+			sourceTree = SOURCE_ROOT;
 		};
 		3A2FC2971B3A477A00ED50BA /* ruleengine */ = {
 			isa = PBXGroup;
@@ -653,8 +653,8 @@
 				3A2FC2FE1B3A477A00ED50BA /* ValidationResults.h */,
 			);
 			name = ruleengine;
-			path = ../../RuleEngineMain/src/ruleengine;
-			sourceTree = "<group>";
+			path = ../RuleEngineMain/src/ruleengine;
+			sourceTree = SOURCE_ROOT;
 		};
 		3A2FC2A61B3A477A00ED50BA /* mubridge */ = {
 			isa = PBXGroup;
@@ -761,8 +761,8 @@
 				3A2FC33B1B3A4FCC00ED50BA /* testVirksomhedsomdannelse.cpp */,
 			);
 			name = test;
-			path = ../../RuleEngineMain/src/test;
-			sourceTree = "<group>";
+			path = ../RuleEngineMain/src/test;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -1052,6 +1052,7 @@
 				3A2FC1DF1B3A472D00ED50BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
