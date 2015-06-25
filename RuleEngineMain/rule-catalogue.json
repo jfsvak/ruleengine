@@ -93,7 +93,7 @@
 	    	        "expr": "",
 		   	        "productElementOids": [ 236 ],
    	    		    "requiredif": "#parent#",
-                    "notallowedif": "Omtegning_MK == false",
+                    "notallowedif": "`ning_MK == false",
 	        	    "positiveMessage": "",
 	            	"negativeMessage": "Hvis omtegning er valgt, skal der angives en omtegningsdato"
         	    },
@@ -1462,11 +1462,13 @@
 	        	{
 		            "id": "31.2.1",
 		            "comments" : "Private_Premium_BL - requiredif placeholder",
-	    	        "expr": "",
+	    	        "expr": "Private_Premium_BL > 0",
+	    	        "evaluateExprIf": "Private_Taxed_MK == true",
 		   	        "productElementOids": [ 261 ],
    	    		    "requiredif": "#parent#",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "",
+	            	"negativeMessage": "Pensionsbidraget skal være større end 0 kr",
+	            	"negativeValCode": 102,
 					"positiveRuleCatalogue": []
         	    }
             ],
