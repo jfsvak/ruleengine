@@ -106,6 +106,9 @@ TEST_F(Full_TA_CONTEXT_KI_OSV_25_50, Full_TA_POSITIVE) {
 	r = re.validate(ta);
 	EXPECT_EQ(total+=2, r.sizeValidationResults());
 	cout << r;
+    EXPECT_TRUE(r.hasMessages(kOmtegndato, kProductElementRequired));
+    EXPECT_TRUE(r.hasMessages(kOmtegnperiode, kProductElementRequired));
+    
 
 	ta.setValue(kOmtegndato, (long) 20150615);
 	ta.setValue(kOmtegnperiode, (long) 4);
