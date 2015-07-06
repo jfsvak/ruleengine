@@ -190,6 +190,29 @@ TEST_F(ContributionLadder_Dato_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Dato_3
 	EXPECT_EQ(kValueUnderLimit, r.getValidationResults(kBidragstrappe).at(0).getValidationCode());
 }
 
+TEST_F(ContributionLadder_Dato_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Dato_OVer_100_NEGATIVE) {
+	RuleEngine::_printDebugAtValidation = true;
+	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	ta.setValue(kUnionAgreementRelationship, kOUTSIDE);
+	ta.setValue(kPrivate_Taxed_MK, false);
+	ta.setValue(kAftaleIkraftdato, 20150601);
+	ta.setValue(kBidragsstigningsform, "Dato" );
+	ta.setValue(kHospitalsdaekning_MK, true);
+	ta.setValue(kHospitalsdaekningLeverandoer, "Codan");
+	ta.setValue(kHospitalsdaekningFrivillig_MK, false);
+
+	ta.addContributionStep( {20150601, 2, 3} );
+	auto r = re.validate(ta, false);
+	EXPECT_TRUE(r.isAllOk());
+	cout << r;
+
+	ta.addContributionStep( {20160101, 88, 22} );
+	r = re.validate(ta, false);
+	EXPECT_FALSE(r.isAllOk());
+	cout << r;
+	EXPECT_TRUE(r.hasMessages(kBidragstrappe, kValueOverLimit));
+}
+
 
 
 

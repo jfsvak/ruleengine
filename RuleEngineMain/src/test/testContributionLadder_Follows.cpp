@@ -234,6 +234,29 @@ TEST_F(ContributionLadder_Follows_CONTEXT_KI_OSV_25_50, Bidragstrappe_Follows_UA
 
 }
 
+TEST_F(ContributionLadder_Follows_CONTEXT_KI_OSV_25_50, Bidragstrappe_Follows_Over100_NEGATIVE) {
+	RuleEngine::_printDebugAtValidation = true;
+	KonceptInfo ki {OSV, 30, 0, // UnderkonceptOid:OSV 25-49
+					{ { 1, "true"}, // Solidarisk faellestarif
+					  { 6, "true"}, // SEB Firmapensionspulje
+					  {11, "true"}, // Parameter-Basis
+					  {15, "true"} // FG-Spaend
+					} };
+	re.initContext(ki, FOLLOWS);
+
+	TA ta { "15124040", OSV}; // KonceptOid 4 - OSV
+	ta.setValue(kAftaleIkraftdato, 20150701);
+	ta.setValue(kUnionAgreementOid, 4);
+	ta.setValue(kUnionAgreementRelationship, sbx::kFOLLOWS);
+	ta.setValue(kBidragEjFoesteTrin_MK, true);
+	ta.addContributionStep({20150701, 99, 1.1});
+
+	auto r = re.validate(ta, false);
+	EXPECT_FALSE(r.isAllOk());
+	cout << r;
+	EXPECT_TRUE(r.hasMessages(kBidragstrappe, kValueOverLimit));
+}
+
 
 
 

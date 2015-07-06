@@ -265,6 +265,28 @@ TEST_F(ContributionLadder_Alder_CONTEXT_KI_OSV_25_50, Duplicate_Alder_Index_NEGA
 
 }
 
+TEST_F(ContributionLadder_Alder_CONTEXT_KI_OSV_25_50, Alder_Index_Over100_NEGATIVE) {
+	RuleEngine::_printDebugAtValidation = true;
+	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	ta.setValue(kUnionAgreementRelationship, kOUTSIDE);
+	ta.setValue(kPrivate_Taxed_MK, false);
+	ta.setValue(kAftaleIkraftdato, (long) 20150601);
+	ta.setValue(kBidragsstigningsform, "Alder" );
+	ta.setValue(kHospitalsdaekning_MK, true);
+	ta.setValue(kHospitalsdaekningLeverandoer, "Codan");
+	ta.setValue(kHospitalsdaekningFrivillig_MK, false);
+	ta.setValue(kIndmeldelsesAlder, 18);
+
+	ta.setContributionSteps({ {18, 5, 5},
+							  {24, 99, 2},
+		                      {25, 4, 4} });
+	auto r = re.validate(ta, false);
+	cout << r;
+	EXPECT_FALSE(r.isAllOk());
+
+	EXPECT_TRUE(r.hasMessages(kBidragstrappe, kValueOverLimit));
+
+}
 
 
 

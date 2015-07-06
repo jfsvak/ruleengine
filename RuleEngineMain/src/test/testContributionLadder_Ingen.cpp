@@ -209,4 +209,27 @@ TEST_F(ContributionLadder_Ingen_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Ingen
 
 }
 
+TEST_F(ContributionLadder_Ingen_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Ingen_Over100_NEGATIVE)
+{
+	RuleEngine::_printDebugAtValidation = true;
+	TA ta { "15124040", 4 }; // KonceptOid 4 - OSV
+	ta.setValue(kAftaleIkraftdato, 20150701);
+	ta.setValue(kUnionAgreementRelationship, kOUTSIDE);
+	ta.setValue(kBidragEjFoesteTrin_MK, false);
+	ta.setValue(kBidragsstigningsform, "Ingen");
+	ta.setValue(kHospitalsdaekning_MK, false);
+	ta.setValue(kHospitalsdaekningFrivillig_MK, false);
+	ta.setValue(kPrivate_Taxed_MK, false);
 
+	ta.addContributionStep( {0, 90, 11} );
+
+	auto r = re.validate(ta, false);
+	EXPECT_FALSE(r.isAllOk());
+	cout << r;
+	EXPECT_TRUE(r.hasMessages(kBidragstrappe, kValueOverLimit));
+
+	ta.addContributionStep( {0, 90, 9} );
+	r = re.validate(ta, false);
+	EXPECT_FALSE(r.isAllOk());
+	cout << r;
+}

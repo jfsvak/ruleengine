@@ -185,6 +185,28 @@ TEST_F(ContributionLadder_Anciennitet_CONTEXT_KI_OSV_25_50, Bidragsstigningsform
 	EXPECT_TRUE(r.hasMessages(kBidragstrappe, kValueUnderLimit));
 }
 
+TEST_F(ContributionLadder_Anciennitet_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Anciennitet_Over100_NEGATIVE) {
+	RuleEngine::_printDebugAtValidation = true;
+	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	ta.setValue(kUnionAgreementRelationship, kOUTSIDE);
+	ta.setValue(kPrivate_Taxed_MK, false);
+	ta.setValue(kBidragsstigningsform, "Anciennitet" );
+	ta.setValue(kHospitalsdaekning_MK, true);
+	ta.setValue(kHospitalsdaekningLeverandoer, "Codan");
+	ta.setValue(kHospitalsdaekningFrivillig_MK, false);
+
+	ta.addContributionStep( {0, 2, 3} );
+	auto r = re.validate(ta, false);
+	EXPECT_TRUE(r.isAllOk());
+	cout << r;
+
+	ta.addContributionStep( {2, 99, 2} ); // add a step where the total is not increasing 1+1 < 2+3
+	r = re.validate(ta, false);
+	EXPECT_FALSE(r.isAllOk());
+	cout << r;
+	EXPECT_TRUE(r.hasMessages(kBidragstrappe, kValueOverLimit));
+}
+
 
 
 
