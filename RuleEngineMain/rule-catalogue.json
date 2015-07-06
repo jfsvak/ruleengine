@@ -124,6 +124,7 @@
             "positiveRuleCatalogue":
 	        [
 		        {
+		        	"comments" : "FravalgRisikoAlder not allowed",
 		            "id": "21.1.1",
 	    	        "expr": "",
 		   	        "productElementOids": [ 231 ],
@@ -131,6 +132,17 @@
    	    		    "notallowedif": "FravalgRisiko_mk == false",
 	        	    "positiveMessage": "",
 	            	"negativeMessage": "FravalgRisikoAlder skal ikke angives, når risiko ikke er fravalgt"
+        	    },
+		        {
+		        	"comments" : "FravalgRisikoAlder < Udlobsalder_Pension",
+		            "id": "21.1.2",
+	    	        "expr": "FravalgRisikoAlder < Udlobsalder_Pension",
+	    	        "evaluateExprIf": "#parent#",
+		   	        "productElementOids": [ 231 ],
+   	    		    "requiredif": "",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Fra alder for fravalg af risikodækning skal være mindre end Udløbsalder",
+	            	"negativeValCode": 103
         	    }
             ],
 	        "negativeRuleCatalogue": []

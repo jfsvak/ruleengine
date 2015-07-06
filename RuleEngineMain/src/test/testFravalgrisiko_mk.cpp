@@ -14,7 +14,7 @@
 using namespace std;
 using namespace sbx;
 
-class RuleEngine_CONTEXT_KI_OSV_25_50 : public RuleEngineInitialiser {
+class FravalgRisiko_CONTEXT_KI_OSV_25_50 : public RuleEngineInitialiser {
 protected:
     virtual void SetUp() {
     	RuleEngineInitialiser::SetUp();
@@ -32,7 +32,7 @@ protected:
 // PE:
 //   FravalgRisiko_MK - PE(230)-P(129)
 // Allowed values: true | false
-TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, FravalgRisiko_MK_POSITIVE) {
+TEST_F(FravalgRisiko_CONTEXT_KI_OSV_25_50, FravalgRisiko_MK_POSITIVE) {
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
 	ta.setValue(kFravalgRisiko_MK, true);
 
@@ -53,7 +53,7 @@ TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, FravalgRisiko_MK_POSITIVE) {
 //   FravalgRisikoAlder - PE(231)-P(129)
 // Allowed values:
 //   FravalgRisikoAlder between 40-67
-TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, FravalgRisikoAlder_POSITIVE) {
+TEST_F(FravalgRisiko_CONTEXT_KI_OSV_25_50, FravalgRisikoAlder_POSITIVE) {
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
 	ta.setValue(kFravalgRisiko_MK, true);
 	ta.setValue(kFravalgRisikoAlder, (long) 40); // allowed
@@ -76,7 +76,7 @@ TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, FravalgRisikoAlder_POSITIVE) {
 //   FravalgRisikoAlder - PE(231)-P(129)
 // Allowed values:
 //   FravalgRisikoAlder between 40-67
-TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, FravalgRisikoAlder_NEGATIVE) {
+TEST_F(FravalgRisiko_CONTEXT_KI_OSV_25_50, FravalgRisikoAlder_NEGATIVE) {
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
 	ta.setValue(kFravalgRisiko_MK, true);
 
@@ -104,7 +104,7 @@ TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, FravalgRisikoAlder_NEGATIVE) {
 //   FravalgRisikoAlder - PE(231)-P(129)
 // Allowed values:
 //   FravalgRisikoAlder not allowed as FravalgRisiko_MK is false
-TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, FravalgRisikoAlder_FravalgRisiko_MK_NEGATIVE) {
+TEST_F(FravalgRisiko_CONTEXT_KI_OSV_25_50, FravalgRisikoAlder_FravalgRisiko_MK_NEGATIVE) {
 	RuleEngine::_printDebugAtValidation = true;
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
 	ta.setValue(kFravalgRisiko_MK, false);
@@ -128,3 +128,29 @@ TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, FravalgRisikoAlder_FravalgRisiko_MK_NEGA
 	if (!r.isAllOk())
 		cout << r;
 }
+
+TEST_F(FravalgRisiko_CONTEXT_KI_OSV_25_50, FravalgRisikoAlder_TooBig_NEGATIVE) {
+	RuleEngine::_printDebugAtValidation = true;
+	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	ta.setValue(kUdlobsalder_Pension, (long) 65);
+	ta.setValue(kFravalgRisiko_MK, true);
+	ta.setValue(kFravalgRisikoAlder, (long) 66);
+
+	auto r = re.validate(ta, false);
+	EXPECT_FALSE(r.isAllOk());
+	cout << r;
+	EXPECT_TRUE(r.hasMessages(kFravalgRisikoAlder, kValueOverLimit));
+
+	ta.setValue(kUdlobsalder_Pension, (long) 67);
+
+	r = re.validate(ta, false);
+	EXPECT_TRUE(r.isAllOk());
+	cout << r;
+	ta.setValue(kUdlobsalder_Pension, (long) 65);
+	ta.setValue(kFravalgRisikoAlder, (long) 60);
+
+	r = re.validate(ta, false);
+	EXPECT_TRUE(r.isAllOk());
+	cout << r;
+}
+
