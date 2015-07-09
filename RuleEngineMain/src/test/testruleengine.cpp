@@ -34,7 +34,7 @@ protected:
 
 // Test cases
 TEST_F(ProductElementValidationTest, aPositiveScenario) {
-    TA ta { "15124040", 4};
+    TA ta { "15124040"};
     RuleEngine::_printDebugAtValidation = true;
     ta.setValue(kDoedReguleringskode, std::string {"Gage"})
     			.setValue(kDoedPctGrMin, (long) 200)
@@ -49,7 +49,7 @@ TEST_F(ProductElementValidationTest, aPositiveScenario) {
 }
 
 TEST_F(ProductElementValidationTest, peValueIsOverTheLimit) {
-    TA ta { "15124040", 4};
+    TA ta { "15124040"};
     ta.setValue(kDoedReguleringskode, std::string {"Gage"});
     ta.getValue(kDoedPctGrMin).setValue("700");
     ta.getValue(kDoedPctOblMax).setValue("801");
@@ -66,7 +66,7 @@ TEST_F(ProductElementValidationTest, peValueIsOverTheLimit) {
 
 TEST_F(ProductElementValidationTest, relatedPEValueSpaendIsOverTheLimit) {
     RuleEngine::_printDebugAtValidation = true;
-    TA ta { "15124040", 4};
+    TA ta { "15124040"};
     ta.setValue(kDoedReguleringskode, std::string {"Gage"});
     ta.getValue(kDoedPctGrMin).setValue("100");
     ta.getValue(kDoedPctOblMax).setValue("700");

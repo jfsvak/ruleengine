@@ -26,13 +26,13 @@ protected:
     	try {
 			RuleEngineInitialiser::SetUp();
 
-			KonceptInfo ki {OSV, 30, 0, // UnderkonceptOid:OSV 25-49
+			_ki = {OSV, 30, 0, // UnderkonceptOid:OSV 25-49
 				{ { 1, "true"}, // Solidarisk faellestarif
 				  { 6, "true"}, // SEB Firmapensionspulje
 				  {11, "true"}, // Parameter-Basis
 				  {15, "true"} // FG-Spaend
 				} };
-			re.initContext(ki, FOLLOWS);
+			re.initContext(_ki, FOLLOWS, 6);
     	} catch (const exception& e) {
     		cerr << "Exception: " << e.what() << endl;
     	}
@@ -43,9 +43,9 @@ protected:
 
 TEST_F(ContributionLadder_Follows_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_POSITIVE) {
 	RuleEngine::_printDebugAtValidation = true;
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
-	ta.setValue(kUnionAgreementOid, 6);
-	ta.setValue(kUnionAgreementRelationship, sbx::kFOLLOWS);
+	TA ta { "15124040" }; // KonceptOid 4 - OSV
+//	ta.setValue(kUnionAgreementOid, 6);
+//	ta.setValue(kUnionAgreementRelationship, sbx::kFOLLOWS);
 	ta.setValue(kAftaleIkraftdato, 20080801);
 
 	auto r = re.validate(ta, false);
@@ -53,10 +53,11 @@ TEST_F(ContributionLadder_Follows_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_POS
 	cout << r;
 	EXPECT_EQ(1, r.getValidationResults(kBidragEjFoesteTrin_MK).size());
 	EXPECT_TRUE(r.hasMessages(kBidragEjFoesteTrin_MK, kProductElementRequired));
-	ta.remove(kUnionAgreementOid);
-	ta.remove(kUnionAgreementRelationship);
-	ta.setUar(sbx::UnionAgreementRelationship::FOLLOWS);
-	ta.setUnionAgreementOid(6);
+//	ta.remove(kUnionAgreementOid);
+//	ta.remove(kUnionAgreementRelationship);
+//	ta.setUar(sbx::UnionAgreementRelationship::FOLLOWS);
+//	ta.setUnionAgreementOid(6);
+	re.initContext(_ki, FOLLOWS, 6);
 
 	r = re.validate(ta, false);
 	EXPECT_FALSE(r.isAllOk());
@@ -126,10 +127,10 @@ TEST_F(ContributionLadder_Follows_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_POS
 
 TEST_F(ContributionLadder_Follows_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Alder_When_Follows) {
 	RuleEngine::_printDebugAtValidation = true;
-	TA ta { "15124040", OSV}; // KonceptOid 4 - OSV
+	TA ta { "15124040" }; // KonceptOid 4 - OSV
 	ta.setValue(kAftaleIkraftdato, 20080801);
-	ta.setValue(kUnionAgreementOid, 6);
-	ta.setValue(kUnionAgreementRelationship, sbx::kFOLLOWS);
+//	ta.setValue(kUnionAgreementOid, 6);
+//	ta.setValue(kUnionAgreementRelationship, sbx::kFOLLOWS);
 	ta.setValue(kBidragEjFoesteTrin_MK, true);
 	ta.setValue(kBidragsstigningsform, "Alder");
 	ta.addContributionStep({18, 4.5, 8.1});
@@ -142,10 +143,10 @@ TEST_F(ContributionLadder_Follows_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Ald
 
 TEST_F(ContributionLadder_Follows_CONTEXT_KI_OSV_25_50, Bidragstrappe_When_Follows_Ingen) {
 	RuleEngine::_printDebugAtValidation = true;
-	TA ta { "15124040", OSV}; // KonceptOid 4 - OSV
+	TA ta { "15124040"}; // KonceptOid 4 - OSV
 	ta.setValue(kAftaleIkraftdato, 20080801);
-	ta.setValue(kUnionAgreementOid, 6);
-	ta.setValue(kUnionAgreementRelationship, sbx::kFOLLOWS);
+//	ta.setValue(kUnionAgreementOid, 6);
+//	ta.setValue(kUnionAgreementRelationship, sbx::kFOLLOWS);
 	ta.setValue(kBidragEjFoesteTrin_MK, true);
 	ta.addContributionStep({0, 4.5, 8.5});
 	ta.setValue(kBidragsstigningsform, "Ingen");
@@ -158,10 +159,10 @@ TEST_F(ContributionLadder_Follows_CONTEXT_KI_OSV_25_50, Bidragstrappe_When_Follo
 
 TEST_F(ContributionLadder_Follows_CONTEXT_KI_OSV_25_50, Bidragstrappe_When_Follows_Dato) {
 	RuleEngine::_printDebugAtValidation = true;
-	TA ta { "15124040", OSV}; // KonceptOid 4 - OSV
+	TA ta { "15124040"}; // KonceptOid 4 - OSV
 	ta.setValue(kAftaleIkraftdato, 20080801);
-	ta.setValue(kUnionAgreementOid, 6);
-	ta.setValue(kUnionAgreementRelationship, sbx::kFOLLOWS);
+//	ta.setValue(kUnionAgreementOid, 6);
+//	ta.setValue(kUnionAgreementRelationship, sbx::kFOLLOWS);
 	ta.setValue(kBidragEjFoesteTrin_MK, true);
 	ta.addContributionStep({20080801, 4.5, 8.5});
 	ta.setValue(kBidragsstigningsform, "Dato");
@@ -173,10 +174,18 @@ TEST_F(ContributionLadder_Follows_CONTEXT_KI_OSV_25_50, Bidragstrappe_When_Follo
 
 TEST_F(ContributionLadder_Follows_CONTEXT_KI_OSV_25_50, Bidragstrappe_When_Included_Ingen) {
 	RuleEngine::_printDebugAtValidation = true;
-	TA ta { "15124040", OSV}; // KonceptOid 4 - OSV
+	KonceptInfo ki {OSV, 30, 0, // UnderkonceptOid:OSV 25-49
+		{ { 1, "true"}, // Solidarisk faellestarif
+		  { 6, "true"}, // SEB Firmapensionspulje
+		  {11, "true"}, // Parameter-Basis
+		  {15, "true"} // FG-Spaend
+		} };
+	re.initContext(ki, INCLUDED, 6);
+
+	TA ta { "15124040"}; // KonceptOid 4 - OSV
 	ta.setValue(kAftaleIkraftdato, 20080801);
-	ta.setValue(kUnionAgreementOid, 6);
-	ta.setValue(kUnionAgreementRelationship, sbx::kINCLUDED);
+//	ta.setValue(kUnionAgreementOid, 6);
+//	ta.setValue(kUnionAgreementRelationship, sbx::kINCLUDED);
 	ta.setValue(kBidragEjFoesteTrin_MK, true);
 	ta.addContributionStep({0, 4.5, 8.5});
 	ta.setValue(kBidragsstigningsform, "Ingen");
@@ -196,10 +205,18 @@ TEST_F(ContributionLadder_Follows_CONTEXT_KI_OSV_25_50, Bidragstrappe_When_Inclu
 
 TEST_F(ContributionLadder_Follows_CONTEXT_KI_OSV_25_50, Bidragstrappe_When_Included_Dato) {
 	RuleEngine::_printDebugAtValidation = true;
+	KonceptInfo ki {OSV, 30, 0, // UnderkonceptOid:OSV 25-49
+		{ { 1, "true"}, // Solidarisk faellestarif
+		  { 6, "true"}, // SEB Firmapensionspulje
+		  {11, "true"}, // Parameter-Basis
+		  {15, "true"} // FG-Spaend
+		} };
+	re.initContext(ki, INCLUDED, 6);
+
 	TA ta { "15124040", OSV}; // KonceptOid 4 - OSV
 	ta.setValue(kAftaleIkraftdato, 20080801);
-	ta.setValue(kUnionAgreementOid, 6);
-	ta.setValue(kUnionAgreementRelationship, sbx::kINCLUDED);
+//	ta.setValue(kUnionAgreementOid, 6);
+//	ta.setValue(kUnionAgreementRelationship, sbx::kINCLUDED);
 	ta.setValue(kBidragEjFoesteTrin_MK, true);
 	ta.addContributionStep({0, 4.5, 8.5});
 	ta.setValue(kBidragsstigningsform, "Dato");
@@ -218,12 +235,12 @@ TEST_F(ContributionLadder_Follows_CONTEXT_KI_OSV_25_50, Bidragstrappe_Follows_UA
 					  {11, "true"}, // Parameter-Basis
 					  {15, "true"} // FG-Spaend
 					} };
-	re.initContext(ki, FOLLOWS);
+	re.initContext(ki, FOLLOWS, 4);
 
 	TA ta { "15124040", OSV}; // KonceptOid 4 - OSV
 	ta.setValue(kAftaleIkraftdato, 20150701);
-	ta.setValue(kUnionAgreementOid, 4);
-	ta.setValue(kUnionAgreementRelationship, sbx::kFOLLOWS);
+//	ta.setValue(kUnionAgreementOid, 4);
+//	ta.setValue(kUnionAgreementRelationship, sbx::kFOLLOWS);
 	ta.setValue(kBidragEjFoesteTrin_MK, true);
 	ta.addContributionStep({20150701, 5.0, 10.1});
 	ta.setValue(kBidragsstigningsform, "Dato");
@@ -242,12 +259,12 @@ TEST_F(ContributionLadder_Follows_CONTEXT_KI_OSV_25_50, Bidragstrappe_Follows_Ov
 					  {11, "true"}, // Parameter-Basis
 					  {15, "true"} // FG-Spaend
 					} };
-	re.initContext(ki, FOLLOWS);
+	re.initContext(ki, FOLLOWS, 4);
 
 	TA ta { "15124040", OSV}; // KonceptOid 4 - OSV
 	ta.setValue(kAftaleIkraftdato, 20150701);
-	ta.setValue(kUnionAgreementOid, 4);
-	ta.setValue(kUnionAgreementRelationship, sbx::kFOLLOWS);
+//	ta.setValue(kUnionAgreementOid, 4);
+//	ta.setValue(kUnionAgreementRelationship, sbx::kFOLLOWS);
 	ta.setValue(kBidragEjFoesteTrin_MK, true);
 	ta.addContributionStep({20150701, 99, 1.1});
 

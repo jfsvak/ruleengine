@@ -211,39 +211,46 @@ void RuleEngine::_initRuleCatalogue(sbx::RuleCatalogue* ruleCatalogue, const Jso
  */
 void RuleEngine::initContext(const sbx::KonceptInfo& ki, sbx::UnionAgreementRelationship uar, sbx::unionagreement_oid uaOid)
 {
-	// first clear any previous context
-	this->_clearContext();
+	// Clear any previous context and parser values
+	_container.clearContext();
+	this->_clearParserValues();
 
-	if (_container.getKoncepts().find(ki.getKonceptOid()) == _container.getKoncepts().cend()) {
+	// Check union agreement
+	if (uar != sbx::UnionAgreementRelationship::OUTSIDE && (uaOid == sbx::undefined_oid || !_container.isUnionAgreementLoaded(uaOid)) )
+	{
+		stringstream ss {};
+		ss << "Invalid context! Cannot set FOLLOWS or INCLUDED with invalid union agreement oid[" << uaOid << "]";
+		throw domain_error(ss.str());
+	}
+
+	// Check koncept
+	if (_container.getKoncepts().find(ki.getKonceptOid()) == _container.getKoncepts().cend())
+	{
 		stringstream ss {};
 		ss << ki.getKonceptOid();
 		throw domain_error("No valid koncept with oid [" + ss.str() + "]");
 	}
 
+	// Find subkoncept
     Koncept k = _container.getKoncepts().at(ki.getKonceptOid());
    	Subkoncept sk = k.getSubkoncept(ki.getNumberOfEmployees());
 
-	_container.initContext(sk, uar, uaOid);
+	_container.initContext(sk, ki, uar, uaOid);
 
-	_ki = ki;
 	// init ParserX with constants for context by going through each parameter and get the product elements for that parameter
-	for (auto& parameterIt : ki.getParameterValues()) {
-		const std::set<sbx::productelement_oid>& peOids = _container.getProductElementOids(parameterIt.first);
+	const std::set<sbx::productelement_oid>& peOids = _container.getAllowedPEOids();
 
-		for (auto& peOid : peOids) {
-			// get min and max values and initialise parser with that
-			_initParserWithProductElementConstants(peOid);
-		}
-	}
+	for (auto& peOid : peOids)
+		// get min and max values and initialise parser with that
+		_initParserWithProductElementConstants(peOid);
 }
 
-void RuleEngine::_clearContext()
+void RuleEngine::_clearParserValues()
 {
 	// clear parser for variables and consts
 	_parser.ClearVar();
 	_parser.ClearConst();
 	_mupValueMap.clear();
-	_ki = {};
 }
 
 void RuleEngine::_initParserWithProductElementConstants(unsigned short peOid)
@@ -395,10 +402,16 @@ const sbx::RuleConstantContainer& RuleEngine::getContainer() const
  * Loads all ta values into the parser as variables.
  * When setting values, it checks to see if the value/variable is already there. If it is, then the value is just updated
  */
-void RuleEngine::_loadParser(const TA& ta, ValidationResults& valResults)
+void RuleEngine::_loadParser(TA& ta, ValidationResults& valResults)
 {
 	// clear all vars in parser, and
 	_parser.ClearVar();
+
+	// set ua + uar on ta for pe value initialisation into the parser
+	ta.setValue(kUnionAgreementRelationship, sbx::utils::convertUAR(_container.getUnionAgreementRelationship()));
+
+	if (_container.getUnionAgreementRelationship() != OUTSIDE)
+		ta.setValue(kUnionAgreementOid, _container.getUnionAgreementOid());
 
 	// initialise all PE values for TA into parser
 	for (auto& item : ta.getValues())
@@ -508,17 +521,15 @@ void RuleEngine::_loadUAContributionStep(const TA& ta, ValidationResults& valRes
 	if (_parser.IsConstDefined(sbx::kUnionAgreementTotalPct1stStep))
 		_parser.RemoveConst(sbx::kUnionAgreementTotalPct1stStep);
 
-	if (ta.getValue(kUnionAgreementRelationship).stringValue() == sbx::kFOLLOWS || ta.getValue(kUnionAgreementRelationship).stringValue() == sbx::kINCLUDED)
+	if (_container.getUnionAgreementRelationship() == sbx::FOLLOWS || _container.getUnionAgreementRelationship() == sbx::INCLUDED)
 	{
-		int uaOid = ta.getValue(kUnionAgreementOid).longValue();
+		sbx::unionagreement_oid uaOid = _container.getUnionAgreementOid();
 
 		// if the ua oid is unknown, the set message for the union agreement oid
-		if (uaOid == undefined_oid)
+		if (uaOid == sbx::undefined_oid)
 			valResults.addValidationResult( sbx::ValidationResult(sbx::kValueNotAllowed, kUnionAgreementOid, kUnionAgreementOid_VARNAME, "Vælg venligst en gyldig overenskomst!") );
 		else
 		{
-            
-            
             if (ta.hasValue(kAftaleIkraftdato))
             {
                 int aftaleIkraftdato = ta.getValue(kAftaleIkraftdato).longValue();
@@ -544,7 +555,7 @@ void RuleEngine::_loadUAContributionStep(const TA& ta, ValidationResults& valRes
 /**
  * See sbx::ValidationResults RuleEngine::validate(const TA& ta, const std::vector<unsigned short>& peOidsToValidate)
  */
-sbx::ValidationResults RuleEngine::validate(const TA& ta, unsigned short peOidToValidate)
+sbx::ValidationResults RuleEngine::validate(sbx::TA& ta, unsigned short peOidToValidate)
 {
 	return this->validate(ta, std::vector<unsigned short> {peOidToValidate});
 }
@@ -559,7 +570,7 @@ sbx::ValidationResults RuleEngine::validate(const TA& ta, unsigned short peOidTo
  *     - custom rule expressions for the pe
  *     - run any requireif rules
  */
-sbx::ValidationResults RuleEngine::validate(const TA& ta, const std::vector<unsigned short>& peOidsToValidate)
+sbx::ValidationResults RuleEngine::validate(sbx::TA& ta, const std::vector<unsigned short>& peOidsToValidate)
 {
 	sbx::ValidationResults valResults{};
 
@@ -1070,9 +1081,8 @@ mup::Value RuleEngine::_execute(const std::string& expr, const std::string& rule
  * 	 false				: Only validates the values put on the ta already. Does not take into account values that are not set, but might be required
  *
  */
-sbx::ValidationResults RuleEngine::validate(const sbx::TA& ta, bool full)
+sbx::ValidationResults RuleEngine::validate(sbx::TA& ta, bool full)
 {
-
 	sbx::ValidationResults valResults {};
 	_loadParser(ta, valResults);
 	_refreshParserValues = false;
@@ -1080,7 +1090,7 @@ sbx::ValidationResults RuleEngine::validate(const sbx::TA& ta, bool full)
     if (RuleEngine::_printDebugAtValidation) printVariablesInParser();
 
 	try {
-		std::set<sbx::productelement_oid, less<sbx::productelement_oid>> allowedProductElementOids { _getAllowedPEOids() };
+		std::set<sbx::productelement_oid, less<sbx::productelement_oid>> allowedProductElementOids { _container.getAllowedPEOids() };
 
 		// run through all available values on the TA and check to see if they are OK
 		//   check if they are allowed according to the konceptinfo
@@ -1239,18 +1249,6 @@ void RuleEngine::_checkRequiredness(sbx::productelement_oid _peOid, std::shared_
 	}
 }
 
-std::set<sbx::productelement_oid, std::less<sbx::productelement_oid>> RuleEngine::_getAllowedPEOids() const
-{
-	std::set<sbx::productelement_oid, std::less<sbx::productelement_oid>> allowedProductElementOids {};
-
-	for (auto& parameterIt : _ki.getParameterValues()) {
-		const std::set<sbx::productelement_oid>& productElementOids = _container.getProductElementOids(parameterIt.first);
-		allowedProductElementOids.insert(productElementOids.cbegin(), productElementOids.cend());
-	}
-
-	return allowedProductElementOids;
-}
-
 std::shared_ptr<sbx::Constant> RuleEngine::getDefaultValue(sbx::ProductElementOid productElement)
 {
 	// look up the productElement oid and see in which internal map to find the constant
@@ -1368,7 +1366,7 @@ sbx::RuleCatalogue& RuleEngine::getRuleCatalogue()
 
 bool RuleEngine::isProductElementAllowed(sbx::productelement_oid peOid) const
 {
-	const auto& allowedPEs =_getAllowedPEOids();
+	const auto& allowedPEs = _container.getAllowedPEOids();
 	return (allowedPEs.find(peOid) != allowedPEs.cend());
 }
 

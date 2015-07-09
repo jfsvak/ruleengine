@@ -43,7 +43,7 @@ TEST_F(RelatedSubkoncepts, Udlobsalder_Pension_Allowed_Values) {
 	re.getContainer().printConstants(29);
 	re.getContainer().printParametersToProducts(29);
 
-	TA ta {"20247940", PROSA};
+	TA ta {"20247940"};
 
 	ta.setValue(kUdlobsalder_Pension, (long) 65);
 
@@ -63,7 +63,7 @@ TEST_F(RelatedSubkoncepts, Private_Taxed_MK_NotAllowed) {
 	RuleEngine::_printDebugAtValidation = true;
 	re.getContainer().printKoncepts();
 
-	TA ta {"20247940", PROSA};
+	TA ta {"20247940"};
 
 	ta.setValue(kPrivate_Taxed_MK, true);
 
@@ -96,7 +96,7 @@ TEST_F(RelatedSubkoncepts, ContextSwitch) {
 
 	re2.getContainer().printConstants(18, 216);
 
-	TA ta {"20247940", OSV};
+	TA ta {"20247940"};
 
 	ta.setValue(kDoedReguleringskode, "Pristal");
 	ta.setValue(kDoedBlGrMin, (long) 50000);

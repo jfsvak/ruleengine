@@ -55,19 +55,14 @@ TEST_F(Full_TA_CONTEXT_KI_OSV_25_50, ProductElementAllowed) {
 }
 
 TEST_F(Full_TA_CONTEXT_KI_OSV_25_50, Full_TA_POSITIVE) {
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040"}; // KonceptOid 4 - OSV
 	RuleEngine::_printDebugAtValidation = true;
-	int total {134};
+	// union agreement already set to OUTSIDE, so uar, uaoid and bidragej_forstetrin are not expected
+	int total {131};
 
 	auto r = re.validate(ta);
 	EXPECT_FALSE(r.isAllOk());
 	EXPECT_EQ(total, r.sizeValidationResults());
-	cout << r;
-
-	// union agreement
-	ta.setValue(kUnionAgreementRelationship, sbx::kOUTSIDE);
-	r = re.validate(ta);
-	EXPECT_EQ(total-=3, r.sizeValidationResults());
 	cout << r;
 
 	//

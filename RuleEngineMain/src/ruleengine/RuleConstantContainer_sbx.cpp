@@ -388,8 +388,7 @@ void RuleConstantContainer::_initParameters(const Json::Value& parameters)
 
 bool RuleConstantContainer::existsAs(unsigned short peOid, const sbx::ComparisonTypes& ct) const
 {
-	if (!_contextInitialised)
-		throw domain_error("Context not initialised!");
+	this->_checkContextInitialisation();
 
 	subkoncept_oid skOid = _subkoncept.getOid();
 	subkoncept_oid rskOid = _subkoncept.getRelatedSubkonceptOid();
@@ -450,7 +449,7 @@ void RuleConstantContainer::_initParametersToProducts(const Json::Value& paramet
 void RuleConstantContainer::_initInternalMaps()
 {
 	// initialise the 3 maps of constant types
-	for (const auto& constant : _globalConstants)
+	for (auto& constant : _globalConstants)
 	{
 
 		// equals/enum goes into _ukOptionsMap as a shared_ptr to the Constant in a _globalConstants
@@ -491,22 +490,52 @@ void RuleConstantContainer::_initInternalMaps()
 /**
  * Initialises the local, current context for this RuleConstantContainer
  */
-void RuleConstantContainer::initContext(const sbx::Subkoncept& subkoncept, sbx::UnionAgreementRelationship uar, sbx::unionagreement_oid uaOid)
+void RuleConstantContainer::initContext(const sbx::Subkoncept& subkoncept, const sbx::KonceptInfo& ki, sbx::UnionAgreementRelationship uar, sbx::unionagreement_oid uaOid)
 {
-	// since three maps containing pointers to Constants are created in the initialisation of the globalConstants, switching context is simply to just set the underKonceptOid and unionAgreementOid
+	// since three maps containing pointers to Constants are created in the initialisation of the globalConstants, switching context is simply to just set the underKonceptOid and unionAgreementOid and relationship
 	_subkoncept = subkoncept;
+	_ki = ki;
 	_unionAgreementRelationship = uar;
 	_unionAgreementOid = uaOid;
 	_contextInitialised = true;
 }
 
+void RuleConstantContainer::clearContext()
+{
+	_subkoncept = {};
+	_ki = {};
+	_unionAgreementOid = sbx::undefined_oid;
+	_contextInitialised = false;
+}
+
+bool RuleConstantContainer::isContainerInitialised() const
+{
+	return _contextInitialised;
+}
+
+sbx::UnionAgreementRelationship RuleConstantContainer::getUnionAgreementRelationship() const
+{
+	this->_checkContextInitialisation();
+	return _unionAgreementRelationship;
+}
+
+sbx::unionagreement_oid RuleConstantContainer::getUnionAgreementOid() const
+{
+	this->_checkContextInitialisation();
+	return _unionAgreementOid;
+}
+
+void RuleConstantContainer::_checkContextInitialisation() const
+{
+	if (!_contextInitialised)
+		throw domain_error("Context not initialised!");
+}
 /**
  * Gets a vector of strings with option values for productElement
  */
 std::vector<std::string> RuleConstantContainer::getOptions(sbx::productelement_oid productElementOid)
 {
-	if (!_contextInitialised)
-		throw domain_error("Context not initialised!");
+	this->_checkContextInitialisation();
 
 	std::vector<std::shared_ptr<Constant>> constantList = this->getOptionsList(productElementOid);
 	// create new vector of strings only
@@ -520,39 +549,73 @@ std::vector<std::string> RuleConstantContainer::getOptions(sbx::productelement_o
 
 /**
  * Gets a vector of shared_ptr->Constant
- * First looks into subkoncept, and if not found, look into related subkoncept
+ * Priority for getting constants in context.
+ * 1. Union agreement constants first
+ * 2. Underkoncept
+ * 3. Related underkoncept
+ * 4. If nothing still not found, return empty list
  */
-std::vector<std::shared_ptr<Constant>> RuleConstantContainer::getOptionsList(sbx::productelement_oid productElementOid)
+std::vector<std::shared_ptr<Constant>> RuleConstantContainer::getOptionsList(sbx::productelement_oid productElementOid) const
 {
-	if (!_contextInitialised)
-		throw domain_error("Context not initialised!");
+	this->_checkContextInitialisation();
 
-	subkoncept_oid ukOid = _subkoncept.getOid();
+	if (_unionAgreementRelationship == sbx::UnionAgreementRelationship::INCLUDED)
+	{
+		if (_unionAgreementOid != undefined_oid)
+		{
+			try {
+				return _uaOptionsMap.at(_unionAgreementOid).at(productElementOid);
+			} catch (const std::out_of_range& oor) {
+				// Its ok, just proceed to uk / related uk options lists
+				if (RuleConstantContainer::_printDebug) cout << "OptionsList not found in uaMap [" << _unionAgreementOid << "][" << productElementOid <<"] : " << oor.what();
+			}
+		}
+		else
+		{
+			stringstream ss {};
+			ss << "Union Agreement Context not initialised correctly! Invalid Union agreement oid[" << _unionAgreementOid << "]!";
+			throw domain_error(ss.str());
+		}
+	}
 
-	if (_ukOptionsMap.find(ukOid) != _ukOptionsMap.cend()
-			&& _ukOptionsMap.at(ukOid).find(productElementOid) != _ukOptionsMap.at(ukOid).cend())
-		return _ukOptionsMap.at(ukOid).at(productElementOid);
+//	subkoncept_oid ukOid = _subkoncept.getOid();
+
+	try {
+		return _ukOptionsMap.at(_subkoncept.getOid()).at(productElementOid);
+	} catch (const std::out_of_range& oor) {
+		// Its ok, just proceed to related uk options lists
+		if (RuleConstantContainer::_printDebug) cout << "OptionsList not found in uk Map [" << _subkoncept.getOid() << "][" << productElementOid <<"] : " << oor.what();
+	}
+
+//	if (_ukOptionsMap.find(ukOid) != _ukOptionsMap.cend()
+//			&& _ukOptionsMap.at(ukOid).find(productElementOid) != _ukOptionsMap.at(ukOid).cend())
+//		return _ukOptionsMap.at(ukOid).at(productElementOid);
 
 	if (_subkoncept.getRelatedSubkonceptOid() != undefined_oid)
 	{
-		subkoncept_oid rukOid = _subkoncept.getRelatedSubkonceptOid();
+//		subkoncept_oid rukOid = _subkoncept.getRelatedSubkonceptOid();
 
-		if (_ukOptionsMap.find(rukOid) != _ukOptionsMap.cend()
-				&& _ukOptionsMap.at(rukOid).find(productElementOid) != _ukOptionsMap.at(rukOid).cend())
-			return _ukOptionsMap.at(rukOid).at(productElementOid);
+		try {
+			return _ukOptionsMap.at(_subkoncept.getRelatedSubkonceptOid()).at(productElementOid);
+		} catch (const std::out_of_range& oor) {
+			// Its ok, just proceed to return empty list
+			if (RuleConstantContainer::_printDebug) cout << "OptionsList not found in related uk Map [" << _subkoncept.getRelatedSubkonceptOid() << "][" << productElementOid <<"] : " << oor.what();
+		}
+
+//		if (_ukOptionsMap.find(rukOid) != _ukOptionsMap.cend()
+//				&& _ukOptionsMap.at(rukOid).find(productElementOid) != _ukOptionsMap.at(rukOid).cend())
+//			return _ukOptionsMap.at(rukOid).at(productElementOid);
 	}
 
 	return {};
 }
-
 
 /**
  * Gets a shared_ptr to a single Constant for the productElement and comparisonType
  */
 std::shared_ptr<sbx::Constant> RuleConstantContainer::getConstant(sbx::productelement_oid productElementOid, const sbx::ComparisonTypes& comparisonType)
 {
-	if (!_contextInitialised)
-		throw domain_error("Context not initialised!");
+	this->_checkContextInitialisation();
 
 	subkoncept_oid ukOid = _subkoncept.getOid();
 
@@ -619,8 +682,7 @@ std::shared_ptr<sbx::Constant> RuleConstantContainer::createConstant(unsigned sh
 
 std::set<unsigned short> RuleConstantContainer::getProductOids(sbx::parameter_oid parameterOid) const
 {
-	if (_contextInitialised)
-		throw domain_error("Context not initialised!");
+	this->_checkContextInitialisation();
 
 	subkoncept_oid ukOid = _subkoncept.getOid();
 
@@ -646,6 +708,18 @@ std::set<unsigned short> RuleConstantContainer::getProductOids(sbx::parameter_oi
 	return productOids;
 }
 
+std::set<sbx::productelement_oid, std::less<sbx::productelement_oid>> RuleConstantContainer::getAllowedPEOids() const
+{
+	std::set<sbx::productelement_oid, std::less<sbx::productelement_oid>> allowedProductElementOids {};
+
+	for (auto& parameterIt : _ki.getParameterValues()) {
+		const std::set<sbx::productelement_oid>& productElementOids = this->getProductElementOids(parameterIt.first);
+		allowedProductElementOids.insert(productElementOids.cbegin(), productElementOids.cend());
+	}
+
+	return allowedProductElementOids;
+}
+
 /**
  * \brief Gets allowed productelement oids for the given parameter Oid
  *
@@ -654,8 +728,7 @@ std::set<unsigned short> RuleConstantContainer::getProductOids(sbx::parameter_oi
  */
 std::set<sbx::productelement_oid> RuleConstantContainer::getProductElementOids(sbx::parameter_oid parameterOid) const
 {
-	if (!_contextInitialised)
-		throw domain_error("Context not initialised!");
+	this->_checkContextInitialisation();
 
 	subkoncept_oid ukOid = _subkoncept.getOid();
 
@@ -677,7 +750,7 @@ std::set<sbx::productelement_oid> RuleConstantContainer::getProductElementOids(s
 
 		if (_parameterOidToProductElementOids.find(relatedUKOid) != _parameterOidToProductElementOids.cend()
 				&& _parameterOidToProductElementOids.at(relatedUKOid).find(parameterOid) != _parameterOidToProductElementOids.at(relatedUKOid).cend())
-			copy(_parameterOidToProductElementOids.at(relatedUKOid).at(parameterOid).cbegin(),
+			copy(	_parameterOidToProductElementOids.at(relatedUKOid).at(parameterOid).cbegin(),
 					_parameterOidToProductElementOids.at(relatedUKOid).at(parameterOid).cend(),
 					std::inserter(productElementOids, productElementOids.begin()));
 		else
@@ -747,6 +820,25 @@ sbx::UnionAgreementContributionStep RuleConstantContainer::getUAContributionStep
 	stringstream ss{};
 	ss << uaOid;
 	throw domain_error("Contribution ladder for Union Agreement [" + ss.str() + "] not initialised!");
+}
+
+const sbx::UnionAgreement& RuleConstantContainer::getUnionAgreement(sbx::unionagreement_oid uaOid) const
+{
+	this->_checkContextInitialisation();
+
+	const auto& it = _unionAgreements.find(uaOid);
+
+	if (it != _unionAgreements.cend())
+		return it->second;
+
+	stringstream ss{};
+	ss << uaOid;
+	throw domain_error("Union Agreement with oid [" + ss.str() + "] not loaded!");
+}
+
+bool RuleConstantContainer::isUnionAgreementLoaded(sbx::unionagreement_oid uaOid) const
+{
+	return (_unionAgreements.find(uaOid) != _unionAgreements.cend());
 }
 
 void RuleConstantContainer::printKoncepts() const

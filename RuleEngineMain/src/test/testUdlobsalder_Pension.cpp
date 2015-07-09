@@ -37,7 +37,7 @@ protected:
 // Test Udlobsalder_Pension - PE(71)-P(13)
 // Allowed values, 60, 62, 65, 67
 TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, UdloebsalderPension_POSITIVE) {
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040"}; // KonceptOid 4 - OSV
 	auto options = re.getOptionsList(kUdlobsalder_Pension);
 	ta.setValue(kUdlobsalder_Pension, (long) 67 );
 
@@ -49,7 +49,7 @@ TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, UdloebsalderPension_POSITIVE) {
 // Test Udlobsalder_Pension - PE(71)-P(13)
 // Allowed values, 60, 62, 65, 67
 TEST_F(RuleEngine_CONTEXT_KI_OSV_25_50, UdloebsalderPension_NEGATIVE) {
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040"}; // KonceptOid 4 - OSV
 	ta.setValue(kUdlobsalder_Pension, (long) 61); // value not allowed
 
 	RuleEngine::_printDebugAtValidation = true;

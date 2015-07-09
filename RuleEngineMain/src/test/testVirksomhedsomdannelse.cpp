@@ -37,7 +37,7 @@ protected:
 
 TEST_F(Virksomhedsomdannelse_KI_OSV_25_49, Virksomhedsomdannelse_POSITIVE) {
 	RuleEngine::_printDebugAtValidation = true;
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040"}; // KonceptOid 4 - OSV
 	ta.setValue(kFusion_MK, false);
 
 	auto r = re.validate(ta, false);

@@ -36,7 +36,7 @@ protected:
 
 
 TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50_NO_FG_SPAN, KritiskSygdom_I_FG_Missing_POSITIVE) {
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040"}; // KonceptOid 4 - OSV
 
 	auto r = re.validate(ta, false);
 	cout << r;
@@ -46,7 +46,7 @@ TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50_NO_FG_SPAN, KritiskSygdom_I_FG_Mi
 }
 
 TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50_NO_FG_SPAN, KritiskSygdom_I_FG_True_NEGATIVE) {
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040"}; // KonceptOid 4 - OSV
 	ta.setValue(kKritiskSygdom_i_FG_mk, true);
 
 	auto r = re.validate(ta, false);
@@ -60,7 +60,7 @@ TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50_NO_FG_SPAN, KritiskSygdom_I_FG_Tr
 
 
 TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50_NO_FG_SPAN, KritiskSygdom_I_FG_False_NEGATIVE) {
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040"}; // KonceptOid 4 - OSV
 	ta.setValue(kKritiskSygdom_i_FG_mk, false); // value not allowed
 
 	RuleEngine::_printDebugAtValidation = true;

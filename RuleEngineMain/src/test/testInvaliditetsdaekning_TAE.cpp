@@ -49,7 +49,7 @@ protected:
 
 TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_I_Kr_Ingen) {
 	RuleEngine::_printDebugAtValidation = true;
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040"}; // KonceptOid 4 - OSV
 	ta.setValue(kTAEReguleringskode, "Ingen");
 
 	auto r = re.validate(ta, false);
@@ -71,7 +71,7 @@ TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_I_Kr_Ingen) {
 
 TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_I_Kr_Ingen_NEGATIVE) {
 	RuleEngine::_printDebugAtValidation = true;
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040"}; // KonceptOid 4 - OSV
 	ta.setValue(kTAEReguleringskode, "Ingen");
 
 	auto r = re.validate(ta, false);
@@ -97,7 +97,7 @@ TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_I_Kr_Ingen_NEGATI
 
 TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_I_Kr_Pristal) {
 	RuleEngine::_printDebugAtValidation = true;
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040"}; // KonceptOid 4 - OSV
 	ta.setValue(kTAEReguleringskode, "Pristal");
 
 	auto r = re.validate(ta, false);
@@ -119,7 +119,7 @@ TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_I_Kr_Pristal) {
 
 TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_I_Kr_Pristal_NEGATIVE) {
 	RuleEngine::_printDebugAtValidation = true;
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040"}; // KonceptOid 4 - OSV
 	ta.setValue(kTAEReguleringskode, "Pristal");
 
 	auto r = re.validate(ta, false);
@@ -144,7 +144,7 @@ TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_I_Kr_Pristal_NEGA
 
 TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_I_Kr_Pristal_Scientific_Output) {
 	RuleEngine::_printDebugAtValidation = true;
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040"}; // KonceptOid 4 - OSV
 	ta.setValue(kTAEReguleringskode, "Pristal");
 
 	auto r = re.validate(ta, false);
@@ -170,7 +170,7 @@ TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_I_Kr_Pristal_Scie
 
 TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_I_PCT_Gage) {
 	RuleEngine::_printDebugAtValidation = true;
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040"}; // KonceptOid 4 - OSV
 	ta.setValue(kTAEReguleringskode, "Gage");
 
 	auto r = re.validate(ta, false);
@@ -199,7 +199,7 @@ TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_I_PCT_Gage) {
 
 TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_I_PCT_Gage_NEGATIVE) {
 	RuleEngine::_printDebugAtValidation = true;
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040"}; // KonceptOid 4 - OSV
 	ta.setValue(kTAEReguleringskode, "Gage");
 	ta.setValue(kTAEPctGrMin, 10); // 20 is min
 	ta.setValue(kTAEPctOblMax, 90); // 80 is max
@@ -229,7 +229,7 @@ TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_I_PCT_Gage_NEGATI
 
 TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_I_PCT_Gage_NEGATIVE_Partial) {
 	RuleEngine::_printDebugAtValidation = true;
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040"}; // KonceptOid 4 - OSV
 	ta.setValue(kTAEReguleringskode, "Gage");
 	ta.setValue(kTAEPctGrMin, 10); // 20 is min
 	ta.setValue(kTAEPctOblMax, 90); // 80 is max
@@ -254,7 +254,7 @@ TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_I_PCT_Gage_NEGATI
 
 TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_I_PCT_Ingen_NEGATIVE) {
 	RuleEngine::_printDebugAtValidation = true;
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040"}; // KonceptOid 4 - OSV
 	ta.setValue(kTAEReguleringskode, "Ingen");
 	ta.setValue(kTAEBlGrMin, -1); // 0 is min
 	ta.setValue(kTAEBlOblMax, 800001); // 800000 is max
@@ -277,7 +277,7 @@ TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_I_PCT_Ingen_NEGAT
 
 TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_I_PCT_Ingen_NEGATIVE_Partial) {
 	RuleEngine::_printDebugAtValidation = true;
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040"}; // KonceptOid 4 - OSV
 	ta.setValue(kTAEReguleringskode, "Ingen");
 	ta.setValue(kTAEBlGrMin, -1); // 20 is min
 	ta.setValue(kTAEBlOblMax, 800001); // 80 is max
@@ -300,7 +300,7 @@ TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_I_PCT_Ingen_NEGAT
 
 TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_SoliMax_TAEDaekningstype) {
 	RuleEngine::_printDebugAtValidation = true;
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040"}; // KonceptOid 4 - OSV
 	ta.setValue(kTAESoliMax, "Tegningsmaks");
 
 	auto r = re.validate(ta, false);
@@ -339,7 +339,7 @@ TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_SoliMax_TAEDaekni
 
 TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_Kortvarig_Overbygning_Frivillig) {
 	RuleEngine::_printDebugAtValidation = true;
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040"}; // KonceptOid 4 - OSV
 	ta.setValue(kKortTAE_Daekning, "Frivillig");
 
 	auto r = re.validate(ta, false);
@@ -373,7 +373,7 @@ TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_Kortvarig_Overbyg
 
 TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_Kortvarig_Overbygning_Obligatorisk) {
 	RuleEngine::_printDebugAtValidation = true;
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040"}; // KonceptOid 4 - OSV
 	ta.setValue(kKortTAE_Daekning, "Obligatorisk");
 
 	auto r = re.validate(ta, false);
@@ -408,7 +408,7 @@ TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_Kortvarig_Overbyg
 
 TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_TAEUdloebsalder_POSITIVE) {
 	RuleEngine::_printDebugAtValidation = true;
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040"}; // KonceptOid 4 - OSV
 	ta.setValue(kTAE_Udlobsforskellig_MK, false);
 
 	auto r = re.validate(ta, false);

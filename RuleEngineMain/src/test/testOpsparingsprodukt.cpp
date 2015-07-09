@@ -37,7 +37,7 @@ protected:
 // Test Opsparingsprodukter - PE(72, 73, 74, 75, 201)-P(60)
 // Allowed values: true false
 TEST_F(Opsparingsproduct_RuleEngine_CONTEXT_KI_OSV_25_50, Opsparingsprodukt_ALL_SELECTED_POSITIVE) {
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040"}; // KonceptOid 4 - OSV
 	ta.setValue(kMarkedspension_MK, true )
 			.setValue(kTraditionel_MK, true)
 			.setValue(kTidspensionMedGaranti_MK, true)
@@ -52,7 +52,7 @@ TEST_F(Opsparingsproduct_RuleEngine_CONTEXT_KI_OSV_25_50, Opsparingsprodukt_ALL_
 // Test Opsparingsprodukter - PE(72, 73, 74, 75, 201)-P(60)
 // Allowed values: true false
 TEST_F(Opsparingsproduct_RuleEngine_CONTEXT_KI_OSV_25_50, Opsparingsprodukt_SOME_SELECTED_POSITIVE) {
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040"}; // KonceptOid 4 - OSV
 	ta.setValue(kMarkedspension_MK, true )
 			.setValue(kTraditionel_MK, true)
 			.setValue(kTidspensionMedGaranti_MK, false)
@@ -71,7 +71,7 @@ TEST_F(Opsparingsproduct_RuleEngine_CONTEXT_KI_OSV_25_50, Opsparingsprodukt_SOME
 //   Should fail due to Traditionel is selected as Standardprodukt but Traditionel_MK == false
 //
 TEST_F(Opsparingsproduct_RuleEngine_CONTEXT_KI_OSV_25_50, Opsparingsprodukt_NEGATIVE) {
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040"}; // KonceptOid 4 - OSV
 	ta.setValue(kMarkedspension_MK, true);
 	ta.setValue(kTraditionel_MK, false);
 
@@ -95,7 +95,7 @@ TEST_F(Opsparingsproduct_RuleEngine_CONTEXT_KI_OSV_25_50, Opsparingsprodukt_NEGA
 //   Should be OK as the selected StandardProdukt is also selected on the TA
 //
 TEST_F(Opsparingsproduct_RuleEngine_CONTEXT_KI_OSV_25_50, Opsparingsprodukt_OK) {
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040"}; // KonceptOid 4 - OSV
 	ta.setValue(kMarkedspension_MK, true);
 	ta.setValue(kTraditionel_MK, true);
 	ta.setValue(kStandardProduct, "Traditionel_MK");
@@ -113,7 +113,7 @@ TEST_F(Opsparingsproduct_RuleEngine_CONTEXT_KI_OSV_25_50, Opsparingsprodukt_OK) 
 //   Should be OK as the selected StandardProdukt is also selected on the TA
 //
 TEST_F(Opsparingsproduct_RuleEngine_CONTEXT_KI_OSV_25_50, Opsparingsprodukt_RemoveFromTA_POSITIVE) {
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040"}; // KonceptOid 4 - OSV
 	ta.setValue(kMarkedspension_MK, true);
 	ta.setValue(kTraditionel_MK, true);
 
@@ -135,7 +135,7 @@ TEST_F(Opsparingsproduct_RuleEngine_CONTEXT_KI_OSV_25_50, Opsparingsprodukt_Remo
 }
 
 TEST_F(Opsparingsproduct_RuleEngine_CONTEXT_KI_OSV_25_50, Opsparingsprodukt_MinAndelTraditionel_POSITIVE) {
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040"}; // KonceptOid 4 - OSV
 	ta.setValue(kMarkedspension_MK, true);
 	ta.setValue(kTraditionel_MK, true);
 	ta.setValue(kTidspensionMedGaranti_MK, true);
@@ -185,7 +185,7 @@ TEST_F(Opsparingsproduct_RuleEngine_CONTEXT_KI_OSV_25_50, Opsparingsprodukt_MinA
 TEST_F(Opsparingsproduct_RuleEngine_CONTEXT_KI_OSV_25_50, Opsparingsprodukt_MinAndelTraditionel_NEGATIVE) {
 	RuleEngine::_printDebugAtValidation = true;
 	RuleEngine::_printDebug = true;
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040"}; // KonceptOid 4 - OSV
 	ta.setValue(kMarkedspension_MK, true);
 	ta.setValue(kTraditionel_MK, true);
 	ta.setValue(kTidspensionMedGaranti_MK, true);

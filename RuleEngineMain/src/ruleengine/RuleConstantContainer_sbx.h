@@ -20,6 +20,7 @@
 #include "ContributionStep_sbx.h"
 #include "Date_sbx.h"
 #include "Koncept_sbx.h"
+#include "KonceptInfo_sbx.h"
 #include "Parameter_sbx.h"
 #include "Product_sbx.h"
 #include "ProductElement_sbx.h"
@@ -38,23 +39,31 @@ public:
 
 	void initGlobalConstants(const std::vector<sbx::Constant>& globalConstants);
 	void initConstants(const std::string& jsonContents);
-	void initContext(const sbx::Subkoncept& subkoncept, sbx::UnionAgreementRelationship, sbx::unionagreement_oid = undefined_oid);
+	void initContext(const sbx::Subkoncept& subkoncept, const sbx::KonceptInfo&, sbx::UnionAgreementRelationship, sbx::unionagreement_oid = undefined_oid);
+	void clearContext();
 	void initKoncepts(const std::string& json);
 	void initUnionAgreements(const std::string& jsonContents);
 
 	bool existsAs(unsigned short peOid, const sbx::ComparisonTypes&) const;
 
 	std::vector<std::string> getOptions(sbx::productelement_oid productElementOid);
-	std::vector<std::shared_ptr<sbx::Constant>> getOptionsList(sbx::productelement_oid productElementOid);
+	std::vector<std::shared_ptr<sbx::Constant>> getOptionsList(sbx::productelement_oid productElementOid) const;
 	std::shared_ptr<sbx::Constant> getConstant(sbx::productelement_oid productElement, const sbx::ComparisonTypes& comparisonType);
 	const std::map<sbx::koncept_oid, sbx::Koncept>& getKoncepts() const;
 
+	std::set<sbx::productelement_oid, std::less<sbx::productelement_oid>> getAllowedPEOids() const;
 	std::set<unsigned short> getProductOids(sbx::parameter_oid parameterOid) const;
 	std::set<unsigned short> getProductElementOids(sbx::parameter_oid parameterOid) const;
 	sbx::ProductElement getProductElement(unsigned short productElementOid);
 	unsigned short getProductElementOid(const std::string& varName) const;
 	sbx::UnionAgreementContributionStep getUAContributionStep(unsigned short uaOid, const sbx::Date& inceptionDate) const;
+	const sbx::UnionAgreement& getUnionAgreement(sbx::unionagreement_oid) const;
 
+	sbx::UnionAgreementRelationship getUnionAgreementRelationship() const;
+	sbx::unionagreement_oid getUnionAgreementOid() const;
+
+	bool isUnionAgreementLoaded(sbx::unionagreement_oid) const;
+	bool isContainerInitialised() const;
 	std::shared_ptr<sbx::Constant> createConstant(unsigned short underkonceptOid, unsigned short unionAgreementOid, unsigned short peOid, sbx::ComparisonTypes comparisonType);
 
 	// ----- util functions------
@@ -81,6 +90,7 @@ private:
 	void _initParametersToProducts(const Json::Value& parameters);
 	void _initSubkoncepts(const Json::Value& subkonceptsJSON, sbx::Koncept& koncept);
 	void _addFakeProductElements(std::shared_ptr<sbx::Product> productPtr);
+	void _checkContextInitialisation() const;
 
 	/**
 	 * vector of shared pointers holding all global constants for all contexts
@@ -200,6 +210,8 @@ private:
 	 */
 	std::map<sbx::unionagreement_oid, sbx::UnionAgreement> _unionAgreements;
 
+	/** CONTEXT */
+	sbx::KonceptInfo _ki;
 	sbx::Subkoncept _subkoncept;
 	sbx::UnionAgreementRelationship _unionAgreementRelationship;
 	sbx::unionagreement_oid _unionAgreementOid;

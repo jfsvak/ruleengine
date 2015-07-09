@@ -59,11 +59,11 @@ public:
 	std::shared_ptr<sbx::Constant> getDefaultValue(sbx::ProductElementOid productElementOid);
 	std::shared_ptr<sbx::Constant> getConstant(sbx::ProductElementOid productElement, sbx::ComparisonTypes comparisonType);
 
-	sbx::ValidationResults validate(const TA&, unsigned short peOidToValidate); // simple delegate method to vector-method
-	sbx::ValidationResults validate(const TA&, const std::vector<unsigned short>& peOidToValidate); // multiple product element validation, using single pe validation
+	sbx::ValidationResults validate(sbx::TA&, unsigned short peOidToValidate); // simple delegate method to vector-method
+	sbx::ValidationResults validate(sbx::TA&, const std::vector<unsigned short>& peOidToValidate); // multiple product element validation, using single pe validation
 
 	// Full ta validation
-	sbx::ValidationResults validate(const sbx::TA& ta, bool full = true); // Full TA validation
+	sbx::ValidationResults validate(sbx::TA&, bool full = true); // Full TA validation
 
 	sbx::RuleCatalogue& getRuleCatalogue();
 	const sbx::RuleConstantContainer& getContainer() const;
@@ -111,15 +111,14 @@ private:
 	void _initRuleCatalogue(sbx::RuleCatalogue*, const Json::Value& ruleCatalogues);
 	void _initParserWithProductElementConstants(unsigned short peOid);
 	template <typename T> void _defineVariable(const std::string& name, const T& value);
-	void _clearContext();
+	void _clearParserValues();
 
-	std::set<sbx::productelement_oid, std::less<sbx::productelement_oid>> _getAllowedPEOids() const;
 	std::string _getConstFromParser(const std::string& constName);
 	std::string _getVarFromParser(const std::string& constName);
 	std::vector<std::string> _getParametersFromParser(const std::vector<std::string>& parameters);
 	void _defineConstant(const std::string& name, double constant);
 
-	void _loadParser(const TA& ta, ValidationResults& valResults);
+	void _loadParser(TA& ta, ValidationResults& valResults);
 	void _loadLadder(const TA& ta);
 	void _loadUAContributionStep(const TA& ta, ValidationResults& valResults);
 
@@ -129,7 +128,6 @@ private:
 	std::string _VAR_NAME(unsigned short peOid);
 	std::string _GUI_NAME(unsigned short peOid);
 
-	sbx::KonceptInfo _ki;
 	sbx::RuleConstantContainer _container;
 	sbx::RuleCatalogue _ruleCatalogue;
 	std::multimap<unsigned short, std::shared_ptr<sbx::Rule>> _preCalcExprMap;

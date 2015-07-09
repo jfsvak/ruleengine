@@ -21,24 +21,29 @@
 namespace sbx {
 
 TA::TA()
-		: _cvr {""},
-		  _konceptOid {0}
+		: _cvr {""}
+{}
+
+TA::TA(const std::string& cvr)
+		:  _cvr {cvr}
+{}
+
+TA::TA(const std::string& cvr, const std::map<unsigned short, sbx::ProductElementValue>& peValues)
+		: _cvr {cvr},
+		  _peValuesMap {peValues}
 {}
 
 TA::TA(const std::string& cvr, unsigned short konceptOid)
-		:  _cvr {cvr},
-		   _konceptOid {konceptOid}
+		:  _cvr {cvr}
 {}
 
 TA::TA(const std::string& cvr, unsigned short konceptOid, const std::map<unsigned short, sbx::ProductElementValue>& peValues)
 		: _cvr {cvr},
-		  _konceptOid {konceptOid},
 		  _peValuesMap {peValues}
 {}
 
 TA::TA(const sbx::TA& otherTA)
 		: _cvr {otherTA._cvr},
-		  _konceptOid {otherTA._konceptOid},
 		  _peValuesMap {otherTA._peValuesMap}
 {}
 
@@ -112,11 +117,6 @@ sbx::ProductElementValue TA::getValue(unsigned short productElementOid) const
 	return sbx::ProductElementValue(productElementOid, "");
 }
 
-TA& TA::setKonceptOid(unsigned short konceptOid)
-{
-	_konceptOid = konceptOid;
-	return *this;
-}
 
 /**
  * Removes the productElementValue for the peOid from this TA, so there is no entry in the map of values.
@@ -162,7 +162,6 @@ std::multiset<sbx::ContributionStep> TA::getContributionLadder() const
 
 const std::map<unsigned short, sbx::ProductElementValue>& TA::getValues() const { return _peValuesMap; }
 const std::string& TA::getCVR() const { return _cvr; }
-unsigned short TA::getKonceptOid() const { return _konceptOid; }
 bool TA::hasValue(unsigned short productElementOid) const { return (_peValuesMap.find(productElementOid) != _peValuesMap.cend()); }
 TA& TA::setCvr(const std::string& cvr) { _cvr = cvr; return *this; }
 
@@ -185,45 +184,45 @@ TA& TA::removeContributionSteps()
 
 TA::~TA() {}
 
-sbx::UnionAgreementRelationship TA::getUar() const
-{
-	if (this->getValue(kUnionAgreementRelationship).stringValue() == sbx::kFOLLOWS)
-		return sbx::UnionAgreementRelationship::FOLLOWS;
-	else if (this->getValue(kUnionAgreementRelationship).stringValue() == sbx::kOUTSIDE)
-		return sbx::UnionAgreementRelationship::OUTSIDE;
-	else if (this->getValue(kUnionAgreementRelationship).stringValue() == sbx::kINCLUDED)
-		return sbx::UnionAgreementRelationship::INCLUDED;
+//sbx::UnionAgreementRelationship TA::getUar() const
+//{
+//	if (this->getValue(kUnionAgreementRelationship).stringValue() == sbx::kFOLLOWS)
+//		return sbx::UnionAgreementRelationship::FOLLOWS;
+//	else if (this->getValue(kUnionAgreementRelationship).stringValue() == sbx::kOUTSIDE)
+//		return sbx::UnionAgreementRelationship::OUTSIDE;
+//	else if (this->getValue(kUnionAgreementRelationship).stringValue() == sbx::kINCLUDED)
+//		return sbx::UnionAgreementRelationship::INCLUDED;
+//
+//	return sbx::UnionAgreementRelationship::OUTSIDE;
+//}
 
-	return sbx::UnionAgreementRelationship::OUTSIDE;
-}
+//TA& TA::setUar(sbx::UnionAgreementRelationship uar)
+//{
+//	switch(uar)
+//	{
+//	case FOLLOWS:
+//		this->setValue(sbx::ProductElementOid::kUnionAgreementRelationship, sbx::kFOLLOWS);
+//		break;
+//	case OUTSIDE:
+//		this->setValue(sbx::ProductElementOid::kUnionAgreementRelationship, sbx::kOUTSIDE);
+//		break;
+//	case INCLUDED:
+//		this->setValue(sbx::ProductElementOid::kUnionAgreementRelationship, sbx::kINCLUDED);
+//		break;
+//	}
+//
+//	return *this;
+//}
 
-TA& TA::setUar(sbx::UnionAgreementRelationship uar)
-{
-	switch(uar)
-	{
-	case FOLLOWS:
-		this->setValue(sbx::ProductElementOid::kUnionAgreementRelationship, sbx::kFOLLOWS);
-		break;
-	case OUTSIDE:
-		this->setValue(sbx::ProductElementOid::kUnionAgreementRelationship, sbx::kOUTSIDE);
-		break;
-	case INCLUDED:
-		this->setValue(sbx::ProductElementOid::kUnionAgreementRelationship, sbx::kINCLUDED);
-		break;
-	}
+//unsigned short TA::getUnionAgreementOid() const
+//{
+//	return this->getValue(kUnionAgreementOid).longValue();
+//}
 
-	return *this;
-}
-
-unsigned short TA::getUnionAgreementOid() const
-{
-	return this->getValue(kUnionAgreementOid).longValue();
-}
-
-TA& TA::setUnionAgreementOid(unsigned short unionAgreementOid)
-{
-	this->setValue(sbx::ProductElementOid::kUnionAgreementOid, (long) unionAgreementOid);
-	return *this;
-}
+//TA& TA::setUnionAgreementOid(unsigned short unionAgreementOid)
+//{
+//	this->setValue(sbx::ProductElementOid::kUnionAgreementOid, (long) unionAgreementOid);
+//	return *this;
+//}
 
 } /* namespace sbx */

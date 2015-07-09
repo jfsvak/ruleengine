@@ -37,7 +37,7 @@ protected:
 
 TEST_F(Behandlingsforsikring_KI_OSV_25_49, Behandlingsforsikring_POSITIVE) {
 	RuleEngine::_printDebugAtValidation = true;
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040"}; // KonceptOid 4 - OSV
 	ta.setValue(kHospitalsdaekning_MK, false);
 
 	auto r = re.validate(ta, {kHospitalsdaekning_MK, kHospitalsdaekningFrivillig_MK, kHospitalsdaekningLeverandoer});

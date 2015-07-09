@@ -82,6 +82,8 @@ std::string formatValue(double);
 std::string formatValue(bool);
 std::string formatMessage(std::string str, const std::vector<std::string>& parameters);
 
+const std::string& convertUAR(sbx::UnionAgreementRelationship uar);
+
 }
 
 } /* namespace sbx */

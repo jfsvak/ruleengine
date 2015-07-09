@@ -174,6 +174,19 @@ sbx::ValidationCode toValCode(unsigned short valCode, sbx::ValidationCode defaul
 	return defaultValCode;
 }
 
+const std::string& convertUAR(sbx::UnionAgreementRelationship uar)
+{
+	switch(uar)
+	{
+	case FOLLOWS:
+		return sbx::kFOLLOWS;
+	case INCLUDED:
+		return sbx::kINCLUDED;
+	case OUTSIDE:
+		return sbx::kOUTSIDE;
+	}
+}
+
 char dk_numpunct::do_thousands_sep() const { return '.'; }
 std::string dk_numpunct::do_grouping() const { return "\03"; }
 char dk_numpunct::do_decimal_point() const { return ','; };

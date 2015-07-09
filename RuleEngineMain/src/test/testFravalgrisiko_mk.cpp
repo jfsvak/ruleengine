@@ -33,7 +33,7 @@ protected:
 //   FravalgRisiko_MK - PE(230)-P(129)
 // Allowed values: true | false
 TEST_F(FravalgRisiko_CONTEXT_KI_OSV_25_50, FravalgRisiko_MK_POSITIVE) {
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040"}; // KonceptOid 4 - OSV
 	ta.setValue(kFravalgRisiko_MK, true);
 
 	RuleEngine::_printDebugAtValidation = true;
@@ -55,7 +55,7 @@ TEST_F(FravalgRisiko_CONTEXT_KI_OSV_25_50, FravalgRisiko_MK_POSITIVE) {
 // Allowed values:
 //   FravalgRisikoAlder between 40-67
 TEST_F(FravalgRisiko_CONTEXT_KI_OSV_25_50, FravalgRisikoAlder_POSITIVE) {
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040"}; // KonceptOid 4 - OSV
 	ta.setValue(kFravalgRisiko_MK, true);
 	ta.setValue(kFravalgRisikoAlder, (long) 40); // allowed
 
@@ -78,7 +78,7 @@ TEST_F(FravalgRisiko_CONTEXT_KI_OSV_25_50, FravalgRisikoAlder_POSITIVE) {
 // Allowed values:
 //   FravalgRisikoAlder between 40-67
 TEST_F(FravalgRisiko_CONTEXT_KI_OSV_25_50, FravalgRisikoAlder_NEGATIVE) {
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040"}; // KonceptOid 4 - OSV
 	ta.setValue(kFravalgRisiko_MK, true);
 
 	ta.setValue(kFravalgRisikoAlder, (long) 1);
@@ -107,7 +107,7 @@ TEST_F(FravalgRisiko_CONTEXT_KI_OSV_25_50, FravalgRisikoAlder_NEGATIVE) {
 //   FravalgRisikoAlder not allowed as FravalgRisiko_MK is false
 TEST_F(FravalgRisiko_CONTEXT_KI_OSV_25_50, FravalgRisikoAlder_FravalgRisiko_MK_NEGATIVE) {
 	RuleEngine::_printDebugAtValidation = true;
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040"}; // KonceptOid 4 - OSV
 	ta.setValue(kFravalgRisiko_MK, false);
 	ta.setValue(kFravalgRisikoAlder, (long) 60);
 
@@ -132,7 +132,7 @@ TEST_F(FravalgRisiko_CONTEXT_KI_OSV_25_50, FravalgRisikoAlder_FravalgRisiko_MK_N
 
 TEST_F(FravalgRisiko_CONTEXT_KI_OSV_25_50, FravalgRisikoAlder_TooBig_NEGATIVE) {
 	RuleEngine::_printDebugAtValidation = true;
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040"}; // KonceptOid 4 - OSV
 	ta.setValue(kUdlobsalder_Pension, (long) 65);
 	ta.setValue(kFravalgRisiko_MK, true);
 	ta.setValue(kFravalgRisikoAlder, (long) 66);

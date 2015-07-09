@@ -44,7 +44,7 @@ protected:
 
 // Test kIndmeldelsesalder and getting options prior to that
 TEST_F(LatestSignDate_CONTEXT_KI_OSV_25_50, LatestSignDate_POSITIVE) {
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040"}; // KonceptOid 4 - OSV
 	ta.setValue(kSeneste_Underskriftsdato, 20150601);
 
 	auto r = re.validate(ta, (unsigned short) kIndmeldelsesAlder);

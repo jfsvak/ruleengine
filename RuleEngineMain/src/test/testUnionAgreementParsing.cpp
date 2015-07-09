@@ -21,7 +21,7 @@ protected:
 			  {15, "true"}, // FG span
 			  {6, "true"} // SEB Firmapensionspulje
         	} };
-        re.initContext(ki, OUTSIDE);
+        re.initContext(ki, INCLUDED, 6);
     }
 };
 
@@ -36,6 +36,23 @@ TEST_F(UnionAgreementParsing, Parsing_UnionAgreements) {
 
 }
 
+TEST_F(UnionAgreementParsing, ReadingConstants_UnionAgreements) {
+	KonceptInfo ki {PROSA, 5, 0, // UnderkonceptOid:OSV 25-49
+	        	{ {11, "true"}, // Parameter-Basis
+	        	  {1, "true"}, // Solidarisk faellestarif
+				  {15, "true"}, // FG span
+				  {6, "true"} // SEB Firmapensionspulje
+	        	} };
+	re.initContext(ki, INCLUDED, 6);
+	RuleEngine::_printDebug = true;
+	RuleEngine::_printDebugAtValidation = true;
+
+	re.getContainer().printUnionAgreements();
+	Date d{"01.07.2010"};
+	UnionAgreementContributionStep step = re.getContainer().getUAContributionStep((unsigned short) 3, d);
+	cout << step;
+
+}
 
 
 

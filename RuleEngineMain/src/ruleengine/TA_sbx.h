@@ -23,11 +23,13 @@ class TA {
 public:
 	TA();
 	explicit TA(const sbx::TA& otherTA); // copy constructor - cannot be invoked implicitly
+	TA(const std::string& cvr);
+	TA(const std::string& cvr, const std::map<unsigned short, sbx::ProductElementValue>& peValues);
+	// delete the two constructors with konceptOid when ipad is ready
 	TA(const std::string& cvr, unsigned short konceptOid);
 	TA(const std::string& cvr, unsigned short konceptOid, const std::map<unsigned short, sbx::ProductElementValue>& peValues);
 
 	TA& setCvr(const std::string& cvr);
-	TA& setKonceptOid(unsigned short konceptOid);
 	TA& setValue(unsigned short productElementOid, const char* value);
 	TA& setValue(unsigned short productElementOid, bool value);
 	TA& setValue(unsigned short productElementOid, const std::string& value);
@@ -42,7 +44,6 @@ public:
 	std::multiset<sbx::ContributionStep> getContributionLadder() const;
 
 	const std::string& getCVR() const;
-	unsigned short getKonceptOid() const;
 	sbx::ProductElementValue& getValue(unsigned short productElementOid);
 	sbx::ProductElementValue getValue(unsigned short productElementOid) const;
 	const std::map<unsigned short, sbx::ProductElementValue>& getValues() const;
@@ -53,14 +54,13 @@ public:
 
 
 	virtual ~TA();
-	sbx::UnionAgreementRelationship getUar() const;
-	TA& setUar(sbx::UnionAgreementRelationship uar);
-	unsigned short getUnionAgreementOid() const;
-	TA& setUnionAgreementOid(unsigned short unionAgreementOid);
+//	sbx::UnionAgreementRelationship getUar() const;
+//	TA& setUar(sbx::UnionAgreementRelationship uar);
+//	unsigned short getUnionAgreementOid() const;
+//	TA& setUnionAgreementOid(unsigned short unionAgreementOid);
 
 private:
 	std::string _cvr;
-	unsigned short _konceptOid;
 	// map of productElement oid to productElementValues
 	std::map<unsigned short, sbx::ProductElementValue> _peValuesMap;
 	std::multiset<sbx::ContributionStep> _ladder;

@@ -37,7 +37,7 @@ protected:
 
 TEST_F(EksisterendeOrdninger_KI_OSV_25_49, EksisterendeOrdninger_POSITIVE) {
 	RuleEngine::_printDebugAtValidation = true;
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040"}; // KonceptOid 4 - OSV
 	ta.setValue(kEksisterendeOrdning_MK, false);
 
 	auto r = re.validate(ta, false);
@@ -86,7 +86,7 @@ TEST_F(EksisterendeOrdninger_KI_OSV_25_49, EksisterendeOrdninger_POSITIVE) {
 
 TEST_F(EksisterendeOrdninger_KI_OSV_25_49, Helbred_Leverandorskift_NEGATIVE) {
 	RuleEngine::_printDebugAtValidation = true;
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040"}; // KonceptOid 4 - OSV
 	ta.setValue(kEksisterendeOrdning_MK, false);
 	ta.setValue(kFusion_MK, false);
 	ta.setValue(kHelbred_leverandorskift, "FP7");

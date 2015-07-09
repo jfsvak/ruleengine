@@ -21,6 +21,7 @@ protected:
     }
 
     RuleEngine re;
+    KonceptInfo _ki;
 };
 
 
