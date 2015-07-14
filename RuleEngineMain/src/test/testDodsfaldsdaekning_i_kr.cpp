@@ -24,7 +24,7 @@ protected:
     virtual void SetUp() {
     	RuleEngineInitialiser::SetUp();
 
-        KonceptInfo ki {4, 30, 0, // UnderkonceptOid:OSV 25-49
+        KonceptInfo ki {OSV, 30, 0, // UnderkonceptOid:OSV 25-49
         	{ {11, "true"}, // Parameter-Basis
         	  {1, "true"}, // Solidarisk faellestarif
 			  {6, "true"} // SEB Firmapensionspulje
@@ -33,24 +33,18 @@ protected:
     }
 };
 
-class Doedsfaldsdaekning_i_kr_KI_OSV_Over_99 : public ::testing::Test  {
+class Doedsfaldsdaekning_i_kr_KI_OSV_Over_99 : public RuleEngineInitialiser {
 protected:
     virtual void SetUp() {
-    	RuleEngine::_printDebugAtValidation = false;
-    	re = RuleEngine();
-        re.initConstants(get_file_contents("basedata-ruleconstants.json"));
-        re.initKoncepts(get_file_contents("koncepts.json"));
-        re.parseRuleCatalogueJSON(get_file_contents("rule-catalogue.json"));
+    	RuleEngineInitialiser::SetUp();
 
-        KonceptInfo ki {4, 100, 0, // UnderkonceptOid:OSV >99
+        KonceptInfo ki {OSV, 100, 0, // UnderkonceptOid:OSV >99
         	{ {11, "true"}, // Parameter-Basis
         	  {1, "true"}, // Solidarisk faellestarif
 			  {6, "true"} // SEB Firmapensionspulje
         	} };
         re.initContext(ki, OUTSIDE);
     }
-
-    RuleEngine re;
 };
 
 TEST_F(Doedsfaldsdaekning_i_kr_KI_OSV_25_49, Doedfaldsdaekning_Whole_Section_Pristal_POSITIVE) {
@@ -174,7 +168,7 @@ TEST_F(Doedsfaldsdaekning_i_kr_KI_OSV_Over_99, DoedReguleringstype_Ingen_NEGATIV
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
 	ta.setValue(kDoedReguleringskode, "Ingen");
 	ta.setValue(kDoedBlGrMin, (long) 300000);
-	ta.setValue(kDoedBlOblMax, (long) 750000);
+	ta.setValue(kDoedBlOblMax, (long) 850000);
 
 	RuleEngine::_printDebugAtValidation = true;
 
@@ -194,4 +188,31 @@ TEST_F(Doedsfaldsdaekning_i_kr_KI_OSV_Over_99, DoedReguleringstype_Ingen_NEGATIV
 	EXPECT_TRUE(r.hasMessages(kDoedBlOblMax, kValueOverLimit));
 	EXPECT_TRUE(r.hasMessages(kDoedSpaendBl, kValueOverLimit));
 
+}
+
+TEST_F(Doedsfaldsdaekning_i_kr_KI_OSV_Over_99, DoedBlGrMin_Ingen_NEGATIVE_OverLimit) {
+	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	ta.setValue(kDoedReguleringskode, "Ingen");
+	ta.setValue(kDoedBlGrMin, (long) 800001);
+	ta.setValue(kDoedBlOblMax, (long) 800001);
+
+	re.getContainer().printConstants(19);
+	RuleEngine::_printDebugAtValidation = true;
+
+	auto r = re.validate(ta, false);
+	EXPECT_FALSE(r.isAllOk());
+	cout << r;
+	EXPECT_TRUE(r.hasMessages(kDoedBlGrMin, kValueOverLimit));
+
+	ta.setValue(kDoedBlGrMin, (long) 800000);
+	ta.setValue(kDoedBlOblMax, (long) 800000);
+	r = re.validate(ta, false);
+	EXPECT_TRUE(r.isAllOk());
+	cout << r;
+
+	ta.setValue(kDoedBlGrMin, (long) 799999);
+	ta.setValue(kDoedBlOblMax, (long) 799999);
+	r = re.validate(ta, false);
+	EXPECT_TRUE(r.isAllOk());
+	cout << r;
 }

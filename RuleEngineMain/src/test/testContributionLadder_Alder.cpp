@@ -28,7 +28,7 @@ protected:
 
         KonceptInfo ki {4, 30, 0, // UnderkonceptOid:OSV 25-49
         	{ { 1, "true"}, // Solidarisk faellestarif
-			  { 6, "true"}, // SEB Firmapensionspulje
+//			  { 6, "true"}, // SEB Firmapensionspulje
         	  {11, "true"}, // Parameter-Basis
 			  {15, "true"} // FG-Spaend
         	} };

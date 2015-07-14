@@ -132,14 +132,24 @@ TEST_F(Incremental_TA_CONTEXT_KI_OSV_25_50, Incremental_TA_POSITIVE) {
 	cout << r;
 
 	EXPECT_FALSE(r.isAllOk());
-	ASSERT_EQ(1, r.getValidationResults(kFravalgRisikoAlder).size());
+	EXPECT_EQ(1, r.getValidationResults(kFravalgRisikoAlder).size());
+	EXPECT_EQ(1, r.getValidationResults(kFravalgRisiko_MK).size());
 	EXPECT_EQ(sbx::ValidationCode::kProductElementRequired, r.getValidationResults(kFravalgRisikoAlder).at(0).getValidationCode());
+	EXPECT_EQ(sbx::ValidationCode::kValueNotAllowed, r.getValidationResults(kFravalgRisiko_MK).at(0).getValidationCode());
 	ta.setValue(kFravalgRisikoAlder, (long) 45);
 
 	// now age is set, so all should be ok
 	r = re.validate(ta, full);
-	EXPECT_TRUE(r.isAllOk());
+	EXPECT_FALSE(r.isAllOk());
+	cout << r;
+	EXPECT_EQ(1, r.getValidationResults(kFravalgRisiko_MK).size());
+	EXPECT_EQ(sbx::ValidationCode::kValueNotAllowed, r.getValidationResults(kFravalgRisiko_MK).at(0).getValidationCode());
 
+	ta.setValue(kFravalgRisiko_MK, false);
+	ta.remove(kFravalgRisikoAlder);
+	r = re.validate(ta, full);
+	cout << r;
+	EXPECT_TRUE(r.isAllOk());
 
 	//
 	// ****** Opsparingsprodukter

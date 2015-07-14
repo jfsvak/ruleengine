@@ -261,3 +261,28 @@ TEST_F(Doedsfaldsdaekning_I_Procent_KI_OSV_25_49, DoedSpaendPct) {
 
 //	re.getContainer().printConstants(17);
 }
+
+TEST_F(Doedsfaldsdaekning_I_Procent_KI_OSV_25_49, DoedBlGrMin_Ingen_NEGATIVE_Overlimit) {
+	RuleEngine::_printDebugAtValidation = true;
+	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	ta.setValue(kDoedReguleringskode, "Gage");
+	ta.setValue(kDoedBlGrMin, (long) 800001);
+	ta.setValue(kDoedPctGrMin, (long) 200);
+	ta.setValue(kDoedPctOblMax, (long) 300);
+
+	auto r = re.validate(ta, false);
+	EXPECT_FALSE(r.isAllOk());
+	cout << r;
+	EXPECT_TRUE(r.hasMessages(kDoedBlGrMin, kValueOverLimit));
+
+	ta.setValue(kDoedBlGrMin, (long) 800000);
+	r = re.validate(ta, false);
+	EXPECT_TRUE(r.isAllOk());
+	cout << r;
+
+	ta.setValue(kDoedBlGrMin, (long) 799999);
+	r = re.validate(ta, false);
+	EXPECT_TRUE(r.isAllOk());
+	cout << r;
+}
+

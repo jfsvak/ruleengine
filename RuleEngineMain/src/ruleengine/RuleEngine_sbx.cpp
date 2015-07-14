@@ -37,6 +37,7 @@
 #include "Utils.h"
 #include "ValidationResults.h"
 #include "mubridge/DefinedInParser.h"
+#include "mubridge/NSEquals.h"
 
 using namespace std;
 
@@ -49,6 +50,7 @@ bool RuleEngine::_printMuParserErrorInfo {false};
 sbx::RuleEngine::RuleEngine()
 {
 	_parser.DefineFun(new DefinedInParser(this));
+	_parser.DefineFun(new NSEquals(this));
 }
 
 sbx::RuleEngine::RuleEngine(const sbx::RuleEngine& other)
@@ -57,6 +59,7 @@ sbx::RuleEngine::RuleEngine(const sbx::RuleEngine& other)
 	// TODO !!!!! proper copy/cloning of pointers in map
 	cerr << " Copy constructor for RuleEngine was called! This behaviour is not defined" << endl;
 	_parser.DefineFun(new DefinedInParser(this));
+	_parser.DefineFun(new NSEquals(this));
 }
 
 void RuleEngine::initialiseAll(const std::string& jsonContents)
@@ -148,7 +151,7 @@ void RuleEngine::_initRuleCatalogue(sbx::RuleCatalogue* ruleCatalogue, const Jso
 					preCalcExpr);
 
 			rule->setNotAllowedIfRule( (notallowedifexpr == "") ? nullptr : ((notallowedifexpr == "#parent#") ? ruleCatalogue->getParent() : make_shared<sbx::Rule>(id + ".NA", notallowedifexpr, nullptr, "", "")));
-			rule->setEvaluateExprIfRule( (evaluateExprIf == "") ? nullptr : ((evaluateExprIf == "#parent#") ? ruleCatalogue->getParent() : make_shared<sbx::Rule>(id + ".NA", evaluateExprIf, nullptr, "", "")));
+			rule->setEvaluateExprIfRule( (evaluateExprIf == "") ? nullptr : ((evaluateExprIf == "#parent#") ? ruleCatalogue->getParent() : make_shared<sbx::Rule>(id + ".EVEXP", evaluateExprIf, nullptr, "", "")));
 			rule->setNegativeValCode(negativeValCode);
 			rule->setPositiveValCode(positiveValCode);
 
@@ -1275,6 +1278,11 @@ bool RuleEngine::isVarDefined(const std::string& variable) const
 	return _parser.IsVarDefined(variable);
 }
 
+const mup::ParserX& RuleEngine::getParser() const
+{
+	return _parser;
+}
+
 std::string RuleEngine::_getConstFromParser(const std::string& constName)
 {
 	try {
@@ -1300,8 +1308,8 @@ std::string RuleEngine::_getVarFromParser(const std::string& constName)
 		mup::var_maptype vmap = _parser.GetVar();
 		for (mup::var_maptype::iterator item = vmap.begin(); item != vmap.end(); ++item) {
 			if (item->first == constName) {
-				mup::Variable& mupConst = (mup::Variable&) (*(item->second));
-				return sbx::utils::formatValue(mupConst);
+				mup::Variable& mupVar = (mup::Variable&) (*(item->second));
+				return sbx::utils::formatValue(mupVar);
 			}
 		}
 	}

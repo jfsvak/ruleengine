@@ -54,4 +54,29 @@ TEST_F(Boernesum_KI_OSV_25_49, Boernesum_POSITIVE) {
 	EXPECT_TRUE(r.hasMessages(kBoerneSumSpaendBl, kValueOverLimit));
 }
 
+TEST_F(Boernesum_KI_OSV_25_49, BoernesumBlMin_OverLimit) {
+	RuleEngine::_printDebugAtValidation = true;
+	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	ta.setValue(kBoerneSumBlMin, 50001);
+	ta.setValue(kBoerneSumBlMax, 50001);
+
+	auto r = re.validate(ta, false);
+	cout << r;
+	EXPECT_FALSE(r.isAllOk());
+	EXPECT_TRUE(r.hasMessages(kBoerneSumBlMin, kValueOverLimit));
+
+	ta.setValue(kBoerneSumBlMin, 50000);
+	ta.setValue(kBoerneSumBlMax, 50000);
+	r = re.validate(ta, false);
+	cout << r;
+	EXPECT_TRUE(r.isAllOk());
+
+
+	ta.setValue(kBoerneSumBlMin, 49999);
+	ta.setValue(kBoerneSumBlMax, 49999);
+	r = re.validate(ta, false);
+	cout << r;
+	EXPECT_TRUE(r.isAllOk());
+}
+
 

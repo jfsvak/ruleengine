@@ -146,3 +146,36 @@ TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50, KritiskSygdom_I_FG_Boernesum_Pri
 	if (r.getValidationResults(kKritiskSygBornesumSpaendBl).size() == 1)
 		EXPECT_EQ(sbx::ValidationCode::kValueOverLimit, r.getValidationResults(kKritiskSygBornesumSpaendBl).at(0).getValidationCode());
 }
+
+TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50, KritiskSygBoernesumBlMin_Pristal_OverLimit) {
+	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	ta.setValue(kKritiskSygBornesum_i_FG_mk, true);
+	ta.setValue(kKritiskSygBornesumReguleringskode, "Pristal");
+	ta.setValue(kKritiskSygBornesumBlMin, (long) 100001);
+	ta.setValue(kKritiskSygBornesumBlMax, (long) 100001);
+	ta.setValue(kKritiskSygBornesumSuppldaekn_mk, false);
+	ta.setValue(kKritiskSygBornesumSkattekode, re.getDefaultValue(kKritiskSygBornesumSkattekode)->stringValue());
+
+	auto r = re.validate(ta, false);
+	cout << r;
+	EXPECT_FALSE(r.isAllOk());
+	EXPECT_TRUE(r.hasMessages(kKritiskSygBornesumBlMin, kValueOverLimit));
+	EXPECT_TRUE(r.hasMessages(kKritiskSygBornesumBlMax, kValueOverLimit));
+
+	ta.setValue(kKritiskSygBornesumBlMin, (long) 100000);
+	ta.setValue(kKritiskSygBornesumBlMax, (long) 100000);
+	r = re.validate(ta, false);
+	cout << r;
+	EXPECT_FALSE(r.isAllOk());
+	EXPECT_EQ(1, r.sizeValidationResults());
+	EXPECT_TRUE(r.hasMessages(kKritiskSygBornesum_i_FG_mk, kValueNotAllowed));
+
+	ta.setValue(kKritiskSygBornesumBlMin, (long) 99999);
+	ta.setValue(kKritiskSygBornesumBlMax, (long) 99999);
+	r = re.validate(ta, false);
+	cout << r;
+	EXPECT_FALSE(r.isAllOk());
+	EXPECT_EQ(1, r.sizeValidationResults());
+	EXPECT_TRUE(r.hasMessages(kKritiskSygBornesum_i_FG_mk, kValueNotAllowed));
+}
+

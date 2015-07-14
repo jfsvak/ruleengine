@@ -191,7 +191,7 @@ TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_I_PCT_Gage) {
 	EXPECT_EQ(1, r.getValidationResults().size());
 	EXPECT_TRUE(r.hasMessages(kTAEBlGrMin, kProductElementRequired));
 
-	ta.setValue(kTAEBlGrMin, 900000000); // now set the min amount and execpt it to be ok
+	ta.setValue(kTAEBlGrMin, 500000); // now set the min amount and execpt it to be ok
 	r = re.validate(ta, false);
 	cout << r;
 	EXPECT_TRUE(r.isAllOk()); // expect to find TAEBlGrMin
@@ -436,6 +436,32 @@ TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_TAEUdloebsalder_P
 	EXPECT_TRUE(r.isAllOk());
 }
 
+TEST_F(Invaliditetsdaekning_KI_OSV_25_49, Invaliditetsdaekning_TAEBlGrMin_OverLimit) {
+	RuleEngine::_printDebugAtValidation = true;
+	TA ta { "15124040", OSV};
+	ta.setValue(kTAEReguleringskode, "Pristal");
+	ta.setValue(kTAEBlGrMin, 800001);
+	ta.setValue(kTAEBlOblMax, 800001);
+
+	auto r = re.validate(ta, false);
+	cout << r;
+	EXPECT_FALSE(r.isAllOk());
+	EXPECT_TRUE(r.hasMessages(kTAEBlGrMin, kValueOverLimit));
+	EXPECT_TRUE(r.hasMessages(kTAEBlOblMax, kValueOverLimit));
+
+	ta.setValue(kTAEBlGrMin, 800000);
+	ta.setValue(kTAEBlOblMax, 800000);
+	r = re.validate(ta, false);
+	cout << r;
+	EXPECT_TRUE(r.isAllOk());
+
+	ta.setValue(kTAEBlGrMin, 799999);
+	ta.setValue(kTAEBlOblMax, 799999);
+	r = re.validate(ta, false);
+	cout << r;
+	EXPECT_TRUE(r.isAllOk());
+}
+
 TEST_F(Invaliditetsdaekning_ITPension_50, Invaliditetsdaekning_TAEBlGrMin_NotRequired) {
 	RuleEngine::_printDebugAtValidation = true;
 	TA ta { "15124040", ITPENSION};
@@ -451,6 +477,32 @@ TEST_F(Invaliditetsdaekning_ITPension_50, Invaliditetsdaekning_TAEBlGrMin_NotReq
 	r = re.validate(ta, true);
 	cout << r;
 	EXPECT_FALSE(r.hasMessages(kTAEBlGrMin));
+}
+
+TEST_F(Invaliditetsdaekning_ITPension_50, Invaliditetsdaekning_TAEPctGrMin_OverLimit) {
+	RuleEngine::_printDebugAtValidation = true;
+	TA ta { "15124040", ITPENSION};
+	ta.setValue(kTAEReguleringskode, "Gage");
+	ta.setValue(kTAEPctGrMin, 61);
+	ta.setValue(kTAEPctOblMax, 61);
+
+	auto r = re.validate(ta, false);
+	cout << r;
+	EXPECT_FALSE(r.isAllOk());
+	EXPECT_TRUE(r.hasMessages(kTAEPctGrMin, kValueOverLimit));
+	EXPECT_TRUE(r.hasMessages(kTAEPctOblMax, kValueOverLimit));
+
+	ta.setValue(kTAEPctGrMin, 60);
+	ta.setValue(kTAEPctOblMax, 60);
+	r = re.validate(ta, false);
+	cout << r;
+	EXPECT_TRUE(r.isAllOk());
+
+	ta.setValue(kTAEPctGrMin, 59);
+	ta.setValue(kTAEPctOblMax, 59);
+	r = re.validate(ta, false);
+	cout << r;
+	EXPECT_TRUE(r.isAllOk());
 }
 
 

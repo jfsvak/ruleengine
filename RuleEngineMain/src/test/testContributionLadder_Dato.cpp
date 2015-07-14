@@ -222,5 +222,3 @@ TEST_F(ContributionLadder_Dato_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Dato_O
 
 
 
-
-

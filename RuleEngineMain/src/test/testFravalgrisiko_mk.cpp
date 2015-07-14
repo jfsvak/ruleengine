@@ -39,8 +39,9 @@ TEST_F(FravalgRisiko_CONTEXT_KI_OSV_25_50, FravalgRisiko_MK_POSITIVE) {
 	RuleEngine::_printDebugAtValidation = true;
 
 	auto r = re.validate(ta, (unsigned short) kFravalgRisiko_MK);
-	EXPECT_TRUE(r.isAllOk());
 	cout << r;
+	EXPECT_FALSE(r.isAllOk());
+	EXPECT_TRUE(r.hasMessages(kFravalgRisiko_MK, kValueNotAllowed));
 
 	ta.setValue(kFravalgRisiko_MK, false);
 	r = re.validate(ta, (unsigned short) kFravalgRisiko_MK);
@@ -144,13 +145,18 @@ TEST_F(FravalgRisiko_CONTEXT_KI_OSV_25_50, FravalgRisikoAlder_TooBig_NEGATIVE) {
 	ta.setValue(kUdlobsalder_Pension, (long) 67);
 
 	r = re.validate(ta, false);
-	EXPECT_TRUE(r.isAllOk());
+	EXPECT_FALSE(r.isAllOk());
 	cout << r;
+	EXPECT_TRUE(r.hasMessages(kFravalgRisiko_MK, kValueNotAllowed));
+	EXPECT_FALSE(r.hasMessages(kFravalgRisikoAlder));
+
 	ta.setValue(kUdlobsalder_Pension, (long) 65);
 	ta.setValue(kFravalgRisikoAlder, (long) 60);
 
 	r = re.validate(ta, false);
-	EXPECT_TRUE(r.isAllOk());
+	EXPECT_FALSE(r.isAllOk());
 	cout << r;
+	EXPECT_TRUE(r.hasMessages(kFravalgRisiko_MK, kValueNotAllowed));
+	EXPECT_FALSE(r.hasMessages(kFravalgRisikoAlder));
 }
 

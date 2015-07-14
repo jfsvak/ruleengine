@@ -290,6 +290,16 @@
 					"requiredif": "TAEReguleringskode == \"Ingen\" or TAEReguleringskode == \"Pristal\" or TAEReguleringskode == \"Gage\"",
 					"positiveMessage": "",
 					"negativeMessage": "Minimum invaliditetsdækning i kr skal angives når reguleringstypen 'Ingen/Pristal/Gage' er valgt"
+            	},
+            	{
+		            "id": "23.1.6",
+	    	        "expr": "TAEPctGrMin <= rc_TAEPctOblMax_max",
+	    	        "productElementOids": [ 10 ],
+	    	        "requiredif": "",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Minimum i invaliditetsdækning i procent må ikke overstige %1",
+	            	"negativeMessageParameters": [ "rc_TAEPctOblMax_max" ],
+					"negativeValCode": 103
             	}
             ],
 	        "negativeRuleCatalogue": []
@@ -353,6 +363,16 @@
 					"requiredif": "TAEReguleringskode == \"Ingen\" or TAEReguleringskode == \"Pristal\" or TAEReguleringskode == \"Gage\"",
 					"positiveMessage": "",
 					"negativeMessage": "Minimum invaliditetsdækning i kr skal angives når reguleringstypen 'Ingen/Pristal/Gage' er valgt"
+            	},
+            	{
+		            "id": "23.2.6",
+	    	        "expr": "TAEBlGrMin <= rc_TAEBlOblMax_max",
+	    	        "productElementOids": [ 14 ],
+	    	        "requiredif": "",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Minimum i invaliditetsdækning i kr må ikke overstige %1",
+	            	"negativeMessageParameters": [ "rc_TAEBlOblMax_max" ],
+					"negativeValCode": 103
             	}
             	
             ],
@@ -511,6 +531,16 @@
 	            	"negativeMessage": "Spænd i invalidesum i kr må ikke overstige %1",
 	            	"negativeMessageParameters": [ "rc_InvalidesumSpaendBl_max" ],
 					"negativeValCode": 103
+            	},
+            	{
+		            "id": "24.1.5",
+	    	        "expr": "InvalidesumBlMin <= rc_InvalidesumBlMax_max",
+	    	        "productElementOids": [ 76 ],
+	    	        "requiredif": "",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Minimum i invalidesum i kr må ikke overstige %1",
+	            	"negativeMessageParameters": [ "rc_InvalidesumBlMax_max" ],
+					"negativeValCode": 103
             	}
             ],
 	        "negativeRuleCatalogue": []
@@ -573,6 +603,16 @@
 	        	    "positiveMessage": "",
 	            	"negativeMessage": "Spænd i invalidesum i procent må ikke overstige %1%",
 	            	"negativeMessageParameters": [ "rc_InvalidesumSpaendPct_max" ],
+					"negativeValCode": 103
+            	},
+            	{
+		            "id": "24.2.5",
+	    	        "expr": "InvalidesumPctMin <= rc_InvalidesumPctMax_max",
+	    	        "productElementOids": [ 79 ],
+	    	        "requiredif": "",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Minimum i invalidesum i procent må ikke overstige %1 %",
+	            	"negativeMessageParameters": [ "rc_InvalidesumPctMax_max" ],
 					"negativeValCode": 103
             	}
             ],
@@ -638,6 +678,16 @@
 	        	    "positiveMessage": "",
 	            	"negativeMessage": "Spænd i dødsfaldsdækning i kr må ikke overstige %1 kr.",
 	            	"negativeMessageParameters": [ "rc_DoedSpaendBl_max" ],
+					"negativeValCode": 103
+            	},
+            	{
+		            "id": "25.1.5",
+	    	        "expr": "DoedBlGrMin <= rc_DoedBlOblMax_max",
+	    	        "productElementOids": [ 1 ],
+	    	        "requiredif": "",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Minimum for dødsfaldsdækning i kr må ikke overstige %1 kr.",
+	            	"negativeMessageParameters": [ "rc_DoedBlOblMax_max" ],
 					"negativeValCode": 103
             	}
             ],
@@ -711,6 +761,16 @@
 	        	    "positiveMessage": "",
 	            	"negativeMessage": "Spænd for dødsfaldsdækning i pct må ikke overstige %1",
 	            	"negativeMessageParameters": [ "rc_DoedSpaendPct_max" ],
+					"negativeValCode": 103
+        	    },
+		        {
+		            "id": "25.2.6",
+	    	        "expr": "DoedPctGrMin <= rc_DoedPctOblMax_max",
+		   	        "productElementOids": [ 6 ],
+   	    		    "requiredif": "",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Minimum for dødsfaldsdækning i procent må ikke overstige %1 %",
+	            	"negativeMessageParameters": [ "rc_DoedPctOblMax_max" ],
 					"negativeValCode": 103
         	    }
             ],
@@ -786,6 +846,16 @@
 	        	    "positiveMessage": "Obligatorisk børnerente skal være solidarisk",
 	            	"negativeMessage": "",
 					"positiveValCode": 101
+        	    },
+		        {
+		            "id": "25.3.7",
+	    	        "expr": "BoerneRentePctMin <= rc_BoerneRentePctMax_max",
+		   	        "productElementOids": [ 85 ],
+   	    		    "requiredif": "",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Minimum for børnerente i pct må ikke overstige %1 %",
+	            	"negativeMessageParameters": [ "rc_BoerneRentePctMax_max" ],
+					"negativeValCode": 103
         	    }
             ],
 	        "negativeRuleCatalogue": []
@@ -860,6 +930,16 @@
 	        	    "positiveMessage": "Obligatorisk børnerente skal være solidarisk",
 	            	"negativeMessage": "",
 					"positiveValCode": 101
+        	    },
+		        {
+		            "id": "25.4.7",
+	    	        "expr": "BoerneRenteBlMin <= rc_BoerneRenteBlMax_max",
+		   	        "productElementOids": [ 88 ],
+   	    		    "requiredif": "",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "Minimum for børnerente i kr må ikke overstige %1 kr.",
+	            	"negativeMessageParameters": [ "rc_BoerneRenteBlMax_max" ],
+					"negativeValCode": 103
         	    }
             ],
 	        "negativeRuleCatalogue": []
@@ -894,6 +974,16 @@
     	    "positiveMessage": "",
         	"negativeMessage": "Spænd for børnesum i kr må ikke overstige %1",
            	"negativeMessageParameters": [ "rc_BoerneSumSpaendBl_max" ],
+			"negativeValCode": 103
+	     },
+         {
+            "id": "25.5.3",
+	        "expr": "BoerneSumBlMin <= rc_BoerneSumBlMax_max",
+   	        "productElementOids": [ 91 ],
+		    "requiredif": "",
+    	    "positiveMessage": "",
+        	"negativeMessage": "Minimum for børnesum i kr må ikke overstige %1",
+           	"negativeMessageParameters": [ "rc_BoerneSumBlMax_max" ],
 			"negativeValCode": 103
 	     },
          
@@ -991,6 +1081,17 @@
 							"negativeMessage": "Spænd for Kritisk sygdom i procent må ikke overstige %1",
 				           	"negativeMessageParameters": [ "rc_KritiskSygspaendpc_max" ],
 							"negativeValCode": 103
+						},
+						{
+							"id": "26.1.2.5",
+							"comments" : "KritiskSygPctMin",
+							"expr": "KritiskSygPctMin <= rc_KritiskSygPctMax_max",
+							"productElementOids": [ 218 ],
+							"requiredif": "",
+							"positiveMessage": "",
+							"negativeMessage": "Minimum Kritisk Sygdom i Pct må ikke overstige %1",
+							"negativeMessageParameters": [ "rc_KritiskSygPctMax_max" ],
+							"negativeValCode": 103
 						}
 					]
         	    },
@@ -1058,6 +1159,17 @@
 							"positiveMessage": "",
 							"negativeMessage": "Spænd for Kritisk sygdom i kr må ikke overstige %1",
 				           	"negativeMessageParameters": [ "rc_KritiskSygSpaendBl_max" ],
+							"negativeValCode": 103
+						},
+						{
+							"id": "26.1.3.5",
+							"comments" : "KritiskSygBlMin",
+							"expr": "KritiskSygBlMin <= rc_KritiskSygBlMax_max",
+							"productElementOids": [ 215 ],
+							"requiredif": "",
+							"positiveMessage": "",
+							"negativeMessage": "Minimum Kritisk Sygdom i kr må ikke overstige %1",
+							"negativeMessageParameters": [ "rc_KritiskSygBlMax_max" ],
 							"negativeValCode": 103
 						}
 					]
@@ -1136,7 +1248,7 @@
 							"productElementOids": [ 263 ],
 							"requiredif": "#parent#",
 							"positiveMessage": "",
-							"negativeMessage": "Minimum Kritisk Sygdom i kr Born skal angives når reguleringstype er Ingen/Pristal"
+							"negativeMessage": "Minimum Kritisk Sygdom i kr Børn skal angives når reguleringstype er Ingen/Pristal"
 						},
 						{
 							"id": "26.2.2.2",
@@ -1145,7 +1257,7 @@
 							"productElementOids": [ 262 ],
 							"requiredif": "#parent#",
 							"positiveMessage": "",
-							"negativeMessage": "Maksimum Kritisk Sygdom Born i kr skal angives når reguleringstype er Ingen/Pristal"
+							"negativeMessage": "Maksimum Kritisk Sygdom Børn i kr skal angives når reguleringstype er Ingen/Pristal"
 						},
 						{
 							"id": "26.2.2.3",
@@ -1154,7 +1266,7 @@
 							"productElementOids": [ 269 ],
 							"requiredif": "",
 							"positiveMessage": "",
-							"negativeMessage": "Spænd for Kritisk sygdom born i kr skal værre større end %1",
+							"negativeMessage": "Spænd for Kritisk sygdom børn i kr skal værre større end %1",
 				           	"negativeMessageParameters": [ "rc_KritiskSygBornesumSpaendBl_min" ],
 							"negativeValCode": 102
 						},
@@ -1165,8 +1277,19 @@
 							"productElementOids": [ 269 ],
 							"requiredif": "",
 							"positiveMessage": "",
-							"negativeMessage": "Spænd for Kritisk sygdom born i kr må ikke overstige %1",
+							"negativeMessage": "Spænd for Kritisk sygdom børn i kr må ikke overstige %1",
 				           	"negativeMessageParameters": [ "rc_KritiskSygBornesumSpaendBl_max"  ],
+							"negativeValCode": 103
+						},
+						{
+							"id": "26.2.2.5",
+							"comments" : "KritiskSygBornesumBlMin",
+							"expr": "KritiskSygBornesumBlMin <= rc_KritiskSygBornesumBlMax_max",
+							"productElementOids": [ 263 ],
+							"requiredif": "",
+							"positiveMessage": "",
+							"negativeMessage": "Minimum Kritisk Sygdom Børnesum i kr må ikke overstige %1",
+				           	"negativeMessageParameters": [ "rc_KritiskSygBornesumBlMax_max"  ],
 							"negativeValCode": 103
 						}
 					]
@@ -1250,6 +1373,17 @@
 							"positiveMessage": "",
 							"negativeMessage": "Spænd for Kritisk sygdom born i pct må ikke overstige %1",
 				           	"negativeMessageParameters": [ "rc_KritiskSygBornesumSpaendpc_max"  ],
+							"negativeValCode": 103
+						},
+						{
+							"id": "26.2.5.5",
+							"comments" : "KritiskSygBornesumPctMin",
+							"expr": "KritiskSygBornesumPctMin <= rc_KritiskSygBornesumPctMax_max",
+							"productElementOids": [ 266 ],
+							"requiredif": "",
+							"positiveMessage": "",
+							"negativeMessage": "Minimum Kritisk Sygdom Børnesum i pct må ikke overstige %1",
+				           	"negativeMessageParameters": [ "rc_KritiskSygBornesumPctMax_max"  ],
 							"negativeValCode": 103
 						}
 					]
@@ -1489,7 +1623,7 @@
          {
 		    "id": "33.1.1",
 	        "comments" : "Contribution ladder - first step should be higher than mandatory contribution",
-	        "expr": "Hospitalsdaekning_MK == true",
+	        "expr": "ns_equals(\"Hospitalsdaekning_MK\", true, false) and ((UnionAgreementRelationship == \"U\" and ns_equals(\"Private_Taxed_MK\", false, true)) or (UnionAgreementRelationship != \"U\" and ns_equals(\"BidragEjFoesteTrin_MK\", true, true)))",
 	        "productElementOids": [ 999 ],
    		    "requiredif": "",
 	   	    "positiveMessage": "",
@@ -1500,7 +1634,7 @@
 				    "id": "33.1.1.1",
 			        "comments" : "Contribution ladder - first step should be higher than mandatory contribution",
 			        "expr": "Bidragstrappe[0,1] + Bidragstrappe[0,2] >= rc_BidragInklHospdaekningPctMin_min",
-					"evaluateExprIf": "Hospitalsdaekning_MK == true and ((UnionAgreementRelationship == \"U\" and Private_Taxed_MK == false) or (UnionAgreementRelationship != \"U\" and BidragEjFoesteTrin_MK == true))",
+					"evaluateExprIf": "#parent#",
 			        "productElementOids": [ 999 ],
 		   		    "requiredif": "",
 			   	    "positiveMessage": "",
@@ -1514,7 +1648,7 @@
          {
 		    "id": "33.1.2",
 	        "comments" : "Contribution ladder - first step should be higher than mandatory contribution",
-	        "expr": "Hospitalsdaekning_MK == false",
+	        "expr": "ns_equals(\"Hospitalsdaekning_MK\", false, false) and ((UnionAgreementRelationship == \"U\" and ns_equals(\"Private_Taxed_MK\", false, true)) or (UnionAgreementRelationship != \"U\" and ns_equals(\"BidragEjFoesteTrin_MK\", true, true)))",
 	        "productElementOids": [ 999 ],
    		    "requiredif": "",
 	   	    "positiveMessage": "",
@@ -1525,7 +1659,7 @@
 				    "id": "33.1.2.1",
 			        "comments" : "Contribution ladder - first step should be higher than mandatory contribution",
 			        "expr": "Bidragstrappe[0,1] + Bidragstrappe[0,2] >= rc_BidragsEksklHospdaekningPctMin_min",
-			        "evaluateExprIf": "Hospitalsdaekning_MK == false and ((UnionAgreementRelationship == \"U\" and Private_Taxed_MK == false) or (UnionAgreementRelationship != \"U\" and BidragEjFoesteTrin_MK == true))",
+			        "evaluateExprIf": "#parent#",
 			        "productElementOids": [ 999 ],
 		   		    "requiredif": "",
 			   	    "positiveMessage": "",

@@ -72,6 +72,7 @@ public:
 	const sbx::Koncept& getKoncept(sbx::koncept_oid);
 
 	bool isVarDefined(const std::string& variable) const;
+	const mup::ParserX& getParser() const;
 
 	// -- util methods for printing
 	void printRuleCatalogue(sbx::RuleCatalogue&, int depth);

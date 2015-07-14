@@ -82,8 +82,7 @@ TEST_F(RelatedSubkoncepts, ContextSwitch) {
 	RuleEngine::_printDebug = true;
 	RuleEngine::_printDebugAtValidation = true;
 	RuleEngine re2{};
-	re2.initConstants(get_file_contents("basedata-ruleconstants.json"));
-	re2.initKoncepts(get_file_contents("koncepts.json"));
+	re2.initialiseAll(get_file_contents("basedata-all.json"));
 	re2.parseRuleCatalogueJSON(get_file_contents("rule-catalogue.json"));
 
     KonceptInfo kiOSV {OSV, 55, 0, //
@@ -99,29 +98,28 @@ TEST_F(RelatedSubkoncepts, ContextSwitch) {
 
 	TA ta {"20247940", OSV};
 
-	ta.setValue(kKritiskSygReguleringskode, "Pristal");
-	ta.setValue(kKritiskSygBlMin, (long) 50000);
-	ta.setValue(kKritiskSygBlMax, (long) 100000);
+	ta.setValue(kDoedReguleringskode, "Pristal");
+	ta.setValue(kDoedBlGrMin, (long) 50000);
+	ta.setValue(kDoedBlOblMax, (long) 200000);
 
 	auto r = re2.validate(ta, false);
 	EXPECT_TRUE(r.isAllOk());
 	cout << r;
 
-    KonceptInfo kiProsa {PROSA, 5, 0, //
+    KonceptInfo kiITPension {ITPENSION, 15, 0, //
     	{ {11, "true"}, // Parameter-Basis
     	  {1, "true"}, // Solidarisk faellestarif
 		  {15, "true"}, // FG span
 		  {6, "true"} // SEB Firmapensionspulje
     	} };
-    re2.initContext(kiProsa, OUTSIDE);
-    ta.setKonceptOid(PROSA);
+    re2.initContext(kiITPension, OUTSIDE);
 
 	r = re2.validate(ta, false);
 	EXPECT_FALSE(r.isAllOk());
 	cout << r;
-	EXPECT_TRUE(r.hasMessages(kKritiskSygBlMin, kValueUnderLimit));
+	EXPECT_TRUE(r.hasMessages(kDoedBlGrMin, kValueUnderLimit));
 
-	ta.setValue(kKritiskSygBlMin, (long) 100000);
+	ta.setValue(kDoedBlGrMin, (long) 100000);
 	r = re2.validate(ta, false);
 	EXPECT_TRUE(r.isAllOk());
 	cout << r;

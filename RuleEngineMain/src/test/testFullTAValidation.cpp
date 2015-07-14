@@ -133,15 +133,6 @@ TEST_F(Full_TA_CONTEXT_KI_OSV_25_50, Full_TA_POSITIVE) {
 	r = re.validate(ta);
 	EXPECT_EQ(total-=3, r.sizeValidationResults());
 	cout << r;
-	ta.setValue(kFravalgRisiko_MK, true);
-	r = re.validate(ta);
-	EXPECT_EQ(total+=1, r.sizeValidationResults());
-	cout << r;
-	ta.setValue(kFravalgRisikoAlder, 65);
-	r = re.validate(ta);
-	EXPECT_EQ(total-=1, r.sizeValidationResults());
-	cout << r;
-
 
 
 	//

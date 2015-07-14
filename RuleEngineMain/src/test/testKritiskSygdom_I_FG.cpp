@@ -108,6 +108,66 @@ TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50, KritiskSygdom_I_FG_True_Pristal_
 	EXPECT_TRUE(r.isAllOk());
 }
 
+TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50, KritiskSygBlMin_Pristal_OverLimit) {
+	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	ta.setValue(kKritiskSygdom_i_FG_mk, true);
+	ta.setValue(kKritiskSygReguleringskode, "Pristal");
+	ta.setValue(kKritiskSygSuppldaekn_mk, false);
+	ta.setValue(kKritiskSygSkattekode, re.getDefaultValue(kKritiskSygSkattekode)->stringValue());
+	ta.setValue(kKritiskSygBlMin, (long) 604936);
+	ta.setValue(kKritiskSygBlMax, (long) 604936);
+
+	RuleEngine::_printDebugAtValidation = true;
+
+	auto r = re.validate(ta, false);
+	cout << r;
+	EXPECT_FALSE(r.isAllOk());
+	EXPECT_TRUE(r.hasMessages(kKritiskSygBlMin, kValueOverLimit));
+	EXPECT_TRUE(r.hasMessages(kKritiskSygBlMax, kValueOverLimit));
+
+	ta.setValue(kKritiskSygBlMin, (long) 604935);
+	ta.setValue(kKritiskSygBlMax, (long) 604935);
+	r = re.validate(ta, false);
+	cout << r;
+	EXPECT_TRUE(r.isAllOk());
+
+	ta.setValue(kKritiskSygBlMin, (long) 604934);
+	ta.setValue(kKritiskSygBlMax, (long) 604934);
+	r = re.validate(ta, false);
+	cout << r;
+	EXPECT_TRUE(r.isAllOk());
+}
+
+TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50, KritiskSygPctMin_Gage_OverLimit) {
+	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	ta.setValue(kKritiskSygdom_i_FG_mk, true);
+	ta.setValue(kKritiskSygReguleringskode, "Gage");
+	ta.setValue(kKritiskSygSuppldaekn_mk, false);
+	ta.setValue(kKritiskSygSkattekode, re.getDefaultValue(kKritiskSygSkattekode)->stringValue());
+	ta.setValue(kKritiskSygPctMin, (long) 401);
+	ta.setValue(kKritiskSygPctMax, (long) 401);
+
+	RuleEngine::_printDebugAtValidation = true;
+
+	auto r = re.validate(ta, false);
+	cout << r;
+	EXPECT_FALSE(r.isAllOk());
+	EXPECT_TRUE(r.hasMessages(kKritiskSygPctMin, kValueOverLimit));
+	EXPECT_TRUE(r.hasMessages(kKritiskSygPctMax, kValueOverLimit));
+
+	ta.setValue(kKritiskSygPctMin, (long) 400);
+	ta.setValue(kKritiskSygPctMax, (long) 400);
+	r = re.validate(ta, false);
+	cout << r;
+	EXPECT_TRUE(r.isAllOk());
+
+	ta.setValue(kKritiskSygPctMin, (long) 399);
+	ta.setValue(kKritiskSygPctMax, (long) 399);
+	r = re.validate(ta, false);
+	cout << r;
+	EXPECT_TRUE(r.isAllOk());
+}
+
 TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50, KritiskSygdom_I_FG_True_SupplDaekning_POSITIVE) {
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
 	ta.setValue(kKritiskSygdom_i_FG_mk, true);

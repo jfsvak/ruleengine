@@ -60,7 +60,7 @@ TEST_F(Invalidesum_KI_OSV_25_49, Invalidesum_I_Kr_Ingen_NEGATIVE) {
 	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
 	ta.setValue(kInvalidesumReguleringskode, "Ingen");
 	ta.setValue(kInvalidesumBlMin, -1);
-	ta.setValue(kInvalidesumBlMax, 1100000);
+	ta.setValue(kInvalidesumBlMax, 1300000);
 
 	auto r = re.validate(ta, {kInvalidesumReguleringskode, kInvalidesumBlMin, kInvalidesumBlMax, kInvalidesumSpaendBl});
 	EXPECT_FALSE(r.isAllOk());
@@ -68,6 +68,7 @@ TEST_F(Invalidesum_KI_OSV_25_49, Invalidesum_I_Kr_Ingen_NEGATIVE) {
 		cout << r;
 	EXPECT_EQ(3, r.getValidationResults().size());
 	EXPECT_TRUE(r.hasMessages(kInvalidesumBlMin, kValueUnderLimit));
+	EXPECT_TRUE(r.hasMessages(kInvalidesumSpaendBl, kValueOverLimit));
 	EXPECT_TRUE(r.hasMessages(kInvalidesumBlMax, kValueOverLimit));
 
 	ta.setValue(kInvalidesumBlMin, 100000);
@@ -133,7 +134,50 @@ TEST_F(Invalidesum_KI_OSV_25_49, Invalidesum_I_Pct_NEGATIVE) {
 
 }
 
+TEST_F(Invalidesum_KI_OSV_25_49, InvalideSumPctMin_OverLimit) {
+	RuleEngine::_printDebugAtValidation = true;
+	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	ta.setValue(kInvalidesumReguleringskode, "Gage");
+	ta.setValue(kInvalidesumPctMin, 101);
+	ta.setValue(kInvalidesumPctMax, 101);
 
+	auto r = re.validate(ta, false);
+	EXPECT_FALSE(r.isAllOk());
+	cout << r;
+	EXPECT_TRUE(r.hasMessages(kInvalidesumPctMin, kValueOverLimit));
+
+	ta.setValue(kInvalidesumPctMin, 60);
+	ta.setValue(kInvalidesumPctMax, 60);
+	r = re.validate(ta, false);
+	EXPECT_TRUE(r.isAllOk());
+	cout << r;
+
+}
+
+TEST_F(Invalidesum_KI_OSV_25_49, InvalideSumBlMin_OverLimit) {
+	RuleEngine::_printDebugAtValidation = true;
+	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	ta.setValue(kInvalidesumReguleringskode, "Pristal");
+	ta.setValue(kInvalidesumBlMin, 1215001);
+	ta.setValue(kInvalidesumBlMax, 1500000);
+
+	auto r = re.validate(ta, false);
+	EXPECT_FALSE(r.isAllOk());
+		cout << r;
+	EXPECT_TRUE(r.hasMessages(kInvalidesumBlMin, kValueOverLimit));
+
+	ta.setValue(kInvalidesumBlMin, 1215000);
+	ta.setValue(kInvalidesumBlMax, 1215000);
+	r = re.validate(ta, false);
+	EXPECT_TRUE(r.isAllOk());
+	cout << r;
+
+	ta.setValue(kInvalidesumBlMin, 1214999);
+	ta.setValue(kInvalidesumBlMax, 1214999);
+	r = re.validate(ta, false);
+	EXPECT_TRUE(r.isAllOk());
+	cout << r;
+}
 
 
 
