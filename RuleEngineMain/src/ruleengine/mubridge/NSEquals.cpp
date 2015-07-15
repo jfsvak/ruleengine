@@ -27,8 +27,6 @@ void NSEquals::Eval(mup::ptr_val_type &ret, const mup::ptr_val_type *a_pArg, int
 	mup::ptr_val_type compareTOValue = a_pArg[1];
 	mup::bool_type nullResponse = a_pArg[2]->GetBool();
 
-	cout << "ns_equals[" << variableName << "], compareTOValue[" << *compareTOValue << "], nullResponse[" << nullResponse << "], " << endl;
-
 	// The return value is passed by writing it to the reference ret
 	if (_ruleEngine->isVarDefined(variableName))
 	{
@@ -41,8 +39,6 @@ void NSEquals::Eval(mup::ptr_val_type &ret, const mup::ptr_val_type *a_pArg, int
 
 				if (item->first == variableName) {
 					mup::Variable& mupVar = (mup::Variable&) (*(item->second));
-
-					cout << mupVar << " (" << mupVar.GetType() << ")" << endl;
 
 					if (mupVar.GetType() == 'i' )
 						*ret = (compareTOValue->GetInteger() == mupVar.GetInteger());
