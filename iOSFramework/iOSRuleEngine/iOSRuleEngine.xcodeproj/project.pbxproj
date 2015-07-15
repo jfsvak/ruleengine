@@ -26,6 +26,10 @@
 		3A0565851B3906E5001EC241 /* Date_sbx.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A0565831B3906E5001EC241 /* Date_sbx.h */; };
 		3A07AC301B0EEA01007D075D /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A07AC2D1B0EEA01007D075D /* Utils.cpp */; };
 		3A07AC311B0EEA01007D075D /* Utils.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A07AC2E1B0EEA01007D075D /* Utils.h */; };
+		3A0C54DB1B54E3FC0086DBF2 /* NSEquals.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A0C54D91B54E3FC0086DBF2 /* NSEquals.cpp */; };
+		3A0C54DC1B54E3FC0086DBF2 /* NSEquals.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A0C54DA1B54E3FC0086DBF2 /* NSEquals.h */; };
+		3A4935C71B3BACF5004B41C3 /* DefinedInParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A4935C51B3BACF5004B41C3 /* DefinedInParser.cpp */; };
+		3A4935C81B3BACF5004B41C3 /* DefinedInParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A4935C61B3BACF5004B41C3 /* DefinedInParser.h */; };
 		3A5688421B0C360C009E5AB1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5688411B0C360C009E5AB1 /* Foundation.framework */; };
 		3A5688471B0C360C009E5AB1 /* iOSRuleEngine.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3A5688461B0C360C009E5AB1 /* iOSRuleEngine.h */; };
 		3A5688501B0C360C009E5AB1 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A56884F1B0C360C009E5AB1 /* XCTest.framework */; };
@@ -208,6 +212,10 @@
 		3A0565831B3906E5001EC241 /* Date_sbx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Date_sbx.h; path = ../../../RuleEngineMain/src/ruleengine/Date_sbx.h; sourceTree = "<group>"; };
 		3A07AC2D1B0EEA01007D075D /* Utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Utils.cpp; path = ../../../RuleEngineMain/src/ruleengine/Utils.cpp; sourceTree = "<group>"; };
 		3A07AC2E1B0EEA01007D075D /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utils.h; path = ../../../RuleEngineMain/src/ruleengine/Utils.h; sourceTree = "<group>"; };
+		3A0C54D91B54E3FC0086DBF2 /* NSEquals.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NSEquals.cpp; path = ../../../RuleEngineMain/src/ruleengine/mubridge/NSEquals.cpp; sourceTree = "<group>"; };
+		3A0C54DA1B54E3FC0086DBF2 /* NSEquals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSEquals.h; path = ../../../RuleEngineMain/src/ruleengine/mubridge/NSEquals.h; sourceTree = "<group>"; };
+		3A4935C51B3BACF5004B41C3 /* DefinedInParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DefinedInParser.cpp; path = ../../../RuleEngineMain/src/ruleengine/mubridge/DefinedInParser.cpp; sourceTree = "<group>"; };
+		3A4935C61B3BACF5004B41C3 /* DefinedInParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DefinedInParser.h; path = ../../../RuleEngineMain/src/ruleengine/mubridge/DefinedInParser.h; sourceTree = "<group>"; };
 		3A56883E1B0C360C009E5AB1 /* libiOSRuleEngine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libiOSRuleEngine.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A5688411B0C360C009E5AB1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3A5688451B0C360C009E5AB1 /* iOSRuleEngine-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOSRuleEngine-Prefix.pch"; sourceTree = "<group>"; };
@@ -383,6 +391,10 @@
 		3A07AC2B1B0EE9B3007D075D /* mubridge */ = {
 			isa = PBXGroup;
 			children = (
+				3A0C54D91B54E3FC0086DBF2 /* NSEquals.cpp */,
+				3A0C54DA1B54E3FC0086DBF2 /* NSEquals.h */,
+				3A4935C51B3BACF5004B41C3 /* DefinedInParser.cpp */,
+				3A4935C61B3BACF5004B41C3 /* DefinedInParser.h */,
 				3A5689591B0C3825009E5AB1 /* GetTAValue.cpp */,
 				3A56895A1B0C3825009E5AB1 /* GetTAValue.h */,
 				3A56895B1B0C3825009E5AB1 /* utils.cpp */,
@@ -642,6 +654,7 @@
 				3A5688D91B0C37E3009E5AB1 /* mpIPackage.h in Headers */,
 				3A5688FC1B0C37E3009E5AB1 /* mpPackageUnit.h in Headers */,
 				3A5688EE1B0C37E3009E5AB1 /* mpOprtNonCmplx.h in Headers */,
+				3A4935C81B3BACF5004B41C3 /* DefinedInParser.h in Headers */,
 				3A56893D1B0C3816009E5AB1 /* Constant_sbx.h in Headers */,
 				3A6430AD1B313E2C00080BFF /* Subkoncept_sbx.h in Headers */,
 				3A56894F1B0C3816009E5AB1 /* RuleConstantContainer_sbx.h in Headers */,
@@ -672,6 +685,7 @@
 				3A5688E61B0C37E3009E5AB1 /* mpOprtBinCommon.h in Headers */,
 				3A56891C1B0C3801009E5AB1 /* json-forwards.h in Headers */,
 				3A56894D1B0C3816009E5AB1 /* RuleCatalogue.h in Headers */,
+				3A0C54DC1B54E3FC0086DBF2 /* NSEquals.h in Headers */,
 				3A5688DE1B0C37E3009E5AB1 /* mpIValReader.h in Headers */,
 				3A5689171B0C37E3009E5AB1 /* utGeneric.h in Headers */,
 				3A5688DC1B0C37E3009E5AB1 /* mpIToken.h in Headers */,
@@ -830,6 +844,7 @@
 				3A6430AC1B313E2C00080BFF /* Subkoncept_sbx.cpp in Sources */,
 				3A5688EB1B0C37E3009E5AB1 /* mpOprtMatrix.cpp in Sources */,
 				3A56886B1B0C370B009E5AB1 /* Bridge.mm in Sources */,
+				3A0C54DB1B54E3FC0086DBF2 /* NSEquals.cpp in Sources */,
 				3A5689401B0C3816009E5AB1 /* Parameter_sbx.cpp in Sources */,
 				3A5D22231B32C75900DA643C /* EmploymentGroup_sbx.cpp in Sources */,
 				3A56890F1B0C37E3009E5AB1 /* mpValue.cpp in Sources */,
@@ -857,6 +872,7 @@
 				3A5689111B0C37E3009E5AB1 /* mpValueCache.cpp in Sources */,
 				3A5688EF1B0C37E3009E5AB1 /* mpOprtPostfixCommon.cpp in Sources */,
 				3A5688DF1B0C37E3009E5AB1 /* mpIValue.cpp in Sources */,
+				3A4935C71B3BACF5004B41C3 /* DefinedInParser.cpp in Sources */,
 				3A5688F51B0C37E3009E5AB1 /* mpPackageMatrix.cpp in Sources */,
 				3A0565841B3906E5001EC241 /* Date_sbx.cpp in Sources */,
 				3A5689421B0C3816009E5AB1 /* PrintUtils_sbx.cpp in Sources */,
