@@ -93,7 +93,7 @@
 	    	        "expr": "",
 		   	        "productElementOids": [ 236 ],
    	    		    "requiredif": "#parent#",
-                    "notallowedif": "`ning_MK == false",
+                    "notallowedif": "Omtegning_MK == false",
 	        	    "positiveMessage": "",
 	            	"negativeMessage": "Hvis omtegning er valgt, skal der angives en omtegningsdato"
         	    },
