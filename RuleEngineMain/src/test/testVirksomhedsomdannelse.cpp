@@ -65,7 +65,6 @@ TEST_F(Virksomhedsomdannelse_KI_OSV_25_49, Virksomhedsomdannelse_POSITIVE) {
 	//	if (!r.isAllOk())
 		cout << r;
 
-
 	ta.setValue(kFusionTidligerePensionsordning_MK, true);
 	r = re.validate(ta, false);
 	EXPECT_FALSE(r.isAllOk());
@@ -74,12 +73,15 @@ TEST_F(Virksomhedsomdannelse_KI_OSV_25_49, Virksomhedsomdannelse_POSITIVE) {
 	EXPECT_EQ(1, r.getValidationResults().size());
 	EXPECT_TRUE(r.hasMessages(kFusionPensionsselskab, kProductElementRequired));
 
+	ta.setValue(kFusionPensionsselskab, "");
+	r = re.validate(ta, false);
+	cout << r;
+	EXPECT_TRUE(r.hasMessages(kFusionPensionsselskab, kProductElementRequired));
+
 	ta.setValue(kFusionPensionsselskab, "ok garbage");
 	r = re.validate(ta, false);
-	//	if (!r.isAllOk())
-		cout << r;
+	cout << r;
 	EXPECT_TRUE(r.isAllOk());
-
 }
 
 

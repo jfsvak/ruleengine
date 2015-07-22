@@ -1449,6 +1449,15 @@
 					"positiveRuleCatalogue": []
         	    },
 		        {
+		            "id": "28.1.1.1",
+		            "comments" : "Pensionsudbyder cannot be empty string",
+	    	        "expr": "Pensionsudbyder == \"\"",
+		   	        "productElementOids": [ 142 ],
+   	    		    "requiredif": "",
+   	    		    "positiveMessage": "Pensionsudbyder skal angives",
+   	    		    "positiveValCode": 202
+        	    },
+		        {
 		            "id": "28.1.2",
 		            "comments" : "IndtraedelseSenere_MK - requiredif placeholder",
 	    	        "expr": "IndtraedelseSenere_MK == true",
@@ -1536,7 +1545,17 @@
 			        	    "positiveMessage": "",
 			            	"negativeMessage": "",
 							"positiveRuleCatalogue": []
+		        	    },
+   	    		        {
+				            "id": "29.1.1.2",
+				            "comments" : "FusionPensionsselskab cannot be empty string",
+			    	        "expr": "FusionPensionsselskab == \"\"",
+				   	        "productElementOids": [ 204 ],
+		   	    		    "requiredif": "",
+		   	    		    "positiveMessage": "Fusion Pensionsudbyder skal angives",
+		   	    		    "positiveValCode": 202
 		        	    }
+		        	    
 					]
         	    },
 		        {

@@ -57,14 +57,19 @@ TEST_F(EksisterendeOrdninger_KI_OSV_25_49, EksisterendeOrdninger_POSITIVE) {
 	EXPECT_TRUE(r.hasMessages(kHelbred_leverandorskift, kProductElementRequired));
 
 
+	ta.setValue(kPensionsudbyder, "");
+	r = re.validate(ta, false);
+	cout << r;
+	EXPECT_FALSE(r.isAllOk());
+	EXPECT_TRUE(r.hasMessages(kPensionsudbyder, kProductElementRequired));
+
 	ta.setValue(kPensionsudbyder, "ok garbage");
 	ta.setValue(kIndtraedelseSenere_MK, false);
 	ta.setValue(kOblDaekningSammeStoerrelse_MK, false);
 	ta.setValue(kHelbred_leverandorskift, re.getDefaultValue(kHelbred_leverandorskift)->stringValue());
 	r = re.validate(ta, false);
 	EXPECT_TRUE(r.isAllOk());
-	//	if (!r.isAllOk())
-		cout << r;
+	cout << r;
 
 
 	ta.setValue(kIndtraedelseSenere_MK, true);

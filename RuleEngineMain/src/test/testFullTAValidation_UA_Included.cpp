@@ -35,7 +35,7 @@ protected:
 TEST_F(Full_TA_CONTEXT_KI_OSV_25_50_UA_14_Included, Full_TA_POSITIVE) {
 	TA ta { "15124040" };
 	RuleEngine::_printDebugAtValidation = true;
-	int total {131};
+	int total {130};
 
 	auto r = re.validate(ta);
 	EXPECT_FALSE(r.isAllOk());
@@ -404,7 +404,7 @@ TEST_F(Full_TA_CONTEXT_KI_OSV_25_50_UA_14_Included, Full_TA_POSITIVE) {
 	r = re.validate(ta);
 	EXPECT_EQ(total+=4, r.sizeValidationResults());
 	cout << r;
-	ta.setValue(kPensionsudbyder, true);
+	ta.setValue(kPensionsudbyder, "ok garbage");
 	ta.setValue(kIndtraedelseSenere_MK, true);
 	ta.setValue(kIndtraedelsesdato, 20150801);
 	ta.setValue(kOblDaekningSammeStoerrelse_MK, false);
@@ -441,6 +441,7 @@ TEST_F(Full_TA_CONTEXT_KI_OSV_25_50_UA_14_Included, Full_TA_POSITIVE) {
 	ta.setValue(kLoenRegulering, "januar");
 	ta.setValue(kLoenreguleringsfrekvens, re.getDefaultValue(kLoenreguleringsfrekvens)->stringValue());
 	ta.setValue(kBidragsstigningsform, "Alder");
+	ta.setValue(kBidragEjFoesteTrin_MK, false);
 	r = re.validate(ta);
 	EXPECT_EQ(total-=4, r.sizeValidationResults());
 	cout << r;
@@ -451,7 +452,6 @@ TEST_F(Full_TA_CONTEXT_KI_OSV_25_50_UA_14_Included, Full_TA_POSITIVE) {
 	ta.setValue(kPrivate_Taxed_MK, true);
 	r = re.validate(ta);
 	EXPECT_EQ(total+=1, r.sizeValidationResults());
-//	EXPECT_FALSE(r.hasMessages(kBidragstrappe, kProductElementRequired));
 
 	cout << r;
 	ta.setValue(kPrivate_Premium_BL, (long) 200000);
@@ -464,12 +464,6 @@ TEST_F(Full_TA_CONTEXT_KI_OSV_25_50_UA_14_Included, Full_TA_POSITIVE) {
 	r = re.validate(ta);
 	EXPECT_EQ(total, r.sizeValidationResults());
 	cout << r;
-
-//	ta.addContributionStep( {20, 4, 4} );
-//	ta.addContributionStep( {23, 4, 4} );
-//	r = re.validate(ta);
-//	EXPECT_EQ(total-=1, r.sizeValidationResults());
-//	cout << r;
 
 	// misc
 	ta.setValue(kSeneste_Underskriftsdato, (long) 20150801);
