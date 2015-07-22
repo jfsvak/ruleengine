@@ -37,7 +37,7 @@ protected:
 
 // Test KritiskSygdom_I_FG - not selected
 TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50, KritiskSygdom_I_FG_False_POSITIVE) {
-	TA ta { "15124040"}; // KonceptOid 4 - OSV
+	TA ta { "15124040"};
 	ta.setValue(kKritiskSygdom_i_FG_mk, false );
 
 	auto r = re.validate(ta, (unsigned short) kKritiskSygdom_i_FG_mk);
@@ -48,7 +48,7 @@ TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50, KritiskSygdom_I_FG_False_POSITIV
 
 // Test KritiskSygdom_I_FG - selected
 TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50, KritiskSygdom_I_FG_True_GAGE_POSITIVE) {
-	TA ta { "15124040"}; // KonceptOid 4 - OSV
+	TA ta { "15124040"};
 	ta.setValue(kKritiskSygdom_i_FG_mk, true);
 	ta.setValue(kKritiskSygReguleringskode, "Gage");
 	ta.setValue(kKritiskSygPctMin, (long) 200);
@@ -71,7 +71,7 @@ TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50, KritiskSygdom_I_FG_True_GAGE_POS
 
 // Test KritiskSygdom_I_FG - selected
 TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50, KritiskSygdom_I_FG_True_Pristal_POSITIVE) {
-	TA ta { "15124040"}; // KonceptOid 4 - OSV
+	TA ta { "15124040"};
 	ta.setValue(kKritiskSygdom_i_FG_mk, true);
 	ta.setValue(kKritiskSygReguleringskode, "Pristal");
 	ta.setValue(kKritiskSygBlMin, (long) 400000);
@@ -92,7 +92,7 @@ TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50, KritiskSygdom_I_FG_True_Pristal_
 }
 
 TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50, KritiskSygdom_I_FG_True_Pristal_POSITIVE_FullTA) {
-	TA ta { "15124040"}; // KonceptOid 4 - OSV
+	TA ta { "15124040"};
 	ta.setValue(kKritiskSygdom_i_FG_mk, true);
 	ta.setValue(kKritiskSygReguleringskode, "Pristal");
 	ta.setValue(kKritiskSygSuppldaekn_mk, false);
@@ -109,7 +109,7 @@ TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50, KritiskSygdom_I_FG_True_Pristal_
 }
 
 TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50, KritiskSygBlMin_Pristal_OverLimit) {
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040" };
 	ta.setValue(kKritiskSygdom_i_FG_mk, true);
 	ta.setValue(kKritiskSygReguleringskode, "Pristal");
 	ta.setValue(kKritiskSygSuppldaekn_mk, false);
@@ -139,7 +139,7 @@ TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50, KritiskSygBlMin_Pristal_OverLimi
 }
 
 TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50, KritiskSygPctMin_Gage_OverLimit) {
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040" };
 	ta.setValue(kKritiskSygdom_i_FG_mk, true);
 	ta.setValue(kKritiskSygReguleringskode, "Gage");
 	ta.setValue(kKritiskSygSuppldaekn_mk, false);
@@ -169,7 +169,7 @@ TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50, KritiskSygPctMin_Gage_OverLimit)
 }
 
 TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50, KritiskSygdom_I_FG_True_SupplDaekning_POSITIVE) {
-	TA ta { "15124040"}; // KonceptOid 4 - OSV
+	TA ta { "15124040"};
 	ta.setValue(kKritiskSygdom_i_FG_mk, true);
 	ta.setValue(kKritiskSygSuppldaekn_mk, false);
 
@@ -188,7 +188,7 @@ TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50, KritiskSygdom_I_FG_True_SupplDae
 
 
 TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50, KritiskSygdom_I_FG_True_Skattekode_POSITIVE) {
-	TA ta { "15124040"}; // KonceptOid 4 - OSV
+	TA ta { "15124040"};
 	ta.setValue(kKritiskSygdom_i_FG_mk, true );
 	ta.setValue(kKritiskSygSkattekode, re.getDefaultValue(kKritiskSygSkattekode)->stringValue() );
 
@@ -211,7 +211,7 @@ TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50, KritiskSygdom_I_FG_True_Skatteko
 // Expected result
 //   fail with errors
 TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50, KritiskSygdom_I_FG_True_GAGE_NEGATIVE) {
-	TA ta { "15124040"}; // KonceptOid 4 - OSV
+	TA ta { "15124040"};
 	ta.setValue(kKritiskSygdom_i_FG_mk, true);
 	ta.setValue(kKritiskSygReguleringskode, "Gage");
 	ta.setValue(kKritiskSygBlMin, (long) 300000);
@@ -246,7 +246,7 @@ TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50, KritiskSygdom_I_FG_True_GAGE_NEG
 // Expected result
 //   fail with errors
 TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50, KritiskSygdom_I_FG_True_GAGE_NEGATIVE_UnderOverLimit) {
-	TA ta { "15124040"}; // KonceptOid 4 - OSV
+	TA ta { "15124040"};
 	ta.setValue(kKritiskSygdom_i_FG_mk, true);
 	ta.setValue(kKritiskSygReguleringskode, "Gage");
 	ta.setValue(kKritiskSygPctMin, (long) -1);
@@ -283,7 +283,7 @@ TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50, KritiskSygdom_I_FG_True_GAGE_NEG
 // Expected result
 //   fail with errors
 TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50, KritiskSygdom_I_FG_True_Pristal_NEGATIVE_UnderOverLimit) {
-	TA ta { "15124040"}; // KonceptOid 4 - OSV
+	TA ta { "15124040"};
 	ta.setValue(kKritiskSygdom_i_FG_mk, true);
 	ta.setValue(kKritiskSygReguleringskode, "Pristal");
 	ta.setValue(kKritiskSygBlMin, (long) -1);
@@ -317,7 +317,7 @@ TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50, KritiskSygdom_I_FG_True_Pristal_
 }
 
 TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50, KritiskSygdom_I_FG_False_SupplDaekning_NEGATIVE) {
-	TA ta { "15124040"}; // KonceptOid 4 - OSV
+	TA ta { "15124040"};
 	ta.setValue(kKritiskSygdom_i_FG_mk, false);
 	ta.setValue(kKritiskSygSuppldaekn_mk, true);
 
@@ -336,7 +336,7 @@ TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50, KritiskSygdom_I_FG_False_SupplDa
 }
 
 TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50, KritiskSygdom_I_FG_False_SupplDaekning_False_NEGATIVE) {
-	TA ta { "15124040"}; // KonceptOid 4 - OSV
+	TA ta { "15124040"};
 	ta.setValue(kKritiskSygdom_i_FG_mk, false);
 	ta.setValue(kKritiskSygSuppldaekn_mk, false);
 

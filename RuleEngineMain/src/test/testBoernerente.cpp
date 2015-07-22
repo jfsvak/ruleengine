@@ -161,7 +161,7 @@ TEST_F(Boernerente_KI_OSV_25_49, Boernerente_Pristal_SoliMax) {
 
 TEST_F(Boernerente_KI_OSV_25_49, BoernerentePctMin_Gage_OverLimit) {
 	RuleEngine::_printDebugAtValidation = true;
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040" };
 	ta.setValue(kBoernerente_Reguleringstype, "Gage");
 	ta.setValue(kBoerneRentePctMin, 26);
 	ta.setValue(kBoerneRentePctMax, 26);
@@ -187,7 +187,7 @@ TEST_F(Boernerente_KI_OSV_25_49, BoernerentePctMin_Gage_OverLimit) {
 
 TEST_F(Boernerente_KI_OSV_25_49, BoernerenteBlMin_Pristal_OverLimit) {
 	RuleEngine::_printDebugAtValidation = true;
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040" };
 	ta.setValue(kBoernerente_Reguleringstype, "Pristal");
 	ta.setValue(kBoerneRenteBlMin, 30937);
 	ta.setValue(kBoerneRenteBlMax, 30937);

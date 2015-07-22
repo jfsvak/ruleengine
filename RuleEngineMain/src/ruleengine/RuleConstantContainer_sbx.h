@@ -44,7 +44,7 @@ public:
 	void initKoncepts(const std::string& json);
 	void initUnionAgreements(const std::string& jsonContents);
 
-	bool existsAs(unsigned short peOid, const sbx::ComparisonTypes&) const;
+	bool existsAs(sbx::productelement_oid peOid, const sbx::ComparisonTypes&) const;
 
 	std::vector<std::string> getOptions(sbx::productelement_oid productElementOid);
 	std::vector<std::shared_ptr<sbx::Constant>> getOptionsList(sbx::productelement_oid productElementOid) const;
@@ -52,11 +52,11 @@ public:
 	const std::map<sbx::koncept_oid, sbx::Koncept>& getKoncepts() const;
 
 	std::set<sbx::productelement_oid, std::less<sbx::productelement_oid>> getAllowedPEOids() const;
-	std::set<unsigned short> getProductOids(sbx::parameter_oid parameterOid) const;
-	std::set<unsigned short> getProductElementOids(sbx::parameter_oid parameterOid) const;
-	sbx::ProductElement getProductElement(unsigned short productElementOid);
-	unsigned short getProductElementOid(const std::string& varName) const;
-	sbx::UnionAgreementContributionStep getUAContributionStep(unsigned short uaOid, const sbx::Date& inceptionDate) const;
+	std::set<sbx::product_oid> getProductOids(sbx::parameter_oid parameterOid) const;
+	std::set<sbx::productelement_oid> getProductElementOids(sbx::parameter_oid parameterOid) const;
+	sbx::ProductElement getProductElement(sbx::productelement_oid productElementOid);
+	sbx::productelement_oid getProductElementOid(const std::string& varName) const;
+	sbx::UnionAgreementContributionStep getUAContributionStep(sbx::unionagreement_oid uaOid, const sbx::Date& inceptionDate) const;
 	const sbx::UnionAgreement& getUnionAgreement(sbx::unionagreement_oid) const;
 
 	sbx::UnionAgreementRelationship getUnionAgreementRelationship() const;
@@ -64,14 +64,15 @@ public:
 
 	bool isUnionAgreementLoaded(sbx::unionagreement_oid) const;
 	bool isContainerInitialised() const;
-	std::shared_ptr<sbx::Constant> createConstant(unsigned short underkonceptOid, unsigned short unionAgreementOid, unsigned short peOid, sbx::ComparisonTypes comparisonType);
+	std::shared_ptr<sbx::Constant> createConstant(sbx::subkoncept_oid underkonceptOid, sbx::unionagreement_oid unionAgreementOid, sbx::productelement_oid peOid, sbx::ComparisonTypes comparisonType);
 
 	// ----- util functions------
 	void printKoncepts() const;
 	void printUnionAgreements() const;
 	void printConstantHeader() const;
-	void printConstants(sbx::subkoncept_oid subkonceptOid = sbx::undefined_oid) const;
-	void printConstants(sbx::subkoncept_oid subKonceptOid, sbx::productelement_oid productElement) const;
+	void printSubkonceptConstants(sbx::subkoncept_oid = sbx::undefined_oid, sbx::productelement_oid = sbx::undefined_oid) const;
+	void printUnionAgreementConstants(sbx::unionagreement_oid = sbx::undefined_oid, sbx::productelement_oid = sbx::undefined_oid) const;
+	void printConstantsFromContext(sbx::productelement_oid = sbx::undefined_oid) const;
 	void printContainerOverview(sbx::subkoncept_oid subKonceptOid) const;
 	void printContainerOverview(sbx::subkoncept_oid subKonceptOid, sbx::ComparisonTypes type) const;
 	void printProducts() const;
@@ -82,7 +83,9 @@ public:
 private:
     
 	void printConstant(const std::shared_ptr<sbx::Constant>& c) const;
-	void _printParameterList(const std::map<unsigned short, std::set<unsigned short>>& values) const;
+	void _printStringOptions(const std::string& mapHeader, const std::map<sbx::oid, std::map<sbx::productelement_oid, std::vector<std::shared_ptr<sbx::Constant>>>>& map, sbx::oid mapOid = sbx::undefined_oid, sbx::productelement_oid peOid = sbx::undefined_oid) const;
+	void _printConstants(const std::string& mapHeader, const std::map<sbx::oid, std::map<sbx::productelement_oid, std::shared_ptr<sbx::Constant>>>& map, sbx::oid mapOid = sbx::undefined_oid, sbx::productelement_oid peOid = sbx::undefined_oid) const;
+	void _printParameterList(const std::map<sbx::parameter_oid, std::set<sbx::product_oid>>& values) const;
     void _initInternalMaps();
 	void _initRuleConstants(const Json::Value& ruleConstantsList);
 	void _initProductElements(const Json::Value& products);
@@ -165,20 +168,20 @@ private:
 
 	/**
 	 * _productsMap:
-	 * Index is productOid (unsigned short)
+	 * Index is productOid
 	 * Values is a shared_ptr to a Product
 	 */
 	std::map<sbx::product_oid, std::shared_ptr<sbx::Product>> _productsMap;
 
 	/**
 	 * _productElementMap:
-	 * Index is productOid (unsigned short)
+	 * Index is productOid
 	 * Values is a shared_ptr to a ProductElement
 	 */
 	std::map<sbx::product_oid, std::shared_ptr<sbx::ProductElement>> _productElementMap;
 	/**
 	 * _parameterMap:
-	 * Index is parameterOid (unsigned short)
+	 * Index is parameterOid
 	 * Values is a Parameter
 	 */
 	std::map<sbx::parameter_oid, sbx::Parameter> _parameterMap;

@@ -39,8 +39,8 @@ TEST_F(RelatedSubkoncepts, Udlobsalder_Pension_Allowed_Values) {
 	RuleEngine::_printDebugAtValidation = true;
 	re.getContainer().printKoncepts();
 
-	re.getContainer().printConstants(18);
-	re.getContainer().printConstants(29);
+	re.getContainer().printSubkonceptConstants(18);
+	re.getContainer().printSubkonceptConstants(29);
 	re.getContainer().printParametersToProducts(29);
 
 	TA ta {"20247940"};
@@ -94,7 +94,7 @@ TEST_F(RelatedSubkoncepts, ContextSwitch) {
 
     re2.initContext(kiOSV, OUTSIDE);
 
-	re2.getContainer().printConstants(18, 216);
+	re2.getContainer().printSubkonceptConstants(18, 216);
 
 	TA ta {"20247940"};
 

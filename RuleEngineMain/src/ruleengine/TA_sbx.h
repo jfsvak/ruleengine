@@ -26,8 +26,8 @@ public:
 	TA(const std::string& cvr);
 	TA(const std::string& cvr, const std::map<unsigned short, sbx::ProductElementValue>& peValues);
 	// delete the two constructors with konceptOid when ipad is ready
-	TA(const std::string& cvr, unsigned short konceptOid);
-	TA(const std::string& cvr, unsigned short konceptOid, const std::map<unsigned short, sbx::ProductElementValue>& peValues);
+//	TA(const std::string& cvr, unsigned short konceptOid);
+//	TA(const std::string& cvr, unsigned short konceptOid, const std::map<unsigned short, sbx::ProductElementValue>& peValues);
 
 	TA& setCvr(const std::string& cvr);
 	TA& setValue(unsigned short productElementOid, const char* value);

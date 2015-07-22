@@ -21,7 +21,7 @@ protected:
     virtual void SetUp() {
     	RuleEngineInitialiser::SetUp();
 
-        KonceptInfo ki {4, 30, 0, // UnderkonceptOid:OSV 25-49
+        KonceptInfo ki {OSV, 30, 0, // UnderkonceptOid:OSV 25-49
         	{
         	  {  1, "true" }, // Solidarisk faellestarif
 			  {  6, "true" }, // SEB Firmapensionspulje
@@ -55,7 +55,7 @@ TEST_F(Full_TA_CONTEXT_KI_OSV_25_50, ProductElementAllowed) {
 }
 
 TEST_F(Full_TA_CONTEXT_KI_OSV_25_50, Full_TA_POSITIVE) {
-	TA ta { "15124040"}; // KonceptOid 4 - OSV
+	TA ta { "15124040" };
 	RuleEngine::_printDebugAtValidation = true;
 	// union agreement already set to OUTSIDE, so uar, uaoid and bidragej_forstetrin are not expected
 	int total {131};

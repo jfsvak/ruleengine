@@ -49,17 +49,17 @@ bool RuleEngine::_printMuParserErrorInfo {false};
 
 sbx::RuleEngine::RuleEngine()
 {
-	_parser.DefineFun(new DefinedInParser(this));
-	_parser.DefineFun(new NSEquals(this));
+	_parser.DefineFun(new DefinedInParser {this});
+	_parser.DefineFun(new NSEquals {this});
 }
 
 sbx::RuleEngine::RuleEngine(const sbx::RuleEngine& other)
 		: _container {other._container}
 {
 	// TODO !!!!! proper copy/cloning of pointers in map
-	cerr << " Copy constructor for RuleEngine was called! This behaviour is not defined" << endl;
-	_parser.DefineFun(new DefinedInParser(this));
-	_parser.DefineFun(new NSEquals(this));
+	cerr << " Copy constructor for RuleEngine was called! The behaviour of copying the RuleEngine instance is not defined" << endl;
+	_parser.DefineFun(new DefinedInParser {this});
+	_parser.DefineFun(new NSEquals {this});
 }
 
 void RuleEngine::initialiseAll(const std::string& jsonContents)
@@ -253,7 +253,7 @@ void RuleEngine::_clearParserValues()
 	_mupValueMap.clear();
 }
 
-void RuleEngine::_initParserWithProductElementConstants(unsigned short peOid)
+void RuleEngine::_initParserWithProductElementConstants(sbx::productelement_oid peOid)
 {
 	const sbx::ProductElement pe = _container.getProductElement(peOid);
 	std::shared_ptr<Constant> cMin = _container.getConstant(peOid, sbx::ComparisonTypes::kMin);
@@ -299,7 +299,7 @@ void RuleEngine::_initParserWithProductElementConstants(unsigned short peOid)
 	}
 }
 
-void RuleEngine::initUAContributionSteps(const std::map<unsigned short, std::vector<sbx::ContributionStep>>& uaLadders)
+void RuleEngine::initUAContributionSteps(const std::map<sbx::unionagreement_oid, std::vector<sbx::ContributionStep>>& uaLadders)
 {
 	// not doing anything, just here for backward compatibility
 }
@@ -555,9 +555,9 @@ void RuleEngine::_loadUAContributionStep(const TA& ta, ValidationResults& valRes
 /**
  * See sbx::ValidationResults RuleEngine::validate(const TA& ta, const std::vector<unsigned short>& peOidsToValidate)
  */
-sbx::ValidationResults RuleEngine::validate(sbx::TA& ta, unsigned short peOidToValidate)
+sbx::ValidationResults RuleEngine::validate(sbx::TA& ta, sbx::productelement_oid peOidToValidate)
 {
-	return this->validate(ta, std::vector<unsigned short> {peOidToValidate});
+	return this->validate(ta, std::vector<sbx::productelement_oid> {peOidToValidate});
 }
 
 /**
@@ -570,7 +570,7 @@ sbx::ValidationResults RuleEngine::validate(sbx::TA& ta, unsigned short peOidToV
  *     - custom rule expressions for the pe
  *     - run any requireif rules
  */
-sbx::ValidationResults RuleEngine::validate(sbx::TA& ta, const std::vector<unsigned short>& peOidsToValidate)
+sbx::ValidationResults RuleEngine::validate(sbx::TA& ta, const std::vector<sbx::productelement_oid>& peOidsToValidate)
 {
 	sbx::ValidationResults valResults{};
 
@@ -702,7 +702,7 @@ void RuleEngine::_validateMinMax(const sbx::ProductElementValue& pev, sbx::Valid
 		if (!result.GetBool() && !r.hasMessages(peOid, kValueOverLimit))
 		{
 			stringstream ss {};
-			ss << "Værdien [" << sbx::utils::formatValue(pev.longValue()) << "] for [" << _GUI_NAME(peOid) << "] må ikke overstiger [" << this->_getConstFromParser(sbx::utils::constructRCName(_PE(peOid), sbx::ComparisonTypes::kMax)) << "]";
+			ss << "Værdien [" << sbx::utils::formatValue(pev.longValue()) << "] for [" << _GUI_NAME(peOid) << "] må ikke overstige [" << this->_getConstFromParser(sbx::utils::constructRCName(_PE(peOid), sbx::ComparisonTypes::kMax)) << "]";
 			// value was not lesser or equal to max
 			r.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kValueOverLimit, peOid, _VAR_NAME(peOid), ss.str(), "", expr) );
 		}
@@ -725,10 +725,8 @@ void RuleEngine::_validateOptionAllowed(const sbx::ProductElementValue& pev, sbx
             for (auto option : options)
             {
                 optionsString << _getFormattedValue(option);
+				optionsString << ", ";
             }
-                
-            optionsString << ", ";
-            
 
 			stringstream msg {};
 			msg << "Værdien [" << getFormattedValue(pev) << "] er ikke tilladt! Tilladte værdier er : [" << optionsString.str().substr(0, optionsString.str().length()-2) << "]";
@@ -742,7 +740,7 @@ void RuleEngine::_validateOptionAllowed(const sbx::ProductElementValue& pev, sbx
  * Run all custom rules relating to the peOid
  * Also run any requiredif rules, to validate requiredness
  */
-void RuleEngine::_validateCustomRules(unsigned short peOid, sbx::ValidationResults& valResults)
+void RuleEngine::_validateCustomRules(sbx::productelement_oid peOid, sbx::ValidationResults& valResults)
 {
 	// if there are specific rules to run, then run them
 	if (_peOidToRules.find(peOid) != _peOidToRules.end())
@@ -843,7 +841,7 @@ bool RuleEngine::_isOptionAllowed(const sbx::ProductElementValue& pev)
  * In case of full validation, if a token is missing, we assume that the product element is required,
  * since the requiredif expr couldn't positively be verified to be either true or false
  */
-std::shared_ptr<sbx::Rule> RuleEngine::_isRequired(unsigned short peOid, sbx::ValidationResults& valResults, bool fullValidation)
+std::shared_ptr<sbx::Rule> RuleEngine::_isRequired(sbx::productelement_oid peOid, sbx::ValidationResults& valResults, bool fullValidation)
 {
 	// run through all specific rules
 	if (_peOidToRules.find(peOid) != _peOidToRules.end()) {
@@ -996,7 +994,7 @@ void RuleEngine::_isOptional(sbx::productelement_oid peOid, sbx::ValidationResul
 
 /**
  */
-void RuleEngine::_evaluateRule(unsigned short peOidBeingValidated, std::shared_ptr<sbx::Rule> rule, sbx::ValidationResults& valResult, sbx::ValidationCode negativeValCode) {
+void RuleEngine::_evaluateRule(sbx::productelement_oid peOidBeingValidated, std::shared_ptr<sbx::Rule> rule, sbx::ValidationResults& valResult, sbx::ValidationCode negativeValCode) {
 	try {
 		mup::Value result = _execute(rule->getExpr(), rule->getRuleId());
 
@@ -1492,7 +1490,7 @@ std::string RuleEngine::getFormattedValue(const sbx::ProductElementValue& pev)
     }
 }
 
-sbx::ProductElement RuleEngine::_PE(unsigned short peOid)
+sbx::ProductElement RuleEngine::_PE(sbx::productelement_oid peOid)
 {
 	try {
 		return _container.getProductElement(peOid);
@@ -1502,7 +1500,7 @@ sbx::ProductElement RuleEngine::_PE(unsigned short peOid)
 	}
 }
 
-std::string RuleEngine::_VAR_NAME(unsigned short peOid)
+std::string RuleEngine::_VAR_NAME(sbx::productelement_oid peOid)
 {
 	try {
 		return _container.getProductElement(peOid).getVariableName();
@@ -1511,7 +1509,7 @@ std::string RuleEngine::_VAR_NAME(unsigned short peOid)
 	}
 }
 
-std::string RuleEngine::_GUI_NAME(unsigned short peOid)
+std::string RuleEngine::_GUI_NAME(sbx::productelement_oid peOid)
 {
 	try {
 		return _container.getProductElement(peOid).getGuiName();

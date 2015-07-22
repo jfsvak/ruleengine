@@ -1606,7 +1606,7 @@
             "positiveRuleCatalogue": 
             [
 	        	{
-		            "id": "31.2.1",
+		            "id": "32.2.1",
 		            "comments" : "Private_Premium_BL - requiredif placeholder",
 	    	        "expr": "Private_Premium_BL > 0",
 	    	        "evaluateExprIf": "Private_Taxed_MK == true",
@@ -1676,13 +1676,20 @@
          	"comments" : "Salary Page: Contribution Ladder when Udenfor (outside)",
          	
             "id": "33.2",
-            "expr": "UnionAgreementRelationship == \"U\" and Private_Taxed_MK == false",
+            "expr": "UnionAgreementRelationship == \"U\" and ns_equals(\"Private_Taxed_MK\", false, true)",
    	        "productElementOids": [ 149 ],
    	        "requiredif": "",
             "positiveMessage": "",
             "negativeMessage": "",
             "positiveRuleCatalogue": 
             [
+	        	{
+		            "id": "33.2.0",
+		            "comments" : "Bidragstrappe - requiredIf",
+	    	        "expr": "",
+		   	        "productElementOids": [ 999 ],
+   	    		    "requiredif": "#parent#"
+        	    },
 				{
 		         	"comments" : "Salary Page: Contribution Ladder Ingen",
 		         	
@@ -1700,9 +1707,9 @@
 			    	        "expr": "Bidragstrappe[0,0] == 0",
 			    	        "evaluateExprIf": "#parent#",
 				   	        "productElementOids": [ 999 ],
-		   	    		    "requiredif": "#parent#",
+		   	    		    "requiredif": "",
 			        	    "positiveMessage": "",
-			            	"negativeMessage": "Der eneste trin skal starte med 0, Ingen er valgt som Bidragsstigningsform",
+			            	"negativeMessage": "Der eneste trin skal starte med 0, når Ingen er valgt som Bidragsstigningsform",
 			            	"negativeValCode": 101,
 							"positiveRuleCatalogue": []
 		        	    },
@@ -1738,7 +1745,7 @@
 			    	        "expr": "Bidragstrappe[0,0] == IndmeldelsesAlder",
 			    	        "evaluateExprIf": "#parent#",
 				   	        "productElementOids": [ 999 ],
-		   	    		    "requiredif": "#parent#",
+		   	    		    "requiredif": "",
 			        	    "positiveMessage": "",
 			            	"negativeMessage": "Der første trin skal starte med tidligste indmeldelsesalder",
 			            	"negativeValCode": 101,
@@ -1776,7 +1783,7 @@
 			    	        "expr": "Bidragstrappe[0,0] == 0",
 			    	        "evaluateExprIf": "#parent#",
 				   	        "productElementOids": [ 999 ],
-		   	    		    "requiredif": "#parent#",
+		   	    		    "requiredif": "",
 			        	    "positiveMessage": "",
 			            	"negativeMessage": "Der første trin skal starte med 0 ",
 			            	"negativeValCode": 101,
@@ -1814,7 +1821,7 @@
 			    	        "expr": "Bidragstrappe[0,0] == AftaleIkraftdato",
 			    	        "evaluateExprIf": "#parent#",
 				   	        "productElementOids": [ 999 ],
-		   	    		    "requiredif": "#parent#",
+		   	    		    "requiredif": "",
 			        	    "positiveMessage": "",
 			            	"negativeMessage": "Der første trin skal starte med ikraftdatoen for aftalen",
 			            	"negativeValCode": 101,
@@ -1863,7 +1870,7 @@
 	        	{
 		            "id": "33.3.2",
 		            "comments" : "",
-	    	        "expr": "BidragEjFoesteTrin_MK == true",
+	    	        "expr": "ns_equals(\"BidragEjFoesteTrin_MK\", true, false)",
 		   	        "productElementOids": [ 152 ],
    	    		    "requiredif": "#parent#",
 	        	    "positiveMessage": "",
@@ -1949,6 +1956,18 @@
             ],
 	        "negativeRuleCatalogue": []
          },
+         
+         {
+		    "id": "34.1",
+	        "comments" : "Contribution ladder - requiredIf",
+	        "expr": "",
+	        "productElementOids": [ 999 ],
+   		    "requiredif": "(UnionAgreementRelationship == \"U\" and ns_equals(\"Private_Taxed_MK\", false, true)) or (UnionAgreementRelationship != \"U\" and ns_equals(\"BidragEjFoesteTrin_MK\", true, false))",
+	   	    "positiveMessage": "",
+	       	"negativeMessage": "",
+			"positiveRuleCatalogue": []
+         },
+         
          
  		 {
          	"comments" : "Misc rule - DoedAbsolutMaxSoli - not relevant",

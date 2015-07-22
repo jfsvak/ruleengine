@@ -182,7 +182,7 @@ TEST_F(ContributionLadder_Follows_CONTEXT_KI_OSV_25_50, Bidragstrappe_When_Inclu
 		} };
 	re.initContext(ki, INCLUDED, 6);
 
-	TA ta { "15124040"}; // KonceptOid 4 - OSV
+	TA ta { "15124040" }; // KonceptOid 4 - OSV
 	ta.setValue(kAftaleIkraftdato, 20080801);
 //	ta.setValue(kUnionAgreementOid, 6);
 //	ta.setValue(kUnionAgreementRelationship, sbx::kINCLUDED);
@@ -213,7 +213,7 @@ TEST_F(ContributionLadder_Follows_CONTEXT_KI_OSV_25_50, Bidragstrappe_When_Inclu
 		} };
 	re.initContext(ki, INCLUDED, 6);
 
-	TA ta { "15124040", OSV}; // KonceptOid 4 - OSV
+	TA ta { "15124040" };
 	ta.setValue(kAftaleIkraftdato, 20080801);
 //	ta.setValue(kUnionAgreementOid, 6);
 //	ta.setValue(kUnionAgreementRelationship, sbx::kINCLUDED);
@@ -237,7 +237,7 @@ TEST_F(ContributionLadder_Follows_CONTEXT_KI_OSV_25_50, Bidragstrappe_Follows_UA
 					} };
 	re.initContext(ki, FOLLOWS, 4);
 
-	TA ta { "15124040", OSV}; // KonceptOid 4 - OSV
+	TA ta { "15124040" };
 	ta.setValue(kAftaleIkraftdato, 20150701);
 //	ta.setValue(kUnionAgreementOid, 4);
 //	ta.setValue(kUnionAgreementRelationship, sbx::kFOLLOWS);
@@ -261,7 +261,7 @@ TEST_F(ContributionLadder_Follows_CONTEXT_KI_OSV_25_50, Bidragstrappe_Follows_Ov
 					} };
 	re.initContext(ki, FOLLOWS, 4);
 
-	TA ta { "15124040", OSV}; // KonceptOid 4 - OSV
+	TA ta { "15124040" };
 	ta.setValue(kAftaleIkraftdato, 20150701);
 //	ta.setValue(kUnionAgreementOid, 4);
 //	ta.setValue(kUnionAgreementRelationship, sbx::kFOLLOWS);

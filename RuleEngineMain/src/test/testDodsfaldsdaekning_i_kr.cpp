@@ -48,7 +48,7 @@ protected:
 };
 
 TEST_F(Doedsfaldsdaekning_i_kr_KI_OSV_25_49, Doedfaldsdaekning_Whole_Section_Pristal_POSITIVE) {
-	TA ta { "15124040"}; // KonceptOid 4 - OSV
+	TA ta { "15124040" };
 	ta.setValue(kDoedReguleringskode, "Pristal");
 	ta.setValue(kDoedBlGrMin, (long) 400000);
 	ta.setValue(kDoedBlOblMax, (long) 500000);
@@ -90,7 +90,7 @@ TEST_F(Doedsfaldsdaekning_i_kr_KI_OSV_25_49, Doedfaldsdaekning_Whole_Section_Pri
 }
 
 TEST_F(Doedsfaldsdaekning_i_kr_KI_OSV_25_49, DoedReguleringstype_Ingen_POSITIVE) {
-	TA ta { "15124040"}; // KonceptOid 4 - OSV
+	TA ta { "15124040" };
 	ta.setValue(kDoedReguleringskode, "Ingen");
 	ta.setValue(kDoedBlGrMin, (long) 400000);
 	ta.setValue(kDoedBlOblMax, (long) 600000);
@@ -113,7 +113,7 @@ TEST_F(Doedsfaldsdaekning_i_kr_KI_OSV_25_49, DoedReguleringstype_Ingen_POSITIVE)
 }
 
 TEST_F(Doedsfaldsdaekning_i_kr_KI_OSV_25_49, DoedReguleringstype_Ingen_SpanOverLimit_Negative) {
-	TA ta { "15124040"}; // KonceptOid 4 - OSV
+	TA ta { "15124040" };
 	ta.setValue(kDoedReguleringskode, "Ingen");
 	ta.setValue(kDoedBlGrMin, (long) 200000);
 	ta.setValue(kDoedBlOblMax, (long) 500000);
@@ -141,7 +141,7 @@ TEST_F(Doedsfaldsdaekning_i_kr_KI_OSV_25_49, DoedReguleringstype_Ingen_SpanOverL
 
 
 TEST_F(Doedsfaldsdaekning_i_kr_KI_OSV_Over_99, DoedReguleringstype_Ingen_POSITIVE) {
-	TA ta { "15124040"}; // KonceptOid 4 - OSV
+	TA ta { "15124040" };
 	ta.setValue(kDoedReguleringskode, "Ingen");
 	ta.setValue(kDoedBlGrMin, (long) 200000);
 	ta.setValue(kDoedBlOblMax, (long) 500000);
@@ -165,7 +165,7 @@ TEST_F(Doedsfaldsdaekning_i_kr_KI_OSV_Over_99, DoedReguleringstype_Ingen_POSITIV
 
 
 TEST_F(Doedsfaldsdaekning_i_kr_KI_OSV_Over_99, DoedReguleringstype_Ingen_NEGATIVE_OverLimit) {
-	TA ta { "15124040"}; // KonceptOid 4 - OSV
+	TA ta { "15124040" };
 	ta.setValue(kDoedReguleringskode, "Ingen");
 	ta.setValue(kDoedBlGrMin, (long) 300000);
 	ta.setValue(kDoedBlOblMax, (long) 850000);
@@ -191,12 +191,12 @@ TEST_F(Doedsfaldsdaekning_i_kr_KI_OSV_Over_99, DoedReguleringstype_Ingen_NEGATIV
 }
 
 TEST_F(Doedsfaldsdaekning_i_kr_KI_OSV_Over_99, DoedBlGrMin_Ingen_NEGATIVE_OverLimit) {
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040" };
 	ta.setValue(kDoedReguleringskode, "Ingen");
 	ta.setValue(kDoedBlGrMin, (long) 800001);
 	ta.setValue(kDoedBlOblMax, (long) 800001);
 
-	re.getContainer().printConstants(19);
+	re.getContainer().printSubkonceptConstants(19);
 	RuleEngine::_printDebugAtValidation = true;
 
 	auto r = re.validate(ta, false);

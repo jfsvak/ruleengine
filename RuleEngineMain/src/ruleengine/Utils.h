@@ -33,6 +33,7 @@ const std::string kINCLUDED = "O";
 const unsigned short int undefined_oid {0};
 
 // typedefs
+typedef unsigned short int oid;
 typedef unsigned short int parameter_oid;
 typedef unsigned short int koncept_oid;
 typedef unsigned short int subkoncept_oid;

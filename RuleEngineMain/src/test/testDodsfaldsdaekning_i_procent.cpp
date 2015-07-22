@@ -40,7 +40,7 @@ protected:
 //   Validation of value should be ok
 //   But a warning should be set that says the DoedReguleringskode is not set in the parser
 TEST_F(Doedsfaldsdaekning_I_Procent_KI_OSV_25_49, DoedBlGrMin_Single_Value_OK_With_Warning) {
-	TA ta { "15124040"}; // KonceptOid 4 - OSV
+	TA ta { "15124040" };
 	ta.setValue(kDoedBlGrMin, (long) 100000);
 	RuleEngine::_printDebugAtValidation = true;
 
@@ -61,7 +61,7 @@ TEST_F(Doedsfaldsdaekning_I_Procent_KI_OSV_25_49, DoedBlGrMin_Single_Value_OK_Wi
 //   Validation of value for DoedBlGrMin should be ok
 //   But a warning should be set that says the DoedReguleringskode is not set in the parser
 TEST_F(Doedsfaldsdaekning_I_Procent_KI_OSV_25_49, DoedBlGrMin_Single_Value_OK_With_Warning2) {
-	TA ta { "15124040"}; // KonceptOid 4 - OSV
+	TA ta { "15124040" };
 	ta.setValue(kDoedBlGrMin, (long) 100000);
 	RuleEngine::_printDebugAtValidation = true;
 
@@ -101,7 +101,7 @@ TEST_F(Doedsfaldsdaekning_I_Procent_KI_OSV_25_49, DoedBlGrMin_Single_Value_OK_Wi
  *
  */
 TEST_F(Doedsfaldsdaekning_I_Procent_KI_OSV_25_49, Doedfaldsdaekning_Whole_Section_GAGE_POSITIVE) {
-	TA ta { "15124040"}; // KonceptOid 4 - OSV
+	TA ta { "15124040" };
 	ta.setValue(kDoedReguleringskode, "Gage");
 	ta.setValue(kDoedPctGrMin, (long) 200);
 	ta.setValue(kDoedPctOblMax, (long) 300);
@@ -165,7 +165,7 @@ TEST_F(Doedsfaldsdaekning_I_Procent_KI_OSV_25_49, Doedfaldsdaekning_Whole_Sectio
  *
  */
 TEST_F(Doedsfaldsdaekning_I_Procent_KI_OSV_25_49, DoedReguleringstype_GAGE_POSITIVE) {
-	TA ta { "15124040"}; // KonceptOid 4 - OSV
+	TA ta { "15124040" };
 	ta.setValue(kDoedReguleringskode, "Gage");
 	ta.setValue(kDoedPctGrMin, (long) 200);
 	ta.setValue(kDoedPctOblMax, (long) 300);
@@ -201,7 +201,7 @@ TEST_F(Doedsfaldsdaekning_I_Procent_KI_OSV_25_49, DoedReguleringstype_GAGE_POSIT
 // Expected:
 //    No value allowed for DoedBlOblMax as DoedReguleringskode == Gage
 TEST_F(Doedsfaldsdaekning_I_Procent_KI_OSV_25_49, DoedBlOblMax_Single_Value_NOT_OK) {
-	TA ta { "15124040"}; // KonceptOid 4 - OSV
+	TA ta { "15124040" };
 	ta.setValue(kDoedReguleringskode, "Gage");
 	ta.setValue(kDoedBlOblMax, (long) 700000);
 	RuleEngine::_printDebugAtValidation = true;
@@ -223,7 +223,7 @@ TEST_F(Doedsfaldsdaekning_I_Procent_KI_OSV_25_49, DoedBlOblMax_Single_Value_NOT_
 // Expected:
 //    Warnings should contain a warning say that the product element being validated is missing on the TA
 TEST_F(Doedsfaldsdaekning_I_Procent_KI_OSV_25_49, DoedBlGrMin_ValidateNonExistingToken_NOT_OK) {
-	TA ta { "15124040"}; // KonceptOid 4 - OSV
+	TA ta { "15124040" };
 	ta.setValue(kDoedReguleringskode, "Pristal");
 
 	// set MIN value, DoedBlGrMin
@@ -244,7 +244,7 @@ TEST_F(Doedsfaldsdaekning_I_Procent_KI_OSV_25_49, DoedBlGrMin_ValidateNonExistin
 
 TEST_F(Doedsfaldsdaekning_I_Procent_KI_OSV_25_49, DoedSpaendPct) {
 	RuleEngine::_printDebugAtValidation = true;
-	TA ta { "15124040"}; // KonceptOid 4 - OSV
+	TA ta { "15124040" };
 	ta.setValue(kDoedReguleringskode, "Gage");
 
 	ta.setValue(kDoedBlGrMin, (long) 100000);
@@ -264,7 +264,7 @@ TEST_F(Doedsfaldsdaekning_I_Procent_KI_OSV_25_49, DoedSpaendPct) {
 
 TEST_F(Doedsfaldsdaekning_I_Procent_KI_OSV_25_49, DoedBlGrMin_Ingen_NEGATIVE_Overlimit) {
 	RuleEngine::_printDebugAtValidation = true;
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040" };
 	ta.setValue(kDoedReguleringskode, "Gage");
 	ta.setValue(kDoedBlGrMin, (long) 800001);
 	ta.setValue(kDoedPctGrMin, (long) 200);

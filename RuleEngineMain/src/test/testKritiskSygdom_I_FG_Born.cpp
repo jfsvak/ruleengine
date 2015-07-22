@@ -36,7 +36,7 @@ protected:
 
 
 TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50, KritiskSygdom_I_FG_Boernesum_Pristal_Ingen_POSITIVE) {
-	TA ta { "15124040"}; // KonceptOid 4 - OSV
+	TA ta { "15124040" };
 	ta.setValue(kKritiskSygBornesum_i_FG_mk, true);
 	ta.setValue(kKritiskSygBornesumReguleringskode, "Pristal");
 	ta.setValue(kKritiskSygBornesumBlMin, (long) 0);
@@ -77,7 +77,7 @@ TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50, KritiskSygdom_I_FG_Boernesum_Pri
 }
 
 TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50, KritiskSygdom_I_FG_Boernesum_Pristal_POSITIVE) {
-	TA ta { "15124040"}; // KonceptOid 4 - OSV
+	TA ta { "15124040" };
 	ta.setValue(kKritiskSygBornesum_i_FG_mk, true);
 	ta.setValue(kKritiskSygBornesumReguleringskode, "Pristal");
 	ta.setValue(kKritiskSygBornesumBlMin, (long) 20000);
@@ -109,7 +109,7 @@ TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50, KritiskSygdom_I_FG_Boernesum_Pri
 //////////////////////////////////////////////////////////
 
 TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50, KritiskSygdom_I_FG_Boernesum_Pristal_NEGATIVE) {
-	TA ta { "15124040"}; // KonceptOid 4 - OSV
+	TA ta { "15124040" };
 	ta.setValue(kKritiskSygBornesum_i_FG_mk, true);
 	ta.setValue(kKritiskSygBornesumReguleringskode, "Pristal");
 	ta.setValue(kKritiskSygBornesumBlMin, (long) -1);
@@ -148,7 +148,7 @@ TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50, KritiskSygdom_I_FG_Boernesum_Pri
 }
 
 TEST_F(KritiskSygdom_I_FG_CONTEXT_KI_OSV_25_50, KritiskSygBoernesumBlMin_Pristal_OverLimit) {
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040" };
 	ta.setValue(kKritiskSygBornesum_i_FG_mk, true);
 	ta.setValue(kKritiskSygBornesumReguleringskode, "Pristal");
 	ta.setValue(kKritiskSygBornesumBlMin, (long) 100001);

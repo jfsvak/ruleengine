@@ -33,14 +33,14 @@ TA::TA(const std::string& cvr, const std::map<unsigned short, sbx::ProductElemen
 		  _peValuesMap {peValues}
 {}
 
-TA::TA(const std::string& cvr, unsigned short konceptOid)
-		:  _cvr {cvr}
-{}
+//TA::TA(const std::string& cvr, unsigned short konceptOid)
+//		:  _cvr {cvr}
+//{}
 
-TA::TA(const std::string& cvr, unsigned short konceptOid, const std::map<unsigned short, sbx::ProductElementValue>& peValues)
-		: _cvr {cvr},
-		  _peValuesMap {peValues}
-{}
+//TA::TA(const std::string& cvr, unsigned short konceptOid, const std::map<unsigned short, sbx::ProductElementValue>& peValues)
+//		: _cvr {cvr},
+//		  _peValuesMap {peValues}
+//{}
 
 TA::TA(const sbx::TA& otherTA)
 		: _cvr {otherTA._cvr},

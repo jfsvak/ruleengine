@@ -35,7 +35,7 @@ protected:
 
 TEST_F(Invalidesum_KI_OSV_25_49, Invalidesum_I_Kr_Ingen_POSITIVE) {
 	RuleEngine::_printDebugAtValidation = true;
-	TA ta { "15124040"}; // KonceptOid 4 - OSV
+	TA ta { "15124040" };
 	ta.setValue(kInvalidesumReguleringskode, "Ingen");
 
 	auto r = re.validate(ta, false);
@@ -57,7 +57,7 @@ TEST_F(Invalidesum_KI_OSV_25_49, Invalidesum_I_Kr_Ingen_POSITIVE) {
 
 TEST_F(Invalidesum_KI_OSV_25_49, Invalidesum_I_Kr_Ingen_NEGATIVE) {
 	RuleEngine::_printDebugAtValidation = true;
-	TA ta { "15124040"}; // KonceptOid 4 - OSV
+	TA ta { "15124040" };
 	ta.setValue(kInvalidesumReguleringskode, "Ingen");
 	ta.setValue(kInvalidesumBlMin, -1);
 	ta.setValue(kInvalidesumBlMax, 1300000);
@@ -84,7 +84,7 @@ TEST_F(Invalidesum_KI_OSV_25_49, Invalidesum_I_Kr_Ingen_NEGATIVE) {
 
 TEST_F(Invalidesum_KI_OSV_25_49, Invalidesum_I_Pct_POSITIVE) {
 	RuleEngine::_printDebugAtValidation = true;
-	TA ta { "15124040"}; // KonceptOid 4 - OSV
+	TA ta { "15124040" };
 	ta.setValue(kInvalidesumReguleringskode, "Gage");
 
 	auto r = re.validate(ta, false);
@@ -106,7 +106,7 @@ TEST_F(Invalidesum_KI_OSV_25_49, Invalidesum_I_Pct_POSITIVE) {
 
 TEST_F(Invalidesum_KI_OSV_25_49, Invalidesum_I_Pct_NEGATIVE) {
 	RuleEngine::_printDebugAtValidation = true;
-	TA ta { "15124040"}; // KonceptOid 4 - OSV
+	TA ta { "15124040" };
 	ta.setValue(kInvalidesumReguleringskode, "Gage");
 	ta.setValue(kInvalidesumPctMin, -1);
 	ta.setValue(kInvalidesumPctMax, 101);
@@ -136,7 +136,7 @@ TEST_F(Invalidesum_KI_OSV_25_49, Invalidesum_I_Pct_NEGATIVE) {
 
 TEST_F(Invalidesum_KI_OSV_25_49, InvalideSumPctMin_OverLimit) {
 	RuleEngine::_printDebugAtValidation = true;
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040" };
 	ta.setValue(kInvalidesumReguleringskode, "Gage");
 	ta.setValue(kInvalidesumPctMin, 101);
 	ta.setValue(kInvalidesumPctMax, 101);
@@ -156,7 +156,7 @@ TEST_F(Invalidesum_KI_OSV_25_49, InvalideSumPctMin_OverLimit) {
 
 TEST_F(Invalidesum_KI_OSV_25_49, InvalideSumBlMin_OverLimit) {
 	RuleEngine::_printDebugAtValidation = true;
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040" };
 	ta.setValue(kInvalidesumReguleringskode, "Pristal");
 	ta.setValue(kInvalidesumBlMin, 1215001);
 	ta.setValue(kInvalidesumBlMax, 1500000);

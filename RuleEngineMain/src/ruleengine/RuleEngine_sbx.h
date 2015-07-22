@@ -49,7 +49,7 @@ public:
 	void initialiseAll(const std::string& jsonContents);
 	void initConstants(const std::string& jsonContents);
 	void initContext(const sbx::KonceptInfo& ki, sbx::UnionAgreementRelationship, sbx::unionagreement_oid = sbx::undefined_oid);
-	void initUAContributionSteps(const std::map<unsigned short, std::vector<sbx::ContributionStep>>&);
+	void initUAContributionSteps(const std::map<sbx::unionagreement_oid, std::vector<sbx::ContributionStep>>&);
 	void parseRuleCatalogueJSON(const std::string& jsonContents);
 	void initKoncepts(const std::string& jsonContents);
 	void initUnionAgreements(const std::string& jsonContents);
@@ -59,8 +59,8 @@ public:
 	std::shared_ptr<sbx::Constant> getDefaultValue(sbx::ProductElementOid productElementOid);
 	std::shared_ptr<sbx::Constant> getConstant(sbx::ProductElementOid productElement, sbx::ComparisonTypes comparisonType);
 
-	sbx::ValidationResults validate(sbx::TA&, unsigned short peOidToValidate); // simple delegate method to vector-method
-	sbx::ValidationResults validate(sbx::TA&, const std::vector<unsigned short>& peOidToValidate); // multiple product element validation, using single pe validation
+	sbx::ValidationResults validate(sbx::TA&, sbx::productelement_oid  peOidToValidate); // simple delegate method to vector-method
+	sbx::ValidationResults validate(sbx::TA&, const std::vector<sbx::productelement_oid>& peOidToValidate); // multiple product element validation, using single pe validation
 
 	// Full ta validation
 	sbx::ValidationResults validate(sbx::TA&, bool full = true); // Full TA validation
@@ -98,18 +98,18 @@ private:
 	//
 	// Methods for related pe validations/checks
 	//
-	void _validateCustomRules(unsigned short peOid, sbx::ValidationResults&);
+	void _validateCustomRules(sbx::productelement_oid peOid, sbx::ValidationResults&);
 	// checks if the product element is required to be the TA for the context and other values on ta's. Uses custom rules to validate this requiredness
-	std::shared_ptr<sbx::Rule> _isRequired(unsigned short peOid, sbx::ValidationResults&, bool fullValidation = false);
+	std::shared_ptr<sbx::Rule> _isRequired(sbx::productelement_oid peOid, sbx::ValidationResults&, bool fullValidation = false);
 	void _isOptional(sbx::productelement_oid peOid, sbx::ValidationResults&);
 
-	void _evaluateRule(unsigned short peOidToValidate, std::shared_ptr<sbx::Rule>, sbx::ValidationResults&, sbx::ValidationCode negativeValCode = sbx::ValidationCode::kFail);
+	void _evaluateRule(sbx::productelement_oid peOidToValidate, std::shared_ptr<sbx::Rule>, sbx::ValidationResults&, sbx::ValidationCode negativeValCode = sbx::ValidationCode::kFail);
 	mup::Value _execute(const std::string& expr, const std::string& ruleId);
 	void _executePreCalcRules();
 
 	// -- initialisation methods
 	void _initRuleCatalogue(sbx::RuleCatalogue*, const Json::Value& ruleCatalogues);
-	void _initParserWithProductElementConstants(unsigned short peOid);
+	void _initParserWithProductElementConstants(sbx::productelement_oid peOid);
 	template <typename T> void _defineVariable(const std::string& name, const T& value);
 	void _clearParserValues();
 
@@ -124,13 +124,13 @@ private:
 
     std::string _getFormattedValue(const std::shared_ptr<sbx::Constant>&);
     std::string getFormattedValue(const sbx::ProductElementValue&);
-	sbx::ProductElement _PE(unsigned short peOid);
-	std::string _VAR_NAME(unsigned short peOid);
-	std::string _GUI_NAME(unsigned short peOid);
+	sbx::ProductElement _PE(sbx::productelement_oid peOid);
+	std::string _VAR_NAME(sbx::productelement_oid peOid);
+	std::string _GUI_NAME(sbx::productelement_oid peOid);
 
 	sbx::RuleConstantContainer _container;
 	sbx::RuleCatalogue _ruleCatalogue;
-	std::multimap<unsigned short, std::shared_ptr<sbx::Rule>> _preCalcExprMap;
+	std::multimap<sbx::productelement_oid, std::shared_ptr<sbx::Rule>> _preCalcExprMap;
 
 	/**
 	 * multimap of product element oids to list of rules that relates to the oid.
@@ -138,7 +138,7 @@ private:
 	 * index: peOid
 	 * value(s): sbx::Rule*
 	 */
-    std::multimap<unsigned short, std::shared_ptr<sbx::Rule>> _peOidToRules;
+    std::multimap<sbx::productelement_oid, std::shared_ptr<sbx::Rule>> _peOidToRules;
 
 
 	// ParserX is initialised when the KonceptInfo has been parsed in for initialisation

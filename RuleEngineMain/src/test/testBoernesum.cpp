@@ -37,7 +37,7 @@ protected:
 
 TEST_F(Boernesum_KI_OSV_25_49, Boernesum_POSITIVE) {
 	RuleEngine::_printDebugAtValidation = true;
-	TA ta { "15124040"}; // KonceptOid 4 - OSV
+	TA ta { "15124040"};
 
 	auto r = re.validate(ta, {kBoerneSumBlMin, kBoerneSumBlMax});
 	EXPECT_TRUE(r.isAllOk());
@@ -56,7 +56,7 @@ TEST_F(Boernesum_KI_OSV_25_49, Boernesum_POSITIVE) {
 
 TEST_F(Boernesum_KI_OSV_25_49, BoernesumBlMin_OverLimit) {
 	RuleEngine::_printDebugAtValidation = true;
-	TA ta { "15124040", 4}; // KonceptOid 4 - OSV
+	TA ta { "15124040" };
 	ta.setValue(kBoerneSumBlMin, 50001);
 	ta.setValue(kBoerneSumBlMax, 50001);
 
