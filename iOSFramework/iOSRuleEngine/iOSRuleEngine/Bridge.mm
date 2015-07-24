@@ -61,7 +61,7 @@ std::string get_file_contents(const char *filename)
 }
 
 -(void)setKonceptOid:(NSInteger)konceptOid numOfEmpl:(NSInteger)numOfEmpl numOfRiskClass:(NSInteger)numOfRiscClassC
-                                                                              parameters:(NSDictionary*)parametersDictionary {
+          parameters:(NSDictionary*)parametersDictionary uar:(uint8_t)uar uaOid:(uint8_t)uaOid {
     std::map<unsigned short, std::string> parameters;
 
     try {
@@ -81,7 +81,7 @@ std::string get_file_contents(const char *filename)
             }
         }
         
-        re.initContext(ki, sbx::OUTSIDE);
+        re.initContext(ki, static_cast<sbx::UnionAgreementRelationship>(uar), uaOid);
     } catch (const std::domain_error &error) {
         @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
     } catch (const std::exception &error) {
@@ -93,9 +93,9 @@ std::string get_file_contents(const char *filename)
     }
 }
 
--(void)createTA:(NSString*)CVR konceptOid:(unsigned short)konceptOid {
+-(void)createTA{
     try {
-        ta = sbx::TA([CVR UTF8String], konceptOid);
+        ta = sbx::TA();
     } catch (const std::domain_error &error) {
         @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
     } catch (const std::exception &error) {
@@ -107,47 +107,6 @@ std::string get_file_contents(const char *filename)
     }
 }
 
--(void)setTAUnionAgreementRelation:(uint8_t)relation {
-    try {
-        ta.setUar(static_cast<sbx::UnionAgreementRelationship>(relation));
-    } catch (const std::domain_error &error) {
-        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
-    } catch (const std::exception &error) {
-        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
-    } catch (mup::ParserError error) {
-        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.GetMsg().c_str()] userInfo:nil];
-    } catch (...) {
-        @throw [NSException exceptionWithName:@"RuleEngineException" reason:@"Unknown exception" userInfo:nil];
-    }
-}
-
--(void)setTAUnionAgreement:(uint8_t)uaOid {
-    try {
-        ta.setValue(sbx::ProductElementOid::kUnionAgreementOid, uaOid);
-    } catch (const std::domain_error &error) {
-        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
-    } catch (const std::exception &error) {
-        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
-    } catch (mup::ParserError error) {
-        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.GetMsg().c_str()] userInfo:nil];
-    } catch (...) {
-        @throw [NSException exceptionWithName:@"RuleEngineException" reason:@"Unknown exception" userInfo:nil];
-    }
-}
-
--(void)unsetTAUnionAgreement {
-    try {
-        ta.remove(sbx::ProductElementOid::kUnionAgreementOid);
-    } catch (const std::domain_error &error) {
-        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
-    } catch (const std::exception &error) {
-        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
-    } catch (mup::ParserError error) {
-        @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.GetMsg().c_str()] userInfo:nil];
-    } catch (...) {
-        @throw [NSException exceptionWithName:@"RuleEngineException" reason:@"Unknown exception" userInfo:nil];
-    }
-}
 
 -(void)initUAContribution:(unsigned short)oid employeePct:(double)employeePct companyPct:(double)companyPct {
     try {
@@ -169,7 +128,7 @@ std::string get_file_contents(const char *filename)
 
 -(void)addContributionStep:(long)index employeePct:(double)employeePct companyPct:(double)companyPct {
     try {
-        sbx::ContributionStep step(index, employeePct, companyPct);
+        sbx::ContributionStep step((int)index, employeePct, companyPct);
         ta.addContributionStep(step);
     } catch (const std::domain_error &error) {
         @throw [NSException exceptionWithName:@"RuleEngineException" reason:[NSString stringWithUTF8String:error.what()] userInfo:nil];
@@ -318,22 +277,23 @@ std::string get_file_contents(const char *filename)
         NSLog(@"getAllowedValuesFor:%zd unknown exception", oid);
     }
     
-    
+    NSArray *sortedArray = nil;
     switch (valueType) {
         case kValueTypeText:
-            result = [result sortedArrayUsingComparator:^(NSString* a, NSString* b) { return [a compare:b options:NSNumericSearch]; }];
+            sortedArray = [result sortedArrayUsingComparator:^(NSString* a, NSString* b) { return [a compare:b options:NSNumericSearch]; }];
             break;
         case kValueTypeInt:
-            result = [result sortedArrayUsingComparator:^(NSNumber* a, NSNumber* b) { return [a compare:b]; }];
+            sortedArray = [result sortedArrayUsingComparator:^(NSNumber* a, NSNumber* b) { return [a compare:b]; }];
             break;
         case kValueTypeDouble:
-            result = [result sortedArrayUsingComparator:^(NSNumber* a, NSNumber* b) { return [a compare:b]; }];
+            sortedArray = [result sortedArrayUsingComparator:^(NSNumber* a, NSNumber* b) { return [a compare:b]; }];
             break;
         default:
+            sortedArray = result;
             break;
     }
     
-    return result; //[result sortedArrayUsingComparator:^(NSString* a, NSString* b) { return [a compare:b options:NSNumericSearch]; }];
+    return sortedArray;
 }
 
 -(NSArray*)getAllowedValuesFor:(NSInteger)oid {
