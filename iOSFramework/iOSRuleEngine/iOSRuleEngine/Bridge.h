@@ -21,12 +21,9 @@
 @interface Bridge : NSObject
 -(instancetype)initWithConstants:(NSString*)constantsFilePath ruleCatalog:(NSString*)ruleCatalogFilePath;
 -(void)setKonceptOid:(NSInteger)konceptOid numOfEmpl:(NSInteger)numOfEmpl numOfRiskClass:(NSInteger)numOfRiscClassC
-                                                                                parameters:(NSDictionary*)parametersDictionary;
+          parameters:(NSDictionary*)parametersDictionary uar:(uint8_t)uar uaOid:(uint8_t)uaOid;
 
--(void)createTA:(NSString*)CVR konceptOid:(unsigned short)konceptOid;
--(void)setTAUnionAgreementRelation:(uint8_t)relation;
--(void)setTAUnionAgreement:(uint8_t)uaOid;
--(void)unsetTAUnionAgreement;
+-(void)createTA;
 
 -(BOOL)isProductElementAllowed:(NSInteger)oid;
 
