@@ -19,10 +19,10 @@ public:
 	RuleCatalogue();
     RuleCatalogue(std::shared_ptr<sbx::Rule> parent);
 
-	std::vector<std::shared_ptr<sbx::Rule>> getRules();
+	const std::vector<std::shared_ptr<sbx::Rule>>& getRules() const;
 	void addRule(std::shared_ptr<sbx::Rule>);
 
-	std::shared_ptr<sbx::Rule> getParent();
+	const std::shared_ptr<sbx::Rule>& getParent() const;
 	void setParent(std::shared_ptr<sbx::Rule> parent);
 
 	virtual ~RuleCatalogue();

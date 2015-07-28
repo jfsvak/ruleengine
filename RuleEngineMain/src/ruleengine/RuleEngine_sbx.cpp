@@ -67,20 +67,7 @@ void RuleEngine::initialiseAll(const std::string& jsonContents)
 	_container.initConstants(jsonContents);
 	_container.initKoncepts(jsonContents);
 	_container.initUnionAgreements(jsonContents);
-//	this->initConstants(jsonContents);
-//	this->initKoncepts(jsonContents);
-//	this->initUnionAgreements(jsonContents);
 }
-
-void RuleEngine::initConstants(const std::string& jsonContents)
-{
-	_container.initConstants(jsonContents);
-}
-
-//void RuleEngine::initUAContributionSteps(const std::map<unsigned short, std::vector<sbx::ContributionStep>>& uaLadders)
-//{
-//	_container.initUAContributionSteps(uaLadders);
-//}
 
 /**
  *
@@ -105,15 +92,6 @@ void RuleEngine::parseRuleCatalogueJSON(const std::string& jsonContents)
 	}
 }
 
-void RuleEngine::initKoncepts(const std::string& jsonContents)
-{
-	_container.initKoncepts(jsonContents);
-}
-
-void RuleEngine::initUnionAgreements(const std::string& jsonContents)
-{
-	_container.initUnionAgreements(jsonContents);
-}
 
 /**
  * Recursive initialiser method of the custom rules catalogue.
@@ -260,8 +238,6 @@ void RuleEngine::_initParserWithProductElementConstants(sbx::productelement_oid 
 	std::shared_ptr<Constant> cMax = _container.getConstant(peOid, sbx::ComparisonTypes::kMax);
 	string minName = sbx::utils::constructRCName(pe, sbx::ComparisonTypes::kMin);
 	string maxName = sbx::utils::constructRCName(pe, sbx::ComparisonTypes::kMax);
-//	cout << "adding constant [" << minName << "], value [" << cMin->stringValue() << "] as [" << cMin->longValue() << "]" << endl;
-//	cout << "adding constant [" << maxName << "], value [" << cMax->stringValue() << "] as [" << cMax->longValue() << "]" << endl;
 
 	// TODO figure out how to send in function pointer, to simply the next 4 calls
 	switch (pe.getElementType())
@@ -431,12 +407,12 @@ void RuleEngine::_loadParser(TA& ta, ValidationResults& valResults)
 		case kText:
 			_defineVariable<std::string>(pe.getVariableName(), pev.stringValue());
 			break;
-		case kLong: // fall throughs down to long
+		case kYear: // fall through down to longValue
 		case kMonth:
-		case kYear:
+		case kLong:
 			_defineVariable<int>(pe.getVariableName(), pev.longValue());
 			break;
-		case kCurr: // fall throughs down to double
+		case kCurr: // fall throughs down to doubleValue
 		case kPercent:
 			_defineVariable<double>(pe.getVariableName(), pev.doubleValue());
 			break;
@@ -513,6 +489,9 @@ void RuleEngine::_loadLadder(const TA& ta)
 	}
 }
 
+/**
+ * Load ua contribution steps. TA is needed for correct initialisation of steps according to AftaleIkraftDato
+ */
 void RuleEngine::_loadUAContributionStep(const TA& ta, ValidationResults& valResults)
 {
 	if (_parser.IsConstDefined(sbx::kUnionAgreementEmployerPct1stStep))
@@ -1404,7 +1383,12 @@ void RuleEngine::_printExpressionVariables(mup::ParserX& p)
 	cout.flush();
 }
 
-void RuleEngine::printRuleCatalogue(sbx::RuleCatalogue& ruleCatalogue, int depth)
+void RuleEngine::printRuleCatalogue() const
+{
+	this->printRuleCatalogue(this->_ruleCatalogue, 0);
+}
+
+void RuleEngine::printRuleCatalogue(const sbx::RuleCatalogue& ruleCatalogue, int depth) const
 {
 	depth += 2;
 
@@ -1421,7 +1405,7 @@ void RuleEngine::printRuleCatalogue(sbx::RuleCatalogue& ruleCatalogue, int depth
 	}
 }
 
-void RuleEngine::printRule(std::shared_ptr<sbx::Rule> rule, int depth)
+void RuleEngine::printRule(std::shared_ptr<sbx::Rule> rule, int depth) const
 {
 	cout << _indent(depth) << "ID=[" << rule->getRuleId() << "], expr=[" << rule->getExpr() << "], ";
 
@@ -1518,7 +1502,7 @@ std::string RuleEngine::_GUI_NAME(sbx::productelement_oid peOid)
 	}
 }
 
-std::string RuleEngine::_indent(unsigned short depth) { return std::string(depth, ' '); }
+std::string RuleEngine::_indent(unsigned short depth) const { return std::string(depth, ' '); }
 
 const Koncept& sbx::RuleEngine::getKoncept(sbx::koncept_oid konceptOid)
 {

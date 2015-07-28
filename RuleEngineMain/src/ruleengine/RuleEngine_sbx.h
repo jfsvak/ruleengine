@@ -75,8 +75,9 @@ public:
 	const mup::ParserX& getParser() const;
 
 	// -- util methods for printing
-	void printRuleCatalogue(sbx::RuleCatalogue&, int depth);
-	void printRule(std::shared_ptr<sbx::Rule>, int depth);
+	void printRuleCatalogue() const;
+	void printRuleCatalogue(const sbx::RuleCatalogue&, int depth) const;
+	void printRule(std::shared_ptr<sbx::Rule>, int depth) const;
 	void printVariablesInParser();
 	void printConstantsInParser();
 	void printExpressionVariables();
@@ -156,7 +157,7 @@ private:
 	void _printVariablesInParser(mup::ParserX& p);
 	void _printExpressionVariables(mup::ParserX& p);
 	void _printConstantsInParser(mup::ParserX& p);
-	std::string _indent(unsigned short depth);
+	std::string _indent(unsigned short depth) const;
 
 };
 

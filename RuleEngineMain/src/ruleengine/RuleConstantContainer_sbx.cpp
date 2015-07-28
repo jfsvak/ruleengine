@@ -31,6 +31,7 @@ using namespace std;
 namespace sbx {
 bool RuleConstantContainer::_printDebug {false};
 bool RuleConstantContainer::_printErr {false};
+
 /**
  * Copies the vector of Constants into the _globalConstants vector
  */
@@ -457,9 +458,8 @@ void RuleConstantContainer::_initInternalMaps()
 	// initialise the 3 maps of constant types
 	for (auto& constant : _globalConstants)
 	{
-
-		// equals/enum goes into _ukOptionsMap as a shared_ptr to the Constant in a _globalConstants
-		// min/max values goes into min/max-map as a shared_ptr to the Constant in the _globalConstants
+		// equals/enum goes into a vector in the _ukOptionsMap/uaOptionsMap as a shared_ptr to the Constant in a _globalConstants
+		// min/max values goes into min/max-maps as a shared_ptr to the Constant in the _globalConstants
 		switch (constant->getComparisonType())
 		{
 		case kEnum:
@@ -584,8 +584,6 @@ std::vector<std::shared_ptr<Constant>> RuleConstantContainer::getOptionsList(sbx
 		}
 	}
 
-//	subkoncept_oid ukOid = _subkoncept.getOid();
-
 	try {
 		return _ukOptionsMap.at(_subkoncept.getOid()).at(productElementOid);
 	} catch (const std::out_of_range& oor) {
@@ -593,24 +591,14 @@ std::vector<std::shared_ptr<Constant>> RuleConstantContainer::getOptionsList(sbx
 		if (RuleConstantContainer::_printDebug) cout << "OptionsList not found in uk Map [" << _subkoncept.getOid() << "][" << productElementOid <<"] : " << oor.what();
 	}
 
-//	if (_ukOptionsMap.find(ukOid) != _ukOptionsMap.cend()
-//			&& _ukOptionsMap.at(ukOid).find(productElementOid) != _ukOptionsMap.at(ukOid).cend())
-//		return _ukOptionsMap.at(ukOid).at(productElementOid);
-
 	if (_subkoncept.getRelatedSubkonceptOid() != undefined_oid)
 	{
-//		subkoncept_oid rukOid = _subkoncept.getRelatedSubkonceptOid();
-
 		try {
 			return _ukOptionsMap.at(_subkoncept.getRelatedSubkonceptOid()).at(productElementOid);
 		} catch (const std::out_of_range& oor) {
 			// Its ok, just proceed to return empty list
 			if (RuleConstantContainer::_printDebug) cout << "OptionsList not found in related uk Map [" << _subkoncept.getRelatedSubkonceptOid() << "][" << productElementOid <<"] : " << oor.what();
 		}
-
-//		if (_ukOptionsMap.find(rukOid) != _ukOptionsMap.cend()
-//				&& _ukOptionsMap.at(rukOid).find(productElementOid) != _ukOptionsMap.at(rukOid).cend())
-//			return _ukOptionsMap.at(rukOid).at(productElementOid);
 	}
 
 	return {};
@@ -629,11 +617,9 @@ std::shared_ptr<sbx::Constant> RuleConstantContainer::getConstant(sbx::productel
 	{
 	case kMin:
 		if (_unionAgreementRelationship == sbx::INCLUDED)
-		{
 			if (_uaMinValuesMap.find(_unionAgreementOid) != _uaMinValuesMap.cend()
 					&& _uaMinValuesMap.at(_unionAgreementOid).find(productElementOid) != _uaMinValuesMap.at(_unionAgreementOid).cend())
 				return _uaMinValuesMap.at(_unionAgreementOid).at(productElementOid);
-		}
 
 		if (_ukMinValuesMap.find(ukOid) != _ukMinValuesMap.cend()
 				&& _ukMinValuesMap.at(ukOid).find(productElementOid) != _ukMinValuesMap.at(ukOid).cend())
@@ -650,11 +636,9 @@ std::shared_ptr<sbx::Constant> RuleConstantContainer::getConstant(sbx::productel
 		break;
 	case kMax:
 		if (_unionAgreementRelationship == sbx::INCLUDED)
-		{
 			if (_uaMaxValuesMap.find(_unionAgreementOid) != _uaMaxValuesMap.cend()
 					&& _uaMaxValuesMap.at(_unionAgreementOid).find(productElementOid) != _uaMaxValuesMap.at(_unionAgreementOid).cend())
 				return _uaMaxValuesMap.at(_unionAgreementOid).at(productElementOid);
-		}
 
 		if (_ukMaxValuesMap.find(ukOid) != _ukMaxValuesMap.cend()
 				&& _ukMaxValuesMap.at(ukOid).find(productElementOid) != _ukMaxValuesMap.at(ukOid).cend())
