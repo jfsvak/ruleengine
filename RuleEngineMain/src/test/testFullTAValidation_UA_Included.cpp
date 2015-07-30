@@ -35,7 +35,7 @@ protected:
 TEST_F(Full_TA_CONTEXT_KI_OSV_25_50_UA_14_Included, Full_TA_POSITIVE) {
 	TA ta { "15124040" };
 	RuleEngine::_printDebugAtValidation = true;
-	int total {130};
+	int total {129};
 
 	auto r = re.validate(ta);
 	EXPECT_FALSE(r.isAllOk());
@@ -69,12 +69,24 @@ TEST_F(Full_TA_CONTEXT_KI_OSV_25_50_UA_14_Included, Full_TA_POSITIVE) {
 	ta.setValue(kGrpStuderende, false);
 	ta.setValue(kGrpVikarer, false);
 	ta.setValue(kGrpLaerlinge, false);
-	ta.setValue(kGrpSeniorMedarbejdere, false);
-	ta.setValue(kEjIndmeldelseOverAlder, 60);
+	ta.setValue(kGrpSeniorMedarbejdere, true);
 
 	r = re.validate(ta);
 	EXPECT_FALSE(r.isAllOk());
-	EXPECT_EQ(total-=6, r.sizeValidationResults());
+	EXPECT_EQ(total-=4, r.sizeValidationResults());
+	cout << r;
+
+	ta.setValue(kEjIndmeldelseOverAlder, 60);
+	r = re.validate(ta);
+	EXPECT_FALSE(r.isAllOk());
+	EXPECT_EQ(total-=1, r.sizeValidationResults());
+	cout << r;
+
+	ta.setValue(kGrpSeniorMedarbejdere, false);
+	ta.remove(kEjIndmeldelseOverAlder);
+	r = re.validate(ta);
+	EXPECT_FALSE(r.isAllOk());
+	EXPECT_EQ(total, r.sizeValidationResults());
 	cout << r;
 
 	cout << "Omtegning:" << endl;

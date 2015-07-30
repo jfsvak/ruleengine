@@ -2071,6 +2071,13 @@
             "expr": "",
    	        "productElementOids": [ 167 ],
    	        "requiredif": "false"
+         },
+ 		 {
+         	"comments" : "Misc rule - EjIndmeldelseOverAlder",
+            "id": "99.13",
+            "expr": "",
+   	        "productElementOids": [ 66 ],
+   	        "requiredif": "ns_equals(\"GrpSeniorMedarbejdere\", true, false) == true"
          }
 	]}
 }
