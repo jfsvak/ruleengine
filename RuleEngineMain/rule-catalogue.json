@@ -110,8 +110,15 @@
             ],
 	        "negativeRuleCatalogue": []
          },
-
          
+ 		 {
+         	"comments" : "General page - EjIndmeldelseOverAlder",
+            "id": "12.1",
+            "expr": "",
+   	        "productElementOids": [ 66 ],
+   	        "requiredif": "ns_equals(\"GrpSeniorMedarbejdere\", true, false) == true"
+         },
+
          {
          	"comments" : "Product Page: Retirement age etc",
          	
@@ -2071,13 +2078,6 @@
             "expr": "",
    	        "productElementOids": [ 167 ],
    	        "requiredif": "false"
-         },
- 		 {
-         	"comments" : "Misc rule - EjIndmeldelseOverAlder",
-            "id": "99.13",
-            "expr": "",
-   	        "productElementOids": [ 66 ],
-   	        "requiredif": "ns_equals(\"GrpSeniorMedarbejdere\", true, false) == true"
          }
 	]}
 }
