@@ -20,6 +20,8 @@
 namespace sbx {
 const std::string kBidragstrappe_VARNAME = "Bidragstrappe";
 const std::string kAftaleIkraftdato_VARNAME = "AftaleIkraftdato";
+const std::string kInsuranceCondition_VARNAME = "InsuranceConditionVersion";
+
 const std::string kUnionAgreementRelationship_VARNAME = "UnionAgreementRelationship";
 const std::string kUnionAgreementOid_VARNAME = "UnionAgreementOid";
 

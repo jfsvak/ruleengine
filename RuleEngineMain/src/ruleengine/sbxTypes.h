@@ -38,9 +38,7 @@ enum ProductOid : unsigned short {
     kIkraftdato_Nuvaerende_ProductOid 	= 58,
 	kSamlet_Bidragsprocent_ProductOid 	= 76,
 	kOverenskomst_ProductOid 			= 92,
-	kP_194								= 194,
-	kP_217								= 217,
-	kP_218								= 218
+	kP_TAE_RFY							= 152
 };
 
 enum ProductElementOid : unsigned short {
@@ -212,9 +210,11 @@ enum ProductElementOid : unsigned short {
 			kKritiskSygBornesumSuppldaekn_mk		= 271,
 			kKritiskSygBornesumTegningsmaxBl		= 272,
 			kSeneste_Underskriftsdato				= 273,
+			kTAE_RFY								= 274,
 
 
 			// artificial pe
+			kInsuranceConditionVersion				= 995,
 			kUnionAgreementRelationship				= 996,
 			kUnionAgreementOid						= 997,
 			kAftaleIkraftdato						= 998,

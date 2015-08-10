@@ -455,6 +455,7 @@
             ],
 	        "negativeRuleCatalogue": []
      	 },
+     	 
          {
             "id": "23.5",
 
@@ -479,6 +480,17 @@
             ],
 	        "negativeRuleCatalogue": []
      	 },
+
+         {
+            "id": "23.6",
+            "comments" : "TAE_RFY - Has to be ingen, if InsuranceConditionVersion == 1",
+	        "expr": "InsuranceConditionVersion == 1 and TAE_RFY != \"Ingen\"",
+	        "productElementOids": [ 274 ],
+	        "requiredif": "",
+	        "positiveValCode": 101,
+    	    "positiveMessage": "Ressourceforløbsydelse skal være Ingen, når gamle forsikringsbetingelser er valgt"
+     	 },
+     	 
          {
             "id": "24.1",
 

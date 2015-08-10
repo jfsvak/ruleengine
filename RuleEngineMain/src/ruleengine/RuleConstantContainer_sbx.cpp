@@ -337,6 +337,18 @@ void RuleConstantContainer::_addFakeProductElements(std::shared_ptr<sbx::Product
 		productPtr->addProductElementOid(sbx::ProductElementOid::kAftaleIkraftdato);
 	}
 
+	// hardcode product element for InsuranceConditionVerion (995) and set relation to product "TAE_RFY"
+	if (productPtr->getOid() == (sbx::product_oid) sbx::ProductOid::kP_TAE_RFY)
+	{
+		_productElementMap[(sbx::productelement_oid) sbx::ProductElementOid::kInsuranceConditionVersion] = make_shared<sbx::ProductElement>(static_cast<sbx::productelement_oid>(sbx::ProductElementOid::kInsuranceConditionVersion),
+																																			kInsuranceCondition_VARNAME,
+																																			kInsuranceCondition_VARNAME,
+																																			sbx::ProductElementTypes::kLong,
+																																			sbx::ProductOid::kP_TAE_RFY);
+		_varNameToPEOidMap[kInsuranceCondition_VARNAME] = (sbx::productelement_oid) sbx::ProductElementOid::kInsuranceConditionVersion;
+		productPtr->addProductElementOid(sbx::ProductElementOid::kInsuranceConditionVersion);
+	}
+
 	if (productPtr->getOid() == (sbx::product_oid) sbx::ProductOid::kOverenskomst_ProductOid)
 	{
 		// UnionAgreementOid
