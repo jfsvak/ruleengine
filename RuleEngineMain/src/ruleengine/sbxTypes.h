@@ -211,6 +211,9 @@ enum ProductElementOid : unsigned short {
 			kKritiskSygBornesumTegningsmaxBl		= 272,
 			kSeneste_Underskriftsdato				= 273,
 			kTAE_RFY								= 274,
+			kFagspecificMaxAgeEnrolled_mk			= 275,
+			kFagspecificMaxAgeEnrolledAge			= 276,
+
 
 
 			// artificial pe
