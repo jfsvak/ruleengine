@@ -491,6 +491,25 @@
     	    "positiveMessage": "Ressourceforløbsydelse skal være Ingen, når gamle forsikringsbetingelser er valgt"
      	 },
      	 
+     	 
+         {
+            "id": "23.7.1",
+            "comments" : "FagspecificMaxAgeEnrolled_mk - requiredif placeholder",
+	        "expr": "",
+	        "productElementOids": [ 275 ],
+	        "requiredif": "ns_equals(\"Fagspec_mk\", true, false)",
+	        "notallowedif": "ns_equals(\"Fagspec_mk\", false, true)"
+     	 },
+
+         {
+            "id": "23.7.2",
+            "comments" : "FagspecificMaxAgeEnrolledAge - requiredif placeholder",
+	        "expr": "",
+	        "productElementOids": [ 276 ],
+	        "requiredif": "ns_equals(\"FagspecificMaxAgeEnrolled_mk\", true, false)",
+	        "notallowedif": "ns_equals(\"FagspecificMaxAgeEnrolled_mk\", false, true)"
+     	 },
+     	 
          {
             "id": "24.1",
 
