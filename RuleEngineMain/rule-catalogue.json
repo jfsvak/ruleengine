@@ -1679,8 +1679,8 @@
          },
          {
 		    "id": "33.1.1",
-	        "comments" : "Contribution ladder - first step should be higher than mandatory contribution",
-	        "expr": "ns_equals(\"Hospitalsdaekning_MK\", true, false) and ((UnionAgreementRelationship == \"U\" and ns_equals(\"Private_Taxed_MK\", false, true)) or (UnionAgreementRelationship != \"U\" and ns_equals(\"BidragEjFoesteTrin_MK\", true, true)))",
+	        "comments" : "Contribution ladder - incl hospitalsdaekning, first step should be higher than mandatory contribution",
+	        "expr": "ns_equals(\"Hospitalsdaekning_MK\", true, false) and !ns_equals(\"Bidragsstigningsform\", \"Dato\", true) and ((UnionAgreementRelationship == \"U\" and ns_equals(\"Private_Taxed_MK\", false, true)) or (UnionAgreementRelationship != \"U\" and ns_equals(\"BidragEjFoesteTrin_MK\", true, true)))",
 	        "productElementOids": [ 999 ],
    		    "requiredif": "",
 	   	    "positiveMessage": "",
@@ -1704,8 +1704,8 @@
          },
          {
 		    "id": "33.1.2",
-	        "comments" : "Contribution ladder - first step should be higher than mandatory contribution",
-	        "expr": "ns_equals(\"Hospitalsdaekning_MK\", false, false) and ((UnionAgreementRelationship == \"U\" and ns_equals(\"Private_Taxed_MK\", false, true)) or (UnionAgreementRelationship != \"U\" and ns_equals(\"BidragEjFoesteTrin_MK\", true, true)))",
+	        "comments" : "Contribution ladder - excl hospitalsdaekning, first step should be higher than mandatory contribution",
+	        "expr": "ns_equals(\"Hospitalsdaekning_MK\", false, false) and !ns_equals(\"Bidragsstigningsform\", \"Dato\", true) and ((UnionAgreementRelationship == \"U\" and ns_equals(\"Private_Taxed_MK\", false, true)) or (UnionAgreementRelationship != \"U\" and ns_equals(\"BidragEjFoesteTrin_MK\", true, true)))",
 	        "productElementOids": [ 999 ],
    		    "requiredif": "",
 	   	    "positiveMessage": "",

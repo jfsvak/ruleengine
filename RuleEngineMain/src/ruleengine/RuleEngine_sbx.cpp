@@ -583,35 +583,40 @@ sbx::ValidationResults RuleEngine::validate(sbx::TA& ta, const std::vector<sbx::
 
 		if (peOid == sbx::ProductElementOid::kBidragstrappe)
 		{
-			double previousStepTotal {0};
-			int previousIndex {-1};
-
-			// loop through the steps and validate each step expecting increasing totals
-			for (auto& step : ta.getContributionLadder()) {
-
-				double total {step.employeePct() + step.companyPct()};
-
-				std::stringstream ss {};
-				ss << step.index();
-
-				// if the total procentage is not increasing, then add message
-				if (total < previousStepTotal && !valResults.hasMessages(peOid, sbx::kValueUnderLimit))
-					valResults.addValidationResult(sbx::ValidationResult(sbx::kValueUnderLimit, peOid, _VAR_NAME(peOid) + "_" + ss.str(), "Den totale bidragsprocent skal være stigende"));
-
-				// if this step is similar to previous step, then add message. The steps are sorted by index, so it's sufficient to just check against the previous step
-				if (step.index() == previousIndex && !valResults.hasMessages(peOid, sbx::kValueNotAllowed))
-					valResults.addValidationResult(sbx::ValidationResult(sbx::kValueNotAllowed, peOid, _VAR_NAME(peOid) + "_" + ss.str(), "Dette trin findes allerede"));
-
-				if (total > 100)
-					valResults.addValidationResult(sbx::ValidationResult(sbx::kValueOverLimit, peOid, _VAR_NAME(peOid) + "_" + ss.str(), "Den totale bidragsprocent mmå ikke overstige 100"));
-
-				previousStepTotal = total;
-				previousIndex = step.index();
-			}
+			_validateContributionLadder(ta, valResults);
 		}
 	}
 
 	return valResults;
+}
+
+void RuleEngine::_validateContributionLadder(const sbx::TA& ta, sbx::ValidationResults& valResults) {
+	double previousStepTotal {0};
+	int previousIndex {-1};
+	productelement_oid peOid {sbx::ProductElementOid::kBidragstrappe};
+
+	// loop through the steps and validate each step expecting increasing totals
+	for (auto& step : ta.getContributionLadder()) {
+
+		double total {step.employeePct() + step.companyPct()};
+
+		std::stringstream ss {};
+		ss << step.index();
+
+		// if the total procentage is not increasing, then add message
+		if (total < previousStepTotal && !valResults.hasMessages(peOid, sbx::kValueUnderLimit))
+			valResults.addValidationResult(sbx::ValidationResult(sbx::kValueUnderLimit, peOid, _VAR_NAME(peOid) + "_" + ss.str(), "Den totale bidragsprocent skal være stigende"));
+
+		// if this step is similar to previous step, then add message. The steps are sorted by index, so it's sufficient to just check against the previous step
+		if (step.index() == previousIndex && !valResults.hasMessages(peOid, sbx::kValueNotAllowed))
+			valResults.addValidationResult(sbx::ValidationResult(sbx::kValueNotAllowed, peOid, _VAR_NAME(peOid) + "_" + ss.str(), "Dette trin findes allerede"));
+
+		if (total > 100)
+			valResults.addValidationResult(sbx::ValidationResult(sbx::kValueOverLimit, peOid, _VAR_NAME(peOid) + "_" + ss.str(), "Den totale bidragsprocent mmå ikke overstige 100"));
+
+		previousStepTotal = total;
+		previousIndex = step.index();
+	}
 }
 
 /**

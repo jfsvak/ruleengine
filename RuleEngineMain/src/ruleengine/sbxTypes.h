@@ -213,8 +213,11 @@ enum ProductElementOid : unsigned short {
 			kTAE_RFY								= 274,
 			kFagspecificMaxAgeEnrolled_mk			= 275,
 			kFagspecificMaxAgeEnrolledAge			= 276,
-
-
+			kPrivate_Taxed_Reguleringskode			= 277,
+			kPrivate_Premium_pct					= 278,
+			kPrivate_Taxed_SA_Administrated_MK		= 279,
+			kBidragstrappe_Aar0Pct					= 280,
+			kBidragstrappe_Aar3Pct					= 281,
 
 			// artificial pe
 			kInsuranceConditionVersion				= 995,
