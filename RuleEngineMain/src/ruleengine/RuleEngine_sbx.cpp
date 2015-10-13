@@ -583,14 +583,18 @@ sbx::ValidationResults RuleEngine::validate(sbx::TA& ta, const std::vector<sbx::
 
 		if (peOid == sbx::ProductElementOid::kBidragstrappe)
 		{
-			_validateContributionLadder(ta, valResults);
+			_validateIncreasingContributionLadder(ta, valResults);
+
+			if (ta.getValue(ProductElementOid::kBidragsstigningsform).stringValue() == "Dato") {
+				_validateDateContributionLadder(ta, valResults);
+			}
 		}
 	}
 
 	return valResults;
 }
 
-void RuleEngine::_validateContributionLadder(const sbx::TA& ta, sbx::ValidationResults& valResults) {
+void RuleEngine::_validateIncreasingContributionLadder(const sbx::TA& ta, sbx::ValidationResults& valResults) {
 	double previousStepTotal {0};
 	int previousIndex {-1};
 	productelement_oid peOid {sbx::ProductElementOid::kBidragstrappe};
@@ -598,24 +602,82 @@ void RuleEngine::_validateContributionLadder(const sbx::TA& ta, sbx::ValidationR
 	// loop through the steps and validate each step expecting increasing totals
 	for (auto& step : ta.getContributionLadder()) {
 
-		double total {step.employeePct() + step.companyPct()};
+		double total = step.totalPct();
 
-		std::stringstream ss {};
-		ss << step.index();
+		std::string idx {sbx::utils::int2string(step.index())};
 
 		// if the total procentage is not increasing, then add message
 		if (total < previousStepTotal && !valResults.hasMessages(peOid, sbx::kValueUnderLimit))
-			valResults.addValidationResult(sbx::ValidationResult(sbx::kValueUnderLimit, peOid, _VAR_NAME(peOid) + "_" + ss.str(), "Den totale bidragsprocent skal være stigende"));
+			valResults.addValidationResult(sbx::ValidationResult(sbx::kValueUnderLimit, peOid, _VAR_NAME(peOid) + "_" + idx, "Den totale bidragsprocent skal være stigende"));
 
 		// if this step is similar to previous step, then add message. The steps are sorted by index, so it's sufficient to just check against the previous step
 		if (step.index() == previousIndex && !valResults.hasMessages(peOid, sbx::kValueNotAllowed))
-			valResults.addValidationResult(sbx::ValidationResult(sbx::kValueNotAllowed, peOid, _VAR_NAME(peOid) + "_" + ss.str(), "Dette trin findes allerede"));
+			valResults.addValidationResult(sbx::ValidationResult(sbx::kValueNotAllowed, peOid, _VAR_NAME(peOid) + "_" + idx, "Dette trin findes allerede"));
 
 		if (total > 100)
-			valResults.addValidationResult(sbx::ValidationResult(sbx::kValueOverLimit, peOid, _VAR_NAME(peOid) + "_" + ss.str(), "Den totale bidragsprocent mmå ikke overstige 100"));
+			valResults.addValidationResult(sbx::ValidationResult(sbx::kValueOverLimit, peOid, _VAR_NAME(peOid) + "_" + idx, "Den totale bidragsprocent må ikke overstige 100"));
 
 		previousStepTotal = total;
 		previousIndex = step.index();
+	}
+}
+
+void RuleEngine::_validateDateContributionLadder(const sbx::TA& ta, sbx::ValidationResults& valResults) {
+	const auto& scale = ta.getContributionLadder();
+
+	double aar3Pct = _container.getConstant(kBidragstrappe_Aar3Pct, ComparisonTypes::kMin)->doubleValue();
+
+	// if only one step, then that has to be bigger than rc_Bidragstrappe_Aar3Pct_min
+	if (scale.size() == 1) {
+		if (scale.begin()->totalPct() < aar3Pct) {
+			valResults.addValidationResult(sbx::ValidationResult(sbx::kValueUnderLimit,
+																 kBidragstrappe,
+																 _VAR_NAME(kBidragstrappe) + "_" + sbx::utils::int2string(scale.begin()->index()),
+																 sbx::utils::formatMessage("Den totale bidragsprocent [%1] for trin [%2] skal være lig med eller større end [%3]",
+																		 	 	 	 	   vector<string> {sbx::utils::formatValue(scale.begin()->totalPct()), "1", sbx::utils::formatValue(aar3Pct)} )));
+		}
+
+		return;
+	}
+
+	if (scale.size() > 1) {
+		double aar0Pct = _container.getConstant(kBidragstrappe_Aar0Pct, ComparisonTypes::kMin)->doubleValue();
+
+		if (scale.begin()->totalPct() < aar0Pct) {
+			valResults.addValidationResult(sbx::ValidationResult(sbx::kValueUnderLimit,
+															     kBidragstrappe,
+																 _VAR_NAME(kBidragstrappe) + "_" + sbx::utils::int2string(scale.begin()->index()),
+																 sbx::utils::formatMessage("Den totale bidragsprocent [%1] for trin [%2] skal være lig med eller større end [%3]",
+																		 	 	 	 	   vector<string> {sbx::utils::formatValue(scale.begin()->totalPct()), "1", sbx::utils::formatValue(aar0Pct)} )));
+		}
+
+		Date year3Date {scale.begin()->index()};
+		year3Date.add(Date::YEAR, 3);
+
+		auto latestStepWithin3Years = scale.begin();
+		int stepIndex{0};
+
+		// if more than one step, then find the latest step within 3 years
+		for (auto stepIt = scale.begin(); stepIt != scale.end(); stepIt++) {
+			Date thisStepDate {stepIt->index()};
+
+			if (thisStepDate <= year3Date) {
+				latestStepWithin3Years = stepIt;
+				stepIndex++;
+			}
+			else {
+				break;
+			}
+		}
+
+		// The latest step within 3 years hase to be => rc_Bidragstrappe_Aar3Pct_min
+		if (latestStepWithin3Years->totalPct() < aar3Pct) {
+			valResults.addValidationResult(sbx::ValidationResult(sbx::kValueUnderLimit,
+																 kBidragstrappe,
+																 _VAR_NAME(kBidragstrappe) + "_" + sbx::utils::int2string(latestStepWithin3Years->index()),
+																 sbx::utils::formatMessage("Den totale bidragsprocent [%1] for trin [%2] skal være lig med eller større end [%3]",
+																		 	 	 	 	   vector<string> {sbx::utils::formatValue(latestStepWithin3Years->totalPct()), sbx::utils::int2string(stepIndex), sbx::utils::formatValue(aar3Pct)} )));
+		}
 	}
 }
 

@@ -1679,8 +1679,8 @@
          },
          {
 		    "id": "33.1.1",
-	        "comments" : "Contribution ladder - incl hospitalsdaekning, first step should be higher than mandatory contribution",
-	        "expr": "ns_equals(\"Hospitalsdaekning_MK\", true, false) and !ns_equals(\"Bidragsstigningsform\", \"Dato\", true) and ((UnionAgreementRelationship == \"U\" and ns_equals(\"Private_Taxed_MK\", false, true)) or (UnionAgreementRelationship != \"U\" and ns_equals(\"BidragEjFoesteTrin_MK\", true, true)))",
+	        "comments" : "Contribution ladder - incl hospitalsdaekning, first step should be higher than mandatory contribution, not for Date contribution ladders",
+	        "expr": "ns_equals(\"Hospitalsdaekning_MK\", true, false) and ns_equals(\"Bidragsstigningsform\", \"Dato\", false) == false and ((UnionAgreementRelationship == \"U\" and ns_equals(\"Private_Taxed_MK\", false, true)) or (UnionAgreementRelationship != \"U\" and ns_equals(\"BidragEjFoesteTrin_MK\", true, true)))",
 	        "productElementOids": [ 999 ],
    		    "requiredif": "",
 	   	    "positiveMessage": "",
@@ -1704,8 +1704,8 @@
          },
          {
 		    "id": "33.1.2",
-	        "comments" : "Contribution ladder - excl hospitalsdaekning, first step should be higher than mandatory contribution",
-	        "expr": "ns_equals(\"Hospitalsdaekning_MK\", false, false) and !ns_equals(\"Bidragsstigningsform\", \"Dato\", true) and ((UnionAgreementRelationship == \"U\" and ns_equals(\"Private_Taxed_MK\", false, true)) or (UnionAgreementRelationship != \"U\" and ns_equals(\"BidragEjFoesteTrin_MK\", true, true)))",
+	        "comments" : "Contribution ladder - excl hospitalsdaekning, first step should be higher than mandatory contribution, not for Date contribution ladders",
+	        "expr": "ns_equals(\"Hospitalsdaekning_MK\", false, false) and ns_equals(\"Bidragsstigningsform\", \"Dato\", false) == false and ((UnionAgreementRelationship == \"U\" and ns_equals(\"Private_Taxed_MK\", false, true)) or (UnionAgreementRelationship != \"U\" and ns_equals(\"BidragEjFoesteTrin_MK\", true, true)))",
 	        "productElementOids": [ 999 ],
    		    "requiredif": "",
 	   	    "positiveMessage": "",
@@ -1895,7 +1895,7 @@
 			            	"negativeMessage": "Der skal mindst være et trin",
 			            	"negativeValCode": 101,
 							"positiveRuleCatalogue": []
-		        	    }
+						}
 		            ],
 			        "negativeRuleCatalogue": []
 		        }
@@ -2105,9 +2105,23 @@
          },
  		 {
          	"comments" : "Misc rule - Overenskomst - fake product element used for validation in rule engine",
-            "id": "99.12",
+            "id": "99.13",
             "expr": "",
    	        "productElementOids": [ 167 ],
+   	        "requiredif": "false"
+         },
+ 		 {
+         	"comments" : "Misc rule - Bidragstrappe_Aar0Pct - product element is for rule constant for min validation and not to be set on TA",
+            "id": "99.14",
+            "expr": "",
+   	        "productElementOids": [ 280 ],
+   	        "requiredif": "false"
+         },
+ 		 {
+         	"comments" : "Misc rule - Bidragstrappe_Aar3Pct - product element is for rule constant for min validation and not to be set on TA",
+            "id": "99.15",
+            "expr": "",
+   	        "productElementOids": [ 281 ],
    	        "requiredif": "false"
          }
 	]}

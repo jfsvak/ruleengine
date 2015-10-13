@@ -10,6 +10,7 @@
 
 #include <array>
 #include <iostream>
+#include <regex>
 #include <string>
 
 namespace sbx {
@@ -17,7 +18,15 @@ namespace sbx {
 class Date {
 	friend std::ostream& operator << (std::ostream&, const sbx::Date& d);
 //	friend std::istream& operator >> (std::istream&, sbx::Date& d);
+
+
 public:
+
+	enum Field {
+		DAY,
+		MONTH,
+		YEAR
+	};
 	Date();
 	explicit Date(const std::string& dateToParse);
 	explicit Date(int dateAsInteger);
@@ -28,7 +37,9 @@ public:
 	bool operator > (const sbx::Date& otherDate) const;
 	bool operator >= (const sbx::Date& otherDate) const;
 	bool operator == (const sbx::Date& otherDate) const;
+	std::string parseCode(std::regex_constants::error_type etype);
 
+	void add(Date::Field, int amount);
 
 	int day() const;
 	int month() const;
@@ -37,7 +48,8 @@ public:
 	static bool leapYear(int);
 	virtual ~Date();
 private:
-	bool extractDate(const std::string& s, int& d, int& m, int& y);
+	bool parseDateString(const std::string& s, int& d, int& m, int& y);
+	bool validDateFormat(const std::string& date);
 	void setDate(int d, int m, int y);
 	unsigned short _day;
 	unsigned short _month;

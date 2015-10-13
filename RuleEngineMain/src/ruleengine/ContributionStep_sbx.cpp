@@ -24,7 +24,7 @@ ContributionStep::ContributionStep(int index, double employeePct, double company
 int ContributionStep::index() const { return _index;}
 double ContributionStep::employeePct() const{ return _employeePct; }
 double ContributionStep::companyPct() const { return _companyPct; }
-
+double ContributionStep::totalPct() const { return _employeePct + _companyPct; }
 // Comparator operator overload
 bool ContributionStep::operator < (const sbx::ContributionStep& otherStep) const
 {

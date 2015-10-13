@@ -19,6 +19,7 @@ public:
 
 	double employeePct() const;
 	double companyPct() const;
+	double totalPct() const;
 	int index() const;
 
 	virtual ~ContributionStep();
