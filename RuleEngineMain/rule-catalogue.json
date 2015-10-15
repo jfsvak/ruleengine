@@ -1779,10 +1779,19 @@
 		            "comments" : "Private_Taxed_SA_Administrated_MK - requiredIf",
 	    	        "expr": "",
 		   	        "productElementOids": [ 279 ],
-   	    		    "requiredif": "#parent#",
-	        	    "positiveMessage": "",
-	            	"negativeMessage": "",
-					"positiveRuleCatalogue": []
+   	    		    "requiredif": "#parent#"
+        	    },
+	        	{
+		            "id": "32.2.5",
+		            "comments" : "Private_Premium_BL- requiredIf",
+		   	        "productElementOids": [ 261 ],
+   	    		    "notallowedif" : "Private_Taxed_Reguleringskode == \"Gage\""
+        	    },
+	        	{
+		            "id": "32.2.6",
+		            "comments" : "Private_Premium_pct- requiredIf",
+		   	        "productElementOids": [ 278 ],
+   	    		    "notallowedif" : "Private_Taxed_Reguleringskode == \"Ingen\" or Private_Taxed_Reguleringskode == \"Pristal\""
         	    }
             ],
 	        "negativeRuleCatalogue": []

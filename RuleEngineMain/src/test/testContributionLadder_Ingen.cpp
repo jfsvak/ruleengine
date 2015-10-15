@@ -216,9 +216,17 @@ TEST_F(ContributionLadder_Ingen_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Ingen
 	EXPECT_TRUE(r.hasMessages(kPrivate_Premium_BL, kValueUnderLimit));
 
 	ta.setValue(kPrivate_Premium_BL, 50000);
+	ta.setValue(kPrivate_Premium_pct, 5);
 	r = re.validate(ta, true);
 	cout << r;
 	EXPECT_FALSE(r.hasMessages(kPrivate_Premium_BL, kValueUnderLimit));
+	EXPECT_TRUE(r.hasMessages(kPrivate_Premium_pct, kProductElementNotAllowed));
+
+	ta.remove(kPrivate_Premium_pct);
+
+	r = re.validate(ta, true);
+	cout << r;
+	EXPECT_FALSE(r.hasMessages(kPrivate_Premium_pct, kProductElementNotAllowed));
 }
 
 TEST_F(ContributionLadder_Ingen_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Ingen_PrivateTaxedMK_Ingen_NEGATIVE)
@@ -272,16 +280,20 @@ TEST_F(ContributionLadder_Ingen_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Ingen
 	ta.setValue(kPrivate_Taxed_Reguleringskode, "Gage");
 	ta.setValue(kPrivate_Taxed_SA_Administrated_MK, true);
 	ta.setValue(kPrivate_Premium_pct, 3);
+	ta.setValue(kPrivate_Premium_BL, 40000);
 
 	auto r = re.validate(ta, false);
 	EXPECT_FALSE(r.isAllOk());
-	cout << r;
 	EXPECT_TRUE(r.hasMessages(kPrivate_Premium_pct, kValueUnderLimit));
+	EXPECT_TRUE(r.hasMessages(kPrivate_Premium_BL, kProductElementNotAllowed));
+	cout << r;
 
 	ta.setValue(kPrivate_Premium_pct, 5);
+	ta.remove(kPrivate_Premium_BL);
 	r = re.validate(ta, true);
-	cout << r;
 	EXPECT_FALSE(r.hasMessages(kPrivate_Premium_pct, kValueUnderLimit));
+	EXPECT_FALSE(r.hasMessages(kPrivate_Premium_BL, kProductElementNotAllowed));
+	cout << r;
 }
 
 TEST_F(ContributionLadder_Ingen_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Ingen_PrivateTaxedMK_Hospitalsdaekning_NEGATIVE)
