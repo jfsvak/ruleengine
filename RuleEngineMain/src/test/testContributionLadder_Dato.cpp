@@ -70,9 +70,9 @@ TEST_F(ContributionLadder_Dato_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Dato_1
 //	if (r.isAllOk())
 		cout << r;
 	ASSERT_EQ(1, r.getValidationResults(kBidragstrappe).size());
-	EXPECT_EQ(kProductElementRequired, r.getValidationResults(kBidragstrappe).at(0).getValidationCode());
+	EXPECT_TRUE(r.hasMessages(kBidragstrappe, kProductElementRequired));
 
-	ta.addContributionStep( {20150501, 1, 1} ); // date is less than kIkraftdato for TA
+	ta.addContributionStep( {20150501, 1, 1} ); // date is less than kIkraftdato for TA, and the first step is not => 3% Year0 constant
 	r = re.validate(ta, false);
 	EXPECT_FALSE(r.isAllOk());
 //	if (r.isAllOk())
@@ -89,7 +89,7 @@ TEST_F(ContributionLadder_Dato_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Dato_1
 		cout << r;
 }
 
-TEST_F(ContributionLadder_Dato_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Dato_1_Step_Ekskl_NEGATIVE) {
+TEST_F(ContributionLadder_Dato_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Dato_1_Step_Aar0_NEGATIVE) {
 	RuleEngine::_printDebugAtValidation = true;
 	TA ta { "15124040"}; // KonceptOid 4 - OSV
 //	ta.setValue(kUnionAgreementRelationship, kOUTSIDE);
@@ -98,42 +98,29 @@ TEST_F(ContributionLadder_Dato_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Dato_1
 	ta.setValue(kBidragsstigningsform, "Dato" );
 	ta.setValue(kHospitalsdaekning_MK, false);
 
-	ta.addContributionStep( {20150601, 2, 1} ); // == 3 which is below BidragEksklHispdaekningPctMin == 3
-	auto r = re.validate(ta, false);
-	EXPECT_FALSE(r.isAllOk());
-	cout << r;
-	EXPECT_EQ(1, r.getValidationResults(kBidragstrappe).size());
-	EXPECT_TRUE(r.hasMessages(kBidragstrappe,kValueUnderLimit));
-	EXPECT_EQ("33.1.2.1", r.getValidationResults(kBidragstrappe).at(0).getRuleId());
-
-	ta.removeContributionStep( {20150601, 2, 1} ); // remove and set new step that equals to 4
-	ta.addContributionStep( {20150601, 2, 4} );
-	r = re.validate(ta, false);
-	EXPECT_TRUE(r.isAllOk());
-	cout << r;
-}
-
-TEST_F(ContributionLadder_Dato_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Dato_1_Step_Inkl_NEGATIVE) {
-	RuleEngine::_printDebugAtValidation = true;
-	TA ta { "15124040"}; // KonceptOid 4 - OSV
-//	ta.setValue(kUnionAgreementRelationship, kOUTSIDE);
-	ta.setValue(kPrivate_Taxed_MK, false);
-	ta.setValue(kAftaleIkraftdato, 20150601);
-	ta.setValue(kBidragsstigningsform, "Dato" );
-	ta.setValue(kHospitalsdaekning_MK, true);
-	ta.setValue(kHospitalsdaekningLeverandoer, "Codan");
-	ta.setValue(kHospitalsdaekningFrivillig_MK, false);
-
-	ta.addContributionStep( {20150601, 2, 2} ); // == 4 which is below BidragInklHispdaekningPctMin == 5
+	ta.addContributionStep( {20150601, 1, 1} ); // == 3 which is below Aar0 == 3
 	auto r = re.validate(ta, false);
 	EXPECT_FALSE(r.isAllOk());
 	cout << r;
 	EXPECT_EQ(1, r.getValidationResults(kBidragstrappe).size());
 	EXPECT_TRUE(r.hasMessages(kBidragstrappe, kValueUnderLimit));
-	EXPECT_EQ("33.1.1.1", r.getValidationResults(kBidragstrappe).at(0).getRuleId());
 
-	ta.removeContributionStep( {20150601, 2, 2} ); // remove and set new step that equals to 5
-	ta.addContributionStep( {20150601, 2, 3} );
+	ta.removeContributionStep( {20150601, 1, 1} ); // remove and set new step that equals to 3
+	ta.addContributionStep( {20150601, 2, 1} );  // should still fail as the total pct should be 5 "Bidragstrappe_Aar3Pct" within 3 years
+	r = re.validate(ta, false);
+	EXPECT_FALSE(r.isAllOk());
+	cout << r;
+	EXPECT_EQ(1, r.getValidationResults(kBidragstrappe).size());
+	EXPECT_TRUE(r.hasMessages(kBidragstrappe, kValueUnderLimit));
+
+	ta.addContributionStep( {20160601, 2, 2} );
+	r = re.validate(ta, false);
+	EXPECT_FALSE(r.isAllOk());
+	cout << r;
+	EXPECT_EQ(1, r.getValidationResults(kBidragstrappe).size());
+	EXPECT_TRUE(r.hasMessages(kBidragstrappe, kValueUnderLimit));
+
+	ta.addContributionStep( {20170601, 2, 3} );
 	r = re.validate(ta, false);
 	EXPECT_TRUE(r.isAllOk());
 	cout << r;
@@ -186,8 +173,7 @@ TEST_F(ContributionLadder_Dato_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Dato_3
 	r = re.validate(ta, false);
 	EXPECT_FALSE(r.isAllOk());
 	cout << r;
-	ASSERT_EQ(1, r.getValidationResults(kBidragstrappe).size());
-	EXPECT_EQ(kValueUnderLimit, r.getValidationResults(kBidragstrappe).at(0).getValidationCode());
+	EXPECT_TRUE(r.hasMessages(kBidragstrappe, kValueUnderLimit));
 }
 
 TEST_F(ContributionLadder_Dato_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Dato_OVer_100_NEGATIVE) {

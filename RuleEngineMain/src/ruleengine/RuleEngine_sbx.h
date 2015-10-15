@@ -100,6 +100,11 @@ private:
 	// Methods for related pe validations/checks
 	//
 	void _validateCustomRules(sbx::productelement_oid peOid, sbx::ValidationResults&);
+
+	// Validates the contribution ladder
+	void _validateIncreasingContributionLadder(const sbx::TA& ta, sbx::ValidationResults& valResults);
+	void _validateDateContributionLadder(const sbx::TA& ta, sbx::ValidationResults& valResults);
+
 	// checks if the product element is required to be the TA for the context and other values on ta's. Uses custom rules to validate this requiredness
 	std::shared_ptr<sbx::Rule> _isRequired(sbx::productelement_oid peOid, sbx::ValidationResults&, bool fullValidation = false);
 	void _isOptional(sbx::productelement_oid peOid, sbx::ValidationResults&);

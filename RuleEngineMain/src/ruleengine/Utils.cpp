@@ -9,6 +9,7 @@
 
 #include <iostream>
 #include <iomanip>
+#include <cmath>
 #include <sstream>
 
 using namespace std;
@@ -161,7 +162,15 @@ std::string formatMessage(std::string msg, const std::vector<std::string>& param
 	return msg;
 }
 
+std::string int2string(long i) {
+	std::stringstream ss {};
+	ss << i;
+	return ss.str();
+}
 
+std::string int2string(int i) {
+	return int2string((long) i);
+}
 
 sbx::ValidationCode toValCode(unsigned short valCode, sbx::ValidationCode defaultValCode)
 {
@@ -185,6 +194,13 @@ const std::string& convertUAR(sbx::UnionAgreementRelationship uar)
 	case OUTSIDE:
 		return sbx::kOUTSIDE;
 	}
+}
+
+inline bool isEqual(double x, double y)
+{
+  const double epsilon {0.000001}; /* some small number such as 1e-5 */;
+  return std::abs(x - y) <= epsilon * std::abs(x);
+  // see Knuth section 4.2.2 pages 217-218
 }
 
 char dk_numpunct::do_thousands_sep() const { return '.'; }

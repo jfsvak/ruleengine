@@ -35,7 +35,7 @@ protected:
 TEST_F(Full_TA_CONTEXT_KI_OSV_25_50_UA_14_Included, Full_TA_POSITIVE) {
 	TA ta { "15124040" };
 	RuleEngine::_printDebugAtValidation = true;
-	int total {129};
+	int total {132};
 
 	auto r = re.validate(ta);
 	EXPECT_FALSE(r.isAllOk());
@@ -190,6 +190,11 @@ TEST_F(Full_TA_CONTEXT_KI_OSV_25_50_UA_14_Included, Full_TA_POSITIVE) {
 	r = re.validate(ta);
 	EXPECT_TRUE(r.hasMessages(kTAEBlGrMin, kValueUnderLimit));
 	ta.setValue(kTAEBlGrMin, (long) 66000);
+
+	ta.setValue(kTAEReguleringskode, "Ingen");
+	ta.setValue(kTAEBlOblMax, (long) 90000);
+	ta.remove(kTAEPctGrMin);
+	ta.remove(kTAEPctOblMax);
 
 	r = re.validate(ta);
 	EXPECT_EQ(total-=3, r.sizeValidationResults());
@@ -457,21 +462,30 @@ TEST_F(Full_TA_CONTEXT_KI_OSV_25_50_UA_14_Included, Full_TA_POSITIVE) {
 	r = re.validate(ta);
 	EXPECT_EQ(total-=4, r.sizeValidationResults());
 	cout << r;
+
 	ta.setValue(kPrivate_Taxed_MK, false);
 	r = re.validate(ta);
-	EXPECT_EQ(total-=2, r.sizeValidationResults());
+	EXPECT_EQ(total-=5, r.sizeValidationResults());
 	cout << r;
 	ta.setValue(kPrivate_Taxed_MK, true);
-	r = re.validate(ta);
-	EXPECT_EQ(total+=1, r.sizeValidationResults());
+	ta.setValue(kHospitalsdaekning_MK, false);
+	ta.remove(kHospitalsdaekningLeverandoer);
+	ta.remove(kHospitalsdaekningFrivillig_MK);
 
+	r = re.validate(ta);
+	EXPECT_EQ(total+=4, r.sizeValidationResults());
 	cout << r;
+
+	ta.setValue(kPrivate_Taxed_Reguleringskode, "Ingen");
+	ta.setValue(kPrivate_Taxed_SA_Administrated_MK, true);
 	ta.setValue(kPrivate_Premium_BL, (long) 200000);
 	ta.setValue(kbagud_mk, "j");
 	r = re.validate(ta);
-	EXPECT_EQ(total-=2, r.sizeValidationResults());
+	EXPECT_EQ(total-=5, r.sizeValidationResults());
 	cout << r;
 	ta.setValue(kPrivate_Taxed_MK, false);
+	ta.remove(kPrivate_Taxed_Reguleringskode);
+	ta.remove(kPrivate_Taxed_SA_Administrated_MK);
 	ta.remove(kPrivate_Premium_BL);
 	r = re.validate(ta);
 	EXPECT_EQ(total, r.sizeValidationResults());

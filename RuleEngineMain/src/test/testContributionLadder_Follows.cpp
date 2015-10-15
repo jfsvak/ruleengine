@@ -110,8 +110,10 @@ TEST_F(ContributionLadder_Follows_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_POS
 	EXPECT_TRUE(r.hasMessages(kBidragstrappe, kValueUnderLimit));
 
 	ta.removeContributionSteps();
+	ta.remove(kBidragsstigningsform);
 	ta.addContributionStep( {0, 4, 8.1} );
 	r = re.validate(ta, false);
+	cout << r;
 	EXPECT_TRUE(r.isAllOk());
 
 	cout << r;

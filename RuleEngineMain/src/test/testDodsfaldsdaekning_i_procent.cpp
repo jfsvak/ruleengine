@@ -182,12 +182,8 @@ TEST_F(Doedsfaldsdaekning_I_Procent_KI_OSV_25_49, DoedReguleringstype_GAGE_POSIT
 			kDoedBlGrMin
 	});
 
+	cout << r;
 	EXPECT_TRUE(r.isAllOk());
-
-//	if (!r.isAllOk())
-		cout << r;
-
-	EXPECT_EQ(0, r.getWarnings().size());
 }
 
 //////////////////////////////////////////////////////////
