@@ -246,21 +246,29 @@ TEST_F(Incremental_TA_CONTEXT_KI_OSV_25_50, Incremental_TA_POSITIVE) {
 	ta.addContributionStep({0, 2, 2});
 
 	ta.setValue(kPrivate_Taxed_MK, true); // set privately taxed but no value for premium
+	ta.setValue(kPrivate_Taxed_Reguleringskode, "Pristal");
+	ta.setValue(kTAEReguleringskode, "Pristal");
+	ta.setValue(kTAEBlGrMin, 100000);
+	ta.setValue(kTAEBlOblMax, 200000);
+	ta.setValue(kDoedReguleringskode, "Pristal");
+	ta.setValue(kDoedBlGrMin, 400000);
+	ta.setValue(kDoedBlOblMax, 600000);
 	r = re.validate(ta, full); // ...and expect to fail
 	EXPECT_FALSE(r.isAllOk());
 	if (r.isAllOk()) cout << r;
-	ASSERT_EQ(1, r.getValidationResults(kPrivate_Premium_BL).size());
-	EXPECT_EQ(sbx::ValidationCode::kProductElementRequired, r.getValidationResults(kPrivate_Premium_BL).at(0).getValidationCode());
+	EXPECT_TRUE(r.hasMessages(kPrivate_Premium_BL, kProductElementRequired));
+	EXPECT_TRUE(r.hasMessages(kPrivate_Taxed_SA_Administrated_MK, kProductElementRequired));
 
+	ta.setValue(kPrivate_Taxed_SA_Administrated_MK, true);
 	ta.setValue(kPrivate_Premium_BL, (double) 150234.5); // set a premium ...
 	ta.setValue(kHospitalsdaekning_MK, false);
 	r = re.validate(ta, full); // ... and expect not to fail
 	EXPECT_TRUE(r.isAllOk());
-	if (!r.isAllOk()) cout << r;
+	cout << r;
 
 	ta.setValue(kBidragEjFoesteTrin_MK, false); // set the
 	r = re.validate(ta, full);
 	EXPECT_TRUE(r.isAllOk());
-	if (!r.isAllOk()) cout << r;
+	cout << r;
 
 }

@@ -1662,16 +1662,126 @@
             "negativeMessage": "",
             "positiveRuleCatalogue": 
             [
-	        	{
+    			{
 		            "id": "32.2.1",
-		            "comments" : "Private_Premium_BL - requiredif placeholder",
-	    	        "expr": "Private_Premium_BL > 0",
-	    	        "evaluateExprIf": "Private_Taxed_MK == true",
-		   	        "productElementOids": [ 261 ],
+		            "comments" : "Check for Hospitalsdaekning_MK",
+	    	        "expr": "ns_equals(\"Hospitalsdaekning_MK\", true, false)",
+	    	        "evaluateExprIf": "#parent#",
+		   	        "productElementOids": [ 97 ],
+   	    		    "requiredif": "",
+	        	    "positiveMessage": "Det er ikke tilladt at have integreret behandlingsforsikring ved skattemæssige private",
+	        	    "positiveValCode": 101,
+					"positiveRuleCatalogue": []
+        	    },
+    
+	        	{
+		            "id": "32.2.2",
+		            "comments" : "Private_Taxed_Reguleringskode",
+	    	        "expr": "Private_Taxed_Reguleringskode == \"Ingen\" or Private_Taxed_Reguleringskode == \"Pristal\"",
+		   	        "productElementOids": [ 277 ],
    	    		    "requiredif": "#parent#",
 	        	    "positiveMessage": "",
-	            	"negativeMessage": "Pensionsbidraget skal være større end 0 kr",
-	            	"negativeValCode": 102,
+	            	"negativeMessage": "",
+					"positiveRuleCatalogue": 
+					[
+						{
+				            "id": "32.2.2.1",
+				            "comments" : "Private_Premium_BL - requiredif placeholder",
+			    	        "expr": "Private_Premium_BL >= rc_Private_Premium_BL_min",
+			    	        "evaluateExprIf": "#parent#",
+				   	        "productElementOids": [ 261 ],
+		   	    		    "requiredif": "#parent#",
+			        	    "positiveMessage": "",
+			            	"negativeMessage": "Pensionsbidraget skal være større end %1 kr",
+			            	"negativeMessageParameters": [ "rc_Private_Premium_BL_min" ],
+			            	"negativeValCode": 102,
+							"positiveRuleCatalogue": []
+		        	    },
+		        	    {
+				            "id": "32.2.2.2",
+				            "comments" : "Death and TAE reguleringstype - validation",
+			    	        "expr": "TAEReguleringskode == DoedReguleringskode",
+			    	        "evaluateExprIf": "#parent#",
+				   	        "productElementOids": [ 82, 83 ],
+		   	    		    "requiredif": "#parent#",
+			        	    "positiveMessage": "",
+			            	"negativeMessage": "TAE og Død skal have samme reguleringskode for skattemæssige private",
+			            	"negativeValCode": 101,
+							"positiveRuleCatalogue": []
+		        	    }
+					]
+        	    },
+	        	{
+		            "id": "32.2.3",
+		            "comments" : "Private_Taxed_Reguleringskode",
+	    	        "expr": "Private_Taxed_Reguleringskode == \"Gage\" && ns_equals(\"Hospitalsdaekning_mk\", true, false)",
+		   	        "productElementOids": [ 277 ],
+   	    		    "requiredif": "#parent#",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "",
+					"positiveRuleCatalogue": 
+					[
+						{
+				            "id": "32.2.3.1",
+				            "comments" : "",
+			    	        "expr": "Private_Premium_pct >= rc_BidragInklHospdaekningPctMin_min",
+			    	        "evaluateExprIf": "#parent#",
+				   	        "productElementOids": [ 278 ],
+		   	    		    "requiredif": "#parent#",
+			        	    "positiveMessage": "",
+			            	"negativeMessage": "Pensionsbidraget skal være større end eller lig med %1%",
+			            	"negativeMessageParameters": [ "rc_BidragInklHospdaekningPctMin_min" ],
+			            	"negativeValCode": 102,
+							"positiveRuleCatalogue": [	]
+		        	    }
+		        	    
+					]
+        	    },
+	        	{
+		            "id": "32.2.4",
+		            "comments" : "Private_Taxed_Reguleringskode",
+	    	        "expr": "Private_Taxed_Reguleringskode == \"Gage\" && ns_equals(\"Hospitalsdaekning_mk\", false, true)",
+		   	        "productElementOids": [ 277 ],
+   	    		    "requiredif": "#parent#",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "",
+					"positiveRuleCatalogue": 
+					[
+						{
+				            "id": "32.2.4.1",
+				            "comments" : "",
+			    	        "expr": "Private_Premium_pct >= rc_BidragsEksklHospdaekningPctMin_min",
+			    	        "evaluateExprIf": "#parent#",
+				   	        "productElementOids": [ 278 ],
+		   	    		    "requiredif": "#parent#",
+			        	    "positiveMessage": "",
+			            	"negativeMessage": "Pensionsbidraget skal være større end eller lig med %1%",
+			            	"negativeMessageParameters": [ "rc_BidragsEksklHospdaekningPctMin_min" ],
+			            	"negativeValCode": 102,
+							"positiveRuleCatalogue": [	]
+		        	    },
+		        	    {
+				            "id": "32.2.4.2",
+				            "comments" : "Death and TAE reguleringstype - validation",
+			    	        "expr": "ns_equals(\"TAEReguleringskode\", \"Gage\", false) and ns_equals(\"DoedReguleringskode\", \"Gage\", false)",
+			    	        "evaluateExprIf": "#parent#",
+				   	        "productElementOids": [ 82, 83 ],
+		   	    		    "requiredif": "#parent#",
+			        	    "positiveMessage": "",
+			            	"negativeMessage": "TAE og Død skal være gagereguleret når reguleringskode for skattemæssige private er gagereguleret",
+			            	"negativeValCode": 101,
+							"positiveRuleCatalogue": []
+		        	    }
+					]
+        	    },
+	        	{
+		            "id": "32.2.4",
+		            "comments" : "Private_Taxed_SA_Administrated_MK - requiredIf",
+	    	        "expr": "",
+		   	        "productElementOids": [ 279 ],
+   	    		    "requiredif": "#parent#",
+	        	    "positiveMessage": "",
+	            	"negativeMessage": "",
 					"positiveRuleCatalogue": []
         	    }
             ],

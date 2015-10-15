@@ -173,8 +173,7 @@ TEST_F(ContributionLadder_Dato_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Dato_3
 	r = re.validate(ta, false);
 	EXPECT_FALSE(r.isAllOk());
 	cout << r;
-	ASSERT_EQ(1, r.getValidationResults(kBidragstrappe).size());
-	EXPECT_EQ(kValueUnderLimit, r.getValidationResults(kBidragstrappe).at(0).getValidationCode());
+	EXPECT_TRUE(r.hasMessages(kBidragstrappe, kValueUnderLimit));
 }
 
 TEST_F(ContributionLadder_Dato_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Dato_OVer_100_NEGATIVE) {

@@ -74,7 +74,7 @@ TEST_F(Full_TA_CONTEXT_KI_OSV_25_50, Full_TA_POSITIVE) {
 	TA ta { "15124040" };
 	RuleEngine::_printDebugAtValidation = true;
 	// union agreement already set to OUTSIDE, so uar, uaoid and bidragej_forstetrin are not expected
-	int total {130};
+	int total {133};
 
 	auto r = re.validate(ta);
 	EXPECT_FALSE(r.isAllOk());
@@ -469,23 +469,35 @@ TEST_F(Full_TA_CONTEXT_KI_OSV_25_50, Full_TA_POSITIVE) {
 	cout << r;
 	ta.setValue(kPrivate_Taxed_MK, false);
 	r = re.validate(ta);
-	EXPECT_EQ(total-=2, r.sizeValidationResults());
+	EXPECT_EQ(total-=5, r.sizeValidationResults());
 	cout << r;
 	ta.setValue(kPrivate_Taxed_MK, true);
 	r = re.validate(ta);
-	EXPECT_EQ(total, r.sizeValidationResults());
+	EXPECT_EQ(total+=4, r.sizeValidationResults());
 	EXPECT_FALSE(r.hasMessages(kBidragstrappe, kProductElementRequired));
+	ta.setValue(kHospitalsdaekning_MK, false);
+	ta.remove(kHospitalsdaekningLeverandoer);
+	ta.remove(kHospitalsdaekningFrivillig_MK);
 
-	cout << r;
+	ta.setValue(kPrivate_Taxed_Reguleringskode, "Ingen");
+	ta.setValue(kPrivate_Taxed_SA_Administrated_MK, true);
 	ta.setValue(kPrivate_Premium_BL, (long) 200000);
 	ta.setValue(kbagud_mk, "j");
 	r = re.validate(ta);
-	EXPECT_EQ(total-=2, r.sizeValidationResults());
+	EXPECT_EQ(total-=4, r.sizeValidationResults());
+	cout << r;
+	ta.setValue(kPrivate_Taxed_MK, false);
+	ta.remove(kPrivate_Taxed_Reguleringskode);
+	ta.remove(kPrivate_Taxed_SA_Administrated_MK);
+	ta.remove(kPrivate_Premium_BL);
+
+	r = re.validate(ta);
+	EXPECT_EQ(total-=1, r.sizeValidationResults());
 	cout << r;
 	ta.setValue(kPrivate_Taxed_MK, false);
 	ta.remove(kPrivate_Premium_BL);
 	r = re.validate(ta);
-	EXPECT_EQ(total+=1, r.sizeValidationResults());
+	EXPECT_EQ(total, r.sizeValidationResults());
 	cout << r;
 
 	ta.addContributionStep( {20, 4, 4} );
@@ -531,7 +543,7 @@ TEST_F(Full_TA_CONTEXT_KI_OSV_25_50, Full_TA_POSITIVE_New_InsuranceConditions) {
 
 	TA ta { "15124040" };
 	RuleEngine::_printDebugAtValidation = true;
-	int total {132};
+	int total {135};
 
 	auto r = re.validate(ta);
 	EXPECT_FALSE(r.isAllOk());
@@ -933,23 +945,27 @@ TEST_F(Full_TA_CONTEXT_KI_OSV_25_50, Full_TA_POSITIVE_New_InsuranceConditions) {
 	cout << r;
 	ta.setValue(kPrivate_Taxed_MK, false);
 	r = re.validate(ta);
-	EXPECT_EQ(total-=2, r.sizeValidationResults());
+	EXPECT_EQ(total-=5, r.sizeValidationResults());
 	cout << r;
 	ta.setValue(kPrivate_Taxed_MK, true);
 	r = re.validate(ta);
-	EXPECT_EQ(total, r.sizeValidationResults());
+	EXPECT_EQ(total+=4, r.sizeValidationResults());
 	EXPECT_FALSE(r.hasMessages(kBidragstrappe, kProductElementRequired));
 
 	cout << r;
+	ta.setValue(kPrivate_Taxed_Reguleringskode, "Ingen");
+	ta.setValue(kPrivate_Taxed_SA_Administrated_MK, true);
 	ta.setValue(kPrivate_Premium_BL, (long) 200000);
 	ta.setValue(kbagud_mk, "j");
 	r = re.validate(ta);
-	EXPECT_EQ(total-=2, r.sizeValidationResults());
+	EXPECT_EQ(total-=3, r.sizeValidationResults());
 	cout << r;
 	ta.setValue(kPrivate_Taxed_MK, false);
+	ta.remove(kPrivate_Taxed_SA_Administrated_MK);
+	ta.remove(kPrivate_Taxed_Reguleringskode);
 	ta.remove(kPrivate_Premium_BL);
 	r = re.validate(ta);
-	EXPECT_EQ(total+=1, r.sizeValidationResults());
+	EXPECT_EQ(total-=2, r.sizeValidationResults());
 	cout << r;
 
 	ta.addContributionStep( {20, 4, 4} );
@@ -1075,8 +1091,8 @@ TEST_F(Full_TA_CONTEXT_KI_Advokatpakken_3_9, Full_TA_POSITIVE_) {
 	ta.setValue(kKritiskSygSuppldaekn_mk, false);
 	ta.setValue(kKritiskSygBornesum_i_FG_mk, false); // minus type, min/max/span x 2, skattekode, suppldaekning
 	ta.setValue(kKritiskSygBornesumReguleringskode, "Ingen");
-	ta.setValue(kKritiskSygBornesumBlMin, (long) 2000);
-	ta.setValue(kKritiskSygBornesumBlMax, (long) 3000);
+	ta.setValue(kKritiskSygBornesumBlMin, (long) 50000);
+	ta.setValue(kKritiskSygBornesumBlMax, (long) 50000);
 	ta.setValue(kKritiskSygBornesumSkattekode, re.getDefaultValue(kKritiskSygBornesumSkattekode)->stringValue());
 	ta.setValue(kKritiskSygBornesumSuppldaekn_mk, false);
 	ta.setValue(kKritiskSygBornesum_i_FG_mk, false); // minus type, min/max/span x 2, skattekode, suppldaekning
@@ -1115,7 +1131,7 @@ TEST_F(Full_TA_CONTEXT_KI_Advokatpakken_3_9, Full_TA_POSITIVE_) {
 	ta.setValue(kIndslusning_MK, 0);
 
 	auto r = re.validate(ta);
-	cout << r;
 	EXPECT_TRUE(r.isAllOk());
+	cout << r;
 
 }
