@@ -22,6 +22,18 @@
 @end
 
 
+typedef enum _valueType{
+    kValueTypeText          =0,
+    kValueTypeInt           =1,
+    kValueTypeDouble        =2,
+    kValueTypeDate          =3,
+    kValueTypeBool          =4,
+    kValueTypeArray         =5,
+    kValueTypeInput         =6,
+    kValueTypeInvalid       =-1
+}ValueType;
+
+
 @implementation Bridge {
     sbx::RuleEngine re;
     sbx::TA ta;
@@ -230,17 +242,6 @@ std::string get_file_contents(const char *filename)
 #pragma mark - get options list
 
 -(NSArray*)getAllowedValuesFor:(NSInteger)oid withType:(uint8_t)valueType {
-    typedef enum _valueType{
-        kValueTypeText          =0,
-        kValueTypeInt           =1,
-        kValueTypeDouble        =2,
-        kValueTypeDate          =3,
-        kValueTypeBool          =4,
-        kValueTypeArray         =5,
-        kValueTypeInput         =6,
-        kValueTypeInvalid       =-1
-    }ValueType;
-
     sbx::ProductElementOid peOid = (sbx::ProductElementOid)oid;
     NSMutableArray *result;
     try {
@@ -549,5 +550,36 @@ std::string get_file_contents(const char *filename)
     return re.isProductElementAllowed(static_cast<unsigned short>(oid));
 }
 
+-(NSNumber*)getMinFor:(NSInteger)oid withType:(uint8_t)valueType {
+    std::shared_ptr<sbx::Constant> c = re.getConstant(static_cast<sbx::ProductElementOid>(oid), sbx::ComparisonTypes::kMin);
+    NSNumber *result = nil;
+    switch (valueType) {
+        case kValueTypeInt:
+             result = [NSNumber numberWithLong:c->longValue()];
+            break;
+        case kValueTypeDouble:
+            result = [NSNumber numberWithLong:c->doubleValue()];
+            break;
+        default:
+            break;
+    }
+    return result;
+}
+
+-(NSNumber*)getMaxFor:(NSInteger)oid withType:(uint8_t)valueType {
+    std::shared_ptr<sbx::Constant> c = re.getConstant(static_cast<sbx::ProductElementOid>(oid), sbx::ComparisonTypes::kMax);
+    NSNumber *result = nil;
+    switch (valueType) {
+        case kValueTypeInt:
+            result = [NSNumber numberWithLong:c->longValue()];
+            break;
+        case kValueTypeDouble:
+            result = [NSNumber numberWithLong:c->doubleValue()];
+            break;
+        default:
+            break;
+    }
+    return result;
+}
 
 @end

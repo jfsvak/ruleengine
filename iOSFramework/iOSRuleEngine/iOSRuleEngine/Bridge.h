@@ -40,6 +40,9 @@
 -(void)setDoubleValue:(NSNumber*)value forPE:(unsigned short) peOid;
 -(void)setBoolValue:(NSNumber*)value forPE:(unsigned short) peOid;
 
+-(NSNumber*)getMinFor:(NSInteger)oid withType:(uint8_t)valueType;
+-(NSNumber*)getMaxFor:(NSInteger)oid withType:(uint8_t)valueType;
+
 -(void)initUAContribution:(unsigned short)oid employeePct:(double)employeePct companyPct:(double)companyPct;
 -(void)addContributionStep:(long)index employeePct:(double)employeePct companyPct:(double)companyPct;
 -(void)removeAllContributionSteps;
