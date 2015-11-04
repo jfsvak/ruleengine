@@ -109,6 +109,8 @@
 		3A2FC3591B3A4FCC00ED50BA /* testUdlobsalder_Pension.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A2FC3391B3A4FCC00ED50BA /* testUdlobsalder_Pension.cpp */; };
 		3A2FC35A1B3A4FCC00ED50BA /* testUnionAgreementParsing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A2FC33A1B3A4FCC00ED50BA /* testUnionAgreementParsing.cpp */; };
 		3A2FC35B1B3A4FCC00ED50BA /* testVirksomhedsomdannelse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A2FC33B1B3A4FCC00ED50BA /* testVirksomhedsomdannelse.cpp */; };
+		3A9E7C561BE1F84700BB9361 /* DefinedInParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A9E7C521BE1F84700BB9361 /* DefinedInParser.cpp */; };
+		3A9E7C571BE1F84700BB9361 /* NSEquals.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A9E7C541BE1F84700BB9361 /* NSEquals.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -380,6 +382,10 @@
 		3A2FC3391B3A4FCC00ED50BA /* testUdlobsalder_Pension.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testUdlobsalder_Pension.cpp; sourceTree = "<group>"; };
 		3A2FC33A1B3A4FCC00ED50BA /* testUnionAgreementParsing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testUnionAgreementParsing.cpp; sourceTree = "<group>"; };
 		3A2FC33B1B3A4FCC00ED50BA /* testVirksomhedsomdannelse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testVirksomhedsomdannelse.cpp; sourceTree = "<group>"; };
+		3A9E7C521BE1F84700BB9361 /* DefinedInParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DefinedInParser.cpp; sourceTree = "<group>"; };
+		3A9E7C531BE1F84700BB9361 /* DefinedInParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefinedInParser.h; sourceTree = "<group>"; };
+		3A9E7C541BE1F84700BB9361 /* NSEquals.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NSEquals.cpp; sourceTree = "<group>"; };
+		3A9E7C551BE1F84700BB9361 /* NSEquals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSEquals.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -659,6 +665,10 @@
 		3A2FC2A61B3A477A00ED50BA /* mubridge */ = {
 			isa = PBXGroup;
 			children = (
+				3A9E7C521BE1F84700BB9361 /* DefinedInParser.cpp */,
+				3A9E7C531BE1F84700BB9361 /* DefinedInParser.h */,
+				3A9E7C541BE1F84700BB9361 /* NSEquals.cpp */,
+				3A9E7C551BE1F84700BB9361 /* NSEquals.h */,
 				3A2FC2A71B3A477A00ED50BA /* GetTAValue.cpp */,
 				3A2FC2A81B3A477A00ED50BA /* GetTAValue.h */,
 				3A2FC2A91B3A477A00ED50BA /* SubtractMonths.cpp */,
@@ -893,6 +903,7 @@
 				3A2FC3131B3A477A00ED50BA /* Subkoncept_sbx.cpp in Sources */,
 				3A2FC27E1B3A475600ED50BA /* mpPackageCommon.cpp in Sources */,
 				3A2FC33D1B3A4FCC00ED50BA /* testBehandlingsforsikring.cpp in Sources */,
+				3A9E7C571BE1F84700BB9361 /* NSEquals.cpp in Sources */,
 				3A2FC3431B3A4FCC00ED50BA /* testContributionLadder_Anciennitet.cpp in Sources */,
 				3A2FC28A1B3A475600ED50BA /* mpValReader.cpp in Sources */,
 				3A2FC20E1B3A474300ED50BA /* gtest-printers.cc in Sources */,
@@ -918,6 +929,7 @@
 				3A2FC3181B3A477A00ED50BA /* ValidationResult.cpp in Sources */,
 				3A2FC26C1B3A475600ED50BA /* mpFuncMatrix.cpp in Sources */,
 				3A2FC35A1B3A4FCC00ED50BA /* testUnionAgreementParsing.cpp in Sources */,
+				3A9E7C561BE1F84700BB9361 /* DefinedInParser.cpp in Sources */,
 				3A2FC3491B3A4FCC00ED50BA /* testEksisterendeOrdninger.cpp in Sources */,
 				3A2FC2891B3A475600ED50BA /* mpTokenReader.cpp in Sources */,
 				3A2FC2121B3A474300ED50BA /* gtest_main.cc in Sources */,
@@ -963,7 +975,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -999,7 +1011,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 			};
@@ -1047,7 +1059,7 @@
 				3A2FC1DC1B3A472D00ED50BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		3A2FC1DD1B3A472D00ED50BA /* Build configuration list for PBXNativeTarget "XcodeGtest" */ = {
 			isa = XCConfigurationList;
@@ -1056,7 +1068,7 @@
 				3A2FC1DF1B3A472D00ED50BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

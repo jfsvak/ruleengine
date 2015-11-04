@@ -733,7 +733,7 @@ void RuleEngine::_validateMinMax(const sbx::ProductElementValue& pev, sbx::Valid
 		if (!result.GetBool() && !r.hasMessages(peOid, kValueUnderLimit)) {
 			// value was not greater or equal to min
 			stringstream ss {};
-			ss << "Værdien [" << sbx::utils::formatValue(pev.longValue()) << "] for [" << _GUI_NAME(peOid) << "] må ikke være mindre end [" << this->_getConstFromParser(sbx::utils::constructRCName(_PE(peOid), sbx::ComparisonTypes::kMin)) << "]";
+			ss << "Værdien [" << sbx::utils::formatValue(pev.doubleValue()) << "] for [" << _GUI_NAME(peOid) << "] må ikke være mindre end [" << this->_getConstFromParser(sbx::utils::constructRCName(_PE(peOid), sbx::ComparisonTypes::kMin)) << "]";
 			r.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kValueUnderLimit, peOid, _VAR_NAME(peOid), ss.str(), "", expr) );
 		}
 	} catch (const mup::ParserError& e) {
@@ -748,7 +748,7 @@ void RuleEngine::_validateMinMax(const sbx::ProductElementValue& pev, sbx::Valid
 		if (!result.GetBool() && !r.hasMessages(peOid, kValueOverLimit))
 		{
 			stringstream ss {};
-			ss << "Værdien [" << sbx::utils::formatValue(pev.longValue()) << "] for [" << _GUI_NAME(peOid) << "] må ikke overstige [" << this->_getConstFromParser(sbx::utils::constructRCName(_PE(peOid), sbx::ComparisonTypes::kMax)) << "]";
+			ss << "Værdien [" << sbx::utils::formatValue(pev.doubleValue()) << "] for [" << _GUI_NAME(peOid) << "] må ikke overstige [" << this->_getConstFromParser(sbx::utils::constructRCName(_PE(peOid), sbx::ComparisonTypes::kMax)) << "]";
 			// value was not lesser or equal to max
 			r.addValidationResult( sbx::ValidationResult(sbx::ValidationCode::kValueOverLimit, peOid, _VAR_NAME(peOid), ss.str(), "", expr) );
 		}
