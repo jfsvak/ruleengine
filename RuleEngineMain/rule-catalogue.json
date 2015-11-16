@@ -1425,14 +1425,24 @@
 							"negativeValCode": 103
 						}
 					]
-        	    }
+        	    },
+                 {
+                     "id": "26.2.6",
+                     "comments" : "KritiskSygBornesumUdlobsalder - requiredif placeholder",
+                     "expr": "",
+                     "productElementOids": [ 282 ],
+                     "requiredif": "#parent#",
+                     "positiveMessage": "",
+                     "negativeMessage": "Beløb til hvert barn under[21] for Kritisk sygdom i fg Børn skal angives",
+                     "positiveRuleCatalogue": []
+                 }
 			]
 		 },
 		 
 		 
 		 {
          	"comments" : "Product Page: Behandlingsforsikring",
-         	
+       
             "id": "27.1",
             "expr": "Hospitalsdaekning_MK == true",
    	        "productElementOids": [ 97 ],
