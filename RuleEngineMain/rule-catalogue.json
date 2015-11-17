@@ -1666,13 +1666,13 @@
          	
             "id": "32.2",
             "expr": "Private_Taxed_MK == true",
-   	        "productElementOids": [ 260 ],
+   	       "productElementOids": [ 260 ],
    	        "requiredif": "",
             "positiveMessage": "",
             "negativeMessage": "",
             "positiveRuleCatalogue": 
             [
-    			{
+    			  {
 		            "id": "32.2.1",
 		            "comments" : "Check for Hospitalsdaekning_MK",
 	    	        "expr": "ns_equals(\"Hospitalsdaekning_MK\", true, false)",
@@ -1802,7 +1802,17 @@
 		            "comments" : "Private_Premium_pct- requiredIf",
 		   	        "productElementOids": [ 278 ],
    	    		    "notallowedif" : "Private_Taxed_Reguleringskode == \"Ingen\" or Private_Taxed_Reguleringskode == \"Pristal\""
-        	    }
+        	    },
+            {
+                  "id": "32.2.7",
+                  "expr": "TAETilfirma_MK == true",
+                  "productElementOids": [ 24 ],
+                  "evaluateExprIf": "ns_equals(\"Private_Taxed_MK\", true, false) == true",
+                  "requiredif": "",
+                  "positiveMessage": "Udbetaling kan ikke ske til firmaet!",
+                  "positiveValCode": 101,
+                  "positiveRuleCatalogue": []
+             }
             ],
 	        "negativeRuleCatalogue": []
          },

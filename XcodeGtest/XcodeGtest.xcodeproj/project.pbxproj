@@ -109,6 +109,7 @@
 		3A2FC3591B3A4FCC00ED50BA /* testUdlobsalder_Pension.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A2FC3391B3A4FCC00ED50BA /* testUdlobsalder_Pension.cpp */; };
 		3A2FC35A1B3A4FCC00ED50BA /* testUnionAgreementParsing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A2FC33A1B3A4FCC00ED50BA /* testUnionAgreementParsing.cpp */; };
 		3A2FC35B1B3A4FCC00ED50BA /* testVirksomhedsomdannelse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A2FC33B1B3A4FCC00ED50BA /* testVirksomhedsomdannelse.cpp */; };
+		3A3924921BF9B8F200229151 /* testExceptions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A3924901BF9B8F200229151 /* testExceptions.cpp */; };
 		3A9E7C561BE1F84700BB9361 /* DefinedInParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A9E7C521BE1F84700BB9361 /* DefinedInParser.cpp */; };
 		3A9E7C571BE1F84700BB9361 /* NSEquals.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A9E7C541BE1F84700BB9361 /* NSEquals.cpp */; };
 /* End PBXBuildFile section */
@@ -382,6 +383,7 @@
 		3A2FC3391B3A4FCC00ED50BA /* testUdlobsalder_Pension.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testUdlobsalder_Pension.cpp; sourceTree = "<group>"; };
 		3A2FC33A1B3A4FCC00ED50BA /* testUnionAgreementParsing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testUnionAgreementParsing.cpp; sourceTree = "<group>"; };
 		3A2FC33B1B3A4FCC00ED50BA /* testVirksomhedsomdannelse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testVirksomhedsomdannelse.cpp; sourceTree = "<group>"; };
+		3A3924901BF9B8F200229151 /* testExceptions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = testExceptions.cpp; sourceTree = "<group>"; };
 		3A9E7C521BE1F84700BB9361 /* DefinedInParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DefinedInParser.cpp; sourceTree = "<group>"; };
 		3A9E7C531BE1F84700BB9361 /* DefinedInParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefinedInParser.h; sourceTree = "<group>"; };
 		3A9E7C541BE1F84700BB9361 /* NSEquals.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NSEquals.cpp; sourceTree = "<group>"; };
@@ -769,6 +771,7 @@
 				3A2FC3391B3A4FCC00ED50BA /* testUdlobsalder_Pension.cpp */,
 				3A2FC33A1B3A4FCC00ED50BA /* testUnionAgreementParsing.cpp */,
 				3A2FC33B1B3A4FCC00ED50BA /* testVirksomhedsomdannelse.cpp */,
+				3A3924901BF9B8F200229151 /* testExceptions.cpp */,
 			);
 			name = test;
 			path = ../RuleEngineMain/src/test;
@@ -880,6 +883,7 @@
 				3A2FC3451B3A4FCC00ED50BA /* testContributionLadder_Follows.cpp in Sources */,
 				3A2FC30E1B3A477A00ED50BA /* ProductElementValue_sbx.cpp in Sources */,
 				3A2FC3561B3A4FCC00ED50BA /* testRelatedSubKoncepts.cpp in Sources */,
+				3A3924921BF9B8F200229151 /* testExceptions.cpp in Sources */,
 				3A2FC30A1B3A477A00ED50BA /* Parameter_sbx.cpp in Sources */,
 				3A2FC33C1B3A4FCC00ED50BA /* ruleenginetestutils.cpp in Sources */,
 				3A2FC3531B3A4FCC00ED50BA /* testKritiskSygdom_I_FG_without_FG_SPAN_PARAM.cpp in Sources */,

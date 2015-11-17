@@ -436,3 +436,23 @@ TEST_F(ContributionLadder_Ingen_CONTEXT_KI_OSV_25_50, Bidragsstigningsform_Ingen
 	EXPECT_FALSE(r.isAllOk());
 	cout << r;
 }
+
+TEST_F(ContributionLadder_Ingen_CONTEXT_KI_OSV_25_50, PrivateTaxedMK_TAETilfirmaMK_NEGATIVE)
+{
+    RuleEngine::_printDebugAtValidation = true;
+    TA ta { "15124040"}; // KonceptOid 4 - OSV
+    ta.setValue(kAftaleIkraftdato, 20150701);
+    ta.setValue(kPrivate_Taxed_MK, true);
+    ta.setValue(kTAETilfirma_MK, true);
+    
+    auto r = re.validate(ta, false);
+    cout << r;
+    EXPECT_FALSE(r.isAllOk());
+    EXPECT_TRUE(r.hasMessages(kTAETilfirma_MK, kValueNotAllowed));
+    
+    ta.setValue(kTAETilfirma_MK, false);
+    r = re.validate(ta, false);
+    cout << r;
+    EXPECT_FALSE(r.hasMessages(kPrivate_Taxed_MK, kValueNotAllowed));
+    EXPECT_FALSE(r.hasMessages(kTAETilfirma_MK, kValueNotAllowed));
+}

@@ -116,6 +116,10 @@ std::string Date::parseCode(std::regex_constants::error_type etype) {
  */
 Date::Date(int dateAsInteger)
 {
+    if (dateAsInteger < 10000000) {
+        throw std::invalid_argument("Date is invalid.");
+    }
+    
 	int d,m,y;
 	std::stringstream ss{};
 	ss << dateAsInteger;

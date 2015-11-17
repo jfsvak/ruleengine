@@ -471,8 +471,10 @@ TEST_F(Full_TA_CONTEXT_KI_OSV_25_50, Full_TA_POSITIVE) {
 	r = re.validate(ta);
 	EXPECT_EQ(total-=5, r.sizeValidationResults());
 	cout << r;
+	ta.setValue(kTAETilfirma_MK, false);
 	ta.setValue(kPrivate_Taxed_MK, true);
 	r = re.validate(ta);
+	cout << r;
 	EXPECT_EQ(total+=4, r.sizeValidationResults());
 	EXPECT_FALSE(r.hasMessages(kBidragstrappe, kProductElementRequired));
 	ta.setValue(kHospitalsdaekning_MK, false);
@@ -947,6 +949,7 @@ TEST_F(Full_TA_CONTEXT_KI_OSV_25_50, Full_TA_POSITIVE_New_InsuranceConditions) {
 	r = re.validate(ta);
 	EXPECT_EQ(total-=5, r.sizeValidationResults());
 	cout << r;
+	ta.setValue(kTAETilfirma_MK, false);
 	ta.setValue(kPrivate_Taxed_MK, true);
 	r = re.validate(ta);
 	EXPECT_EQ(total+=4, r.sizeValidationResults());
